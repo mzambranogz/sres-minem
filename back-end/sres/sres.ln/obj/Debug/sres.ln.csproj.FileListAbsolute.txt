@@ -1,0 +1,9 @@
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.ln\bin\Debug\sres.ln.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.ln\bin\Debug\sres.ln.pdb
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.ln\bin\Debug\sres.be.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.ln\bin\Debug\sres.da.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.ln\bin\Debug\sres.be.pdb
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.ln\bin\Debug\sres.da.pdb
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.ln\obj\Debug\sres.ln.csprojResolveAssemblyReference.cache
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.ln\obj\Debug\sres.ln.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.ln\obj\Debug\sres.ln.pdb

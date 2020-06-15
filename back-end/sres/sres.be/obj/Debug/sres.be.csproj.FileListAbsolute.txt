@@ -1,0 +1,5 @@
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.be\bin\Debug\sres.be.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.be\bin\Debug\sres.be.pdb
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.be\obj\Debug\sres.be.csprojResolveAssemblyReference.cache
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.be\obj\Debug\sres.be.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.be\obj\Debug\sres.be.pdb
