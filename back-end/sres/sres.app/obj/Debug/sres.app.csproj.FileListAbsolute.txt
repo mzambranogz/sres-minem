@@ -56,3 +56,5 @@ D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\es\Syste
 D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\obj\Debug\sres.app.csprojResolveAssemblyReference.cache
 D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\obj\Debug\sres.app.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\obj\Debug\sres.app.pdb
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Newtonsoft.Json.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Newtonsoft.Json.xml

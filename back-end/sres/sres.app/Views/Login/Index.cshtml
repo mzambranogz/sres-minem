@@ -1,17 +1,33 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+    ViewBag.Titulo = "Login";
 }
 
-<!DOCTYPE html>
+@section scripts_header{
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/pages/login.js")"></script>
+}
+<div> 
+    <form id="frmLogin" action="@Url.Action("Validar", "Login")" method="post">
+        <label>
+            Usuario: <input type="text" name="usuario" id="usuario" placeholder="Ingrese usuario" />
+        </label>
+        <label>
+            Contraseña: <input type="password" name="contraseña" id="contraseña" placeholder="Ingrese contraseña" />
+        </label>
+        <input type="hidden" name="token" id="token" />
+        <button>
+            Ingresar
+        </button>
+        @if (TempData["error_message"] != null)
+        {
+            <label>@TempData["error_message"].ToString()</label>
+        }
+    </form>
+</div>
+<script src="https://www.google.com/recaptcha/api.js?render=@(ViewData["keySiteCaptcha"].ToString())"></script>
+<script>
+    var key = '@ViewData["keySiteCaptcha"].ToString()';
+</script>
