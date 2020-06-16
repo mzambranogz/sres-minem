@@ -84,34 +84,5 @@ namespace sres.app.Controllers
                 return false;
             }
         }
-
-        //bool IsCaptchaValid(string response)
-        //{
-        //    try
-        //    {
-        //        var secret = AppSettings.Get<string>("ReCAPTCHA_Secret_Key");
-        //        using (var client = new WebClient())
-        //        {
-        //            var values = new Dictionary<string, string>
-        //            {
-        //                {"secret", secret},
-        //                {"response", response},
-        //                {"remoteip", Request.UserHostAddress}
-        //            };
-
-        //            var content = JsonConvert.SerializeObject(values);
-        //            client.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-        //            var verify = client.UploadString("https://www.google.com/recaptcha/api/siteverify", content);
-        //            var captchaResponseJson = verify;
-        //            var captchaResult = JsonConvert.DeserializeObject<GoogleResponse>(captchaResponseJson);
-        //            return captchaResult.success && captchaResult.score > 0.5;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //Log.Error(ex);
-        //        return false;
-        //    }
-        //}
     }
 }

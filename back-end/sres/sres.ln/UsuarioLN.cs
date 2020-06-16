@@ -31,7 +31,9 @@ namespace sres.ln
 
             outUsuario = usuarioDA.ObtenerUsuarioPorCorreo(correo);
 
-            bool esContraseñaValida = Seguridad.CompararHashSal(contraseña, outUsuario.CONTRASENA);
+            esValido = outUsuario != null;
+
+            if(esValido) esValido = Seguridad.CompararHashSal(contraseña, outUsuario.CONTRASENA);
 
             return esValido;
         }

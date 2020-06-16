@@ -54,6 +54,7 @@
     <Compile Include="BaseDA.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
+    <Compile Include="MRV\UsuarioDA.cs" />
     <Compile Include="OracleDynamicParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioDA.cs" />
