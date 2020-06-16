@@ -33,8 +33,8 @@ namespace sres.da
         /// </summary>
         public BaseDA()
         {
-            string nameConnection = AppSettings.Get<string>("NombreConexion");
-            this._CadenaConexion = ConfigurationManager.ConnectionStrings[nameConnection].ConnectionString;
+            //string nameConnection = AppSettings.Get<string>("localJuanCarlos");
+            this._CadenaConexion = ConfigurationManager.ConnectionStrings["localJuanCarlos"].ConnectionString;
         }
         #endregion
     }
