@@ -10,6 +10,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using sres.be;
+using sres.ln;
 
 namespace sres.app.Controllers
 {
@@ -24,7 +26,7 @@ namespace sres.app.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Validar(string usuario, string contraseña, string token)
+        public async Task<ActionResult> Validar(string correo, string contraseña, string token)
         {
             bool esCaptchaValido = await IsCaptchaValid(token);
 
@@ -34,16 +36,16 @@ namespace sres.app.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            bool esValido = usuario == "admin@hotmail.com" && contraseña == "123456";
+            UsuarioBE usuario = null;
+
+            bool esValido = UsuarioLN.ValidarUsuario(correo, contraseña, out usuario);
 
             if (esValido)
             {
-                Session["user"] = new { usuario = usuario };
+                Session["user"] = usuario;
 
                 return RedirectToAction("Index", "Inicio");
             }
-
-            //string keySecretCaptcha = AppSettings.Get<string>("ReCAPTCHA_Secret_Key");
 
             TempData["error_message"] = "Usuario y/o contraseña incorrecto";
             return RedirectToAction("Index", "Login");

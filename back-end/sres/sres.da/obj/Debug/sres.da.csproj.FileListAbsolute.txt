@@ -6,3 +6,27 @@ D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.da\obj\Debug\sre
 D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.da\obj\Debug\sres.da.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.da\obj\Debug\sres.da.pdb
 D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.da\bin\Debug\Oracle.DataAccess.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\bin\Debug\sres.da.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\bin\Debug\sres.da.pdb
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\bin\Debug\Dapper.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\bin\Debug\Oracle.DataAccess.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\bin\Debug\sres.be.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\bin\Debug\sres.ut.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\bin\Debug\sres.be.pdb
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\bin\Debug\sres.ut.pdb
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\bin\Debug\Dapper.xml
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\obj\Debug\sres.da.csprojResolveAssemblyReference.cache
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\obj\Debug\sres.da.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\obj\Debug\sres.da.pdb
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\sres.da.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\sres.da.pdb
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\Dapper.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\Oracle.DataAccess.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\sres.be.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\sres.ut.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\sres.be.pdb
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\sres.ut.pdb
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\Dapper.xml
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\obj\Debug\sres.da.csprojResolveAssemblyReference.cache
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\obj\Debug\sres.da.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\obj\Debug\sres.da.pdb

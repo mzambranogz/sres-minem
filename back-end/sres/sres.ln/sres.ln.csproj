@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioLN.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\sres.be\sres.be.csproj">
@@ -52,6 +53,10 @@
     <ProjectReference Include="..\sres.da\sres.da.csproj">
       <Project>{35a92979-684b-4977-ad42-9fd3fa02bdd8}</Project>
       <Name>sres.da</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sres.ut\sres.ut.csproj">
+      <Project>{BE003476-6364-45C9-9F5E-C199F6153859}</Project>
+      <Name>sres.ut</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
