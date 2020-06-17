@@ -137,6 +137,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="AppSettings.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -147,6 +148,16 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\sres.be\sres.be.csproj">
+      <Project>{7A5B8CD0-B340-4B43-8E1B-B536206992D4}</Project>
+      <Name>sres.be</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sres.ln\sres.ln.csproj">
+      <Project>{FCE3F8A9-A3BF-4A5E-876F-BCB1D6093123}</Project>
+      <Name>sres.ln</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -27,6 +27,9 @@ namespace sres.app.Controllers
             return View(modelo);
         }
 
-
+        public ActionResult Usuario()
+        {
+            return View();
+        }
     }
 }

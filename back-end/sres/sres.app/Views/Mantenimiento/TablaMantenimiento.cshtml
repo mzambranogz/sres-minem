@@ -9,10 +9,15 @@
 <div>
     <select class="form-control cbo-list" id="cbo-tabla-mantenimiento" required>
         <option value="0" data-url="">-Seleccione una Tabla de Matenimiento-</option>
-        <option value="1" data-url="">Criterio</option>
+        <option value="1" data-url="Mantenimiento/Criterio">Criterio</option>
+        <option value="2" data-url="Mantenimiento/Usuario">Usuario</option>
     </select>
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6">&nbsp;</div>
-        <div class="col-sm-12 col-md-6 col-lg-6"><a class="btn btn-success w-100 mb-2 go-select" href="#" id="ir-mantenimiento" onclick="fn_irMantenimiento();"><i class="far fa-hand-point-up px-1"></i>Ir al mantenimiento</a></div>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <a class="btn btn-success w-100 mb-2 go-select" href="#" id="ir-mantenimiento" onclick="fn_irMantenimiento(event);">
+                <i class="far fa-hand-point-up px-1"></i>Ir al mantenimiento
+            </a>
+        </div>
     </div>
 </div>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Web.Http;
 
 namespace sres.api
@@ -9,6 +10,8 @@ namespace sres.api
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+
             // Configuración y servicios de API web
             config.EnableCors();
 

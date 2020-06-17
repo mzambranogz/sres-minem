@@ -124,6 +124,7 @@
   <ItemGroup>
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />
+    <Content Include="Assets\js\pages\mantenimiento_usuario.js" />
     <Content Include="Assets\js\plugins\script.js" />
     <Content Include="Assets\styles\style.css" />
     <Content Include="Global.asax" />
@@ -156,6 +157,7 @@
     <Content Include="AppSettings.config" />
     <Content Include="Views\Mantenimiento\Criterio.cshtml" />
     <Content Include="Views\Mantenimiento\TablaMantenimiento.cshtml" />
+    <Content Include="Views\Mantenimiento\Usuario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

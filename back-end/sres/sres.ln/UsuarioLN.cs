@@ -23,6 +23,11 @@ namespace sres.ln
             return usuarioDA.ObtenerUsuarioPorCorreo(correo);
         }
 
+        public static List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden)
+        {
+            return usuarioDA.BuscarUsuario(busqueda, registros, pagina, columna, orden);
+        }
+
         public static bool ValidarUsuario(string correo, string contraseña, out UsuarioBE outUsuario)
         {
             outUsuario = null;

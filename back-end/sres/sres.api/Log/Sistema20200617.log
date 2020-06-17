@@ -1,0 +1,660 @@
+17/06/2020 13:35:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:35:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:35:21: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:35:21: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:35:21: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:35:21: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:35:21: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:35:21: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:35:21: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:35:21: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:35:21: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:08: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:08: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:08: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:08: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:08: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:08: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:08: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:08: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:08: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:08: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:08: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:24: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:24: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:24: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:24: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:24: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:24: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:24: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:24: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:24: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:24: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:24: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:28: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:28: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:28: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:28: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:28: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:28: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:28: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:28: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:28: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:28: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:28: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:40: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:40: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:40: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:40: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:40: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:40: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:40: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:40: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:40: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:40: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:40: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:57: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:57: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:57: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:57: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:57: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:57: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:57: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:57: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:57: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:57: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:36:57: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:02: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:02: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:02: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:02: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:02: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:02: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:02: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:02: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:02: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:02: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:02: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:08: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:08: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:08: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:08: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:08: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:08: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:08: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:08: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:08: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:08: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:37:08: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:15: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:15: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:15: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:15: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:15: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:15: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:15: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:15: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:15: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:15: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:15: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:20: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:20: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:20: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:20: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:20: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:20: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:20: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:20: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:20: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:25: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:25: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:25: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:25: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:25: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:25: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:25: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:25: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:25: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:25: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:25: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:49: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:49: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:49: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:49: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:49: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:49: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:49: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:49: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:49: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:49: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:40:49: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:42:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:42:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:42:35: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:42:35: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:42:35: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:42:35: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:42:35: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:42:35: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:42:35: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:42:35: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:42:35: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 27:
+PLS-00302: el componente 'USP_SEL_LISTA_BUSQ_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:51:03: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:51:03: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:51:03: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:51:03: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:51:03: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:51:03: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:51:03: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:51:03: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:51:03: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:51:03: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 13:51:03: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 14:03:33: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 14:03:33: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 14:03:33: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 14:03:33: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 14:03:33: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 14:03:33: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 14:03:33: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 14:03:33: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 14:03:33: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 14:03:33: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+17/06/2020 14:03:33: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 86] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_LISTA_BUSQ_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored

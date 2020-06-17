@@ -12,7 +12,7 @@ namespace sres.da.MRV
 {
     public class UsuarioDA : BaseDA
     {
-        private string adminPackage = AppSettings.Get<string>("UserBDMRV") + ".PKG_MRV_ADMIN_SISTEMA.";
+        string adminPackage = AppSettings.Get<string>("UserBDMRV") + ".PKG_MRV_ADMIN_SISTEMA.";
 
         public Dictionary<string, string> ObtenerPassword(string correo)
         {

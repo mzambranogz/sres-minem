@@ -14,8 +14,12 @@ namespace sres.da
 {
     public class UsuarioDA : BaseDA
     {
-        private string adminPackage = AppSettings.Get<string>("UserBD") + ".PKG_SRES_ADMIN.";
+        static string user = AppSettings.Get<string>("UserBD");
 
+        string adminPackage = $"{user}.PKG_SRES_ADMIN.";
+        string mantenimientoPackage = $"{user}.PKG_SRES_MANTENIMIENTO.";
+
+        #region PAQUETE ADMIN
         public List<UsuarioBE> ListaUsuario()
         {
             List<UsuarioBE> lista = null;
@@ -60,5 +64,35 @@ namespace sres.da
 
             return item;
         }
+        #endregion
+
+        #region PAQUETE MANTENIMIENTO
+        public List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden)
+        {
+            List<UsuarioBE> lista = null;
+
+            try
+            {
+                using (IDbConnection db = new OracleConnection(CadenaConexion))
+                {
+                    string sp = $"{mantenimientoPackage}USP_SEL_LISTA_BUSQ_USUARIO";
+                    var p = new OracleDynamicParameters();
+                    p.Add("PI_BUSCAR", busqueda);
+                    p.Add("PI_REGISTROS", registros);
+                    p.Add("PI_PAGINA", pagina);
+                    p.Add("PI_COLUMNA", columna);
+                    p.Add("PI_ORDEN", orden);
+                    p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                    lista = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+        #endregion
     }
 }

@@ -183,3 +183,48 @@ ORA-06512: en línea 1
 17/06/2020 05:41:54: [Método: System.Collections.Generic.List`1[sres.be.CriterioBE] ListarBusquedaCriterio(sres.be.CriterioBE), Línea: 35] - ORA-00907: falta el paréntesis derecho
 ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 51
 ORA-06512: en línea 1
+17/06/2020 12:09:31: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:09:31: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:09:31: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:09:31: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:09:31: [Método: Boolean MoveNext(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:09:31: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:09:31: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:09:31: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:09:31: [Método: System.Collections.Generic.List`1[sres.be.CriterioBE] ListarBusquedaCriterio(sres.be.CriterioBE), Línea: 35] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:12:53: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:12:53: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:12:53: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:12:53: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:12:53: [Método: Boolean MoveNext(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:12:53: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:12:53: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:12:53: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:12:53: [Método: System.Collections.Generic.List`1[sres.be.CriterioBE] ListarBusquedaCriterio(sres.be.CriterioBE), Línea: 35] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:26: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:26: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:26: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:26: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:26: [Método: Boolean MoveNext(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:26: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:26: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:26: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:26: [Método: System.Collections.Generic.List`1[sres.be.CriterioBE] ListarBusquedaCriterio(sres.be.CriterioBE), Línea: 35] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:38: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:38: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:38: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:38: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:38: [Método: Boolean MoveNext(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:38: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:38: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:38: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:23:38: [Método: System.Collections.Generic.List`1[sres.be.CriterioBE] ListarBusquedaCriterio(sres.be.CriterioBE), Línea: 35] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:40:01: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:40:01: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:40:01: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:40:01: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:40:01: [Método: Boolean MoveNext(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:40:01: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:40:01: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:40:01: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 12:40:01: [Método: System.Collections.Generic.List`1[sres.be.CriterioBE] ListarBusquedaCriterio(sres.be.CriterioBE), Línea: 35] - ORA-01017: invalid username/password; logon denied
