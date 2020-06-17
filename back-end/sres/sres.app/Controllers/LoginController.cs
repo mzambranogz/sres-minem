@@ -39,10 +39,11 @@ namespace sres.app.Controllers
             UsuarioBE usuario = null;
 
             bool esValido = UsuarioLN.ValidarUsuario(correo, contraseña, out usuario);
-
+            //esValido = true; //QUITAR ESTA LINEA SOLO PRUEBA
             if (esValido)
             {
                 Session["user"] = usuario;
+                //Session["user"] = 1; //QUITAR SOLO PRUEBA
 
                 return RedirectToAction("Index", "Inicio");
             }

@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="BaseDA.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="CriterioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
     <Compile Include="MRV\UsuarioDA.cs" />
     <Compile Include="OracleDynamicParameters.cs" />

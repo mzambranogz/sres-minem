@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Titulo</title>
     @RenderSection("link_header", false)
+    <link rel="stylesheet" src="@Url.Content("~/Assets/styles/style.css")" />
     <script src="@Url.Content("~/Assets/js/plugins/script.js")"></script>
     @RenderSection("scripts_header", false)
 </head>
@@ -13,5 +14,6 @@
         @RenderBody()
     </div>
     @RenderSection("scripts_footer", false)
+    <script type="text/javascript"> var baseUrl = '@Url.Content("~")'; </script>
 </body>
 </html>

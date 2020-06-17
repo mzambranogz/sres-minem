@@ -33,3 +33,5 @@ D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.ln\bin\Debug\Dapp
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.ln\obj\Debug\sres.ln.csprojResolveAssemblyReference.cache
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.ln\obj\Debug\sres.ln.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.ln\obj\Debug\sres.ln.pdb
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.ln\bin\Debug\sres.ut.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.ln\bin\Debug\sres.ut.pdb

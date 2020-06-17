@@ -32,7 +32,7 @@ namespace sres.da
             }
             catch (Exception ex)
             {
-                //Log.Error(ex);
+                Log.Error(ex);
             }
 
             return lista;
@@ -55,7 +55,7 @@ namespace sres.da
             }
             catch(Exception ex)
             {
-                //Log.Error(ex);
+                Log.Error(ex);
             }
 
             return item;
