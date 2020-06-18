@@ -12,6 +12,26 @@ namespace sres.ln
     {
         public static CriterioDA criterioDA = new CriterioDA();
 
+        public static CriterioBE RegistroCriterio(CriterioBE entidad)
+        {
+            return criterioDA.RegistroCriterio(entidad);
+        }
+
+        public static CriterioBE ActualizarCriterio(CriterioBE entidad)
+        {
+            return criterioDA.ActualizarCriterio(entidad);
+        }
+
+        public static CriterioBE EliminarCriterio(CriterioBE entidad)
+        {
+            return criterioDA.EliminarCriterio(entidad);
+        }
+
+        public static CriterioBE getCriterio(CriterioBE entidad)
+        {
+            return criterioDA.getCriterio(entidad);
+        }
+
         public static List<CriterioBE> ListaBusquedaCriterio(CriterioBE entidad)
         {
             return criterioDA.ListarBusquedaCriterio(entidad);

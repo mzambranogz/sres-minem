@@ -228,3 +228,10 @@ ORA-06512: en línea 1
 17/06/2020 12:40:01: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-01017: invalid username/password; logon denied
 17/06/2020 12:40:01: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-01017: invalid username/password; logon denied
 17/06/2020 12:40:01: [Método: System.Collections.Generic.List`1[sres.be.CriterioBE] ListarBusquedaCriterio(sres.be.CriterioBE), Línea: 35] - ORA-01017: invalid username/password; logon denied
+17/06/2020 22:02:57: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 22:02:57: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 22:02:57: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 22:02:57: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 22:02:57: [Método: T QueryRowImpl[T](System.Data.IDbConnection, Row, Dapper.CommandDefinition ByRef, System.Type), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 22:02:57: [Método: T QueryFirstOrDefault[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-01017: invalid username/password; logon denied
+17/06/2020 22:02:57: [Método: sres.be.UsuarioBE ObtenerUsuarioPorCorreo(System.String), Línea: 57] - ORA-01017: invalid username/password; logon denied

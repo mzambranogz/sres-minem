@@ -54,9 +54,12 @@
     <Compile Include="BaseDA.cs" />
     <Compile Include="CriterioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
+    <Compile Include="EtapaDA.cs" />
     <Compile Include="MRV\UsuarioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleDynamicParameters.cs" />
+    <Compile Include="ProcesoDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequerimientoDA.cs" />
     <Compile Include="UsuarioDA.cs" />
   </ItemGroup>
   <ItemGroup>
