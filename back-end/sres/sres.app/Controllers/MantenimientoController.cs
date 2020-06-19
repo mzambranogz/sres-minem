@@ -5,10 +5,12 @@ using System.Web;
 using System.Web.Mvc;
 using sres.be;
 using sres.ln;
-using sres.app.Models;
+//using sres.app.Models;
+using sres.app.Controllers._Base;
 
 namespace sres.app.Controllers
 {
+    [SesionOut]
     public class MantenimientoController : Controller
     {
         // GET: Mantenimiento
@@ -22,9 +24,10 @@ namespace sres.app.Controllers
             {
                 entidad = new CriterioBE() { CANTIDAD_REGISTROS = 10, ORDER_BY = "ID_CRITERIO", ORDER_ORDEN = "ASC", PAGINA = 1, BUSCAR = "" };
             }
-            CriterioMO modelo = new CriterioMO();
-            modelo.lista = CriterioLN.ListaBusquedaCriterio(entidad);
-            return View(modelo);
+            //CriterioMO modelo = new CriterioMO();
+            //modelo.lista = CriterioLN.ListaBusquedaCriterio(entidad);
+            //return View(modelo);
+            return View();
         }
 
         public ActionResult Usuario()

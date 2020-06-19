@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using sres.be
+
+@{ 
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+}
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -14,6 +19,9 @@
         @RenderBody()
     </div>
     @RenderSection("scripts_footer", false)
-    <script type="text/javascript"> var baseUrl = '@Url.Content("~")'; </script>
+    <script type="text/javascript">
+        var baseUrl = '@Url.Content("~")';
+        var idUsuarioLogin = @(usuario == null ? "null" : usuario.ID_USUARIO.ToString());
+    </script>
 </body>
 </html>

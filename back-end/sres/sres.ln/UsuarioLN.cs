@@ -28,6 +28,11 @@ namespace sres.ln
             return usuarioDA.BuscarUsuario(busqueda, registros, pagina, columna, orden);
         }
 
+        public static bool CambiarEstadoUsuario(UsuarioBE usuario)
+        {
+            return usuarioDA.CambiarEstadoUsuario(usuario);
+        }
+
         public static bool ValidarUsuario(string correo, string contraseña, out UsuarioBE outUsuario)
         {
             outUsuario = null;

@@ -9,6 +9,7 @@ using Oracle.DataAccess.Client;
 using System.Web.Configuration;
 using sres.be;
 using sres.ut;
+using sres.da.DataBaseHelpers;
 
 namespace sres.da
 {
@@ -92,6 +93,35 @@ namespace sres.da
             }
 
             return lista;
+        }
+
+        public bool CambiarEstadoUsuario(UsuarioBE usuario)
+        {
+            bool seActualizo = false;
+
+            try
+            {
+                using (IDbConnection db = new OracleConnection(CadenaConexion))
+                {
+                    string sp = $"{mantenimientoPackage}USP_UPD_CAMBIA_ESTADO";
+                    var p = new OracleDynamicParameters();
+                    p.Add("PI_ID_USUARIO", usuario.ID_USUARIO);
+                    p.Add("PI_FLAG_ESTADO", usuario.FLAG_ESTADO);
+                    p.Add("PI_UPD_USUARIO", usuario.UPD_USUARIO);
+                    p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                    db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+
+                    int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+
+                    seActualizo = filasAfectadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return seActualizo;
         }
         #endregion
     }

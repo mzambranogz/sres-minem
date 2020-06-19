@@ -16,5 +16,7 @@ namespace sres.be
         public string TELEFONO { get; set; }
         public string ANEXO { get; set; }
         public string CELULAR { get; set; }
+        public string FLAG_ESTADO { get; set; }
+        public int UPD_USUARIO { get; set; }
     }
 }

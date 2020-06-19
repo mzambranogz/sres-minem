@@ -12,6 +12,7 @@
             <div class="col-12 px-0">
                 <input type="text" class="form-control" id="textoBusqueda" name="textoBusqueda" />
                 <button id="btnConsultar">CONSULTAR</button>
+                <button id="btnNuevo">NUEVO</button>
             </div>
         </div>
         <div class="row">
@@ -30,58 +31,55 @@
                                 <th class="text-center" scope="col" width="10%">Opciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-
-                            @*@if (Model.lista != null)
-                                {
-
-                                    foreach (var item in Model.lista)
-                                    {
-                                        i++;
-                                        <tr>
-                                            <th class="text-center" data-encabezado="Número" scope="row">@item.ID_CRITERIO</th>
-                                            <td data-encabezado="Descripcion">@item.NOMBRE</td>
-                                            <td class="text-center text-xs-right" data-encabezado="Acciones">
-                                                <div class="btn-group">
-                                                    <div class="acciones fase-01 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></div>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#" onclick="fn_cargarDatosMantenimiento(@item.ID_CRITERIO);" data-toggle="modal" data-target="#modal-edicion">
-                                                            <i class="fas fa-edit"></i>&nbsp;
-                                                            Editar
-                                                        </a><a class="dropdown-item" href="#" onclick="fn_Seleccionaregistro(@item.ID_CRITERIO)" data-toggle="modal" data-target="#modal-confirmacion">
-                                                            <i class="fas fa-trash"></i>&nbsp;
-                                                            Eliminar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        total_reg = @item.TOTAL_REGISTROS;
-                                        total_pag = @item.TOTAL_PAGINAS;
-                                    }
-                                }*@
-                        </tbody>
+                        <tbody></tbody>
                     </table>
-                    @*@{
-                            if (total_reg == 0)
-                            {
-                                inicio_reg = 0;
-                                fin_reg = 0;
-                            }
-                            else if (total_reg <= 10)
-                            {
-                                inicio_reg = 1;
-                                fin_reg = total_reg;
-                            }
-                            else if (total_reg > 10)
-                            {
-                                inicio_reg = 1;
-                                fin_reg = 10;
-                            }
-                        }*@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+<form id="frmUsuario">
+    <div>
+        <label>
+            Nombres:
+            <input type="text" name="txtNombres" id="txtNombres" placeholder="Ingrese nombres" />
+        </label>
+        <label>
+            Apellidos:
+            <input type="text" name="txtApellidos" id="txtApellidos" placeholder="Ingrese apellidos" />
+        </label>
+    </div>
+    <div>
+        <label>
+            Correo:
+            <input type="text" name="txtCorreo" id="txtCorreo" placeholder="Ingrese correo" />
+        </label>
+        <label>
+            Teléfono:
+            <input type="text" name="txtTelefono" id="txtTelefono" placeholder="Ingrese teléfono" />
+        </label>
+    </div>
+    <div>
+        <label>
+            Anexo:
+            <input type="text" name="txtAnexo" id="txtAnexo" placeholder="Ingrese anexo" />
+        </label>
+        <label>
+            Celular:
+            <input type="text" name="txtCelular" id="txtCelular" placeholder="Ingrese celular" />
+        </label>
+    </div>
+    <div>
+        <label>
+            Institución:
+            <input type="text" name="txtInstitucionId" id="txtInstitucionId" placeholder="Ingrese ruc institución" />
+        </label>
+        <label>
+            Rol:
+            <select name="selRol" id="selRol"></select>
+        </label>
+    </div>
+    <div>
+        <button>GUARDAR</button>
+    </div>
+</form>

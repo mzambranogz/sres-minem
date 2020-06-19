@@ -1,128 +1,4 @@
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\ApplicationInsights.config
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\csc.exe
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\Microsoft.CodeAnalysis.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\Microsoft.CSharp.Core.targets
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\Microsoft.VisualBasic.Core.targets
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\System.Collections.Immutable.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\System.Reflection.Metadata.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\vbc.exe
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\VBCSCompiler.exe
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\VBCSCompiler.exe.config
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\sres.app.dll.config
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\sres.app.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\sres.app.pdb
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.AI.Agent.Intercept.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.AI.DependencyCollector.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.AI.PerfCounterCollector.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.AI.ServerTelemetryChannel.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.AI.Web.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.AI.WindowsServer.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.ApplicationInsights.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.Web.Infrastructure.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\sres.be.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\sres.ln.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\sres.ut.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Helpers.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Mvc.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Razor.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Webpages.Deployment.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Webpages.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Webpages.Razor.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\sres.be.pdb
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\sres.ln.pdb
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\sres.ut.pdb
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.AI.DependencyCollector.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.AI.ServerTelemetryChannel.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.AI.Web.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.AI.WindowsServer.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.ApplicationInsights.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Razor.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Webpages.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Webpages.Deployment.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Webpages.Razor.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Helpers.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Mvc.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Web.Razor.resources.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Web.Webpages.resources.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Web.Webpages.Deployment.resources.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Web.Webpages.Razor.resources.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Web.Helpers.resources.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Web.Mvc.resources.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\obj\Debug\sres.app.csprojResolveAssemblyReference.cache
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\obj\Debug\sres.app.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\obj\Debug\sres.app.pdb
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Newtonsoft.Json.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SELLO\SOURCE CODE\back-end\sres\sres.app\bin\Newtonsoft.Json.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\ApplicationInsights.config
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\roslyn\csc.exe
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\roslyn\vbc.exe
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\roslyn\VBCSCompiler.exe
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\sres.app.dll.config
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\sres.app.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\sres.app.pdb
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.AI.Agent.Intercept.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.AI.DependencyCollector.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.AI.PerfCounterCollector.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.AI.ServerTelemetryChannel.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.AI.Web.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.AI.WindowsServer.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.ApplicationInsights.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Newtonsoft.Json.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\sres.be.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\sres.ln.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\sres.ut.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\System.Web.Helpers.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\System.Web.Mvc.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\System.Web.Razor.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\System.Web.Webpages.Deployment.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\System.Web.Webpages.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\System.Web.Webpages.Razor.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\sres.da.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Dapper.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Oracle.DataAccess.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\sres.be.pdb
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\sres.ln.pdb
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\sres.ut.pdb
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.AI.DependencyCollector.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.AI.ServerTelemetryChannel.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.AI.Web.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.AI.WindowsServer.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.ApplicationInsights.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Newtonsoft.Json.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\System.Web.Razor.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\System.Web.Webpages.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\System.Web.Webpages.Deployment.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\System.Web.Webpages.Razor.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\System.Web.Helpers.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\System.Web.Mvc.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\sres.da.pdb
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\Dapper.xml
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\es\System.Web.Razor.resources.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\es\System.Web.Webpages.resources.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\es\System.Web.Webpages.Deployment.resources.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\es\System.Web.Webpages.Razor.resources.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\es\System.Web.Helpers.resources.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\bin\es\System.Web.Mvc.resources.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\obj\Debug\sres.app.csprojResolveAssemblyReference.cache
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\obj\Debug\sres.app.dll
-C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.app\obj\Debug\sres.app.pdb
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\obj\Debug\sres.app.csprojResolveAssemblyReference.cache
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\ApplicationInsights.config
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\csc.exe
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -152,7 +28,10 @@ D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\Newtonsof
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\sres.be.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\sres.ln.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\sres.ut.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Net.Http.Formatting.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Helpers.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Http.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Http.WebHost.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Mvc.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Razor.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Webpages.Deployment.dll
@@ -170,13 +49,16 @@ D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.AI.WindowsServer.xml
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.ApplicationInsights.xml
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\Newtonsoft.Json.xml
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Razor.xml
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Webpages.xml
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Webpages.Deployment.xml
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Webpages.Razor.xml
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Helpers.xml
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Mvc.xml
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\Newtonsoft.Json.xml
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Net.Http.Formatting.xml
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Http.xml
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\System.Web.Http.WebHost.xml
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\sres.da.pdb
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\Dapper.xml
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Web.Razor.resources.dll
@@ -185,6 +67,8 @@ D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\es\System
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Web.Webpages.Razor.resources.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Web.Helpers.resources.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Web.Mvc.resources.dll
-D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\obj\Debug\sres.app.csprojResolveAssemblyReference.cache
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Net.Http.Formatting.resources.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Web.Http.resources.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\bin\es\System.Web.Http.WebHost.resources.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\obj\Debug\sres.app.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app\obj\Debug\sres.app.pdb

@@ -17,23 +17,36 @@ namespace sres.app.Controllers
 {
     public class LoginController : Controller
     {
+        bool AuthEnabled = AppSettings.Get<bool>("Auth_Enabled");
+        string AuthUsuario = AppSettings.Get<string>("Auth_Usuario");
+        string AuthContraseña = AppSettings.Get<string>("Auth_Contraseña");
+
         [SesionIn]
-        public ActionResult Index()
+        [HttpGet]
+        public async Task<ActionResult> Index()
         {
+            if (AuthEnabled)
+            {
+                return await Validar(AuthUsuario, AuthContraseña);
+            }
+
             string keySiteCaptcha = AppSettings.Get<string>("ReCAPTCHA_Site_Key");
             ViewData["keySiteCaptcha"] = keySiteCaptcha;
             return View();
         }
 
         [HttpPost]
-        public async Task<ActionResult> Validar(string correo, string contraseña, string token)
+        public async Task<ActionResult> Validar(string correo, string contraseña, string token = null)
         {
-            bool esCaptchaValido = await IsCaptchaValid(token);
-
-            if (!esCaptchaValido)
+            if (!AuthEnabled)
             {
-                TempData["error_message"] = "Captcha inválido";
-                return RedirectToAction("Index", "Login");
+                bool esCaptchaValido = await IsCaptchaValid(token);
+
+                if (!esCaptchaValido)
+                {
+                    TempData["error_message"] = "Captcha inválido";
+                    return RedirectToAction("Index", "Login");
+                }
             }
 
             UsuarioBE usuario = null;
@@ -81,7 +94,7 @@ namespace sres.app.Controllers
             }
             catch (Exception ex)
             {
-                //Log.Error(ex);
+                Log.Error(ex);
                 return false;
             }
         }

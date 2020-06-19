@@ -9,6 +9,5 @@ C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.be\obj\Debug\sres.be.dll
 C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.be\obj\Debug\sres.be.pdb
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.be\bin\Debug\sres.be.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.be\bin\Debug\sres.be.pdb
-D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.be\obj\Debug\sres.be.csprojResolveAssemblyReference.cache
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.be\obj\Debug\sres.be.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.be\obj\Debug\sres.be.pdb

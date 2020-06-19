@@ -16,5 +16,6 @@ namespace sres.be
         public string ORDER_ORDEN { get; set; }
         public int ROWNUMBER { get; set; }
         public int TOTAL_REGISTROS { get; set; }
+        
     }
 }

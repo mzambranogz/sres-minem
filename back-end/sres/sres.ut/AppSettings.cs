@@ -13,7 +13,7 @@ namespace sres.ut
         {
             T value = default(T);
 
-            if (ConfigurationManager.AppSettings.AllKeys.Contains(key)) value = (T)(object)ConfigurationManager.AppSettings[key];
+            if (ConfigurationManager.AppSettings.AllKeys.Contains(key)) value = (T)Convert.ChangeType(ConfigurationManager.AppSettings[key], typeof(T));
 
             return value;
         }
