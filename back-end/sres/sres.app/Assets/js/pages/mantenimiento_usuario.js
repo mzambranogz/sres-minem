@@ -62,5 +62,7 @@ var cambiarEstado = (element) => {
 };
 
 var cargarFormulario = () => {
+    Promise.all([
 
+    ])
 }

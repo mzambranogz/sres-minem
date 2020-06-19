@@ -47,11 +47,8 @@
     <Compile Include="EtapaBE.cs" />
     <Compile Include="ProcesoBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
     <Compile Include="RolBE.cs" />
-=======
     <Compile Include="RequerimientoBE.cs" />
->>>>>>> 85c4f6f5fa3955767a6ebb0a0fe16c5ab1eb9891
     <Compile Include="UsuarioBE.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
