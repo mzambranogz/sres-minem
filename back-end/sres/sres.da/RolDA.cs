@@ -25,10 +25,10 @@ namespace sres.da
             {
                 using (IDbConnection db = new OracleConnection(CadenaConexion))
                 {
-                    string sp = $"{mantenimientoPackage}USP_SEL_ROL_ESTADO";
+                    string sp = $"{mantenimientoPackage}USP_SEL_LISTA_ROL_ESTADO";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_FLAG_ESTADO", flagEstado);
-                    p.Add("PO", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                    p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                     lista = db.Query<RolBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
                 }
             }

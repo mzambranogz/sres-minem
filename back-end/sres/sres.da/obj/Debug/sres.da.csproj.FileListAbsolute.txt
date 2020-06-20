@@ -30,3 +30,5 @@ D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\Dapp
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\obj\Debug\sres.da.csprojResolveAssemblyReference.cache
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\obj\Debug\sres.da.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\obj\Debug\sres.da.pdb
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\Newtonsoft.Json.dll
+D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\Newtonsoft.Json.xml

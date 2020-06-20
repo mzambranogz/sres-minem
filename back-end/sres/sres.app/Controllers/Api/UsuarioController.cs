@@ -19,11 +19,24 @@ namespace sres.app.Controllers.Api
             return UsuarioLN.BuscarUsuario(busqueda, registros, pagina, columna, orden);
         }
 
+        [Route("obtenerusuario")]
+        [HttpGet]
+        public UsuarioBE ObtenerUsuario(int idUsuario)
+        {
+            return UsuarioLN.ObtenerUsuario(idUsuario);
+        }
+
         [Route("cambiarestadousuario")]
         [HttpPost]
         public bool CambiarEstadoUsuario(UsuarioBE usuario)
         {
             return UsuarioLN.CambiarEstadoUsuario(usuario);
+        }
+
+        [Route("guardarusuario")]
+        public bool GuardarUsuario(UsuarioBE usuario)
+        {
+            return UsuarioLN.GuardarUsuario(usuario);
         }
     }
 }

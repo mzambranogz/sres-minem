@@ -45,6 +45,7 @@
     <Compile Include="CriterioBE.cs" />
     <Compile Include="EtapaAuxBE.cs" />
     <Compile Include="EtapaBE.cs" />
+    <Compile Include="InstitucionBE.cs" />
     <Compile Include="ProcesoBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolBE.cs" />

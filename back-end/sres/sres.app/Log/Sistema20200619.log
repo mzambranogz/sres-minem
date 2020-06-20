@@ -1,0 +1,704 @@
+19/06/2020 12:06:56: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_ROL_ESTADO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:06:56: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_ROL_ESTADO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:06:56: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_ROL_ESTADO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:06:56: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_ROL_ESTADO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:06:56: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_ROL_ESTADO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:06:56: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_ROL_ESTADO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:06:56: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_ROL_ESTADO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:06:56: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_ROL_ESTADO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:06:56: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_ROL_ESTADO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:06:56: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_ROL_ESTADO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:06:56: [Método: System.Collections.Generic.List`1[sres.be.RolBE] ListarRolPorEstado(System.String), Línea: 32] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_SEL_ROL_ESTADO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:11:22: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_ROL_ESTADO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:11:22: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_ROL_ESTADO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:11:22: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_ROL_ESTADO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:11:22: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_ROL_ESTADO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:11:22: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_ROL_ESTADO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:11:22: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_ROL_ESTADO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:11:22: [Método: Boolean MoveNext(), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_ROL_ESTADO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:11:22: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_ROL_ESTADO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:11:22: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_ROL_ESTADO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:11:22: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_ROL_ESTADO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 12:11:22: [Método: System.Collections.Generic.List`1[sres.be.RolBE] ListarRolPorEstado(System.String), Línea: 32] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_ROL_ESTADO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 15:39:51: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:39:51: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:39:51: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:39:51: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:39:51: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:39:51: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:39:51: [Método: Boolean MoveNext(), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:39:51: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:39:51: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:39:51: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:39:51: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 87] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:01: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:01: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:01: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:01: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:01: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:01: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:01: [Método: Boolean MoveNext(), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:01: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:01: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:01: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:01: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 87] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:06: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:06: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:06: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:06: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:06: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:06: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:06: [Método: Boolean MoveNext(), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:06: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:06: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:06: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:40:06: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 87] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:41:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:41:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:41:44: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:41:44: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:41:44: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:41:44: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:41:44: [Método: Boolean MoveNext(), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:41:44: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:41:44: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:41:44: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:41:44: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 87] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:30: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:30: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:30: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:30: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:30: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:30: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:30: [Método: Boolean MoveNext(), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:30: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:30: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:30: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:30: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 87] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:41: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:41: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:41: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:41: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:41: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:41: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:41: [Método: Boolean MoveNext(), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:41: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:41: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:41: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:42:41: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 87] - ORA-00923: palabra clave FROM no encontrada donde se esperaba
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 117
+ORA-06512: en línea 1
+19/06/2020 15:54:26: [Método: sres.be.UsuarioBE CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object), Línea: 0] - No se puede convertir un objeto de tipo 'DapperRow' al tipo 'sres.be.UsuarioBE'.
+19/06/2020 15:54:26: [Método: TRet UpdateAndExecute1[T0,TRet](System.Runtime.CompilerServices.CallSite, T0), Línea: 0] - No se puede convertir un objeto de tipo 'DapperRow' al tipo 'sres.be.UsuarioBE'.
+19/06/2020 15:54:26: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 87] - No se puede convertir un objeto de tipo 'DapperRow' al tipo 'sres.be.UsuarioBE'.
+19/06/2020 15:54:26: [Método: Boolean MoveNext(), Línea: 0] - No se puede convertir un objeto de tipo 'DapperRow' al tipo 'sres.be.UsuarioBE'.
+19/06/2020 15:54:26: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede convertir un objeto de tipo 'DapperRow' al tipo 'sres.be.UsuarioBE'.
+19/06/2020 15:54:26: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede convertir un objeto de tipo 'DapperRow' al tipo 'sres.be.UsuarioBE'.
+19/06/2020 15:54:26: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 87] - No se puede convertir un objeto de tipo 'DapperRow' al tipo 'sres.be.UsuarioBE'.
+19/06/2020 16:00:37: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 93] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:37: [Método: Boolean MoveNext(), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:37: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:37: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:37: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 89] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:49: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 93] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:49: [Método: Boolean MoveNext(), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:49: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:49: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:49: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 89] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:51: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 93] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:51: [Método: Boolean MoveNext(), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:51: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:51: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:00:51: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 89] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:01:02: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 93] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:01:02: [Método: Boolean MoveNext(), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:01:02: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:01:02: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:01:02: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 89] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:01:38: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 93] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:01:38: [Método: Boolean MoveNext(), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:01:38: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:01:38: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:01:38: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 89] - No se puede cargar el archivo o ensamblado 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' ni una de sus dependencias. La definición del manifiesto del ensamblado no coincide con la referencia al ensamblado. (Excepción de HRESULT: 0x80131040)
+19/06/2020 16:50:36: [Método: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object, System.String), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:50:36: [Método: TRet UpdateAndExecute2[T0,T1,TRet](System.Runtime.CompilerServices.CallSite, T0, T1), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:50:36: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 89] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:50:36: [Método: Boolean MoveNext(), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:50:36: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:50:36: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:50:36: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 88] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:51:06: [Método: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object, System.String), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:51:06: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 89] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:51:06: [Método: Boolean MoveNext(), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:51:06: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:51:06: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:51:06: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 88] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:51:36: [Método: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object, System.String), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:51:36: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 89] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:51:36: [Método: Boolean MoveNext(), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:51:36: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:51:36: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 16:51:36: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 88] - No se puede aplicar la indización con [] a una expresión del tipo 'object'
+19/06/2020 17:18:06: [Método: Int32 CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object), Línea: 0] - No se puede convertir NULL en 'int' porque es un tipo de valor que no acepta valores NULL.
+19/06/2020 17:18:06: [Método: TRet UpdateAndExecute1[T0,TRet](System.Runtime.CompilerServices.CallSite, T0), Línea: 0] - No se puede convertir NULL en 'int' porque es un tipo de valor que no acepta valores NULL.
+19/06/2020 17:18:06: [Método: Int32 CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object), Línea: 0] - No se puede convertir NULL en 'int' porque es un tipo de valor que no acepta valores NULL.
+19/06/2020 17:18:06: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 0] - No se puede convertir NULL en 'int' porque es un tipo de valor que no acepta valores NULL.
+19/06/2020 17:18:06: [Método: Boolean MoveNext(), Línea: 0] - No se puede convertir NULL en 'int' porque es un tipo de valor que no acepta valores NULL.
+19/06/2020 17:18:06: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede convertir NULL en 'int' porque es un tipo de valor que no acepta valores NULL.
+19/06/2020 17:18:06: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede convertir NULL en 'int' porque es un tipo de valor que no acepta valores NULL.
+19/06/2020 17:18:06: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 0] - No se puede convertir NULL en 'int' porque es un tipo de valor que no acepta valores NULL.
+19/06/2020 17:56:06: [Método: System.String CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:06: [Método: TRet UpdateAndExecute1[T0,TRet](System.Runtime.CompilerServices.CallSite, T0), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:06: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 89] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:06: [Método: Boolean MoveNext(), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:06: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:06: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:06: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 88] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:06: [Método: System.String CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:06: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 89] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:06: [Método: Boolean MoveNext(), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:06: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:06: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:06: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 88] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:10: [Método: System.String CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:10: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 89] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:10: [Método: Boolean MoveNext(), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:10: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:10: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:56:10: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 88] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:58:24: [Método: System.String CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:58:24: [Método: sres.be.UsuarioBE <BuscarUsuario>b__5_0(System.Object), Línea: 89] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:58:24: [Método: Boolean MoveNext(), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:58:24: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:58:24: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 17:58:24: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] BuscarUsuario(System.String, Int32, Int32, System.String, System.String), Línea: 88] - No se puede convertir el tipo 'long' a 'string'.
+19/06/2020 20:41:59: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:41:59: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:41:59: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:41:59: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:41:59: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:41:59: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:41:59: [Método: T QueryRowImpl[T](System.Data.IDbConnection, Row, Dapper.CommandDefinition ByRef, System.Type), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:41:59: [Método: T QueryFirstOrDefault[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:41:59: [Método: sres.be.InstitucionBE ObtenerInstitucionPorRuc(System.String), Línea: 32] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:42:10: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:42:10: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:42:10: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:42:10: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:42:10: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:42:10: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:42:10: [Método: T QueryRowImpl[T](System.Data.IDbConnection, Row, Dapper.CommandDefinition ByRef, System.Type), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:42:10: [Método: T QueryFirstOrDefault[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 20:42:10: [Método: sres.be.InstitucionBE ObtenerInstitucionPorRuc(System.String), Línea: 32] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_INSTITUCION_ID' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 21:05:16: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_MAN_GUARDA_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 21:05:16: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_MAN_GUARDA_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 21:05:16: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_MAN_GUARDA_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 21:05:16: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_MAN_GUARDA_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 21:05:16: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_MAN_GUARDA_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 21:05:16: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_MAN_GUARDA_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 21:05:16: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE), Línea: 0] - ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'USP_MAN_GUARDA_USUARIO'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:10:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:10:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:10:45: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:10:45: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:10:45: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:10:45: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:10:45: [Método: T QueryRowImpl[T](System.Data.IDbConnection, Row, Dapper.CommandDefinition ByRef, System.Type), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:10:45: [Método: T QueryFirstOrDefault[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:10:45: [Método: sres.be.UsuarioBE ObtenerUsuario(Int32), Línea: 126] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:16: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:16: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:16: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:16: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:16: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:16: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:16: [Método: T QueryRowImpl[T](System.Data.IDbConnection, Row, Dapper.CommandDefinition ByRef, System.Type), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:16: [Método: T QueryFirstOrDefault[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:16: [Método: sres.be.UsuarioBE ObtenerUsuario(Int32), Línea: 126] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:42: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:42: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:42: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:42: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:42: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:42: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:42: [Método: T QueryRowImpl[T](System.Data.IDbConnection, Row, Dapper.CommandDefinition ByRef, System.Type), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:42: [Método: T QueryFirstOrDefault[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:11:42: [Método: sres.be.UsuarioBE ObtenerUsuario(Int32), Línea: 126] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:12:18: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:12:18: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:12:18: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:12:18: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:12:18: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:12:18: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:12:18: [Método: T QueryRowImpl[T](System.Data.IDbConnection, Row, Dapper.CommandDefinition ByRef, System.Type), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:12:18: [Método: T QueryFirstOrDefault[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:12:18: [Método: sres.be.UsuarioBE ObtenerUsuario(Int32), Línea: 126] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:25:03: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:25:03: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:25:03: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:25:03: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:25:03: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:25:03: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:25:03: [Método: T QueryRowImpl[T](System.Data.IDbConnection, Row, Dapper.CommandDefinition ByRef, System.Type), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:25:03: [Método: T QueryFirstOrDefault[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:25:03: [Método: sres.be.UsuarioBE ObtenerUsuario(Int32), Línea: 126] - ORA-06550: línea 1, columna 35:
+PLS-00302: el componente 'USP_SEL_OBTIENE_USUARIO' se debe declarar
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+19/06/2020 22:25:05: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:05: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:05: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:05: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:05: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:05: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:05: [Método: T QueryRowImpl[T](System.Data.IDbConnection, Row, Dapper.CommandDefinition ByRef, System.Type), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:05: [Método: T QueryFirstOrDefault[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:05: [Método: sres.be.UsuarioBE ObtenerUsuario(Int32), Línea: 126] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:32: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:32: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:32: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:32: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:32: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:32: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:32: [Método: T QueryRowImpl[T](System.Data.IDbConnection, Row, Dapper.CommandDefinition ByRef, System.Type), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:32: [Método: T QueryFirstOrDefault[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1
+19/06/2020 22:25:32: [Método: sres.be.UsuarioBE ObtenerUsuario(Int32), Línea: 126] - ORA-04063: package body "SRES.PKG_SRES_MANTENIMIENTO" tiene errores
+ORA-06508: PL/SQL: no se ha encontrado la unidad de programa llamada : "SRES.PKG_SRES_MANTENIMIENTO"
+ORA-06512: en línea 1

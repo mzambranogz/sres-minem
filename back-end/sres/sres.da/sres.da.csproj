@@ -35,6 +35,10 @@
       <HintPath>..\packages\Dapper.1.60.1\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Oracle.DataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\app\client\RSEANCAS\product\12.2.0\client_1\odp.net\bin\4\Oracle.DataAccess.dll</HintPath>
@@ -55,6 +59,7 @@
     <Compile Include="CriterioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
     <Compile Include="EtapaDA.cs" />
+    <Compile Include="InstitucionDA.cs" />
     <Compile Include="MRV\UsuarioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleDynamicParameters.cs" />
     <Compile Include="ProcesoDA.cs" />

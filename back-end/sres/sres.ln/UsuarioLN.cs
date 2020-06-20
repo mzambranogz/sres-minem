@@ -11,7 +11,7 @@ namespace sres.ln
 {
     public class UsuarioLN
     {
-        public static UsuarioDA usuarioDA = new UsuarioDA();
+        static UsuarioDA usuarioDA = new UsuarioDA();
 
         public static List<UsuarioBE> ListaUsuario()
         {
@@ -28,9 +28,19 @@ namespace sres.ln
             return usuarioDA.BuscarUsuario(busqueda, registros, pagina, columna, orden);
         }
 
+        public static UsuarioBE ObtenerUsuario(int idUsuario)
+        {
+            return usuarioDA.ObtenerUsuario(idUsuario);
+        }
+
         public static bool CambiarEstadoUsuario(UsuarioBE usuario)
         {
             return usuarioDA.CambiarEstadoUsuario(usuario);
+        }
+
+        public static bool GuardarUsuario(UsuarioBE usuario)
+        {
+            return usuarioDA.GuardarUsuario(usuario);
         }
 
         public static bool ValidarUsuario(string correo, string contraseña, out UsuarioBE outUsuario)
