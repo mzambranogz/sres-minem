@@ -17,38 +17,62 @@ namespace sres.da
 
         private string sPackage = AppSettings.Get<string>("UserBD") + ".PKG_SRES_MANTENIMIENTO.";
 
-        public RequerimientoBE RegistroRequerimiento(RequerimientoBE entidad)
+        //public RequerimientoBE RegistroRequerimiento(RequerimientoBE entidad)
+        //{
+        //    try
+        //    {
+        //        using (IDbConnection db = new OracleConnection(CadenaConexion))
+        //        {
+        //            string sp = sPackage + "USP_INS_REQUERIMIENTO";
+        //            var p = new OracleDynamicParameters();
+        //            p.Add("PI_NOMBRE", entidad.NOMBRE);
+        //            db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+        //            entidad.OK = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex);
+        //        entidad.OK = false;
+        //    }
+
+        //    return entidad;
+        //}
+
+        //public RequerimientoBE ActualizarRequerimiento(RequerimientoBE entidad)
+        //{
+        //    try
+        //    {
+        //        using (IDbConnection db = new OracleConnection(CadenaConexion))
+        //        {
+        //            string sp = sPackage + "USP_UPD_REQUERIMIENTO";
+        //            var p = new OracleDynamicParameters();
+        //            p.Add("PI_ID_REQUERIMIENTO", entidad.ID_REQUERIMIENTO);
+        //            p.Add("PI_NOMBRE", entidad.NOMBRE);
+        //            db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+        //            entidad.OK = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex);
+        //        entidad.OK = false;
+        //    }
+
+        //    return entidad;
+        //}
+
+        public RequerimientoBE GuardarRequerimiento(RequerimientoBE entidad)
         {
             try
             {
                 using (IDbConnection db = new OracleConnection(CadenaConexion))
                 {
-                    string sp = sPackage + "USP_INS_REQUERIMIENTO";
-                    var p = new OracleDynamicParameters();
-                    p.Add("PI_NOMBRE", entidad.NOMBRE);
-                    db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
-                    entidad.OK = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                entidad.OK = false;
-            }
-
-            return entidad;
-        }
-
-        public RequerimientoBE ActualizarRequerimiento(RequerimientoBE entidad)
-        {
-            try
-            {
-                using (IDbConnection db = new OracleConnection(CadenaConexion))
-                {
-                    string sp = sPackage + "USP_UPD_REQUERIMIENTO";
+                    string sp = sPackage + "USP_PRC_MAN_REQUERIMIENTO";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_ID_REQUERIMIENTO", entidad.ID_REQUERIMIENTO);
                     p.Add("PI_NOMBRE", entidad.NOMBRE);
+                    p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                     db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
                     entidad.OK = true;
                 }
@@ -95,6 +119,7 @@ namespace sres.da
                     string sp = sPackage + "USP_SEL_GET_REQUERIMIENTO";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_ID_REQUERIMIENTO", entidad.ID_REQUERIMIENTO);
+                    p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                     item = db.Query<RequerimientoBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
                     item.OK = true;
                 }

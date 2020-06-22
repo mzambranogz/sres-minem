@@ -12,14 +12,19 @@ namespace sres.ln
     {
         public static RequerimientoDA RequerimientoDA = new RequerimientoDA();
 
-        public static RequerimientoBE RegistroRequerimiento(RequerimientoBE entidad)
-        {
-            return RequerimientoDA.RegistroRequerimiento(entidad);
-        }
+        //public static RequerimientoBE RegistroRequerimiento(RequerimientoBE entidad)
+        //{
+        //    return RequerimientoDA.RegistroRequerimiento(entidad);
+        //}
 
-        public static RequerimientoBE ActualizarRequerimiento(RequerimientoBE entidad)
+        //public static RequerimientoBE ActualizarRequerimiento(RequerimientoBE entidad)
+        //{
+        //    return RequerimientoDA.ActualizarRequerimiento(entidad);
+        //}
+
+        public static RequerimientoBE GuardarRequerimiento(RequerimientoBE entidad)
         {
-            return RequerimientoDA.ActualizarRequerimiento(entidad);
+            return RequerimientoDA.GuardarRequerimiento(entidad);
         }
 
         public static RequerimientoBE EliminarRequerimiento(RequerimientoBE entidad)

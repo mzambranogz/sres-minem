@@ -38,16 +38,17 @@ namespace sres.da
             return entidad;
         }
 
-        public CriterioBE ActualizarCriterio(CriterioBE entidad)
+        public CriterioBE GuardarCriterio(CriterioBE entidad)
         {
             try
             {
                 using (IDbConnection db = new OracleConnection(CadenaConexion))
                 {
-                    string sp = sPackage + "USP_UPD_CRITERIO";
+                    string sp = sPackage + "USP_PRC_MAN_CRITERIO";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
                     p.Add("PI_NOMBRE", entidad.NOMBRE);
+                    p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                     db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
                     entidad.OK = true;
                 }
@@ -94,6 +95,7 @@ namespace sres.da
                     string sp = sPackage + "USP_SEL_GET_CRITERIO";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                    p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                     item = db.Query<CriterioBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
                     item.OK = true;
                 }

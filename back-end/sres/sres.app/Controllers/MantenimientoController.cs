@@ -18,19 +18,27 @@ namespace sres.app.Controllers
         {
             return View();
         }
-        public ActionResult Criterio(CriterioBE entidad)
+        public ActionResult Criterio()
         {
-            if (entidad.PAGINA == 0)
-            {
-                entidad = new CriterioBE() { CANTIDAD_REGISTROS = 10, ORDER_BY = "ID_CRITERIO", ORDER_ORDEN = "ASC", PAGINA = 1, BUSCAR = "" };
-            }
-            //CriterioMO modelo = new CriterioMO();
-            //modelo.lista = CriterioLN.ListaBusquedaCriterio(entidad);
-            //return View(modelo);
             return View();
         }
 
         public ActionResult Usuario()
+        {
+            return View();
+        }
+
+        public ActionResult Requerimiento()
+        {
+            return View();
+        }
+
+        public ActionResult Proceso()
+        {
+            return View();
+        }
+
+        public ActionResult Etapa()
         {
             return View();
         }

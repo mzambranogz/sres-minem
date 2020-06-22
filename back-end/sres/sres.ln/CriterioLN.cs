@@ -17,9 +17,9 @@ namespace sres.ln
             return criterioDA.RegistroCriterio(entidad);
         }
 
-        public static CriterioBE ActualizarCriterio(CriterioBE entidad)
+        public static CriterioBE GuardarCriterio(CriterioBE entidad)
         {
-            return criterioDA.ActualizarCriterio(entidad);
+            return criterioDA.GuardarCriterio(entidad);
         }
 
         public static CriterioBE EliminarCriterio(CriterioBE entidad)

@@ -133,6 +133,10 @@
     <Content Include="AppSettings.config" />
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />
+    <Content Include="Assets\js\pages\mantenimiento_criterio.js" />
+    <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
+    <Content Include="Assets\js\pages\mantenimiento_proceso.js" />
+    <Content Include="Assets\js\pages\mantenimiento_requerimiento.js" />
     <Content Include="Assets\js\pages\mantenimiento_usuario.js" />
     <Content Include="Assets\js\plugins\script.js" />
     <Content Include="Assets\styles\style.css" />
@@ -144,7 +148,11 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\CriterioController.cs" />
+    <Compile Include="Controllers\Api\EtapaController.cs" />
     <Compile Include="Controllers\Api\InstitucionController.cs" />
+    <Compile Include="Controllers\Api\ProcesoController.cs" />
+    <Compile Include="Controllers\Api\RequerimientoController.cs" />
     <Compile Include="Controllers\Api\RolController.cs" />
     <Compile Include="Controllers\Api\UsuarioController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
@@ -169,6 +177,9 @@
     <Content Include="Views\Mantenimiento\TablaMantenimiento.cshtml" />
     <Content Include="Views\Mantenimiento\Usuario.cshtml" />
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
+    <Content Include="Views\Mantenimiento\Etapa.cshtml" />
+    <Content Include="Views\Mantenimiento\Proceso.cshtml" />
+    <Content Include="Views\Mantenimiento\Requerimiento.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

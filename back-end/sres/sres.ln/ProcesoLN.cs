@@ -12,9 +12,9 @@ namespace sres.ln
     {
         public static ProcesoDA ProcesoDA = new ProcesoDA();
 
-        public static ProcesoBE ActualizarProceso(ProcesoBE entidad)
+        public static ProcesoBE GuardarProceso(ProcesoBE entidad)
         {
-            return ProcesoDA.ActualizarProceso(entidad);
+            return ProcesoDA.GuardarProceso(entidad);
         }
 
         public static ProcesoBE getProceso(ProcesoBE entidad)

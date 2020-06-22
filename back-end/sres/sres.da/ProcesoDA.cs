@@ -16,7 +16,7 @@ namespace sres.da
     {
         private string sPackage = AppSettings.Get<string>("UserBD") + ".PKG_SRES_MANTENIMIENTO.";
 
-        public ProcesoBE ActualizarProceso(ProcesoBE entidad)
+        public ProcesoBE GuardarProceso(ProcesoBE entidad)
         {
             try
             {
@@ -26,6 +26,7 @@ namespace sres.da
                     var p = new OracleDynamicParameters();
                     p.Add("PI_ID_PROCESO", entidad.ID_PROCESO);
                     p.Add("PI_NOMBRE", entidad.NOMBRE);
+                    p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                     db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
                     entidad.OK = true;
                 }
@@ -50,6 +51,7 @@ namespace sres.da
                     string sp = sPackage + "USP_SEL_GET_PROCESO";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_ID_PROCESO", entidad.ID_PROCESO);
+                    p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                     item = db.Query<ProcesoBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
                     item.OK = true;
                 }

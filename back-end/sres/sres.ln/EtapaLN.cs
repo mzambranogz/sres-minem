@@ -12,9 +12,9 @@ namespace sres.ln
     {
         public static EtapaDA EtapaDA = new EtapaDA();
 
-        public static EtapaBE ActualizarEtapa(EtapaBE entidad)
+        public static EtapaBE GuardarEtapa(EtapaBE entidad)
         {
-            return EtapaDA.ActualizarEtapa(entidad);
+            return EtapaDA.GuardarEtapa(entidad);
         }
 
         public static EtapaBE getEtapa(EtapaBE entidad)

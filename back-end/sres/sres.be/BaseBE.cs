@@ -17,5 +17,6 @@ namespace sres.be
         public int ROWNUMBER { get; set; }
         public int TOTAL_REGISTROS { get; set; }
         public bool OK { get; set; }
+        public int USUARIO_GUARDAR { get; set; }
     }
 }
