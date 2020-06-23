@@ -14,21 +14,17 @@ namespace sres.da
 {
     public class ProcesoDA : BaseDA
     {
-        private string sPackage = AppSettings.Get<string>("UserBD") + ".PKG_SRES_MANTENIMIENTO.";
 
-        public ProcesoBE ActualizarProceso(ProcesoBE entidad)
+        public ProcesoBE ActualizarProceso(ProcesoBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             try
             {
-                using (IDbConnection db = new OracleConnection(CadenaConexion))
-                {
-                    string sp = sPackage + "USP_UPD_PROCESO";
-                    var p = new OracleDynamicParameters();
-                    p.Add("PI_ID_PROCESO", entidad.ID_PROCESO);
-                    p.Add("PI_NOMBRE", entidad.NOMBRE);
-                    db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
-                    entidad.OK = true;
-                }
+                string sp = $"{Package.Mantenimiento}USP_UPD_PROCESO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_PROCESO", entidad.ID_PROCESO);
+                p.Add("PI_NOMBRE", entidad.NOMBRE);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                entidad.OK = true;
             }
             catch (Exception ex)
             {
@@ -39,20 +35,17 @@ namespace sres.da
             return entidad;
         }
 
-        public ProcesoBE getProceso(ProcesoBE entidad)
+        public ProcesoBE getProceso(ProcesoBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             ProcesoBE item = new ProcesoBE();
 
             try
             {
-                using (IDbConnection db = new OracleConnection(CadenaConexion))
-                {
-                    string sp = sPackage + "USP_SEL_GET_PROCESO";
-                    var p = new OracleDynamicParameters();
-                    p.Add("PI_ID_PROCESO", entidad.ID_PROCESO);
-                    item = db.Query<ProcesoBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                    item.OK = true;
-                }
+                string sp = $"{Package.Mantenimiento}USP_SEL_GET_PROCESO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_PROCESO", entidad.ID_PROCESO);
+                item = db.Query<ProcesoBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                item.OK = true;
             }
             catch (Exception ex)
             {
@@ -63,25 +56,22 @@ namespace sres.da
             return item;
         }
 
-        public List<ProcesoBE> ListarBusquedaProceso(ProcesoBE entidad)
+        public List<ProcesoBE> ListarBusquedaProceso(ProcesoBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             List<ProcesoBE> lista = new List<ProcesoBE>();
 
             try
             {
-                using (IDbConnection db = new OracleConnection(CadenaConexion))
-                {
-                    string sp = sPackage + "USP_SEL_LISTA_BUSQ_PROCESO";
-                    var p = new OracleDynamicParameters();
-                    p.Add("PI_BUSCAR", entidad.BUSCAR);
-                    p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
-                    p.Add("PI_PAGINA", entidad.PAGINA);
-                    p.Add("PI_COLUMNA", entidad.ORDER_BY);
-                    p.Add("PI_ORDEN", entidad.ORDER_ORDEN);
-                    p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-                    lista = db.Query<ProcesoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
-                    entidad.OK = true;
-                }
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_PROCESO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_BUSCAR", entidad.BUSCAR);
+                p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
+                p.Add("PI_PAGINA", entidad.PAGINA);
+                p.Add("PI_COLUMNA", entidad.ORDER_BY);
+                p.Add("PI_ORDEN", entidad.ORDER_ORDEN);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ProcesoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                entidad.OK = true;
             }
             catch (Exception ex)
             {

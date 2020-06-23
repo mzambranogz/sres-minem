@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Registarme";
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/pages/login_registrarme.js")"></script>
+}
+
+<h2>Registarme</h2>
+
+<form id="frmRegistro" autocomplete="off">
+    <div>
+        <label>
+            RUC: <input type="text" name="txtRucInstitucion" id="txtRucInstitucion" />
+        </label>
+        <button type="button" id="btnConsultarInstitucion">CONSULTAR</button>
+    </div>
+    <hr />
+    <div>
+        <label>
+            Entidad: <input type="text" name="txtRazonSocialInstitucion" id="txtRazonSocialInstitucion" readonly />
+        </label>
+        <label>
+            Domicilio Legal: <input type="text" name="txtDomicilioLegalInstitucion" id="txtDomicilioLegalInstitucion" readonly />
+        </label>
+    </div>
+    <div>
+        <label>
+            Sector: <select name="selIdSectorInstitucion" id="selIdSectorInstitucion" disabled ></select>
+        </label>
+    </div>
+    <div>
+        <label>
+            Correo electrónico: <input type="text" name="txtCorreoUsuario" id="txtCorreoUsuario" />
+        </label>
+    </div>
+    <div>
+        <label>
+            Nombres: <input type="text" name="txtNombresUsuario" id="txtNombresUsuario" readonly />
+        </label>
+        <label>
+            Apellidos: <input type="text" name="txtApellidosUsuario" id="txtApellidosUsuario" readonly />
+        </label>
+    </div>
+    <div>
+        <label>
+            Teléfono fijo: <input type="text" name="txtTelefonoUsuario" id="txtTelefonoUsuario" readonly />
+        </label>
+        <label> 
+            Anexo: <input type="text" name="txtAnexoUsuario" id="txtAnexoUsuario" readonly />
+        </label>
+    </div>
+    <div>
+        <label>
+            Celular: <input type="text" name="txtCelularUsuario" id="txtCelularUsuario" readonly />
+        </label>
+    </div>
+    <div id="viewContraseñaUsuario">
+        <label>
+            Contraseña: <input type="password" name="txtContraseñaUsuario" id="txtContraseñaUsuario" readonly />
+        </label>
+        <label>
+            Confirmar Contraseña: <input type="password" name="txtConfirmarContraseñaUsuario" id="txtConfirmarContraseñaUsuario" readonly />
+        </label>
+    </div>
+    <div>
+        <button type="button" id="btnRegistrarme"></button>
+    </div>
+</form>
+
+<div id="viewLoginMRV" style="display: none;">
+    <label>
+        Ruc: <input type="text" name="txtRucMRV" id="txtRucMRV" readonly />
+    </label>
+    <label>
+        Correo: <input type="text" name="txtCorreoMRV" id="txtCorreoMRV" readonly />
+    </label>
+    <label>
+        Contraseña: <input type="password" name="txtContraseñaMRV" id="txtContraseñaMRV" />
+    </label>
+    <button id="btnValidarUsuarioMRV">Validar</button>
+</div>

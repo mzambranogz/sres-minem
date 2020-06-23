@@ -8,33 +8,33 @@ using sres.da;
 
 namespace sres.ln
 {
-    public class RequerimientoLN
+    public class RequerimientoLN : BaseLN
     {
         public static RequerimientoDA RequerimientoDA = new RequerimientoDA();
 
         public static RequerimientoBE RegistroRequerimiento(RequerimientoBE entidad)
         {
-            return RequerimientoDA.RegistroRequerimiento(entidad);
+            return RequerimientoDA.RegistroRequerimiento(entidad, cn);
         }
 
         public static RequerimientoBE ActualizarRequerimiento(RequerimientoBE entidad)
         {
-            return RequerimientoDA.ActualizarRequerimiento(entidad);
+            return RequerimientoDA.ActualizarRequerimiento(entidad, cn);
         }
 
         public static RequerimientoBE EliminarRequerimiento(RequerimientoBE entidad)
         {
-            return RequerimientoDA.EliminarRequerimiento(entidad);
+            return RequerimientoDA.EliminarRequerimiento(entidad, cn);
         }
 
         public static RequerimientoBE getRequerimiento(RequerimientoBE entidad)
         {
-            return RequerimientoDA.getRequerimiento(entidad);
+            return RequerimientoDA.getRequerimiento(entidad, cn);
         }
 
         public static List<RequerimientoBE> ListaBusquedaRequerimiento(RequerimientoBE entidad)
         {
-            return RequerimientoDA.ListarBusquedaRequerimiento(entidad);
+            return RequerimientoDA.ListarBusquedaRequerimiento(entidad, cn);
         }
     }
 }

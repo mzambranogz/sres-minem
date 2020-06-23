@@ -202,7 +202,7 @@ var guardarUsuario = () => {
     .then(j => {
         if(j) {
             alert('Se registró correctamente');
-            $('#frmUsuario').hide();
+            cerrarFormularioUsuario();
             $('#btnConsultar')[0].click();
         }
     });

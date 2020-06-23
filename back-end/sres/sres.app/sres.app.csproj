@@ -132,6 +132,7 @@
   <ItemGroup>
     <Content Include="AppSettings.config" />
     <Content Include="Assets\js\pages\login.js" />
+    <Content Include="Assets\js\pages\login_registrarme.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />
     <Content Include="Assets\js\pages\mantenimiento_usuario.js" />
     <Content Include="Assets\js\plugins\script.js" />
@@ -139,13 +140,18 @@
     <Content Include="Global.asax" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\InstitucionController.cs" />
+    <Compile Include="Controllers\Api\MRV\InstitucionMRVController.cs" />
+    <Compile Include="Controllers\Api\MRV\UsuarioMRVController.cs" />
     <Compile Include="Controllers\Api\RolController.cs" />
+    <Compile Include="Controllers\Api\SectorController.cs" />
     <Compile Include="Controllers\Api\UsuarioController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -169,6 +175,7 @@
     <Content Include="Views\Mantenimiento\TablaMantenimiento.cshtml" />
     <Content Include="Views\Mantenimiento\Usuario.cshtml" />
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
+    <Content Include="Views\Login\Registrarme.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

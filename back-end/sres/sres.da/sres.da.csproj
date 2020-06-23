@@ -60,12 +60,15 @@
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
     <Compile Include="EtapaDA.cs" />
     <Compile Include="InstitucionDA.cs" />
+    <Compile Include="MRV\BaseDA.cs" />
+    <Compile Include="MRV\InstitucionDA.cs" />
     <Compile Include="MRV\UsuarioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleDynamicParameters.cs" />
     <Compile Include="ProcesoDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequerimientoDA.cs" />
     <Compile Include="RolDA.cs" />
+    <Compile Include="SectorDA.cs" />
     <Compile Include="UsuarioDA.cs" />
   </ItemGroup>
   <ItemGroup>

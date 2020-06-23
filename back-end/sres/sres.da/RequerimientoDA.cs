@@ -14,21 +14,15 @@ namespace sres.da
 {
     public class RequerimientoDA : BaseDA
     {
-
-        private string sPackage = AppSettings.Get<string>("UserBD") + ".PKG_SRES_MANTENIMIENTO.";
-
-        public RequerimientoBE RegistroRequerimiento(RequerimientoBE entidad)
+        public RequerimientoBE RegistroRequerimiento(RequerimientoBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             try
             {
-                using (IDbConnection db = new OracleConnection(CadenaConexion))
-                {
-                    string sp = sPackage + "USP_INS_REQUERIMIENTO";
-                    var p = new OracleDynamicParameters();
-                    p.Add("PI_NOMBRE", entidad.NOMBRE);
-                    db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
-                    entidad.OK = true;
-                }
+                string sp = $"{Package.Mantenimiento}USP_INS_REQUERIMIENTO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_NOMBRE", entidad.NOMBRE);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                entidad.OK = true;
             }
             catch (Exception ex)
             {
@@ -39,19 +33,16 @@ namespace sres.da
             return entidad;
         }
 
-        public RequerimientoBE ActualizarRequerimiento(RequerimientoBE entidad)
+        public RequerimientoBE ActualizarRequerimiento(RequerimientoBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             try
             {
-                using (IDbConnection db = new OracleConnection(CadenaConexion))
-                {
-                    string sp = sPackage + "USP_UPD_REQUERIMIENTO";
-                    var p = new OracleDynamicParameters();
-                    p.Add("PI_ID_REQUERIMIENTO", entidad.ID_REQUERIMIENTO);
-                    p.Add("PI_NOMBRE", entidad.NOMBRE);
-                    db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
-                    entidad.OK = true;
-                }
+                string sp = $"{Package.Mantenimiento}USP_UPD_REQUERIMIENTO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_REQUERIMIENTO", entidad.ID_REQUERIMIENTO);
+                p.Add("PI_NOMBRE", entidad.NOMBRE);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                entidad.OK = true;
             }
             catch (Exception ex)
             {
@@ -62,18 +53,15 @@ namespace sres.da
             return entidad;
         }
 
-        public RequerimientoBE EliminarRequerimiento(RequerimientoBE entidad)
+        public RequerimientoBE EliminarRequerimiento(RequerimientoBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             try
             {
-                using (IDbConnection db = new OracleConnection(CadenaConexion))
-                {
-                    string sp = sPackage + "USP_DEL_REQUERIMIENTO";
-                    var p = new OracleDynamicParameters();
-                    p.Add("PI_ID_REQUERIMIENTO", entidad.ID_REQUERIMIENTO);
-                    db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
-                    entidad.OK = true;
-                }
+                string sp = $"{Package.Mantenimiento}USP_DEL_REQUERIMIENTO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_REQUERIMIENTO", entidad.ID_REQUERIMIENTO);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                entidad.OK = true;
             }
             catch (Exception ex)
             {
@@ -84,20 +72,17 @@ namespace sres.da
             return entidad;
         }
 
-        public RequerimientoBE getRequerimiento(RequerimientoBE entidad)
+        public RequerimientoBE getRequerimiento(RequerimientoBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             RequerimientoBE item = new RequerimientoBE();
 
             try
             {
-                using (IDbConnection db = new OracleConnection(CadenaConexion))
-                {
-                    string sp = sPackage + "USP_SEL_GET_REQUERIMIENTO";
-                    var p = new OracleDynamicParameters();
-                    p.Add("PI_ID_REQUERIMIENTO", entidad.ID_REQUERIMIENTO);
-                    item = db.Query<RequerimientoBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                    item.OK = true;
-                }
+                string sp = $"{Package.Mantenimiento}USP_SEL_GET_REQUERIMIENTO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_REQUERIMIENTO", entidad.ID_REQUERIMIENTO);
+                item = db.Query<RequerimientoBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                item.OK = true;
             }
             catch (Exception ex)
             {
@@ -108,25 +93,22 @@ namespace sres.da
             return item;
         }
 
-        public List<RequerimientoBE> ListarBusquedaRequerimiento(RequerimientoBE entidad)
+        public List<RequerimientoBE> ListarBusquedaRequerimiento(RequerimientoBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             List<RequerimientoBE> lista = new List<RequerimientoBE>();
 
             try
             {
-                using (IDbConnection db = new OracleConnection(CadenaConexion))
-                {
-                    string sp = sPackage + "USP_SEL_LISTA_BUSQ_REQUERIMIENTO";
-                    var p = new OracleDynamicParameters();
-                    p.Add("PI_BUSCAR", entidad.BUSCAR);
-                    p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
-                    p.Add("PI_PAGINA", entidad.PAGINA);
-                    p.Add("PI_COLUMNA", entidad.ORDER_BY);
-                    p.Add("PI_ORDEN", entidad.ORDER_ORDEN);
-                    p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-                    lista = db.Query<RequerimientoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
-                    entidad.OK = true;
-                }
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_REQUERIMIENTO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_BUSCAR", entidad.BUSCAR);
+                p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
+                p.Add("PI_PAGINA", entidad.PAGINA);
+                p.Add("PI_COLUMNA", entidad.ORDER_BY);
+                p.Add("PI_ORDEN", entidad.ORDER_ORDEN);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<RequerimientoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                entidad.OK = true;
             }
             catch (Exception ex)
             {

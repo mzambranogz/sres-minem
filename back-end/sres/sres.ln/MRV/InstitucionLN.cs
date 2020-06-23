@@ -1,12 +1,12 @@
-﻿using sres.be;
-using sres.da;
+﻿using sres.be.MRV;
+using sres.da.MRV;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sres.ln
+namespace sres.ln.MRV
 {
     public class InstitucionLN : BaseLN
     {
@@ -15,11 +15,6 @@ namespace sres.ln
         public static InstitucionBE ObtenerInstitucionPorRuc(string ruc)
         {
             return institucionDA.ObtenerInstitucionPorRuc(ruc, cn);
-        }
-
-        public static InstitucionBE ObtenerInstitucion(int idInstitucion)
-        {
-            return institucionDA.ObtenerInstitucion(idInstitucion, cn);
         }
     }
 }

@@ -26,6 +26,18 @@ namespace sres.app.Controllers.Api
             return UsuarioLN.ObtenerUsuario(idUsuario);
         }
 
+        [Route("obtenerusuarioporinstitucioncorreo")]
+        [HttpGet]
+        public Dictionary<string, object> ObtenerUsuarioPorInstitucionCorreo(int idInstitucion, string correo)
+        {
+            UsuarioBE usuario = UsuarioLN.ObtenerUsuarioPorInstitucionCorreo(idInstitucion, correo);
+            return new Dictionary<string, object>
+            {
+                ["EXISTE"] = usuario != null,
+                ["USUARIO"] = usuario
+            };
+        }
+
         [Route("cambiarestadousuario")]
         [HttpPost]
         public bool CambiarEstadoUsuario(UsuarioBE usuario)
@@ -34,9 +46,17 @@ namespace sres.app.Controllers.Api
         }
 
         [Route("guardarusuario")]
+        [HttpPost]
         public bool GuardarUsuario(UsuarioBE usuario)
         {
             return UsuarioLN.GuardarUsuario(usuario);
+        }
+
+        [Route("registrarusuario")]
+        [HttpPost]
+        public bool RegistrarUsuario(UsuarioBE usuario)
+        {
+            return UsuarioLN.RegistrarUsuario(usuario);
         }
     }
 }

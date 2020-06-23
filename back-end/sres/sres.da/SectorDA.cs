@@ -11,19 +11,18 @@ using System.Threading.Tasks;
 
 namespace sres.da
 {
-    public class RolDA : BaseDA
+    public class SectorDA : BaseDA
     {
-        public List<RolBE> ListarRolPorEstado(string flagEstado, OracleConnection db, OracleTransaction ot = null)
+        public List<SectorBE> ListarSectorPorEstado(string flagEstado, OracleConnection db, OracleTransaction ot = null)
         {
-            List<RolBE> lista = null;
-
+            List<SectorBE> lista = new List<SectorBE>();
             try
             {
-                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_ROL_ESTADO";
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_SECTOR_ESTADO";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_FLAG_ESTADO", flagEstado);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-                lista = db.Query<RolBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                lista = db.Query<SectorBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex) { Log.Error(ex); }
 

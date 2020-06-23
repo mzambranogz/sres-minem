@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using Oracle.DataAccess.Client;
-using sres.be;
+using sres.be.MRV;
 using sres.ut;
 using System;
 using System.Collections.Generic;
@@ -9,25 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sres.da
+namespace sres.da.MRV
 {
-    public class RolDA : BaseDA
+    public class InstitucionDA : BaseDA
     {
-        public List<RolBE> ListarRolPorEstado(string flagEstado, OracleConnection db, OracleTransaction ot = null)
+        public InstitucionBE ObtenerInstitucionPorRuc(string ruc, OracleConnection db, OracleTransaction ot = null)
         {
-            List<RolBE> lista = null;
+            InstitucionBE item = null;
 
             try
             {
-                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_ROL_ESTADO";
+                string sp = $"{Package.Admin}USP_SEL_OBTIENE_INSTITUCION_RUC";
                 var p = new OracleDynamicParameters();
-                p.Add("PI_FLAG_ESTADO", flagEstado);
+                p.Add("PI_RUC", ruc);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-                lista = db.Query<RolBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                item = db.QueryFirstOrDefault<InstitucionBE>(sp, p, commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex) { Log.Error(ex); }
 
-            return lista;
+            return item;
         }
     }
 }

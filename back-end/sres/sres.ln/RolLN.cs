@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace sres.ln
 {
-    public class RolLN
+    public class RolLN : BaseLN
     {
         static RolDA rolDA = new RolDA();
 
         public static List<RolBE> ListarRolPorEstado(string flagEstado)
         {
-            return rolDA.ListarRolPorEstado(flagEstado);
+            return rolDA.ListarRolPorEstado(flagEstado, cn);
         }
     }
 }

@@ -31,7 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,14 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseLN.cs" />
     <Compile Include="CriterioLN.cs" />
     <Compile Include="EtapaLN.cs" />
     <Compile Include="InstitucionLN.cs" />
+    <Compile Include="MRV\InstitucionLN.cs" />
+    <Compile Include="MRV\UsuarioLN.cs" />
     <Compile Include="ProcesoLN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequerimientoLN.cs" />
     <Compile Include="RolLN.cs" />
+    <Compile Include="SectorLN.cs" />
     <Compile Include="UsuarioLN.cs" />
+    <Compile Include="UsuarioTestLN.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\sres.be\sres.be.csproj">

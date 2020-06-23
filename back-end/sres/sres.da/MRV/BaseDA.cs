@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sres.da
+namespace sres.da.MRV
 {
     public class BaseDA
     {
-        string User { get { return AppSettings.Get<string>("UserBD"); } }
+        string User { get { return AppSettings.Get<string>("UserBDMRV"); } }
 
         protected dynamic Package
         {
@@ -18,8 +18,7 @@ namespace sres.da
             {
                 return new
                 {
-                    Admin = $"{User}.PKG_SRES_ADMIN.",
-                    Mantenimiento = $"{User}.PKG_SRES_MANTENIMIENTO."
+                    Admin = $"{User}.PKG_MRV_ADMIN_SISTEMA."
                 };
             }
         }

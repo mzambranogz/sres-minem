@@ -22,7 +22,6 @@ namespace sres.app.Controllers
         string AuthContraseña = AppSettings.Get<string>("Auth_Contraseña");
 
         [SesionIn]
-        [HttpGet]
         public async Task<ActionResult> Index()
         {
             if (AuthEnabled)
@@ -97,6 +96,12 @@ namespace sres.app.Controllers
                 Log.Error(ex);
                 return false;
             }
+        }
+
+
+        public ActionResult Registrarme()
+        {
+            return View();
         }
     }
 }

@@ -14,21 +14,17 @@ namespace sres.da
 {
     public class EtapaDA : BaseDA
     {
-        private string sPackage = AppSettings.Get<string>("UserBD") + ".PKG_SRES_MANTENIMIENTO.";
 
-        public EtapaBE ActualizarEtapa(EtapaBE entidad)
+        public EtapaBE ActualizarEtapa(EtapaBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             try
             {
-                using (IDbConnection db = new OracleConnection(CadenaConexion))
-                {
-                    string sp = sPackage + "USP_UPD_ETAPA";
+                    string sp = $"{Package.Mantenimiento}USP_UPD_ETAPA";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_ID_ETAPA", entidad.ID_ETAPA);
                     p.Add("PI_NOMBRE", entidad.NOMBRE);
                     db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
                     entidad.OK = true;
-                }
             }
             catch (Exception ex)
             {
@@ -39,20 +35,17 @@ namespace sres.da
             return entidad;
         }
 
-        public EtapaBE getEtapa(EtapaBE entidad)
+        public EtapaBE getEtapa(EtapaBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             EtapaBE item = new EtapaBE();
 
             try
             {
-                using (IDbConnection db = new OracleConnection(CadenaConexion))
-                {
-                    string sp = sPackage + "USP_SEL_GET_ETAPA";
-                    var p = new OracleDynamicParameters();
-                    p.Add("PI_ID_ETAPA", entidad.ID_ETAPA);
-                    item = db.Query<EtapaBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                    item.OK = true;
-                }
+                string sp = $"{Package.Mantenimiento}USP_SEL_GET_ETAPA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ETAPA", entidad.ID_ETAPA);
+                item = db.Query<EtapaBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                item.OK = true;
             }
             catch (Exception ex)
             {
@@ -63,15 +56,13 @@ namespace sres.da
             return item;
         }
 
-        public List<EtapaBE> ListarBusquedaEtapa(EtapaBE entidad)
+        public List<EtapaBE> ListarBusquedaEtapa(EtapaBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             List<EtapaBE> lista = new List<EtapaBE>();
 
             try
             {
-                using (IDbConnection db = new OracleConnection(CadenaConexion))
-                {
-                    string sp = sPackage + "USP_SEL_LISTA_BUSQ_ETAPA";
+                    string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_ETAPA";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_BUSCAR", entidad.BUSCAR);
                     p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
@@ -81,7 +72,6 @@ namespace sres.da
                     p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                     lista = db.Query<EtapaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
                     entidad.OK = true;
-                }
             }
             catch (Exception ex)
             {

@@ -8,33 +8,33 @@ using sres.be;
 
 namespace sres.ln
 {
-    public class CriterioLN
+    public class CriterioLN : BaseLN
     {
         public static CriterioDA criterioDA = new CriterioDA();
 
         public static CriterioBE RegistroCriterio(CriterioBE entidad)
         {
-            return criterioDA.RegistroCriterio(entidad);
+            return criterioDA.RegistroCriterio(entidad, cn);
         }
 
         public static CriterioBE ActualizarCriterio(CriterioBE entidad)
         {
-            return criterioDA.ActualizarCriterio(entidad);
+            return criterioDA.ActualizarCriterio(entidad, cn);
         }
 
         public static CriterioBE EliminarCriterio(CriterioBE entidad)
         {
-            return criterioDA.EliminarCriterio(entidad);
+            return criterioDA.EliminarCriterio(entidad, cn);
         }
 
         public static CriterioBE getCriterio(CriterioBE entidad)
         {
-            return criterioDA.getCriterio(entidad);
+            return criterioDA.getCriterio(entidad, cn);
         }
 
         public static List<CriterioBE> ListaBusquedaCriterio(CriterioBE entidad)
         {
-            return criterioDA.ListarBusquedaCriterio(entidad);
+            return criterioDA.ListarBusquedaCriterio(entidad, cn);
         }
     }
 }
