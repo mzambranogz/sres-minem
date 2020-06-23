@@ -47,7 +47,34 @@ namespace sres.ln
 
         public static bool GuardarUsuario(UsuarioBE usuario)
         {
-            return usuarioDA.GuardarUsuario(usuario, cn);
+            bool seGuardo = false;
+
+            try
+            {
+                cn.Open();
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {
+                    int idInstitucion = -1;
+                    bool seGuardoInstitucion = false;
+
+                    seGuardoInstitucion = usuario.INSTITUCION == null ? true : institucionDA.GuardarInstitucion(usuario.INSTITUCION, cn, out idInstitucion, ot);
+
+                    if (seGuardoInstitucion)
+                    {
+                        usuario.ID_INSTITUCION = usuario.INSTITUCION == null ? null : (int?)idInstitucion;
+                        usuario.CONTRASENA = string.IsNullOrEmpty(usuario.CONTRASENA) ? null : Seguridad.hashSal(usuario.CONTRASENA);
+                        seGuardo = usuarioDA.GuardarUsuario(usuario, cn, ot);
+                    }
+
+                    if (seGuardo) ot.Commit();
+                    else ot.Rollback();
+                }
+                cn.Close();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+
+            return seGuardo;
         }
 
         public static bool ValidarUsuario(string correo, string contraseña, out UsuarioBE outUsuario)
@@ -65,35 +92,35 @@ namespace sres.ln
             return esValido;
         }
 
-        public static bool RegistrarUsuario(UsuarioBE usuario)
-        {
-            bool seGuardo = false;
+        //    public static bool RegistrarUsuario(UsuarioBE usuario)
+        //    {
+        //        bool seGuardo = false;
 
-            try
-            {
-                cn.Open();
-                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
-                {
-                    int idInstitucion = -1;
-                    bool seGuardoInstitucion = false;
+        //        try
+        //        {
+        //            cn.Open();
+        //            using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+        //            {
+        //                int idInstitucion = -1;
+        //                bool seGuardoInstitucion = false;
 
-                    seGuardoInstitucion = usuario.INSTITUCION == null ? true : institucionDA.GuardarInstitucion(usuario.INSTITUCION, cn, out idInstitucion, ot);
+        //                seGuardoInstitucion = usuario.INSTITUCION == null ? true : institucionDA.GuardarInstitucion(usuario.INSTITUCION, cn, out idInstitucion, ot);
 
-                    if (seGuardoInstitucion)
-                    {
-                        usuario.ID_INSTITUCION = idInstitucion;
-                        seGuardo = usuarioDA.GuardarUsuario(usuario, cn, ot);
-                    }
+        //                if (seGuardoInstitucion)
+        //                {
+        //                    usuario.ID_INSTITUCION = idInstitucion;
+        //                    seGuardo = usuarioDA.GuardarUsuario(usuario, cn, ot);
+        //                }
 
-                    if (seGuardo) ot.Commit();
-                    else ot.Rollback();
-                }
-                cn.Close();
-            }
-            catch (Exception ex) { Log.Error(ex); }
+        //                if (seGuardo) ot.Commit();
+        //                else ot.Rollback();
+        //            }
+        //            cn.Close();
+        //        }
+        //        catch (Exception ex) { Log.Error(ex); }
 
 
-            return seGuardo;
-        }
+        //        return seGuardo;
+        //    }
     }
 }

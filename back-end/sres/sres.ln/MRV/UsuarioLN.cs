@@ -13,12 +13,12 @@ namespace sres.ln.MRV
     {
         static UsuarioDA usuarioDA = new UsuarioDA();
 
-        public static bool VerificarRucCorreo(string ruc, string correo)
+        public static bool VerificarCorreo(string correo)
         {
-            return usuarioDA.VerificarRucCorreo(ruc, correo, cn);
+            return usuarioDA.VerificarCorreo(correo, cn);
         }
 
-        public static Dictionary<string, object> ValidarLoginUsuario(string ruc, string correo, string contraseña)
+        public static Dictionary<string, object> ValidarLoginUsuario(string correo, string contraseña)
         {
             UsuarioBE usuario = usuarioDA.ObtenerUsuarioPorRucCorreo(ruc, correo, cn);
             bool contraseñaCorrecta = usuario == null ? false : Seguridad.CompararHashSal(contraseña, usuario.PASSWORD_USUARIO);

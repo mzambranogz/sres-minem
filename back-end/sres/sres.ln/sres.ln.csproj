@@ -47,6 +47,7 @@
     <Compile Include="CriterioLN.cs" />
     <Compile Include="EtapaLN.cs" />
     <Compile Include="InstitucionLN.cs" />
+    <Compile Include="MRV\BaseLN.cs" />
     <Compile Include="MRV\InstitucionLN.cs" />
     <Compile Include="MRV\UsuarioLN.cs" />
     <Compile Include="ProcesoLN.cs" />
@@ -55,7 +56,6 @@
     <Compile Include="RolLN.cs" />
     <Compile Include="SectorLN.cs" />
     <Compile Include="UsuarioLN.cs" />
-    <Compile Include="UsuarioTestLN.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\sres.be\sres.be.csproj">

@@ -12,18 +12,18 @@ namespace sres.app.Controllers.Api
     [RoutePrefix("api/mrv/usuario")]
     public class UsuarioMRVController : ApiController
     {
-        [Route("verificarruccorreo")]
+        [Route("verificarcorreo")]
         [HttpGet]
-        public bool VerificarRucCorreo(string ruc, string correo)
+        public bool VerificarCorreo(string ruc, string correo)
         {
-            return UsuarioLN.VerificarRucCorreo(ruc, correo);
+            return UsuarioLN.VerificarCorreo(correo);
         }
 
         [Route("validarloginusuario")]
         [HttpPost]
-        public Dictionary<string, object> ValidarLoginUsuario(string ruc, string correo, string contraseña)
+        public Dictionary<string, object> ValidarLoginUsuario(string correo, string contraseña)
         {
-            return UsuarioLN.ValidarLoginUsuario(ruc, correo, contraseña);
+            return UsuarioLN.ValidarLoginUsuario(correo, contraseña);
         }
     }
 }

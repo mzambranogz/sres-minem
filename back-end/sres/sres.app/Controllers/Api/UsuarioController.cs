@@ -52,11 +52,11 @@ namespace sres.app.Controllers.Api
             return UsuarioLN.GuardarUsuario(usuario);
         }
 
-        [Route("registrarusuario")]
-        [HttpPost]
-        public bool RegistrarUsuario(UsuarioBE usuario)
-        {
-            return UsuarioLN.RegistrarUsuario(usuario);
-        }
+        //[Route("registrarusuario")]
+        //[HttpPost]
+        //public bool RegistrarUsuario(UsuarioBE usuario)
+        //{
+        //    return UsuarioLN.RegistrarUsuario(usuario);
+        //}
     }
 }

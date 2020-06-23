@@ -13,14 +13,13 @@ namespace sres.da.MRV
 {
     public class UsuarioDA : BaseDA
     {
-        public bool VerificarRucCorreo(string ruc, string correo, OracleConnection db, OracleTransaction ot = null)
+        public bool VerificarCorreo(string correo, OracleConnection db, OracleTransaction ot = null)
         {
             bool verificacion = false;
             try
             {
-                string sp = $"{Package.Admin}USP_SEL_VERIFICAR_RUC_EMAIL";
+                string sp = $"{Package.Admin}USP_SEL_VERIFICAR_EMAIL";
                 var p = new OracleDynamicParameters();
-                p.Add("pRUC", ruc);
                 p.Add("pEMAIL_USUARIO", correo);
                 p.Add("pVerificar", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
@@ -32,7 +31,7 @@ namespace sres.da.MRV
             return verificacion;
         }
 
-        public UsuarioBE ObtenerUsuarioPorRucCorreo(string ruc, string correo, OracleConnection db, OracleTransaction ot = null)
+        public UsuarioBE ObtenerUsuarioPorCorreo(string correo, OracleConnection db, OracleTransaction ot = null)
         {
             UsuarioBE item = null;
 
@@ -40,7 +39,6 @@ namespace sres.da.MRV
             {
                 string sp = $"{Package.Admin}USP_SEL_OBTIENE_USUARIO_RUC_CORREO";
                 var p = new OracleDynamicParameters();
-                p.Add("PI_RUC", ruc);
                 p.Add("PI_CORREO", correo);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 item = db.QueryFirstOrDefault<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure);

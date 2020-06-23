@@ -102,16 +102,14 @@ var cargarDatosUsuario = (data) => {
     cambiarPropiedadLecturaUsuario(!data.EXISTE);
 
     if(!data.EXISTE) {
-        let ruc = $('#txtRucInstitucion').val().trim();
         let correo = $('#txtCorreoUsuario').val().trim();
 
-        let urlVerificarRucCorreo = `/api/mrv/usuario/verificarruccorreo?ruc=${ruc}&correo=${correo}`;
+        let urlVerificarCorreo = `/api/mrv/usuario/verificarcorreo?correo=${correo}`;
 
-        fetch(urlVerificarRucCorreo)
+        fetch(urlVerificarCorreo)
         .then(r => r.json())
         .then(j => {
             if(j){
-                $('#txtRucMRV').val(ruc);
                 $('#txtCorreoMRV').val(correo);
                 $('#viewLoginMRV').show();
                 $('#viewContraseñaUsuario').hide();
@@ -207,7 +205,7 @@ var cambiarPropiedadLecturaUsuario = (valor) => {
     $('#txtTelefonoUsuario').prop('readonly', !valor);
     $('#txtAnexoUsuario').prop('readonly', !valor);
     $('#txtCelularUsuario').prop('readonly', !valor);
-    $('#txtContraseñaoUsuario').prop('readonly', !valor);
+    $('#txtContraseñaUsuario').prop('readonly', !valor);
     $('#txtConfirmarContraseñaUsuario').prop('readonly', !valor);
 }
 
@@ -216,28 +214,29 @@ var registrarUsuario = () => {
     let nombres = $('#txtNombresUsuario').val();
     let apellidos = $('#txtApellidosUsuario').val();
     let correo = $('#txtCorreoUsuario').val();
+    let contraseña = $('#txtContraseñaUsuario').val();
     let telefono = $('#txtTelefonoUsuario').val();
     let anexo = $('#txtAnexoUsuario').val();
     let celular = $('#txtCelularUsuario').val();
     let idInstitucion = $('#frmUsuario').data('id_institucion');
+    let rucInstitucion = $('#txtRucInstitucion').val();
     let razonSocialInstitucion = $('#txtRazonSocialInstitucion').val();
     let domicilioLegalInstitucion = $('#txtDomicilioLegalInstitucion').val();
     let idSectorInstitucion = $('#selIdSectorInstitucion').val();
-    //let idRol = $('#selIdRol').val();
 
     let url = `/api/usuario/guardarusuario`;
 
-    let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, NOMBRES: nombres, APELLIDOS: apellidos, CORREO: correo, TELEFONO: telefono, ANEXO: anexo, CELULAR: celular, ID_INSTITUCION: idInstitucion, INSTITUCION: idInstitucion == null ? null : { idInstitucion: idInstitucion == null ? -1 : idInstitucion, RAZON_SOCIAL: razonSocialInstitucion,  DOMICILIO_LEGAL: domicilioLegalInstitucion, ID_SECTOR: idSectorInstitucion}, UPD_USUARIO: idUsuarioLogin };
+    let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, NOMBRES: nombres, APELLIDOS: apellidos, CORREO: correo, CONTRASENA: contraseña, TELEFONO: telefono, ANEXO: anexo, CELULAR: celular, ID_INSTITUCION: idInstitucion, INSTITUCION: idInstitucion != null ? null : { idInstitucion: idInstitucion == null ? -1 : idInstitucion, RUC: rucInstitucion, RAZON_SOCIAL: razonSocialInstitucion,  DOMICILIO_LEGAL: domicilioLegalInstitucion, ID_SECTOR: idSectorInstitucion, UPD_USUARIO: idUsuarioLogin }, UPD_USUARIO: idUsuarioLogin };
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
+        console.log(j);
         if(j) {
             alert('Se registró correctamente');
-            cerrarFormularioUsuario();
-            $('#btnConsultar')[0].click();
+            limpiarFormulario();
         }
     });
 }

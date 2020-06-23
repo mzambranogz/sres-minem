@@ -1,4 +1,8 @@
-﻿$('#frmLogin').submit((e) => {
+﻿
+
+$('#frmLogin').submit((e) => sendLogin());
+
+var sendLogin = () => {
     let tokenValue = $('#token').val();
 
     if (tokenValue == "") {
@@ -11,4 +15,4 @@
             });
         });
     }
-});
+}

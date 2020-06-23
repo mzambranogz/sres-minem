@@ -164,6 +164,7 @@ namespace sres.da
                 p.Add("PI_NOMBRES", usuario.NOMBRES);
                 p.Add("PI_APELLIDOS", usuario.APELLIDOS);
                 p.Add("PI_CORREO", usuario.CORREO);
+                p.Add("PI_CONTRASENA", usuario.CONTRASENA);
                 p.Add("PI_TELEFONO", usuario.TELEFONO);
                 p.Add("PI_ANEXO", usuario.ANEXO);
                 p.Add("PI_CELULAR", usuario.CELULAR);

@@ -73,3 +73,45 @@ PL/SQL: Statement ignored
 23/06/2020 14:13:49: [Método: System.Decimal get_Value(), Línea: 0] - Operación no válida en datos nulos
 23/06/2020 14:13:49: [Método: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object), Línea: 0] - Operación no válida en datos nulos
 23/06/2020 14:13:49: [Método: Boolean GuardarInstitucion(sres.be.InstitucionBE, Oracle.DataAccess.Client.OracleConnection, Int32 ByRef, Oracle.DataAccess.Client.OracleTransaction), Línea: 83] - Operación no válida en datos nulos
+23/06/2020 16:21:16: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:21:16: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:21:16: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:21:16: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:21:16: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:21:16: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:21:16: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 174] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:24:15: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:24:15: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Boolean, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:24:15: [Método: Int32 ExecuteNonQuery(), Línea: 0] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:24:15: [Método: Int32 ExecuteCommand(System.Data.IDbConnection, Dapper.CommandDefinition ByRef, System.Action`2[System.Data.IDbCommand,System.Object]), Línea: 0] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:24:15: [Método: Int32 ExecuteImpl(System.Data.IDbConnection, Dapper.CommandDefinition ByRef), Línea: 0] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:24:15: [Método: Int32 Execute(System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1
+23/06/2020 16:24:15: [Método: Boolean GuardarUsuario(sres.be.UsuarioBE, Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 174] - ORA-02291: restricción de integridad (SRES.INSTITUCION_FK) violada - clave principal no encontrada
+ORA-06512: en "SRES.PKG_SRES_MANTENIMIENTO", línea 201
+ORA-06512: en línea 1

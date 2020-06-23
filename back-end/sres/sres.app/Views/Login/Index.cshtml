@@ -9,21 +9,29 @@
 @section scripts_footer{
     <script src="@Url.Content("~/Assets/js/pages/login.js")"></script>
 }
-<div> 
+<div>
     <form id="frmLogin" action="@Url.Action("Validar", "Login")" method="post">
-        <label>
-            Usuario: <input type="text" name="correo" id="correo" placeholder="Ingrese correo" />
-        </label>
-        <label>
-            Contraseña: <input type="password" name="contraseña" id="contraseña" placeholder="Ingrese contraseña" />
-        </label>
         <input type="hidden" name="token" id="token" />
-        <button>
-            Ingresar
-        </button>
+        <div>
+            <label>
+                Usuario: <input type="text" name="correo" id="correo" placeholder="Ingrese correo" />
+            </label>
+            <label>
+                Contraseña: <input type="password" name="contraseña" id="contraseña" placeholder="Ingrese contraseña" />
+            </label>
+        </div>
+        <div>
+            <button>Iniciar sesión</button>
+            <button type="button" id="btnIniciarSesionMRV">Iniciar sesión con MRV</button>
+        </div>
+        <div>
+            <a href="@Url.Action("RecuperarContraseña", "Login")">¿Olvidaste tu contraseña?</a>
+        </div>
         @if (TempData["error_message"] != null)
-        {
-            <label>@TempData["error_message"].ToString()</label>
+            {
+            <div>
+                <label>@TempData["error_message"].ToString()</label>
+            </div>
         }
     </form>
 </div>
