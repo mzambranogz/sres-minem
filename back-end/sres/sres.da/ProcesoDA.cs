@@ -15,7 +15,7 @@ namespace sres.da
     public class ProcesoDA : BaseDA
     {
 
-        public ProcesoBE ActualizarProceso(ProcesoBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public ProcesoBE GuardarProceso(ProcesoBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             try
             {
@@ -23,6 +23,7 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_PROCESO", entidad.ID_PROCESO);
                 p.Add("PI_NOMBRE", entidad.NOMBRE);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
                 entidad.OK = true;
             }
@@ -44,6 +45,7 @@ namespace sres.da
                 string sp = $"{Package.Mantenimiento}USP_SEL_GET_PROCESO";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_PROCESO", entidad.ID_PROCESO);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 item = db.Query<ProcesoBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
                 item.OK = true;
             }

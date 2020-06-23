@@ -15,14 +15,15 @@ namespace sres.da
     public class EtapaDA : BaseDA
     {
 
-        public EtapaBE ActualizarEtapa(EtapaBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public EtapaBE GuardarEtapa(EtapaBE entidad, OracleConnection db, OracleTransaction ot = null)
         {
             try
             {
                     string sp = $"{Package.Mantenimiento}USP_UPD_ETAPA";
                     var p = new OracleDynamicParameters();
                     p.Add("PI_ID_ETAPA", entidad.ID_ETAPA);
-                    p.Add("PI_NOMBRE", entidad.NOMBRE);
+                    p.Add("PI_NOMBRE", entidad.ETAPA);
+                    p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                     db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
                     entidad.OK = true;
             }
@@ -44,6 +45,7 @@ namespace sres.da
                 string sp = $"{Package.Mantenimiento}USP_SEL_GET_ETAPA";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_ETAPA", entidad.ID_ETAPA);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 item = db.Query<EtapaBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
                 item.OK = true;
             }

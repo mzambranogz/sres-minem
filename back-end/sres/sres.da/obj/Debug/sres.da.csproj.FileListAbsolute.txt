@@ -32,3 +32,5 @@ D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\obj\Debug\sres
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\obj\Debug\sres.da.pdb
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\Newtonsoft.Json.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.da\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Pc\Desktop\GIT_SRES\back-end\sres\sres.da\bin\Debug\Newtonsoft.Json.xml
