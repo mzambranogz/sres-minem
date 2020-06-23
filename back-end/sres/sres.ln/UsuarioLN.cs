@@ -91,36 +91,10 @@ namespace sres.ln
 
             return esValido;
         }
-
-        //    public static bool RegistrarUsuario(UsuarioBE usuario)
-        //    {
-        //        bool seGuardo = false;
-
-        //        try
-        //        {
-        //            cn.Open();
-        //            using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
-        //            {
-        //                int idInstitucion = -1;
-        //                bool seGuardoInstitucion = false;
-
-        //                seGuardoInstitucion = usuario.INSTITUCION == null ? true : institucionDA.GuardarInstitucion(usuario.INSTITUCION, cn, out idInstitucion, ot);
-
-        //                if (seGuardoInstitucion)
-        //                {
-        //                    usuario.ID_INSTITUCION = idInstitucion;
-        //                    seGuardo = usuarioDA.GuardarUsuario(usuario, cn, ot);
-        //                }
-
-        //                if (seGuardo) ot.Commit();
-        //                else ot.Rollback();
-        //            }
-        //            cn.Close();
-        //        }
-        //        catch (Exception ex) { Log.Error(ex); }
-
-
-        //        return seGuardo;
-        //    }
+        
+        public static List<UsuarioBE> getAllEvaluador()
+        {
+            return usuarioDA.getAllEvaluador(cn);
+        }
     }
 }

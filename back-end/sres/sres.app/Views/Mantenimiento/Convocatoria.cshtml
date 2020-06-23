@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Titulo = "Mantenimiento Convocatoria";
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/pages/mantenimiento_convocatoria.js")"></script>
+}
+
+<div>
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12 px-0">
+                <input type="text" class="form-control" id="textoBusqueda" name="textoBusqueda" />
+                <button id="btnConsultar">CONSULTAR</button>
+                @*<button id="btnNuevo">NUEVO</button>*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 px-0">
+                <div class="table-responsive tabla-principal">
+                    <table id="tblPrincipal" class="table table-hover">
+                        <thead>
+                            <tr class="bg-primary text-white">
+                                <th class="text-center" scope="col"><span class="miColumna">N°&nbsp;<i class="fas fa-sort" id="ID_CONVOCATORIA"></i></span></th>
+                                <th scope="col"><span class="miColumna">Convocatoria&nbsp;<i class="fas fa-sort-up" id="CONVOCATORIA"></i></span></th>
+                                <th scope="col"><span class="miColumna">Año&nbsp;<i class="fas fa-sort-up" id="ANNO"></i></span></th>
+                                <th scope="col"><span class="miColumna">Período&nbsp;<i class="fas fa-sort-up" id="PERIODO"></i></span></th>
+                                <th scope="col"><span class="miColumna">Requerimientos&nbsp;<i class="fas fa-sort-up" id="CRITERIO"></i></span></th>
+                                <th scope="col"><span class="miColumna">Criterios&nbsp;<i class="fas fa-sort-up" id="REQUERIMIENTO"></i></span></th>
+                                <th scope="col"><span class="miColumna">Evaluadores&nbsp;<i class="fas fa-sort-up" id="EVALUADOR"></i></span></th>
+                                <th class="text-center" scope="col" width="10%">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="frm" autocomplete="off" @*style="display: none;"*@>
+    <div>
+        <label>
+            Convocatoria:
+            <input type="text" name="txtConvocatoria" id="txtConvocatoria" placeholder="Ingrese Convocatoria" />
+        </label>
+    </div>
+    <div>
+        <label>
+            Año:
+            <select name="selIdAnno" id="selIdAnno"></select>
+        </label>
+    </div>
+    <div>
+        <label>
+            Período:
+            <select name="selIdPeriodo" id="selIdPeriodo"></select>
+        </label>
+    </div>
+    <div>
+        <label for="mlt-energetico">Requerimiento</label>
+        <div>
+            <div id="list-req">
+                @*<div>
+                        <div>
+                            <ul style="list-style: none;">
+                                <li>
+                                    <input type="checkbox" id="chk-energetico-02">
+                                    <label for="chk-energetico-02">Electricidad&nbsp;</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for="mlt-energetico">Criterio</label>
+        <div>
+            <div id="list-criterio">
+                @*<div>
+                        <div>
+                            <input type="checkbox" id="chk-energetico-02">
+                            <label for="chk-energetico-02">Electricidad&nbsp;</label>
+                            <input type="checkbox" id="chk-energetico-02">
+                            <label for="chk-energetico-02">Electricidad&nbsp;</label>
+                            <input type="checkbox" id="chk-energetico-02">
+                            <label for="chk-energetico-02">Electricidad&nbsp;</label>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for="mlt-energetico">Evaluador</label>
+        <div>
+            <div id="list-evaluador">
+                @*<div>
+                        <div>
+                            <input type="checkbox" id="chk-energetico-02">
+                            <label for="chk-energetico-02">Electricidad&nbsp;</label>
+                            <input type="checkbox" id="chk-energetico-02">
+                            <label for="chk-energetico-02">Electricidad&nbsp;</label>
+                            <input type="checkbox" id="chk-energetico-02">
+                            <label for="chk-energetico-02">Electricidad&nbsp;</label>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <div>
+        <button type="button" id="btnGuardar">GUARDAR</button>
+        <button type="button" id="btnCerrar">CERRAR</button>
+    </div>
+</form>
+
+

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sres.be
 {
-    public class UsuarioBE
+    public partial class UsuarioBE
     {
         public int ID_USUARIO { get; set; }
         public string NOMBRES { get; set; }

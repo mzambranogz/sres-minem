@@ -27,8 +27,9 @@ namespace sres.ut
                 }
                 sw.Close();
             }
-            catch (Exception)
+            catch (Exception exc)
             {
+                throw exc;
             }
         }
     }

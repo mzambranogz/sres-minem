@@ -36,5 +36,10 @@ namespace sres.ln
         {
             return criterioDA.ListarBusquedaCriterio(entidad, cn);
         }
+
+        public static List<CriterioBE> getAllCriterio()
+        {
+            return criterioDA.getAllCriterio(cn);
+        }
     }
 }
