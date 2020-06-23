@@ -144,5 +144,25 @@ namespace sres.da
             return lista;
         }
 
+        public List<RequerimientoBE> getAllRequerimiento(OracleConnection db, OracleTransaction ot = null)
+        {
+            List<RequerimientoBE> lista = new List<RequerimientoBE>();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_ALL_REQUERIMIENTO";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<RequerimientoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
     }
 }

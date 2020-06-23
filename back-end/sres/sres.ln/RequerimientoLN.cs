@@ -41,5 +41,10 @@ namespace sres.ln
         {
             return RequerimientoDA.ListarBusquedaRequerimiento(entidad, cn);
         }
+
+        public static List<RequerimientoBE> getAllRequerimiento()
+        {
+            return RequerimientoDA.getAllRequerimiento(cn);
+        }
     }
 }

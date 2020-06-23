@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnnoLN.cs" />
     <Compile Include="BaseLN.cs" />
     <Compile Include="CriterioLN.cs" />
     <Compile Include="EtapaLN.cs" />
@@ -55,7 +56,6 @@
     <Compile Include="RolLN.cs" />
     <Compile Include="SectorLN.cs" />
     <Compile Include="UsuarioLN.cs" />
-    <Compile Include="UsuarioTestLN.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\sres.be\sres.be.csproj">

@@ -184,6 +184,25 @@ namespace sres.da
 
             return seActualizo;
         }
+
+        public List<UsuarioBE> getAllEvaluador(OracleConnection db, OracleTransaction ot = null)
+        {
+            List<UsuarioBE> lista = new List<UsuarioBE>();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_ALL_EVALUADOR";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
         #endregion
     }
 }

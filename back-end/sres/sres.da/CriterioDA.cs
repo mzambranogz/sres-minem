@@ -121,5 +121,24 @@ namespace sres.da
 
             return lista;
         }
+
+        public List<CriterioBE> getAllCriterio(OracleConnection db, OracleTransaction ot = null)
+        {
+            List<CriterioBE> lista = new List<CriterioBE>();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_ALL_CRITERIO";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<CriterioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
     }
 }

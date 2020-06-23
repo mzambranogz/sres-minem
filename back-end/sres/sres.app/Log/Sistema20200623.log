@@ -73,3 +73,147 @@ PL/SQL: Statement ignored
 23/06/2020 14:13:49: [Método: System.Decimal get_Value(), Línea: 0] - Operación no válida en datos nulos
 23/06/2020 14:13:49: [Método: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object), Línea: 0] - Operación no válida en datos nulos
 23/06/2020 14:13:49: [Método: Boolean GuardarInstitucion(sres.be.InstitucionBE, Oracle.DataAccess.Client.OracleConnection, Int32 ByRef, Oracle.DataAccess.Client.OracleTransaction), Línea: 83] - Operación no válida en datos nulos
+23/06/2020 17:28:14: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:28:14: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:28:14: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:28:14: [Método: Void Open(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:28:14: [Método: Boolean MoveNext(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:28:14: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:28:14: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:28:14: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:28:14: [Método: System.Collections.Generic.List`1[sres.be.AnnoBE] getAllAnno(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 27] - ORA-24309: already connected to a server
+23/06/2020 17:29:25: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:29:25: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:29:25: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:29:25: [Método: Void Open(), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:29:25: [Método: Boolean MoveNext(), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:29:25: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:29:25: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:29:25: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:29:25: [Método: System.Collections.Generic.List`1[sres.be.RequerimientoBE] getAllRequerimiento(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 156] - ORA-01005: null password given; logon denied
+23/06/2020 17:29:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-03114: not connected to ORACLE
+23/06/2020 17:29:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, System.String, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-03114: not connected to ORACLE
+23/06/2020 17:29:43: [Método: Oracle.DataAccess.Client.OracleDataReader ExecuteReader(Boolean, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-03114: not connected to ORACLE
+23/06/2020 17:29:43: [Método: System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior), Línea: 0] - ORA-03114: not connected to ORACLE
+23/06/2020 17:29:43: [Método: System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior), Línea: 0] - ORA-03114: not connected to ORACLE
+23/06/2020 17:29:44: [Método: System.Data.IDataReader ExecuteReaderWithFlagsFallback(System.Data.IDbCommand, Boolean, System.Data.CommandBehavior), Línea: 0] - ORA-03114: not connected to ORACLE
+23/06/2020 17:29:44: [Método: Boolean MoveNext(), Línea: 0] - ORA-03114: not connected to ORACLE
+23/06/2020 17:29:44: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-03114: not connected to ORACLE
+23/06/2020 17:29:44: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-03114: not connected to ORACLE
+23/06/2020 17:29:44: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-03114: not connected to ORACLE
+23/06/2020 17:29:44: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] getAllEvaluador(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 197] - ORA-03114: not connected to ORACLE
+23/06/2020 17:30:50: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:30:50: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:30:50: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:30:50: [Método: Void Open(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:30:50: [Método: Boolean MoveNext(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:30:50: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:30:50: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:30:50: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:30:50: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] getAllEvaluador(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 197] - ORA-24309: already connected to a server
+23/06/2020 17:31:29: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:31:29: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:31:29: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:31:29: [Método: Void Open(), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:31:29: [Método: Boolean MoveNext(), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:31:29: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:31:29: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:31:29: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:31:29: [Método: System.Collections.Generic.List`1[sres.be.AnnoBE] getAllAnno(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 27] - ORA-01005: null password given; logon denied
+23/06/2020 17:31:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: Void Open(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: Boolean MoveNext(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: System.Collections.Generic.List`1[sres.be.CriterioBE] getAllCriterio(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 134] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: Void Open(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: Boolean MoveNext(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:31:35: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] getAllEvaluador(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 197] - ORA-24309: already connected to a server
+23/06/2020 17:34:22: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:22: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:22: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:22: [Método: Void Open(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:22: [Método: Boolean MoveNext(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:22: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:22: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:22: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:22: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] getAllEvaluador(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 197] - ORA-24309: already connected to a server
+23/06/2020 17:34:56: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:56: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:56: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:56: [Método: Void Open(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:56: [Método: Boolean MoveNext(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:56: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:56: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:56: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:34:56: [Método: System.Collections.Generic.List`1[sres.be.CriterioBE] getAllCriterio(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 134] - ORA-24309: already connected to a server
+23/06/2020 17:35:39: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:35:39: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:35:39: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:35:39: [Método: Void Open(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:35:39: [Método: Boolean MoveNext(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:35:39: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:35:39: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:35:39: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:35:39: [Método: System.Collections.Generic.List`1[sres.be.RequerimientoBE] getAllRequerimiento(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 156] - ORA-24309: already connected to a server
+23/06/2020 17:35:59: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:35:59: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:35:59: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:35:59: [Método: Void Open(), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:35:59: [Método: Boolean MoveNext(), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:35:59: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:35:59: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:35:59: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:35:59: [Método: System.Collections.Generic.List`1[sres.be.RequerimientoBE] getAllRequerimiento(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 156] - ORA-01005: null password given; logon denied
+23/06/2020 17:36:19: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: Void Open(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: Boolean MoveNext(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: System.Collections.Generic.List`1[sres.be.RequerimientoBE] getAllRequerimiento(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 156] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: Void Open(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: Boolean MoveNext(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:36:19: [Método: System.Collections.Generic.List`1[sres.be.UsuarioBE] getAllEvaluador(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 197] - ORA-24309: already connected to a server
+23/06/2020 17:41:51: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:41:51: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:41:51: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:41:51: [Método: Void Open(), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:41:51: [Método: T QueryRowImpl[T](System.Data.IDbConnection, Row, Dapper.CommandDefinition ByRef, System.Type), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:41:51: [Método: T QueryFirstOrDefault[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-01005: null password given; logon denied
+23/06/2020 17:41:51: [Método: sres.be.UsuarioBE ObtenerUsuarioPorCorreo(System.String, Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 49] - ORA-01005: null password given; logon denied
+23/06/2020 17:46:59: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:46:59: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:46:59: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:46:59: [Método: Void Open(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:46:59: [Método: Boolean MoveNext(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:46:59: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:46:59: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:46:59: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:46:59: [Método: System.Collections.Generic.List`1[sres.be.AnnoBE] getAllAnno(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 27] - ORA-24309: already connected to a server
+23/06/2020 17:53:09: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:53:09: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:53:09: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:53:09: [Método: Void Open(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:53:09: [Método: Boolean MoveNext(), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:53:09: [Método: Void .ctor(System.Collections.Generic.IEnumerable`1[T]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:53:09: [Método: System.Collections.Generic.List`1[TSource] ToList[TSource](System.Collections.Generic.IEnumerable`1[TSource]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:53:09: [Método: System.Collections.Generic.IEnumerable`1[T] Query[T](System.Data.IDbConnection, System.String, System.Object, System.Data.IDbTransaction, Boolean, System.Nullable`1[System.Int32], System.Nullable`1[System.Data.CommandType]), Línea: 0] - ORA-24309: already connected to a server
+23/06/2020 17:53:35: [Método: System.Collections.Generic.List`1[sres.be.AnnoBE] getAllAnno(Oracle.DataAccess.Client.OracleConnection, Oracle.DataAccess.Client.OracleTransaction), Línea: 27] - ORA-24309: already connected to a server

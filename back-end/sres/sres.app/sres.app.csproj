@@ -134,6 +134,7 @@
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\login_registrarme.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />
+    <Content Include="Assets\js\pages\mantenimiento_convocatoria.js" />
     <Content Include="Assets\js\pages\mantenimiento_criterio.js" />
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
     <Content Include="Assets\js\pages\mantenimiento_proceso.js" />
@@ -154,6 +155,7 @@
     <Compile Include="Controllers\Api\CriterioController.cs" />
     <Compile Include="Controllers\Api\EtapaController.cs" />
     <Compile Include="Controllers\Api\InstitucionController.cs" />
+    <Compile Include="Controllers\Api\MRV\ConvocatoriaController.cs" />
     <Compile Include="Controllers\Api\MRV\InstitucionMRVController.cs" />
     <Compile Include="Controllers\Api\MRV\UsuarioMRVController.cs" />
     <Compile Include="Controllers\Api\ProcesoController.cs" />
@@ -187,6 +189,7 @@
     <Content Include="Views\Mantenimiento\Etapa.cshtml" />
     <Content Include="Views\Mantenimiento\Proceso.cshtml" />
     <Content Include="Views\Mantenimiento\Requerimiento.cshtml" />
+    <Content Include="Views\Mantenimiento\Convocatoria.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

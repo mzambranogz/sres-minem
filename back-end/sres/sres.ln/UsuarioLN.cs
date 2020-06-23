@@ -95,5 +95,10 @@ namespace sres.ln
 
             return seGuardo;
         }
+
+        public static List<UsuarioBE> getAllEvaluador()
+        {
+            return usuarioDA.getAllEvaluador(cn);
+        }
     }
 }
