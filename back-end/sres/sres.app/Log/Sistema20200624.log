@@ -1,0 +1,750 @@
+24/06/2020 00:04:34: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:34: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:34: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:34: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:34: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:35: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:36: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:37: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:39: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:39: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:39: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:39: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:39: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:40: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:40: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:40: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:40: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:40: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:41: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:41: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:41: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:41: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:41: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:42: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:42: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:42: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:42: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:42: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:43: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:43: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:43: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:44: [Método: Void Open(), Línea: 0] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-01017: invalid username/password; logon denied
+24/06/2020 00:04:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:45: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:46: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:51: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:51: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:51: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:51: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:51: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:51: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:51: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:51: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:51: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:51: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:04:52: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:19: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:20: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:21: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:22: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:35: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:36: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:37: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:42: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:42: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:42: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:42: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:42: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:43: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:05:44: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:06:17: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:06:17: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:06:17: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:06:17: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:06:17: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:06:31: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:06:31: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:06:31: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:06:31: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:06:31: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:09:13: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:09:13: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:09:13: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:09:13: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:09:13: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:09:23: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:09:23: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:09:23: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:09:23: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:09:23: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked
+24/06/2020 00:13:32: [Método: Void HandleErrorHelper(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, Oracle.DataAccess.Client.OpoSqlValCtx*, System.Object, System.String, Boolean, Int32, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:13:32: [Método: Void HandleError(Int32, Oracle.DataAccess.Client.OracleConnection, IntPtr, System.Object, Oracle.DataAccess.Client.OracleLogicalTransaction), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:13:32: [Método: Void Open(Oracle.DataAccess.Client.OracleConnection), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:13:32: [Método: Void Open(), Línea: 0] - ORA-28000: the account is locked
+24/06/2020 00:13:32: [Método: Boolean ValidarUsuario(System.String, System.String, sres.be.UsuarioBE ByRef), Línea: 149] - ORA-28000: the account is locked

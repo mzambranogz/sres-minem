@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AnnoLN.cs" />
     <Compile Include="BaseLN.cs" />
+    <Compile Include="ConvocatoriaLN.cs" />
     <Compile Include="CriterioLN.cs" />
     <Compile Include="EtapaLN.cs" />
     <Compile Include="InstitucionLN.cs" />

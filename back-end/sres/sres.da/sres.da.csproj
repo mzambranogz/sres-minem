@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="AnnoDA.cs" />
     <Compile Include="BaseDA.cs" />
+    <Compile Include="ConvocatoriaDA.cs" />
     <Compile Include="CriterioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
     <Compile Include="EtapaDA.cs" />
