@@ -35,6 +35,18 @@
         }
     </form>
 </div>
+<div id="viewLoginMRV" style="display: none;">
+    <form id="frmLoginMRV" action="@Url.Action("ValidarMRV", "Login")" method="post">
+        <input type="hidden" name="tokenMRV" id="tokenMRV" />
+        <label>
+            Correo: <input type="text" name="txtCorreoMRV" id="txtCorreoMRV" />
+        </label>
+        <label>
+            Contraseña: <input type="password" name="txtContraseñaMRV" id="txtContraseñaMRV" />
+        </label>
+        <button id="btnValidarUsuarioMRV">Iniciar Sesión</button>
+    </form>
+</div>
 <script src="https://www.google.com/recaptcha/api.js?render=@(ViewData["keySiteCaptcha"].ToString())"></script>
 <script>
     var key = '@ViewData["keySiteCaptcha"].ToString()';

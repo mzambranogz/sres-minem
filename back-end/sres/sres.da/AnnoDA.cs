@@ -15,7 +15,7 @@ namespace sres.da
     public class AnnoDA : BaseDA
     {
         private string sPackage = AppSettings.Get<string>("UserBD") + ".PKG_SRES_MANTENIMIENTO.";
-        public List<AnnoBE> getAllAnno(OracleConnection db, OracleTransaction ot = null)
+        public List<AnnoBE> getAllAnno(OracleConnection db)
         {
             List<AnnoBE> lista = new List<AnnoBE>();
 

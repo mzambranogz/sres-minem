@@ -13,7 +13,7 @@ namespace sres.da.MRV
 {
     public class UsuarioDA : BaseDA
     {
-        public bool VerificarCorreo(string correo, OracleConnection db, OracleTransaction ot = null)
+        public bool VerificarCorreo(string correo, OracleConnection db)
         {
             bool verificacion = false;
             try
@@ -31,19 +31,38 @@ namespace sres.da.MRV
             return verificacion;
         }
 
-        public UsuarioBE ObtenerUsuarioPorCorreo(string correo, OracleConnection db, OracleTransaction ot = null)
+        public UsuarioBE ObtenerUsuarioPorCorreo(string correo, OracleConnection db)
         {
             UsuarioBE item = null;
 
             try
             {
-                string sp = $"{Package.Admin}USP_SEL_OBTIENE_USUARIO_RUC_CORREO";
+                string sp = $"{Package.Admin}USP_SEL_OBTIENE_USUARIO_CORREO";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_CORREO", correo);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 item = db.QueryFirstOrDefault<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex) { Log.Error(ex); }
+
+            return item;
+        }
+
+        public UsuarioBE ObtenerPassword(string correo, OracleConnection db)
+        {
+            UsuarioBE item = null;
+            try
+            {
+                string sp = $"{Package.Admin}USP_SEL_PASSWORD";
+                var p = new OracleDynamicParameters();
+                p.Add("pUsuarioLogin", correo);
+                p.Add("pRefcursor", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.QueryFirstOrDefault<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
 
             return item;
         }

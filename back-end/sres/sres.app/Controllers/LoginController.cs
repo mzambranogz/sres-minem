@@ -18,6 +18,7 @@ namespace sres.app.Controllers
     public class LoginController : Controller
     {
         UsuarioLN usuarioLN = new UsuarioLN();
+        ln.MRV.UsuarioLN usuarioLNMRV = new ln.MRV.UsuarioLN();
 
         bool AuthEnabled = AppSettings.Get<bool>("Auth_Enabled");
         string AuthUsuario = AppSettings.Get<string>("Auth_Usuario");
@@ -53,13 +54,36 @@ namespace sres.app.Controllers
             UsuarioBE usuario = null;
 
             bool esValido = usuarioLN.ValidarUsuario(correo, contraseña, out usuario);
-            //esValido = true; //QUITAR ESTA LINEA SOLO PRUEBA
             if (esValido)
             {
                 Session["user"] = usuario;
-                //Session["user"] = 1; //QUITAR SOLO PRUEBA
 
                 return RedirectToAction("Index", "Inicio");
+            }
+
+            TempData["error_message"] = "Usuario y/o contraseña incorrecto";
+            return RedirectToAction("Index", "Login");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ValidarMRV(string txtCorreoMRV, string txtContraseñaMRV, string tokenMRV = null)
+        {
+            bool esValido = usuarioLNMRV.ValidarUsuario(txtCorreoMRV, txtContraseñaMRV);
+
+            if (esValido)
+            {
+                bool seMigro = false, existeUsuario = false, existeUsuarioMRV = false, existeInstitucion = false, seGuardoInstitucion = false;
+
+                seMigro = usuarioLN.MigrarUsuario(txtCorreoMRV, out existeUsuario, out existeUsuarioMRV, out existeInstitucion, out seGuardoInstitucion);
+
+                UsuarioBE usuario = usuarioLN.ObtenerUsuarioPorCorreo(correo, cn);
+
+                if (usuario != null)
+                {
+                    Session["user"] = usuario;
+
+                    return RedirectToAction("Index", "Inicio");
+                }
             }
 
             TempData["error_message"] = "Usuario y/o contraseña incorrecto";

@@ -14,7 +14,7 @@ namespace sres.da
     public class InstitucionDA : BaseDA
     {
 
-        public InstitucionBE ObtenerInstitucionPorRuc(string ruc, OracleConnection db, OracleTransaction ot = null)
+        public InstitucionBE ObtenerInstitucionPorRuc(string ruc, OracleConnection db)
         {
             InstitucionBE item = null;
 
@@ -34,7 +34,7 @@ namespace sres.da
             return item;
         }
 
-        public InstitucionBE ObtenerInstitucion(int idInstitucion, OracleConnection db, OracleTransaction ot = null)
+        public InstitucionBE ObtenerInstitucion(int idInstitucion, OracleConnection db)
         {
             InstitucionBE item = null;
 
@@ -51,7 +51,7 @@ namespace sres.da
             return item;
         }
 
-        public bool GuardarInstitucion(InstitucionBE institucion, OracleConnection db, out int idInstitucion, OracleTransaction ot = null)
+        public bool GuardarInstitucion(InstitucionBE institucion, OracleConnection db, out int idInstitucion)
         {
             bool seGuardo = false;
             idInstitucion = -1;

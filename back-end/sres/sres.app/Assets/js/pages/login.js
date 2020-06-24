@@ -1,37 +1,72 @@
 ﻿$(document).ready(() => {
-    $('#frmLogin').submit((e) => sendLogin());
-    $('#btnIniciarSesionMRV').on('click', (e) => {
-    });
+    $('#frmLogin').submit(sendLogin);
+    $('#btnIniciarSesionMRV').on('click', validarUsuarioMRV);
+    $('#btnValidarUsuarioMRV').on('click', sendLoginWithMRV);
 });
 
-var sendLogin = () => {
+var sendLogin = (e) => {
     let tokenValue = $('#token').val();
 
     if (tokenValue == "") {
         e.preventDefault();
 
-        grecaptcha.ready(() => {
-            grecaptcha.execute(key).then((token) => {
-                $('#token').val(token);
-                $('#frmLogin').submit();
-            });
-        });
+        let correo = $('#correo').val().trim();
+
+        let urlVerificarCorreo = `/api/mrv/usuario/verificarcorreo?correo=${correo}`;
+
+        fetch(urlVerificarCorreo)
+        .then(r => r.json())
+        .then(j => {
+            if (j) {
+                $('#txtCorreoMRV').val(correo);
+                $('#viewLoginMRV').show();
+            } else {
+                grecaptcha.ready(() => {
+                    grecaptcha.execute(key).then((token) => {
+                        $('#token').val(token);
+                        $('#frmLogin').submit();
+                    });
+                });
+            }
+        })
     }
 }
 
-var validarUsuarioLogin = () => {
-    let ruc = $('#txtRucMRV').val().trim();
-    let correo = $('#txtCorreoMRV').val().trim();
-    let contraseña = $('#txtContraseñaMRV').val().trim();
+var sendLoginWithMRV = (e) => {
+    let tokenValue = $('#tokenMRV').val();
 
-    if (ruc == '' || correo == '' || contraseña == '') return;
+    if (tokenValue == "") {
+        e.preventDefault();
 
-    let init = { method: 'POST' };
-    let params = { ruc, correo, contraseña };
-    let paramsString = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
-    let urlObtenerUsuarioRucCorreo = `/api/mrv/usuario/validarloginusuario?${paramsString}`;
+        let correo = $('#txtCorreoMRV').val().trim();
 
-    fetch(urlObtenerUsuarioRucCorreo, init)
-    .then(r => r.json())
-    .then(j => cargarDatosUsuarioMRV(j));
+        let urlVerificarCorreo = `/api/mrv/usuario/verificarcorreo?correo=${correo}`;
+
+        fetch(urlVerificarCorreo)
+        .then(r => r.json())
+        .then(j => {
+            if (j) {
+                grecaptcha.ready(() => {
+                    grecaptcha.execute(key).then((token) => {
+                        $('#tokenMRV').val(token);
+                        $('#frmLoginMRV').submit();
+                    });
+                });
+            } else {
+                alert('Correo no registrado en MRV');
+            }
+        })
+    }
+}
+
+var validarUsuarioMRV = (e) => {
+    e.preventDefault();
+
+    let correo = $('#correo').val().trim();
+    let contraseña = $('#contraseña').val().trim();
+
+    $('#txtCorreoMRV').val(correo);
+    $('#txtContraseñaMRV').val(contraseña);
+
+    $('#viewLoginMRV').show();
 }

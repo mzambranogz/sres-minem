@@ -17,7 +17,7 @@ namespace sres.da
     public class UsuarioDA : BaseDA
     {
         #region PAQUETE ADMIN
-        public List<UsuarioBE> ListaUsuario(OracleConnection db, OracleTransaction ot = null)
+        public List<UsuarioBE> ListaUsuario(OracleConnection db)
         {
             List<UsuarioBE> lista = null;
 
@@ -36,7 +36,7 @@ namespace sres.da
             return lista;
         }
 
-        public UsuarioBE ObtenerUsuarioPorCorreo(string correo, OracleConnection db, OracleTransaction ot = null)
+        public UsuarioBE ObtenerUsuarioPorCorreo(string correo, OracleConnection db)
         {
             UsuarioBE item = null;
 
@@ -58,7 +58,7 @@ namespace sres.da
         #endregion
 
         #region PAQUETE MANTENIMIENTO
-        public List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden, OracleConnection db, OracleTransaction ot = null)
+        public List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden, OracleConnection db)
         {
             List<UsuarioBE> lista = null;
 
@@ -94,7 +94,7 @@ namespace sres.da
             return lista;
         }
 
-        public UsuarioBE ObtenerUsuario(int idUsuario, OracleConnection db, OracleTransaction ot = null)
+        public UsuarioBE ObtenerUsuario(int idUsuario, OracleConnection db)
         {
             UsuarioBE item = null;
 
@@ -111,7 +111,7 @@ namespace sres.da
             return item;
         }
 
-        public UsuarioBE ObtenerUsuarioPorInstitucionCorreo(int idInstitucion, string correo, OracleConnection db, OracleTransaction ot = null)
+        public UsuarioBE ObtenerUsuarioPorInstitucionCorreo(int idInstitucion, string correo, OracleConnection db)
         {
             UsuarioBE item = null;
 
@@ -129,7 +129,7 @@ namespace sres.da
             return item;
         }
 
-        public bool CambiarEstadoUsuario(UsuarioBE usuario, OracleConnection db, OracleTransaction ot = null)
+        public bool CambiarEstadoUsuario(UsuarioBE usuario, OracleConnection db)
         {
             bool seActualizo = false;
 
@@ -152,7 +152,7 @@ namespace sres.da
             return seActualizo;
         }
 
-        public bool GuardarUsuario(UsuarioBE usuario, OracleConnection db, OracleTransaction ot = null)
+        public bool GuardarUsuario(UsuarioBE usuario, OracleConnection db)
         {
             bool seActualizo = false;
 
@@ -172,7 +172,7 @@ namespace sres.da
                 p.Add("PI_ID_ROL", usuario.ID_ROL);
                 p.Add("PI_UPD_USUARIO", usuario.UPD_USUARIO);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
-                db.Execute(sp, p, ot, commandType: CommandType.StoredProcedure);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
 
                 int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
 
@@ -186,7 +186,7 @@ namespace sres.da
             return seActualizo;
         }
 
-        public List<UsuarioBE> getAllEvaluador(OracleConnection db, OracleTransaction ot = null)
+        public List<UsuarioBE> getAllEvaluador(OracleConnection db)
         {
             List<UsuarioBE> lista = new List<UsuarioBE>();
 

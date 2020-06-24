@@ -14,7 +14,7 @@ namespace sres.da
 {
     public class CriterioDA : BaseDA
     {
-        public CriterioBE RegistroCriterio(CriterioBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public CriterioBE RegistroCriterio(CriterioBE entidad, OracleConnection db)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace sres.da
             return entidad;
         }
 
-        public CriterioBE GuardarCriterio(CriterioBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public CriterioBE GuardarCriterio(CriterioBE entidad, OracleConnection db)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace sres.da
             return entidad;
         }
 
-        public CriterioBE EliminarCriterio(CriterioBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public CriterioBE EliminarCriterio(CriterioBE entidad, OracleConnection db)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace sres.da
             return entidad;
         }
 
-        public CriterioBE getCriterio(CriterioBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public CriterioBE getCriterio(CriterioBE entidad, OracleConnection db)
         {
             CriterioBE item = new CriterioBE();
 
@@ -96,7 +96,7 @@ namespace sres.da
             return item;
         }
 
-        public List<CriterioBE> ListarBusquedaCriterio(CriterioBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public List<CriterioBE> ListarBusquedaCriterio(CriterioBE entidad, OracleConnection db)
         {
             List<CriterioBE> lista = new List<CriterioBE>();
 
@@ -122,7 +122,7 @@ namespace sres.da
             return lista;
         }
 
-        public List<CriterioBE> getAllCriterio(OracleConnection db, OracleTransaction ot = null)
+        public List<CriterioBE> getAllCriterio(OracleConnection db)
         {
             List<CriterioBE> lista = new List<CriterioBE>();
 

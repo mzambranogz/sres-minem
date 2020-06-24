@@ -16,7 +16,7 @@ namespace sres.app.Controllers.Api
 
         [Route("verificarcorreo")]
         [HttpGet]
-        public bool VerificarCorreo(string ruc, string correo)
+        public bool VerificarCorreo(string correo)
         {
             return usuarioLN.VerificarCorreo(correo);
         }

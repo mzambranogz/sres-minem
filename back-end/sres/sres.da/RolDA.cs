@@ -13,7 +13,7 @@ namespace sres.da
 {
     public class RolDA : BaseDA
     {
-        public List<RolBE> ListarRolPorEstado(string flagEstado, OracleConnection db, OracleTransaction ot = null)
+        public List<RolBE> ListarRolPorEstado(string flagEstado, OracleConnection db)
         {
             List<RolBE> lista = null;
 

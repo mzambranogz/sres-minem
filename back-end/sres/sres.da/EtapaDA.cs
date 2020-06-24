@@ -15,7 +15,7 @@ namespace sres.da
     public class EtapaDA : BaseDA
     {
 
-        public EtapaBE GuardarEtapa(EtapaBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public EtapaBE GuardarEtapa(EtapaBE entidad, OracleConnection db)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace sres.da
             return entidad;
         }
 
-        public EtapaBE getEtapa(EtapaBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public EtapaBE getEtapa(EtapaBE entidad, OracleConnection db)
         {
             EtapaBE item = new EtapaBE();
 
@@ -58,7 +58,7 @@ namespace sres.da
             return item;
         }
 
-        public List<EtapaBE> ListarBusquedaEtapa(EtapaBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public List<EtapaBE> ListarBusquedaEtapa(EtapaBE entidad, OracleConnection db)
         {
             List<EtapaBE> lista = new List<EtapaBE>();
 

@@ -13,7 +13,7 @@ namespace sres.da
 {
     public class SectorDA : BaseDA
     {
-        public List<SectorBE> ListarSectorPorEstado(string flagEstado, OracleConnection db, OracleTransaction ot = null)
+        public List<SectorBE> ListarSectorPorEstado(string flagEstado, OracleConnection db)
         {
             List<SectorBE> lista = new List<SectorBE>();
             try

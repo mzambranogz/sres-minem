@@ -14,6 +14,6 @@ namespace sres.be
         public string DOMICILIO_LEGAL { get; set; }
         public int ID_SECTOR { get; set; }
         public string FLAG_ESTADO { get; set; }
-        public int UPD_USUARIO { get; set; }
+        public int? UPD_USUARIO { get; set; }
     }
 }

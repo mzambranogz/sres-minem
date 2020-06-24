@@ -13,6 +13,7 @@ namespace sres.ln.MRV
     public class UsuarioLN : BaseLN
     {
         UsuarioDA usuarioDA = new UsuarioDA();
+        da.UsuarioDA usuarioDASRES = new da.UsuarioDA();
 
         public bool VerificarCorreo(string correo)
         {
@@ -26,6 +27,29 @@ namespace sres.ln.MRV
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return valor;
+        }
+
+        public bool ValidarUsuario(string correo, string contraseña)
+        {
+            bool esValido = false;
+
+            try
+            {
+                cn.Open();
+
+                UsuarioBE usuario = usuarioDA.ObtenerUsuarioPorCorreo(correo, cn);
+
+                esValido = usuario != null;
+
+                if (esValido)
+                {
+                    esValido = Seguridad.CompararHashSal(contraseña, usuario.PASSWORD_USUARIO);
+                }
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return esValido;
         }
 
         public Dictionary<string, object> ValidarLoginUsuario(string correo, string contraseña)

@@ -14,7 +14,7 @@ namespace sres.da
 {
     public class RequerimientoDA : BaseDA
     {
-        //public RequerimientoBE RegistroRequerimiento(RequerimientoBE entidad, OracleConnection db, OracleTransaction ot = null)
+        //public RequerimientoBE RegistroRequerimiento(RequerimientoBE entidad, OracleConnection db)
         //{
         // try
         // {
@@ -56,7 +56,7 @@ namespace sres.da
         //    return entidad;
         //}
 
-        public RequerimientoBE GuardarRequerimiento(RequerimientoBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public RequerimientoBE GuardarRequerimiento(RequerimientoBE entidad, OracleConnection db)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace sres.da
             return entidad;
         }
 
-        public RequerimientoBE EliminarRequerimiento(RequerimientoBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public RequerimientoBE EliminarRequerimiento(RequerimientoBE entidad, OracleConnection db)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace sres.da
             return entidad;
         }
 
-        public RequerimientoBE getRequerimiento(RequerimientoBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public RequerimientoBE getRequerimiento(RequerimientoBE entidad, OracleConnection db)
         {
             RequerimientoBE item = new RequerimientoBE();
 
@@ -118,7 +118,7 @@ namespace sres.da
             return item;
         }
 
-        public List<RequerimientoBE> ListarBusquedaRequerimiento(RequerimientoBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public List<RequerimientoBE> ListarBusquedaRequerimiento(RequerimientoBE entidad, OracleConnection db)
         {
             List<RequerimientoBE> lista = new List<RequerimientoBE>();
 
@@ -144,7 +144,7 @@ namespace sres.da
             return lista;
         }
 
-        public List<RequerimientoBE> getAllRequerimiento(OracleConnection db, OracleTransaction ot = null)
+        public List<RequerimientoBE> getAllRequerimiento(OracleConnection db)
         {
             List<RequerimientoBE> lista = new List<RequerimientoBE>();
 

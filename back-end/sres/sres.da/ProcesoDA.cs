@@ -15,7 +15,7 @@ namespace sres.da
     public class ProcesoDA : BaseDA
     {
 
-        public ProcesoBE GuardarProceso(ProcesoBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public ProcesoBE GuardarProceso(ProcesoBE entidad, OracleConnection db)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace sres.da
             return entidad;
         }
 
-        public ProcesoBE getProceso(ProcesoBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public ProcesoBE getProceso(ProcesoBE entidad, OracleConnection db)
         {
             ProcesoBE item = new ProcesoBE();
 
@@ -58,7 +58,7 @@ namespace sres.da
             return item;
         }
 
-        public List<ProcesoBE> ListarBusquedaProceso(ProcesoBE entidad, OracleConnection db, OracleTransaction ot = null)
+        public List<ProcesoBE> ListarBusquedaProceso(ProcesoBE entidad, OracleConnection db)
         {
             List<ProcesoBE> lista = new List<ProcesoBE>();
 

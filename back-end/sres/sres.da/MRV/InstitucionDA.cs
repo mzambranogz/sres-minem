@@ -13,7 +13,7 @@ namespace sres.da.MRV
 {
     public class InstitucionDA : BaseDA
     {
-        public InstitucionBE ObtenerInstitucionPorRuc(string ruc, OracleConnection db, OracleTransaction ot = null)
+        public InstitucionBE ObtenerInstitucionPorRuc(string ruc, OracleConnection db)
         {
             InstitucionBE item = null;
 
@@ -22,6 +22,23 @@ namespace sres.da.MRV
                 string sp = $"{Package.Admin}USP_SEL_OBTIENE_INSTITUCION_RUC";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_RUC", ruc);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.QueryFirstOrDefault<InstitucionBE>(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return item;
+        }
+
+        public InstitucionBE ObtenerInstitucion(int idInstitucion, OracleConnection db)
+        {
+            InstitucionBE item = null;
+
+            try
+            {
+                string sp = $"{Package.Admin}USP_SEL_OBTIENE_INSTITUCION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSTITUCION", idInstitucion);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 item = db.QueryFirstOrDefault<InstitucionBE>(sp, p, commandType: CommandType.StoredProcedure);
             }

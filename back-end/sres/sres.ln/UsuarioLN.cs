@@ -16,6 +16,9 @@ namespace sres.ln
         UsuarioDA usuarioDA = new UsuarioDA();
         InstitucionDA institucionDA = new InstitucionDA();
 
+        da.MRV.UsuarioDA usuarioDAMRV = new da.MRV.UsuarioDA();
+        da.MRV.InstitucionDA institucionDAMRV = new da.MRV.InstitucionDA();
+
         public List<UsuarioBE> ListaUsuario()
         {
             List<UsuarioBE> lista = new List<UsuarioBE>();
@@ -118,13 +121,13 @@ namespace sres.ln
                     int idInstitucion = -1;
                     bool seGuardoInstitucion = false;
 
-                    seGuardoInstitucion = usuario.INSTITUCION == null ? true : institucionDA.GuardarInstitucion(usuario.INSTITUCION, cn, out idInstitucion, ot);
+                    seGuardoInstitucion = usuario.INSTITUCION == null ? true : institucionDA.GuardarInstitucion(usuario.INSTITUCION, cn, out idInstitucion);
 
                     if (seGuardoInstitucion)
                     {
                         usuario.ID_INSTITUCION = usuario.INSTITUCION == null ? null : (int?)idInstitucion;
                         usuario.CONTRASENA = string.IsNullOrEmpty(usuario.CONTRASENA) ? null : Seguridad.hashSal(usuario.CONTRASENA);
-                        seGuardo = usuarioDA.GuardarUsuario(usuario, cn, ot);
+                        seGuardo = usuarioDA.GuardarUsuario(usuario, cn);
                     }
 
                     if (seGuardo) ot.Commit();
@@ -172,6 +175,84 @@ namespace sres.ln
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return lista;
+        }
+
+        public bool MigrarUsuario(string correo, out bool existeUsuario, out bool existeUsuarioMRV, out bool existeInstitucion, out bool seGuardoInstitucion)
+        {
+            bool seMigro = false;
+            existeUsuario = false;
+            existeUsuarioMRV = false;
+            existeInstitucion = false;
+            seGuardoInstitucion = false;
+
+            try
+            {
+                cn.Open();
+                OracleTransaction ot = cn.BeginTransaction();
+
+                UsuarioBE usuario = usuarioDA.ObtenerUsuarioPorCorreo(correo, cn);
+
+                existeUsuario = usuario != null;
+
+                if (!existeUsuario)
+                {
+                    be.MRV.UsuarioBE usuarioMRV = usuarioDAMRV.ObtenerUsuarioPorCorreo(correo, cn);
+
+                    existeUsuarioMRV = usuarioMRV != null;
+
+                    if (existeUsuarioMRV)
+                    {
+                        be.MRV.InstitucionBE institucionMRV = institucionDAMRV.ObtenerInstitucion(usuarioMRV.ID_INSTITUCION, cn);
+
+                        be.InstitucionBE institucion = institucionDA.ObtenerInstitucionPorRuc(institucionMRV.RUC_INSTITUCION, cn);
+
+                        existeInstitucion = institucion != null;
+
+                        int idInstitucion = -1;
+
+                        seGuardoInstitucion = false;
+
+                        if (!existeInstitucion)
+                        {
+                            institucion = new InstitucionBE
+                            {
+                                ID_INSTITUCION = idInstitucion,
+                                RUC = institucionMRV.RUC_INSTITUCION,
+                                RAZON_SOCIAL = institucionMRV.NOMBRE_INSTITUCION,
+                                DOMICILIO_LEGAL = institucionMRV.DIRECCION_INSTITUCION,
+                                ID_SECTOR = institucionMRV.ID_SECTOR_INSTITUCION,
+                                FLAG_ESTADO = institucionMRV.FLAG_ESTADO
+                            };
+
+                            seGuardoInstitucion = institucionDA.GuardarInstitucion(institucion, cn, out idInstitucion);
+                        }
+
+                        usuario = new UsuarioBE
+                        {
+                            ID_USUARIO = -1,
+                            NOMBRES = usuarioMRV.NOMBRES_USUARIO,
+                            APELLIDOS = usuarioMRV.APELLIDOS_USUARIO,
+                            CORREO = usuarioMRV.EMAIL_USUARIO,
+                            CONTRASENA = usuarioMRV.PASSWORD_USUARIO,
+                            TELEFONO = usuarioMRV.TELEFONO_USUARIO,
+                            ANEXO = usuarioMRV.ANEXO_USUARIO,
+                            CELULAR = usuarioMRV.CELULAR_USUARIO,
+                            ID_INSTITUCION = existeInstitucion ? institucion.ID_INSTITUCION : (seGuardoInstitucion ? (int?)idInstitucion : null)
+                        };
+
+                        if (seGuardoInstitucion)
+                        {
+                            seMigro = usuarioDA.GuardarUsuario(usuario, cn);
+                        }
+                    }
+                }
+
+                if (seMigro) ot.Commit();
+                else ot.Rollback();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seMigro;
         }
     }
 }
