@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using sres.be;
 using sres.ln;
 using sres.da;
+using System.Data;
+using sres.ut;
 
 namespace sres.ln
 {
@@ -18,9 +20,19 @@ namespace sres.ln
         //    return EtapaDA.GuardarEtapa(entidad);
         //}
 
-        public static List<AnnoBE> getAllAnno()
+        public List<AnnoBE> getAllAnno()
         {
-            return AnnoDA.getAllAnno(cn);
+            List<AnnoBE> lista = new List<AnnoBE>();
+
+            try
+            {
+                cn.Open();
+                lista = AnnoDA.getAllAnno(cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
     }
 }

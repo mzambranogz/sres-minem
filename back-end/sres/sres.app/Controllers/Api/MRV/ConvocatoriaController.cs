@@ -12,13 +12,18 @@ namespace sres.app.Controllers.Api
     [RoutePrefix("api/convocatoria")]
     public class ConvocatoriaController : ApiController
     {
+        AnnoLN annoLN = new AnnoLN();
+        CriterioLN criterioLN = new CriterioLN();
+        RequerimientoLN requerimientoLN = new RequerimientoLN();
+        UsuarioLN usuarioLN = new UsuarioLN();
+
         [Route("obteneranno")]
         [HttpGet]
         public List<AnnoBE> ObtenerAnno()
         {
             try
             {
-                return AnnoLN.getAllAnno();
+                return annoLN.getAllAnno();
             }
             catch(Exception ex)
             {
@@ -32,7 +37,7 @@ namespace sres.app.Controllers.Api
         {
             try
             {
-                return RequerimientoLN.getAllRequerimiento();
+                return requerimientoLN.getAllRequerimiento();
             }
             catch (Exception ex)
             {
@@ -46,7 +51,7 @@ namespace sres.app.Controllers.Api
         {
             try
             {
-                return CriterioLN.getAllCriterio();
+                return criterioLN.getAllCriterio();
             }
             catch(Exception ex)
             {
@@ -60,7 +65,7 @@ namespace sres.app.Controllers.Api
         {
             try
             {
-                return UsuarioLN.getAllEvaluador();
+                return usuarioLN.getAllEvaluador();
             }
             catch (Exception ex)
             {

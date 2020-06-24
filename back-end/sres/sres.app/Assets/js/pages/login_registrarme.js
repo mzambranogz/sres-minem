@@ -127,7 +127,6 @@ var cargarDatosUsuario = (data) => {
 }
 
 var validarUsuarioLogin = () => {
-    let ruc = $('#txtRucMRV').val().trim();
     let correo = $('#txtCorreoMRV').val().trim();
     let contraseña = $('#txtContraseñaMRV').val().trim();
 

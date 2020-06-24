@@ -5,26 +5,54 @@ using System.Text;
 using System.Threading.Tasks;
 using sres.be;
 using sres.da;
+using System.Data;
 
 namespace sres.ln
 {
     public class EtapaLN : BaseLN
     {
-        public static EtapaDA EtapaDA = new EtapaDA();
+        public EtapaDA EtapaDA = new EtapaDA();
 
-        public static EtapaBE GuardarEtapa(EtapaBE entidad)
+        public EtapaBE GuardarEtapa(EtapaBE entidad)
         {
-            return EtapaDA.GuardarEtapa(entidad, cn);
+            EtapaBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = EtapaDA.GuardarEtapa(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static EtapaBE getEtapa(EtapaBE entidad)
+        public EtapaBE getEtapa(EtapaBE entidad)
         {
-            return EtapaDA.getEtapa(entidad, cn);
+            EtapaBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = EtapaDA.getEtapa(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static List<EtapaBE> ListaBusquedaEtapa(EtapaBE entidad)
+        public List<EtapaBE> ListaBusquedaEtapa(EtapaBE entidad)
         {
-            return EtapaDA.ListarBusquedaEtapa(entidad, cn);
+            List<EtapaBE> lista = new List<EtapaBE>();
+
+            try
+            {
+                cn.Open();
+                lista = EtapaDA.ListarBusquedaEtapa(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
     }
 }

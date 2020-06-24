@@ -3,6 +3,7 @@ using sres.da.MRV;
 using sres.ut;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,22 +12,41 @@ namespace sres.ln.MRV
 {
     public class UsuarioLN : BaseLN
     {
-        static UsuarioDA usuarioDA = new UsuarioDA();
+        UsuarioDA usuarioDA = new UsuarioDA();
 
-        public static bool VerificarCorreo(string correo)
+        public bool VerificarCorreo(string correo)
         {
-            return usuarioDA.VerificarCorreo(correo, cn);
+            bool valor = false;
+
+            try
+            {
+                cn.Open();
+                valor = usuarioDA.VerificarCorreo(correo, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return valor;
         }
 
-        public static Dictionary<string, object> ValidarLoginUsuario(string correo, string contraseña)
+        public Dictionary<string, object> ValidarLoginUsuario(string correo, string contraseña)
         {
-            UsuarioBE usuario = usuarioDA.ObtenerUsuarioPorRucCorreo(ruc, correo, cn);
-            bool contraseñaCorrecta = usuario == null ? false : Seguridad.CompararHashSal(contraseña, usuario.PASSWORD_USUARIO);
-            return new Dictionary<string, object>
+            Dictionary<string, object> valor = null;
+
+            try
             {
-                ["VALIDO"] = contraseñaCorrecta,
-                ["USUARIO"] = usuario != null ? (!contraseñaCorrecta ? null : usuario) : usuario
-            };
+                cn.Open();
+                UsuarioBE usuario = usuarioDA.ObtenerUsuarioPorCorreo(correo, cn);
+                bool contraseñaCorrecta = usuario == null ? false : Seguridad.CompararHashSal(contraseña, usuario.PASSWORD_USUARIO);
+
+                valor = new Dictionary<string, object>
+                {
+                    ["VALIDO"] = contraseñaCorrecta,
+                    ["USUARIO"] = usuario != null ? (!contraseñaCorrecta ? null : usuario) : usuario
+                };
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return valor;
         }
     }
 }

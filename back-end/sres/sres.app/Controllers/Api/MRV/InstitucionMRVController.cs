@@ -12,11 +12,13 @@ namespace sres.app.Controllers.Api
     [RoutePrefix("api/mrv/institucion")]
     public class InstitucionMRVController : ApiController
     {
+        InstitucionLN institucionLN = new InstitucionLN();
+
         [Route("obtenerinstitucionporruc")]
         [HttpGet]
         public InstitucionBE ObtenerInstitucionPorRuc(string ruc)
         {
-            return InstitucionLN.ObtenerInstitucionPorRuc(ruc);
+            return institucionLN.ObtenerInstitucionPorRuc(ruc);
         }
     }
 }

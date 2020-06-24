@@ -12,24 +12,26 @@ namespace sres.app.Controllers.Api
     [RoutePrefix("api/etapa")]
     public class EtapaController : ApiController
     {
+        EtapaLN etapaLN = new EtapaLN();
+
         [Route("buscarobjeto")]
         [HttpGet]
         public List<EtapaBE> BuscarObjeto(string busqueda, int registros, int pagina, string columna, string orden)
         {
-            return EtapaLN.ListaBusquedaEtapa(new EtapaBE() { CANTIDAD_REGISTROS = 10, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
+            return etapaLN.ListaBusquedaEtapa(new EtapaBE() { CANTIDAD_REGISTROS = 10, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
         }
 
         [Route("obtenerobjeto")]
         [HttpGet]
         public EtapaBE ObtenerObjeto(int id)
         {
-            return EtapaLN.getEtapa(new EtapaBE() { ID_ETAPA = id });
+            return etapaLN.getEtapa(new EtapaBE() { ID_ETAPA = id });
         }
 
         [Route("guardarobjeto")]
         public bool GuardarObjeto(EtapaBE obj)
         {
-            EtapaBE c = EtapaLN.GuardarEtapa(obj);
+            EtapaBE c = etapaLN.GuardarEtapa(obj);
             return c.OK;
         }
     }

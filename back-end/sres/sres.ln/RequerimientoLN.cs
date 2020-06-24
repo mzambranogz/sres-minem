@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using sres.be;
 using sres.da;
+using System.Data;
 
 namespace sres.ln
 {
     public class RequerimientoLN : BaseLN
     {
-        public static RequerimientoDA RequerimientoDA = new RequerimientoDA();
+        public RequerimientoDA RequerimientoDA = new RequerimientoDA();
 
         //public static RequerimientoBE RegistroRequerimiento(RequerimientoBE entidad)
         //{
@@ -22,29 +23,74 @@ namespace sres.ln
         //    return RequerimientoDA.ActualizarRequerimiento(entidad);
         //}
 
-        public static RequerimientoBE GuardarRequerimiento(RequerimientoBE entidad)
+        public RequerimientoBE GuardarRequerimiento(RequerimientoBE entidad)
         {
-            return RequerimientoDA.GuardarRequerimiento(entidad, cn);
+            RequerimientoBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = RequerimientoDA.GuardarRequerimiento(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static RequerimientoBE EliminarRequerimiento(RequerimientoBE entidad)
+        public RequerimientoBE EliminarRequerimiento(RequerimientoBE entidad)
         {
-            return RequerimientoDA.EliminarRequerimiento(entidad, cn);
+            RequerimientoBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = RequerimientoDA.EliminarRequerimiento(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static RequerimientoBE getRequerimiento(RequerimientoBE entidad)
+        public RequerimientoBE getRequerimiento(RequerimientoBE entidad)
         {
-            return RequerimientoDA.getRequerimiento(entidad, cn);
+            RequerimientoBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = RequerimientoDA.getRequerimiento(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static List<RequerimientoBE> ListaBusquedaRequerimiento(RequerimientoBE entidad)
+        public List<RequerimientoBE> ListaBusquedaRequerimiento(RequerimientoBE entidad)
         {
-            return RequerimientoDA.ListarBusquedaRequerimiento(entidad, cn);
+            List<RequerimientoBE> lista = new List<RequerimientoBE>();
+
+            try
+            {
+                cn.Open();
+                lista = RequerimientoDA.ListarBusquedaRequerimiento(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
 
-        public static List<RequerimientoBE> getAllRequerimiento()
+        public List<RequerimientoBE> getAllRequerimiento()
         {
-            return RequerimientoDA.getAllRequerimiento(cn);
+            List<RequerimientoBE> lista = new List<RequerimientoBE>();
+
+            try
+            {
+                cn.Open();
+                lista = RequerimientoDA.getAllRequerimiento(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
     }
 }

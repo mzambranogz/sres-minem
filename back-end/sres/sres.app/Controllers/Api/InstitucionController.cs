@@ -12,18 +12,20 @@ namespace sres.app.Controllers.Api
     [RoutePrefix("api/institucion")]
     public class InstitucionController : ApiController
     {
+        InstitucionLN institucionLN = new InstitucionLN();
+
         [Route("obtenerinstitucionporruc")]
         [HttpGet]
         public InstitucionBE ObtenerInstitucionPorRuc(string ruc)
         {
-            return InstitucionLN.ObtenerInstitucionPorRuc(ruc);
+            return institucionLN.ObtenerInstitucionPorRuc(ruc);
         }
 
         [Route("obtenerinstitucion")]
         [HttpGet]
         public InstitucionBE ObtenerInstitucion(int idInstitucion)
         {
-            return InstitucionLN.ObtenerInstitucion(idInstitucion);
+            return institucionLN.ObtenerInstitucion(idInstitucion);
         }
     }
 }

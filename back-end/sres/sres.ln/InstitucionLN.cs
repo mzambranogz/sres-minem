@@ -2,6 +2,7 @@
 using sres.da;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,16 +11,34 @@ namespace sres.ln
 {
     public class InstitucionLN : BaseLN
     {
-        static InstitucionDA institucionDA = new InstitucionDA();
+        InstitucionDA institucionDA = new InstitucionDA();
 
-        public static InstitucionBE ObtenerInstitucionPorRuc(string ruc)
+        public InstitucionBE ObtenerInstitucionPorRuc(string ruc)
         {
-            return institucionDA.ObtenerInstitucionPorRuc(ruc, cn);
+            InstitucionBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = institucionDA.ObtenerInstitucionPorRuc(ruc, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static InstitucionBE ObtenerInstitucion(int idInstitucion)
+        public InstitucionBE ObtenerInstitucion(int idInstitucion)
         {
-            return institucionDA.ObtenerInstitucion(idInstitucion, cn);
+            InstitucionBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = institucionDA.ObtenerInstitucion(idInstitucion, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
     }
 }

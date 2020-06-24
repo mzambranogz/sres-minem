@@ -7,45 +7,106 @@ using sres.be;
 using sres.da;
 using sres.ut;
 using Oracle.DataAccess.Client;
+using System.Data;
 
 namespace sres.ln
 {
     public class UsuarioLN : BaseLN
     {
-        static UsuarioDA usuarioDA = new UsuarioDA();
-        static InstitucionDA institucionDA = new InstitucionDA();
+        UsuarioDA usuarioDA = new UsuarioDA();
+        InstitucionDA institucionDA = new InstitucionDA();
 
-        public static List<UsuarioBE> ListaUsuario()
+        public List<UsuarioBE> ListaUsuario()
         {
-            return usuarioDA.ListaUsuario(cn);
+            List<UsuarioBE> lista = new List<UsuarioBE>();
+
+            try
+            {
+                cn.Open();
+                lista = usuarioDA.ListaUsuario(cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
 
-        public static UsuarioBE ObtenerUsuarioPorCorreo(string correo)
+        public UsuarioBE ObtenerUsuarioPorCorreo(string correo)
         {
-            return usuarioDA.ObtenerUsuarioPorCorreo(correo, cn);
+            UsuarioBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = usuarioDA.ObtenerUsuarioPorCorreo(correo, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden)
+        public List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden)
         {
-            return usuarioDA.BuscarUsuario(busqueda, registros, pagina, columna, orden, cn);
+            List<UsuarioBE> lista = new List<UsuarioBE>();
+
+            try
+            {
+                cn.Open();
+                lista = usuarioDA.BuscarUsuario(busqueda, registros, pagina, columna, orden, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
 
-        public static UsuarioBE ObtenerUsuario(int idUsuario)
+        public UsuarioBE ObtenerUsuario(int idUsuario)
         {
-            return usuarioDA.ObtenerUsuario(idUsuario, cn);
+            UsuarioBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = usuarioDA.ObtenerUsuario(idUsuario, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static UsuarioBE ObtenerUsuarioPorInstitucionCorreo(int idInstitucion, string correo)
+        public UsuarioBE ObtenerUsuarioPorInstitucionCorreo(int idInstitucion, string correo)
         {
-            return usuarioDA.ObtenerUsuarioPorInstitucionCorreo(idInstitucion, correo, cn);
+            UsuarioBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = usuarioDA.ObtenerUsuarioPorInstitucionCorreo(idInstitucion, correo, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static bool CambiarEstadoUsuario(UsuarioBE usuario)
+        public bool CambiarEstadoUsuario(UsuarioBE usuario)
         {
-            return usuarioDA.CambiarEstadoUsuario(usuario, cn);
+            bool valor = false;
+
+            try
+            {
+                cn.Open();
+                valor = usuarioDA.CambiarEstadoUsuario(usuario, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return valor;
         }
 
-        public static bool GuardarUsuario(UsuarioBE usuario)
+        public bool GuardarUsuario(UsuarioBE usuario)
         {
             bool seGuardo = false;
 
@@ -69,32 +130,48 @@ namespace sres.ln
                     if (seGuardo) ot.Commit();
                     else ot.Rollback();
                 }
-                cn.Close();
             }
             catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
 
             return seGuardo;
         }
 
-        public static bool ValidarUsuario(string correo, string contraseña, out UsuarioBE outUsuario)
+        public bool ValidarUsuario(string correo, string contraseña, out UsuarioBE outUsuario)
         {
             outUsuario = null;
 
             bool esValido = false;
 
-            outUsuario = usuarioDA.ObtenerUsuarioPorCorreo(correo, cn);
+            try
+            {
+                cn.Open();
+                outUsuario = usuarioDA.ObtenerUsuarioPorCorreo(correo, cn);
 
-            esValido = outUsuario != null;
+                esValido = outUsuario != null;
 
-            if(esValido) esValido = Seguridad.CompararHashSal(contraseña, outUsuario.CONTRASENA);
+                if (esValido) esValido = Seguridad.CompararHashSal(contraseña, outUsuario.CONTRASENA);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return esValido;
         }
         
-        public static List<UsuarioBE> getAllEvaluador()
+        public List<UsuarioBE> getAllEvaluador()
         {
-            return usuarioDA.getAllEvaluador(cn);
+            List<UsuarioBE> lista = new List<UsuarioBE>();
+
+            try
+            {
+                cn.Open();
+                lista = usuarioDA.getAllEvaluador(cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
     }
 }

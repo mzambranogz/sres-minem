@@ -5,26 +5,54 @@ using System.Text;
 using System.Threading.Tasks;
 using sres.be;
 using sres.da;
+using System.Data;
 
 namespace sres.ln
 {
     public class ProcesoLN : BaseLN
     {
-        public static ProcesoDA ProcesoDA = new ProcesoDA();
+        public ProcesoDA ProcesoDA = new ProcesoDA();
 
-        public static ProcesoBE GuardarProceso(ProcesoBE entidad)
+        public ProcesoBE GuardarProceso(ProcesoBE entidad)
         {
-            return ProcesoDA.GuardarProceso(entidad, cn);
+            ProcesoBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = ProcesoDA.GuardarProceso(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static ProcesoBE getProceso(ProcesoBE entidad)
+        public ProcesoBE getProceso(ProcesoBE entidad)
         {
-            return ProcesoDA.getProceso(entidad, cn);
+            ProcesoBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = ProcesoDA.getProceso(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static List<ProcesoBE> ListaBusquedaProceso(ProcesoBE entidad)
+        public List<ProcesoBE> ListaBusquedaProceso(ProcesoBE entidad)
         {
-            return ProcesoDA.ListarBusquedaProceso(entidad, cn);
+            List<ProcesoBE> lista = new List<ProcesoBE>();
+
+            try
+            {
+                cn.Open();
+                lista = ProcesoDA.ListarBusquedaProceso(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
     }
 }

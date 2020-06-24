@@ -15,6 +15,6 @@ namespace sres.ln
         static string nameConnection = AppSettings.Get<string>("NombreConexion");
         static string cadenaConexion = ConfigurationManager.ConnectionStrings[nameConnection].ConnectionString;
 
-        protected static OracleConnection cn = new OracleConnection(cadenaConexion);
+        protected OracleConnection cn = new OracleConnection(cadenaConexion);
     }
 }

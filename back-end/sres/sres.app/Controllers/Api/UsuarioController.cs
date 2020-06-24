@@ -12,25 +12,27 @@ namespace sres.app.Controllers.Api
     [RoutePrefix("api/usuario")]
     public class UsuarioController : ApiController
     {
+        UsuarioLN usuarioLN = new UsuarioLN();
+
         [Route("buscarusuario")]
         [HttpGet]
         public List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden)
         {
-            return UsuarioLN.BuscarUsuario(busqueda, registros, pagina, columna, orden);
+            return usuarioLN.BuscarUsuario(busqueda, registros, pagina, columna, orden);
         }
 
         [Route("obtenerusuario")]
         [HttpGet]
         public UsuarioBE ObtenerUsuario(int idUsuario)
         {
-            return UsuarioLN.ObtenerUsuario(idUsuario);
+            return usuarioLN.ObtenerUsuario(idUsuario);
         }
 
         [Route("obtenerusuarioporinstitucioncorreo")]
         [HttpGet]
         public Dictionary<string, object> ObtenerUsuarioPorInstitucionCorreo(int idInstitucion, string correo)
         {
-            UsuarioBE usuario = UsuarioLN.ObtenerUsuarioPorInstitucionCorreo(idInstitucion, correo);
+            UsuarioBE usuario = usuarioLN.ObtenerUsuarioPorInstitucionCorreo(idInstitucion, correo);
             return new Dictionary<string, object>
             {
                 ["EXISTE"] = usuario != null,
@@ -42,14 +44,14 @@ namespace sres.app.Controllers.Api
         [HttpPost]
         public bool CambiarEstadoUsuario(UsuarioBE usuario)
         {
-            return UsuarioLN.CambiarEstadoUsuario(usuario);
+            return usuarioLN.CambiarEstadoUsuario(usuario);
         }
 
         [Route("guardarusuario")]
         [HttpPost]
         public bool GuardarUsuario(UsuarioBE usuario)
         {
-            return UsuarioLN.GuardarUsuario(usuario);
+            return usuarioLN.GuardarUsuario(usuario);
         }
 
         //[Route("registrarusuario")]

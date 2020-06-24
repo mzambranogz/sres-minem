@@ -13,11 +13,13 @@ namespace sres.app.Controllers.Api
     [RoutePrefix("api/sector")]
     public class SectorController : ApiController
     {
+        SectorLN sectorLN = new SectorLN();
+
         [Route("listarsectorporestado")]
         [HttpGet]
         public List<SectorBE> ListarSectorPorEstado(string flagEstado)
         {
-            return SectorLN.ListarSectorPorEstado(flagEstado);
+            return sectorLN.ListarSectorPorEstado(flagEstado);
         }
     }
 }

@@ -14,6 +14,6 @@ namespace sres.ln.MRV
         static string nameConnection = AppSettings.Get<string>("NombreConexionMRV");
         static string cadenaConexion = ConfigurationManager.ConnectionStrings[nameConnection].ConnectionString;
 
-        protected static OracleConnection cn = new OracleConnection(cadenaConexion);
+        protected OracleConnection cn = new OracleConnection(cadenaConexion);
     }
 }

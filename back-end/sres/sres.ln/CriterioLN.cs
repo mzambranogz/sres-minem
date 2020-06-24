@@ -5,41 +5,96 @@ using System.Text;
 using System.Threading.Tasks;
 using sres.da;
 using sres.be;
+using System.Data;
 
 namespace sres.ln
 {
     public class CriterioLN : BaseLN
     {
-        public static CriterioDA criterioDA = new CriterioDA();
+        public CriterioDA criterioDA = new CriterioDA();
 
-        public static CriterioBE RegistroCriterio(CriterioBE entidad)
+        public CriterioBE RegistroCriterio(CriterioBE entidad)
         {
-            return criterioDA.RegistroCriterio(entidad, cn);
+            CriterioBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = criterioDA.RegistroCriterio(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static CriterioBE GuardarCriterio(CriterioBE entidad)
+        public CriterioBE GuardarCriterio(CriterioBE entidad)
         {
-            return criterioDA.GuardarCriterio(entidad, cn);
+            CriterioBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = criterioDA.GuardarCriterio(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static CriterioBE EliminarCriterio(CriterioBE entidad)
+        public CriterioBE EliminarCriterio(CriterioBE entidad)
         {
-            return criterioDA.EliminarCriterio(entidad, cn);
+            CriterioBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = criterioDA.EliminarCriterio(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static CriterioBE getCriterio(CriterioBE entidad)
+        public CriterioBE getCriterio(CriterioBE entidad)
         {
-            return criterioDA.getCriterio(entidad, cn);
+            CriterioBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = criterioDA.getCriterio(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
         }
 
-        public static List<CriterioBE> ListaBusquedaCriterio(CriterioBE entidad)
+        public List<CriterioBE> ListaBusquedaCriterio(CriterioBE entidad)
         {
-            return criterioDA.ListarBusquedaCriterio(entidad, cn);
+            List<CriterioBE> lista = new List<CriterioBE>();
+
+            try
+            {
+                cn.Open();
+                lista = criterioDA.ListarBusquedaCriterio(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
 
-        public static List<CriterioBE> getAllCriterio()
+        public List<CriterioBE> getAllCriterio()
         {
-            return criterioDA.getAllCriterio(cn);
+            List<CriterioBE> lista = new List<CriterioBE>();
+
+            try
+            {
+                cn.Open();
+                lista = criterioDA.getAllCriterio(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
     }
 }

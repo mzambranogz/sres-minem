@@ -12,25 +12,26 @@ namespace sres.app.Controllers.Api
     [RoutePrefix("api/criterio")]
     public class CriterioController : ApiController
     {
+        CriterioLN criterioLN = new CriterioLN();
 
         [Route("buscarcriterio")]
         [HttpGet]
         public List<CriterioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden)
         {
-            return CriterioLN.ListaBusquedaCriterio(new CriterioBE() { CANTIDAD_REGISTROS = 10, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
+            return criterioLN.ListaBusquedaCriterio(new CriterioBE() { CANTIDAD_REGISTROS = 10, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
         }
 
         [Route("obtenercriterio")]
         [HttpGet]
         public CriterioBE ObtenerCriterio(int idCriterio)
         {
-            return CriterioLN.getCriterio(new CriterioBE() { ID_CRITERIO = idCriterio });
+            return criterioLN.getCriterio(new CriterioBE() { ID_CRITERIO = idCriterio });
         }
 
         [Route("guardarcriterio")]
         public bool GuardarCriterio(CriterioBE criterio)
         {
-            CriterioBE c = CriterioLN.GuardarCriterio(criterio);
+            CriterioBE c = criterioLN.GuardarCriterio(criterio);
             return c.OK;
         }
 
@@ -38,7 +39,7 @@ namespace sres.app.Controllers.Api
         [HttpPost]
         public bool CambiarEstadoCriterio(CriterioBE criterio)
         {
-            CriterioBE c = CriterioLN.EliminarCriterio(criterio);
+            CriterioBE c = criterioLN.EliminarCriterio(criterio);
             return c.OK;
         }
 

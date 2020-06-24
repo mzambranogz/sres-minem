@@ -17,6 +17,8 @@ namespace sres.app.Controllers
 {
     public class LoginController : Controller
     {
+        UsuarioLN usuarioLN = new UsuarioLN();
+
         bool AuthEnabled = AppSettings.Get<bool>("Auth_Enabled");
         string AuthUsuario = AppSettings.Get<string>("Auth_Usuario");
         string AuthContraseña = AppSettings.Get<string>("Auth_Contraseña");
@@ -50,7 +52,7 @@ namespace sres.app.Controllers
 
             UsuarioBE usuario = null;
 
-            bool esValido = UsuarioLN.ValidarUsuario(correo, contraseña, out usuario);
+            bool esValido = usuarioLN.ValidarUsuario(correo, contraseña, out usuario);
             //esValido = true; //QUITAR ESTA LINEA SOLO PRUEBA
             if (esValido)
             {

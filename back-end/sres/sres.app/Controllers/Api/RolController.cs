@@ -12,11 +12,13 @@ namespace sres.app.Controllers.Api
     [RoutePrefix("api/rol")]
     public class RolController : ApiController
     {
+        RolLN rolLN = new RolLN();
+
         [Route("listarrolporestado")]
         [HttpGet]
         public List<RolBE> ListarRolPorEstado(string flagEstado)
         {
-            return RolLN.ListarRolPorEstado(flagEstado);
+            return rolLN.ListarRolPorEstado(flagEstado);
         }
     }
 }
