@@ -17,6 +17,20 @@ namespace sres.app.Controllers.Api
         RequerimientoLN requerimientoLN = new RequerimientoLN();
         UsuarioLN usuarioLN = new UsuarioLN();
 
+        [Route("guardarconvocatoria")]
+        [HttpPost]
+        public List<AnnoBE> GuardarConvocatoria(ConvocatoriaBE obj)
+        {
+            try
+            {
+                return annoLN.getAllAnno();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         [Route("obteneranno")]
         [HttpGet]
         public List<AnnoBE> ObtenerAnno()

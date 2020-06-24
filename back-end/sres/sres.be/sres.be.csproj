@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="AnnoBE.cs" />
     <Compile Include="BaseBE.cs" />
+    <Compile Include="ConvocatoriaAuxBE.cs" />
+    <Compile Include="ConvocatoriaBE.cs" />
     <Compile Include="CriterioBE.cs" />
     <Compile Include="EtapaAuxBE.cs" />
     <Compile Include="EtapaBE.cs" />
