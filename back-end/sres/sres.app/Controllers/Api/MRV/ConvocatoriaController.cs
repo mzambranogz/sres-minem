@@ -16,14 +16,15 @@ namespace sres.app.Controllers.Api
         CriterioLN criterioLN = new CriterioLN();
         RequerimientoLN requerimientoLN = new RequerimientoLN();
         UsuarioLN usuarioLN = new UsuarioLN();
+        ConvocatoriaLN convocatoriaLN = new ConvocatoriaLN();
 
         [Route("guardarconvocatoria")]
         [HttpPost]
-        public List<AnnoBE> GuardarConvocatoria(ConvocatoriaBE obj)
+        public ConvocatoriaBE GuardarConvocatoria(ConvocatoriaBE obj)
         {
             try
             {
-                return annoLN.getAllAnno();
+                return convocatoriaLN.RegistroConvocatoria(obj);
             }
             catch (Exception ex)
             {

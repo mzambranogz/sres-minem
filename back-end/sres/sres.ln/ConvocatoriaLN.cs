@@ -18,7 +18,7 @@ namespace sres.ln
 
         public ConvocatoriaBE RegistroConvocatoria(ConvocatoriaBE entidad)
         {
-            ConvocatoriaBE item = null;
+            ConvocatoriaBE item = new ConvocatoriaBE();
 
             try
             {
