@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div>
+    <div>
+        <label>
+            N° Expediente: <input type="text" name="txtBusquedaNroExpediente" id="txtBusquedaNroExpediente" />
+        </label>
+        <label>
+            Descripción : <input type="text" name="txtBusquedaDescripcion" id="txtBusquedaDescripcion" />
+        </label>
+        <label>
+            Fecha Desde: <input type="text" name="txtBusquedaDesde" id="txtBusquedaDesde" />
+        </label>
+        <label>
+            Fecha Hasta: <input type="text" name="txtBusquedaHasta" id="txtBusquedaHasta" />
+        </label>
+        <button>CONSULTAR</button>
+    </div>
+</div>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Expediente</th>
+                <th>Periodo</th>
+                <th>Descripción Convocatoria</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Vencimiento</th>
+                <th>Estado</th>
+                <th>Participar</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
