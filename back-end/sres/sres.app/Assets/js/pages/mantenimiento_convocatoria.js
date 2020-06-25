@@ -12,7 +12,7 @@
 
 var consultarAnno = (selector) => {
 
-    let url = `/api/convocatoria/obteneranno`;
+    let url = `/api/anno/obtenerallanno`;
 
     fetch(url)
     .then(r => r.json())
@@ -21,7 +21,7 @@ var consultarAnno = (selector) => {
 
 var consultarRequerimiento = (selector) => {
 
-    let url = `/api/convocatoria/obtenerrequerimiento`;
+    let url = `/api/requerimiento/obtenerallrequerimiento`;
 
     fetch(url)
     .then(r => r.json())
@@ -30,7 +30,7 @@ var consultarRequerimiento = (selector) => {
 
 var consultarCriterio = (selector) => {
 
-    let url = `/api/convocatoria/obtenercriterio`;
+    let url = `/api/criterio/obtenerallcriterio`;
 
     fetch(url)
     .then(r => r.json())
@@ -39,7 +39,7 @@ var consultarCriterio = (selector) => {
 
 var consultarEvaluador = (selector) => {
 
-    let url = `/api/convocatoria/obtenerevaluador`;
+    let url = `/api/usuario/obtenerallevaluador`;
 
     fetch(url)
     .then(r => r.json())

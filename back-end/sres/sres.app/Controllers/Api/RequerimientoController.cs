@@ -43,5 +43,19 @@ namespace sres.app.Controllers.Api
             return c.OK;
         }
 
+        [Route("obtenerallrequerimiento")]
+        [HttpGet]
+        public List<RequerimientoBE> ObtenerRequerimiento()
+        {
+            try
+            {
+                return requerimientoLN.getAllRequerimiento();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

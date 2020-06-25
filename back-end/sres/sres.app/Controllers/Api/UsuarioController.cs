@@ -60,5 +60,19 @@ namespace sres.app.Controllers.Api
         //{
         //    return UsuarioLN.RegistrarUsuario(usuario);
         //}
+
+        [Route("obtenerallevaluador")]
+        [HttpGet]
+        public List<UsuarioBE> ObtenerEvaluador()
+        {
+            try
+            {
+                return usuarioLN.getAllEvaluador();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

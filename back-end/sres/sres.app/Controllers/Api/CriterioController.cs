@@ -43,5 +43,19 @@ namespace sres.app.Controllers.Api
             return c.OK;
         }
 
+        [Route("obtenerallcriterio")]
+        [HttpGet]
+        public List<CriterioBE> ObtenerCriterio()
+        {
+            try
+            {
+                return criterioLN.getAllCriterio();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
