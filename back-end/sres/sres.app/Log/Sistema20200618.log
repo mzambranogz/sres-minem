@@ -1,6 +1,0 @@
-18/06/2020 12:10:43: [Método: Void AssignParameterValues(Oracle.DataAccess.Client.OracleParameter[], System.Object[]), Línea: 82] - Parameter count does not match Parameter Value count.
-18/06/2020 12:10:43: [Método: Int32 ExecuteNonQuery(System.String, System.String, System.Object[]), Línea: 208] - Parameter count does not match Parameter Value count.
-18/06/2020 12:10:43: [Método: Boolean CambiarEstadoUsuario(sres.be.UsuarioBE), Línea: 111] - Parameter count does not match Parameter Value count.
-18/06/2020 12:10:51: [Método: Void AssignParameterValues(Oracle.DataAccess.Client.OracleParameter[], System.Object[]), Línea: 82] - Parameter count does not match Parameter Value count.
-18/06/2020 12:10:51: [Método: Int32 ExecuteNonQuery(System.String, System.String, System.Object[]), Línea: 208] - Parameter count does not match Parameter Value count.
-18/06/2020 12:10:51: [Método: Boolean CambiarEstadoUsuario(sres.be.UsuarioBE), Línea: 111] - Parameter count does not match Parameter Value count.
