@@ -1,8 +1,8 @@
-back-end/sres/.vs
-back-end/sres/sres.api/bin
-back-end/sres/sres.api/Log
-back-end/sres/sres.app/bin
-back-end/sres/sres.be/bin
-back-end/sres/sres.ln/bin
-back-end/sres/sres.da/bin
-back-end/sres/sres.ut/bin
+back-end/sres/.vs/*
+back-end/sres/sres.api/bin/*
+back-end/sres/sres.api/Log/*
+back-end/sres/sres.app/bin/*
+back-end/sres/sres.be/bin/*
+back-end/sres/sres.ln/bin/*
+back-end/sres/sres.da/bin/*
+back-end/sres/sres.ut/bin/*
