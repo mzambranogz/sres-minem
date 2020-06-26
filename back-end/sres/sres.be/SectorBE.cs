@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sres.be
 {
-    public class SectorBE
+    public class SectorBE : BaseBE
     {
         public int ID_SECTOR { get; set; }
         public string NOMBRE { get; set; }

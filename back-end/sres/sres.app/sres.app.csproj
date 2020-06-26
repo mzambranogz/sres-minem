@@ -141,6 +141,7 @@
     <Content Include="Assets\js\pages\mantenimiento_proceso.js" />
     <Content Include="Assets\js\pages\mantenimiento_requerimiento.js" />
     <Content Include="Assets\js\pages\mantenimiento_rol.js" />
+    <Content Include="Assets\js\pages\mantenimiento_sector.js" />
     <Content Include="Assets\js\pages\mantenimiento_usuario.js" />
     <Content Include="Assets\js\plugins\script.js" />
     <Content Include="Assets\styles\style.css" />
@@ -196,6 +197,7 @@
     <Content Include="Views\Convocatoria\Index.cshtml" />
     <Content Include="Views\Mantenimiento\Anno.cshtml" />
     <Content Include="Views\Mantenimiento\Rol.cshtml" />
+    <Content Include="Views\Mantenimiento\Sector.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
