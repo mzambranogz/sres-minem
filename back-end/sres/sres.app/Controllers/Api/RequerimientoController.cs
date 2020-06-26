@@ -18,7 +18,7 @@ namespace sres.app.Controllers.Api
         [HttpGet]
         public List<RequerimientoBE> BuscarObjeto(string busqueda, int registros, int pagina, string columna, string orden)
         {
-            return requerimientoLN.ListaBusquedaRequerimiento(new RequerimientoBE() { CANTIDAD_REGISTROS = 10, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
+            return requerimientoLN.ListaBusquedaRequerimiento(new RequerimientoBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
         }
 
         [Route("obtenerobjeto")]

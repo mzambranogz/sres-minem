@@ -36,7 +36,7 @@ namespace sres.app.Controllers.Api
             List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
             try
             {
-                lista = convocatoriaLN.ListarBusquedaConvocatoria(new ConvocatoriaBE() { CANTIDAD_REGISTROS = 10, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
+                lista = convocatoriaLN.ListarBusquedaConvocatoria(new ConvocatoriaBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
             }
             catch (Exception ex)
             {

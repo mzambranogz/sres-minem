@@ -18,7 +18,7 @@ namespace sres.app.Controllers.Api
         [HttpGet]
         public List<EtapaBE> BuscarObjeto(string busqueda, int registros, int pagina, string columna, string orden)
         {
-            return etapaLN.ListaBusquedaEtapa(new EtapaBE() { CANTIDAD_REGISTROS = 10, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
+            return etapaLN.ListaBusquedaEtapa(new EtapaBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
         }
 
         [Route("obtenerobjeto")]

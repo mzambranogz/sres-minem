@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Titulo = "Mantenimiento Año";
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/pages/mantenimiento_anno.js")"></script>
+}
+
+<div>
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12 px-0">
+                <input type="text" class="form-control" id="textoBusqueda" name="textoBusqueda" />
+                <button id="btnConsultar">CONSULTAR</button>
+                <button id="btnNuevo">NUEVO</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 px-0">
+                <div class="table-responsive tabla-principal">
+                    <table id="tblCriterio" class="table table-hover">
+                        <thead>
+                            <tr class="bg-primary text-white">
+                                <th class="text-center" scope="col"><span class="miColumna">N°&nbsp;<i class="fas fa-sort" id="ID_ANNO"></i></span></th>
+                                <th scope="col"><span class="miColumna">Año&nbsp;<i class="fas fa-sort-up" id="NOMBRE"></i></span></th>
+                                <th class="text-center" scope="col" width="10%">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="frm" autocomplete="off" style="display: none;">
+    <div>
+        <label>
+            Año:
+            <input type="text" name="txtAnno" id="txtAnno" placeholder="Ingrese Año" />
+        </label>
+    </div>
+    <div>
+        <button type="button" id="btnGuardar">GUARDAR</button>
+        <button type="button" id="btnCerrar">CERRAR</button>
+    </div>
+</form>
+
+

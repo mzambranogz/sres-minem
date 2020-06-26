@@ -134,6 +134,7 @@
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\login_registrarme.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />
+    <Content Include="Assets\js\pages\mantenimiento_anno.js" />
     <Content Include="Assets\js\pages\mantenimiento_convocatoria.js" />
     <Content Include="Assets\js\pages\mantenimiento_criterio.js" />
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
@@ -192,6 +193,7 @@
     <Content Include="Views\Mantenimiento\Requerimiento.cshtml" />
     <Content Include="Views\Mantenimiento\Convocatoria.cshtml" />
     <Content Include="Views\Convocatoria\Index.cshtml" />
+    <Content Include="Views\Mantenimiento\Anno.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
