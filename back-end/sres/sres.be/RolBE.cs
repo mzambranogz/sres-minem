@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sres.be
 {
-    public class RolBE
+    public class RolBE : BaseBE
     {
         public int ID_ROL { get; set; }
         public string NOMBRE { get; set; }
