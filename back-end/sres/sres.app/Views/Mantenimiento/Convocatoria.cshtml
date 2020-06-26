@@ -13,7 +13,7 @@
             <div class="col-12 px-0">
                 <input type="text" class="form-control" id="textoBusqueda" name="textoBusqueda" />
                 <button id="btnConsultar">CONSULTAR</button>
-                @*<button id="btnNuevo">NUEVO</button>*@
+                <button id="btnNuevo">NUEVO</button>
             </div>
         </div>
         <div class="row">
@@ -24,11 +24,9 @@
                             <tr class="bg-primary text-white">
                                 <th class="text-center" scope="col"><span class="miColumna">N°&nbsp;<i class="fas fa-sort" id="ID_CONVOCATORIA"></i></span></th>
                                 <th scope="col"><span class="miColumna">Convocatoria&nbsp;<i class="fas fa-sort-up" id="CONVOCATORIA"></i></span></th>
-                                <th scope="col"><span class="miColumna">Año&nbsp;<i class="fas fa-sort-up" id="ANNO"></i></span></th>
-                                <th scope="col"><span class="miColumna">Período&nbsp;<i class="fas fa-sort-up" id="PERIODO"></i></span></th>
-                                <th scope="col"><span class="miColumna">Requerimientos&nbsp;<i class="fas fa-sort-up" id="CRITERIO"></i></span></th>
-                                <th scope="col"><span class="miColumna">Criterios&nbsp;<i class="fas fa-sort-up" id="REQUERIMIENTO"></i></span></th>
-                                <th scope="col"><span class="miColumna">Evaluadores&nbsp;<i class="fas fa-sort-up" id="EVALUADOR"></i></span></th>
+                                <th scope="col"><span class="miColumna">Fecha inicio&nbsp;<i class="fas fa-sort-up" id="FECHA_INICIO"></i></span></th>
+                                <th scope="col"><span class="miColumna">Fecha fin&nbsp;<i class="fas fa-sort-up" id="FECHA_FIN"></i></span></th>
+                                <th scope="col"><span class="miColumna">Capacidad de postulantes&nbsp;<i class="fas fa-sort-up" id="LIMITE_POSTULANTE"></i></span></th>
                                 <th class="text-center" scope="col" width="10%">Opciones</th>
                             </tr>
                         </thead>
@@ -39,23 +37,35 @@
         </div>
     </div>
 </div>
-<form id="frm" autocomplete="off" @*style="display: none;"*@>
+<form id="frm" autocomplete="off" style="display: none;">
     <div>
         <label>
             Convocatoria:
             <input type="text" name="txtConvocatoria" id="txtConvocatoria" placeholder="Ingrese Convocatoria" />
         </label>
     </div>
-    <div>
+    @*<div>
         <label>
             Año:
             <select name="selIdAnno" id="selIdAnno"></select>
         </label>
+    </div>*@
+    <div>
+        <label>
+            Fecha inicio:
+            <input type="date" name="fchFechaInicio" id="fchFechaInicio" />
+        </label>
     </div>
     <div>
         <label>
-            Período:
-            <select name="selIdPeriodo" id="selIdPeriodo"></select>
+            Fecha fin:
+            <input type="date" name="fchFechaFin" id="fchFechaFin" />
+        </label>
+    </div>
+    <div>
+        <label>
+            Capacidad de postlantes:
+            <input type="text" name="txtLimite" id="txtLimite" placeholder="Ingrese Convocatoria" />
         </label>
     </div>
     <div>
@@ -79,16 +89,6 @@
         <label for="mlt-energetico">Criterio</label>
         <div>
             <div id="list-criterio">
-                @*<div>
-                        <div>
-                            <input type="checkbox" id="chk-energetico-02">
-                            <label for="chk-energetico-02">Electricidad&nbsp;</label>
-                            <input type="checkbox" id="chk-energetico-02">
-                            <label for="chk-energetico-02">Electricidad&nbsp;</label>
-                            <input type="checkbox" id="chk-energetico-02">
-                            <label for="chk-energetico-02">Electricidad&nbsp;</label>
-                        </div>
-                    </div>*@
             </div>
         </div>
     </div>
@@ -96,16 +96,27 @@
         <label for="mlt-energetico">Evaluador</label>
         <div>
             <div id="list-evaluador">
-                @*<div>
-                        <div>
-                            <input type="checkbox" id="chk-energetico-02">
-                            <label for="chk-energetico-02">Electricidad&nbsp;</label>
-                            <input type="checkbox" id="chk-energetico-02">
-                            <label for="chk-energetico-02">Electricidad&nbsp;</label>
-                            <input type="checkbox" id="chk-energetico-02">
-                            <label for="chk-energetico-02">Electricidad&nbsp;</label>
-                        </div>
-                    </div>*@
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for="mlt-energetico">Etapas Convocatoria </label>
+        <div>
+            <div >
+                <div>
+                    <div>
+                        <table id="tbl-etapa">
+                            <thead>
+                                <tr>
+                                    <th>Etapa</th>
+                                    <th>Proceso</th>
+                                    <th>Días</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

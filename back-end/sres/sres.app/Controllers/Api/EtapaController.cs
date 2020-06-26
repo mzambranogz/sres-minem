@@ -34,5 +34,12 @@ namespace sres.app.Controllers.Api
             EtapaBE c = etapaLN.GuardarEtapa(obj);
             return c.OK;
         }
+
+        [Route("obteneralletapa")]
+        [HttpGet]
+        public List<EtapaBE> ObtenerAllEtapa()
+        {
+            return etapaLN.getAllEtapa();
+        }
     }
 }

@@ -164,7 +164,6 @@
     <Compile Include="Controllers\Api\RolController.cs" />
     <Compile Include="Controllers\Api\SectorController.cs" />
     <Compile Include="Controllers\Api\UsuarioController.cs" />
-    <Compile Include="Controllers\ConvocatoriaController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MantenimientoController.cs" />

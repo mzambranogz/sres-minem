@@ -29,11 +29,14 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
   END USP_PRC_MAN_CRITERIO;
   
   PROCEDURE USP_DEL_CRITERIO(
-    PI_ID_CRITERIO NUMBER
+    PI_ID_CRITERIO NUMBER,
+    PI_USUARIO_GUARDAR NUMBER
   ) AS
   BEGIN
     UPDATE T_GENM_CRITERIO 
-    SET FLAG_ESTADO = '0' 
+    SET FLAG_ESTADO = '0',
+        UPD_USUARIO = PI_USUARIO_GUARDAR,
+        UPD_FECHA = SYSDATE
     WHERE ID_CRITERIO = PI_ID_CRITERIO;
   END USP_DEL_CRITERIO;
 
@@ -67,7 +70,7 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_CRITERIO C
-                    WHERE LOWER(TRANSLATE(C.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(C.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
                     FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -92,7 +95,7 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_CRITERIO C
-                        WHERE LOWER(TRANSLATE(C.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(C.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
                         FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -133,10 +136,10 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_USUARIO U
                     WHERE (
-                    LOWER(TRANSLATE(U.NOMBRES,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(U.APELLIDOS,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(U.CORREO,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(U.CELULAR,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%''
+                    LOWER(TRANSLATE(U.NOMBRES,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(U.APELLIDOS,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(U.CORREO,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(U.CELULAR,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%''
                     ) AND
                     FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
@@ -168,10 +171,10 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_USUARIO U
                         WHERE (
-                        LOWER(TRANSLATE(U.NOMBRES,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(U.APELLIDOS,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(U.CORREO,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(U.CELULAR,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%''
+                        LOWER(TRANSLATE(U.NOMBRES,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(U.APELLIDOS,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(U.CORREO,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(U.CELULAR,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%''
                         ) AND
                         FLAG_ESTADO = ''1''
                         )
@@ -343,11 +346,14 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
   END USP_PRC_MAN_REQUERIMIENTO;
   
   PROCEDURE USP_DEL_REQUERIMIENTO(
-    PI_ID_REQUERIMIENTO NUMBER
+    PI_ID_REQUERIMIENTO NUMBER,
+    PI_USUARIO_GUARDAR NUMBER
   ) AS
   BEGIN
     UPDATE T_GENM_REQUERIMIENTO
-    SET FLAG_ESTADO = '0' 
+    SET FLAG_ESTADO = '0', 
+        UPD_USUARIO = PI_USUARIO_GUARDAR,
+        UPD_FECHA = SYSDATE
     WHERE ID_REQUERIMIENTO = PI_ID_REQUERIMIENTO;
   END USP_DEL_REQUERIMIENTO;
 
@@ -381,7 +387,7 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_REQUERIMIENTO R
-                    WHERE LOWER(TRANSLATE(R.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(R.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
                     R.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -406,7 +412,7 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_REQUERIMIENTO R
-                        WHERE LOWER(TRANSLATE(R.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(R.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
                         FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -469,7 +475,7 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_MAE_PROCESO P
-                    WHERE LOWER(TRANSLATE(P.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(P.NOMBRE,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND
                     P.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -494,7 +500,7 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_MAE_PROCESO P
-                        WHERE LOWER(TRANSLATE(P.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(P.NOMBRE,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND
                         P.FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -550,8 +556,8 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
                     FROM T_MAE_ETAPA E
                     LEFT JOIN T_MAE_PROCESO P ON E.ID_PROCESO = P.ID_PROCESO
                     WHERE 
-                    (LOWER(TRANSLATE(E.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(P.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'') AND
+                    (LOWER(TRANSLATE(E.NOMBRE,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(P.NOMBRE,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'') AND
                     E.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -588,14 +594,27 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
                         FROM T_MAE_ETAPA E
                         LEFT JOIN T_MAE_PROCESO P ON E.ID_PROCESO = P.ID_PROCESO
                         WHERE
-                        (LOWER(TRANSLATE(E.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(P.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'') AND
+                        (LOWER(TRANSLATE(E.NOMBRE,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(P.NOMBRE,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'') AND
                         E.FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
     
     OPEN PO_REF FOR vQUERY_SELECT;
   END USP_SEL_LISTA_BUSQ_ETAPA;
+  
+  PROCEDURE USP_SEL_ALL_ETAPA(
+    PO_REF OUT SYS_REFCURSOR
+  ) AS
+  BEGIN
+    OPEN PO_REF FOR
+    SELECT  E.ID_ETAPA,
+            E.NOMBRE ETAPA,
+            P.NOMBRE PROCESO
+    FROM  T_MAE_ETAPA E 
+    INNER JOIN T_MAE_PROCESO P ON E.ID_PROCESO = P.ID_PROCESO
+    WHERE E.FLAG_ESTADO = '1'; 
+  END USP_SEL_ALL_ETAPA;
 
   -- M INSTITUCION ---------------
   PROCEDURE USP_SEL_OBTIENE_INSTITUCION_RUC(
@@ -646,8 +665,11 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
 
   -- M CONVOCATORIA ----------------
   PROCEDURE USP_PRC_MAN_CONVOCATORIA(
-    PI_ID_CONVOCATORIA IN OUT NUMBER,
+    PI_ID_CONVOCATORIA NUMBER,
+    PI_ID_GET IN OUT NUMBER,
     PI_NOMBRE VARCHAR2,
+    PI_FECHA_INICIO DATE,
+    PI_FECHA_FIN DATE,
     PI_LIMITE_POSTULANTE NUMBER,
     PI_USUARIO_GUARDAR NUMBER,
     PO_ROWAFFECTED OUT NUMBER
@@ -660,21 +682,105 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
     FROM DUAL;
     
     IF vID IS NULL THEN
-      PI_ID_CONVOCATORIA := SQ_GENM_CONVOCATORIA.NEXTVAL();
+      PI_ID_GET := SQ_GENM_CONVOCATORIA.NEXTVAL();
       INSERT INTO T_GENM_CONVOCATORIA
-      (ID_CONVOCATORIA, NOMBRE, LIMITE_POSTULANTE, REG_USUARIO, REG_FECHA)
+      (ID_CONVOCATORIA, NOMBRE, FECHA_INICIO, FECHA_FIN, LIMITE_POSTULANTE, REG_USUARIO, REG_FECHA)
       VALUES
-      (PI_ID_CONVOCATORIA, PI_NOMBRE, PI_LIMITE_POSTULANTE, PI_USUARIO_GUARDAR, SYSDATE);
+      (PI_ID_GET, PI_NOMBRE, PI_FECHA_INICIO, PI_FECHA_FIN, PI_LIMITE_POSTULANTE, PI_USUARIO_GUARDAR, SYSDATE);
     ELSE
       UPDATE T_GENM_CONVOCATORIA C SET
       C.NOMBRE = PI_NOMBRE,
+      C.FECHA_INICIO = PI_FECHA_INICIO,
+      C.FECHA_FIN = PI_FECHA_FIN,
       C.LIMITE_POSTULANTE = PI_LIMITE_POSTULANTE,
       C.UPD_USUARIO = PI_USUARIO_GUARDAR,
       C.UPD_FECHA = SYSDATE
       WHERE C.ID_CONVOCATORIA = PI_ID_CONVOCATORIA;
+      PI_ID_GET := PI_ID_CONVOCATORIA;
     END IF;
     PO_ROWAFFECTED := SQL%ROWCOUNT;
   END USP_PRC_MAN_CONVOCATORIA;
+  
+  PROCEDURE USP_SEL_LISTA_BUSQ_CONVOCAT(
+    PI_BUSCAR VARCHAR2,
+    PI_REGISTROS NUMBER,
+    PI_PAGINA NUMBER,
+    PI_COLUMNA VARCHAR2,
+    PI_ORDEN VARCHAR2,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS    
+    vTOTAL_REG INTEGER;
+    vPAGINA_TOTAL INTEGER;
+    vPAGINA_ACTUAL INTEGER := PI_PAGINA;
+    vPAGINA_INICIAL INTEGER := 0;
+    vQUERY_CONT VARCHAR2(10000) := '';
+    vQUERY_SELECT VARCHAR2(10000) := '';
+    vCOLUMNA VARCHAR2(200);
+  BEGIN
+    vQUERY_CONT := 'SELECT  COUNT(1)
+                    FROM T_GENM_CONVOCATORIA C
+                    WHERE LOWER(TRANSLATE(C.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
+                    C.FLAG_ESTADO = ''1''';
+    EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
+    
+    vPAGINA_TOTAL := CEIL(TO_NUMBER(vTOTAL_REG) / TO_NUMBER(PI_REGISTROS));
+    IF vPAGINA_ACTUAL = 0 THEN
+      vPAGINA_ACTUAL := 1;
+    END IF;
+    IF vPAGINA_ACTUAL > vPAGINA_TOTAL THEN
+      vPAGINA_ACTUAL := vPAGINA_TOTAL;
+    END IF;
+
+    vPAGINA_INICIAL := vPAGINA_ACTUAL - 1;
+    vCOLUMNA := PI_COLUMNA;
+    
+    vQUERY_SELECT := 'SELECT * FROM 
+                        (
+                        SELECT  C.ID_CONVOCATORIA,
+                                C.NOMBRE,
+                                TO_CHAR(C.FECHA_INICIO, ''dd/MM/yyyy'') TXT_FECHA_INICIO,
+                                TO_CHAR(C.FECHA_FIN, ''dd/MM/yyyy'') TXT_FECHA_FIN,
+                                C.LIMITE_POSTULANTE,
+                                ROW_NUMBER() OVER (ORDER BY ' || vCOLUMNA || ' ' || PI_ORDEN ||') AS ROWNUMBER,'
+                                || vPAGINA_TOTAL || ' AS TOTAL_PAGINAS,'
+                                || vPAGINA_ACTUAL || ' AS PAGINA,'
+                                || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
+                                || vTOTAL_REG || ' AS TOTAL_REGISTROS
+                        FROM T_GENM_CONVOCATORIA C
+                        WHERE LOWER(TRANSLATE(C.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
+                        C.FLAG_ESTADO = ''1''
+                        )
+                    WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
+    
+    OPEN PO_REF FOR vQUERY_SELECT;
+  END USP_SEL_LISTA_BUSQ_CONVOCAT;
+  
+  PROCEDURE USP_SEL_GET_CONVOCATORIA(
+    PI_ID_CONVOCATORIA NUMBER,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS
+  BEGIN
+    OPEN PO_REF FOR
+    SELECT  ID_CONVOCATORIA,
+            NOMBRE,
+            TO_CHAR(FECHA_INICIO, 'yyyy-MM-dd') TXT_FECHA_INICIO,
+            TO_CHAR(FECHA_FIN, 'yyyy-MM-dd') TXT_FECHA_FIN,
+            LIMITE_POSTULANTE
+    FROM  T_GENM_CONVOCATORIA
+    WHERE ID_CONVOCATORIA = PI_ID_CONVOCATORIA; 
+  END USP_SEL_GET_CONVOCATORIA;
+  
+  PROCEDURE USP_DEL_CONVOCATORIA(
+    PI_ID_CONVOCATORIA NUMBER,
+    PI_USUARIO_GUARDAR NUMBER
+  ) AS
+  BEGIN
+    UPDATE T_GENM_CONVOCATORIA 
+    SET FLAG_ESTADO = '0',
+        UPD_USUARIO = PI_USUARIO_GUARDAR,
+        UPD_FECHA = SYSDATE
+    WHERE ID_CONVOCATORIA = PI_ID_CONVOCATORIA;
+  END USP_DEL_CONVOCATORIA;
   
   PROCEDURE USP_PRC_CONVOCATORIA_REQ(
     PI_ID_CONVOCATORIA NUMBER,
@@ -762,6 +868,84 @@ create or replace PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
     END IF;
     PO_ROWAFFECTED := SQL%ROWCOUNT;
   END USP_PRC_CONVOCATORIA_EVA;
+  
+  PROCEDURE USP_PRC_CONVOCATORIA_ETA(
+    PI_ID_CONVOCATORIA NUMBER,
+    PI_ID_ETAPA NUMBER,
+    PI_DIAS VARCHAR2,
+    PI_USUARIO_GUARDAR NUMBER,
+    PO_ROWAFFECTED OUT NUMBER
+  ) AS
+    vID NUMBER;
+  BEGIN
+    SELECT
+    (SELECT COUNT(*) FROM T_GEND_CONVOCATORIA_ETAPA C WHERE C.ID_CONVOCATORIA = PI_ID_CONVOCATORIA AND C.ID_ETAPA = PI_ID_ETAPA)
+    INTO vID
+    FROM DUAL;
+    
+    IF vID = 0 THEN
+      INSERT INTO T_GEND_CONVOCATORIA_ETAPA
+      (ID_CONVOCATORIA, ID_ETAPA, DIAS, FLAG_ESTADO, REG_USUARIO, REG_FECHA)
+      VALUES
+      (PI_ID_CONVOCATORIA, PI_ID_ETAPA, PI_DIAS, '1', PI_USUARIO_GUARDAR, SYSDATE);
+    ELSE
+      UPDATE T_GEND_CONVOCATORIA_ETAPA E SET
+      E.DIAS = PI_DIAS,
+      E.UPD_USUARIO = PI_USUARIO_GUARDAR,
+      E.UPD_FECHA = SYSDATE
+      WHERE E.ID_CONVOCATORIA = PI_ID_CONVOCATORIA AND E.ID_ETAPA = PI_ID_ETAPA;
+    END IF;
+    PO_ROWAFFECTED := SQL%ROWCOUNT;
+  END USP_PRC_CONVOCATORIA_ETA;
+  
+  PROCEDURE USP_SEL_LISTA_CONVOCAT_REQ(
+    PI_ID_CONVOCATORIA NUMBER,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS
+  BEGIN
+    OPEN PO_REF FOR
+    SELECT  ID_REQUERIMIENTO,
+            FLAG_ESTADO
+    FROM  T_GEND_CONVOCATORIA_REQUERIM
+    WHERE ID_CONVOCATORIA = PI_ID_CONVOCATORIA AND FLAG_ESTADO = '1'; 
+  END USP_SEL_LISTA_CONVOCAT_REQ;
+  
+  PROCEDURE USP_SEL_LISTA_CONVOCAT_CRI(
+    PI_ID_CONVOCATORIA NUMBER,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS
+  BEGIN
+    OPEN PO_REF FOR
+    SELECT  ID_CRITERIO,
+            FLAG_ESTADO
+    FROM  T_GEND_CONVOCATORIA_CRITERIO
+    WHERE ID_CONVOCATORIA = PI_ID_CONVOCATORIA AND FLAG_ESTADO = '1'; 
+  END USP_SEL_LISTA_CONVOCAT_CRI;
+  
+  PROCEDURE USP_SEL_LISTA_CONVOCAT_EVA(
+    PI_ID_CONVOCATORIA NUMBER,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS
+  BEGIN
+    OPEN PO_REF FOR
+    SELECT  ID_USUARIO,
+            FLAG_ESTADO
+    FROM  T_GEND_CONVOCATORIA_EVALUADOR
+    WHERE ID_CONVOCATORIA = PI_ID_CONVOCATORIA AND FLAG_ESTADO = '1'; 
+  END USP_SEL_LISTA_CONVOCAT_EVA;
+  
+  PROCEDURE USP_SEL_LISTA_CONVOCAT_ETA(
+    PI_ID_CONVOCATORIA NUMBER,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS
+  BEGIN
+    OPEN PO_REF FOR
+    SELECT  ID_ETAPA,
+            DIAS,
+            FLAG_ESTADO
+    FROM  T_GEND_CONVOCATORIA_ETAPA
+    WHERE ID_CONVOCATORIA = PI_ID_CONVOCATORIA AND FLAG_ESTADO = '1'; 
+  END USP_SEL_LISTA_CONVOCAT_ETA;
 
   -- INSTITUCION|
   PROCEDURE USP_MAN_GUARDA_INSTITUCION(

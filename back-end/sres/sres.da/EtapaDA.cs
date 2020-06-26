@@ -83,5 +83,24 @@ namespace sres.da
 
             return lista;
         }
+
+        public List<EtapaBE> getAllEtapa(OracleConnection db)
+        {
+            List<EtapaBE> lista = new List<EtapaBE>();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_ALL_ETAPA";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<EtapaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
     }
 }

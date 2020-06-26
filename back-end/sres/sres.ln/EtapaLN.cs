@@ -54,5 +54,19 @@ namespace sres.ln
 
             return lista;
         }
+
+        public List<EtapaBE> getAllEtapa()
+        {
+            List<EtapaBE> lista = new List<EtapaBE>();
+
+            try
+            {
+                cn.Open();
+                lista = EtapaDA.getAllEtapa(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }
