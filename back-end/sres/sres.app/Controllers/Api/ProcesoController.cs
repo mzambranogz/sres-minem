@@ -18,7 +18,7 @@ namespace sres.app.Controllers.Api
         [HttpGet]
         public List<ProcesoBE> BuscarObjeto(string busqueda, int registros, int pagina, string columna, string orden)
         {
-            return procesoLN.ListaBusquedaProceso(new ProcesoBE() { CANTIDAD_REGISTROS = 10, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
+            return procesoLN.ListaBusquedaProceso(new ProcesoBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
         }
 
         [Route("obtenerobjeto")]

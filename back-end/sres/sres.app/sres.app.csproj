@@ -135,11 +135,14 @@
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\login_registrarme.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />
+    <Content Include="Assets\js\pages\mantenimiento_anno.js" />
     <Content Include="Assets\js\pages\mantenimiento_convocatoria.js" />
     <Content Include="Assets\js\pages\mantenimiento_criterio.js" />
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
     <Content Include="Assets\js\pages\mantenimiento_proceso.js" />
     <Content Include="Assets\js\pages\mantenimiento_requerimiento.js" />
+    <Content Include="Assets\js\pages\mantenimiento_rol.js" />
+    <Content Include="Assets\js\pages\mantenimiento_sector.js" />
     <Content Include="Assets\js\pages\mantenimiento_usuario.js" />
     <Content Include="Assets\js\plugins\script.js" />
     <Content Include="Assets\styles\style.css" />
@@ -165,7 +168,6 @@
     <Compile Include="Controllers\Api\RolController.cs" />
     <Compile Include="Controllers\Api\SectorController.cs" />
     <Compile Include="Controllers\Api\UsuarioController.cs" />
-    <Compile Include="Controllers\ConvocatoriaController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MantenimientoController.cs" />
@@ -194,6 +196,9 @@
     <Content Include="Views\Mantenimiento\Requerimiento.cshtml" />
     <Content Include="Views\Mantenimiento\Convocatoria.cshtml" />
     <Content Include="Views\Convocatoria\Index.cshtml" />
+    <Content Include="Views\Mantenimiento\Anno.cshtml" />
+    <Content Include="Views\Mantenimiento\Rol.cshtml" />
+    <Content Include="Views\Mantenimiento\Sector.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

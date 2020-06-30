@@ -14,30 +14,30 @@ namespace sres.da
 {
     public class CriterioDA : BaseDA
     {
-        public CriterioBE RegistroCriterio(CriterioBE entidad, OracleConnection db)
-        {
-            try
-            {
-                string sp = $"{Package.Mantenimiento}USP_INS_CRITERIO";
-                var p = new OracleDynamicParameters();
-                p.Add("PI_NOMBRE", entidad.NOMBRE);
-                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
-                entidad.OK = true;
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                entidad.OK = false;
-            }
+        //public CriterioBE RegistroCriterio(CriterioBE entidad, OracleConnection db)
+        //{
+        //    try
+        //    {
+        //        string sp = $"{Package.Mantenimiento}USP_INS_CRITERIO";
+        //        var p = new OracleDynamicParameters();
+        //        p.Add("PI_NOMBRE", entidad.NOMBRE);
+        //        db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+        //        entidad.OK = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex);
+        //        entidad.OK = false;
+        //    }
 
-            return entidad;
-        }
+        //    return entidad;
+        //}
 
         public CriterioBE GuardarCriterio(CriterioBE entidad, OracleConnection db)
         {
             try
             {
-                string sp = $"{Package.Mantenimiento}USP_UPD_CRITERIO";
+                string sp = $"{Package.Mantenimiento}USP_PRC_MAN_CRITERIO";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
                 p.Add("PI_NOMBRE", entidad.NOMBRE);
@@ -61,6 +61,7 @@ namespace sres.da
                 string sp = $"{Package.Mantenimiento}USP_DEL_CRITERIO";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
                 entidad.OK = true;
 

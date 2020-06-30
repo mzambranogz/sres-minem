@@ -13,19 +13,19 @@ namespace sres.ln
     {
         public CriterioDA criterioDA = new CriterioDA();
 
-        public CriterioBE RegistroCriterio(CriterioBE entidad)
-        {
-            CriterioBE item = null;
+        //public CriterioBE RegistroCriterio(CriterioBE entidad)
+        //{
+        //    CriterioBE item = null;
 
-            try
-            {
-                cn.Open();
-                item = criterioDA.RegistroCriterio(entidad, cn);
-            }
-            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+        //    try
+        //    {
+        //        cn.Open();
+        //        item = criterioDA.RegistroCriterio(entidad, cn);
+        //    }
+        //    finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
-            return item;
-        }
+        //    return item;
+        //}
 
         public CriterioBE GuardarCriterio(CriterioBE entidad)
         {

@@ -60,7 +60,7 @@ namespace sres.da
         {
             try
             {
-                string sp = $"{Package.Mantenimiento}USP_UPD_REQUERIMIENTO";
+                string sp = $"{Package.Mantenimiento}USP_PRC_MAN_REQUERIMIENTO";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_REQUERIMIENTO", entidad.ID_REQUERIMIENTO);
                 p.Add("PI_NOMBRE", entidad.NOMBRE);
@@ -84,6 +84,7 @@ namespace sres.da
                 string sp = $"{Package.Mantenimiento}USP_DEL_REQUERIMIENTO";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_REQUERIMIENTO", entidad.ID_REQUERIMIENTO);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
                 entidad.OK = true;
             }

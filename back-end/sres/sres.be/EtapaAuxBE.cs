@@ -10,5 +10,6 @@ namespace sres.be
     {
         public string ETAPA { get; set; }
         public string PROCESO { get; set; }
+        public int DIAS { get; set; }
     }
 }

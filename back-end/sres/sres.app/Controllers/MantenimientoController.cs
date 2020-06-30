@@ -47,5 +47,20 @@ namespace sres.app.Controllers
         {
             return View();
         }
+
+        public ActionResult Anno()
+        {
+            return View();
+        }
+
+        public ActionResult Rol()
+        {
+            return View();
+        }
+
+        public ActionResult Sector()
+        {
+            return View();
+        }
     }
 }

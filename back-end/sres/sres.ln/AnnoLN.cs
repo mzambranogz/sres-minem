@@ -20,6 +20,62 @@ namespace sres.ln
         //    return EtapaDA.GuardarEtapa(entidad);
         //}
 
+        public AnnoBE GuardarAnno(AnnoBE entidad)
+        {
+            AnnoBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = AnnoDA.GuardarAnno(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
+        public AnnoBE EliminarAnno(AnnoBE entidad)
+        {
+            AnnoBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = AnnoDA.EliminarAnno(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
+        public AnnoBE getAnno(AnnoBE entidad)
+        {
+            AnnoBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = AnnoDA.getAnno(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
+        public List<AnnoBE> ListaBusquedaAnno(AnnoBE entidad)
+        {
+            List<AnnoBE> lista = new List<AnnoBE>();
+
+            try
+            {
+                cn.Open();
+                lista = AnnoDA.ListarBusquedaAnno(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
         public List<AnnoBE> getAllAnno()
         {
             List<AnnoBE> lista = new List<AnnoBE>();
