@@ -14,6 +14,20 @@ namespace sres.app.Controllers.Api
     {    
         ConvocatoriaLN convocatoriaLN = new ConvocatoriaLN();
 
+        [Route("buscarconvocatoria")]
+        [HttpGet]
+        public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden)
+        {
+            return convocatoriaLN.BuscarConvocatoria(nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden);
+        }
+
+        [Route("obtenerconvocatoria")]
+        [HttpGet]
+        public ConvocatoriaBE ObtenerConvocatoria(int idConvocatoria)
+        {
+            return convocatoriaLN.ObtenerConvocatoria(idConvocatoria);
+        }
+
         [Route("guardarconvocatoria")]
         [HttpPost]
         public ConvocatoriaBE GuardarConvocatoria(ConvocatoriaBE obj)

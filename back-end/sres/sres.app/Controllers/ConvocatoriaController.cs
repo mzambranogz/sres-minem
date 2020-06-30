@@ -8,7 +8,6 @@ namespace sres.app.Controllers
 {
     public class ConvocatoriaController : Controller
     {
-        // GET: Convocatoria
         public ActionResult Index()
         {
             return View();

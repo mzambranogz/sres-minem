@@ -16,6 +16,36 @@ namespace sres.ln
 
         public ConvocatoriaDA convocatoriaDA = new ConvocatoriaDA();
 
+        public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden)
+        {
+            List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
+
+            try
+            {
+                cn.Open();
+                lista = convocatoriaDA.BuscarConvocatoria(nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public ConvocatoriaBE ObtenerConvocatoria(int idConvocatoria)
+        {
+            ConvocatoriaBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = convocatoriaDA.ObtenerConvocatoria(idConvocatoria, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
         public ConvocatoriaBE RegistroConvocatoria(ConvocatoriaBE entidad)
         {
             ConvocatoriaBE item = new ConvocatoriaBE();

@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppSettings.config" />
+    <Content Include="Assets\js\pages\convocatoria.js" />
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\login_registrarme.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />

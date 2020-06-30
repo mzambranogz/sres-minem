@@ -19,7 +19,8 @@ namespace sres.da
                 return new
                 {
                     Admin = $"{User}.PKG_SRES_ADMIN.",
-                    Mantenimiento = $"{User}.PKG_SRES_MANTENIMIENTO."
+                    Mantenimiento = $"{User}.PKG_SRES_MANTENIMIENTO.",
+                    Criterio = $"{User}.PKG_SRES_CRITERIO."
                 };
             }
         }

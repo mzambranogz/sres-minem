@@ -1,28 +1,32 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Titulo = "Index";
 }
 
-<h2>Index</h2>
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/pages/convocatoria.js")"></script>
+}
+
+
 <div>
     <div>
         <label>
-            N° Expediente: <input type="text" name="txtBusquedaNroExpediente" id="txtBusquedaNroExpediente" />
+            N° Expediente: <input type="text" name="txtNroInformeBusqueda" id="txtNroInformeBusqueda" />
         </label>
         <label>
-            Descripción : <input type="text" name="txtBusquedaDescripcion" id="txtBusquedaDescripcion" />
+            Descripción : <input type="text" name="txtNombreBusqueda" id="txtNombreBusqueda" />
         </label>
         <label>
-            Fecha Desde: <input type="text" name="txtBusquedaDesde" id="txtBusquedaDesde" />
+            Fecha Desde: <input type="date" name="txtFechaDesdeBusqueda" id="txtFechaDesdeBusqueda" />
         </label>
         <label>
-            Fecha Hasta: <input type="text" name="txtBusquedaHasta" id="txtBusquedaHasta" />
+            Fecha Hasta: <input type="date" name="txtFechaHastaBusqueda" id="txtFechaHastaBusqueda" />
         </label>
-        <button>CONSULTAR</button>
+        <button id="btnConsultar">CONSULTAR</button>
     </div>
 </div>
 <div>
-    <table>
+    <table id="tblConvocatoria">
         <thead>
             <tr>
                 <th>Expediente</th>

@@ -14,6 +14,47 @@ namespace sres.da
 {
     public class ConvocatoriaDA :BaseDA
     {
+        public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, OracleConnection db)
+        {
+            List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
+
+            try
+            {
+                string sp = $"{Package.Criterio}USP_SEL_BUSQ_CONVOCATORIA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_NRO_INFORME", nroInforme);
+                p.Add("PI_NOMBRE", nombre);
+                p.Add("PI_FECHA_INICIO", fechaDesde);
+                p.Add("PI_FECHA_FIN", fechaHasta);
+                p.Add("PI_REGISTROS", registros);
+                p.Add("PI_PAGINA", pagina);
+                p.Add("PI_COLUMNA", columna);
+                p.Add("PI_ORDEN", orden);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ConvocatoriaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
+
+        public ConvocatoriaBE ObtenerConvocatoria(int idConvocatoria, OracleConnection db)
+        {
+            ConvocatoriaBE item = null;
+
+            try
+            {
+                string sp = $"{Package.Criterio}USP_SEL_OBTIENE_CONVOCATORIA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.QueryFirstOrDefault<ConvocatoriaBE>(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return item;
+        }
+
         public ConvocatoriaBE RegistroConvocatoria(ConvocatoriaBE entidad, out int idConvocatoria, OracleConnection db, OracleTransaction ot = null)
         {
             idConvocatoria = -1;
