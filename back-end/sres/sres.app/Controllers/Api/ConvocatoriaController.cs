@@ -59,12 +59,12 @@ namespace sres.app.Controllers.Api
             return lista;
         }
 
-        //[Route("obtenerconvocatoria")]
-        //[HttpGet]
-        //public ConvocatoriaBE ObtenerConvocatoria(int id)
-        //{
-        //    return convocatoriaLN.getConvocatoria(new ConvocatoriaBE() { ID_CONVOCATORIA = id });
-        //}
+        [Route("obtenerconvocatoria")]
+        [HttpGet]
+        public ConvocatoriaBE GetConvocatoria(int id)
+        {
+            return convocatoriaLN.getConvocatoria(new ConvocatoriaBE() { ID_CONVOCATORIA = id });
+        }
 
         [Route("cambiarestadoconvocatoria")]
         [HttpPost]

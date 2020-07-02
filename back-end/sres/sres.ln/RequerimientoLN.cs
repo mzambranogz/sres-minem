@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using sres.be;
 using sres.da;
 using System.Data;
+using sres.ut;
 
 namespace sres.ln
 {
     public class RequerimientoLN : BaseLN
     {
-        public RequerimientoDA RequerimientoDA = new RequerimientoDA();
+        public RequerimientoDA requerimientoDA = new RequerimientoDA();
 
         //public static RequerimientoBE RegistroRequerimiento(RequerimientoBE entidad)
         //{
@@ -30,7 +31,7 @@ namespace sres.ln
             try
             {
                 cn.Open();
-                item = RequerimientoDA.GuardarRequerimiento(entidad, cn);
+                item = requerimientoDA.GuardarRequerimiento(entidad, cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
@@ -44,7 +45,7 @@ namespace sres.ln
             try
             {
                 cn.Open();
-                item = RequerimientoDA.EliminarRequerimiento(entidad, cn);
+                item = requerimientoDA.EliminarRequerimiento(entidad, cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
@@ -58,7 +59,7 @@ namespace sres.ln
             try
             {
                 cn.Open();
-                item = RequerimientoDA.getRequerimiento(entidad, cn);
+                item = requerimientoDA.getRequerimiento(entidad, cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
@@ -72,12 +73,27 @@ namespace sres.ln
             try
             {
                 cn.Open();
-                lista = RequerimientoDA.ListarBusquedaRequerimiento(entidad, cn);
+                lista = requerimientoDA.ListarBusquedaRequerimiento(entidad, cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return lista;
         }
+
+        //public List<RequerimientoBE> ListarRequerimientoPorConvocatoria(int idConvocatoria)
+        //{
+        //    List<RequerimientoBE> lista = new List<RequerimientoBE>();
+
+        //    try
+        //    {
+        //        cn.Open();
+        //        lista = requerimientoDA.ListarRequerimientoPorConvocatoria(idConvocatoria, cn);
+        //    }
+        //    catch(Exception ex) { Log.Error(ex); }
+        //    finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+        //    return lista;
+        //}
 
         public List<RequerimientoBE> getAllRequerimiento()
         {
@@ -86,7 +102,7 @@ namespace sres.ln
             try
             {
                 cn.Open();
-                lista = RequerimientoDA.getAllRequerimiento(cn);
+                lista = requerimientoDA.getAllRequerimiento(cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 

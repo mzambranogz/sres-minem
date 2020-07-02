@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace sres.app.Controllers.Api
@@ -24,7 +25,7 @@ namespace sres.app.Controllers.Api
 
         [Route("guardarinscripcion")]
         [HttpPost]
-        public bool GuardarInscripcion (InscripcionBE inscripcion)
+        public bool GuardarInscripcion(InscripcionBE inscripcion)
         {
             return inscripcionLN.GuardarInscripcion(inscripcion);
         }

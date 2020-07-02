@@ -15,6 +15,7 @@ namespace sres.ln
     {
 
         public ConvocatoriaDA convocatoriaDA = new ConvocatoriaDA();
+        public RequerimientoDA requerimientoDA = new RequerimientoDA();
 
         public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden)
         {
@@ -39,6 +40,7 @@ namespace sres.ln
             {
                 cn.Open();
                 item = convocatoriaDA.ObtenerConvocatoria(idConvocatoria, cn);
+                //item.LISTA_REQ = requerimientoDA.ListarRequerimientoPorConvocatoria(idConvocatoria, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }

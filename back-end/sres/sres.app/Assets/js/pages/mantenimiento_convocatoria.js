@@ -77,7 +77,7 @@ var consultarConvocatoria = (element) => {
 }
 
 var cargarDatos = (data) => {
-    debugger;
+    //debugger;
     $('#frm').data('id', data.ID_CONVOCATORIA);
     $('#txtConvocatoria').val(data.NOMBRE);
     data.TXT_FECHA_INICIO == '0001-01-01' ? null : $('#fchFechaInicio').val(data.TXT_FECHA_INICIO);
@@ -238,7 +238,7 @@ var guardar = () => {
     });
 
     $('#tbl-etapa').find('.etapa').each((x, y) => {
-        debugger;
+        //debugger;
         var r = {
             ID_ETAPA: $(y).attr("id").substring(6, $(y).attr("id").length),
             DIAS: $(y).val()
@@ -249,7 +249,7 @@ var guardar = () => {
     let url = `/api/convocatoria/guardarconvocatoria`;
 
     let data = { ID_CONVOCATORIA: id == null ? -1 : id, NOMBRE: nombre, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, USUARIO_GUARDAR: idUsuarioLogin };
-    debugger;
+    //debugger;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)

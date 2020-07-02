@@ -13,6 +13,7 @@ namespace sres.be
         public ConvocatoriaBE CONVOCATORIA { get; set; }
         public int? ID_INSTITUCION { get; set; }
         public InstitucionBE INSTITUCION { get; set; }
+        public List<InscripcionRequerimientoBE> LISTA_INSCRIPCION_REQUERIMIENTO { get; set; }
         public bool FLAG_ANULAR { get; set; }
         public string NRO_INFORME_PRELIMINAR { get; set; }
         public string FLAG_ESTADO { get; set; }

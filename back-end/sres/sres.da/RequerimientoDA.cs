@@ -145,6 +145,23 @@ namespace sres.da
             return lista;
         }
 
+        //public List<RequerimientoBE> ListarRequerimientoPorConvocatoria(int idConvocatoria, OracleConnection db)
+        //{
+        //    List<RequerimientoBE> lista = new List<RequerimientoBE>();
+
+        //    try
+        //    {
+        //        string sp = $"{Package.Criterio}USP_SEL_LISTA_REQUERIMIENTO_CONVOCATORIA";
+        //        var p = new OracleDynamicParameters();
+        //        p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+        //        p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+        //        lista = db.Query<RequerimientoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+        //    }
+        //    catch (Exception ex) { Log.Error(ex); }
+
+        //    return lista;
+        //}
+
         public List<RequerimientoBE> getAllRequerimiento(OracleConnection db)
         {
             List<RequerimientoBE> lista = new List<RequerimientoBE>();

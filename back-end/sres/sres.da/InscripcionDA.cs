@@ -31,9 +31,10 @@ namespace sres.da
             return item;
         }
 
-        public bool GuardarInscripcion(InscripcionBE inscripcion, OracleConnection db)
+        public bool GuardarInscripcion(InscripcionBE inscripcion, out int idInscripcion, OracleConnection db)
         {
             bool seGuardo = false;
+            idInscripcion = -1;
 
             try
             {
@@ -45,6 +46,7 @@ namespace sres.da
                 p.Add("PI_UPD_USUARIO", inscripcion.UPD_USUARIO);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                idInscripcion = (int)p.Get<dynamic>("PI_ID_INSCRIPCION").Value;
                 int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
                 seGuardo = filasAfectadas > 0;
             }

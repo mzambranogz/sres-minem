@@ -130,8 +130,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppSettings.config" />
+    <Content Include="AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Assets\js\pages\convocatoria.js" />
+    <Content Include="Assets\js\pages\convocatoria_inscribirme.js" />
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\login_registrarme.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />
@@ -160,6 +163,7 @@
     <Compile Include="Controllers\Api\CriterioController.cs" />
     <Compile Include="Controllers\Api\EtapaController.cs" />
     <Compile Include="Controllers\Api\InscripcionController.cs" />
+    <Compile Include="Controllers\Api\InscripcionRequerimientoController.cs" />
     <Compile Include="Controllers\Api\InstitucionController.cs" />
     <Compile Include="Controllers\Api\ConvocatoriaController.cs" />
     <Compile Include="Controllers\Api\MRV\InstitucionMRVController.cs" />
@@ -169,6 +173,7 @@
     <Compile Include="Controllers\Api\RolController.cs" />
     <Compile Include="Controllers\Api\SectorController.cs" />
     <Compile Include="Controllers\Api\UsuarioController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ConvocatoriaController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -211,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\_Base\" />
   </ItemGroup>
   <ItemGroup>

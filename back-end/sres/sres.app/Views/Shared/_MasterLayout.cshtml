@@ -18,12 +18,12 @@
     <div> 
         @RenderBody()
     </div>
-    @RenderSection("scripts_footer", false)
     <script type="text/javascript">
         const baseUrl = '@Url.Content("~")';
         const idUsuarioLogin = @(usuario == null ? "null" : usuario.ID_USUARIO.ToString());
         const idInstitucionLogin = @(usuario == null ? "null" : usuario.ID_INSTITUCION.ToString());
         const idRolLogin = @(usuario == null ? "null" : usuario.ID_ROL.ToString());
     </script>
+    @RenderSection("scripts_footer", false)
 </body>
 </html>
