@@ -48,6 +48,7 @@
     <Compile Include="ConvocatoriaLN.cs" />
     <Compile Include="CriterioLN.cs" />
     <Compile Include="EtapaLN.cs" />
+    <Compile Include="InscripcionLN.cs" />
     <Compile Include="InstitucionLN.cs" />
     <Compile Include="MRV\BaseLN.cs" />
     <Compile Include="MRV\InstitucionLN.cs" />

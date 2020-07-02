@@ -1,0 +1,15 @@
+﻿@using sres.be
+@{
+    ViewBag.Titulo = "Inscribirme";
+
+    ConvocatoriaBE item = (ConvocatoriaBE)ViewData["convocatoria"];
+}
+
+<h2>DATOS DE LA CONVOCATORIA</h2>
+
+<div>
+    <label>FECHA INICIO: </label> @item.FECHA_INICIO.ToString("dd//MM/yyyy")
+</div>
+<div>
+    <label>FECHA FIN: </label> @item.FECHA_FIN.ToString("dd//MM/yyyy")
+</div>

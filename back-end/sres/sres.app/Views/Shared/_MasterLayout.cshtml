@@ -20,8 +20,10 @@
     </div>
     @RenderSection("scripts_footer", false)
     <script type="text/javascript">
-        var baseUrl = '@Url.Content("~")';
-        var idUsuarioLogin = @(usuario == null ? "null" : usuario.ID_USUARIO.ToString());
+        const baseUrl = '@Url.Content("~")';
+        const idUsuarioLogin = @(usuario == null ? "null" : usuario.ID_USUARIO.ToString());
+        const idInstitucionLogin = @(usuario == null ? "null" : usuario.ID_INSTITUCION.ToString());
+        const idRolLogin = @(usuario == null ? "null" : usuario.ID_ROL.ToString());
     </script>
 </body>
 </html>

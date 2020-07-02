@@ -53,8 +53,8 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
             let colFechaFin = `<td>${fechaFin.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;
             let colVencimiento = `<td>${porcentajeAvance}%</td>`;
             let colEstado = `<td>${obtenerEstadoConvocatoria(x.FLAG_ESTADO)}</td>`;
-            let btnParticipar = `<a href="#" class="btn btn-xs btnParticipar" data-id="${x.ID_CONVOCATORIA}">PARTICIPAR</a>`;
-            let colOpciones = `<td>${btnParticipar}</td>`;
+            let btnIngresar = `<a target="_blank" href="${baseUrl}Convocatoria/Inscribirme/${x.ID_CONVOCATORIA}" class="btn btn-xs">INGRESAR</a>`;
+            let colOpciones = `<td>${btnIngresar}</td>`;
             let fila = `<tr>${colNroInforme}${colPeriodo}${colNombre}${colFechaInicio}${colFechaFin}${colVencimiento}${colEstado}${colOpciones}</tr>`;
             return fila;
         }).join('');
@@ -77,51 +77,3 @@ var obtenerEstadoConvocatoria = (flagEstado) => {
 
     return estado;
 };
-
-var btnParticiparClick = (e) => {
-    e.preventDefault();
-
-    let id = $(e.currentTarget).attr('data-id');
-
-    let url = `/api/convocatoria/obtenerconvocatoria?idConvocatoria=${id}`;
-
-    fetch(url)
-    .then(r => r.json())
-    .then(mostrarInformacionConvocatoria)
-}
-
-var mostrarInformacionConvocatoria = (data) => {
-    let elContainer = $('<div></div>');
-    elContainer.addClass('modal');
-
-    let fechaInicio = new Date(data.FECHA_INICIO);
-    let fechaFin = new Date(data.FECHA_FIN);
-
-    let nombreSection = `<h2>${data.NOMBRE}</h2>`;
-    let fechaInicioSection = `<div><span><b>FECHA INICIO: </b>${fechaInicio.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span></div>`;
-    let fechaFinSection = `<div><span><b>FECHA FIN: </b>${fechaFin.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span></div>`;
-    let btnInscribirme = `<a href="#" id="btnInscribirme" class="btn btn-xs">INSCRIBIRME</a>`;
-    let btnCerrar = `<a href="#" id="btnCerrarModal" class="btn btn-xs">CERRAR</a>`;
-    
-    let titleSection = `<div class="header">${nombreSection}</div>`;
-    let contentSection = `<div class="content">${fechaInicioSection}${fechaFinSection}</div>`;
-    let footerSection = `<div class="footer">${btnInscribirme}${btnCerrar}</div>`;
-
-    elContainer.append(titleSection);
-    elContainer.append(contentSection);
-    elContainer.append(footerSection);
-
-    elContainer.find('#btnInscribirme').on('click', btnInscribirmeClick);
-    elContainer.find('#btnCerrarModal').on('click', btnCerrarModalClick);
-
-    $('body').append(elContainer);
-}
-
-var btnInscribirmeClick = (e) => {
-    e.preventDefault();
-}
-
-var btnCerrarModalClick = (e) => {
-    e.preventDefault();
-    $(e.currentTarget).closest('.modal').remove();
-}

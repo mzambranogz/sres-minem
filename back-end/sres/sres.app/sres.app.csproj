@@ -159,6 +159,7 @@
     <Compile Include="Controllers\Api\AnnoController.cs" />
     <Compile Include="Controllers\Api\CriterioController.cs" />
     <Compile Include="Controllers\Api\EtapaController.cs" />
+    <Compile Include="Controllers\Api\InscripcionController.cs" />
     <Compile Include="Controllers\Api\InstitucionController.cs" />
     <Compile Include="Controllers\Api\ConvocatoriaController.cs" />
     <Compile Include="Controllers\Api\MRV\InstitucionMRVController.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Controllers\Api\RolController.cs" />
     <Compile Include="Controllers\Api\SectorController.cs" />
     <Compile Include="Controllers\Api\UsuarioController.cs" />
+    <Compile Include="Controllers\ConvocatoriaController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MantenimientoController.cs" />
@@ -199,6 +201,7 @@
     <Content Include="Views\Mantenimiento\Anno.cshtml" />
     <Content Include="Views\Mantenimiento\Rol.cshtml" />
     <Content Include="Views\Mantenimiento\Sector.cshtml" />
+    <Content Include="Views\Convocatoria\Inscribirme.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

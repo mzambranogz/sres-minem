@@ -61,6 +61,7 @@
     <Compile Include="CriterioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
     <Compile Include="EtapaDA.cs" />
+    <Compile Include="InscripcionDA.cs" />
     <Compile Include="InstitucionDA.cs" />
     <Compile Include="MRV\BaseDA.cs" />
     <Compile Include="MRV\InstitucionDA.cs" />
