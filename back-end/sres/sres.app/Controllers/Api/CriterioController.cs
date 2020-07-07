@@ -57,5 +57,19 @@ namespace sres.app.Controllers.Api
             }
         }
 
+        [Route("buscarcriteriocaso")]
+        [HttpGet]
+        public List<ComponenteBE> BuscarCriterioCaso(int id_criterio, int id_caso, int id_inscripcion)
+        {
+            return criterioLN.BuscarCriterioCaso(new CasoBE() { ID_CRITERIO = id_criterio, ID_CASO = id_caso, ID_INSCRIPCION = id_inscripcion });
+        }
+
+        [Route("guardarcriteriocaso")]
+        [HttpPost]
+        public bool GuardarCriterioCaso(CasoBE entidad)
+        {
+            return criterioLN.GuardarCriterioCaso(entidad).OK;
+        }
+
     }
 }

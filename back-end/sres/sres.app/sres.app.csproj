@@ -134,6 +134,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Assets\js\pages\convocatoria.js" />
+    <Content Include="Assets\js\pages\convocatoria_criterioingresar.js" />
     <Content Include="Assets\js\pages\convocatoria_inscribirme.js" />
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\login_registrarme.js" />
@@ -207,6 +208,7 @@
     <Content Include="Views\Mantenimiento\Rol.cshtml" />
     <Content Include="Views\Mantenimiento\Sector.cshtml" />
     <Content Include="Views\Convocatoria\Inscribirme.cshtml" />
+    <Content Include="Views\Convocatoria\CriterioIngresar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
