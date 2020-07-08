@@ -1,4 +1,5 @@
-﻿using sres.ln;
+﻿using sres.be;
+using sres.ln;
 using sres.ut;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,13 @@ namespace sres.app.Controllers.Api
     public class InscripcionRequerimientoController : ApiController
     {
         InscripcionRequerimientoLN inscripcionRequerimientoLN = new InscripcionRequerimientoLN();
+
+        [Route("listarinscripcionrequerimientoporconvocatoriainscripcion/{idConvocatoria}/{idInscripcion?}")]
+        [HttpGet]
+        public List<InscripcionRequerimientoBE> ListarInscripcionRequerimientoPorConvocatoriaInscripcion(int idConvocatoria, int? idInscripcion = null)
+        {
+            return inscripcionRequerimientoLN.ListarInscripcionRequerimientoPorConvocatoriaInscripcion(idConvocatoria, idInscripcion);
+        }
 
         [Route("obtenerarchivo/{idConvocatoria}/{idInscripcion}/{idInstitucion}/{idRequerimiento}")]
         [HttpGet]

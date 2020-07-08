@@ -16,6 +16,8 @@ namespace sres.ln
     {
         InscripcionDA inscripcionDA = new InscripcionDA();
         InscripcionRequerimientoDA inscripcionRequerimientoDA = new InscripcionRequerimientoDA();
+        InstitucionDA institucionDA = new InstitucionDA();
+        InscripcionTrazabilidadDA inscripcionTrazabilidadDA = new InscripcionTrazabilidadDA();
 
         public InscripcionBE ObtenerInscripcionPorConvocatoriaInstitucion(int idConvocatoria, int idInstitucion)
         {
@@ -32,7 +34,7 @@ namespace sres.ln
             return item;
         }
 
-        public bool GuardarInscripcion(InscripcionBE inscripcion)
+        public bool GuardarInscripcion(InscripcionBE inscripcion, UsuarioBE usuario = null, InstitucionBE institucion = null)
         {
             bool seGuardo = false;
 
@@ -46,7 +48,36 @@ namespace sres.ln
 
                     if (seGuardo)
                     {
-                        if(inscripcion.LISTA_INSCRIPCION_REQUERIMIENTO != null)
+                        string trazabilidadDescripcionRegistrarInscripcion = AppSettings.Get<string>("Trazabilidad.Convocatoria.RegistrarInscripcion");
+
+                        if (!string.IsNullOrEmpty(trazabilidadDescripcionRegistrarInscripcion))
+                        {
+                            if (institucion == null && inscripcion.ID_INSTITUCION != null) institucion = institucionDA.ObtenerInstitucion(inscripcion.ID_INSTITUCION.Value, cn);
+
+                            Dictionary<string, object> dataTrazabilidad = new Dictionary<string, object>
+                            {
+                                ["INSTITUCION"] = institucion
+                            };
+
+                            Dictionary<string, object> claves = trazabilidadDescripcionRegistrarInscripcion.ObtenerListaClave('{', '}');
+
+                            foreach (KeyValuePair<string, object> item in claves)
+                            {
+                                string valor = ((object)dataTrazabilidad).ObtenerValorDesdeClave(item.Value.ToString()).ToString();
+                                trazabilidadDescripcionRegistrarInscripcion = trazabilidadDescripcionRegistrarInscripcion.Replace(item.Key, valor);
+                            }
+
+                            InscripcionTrazabilidadBE inscripcionTrazabilidad = new InscripcionTrazabilidadBE
+                            {
+                                ID_INSCRIPCION = inscripcion.ID_INSCRIPCION,
+                                DESCRIPCION = trazabilidadDescripcionRegistrarInscripcion,
+                                UPD_USUARIO = inscripcion.UPD_USUARIO
+                            };
+
+                            seGuardo = inscripcionTrazabilidadDA.RegistrarInscripcionTrazabilidad(inscripcionTrazabilidad, cn);
+                        }
+
+                        if (inscripcion.LISTA_INSCRIPCION_REQUERIMIENTO != null)
                         {
                             foreach (InscripcionRequerimientoBE iInscripcionRequerimiento in inscripcion.LISTA_INSCRIPCION_REQUERIMIENTO)
                             {

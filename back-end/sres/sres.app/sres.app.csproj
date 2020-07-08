@@ -176,6 +176,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ConvocatoriaController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
+    <Compile Include="Controllers\InscripcionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MantenimientoController.cs" />
     <Compile Include="Controllers\_Base\SesionIn.cs" />
@@ -207,6 +208,7 @@
     <Content Include="Views\Mantenimiento\Rol.cshtml" />
     <Content Include="Views\Mantenimiento\Sector.cshtml" />
     <Content Include="Views\Convocatoria\Inscribirme.cshtml" />
+    <Content Include="Views\Inscripcion\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

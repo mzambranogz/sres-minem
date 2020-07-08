@@ -1,6 +1,41 @@
 ﻿var pageLoad = () => {
+    cargarListaInscripcionRequerimiento();
     $('#btnInscribirme').on('click', btnInscribirmeClick);
-    $('input[type="file"][id*="fileRequerimiento_"]').on('change', fileRequerimientoChange);
+}
+
+var cargarListaInscripcionRequerimiento = () => {
+    let url = `/api/inscripcionrequerimiento/listarinscripcionrequerimientoporconvocatoriainscripcion/${idConvocatoria}${idInscripcion == null ? `` : `/${idInscripcion}`}`
+
+    fetch(url)
+    .then(r => r.json())
+    .then(mostrarListaInscripcionRequerimiento)
+}
+
+var mostrarListaInscripcionRequerimiento = (data) => {
+    if (data.length > 0) {
+        let tituloCriterios = '<div><h3>CRITERIOS GENERALES</h3></div>';
+        let tituloArchivosAdjuntos = '<div><h3>ARCHIVOS ADJUNTOS</h3></div>';
+        let cabecera = `<div>${tituloCriterios}${tituloArchivosAdjuntos}</div>`;
+
+        let contenido = data.map(x => {
+            let tituloRequerimiento = `<div><label>${x.REQUERIMIENTO.NOMBRE}</label></div>`;
+            let fileRequerimiento = `<div><input type="file" data-id="${x.ID_REQUERIMIENTO}" name="fileRequerimiento_${x.ID_REQUERIMIENTO}" id="fileRequerimiento_${x.ID_REQUERIMIENTO}" /></div>`;
+            let colLeft = `<div>${tituloRequerimiento}${fileRequerimiento}</div>`;
+            let existeFileRequerimientoSubido = x.ARCHIVO_BASE || '' != '';
+            let contenidoFileRequerimiento = ``
+            if (existeFileRequerimientoSubido) {
+                let nombreFileRequerimiento = `<label>ARCHIVO: ${x.ARCHIVO_BASE}</label>`;
+                let btnDescargaFileRequerimiento = `<a href="${baseUrl}api/inscripcionrequerimiento/obtenerarchivo/${idConvocatoria}/${idInscripcion}/${idInstitucionLogin}/${x.ID_REQUERIMIENTO}")">DESCARGAR</a>`;
+                let btnEliminarFileRequerimiento = `<a href="#">ELIMINAR</a>`;
+                contenidoFileRequerimiento = `${nombreFileRequerimiento}${btnDescargaFileRequerimiento}${btnEliminarFileRequerimiento}`;
+            }
+            let colRight = `<div>${contenidoFileRequerimiento}</div>`;
+            let contenidoFinal = `<div>${colLeft}${colRight}</div>`;
+            return contenidoFinal;
+        }).join('')
+        $('#lstInscripcionRequerimiento').html(`${cabecera}${contenido}`);
+        $('input[type="file"][id*="fileRequerimiento_"]').on('change', fileRequerimientoChange);
+    }
 }
 
 var btnInscribirmeClick = (e) => {
@@ -64,7 +99,7 @@ var enviarInscripcion = () => {
 var mostrarMensaje = (data) => {
     if (data == true) {
         alert('¡Se guardó correctamente!');
-        location.reload();
+        mostrarListaInscripcionRequerimiento();
     }
 }
 

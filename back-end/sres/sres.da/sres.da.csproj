@@ -58,11 +58,13 @@
     <Compile Include="AnnoDA.cs" />
     <Compile Include="BaseDA.cs" />
     <Compile Include="ConvocatoriaDA.cs" />
+    <Compile Include="ConvocatoriaTrazabilidadDA.cs" />
     <Compile Include="CriterioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
     <Compile Include="EtapaDA.cs" />
     <Compile Include="InscripcionDA.cs" />
     <Compile Include="InscripcionRequerimientoDA.cs" />
+    <Compile Include="InscripcionTrazabilidadDA.cs" />
     <Compile Include="InstitucionDA.cs" />
     <Compile Include="MRV\BaseDA.cs" />
     <Compile Include="MRV\InstitucionDA.cs" />

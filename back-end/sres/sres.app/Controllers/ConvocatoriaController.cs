@@ -33,11 +33,11 @@ namespace sres.app.Controllers
 
             int? idInscripcion = inscripcion == null ? null : (int?)inscripcion.ID_INSCRIPCION;
 
-            List<InscripcionRequerimientoBE> inscripcionRequerimiento = inscripcionRequerimientoLN.ListarInscripcionRequerimientoPorConvocatoriaInscripcion(idConvocatoria, idInscripcion);
+            //List<InscripcionRequerimientoBE> inscripcionRequerimiento = inscripcionRequerimientoLN.ListarInscripcionRequerimientoPorConvocatoriaInscripcion(idConvocatoria, idInscripcion);
 
             ViewData["convocatoria"] = convocatoria;
             ViewData["inscripcion"] = inscripcion;
-            ViewData["inscripcionRequerimiento"] = inscripcionRequerimiento;
+            //ViewData["inscripcionRequerimiento"] = inscripcionRequerimiento;
 
             return View();
         }

@@ -4,7 +4,6 @@
 
     ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
     InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
-    List<InscripcionRequerimientoBE> listaInscripcionRequerimiento = ViewData["inscripcionRequerimiento"] == null ? null : (List<InscripcionRequerimientoBE>)ViewData["inscripcionRequerimiento"];
 }
 
 @section scripts_footer{
@@ -24,37 +23,10 @@
     <label>FECHA FIN: </label> @convocatoria.FECHA_FIN.ToString("dd//MM/yyyy")
 </div>
 
-@if (listaInscripcionRequerimiento != null)
-{
-    if (listaInscripcionRequerimiento.Count > 0)
-    {
-        <div>
-            <div>
-                <h3>CRITERIOS GENERALES</h3>
-            </div>
-            <div>
-                <h3>ARCHIVOS ADJUNTOS</h3>
-            </div>
-        </div>
-        foreach (InscripcionRequerimientoBE iInscripcionRequerimiento in listaInscripcionRequerimiento)
-        {
-            <div>
-                <div>
-                    <label>@iInscripcionRequerimiento.REQUERIMIENTO.NOMBRE</label>
-                    <input type="file" data-id="@iInscripcionRequerimiento.ID_REQUERIMIENTO" name="fileRequerimiento_@iInscripcionRequerimiento.ID_REQUERIMIENTO" id="fileRequerimiento_@iInscripcionRequerimiento.ID_REQUERIMIENTO" />
-                </div>
-                <div>
-                    @if (!string.IsNullOrEmpty(iInscripcionRequerimiento.ARCHIVO_BASE))
-                    {
-                        <label>ARCHIVO: @iInscripcionRequerimiento.ARCHIVO_BASE</label>
-                        <a href="@Url.Content($"~/api/inscripcionrequerimiento/obtenerarchivo/{inscripcion.ID_CONVOCATORIA}/{inscripcion.ID_INSCRIPCION}/{inscripcion.ID_INSTITUCION}/{iInscripcionRequerimiento.ID_REQUERIMIENTO}")">DESCARGAR</a>
-                        <a href="#">ELIMINAR</a>
-                    }
-                </div>
-            </div>
-        }
-    }
-}
-
+<div id="lstInscripcionRequerimiento"></div>
 
 <button id="btnInscribirme" type="button">@(inscripcion == null ? "INSCRIBIRME" : "ACTUALIZAR DOCUMENTOS")</button>
+@if(inscripcion != null)
+{
+    <a href="@Url.Content($"~/Inscripcion/{inscripcion.ID_CONVOCATORIA}/{inscripcion.ID_INSCRIPCION}")">COMPLETAR CRITERIOS</a>
+}
