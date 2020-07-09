@@ -1,0 +1,94 @@
+﻿@{ViewBag.SRESDocumentation = ViewBag.SRESLinks != null ? ViewBag.SRESLinks : new Dictionary<string, Dictionary<string, object>>
+    {
+        ["References"] = new Dictionary<string, object>
+        {
+            ["Show"] = true,
+            ["Titulo"] = "DOCUMENTOS DE REFERENCIA",
+            ["Data"] = new Dictionary<int, object>
+            {
+                [1] = new Dictionary<string, object> { ["Texto"] = "Estudio del Impacto del Etiquetado 2018 a 2019", ["Url"] = "http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" },
+                [2] = new Dictionary<string, object> { ["Texto"] = "Estudio del Impacto del Etiquetado de Eficiencia Energética 2020", ["Url"] = "http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" },
+                [3] = new Dictionary<string, object> { ["Texto"] = "Piloto de Auditorías Energéticas en el Sector Público", ["Url"] = "#" },
+                [4] = new Dictionary<string, object> { ["Texto"] = "Piloto de Auditorías Energéticas en el Sector Privado", ["Url"] = "#" },
+                [5] = new Dictionary<string, object> { ["Texto"] = "Reglamento de Etiquetado de Eficiencia Energética", ["Url"] = "#" },
+                [6] = new Dictionary<string, object> { ["Texto"] = "Guía de Auditorías Energéticas", ["Url"] = "#" },
+                [7] = new Dictionary<string, object> { ["Texto"] = "Manual de uso de la plataforma del Sello de Reconocimiento Energético", ["Url"] = "#" }
+            }
+        },
+        ["Links"] = new Dictionary<string, object>
+        {
+            ["Show"] = true,
+            ["Titulo"] = "LINKS DE INTERÉS",
+            ["Data"] = new Dictionary<int, object>
+            {
+                [1] = new Dictionary<string, object> { ["Texto"] = "Balance Nacional de Energía 2018", ["Url"] = "http://www.minem.gob.pe/_publicacion.php?idSector=12&amp;idPublicacion=610" },
+                [2] = new Dictionary<string, object> { ["Texto"] = "Balance Nacional de Energía Útil 2013", ["Url"] = "https://www.mef.gob.pe/prosemer/web/estudio/balance-nacional-de-energ%C3%ADa-%C3%BAtil/14" },
+                [3] = new Dictionary<string, object> { ["Texto"] = "Guías de orientación del uso eficiente de la energía", ["Url"] = "#" }
+            }
+        }
+    };
+
+    if (ViewBag.SRESDocumentation != null)
+    {
+
+        <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-12">
+                    @if (ViewBag.SRESDocumentation["References"] != null)
+                    {
+                        if ((bool)ViewBag.SRESDocumentation["References"]["Show"])
+                        {
+                            <h4 class="p-2 estilo-04 text-white bg-degradado wow slideInUp">@($"{ViewBag.SRESDocumentation["References"]["Titulo"]}")</h4>
+                            if (ViewBag.SRESDocumentation["References"]["Data"] != null)
+                            {
+                                Dictionary<int, object> data = (Dictionary<int, object>)ViewBag.SRESDocumentation["References"]["Data"];
+                                if (data.Count > 0)
+                                {
+                                    <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow slideInUp">
+                                        @foreach (KeyValuePair<int, object> item in data)
+                                        {
+                                            Dictionary<string, object> Valor = (Dictionary<string, object>)item.Value;
+                                            <li><a class="estilo-01 text-sres-azul" href="@Valor["Url"].ToString()" target="_blank">@Valor["Texto"].ToString()</a></li>
+                                            @*<li><a class="estilo-01 text-sres-azul" href="http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" target="_blank">Estudio del Impacto del Etiquetado 2018 a 2019</a></li>
+                                                <li><a class="estilo-01 text-sres-azul" href="http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" target="_blank">Estudio del Impacto del Etiquetado de Eficiencia Energética 2020</a></li>
+                                                <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Piloto de Auditorías Energéticas en el Sector Público</a></li>
+                                                <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Piloto de Auditorías Energéticas en el Sector Privado</a></li>
+                                                <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Reglamento de Etiquetado de Eficiencia Energética</a></li>
+                                                <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Guía de Auditorías Energéticas</a></li>
+                                                <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Manual de uso de la plataforma del Sello de Reconocimiento Energético</a></li>*@
+                                        }
+                                    </ul>
+                                }
+                            }
+                        }
+                    }
+
+                    @if (ViewBag.SRESDocumentation["Links"] != null)
+                    {
+                        if ((bool)ViewBag.SRESDocumentation["Links"]["Show"])
+                        {
+                            <h4 class="p-2 estilo-04 text-white bg-degradado wow slideInUp">@($"{ViewBag.SRESDocumentation["Links"]["Titulo"]}")</h4>
+                            if (ViewBag.SRESDocumentation["References"]["Data"] != null)
+                            {
+                                Dictionary<int, object> data = (Dictionary<int, object>)ViewBag.SRESDocumentation["References"]["Data"];
+                                if (data.Count > 0)
+                                {
+                                    <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow slideInUp">
+                                        @foreach (KeyValuePair<int, object> item in data)
+                                        {
+                                            Dictionary<string, object> Valor = (Dictionary<string, object>)item.Value;
+                                            <li><a class="estilo-01 text-sres-azul" href="@Valor["Url"].ToString()" target="_blank">@Valor["Texto"].ToString()</a></li>
+                                            @*<li><a class="estilo-01 text-sres-azul" href="http://www.minem.gob.pe/_publicacion.php?idSector=12&amp;idPublicacion=610" target="_blank">Balance Nacional de Energía 2018</a></li>
+                                                <li><a class="estilo-01 text-sres-azul" href="https://www.mef.gob.pe/prosemer/web/estudio/balance-nacional-de-energ%C3%ADa-%C3%BAtil/14" target="_blank">Balance Nacional de Energía Útil 2013</a></li>
+                                                <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Guías de orientación del uso eficiente de la energía</a></li>*@
+                                        }
+                                    </ul>
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}

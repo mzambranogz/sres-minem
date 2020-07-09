@@ -2,6 +2,7 @@
 
 @{
     UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+    ViewBag.SRESDescription = ViewBag.SRESDescription == null ? true : ViewBag.SRESDescription;
 }
 <!DOCTYPE html>
 <html lang="es">
@@ -51,28 +52,9 @@
 <body>
     @Html.Partial("_MenuTop")
     @Html.Partial("_MenuBottom")
-    @if (ViewBag.Header != null)
-    {
-    <div class="container-fluid set-bg" data-setbg="@Url.Content(ViewBag.Header["Imagen"])">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 py-5">
-                    <h1 class="estilo-03 text-white barra-blanca px-1 wow fadeIn">@ViewBag.Header["Titulo"]</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    }
-    <div class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 my-5">
-                    <p class="text-justify estilo-01 text-sres-gris wow fadeIn">El Sello de Reconocimiento de Energía sostenible <b>(SRES)</b> es un distintivo otorgada por el <b>Ministerio de Energía y Minas del Perú</b> a través de su órgano directivo la <b>Dirección General de Eficiencia Energética</b>, a aquellas entidades que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.</p>
-                    <div class="rayado wow fadeIn"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("_Header")
+    @Html.Partial("_Slider")
+    @Html.Partial("_SRES_Description")
     @RenderBody()
     @Html.Partial("_Footer")
     <script src="@Url.Content("~/Assets/js/script.js")"></script>

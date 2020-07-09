@@ -214,6 +214,10 @@
     <Content Include="Views\Shared\_MenuTop.cshtml" />
     <Content Include="Views\Shared\_MenuBottom.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Slider.cshtml" />
+    <Content Include="Views\Shared\_SRES_Description.cshtml" />
+    <Content Include="Views\Shared\_SRES_Documentation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

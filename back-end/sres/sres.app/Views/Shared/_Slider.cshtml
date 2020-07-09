@@ -1,0 +1,71 @@
+﻿@if (ViewBag.Slider != null)
+{
+    if (ViewBag.Slider.Count > 0)
+    {
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 p-0">
+                <div class="hero-section">
+                    <div class="hero-slider owl-carousel">
+                        @foreach (KeyValuePair<int, Dictionary<string, object>> item in ViewBag.Slider) {
+                        <div class="hs-item set-bg" data-setbg="@Url.Content(item.Value["Imagen"].ToString())">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-7 text-white barra-blanca">
+                                        <span class="estilo-02">@Html.Raw(item.Value["Titulo"].ToString())</span>
+                                        <h2 class="estilo-03">@Html.Raw(item.Value["SubTitulo"].ToString())</h2>
+                                        <p class="estilo-01">@Html.Raw(item.Value["Descripcion"].ToString())</p>
+                                        @Html.Raw(item.Value["Html"].ToString())
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        @*<div class="hs-item set-bg" data-setbg="./images/slide-01.jpg">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xl-6 col-lg-7 text-white barra-blanca">
+                                            <span class="estilo-02">¡REGÍSTRATE AHORA!</span>
+                                            <h2 class="estilo-03">Y OBTÉN LOGROS POR TU COMPROMISO</h2>
+                                            <p class="estilo-01">El Sello de Reconocimiento de Energía Sostenible es un distintivo entregado por el Ministerio de Energía y Minas, a través de la Dirección General de Eficiencia Energética.</p>
+                                            <a class="btn btn-sm btn-sres-linea-blanca wow slideInUp" href="#">CONVOCATORIAS</a>
+                                            <a class="btn btn-sm btn-sres-linea-azul ml-3 wow slideInUp" href="#">RECONOCIMIENTOS</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="hs-item set-bg" data-setbg="./images/slide-02.jpg">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-7 text-white barra-blanca">
+                                        <span class="estilo-02">¡POSTULA YA!</span>
+                                        <h2 class="estilo-03">EL SELLO DE RECONOCIMIENTO DE ENERGÍA SOSTENIBLE</h2>
+                                        <p class="estilo-01">Será otorgado a aquellas entidades públicas y/o privadas que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.</p>
+                                        <a class="btn btn-sm btn-sres-linea-blanca wow slideInUp" href="#">CONVOCATORIAS</a><a class="btn btn-sm btn-sres-linea-azul ml-3 wow slideInUp" href="#">RECONOCIMIENTOS</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hs-item set-bg" data-setbg="./images/slide-03.jpg">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-7 text-white barra-blanca">
+                                        <span class="estilo-02">¿ESTÁS LISTO?</span>
+                                        <h2 class="estilo-03">YA TENEMOS LA PRIMERA FECHA</h2>
+                                        <p class="estilo-01">La convocatoria se inicia en noviembre. Último día para presentar los mecanismos postulación es el <small class="badge badge-primary estilo-01">20 de noviembre 2020.</small></p>
+                                        <a class="btn btn-sm btn-sres-linea-blanca wow slideInUp" href="#">CONVOCATORIAS</a>
+                                        <a class="btn btn-sm btn-sres-linea-azul ml-3 wow slideInUp" href="#">RECONOCIMIENTOS</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                    <div class="container">
+                        <div class="slide-num-holder" id="snh-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+}

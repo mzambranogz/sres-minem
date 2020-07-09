@@ -9,7 +9,7 @@ namespace sres.app.Controllers
 {
     public class InicioController : Controller
     {
-        [SesionOut]
+        //[SesionOut]
         public ActionResult Index()
         {
             return View();
