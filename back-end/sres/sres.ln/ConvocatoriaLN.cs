@@ -14,8 +14,9 @@ namespace sres.ln
     public class ConvocatoriaLN : BaseLN
     {
 
-        public ConvocatoriaDA convocatoriaDA = new ConvocatoriaDA();
-        public RequerimientoDA requerimientoDA = new RequerimientoDA();
+        ConvocatoriaDA convocatoriaDA = new ConvocatoriaDA();
+        RequerimientoDA requerimientoDA = new RequerimientoDA();
+        ConvocatoriaCriterioRequerimientoDA convocatoriaCriterioRequerimientoDA = new ConvocatoriaCriterioRequerimientoDA();
 
         public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden)
         {
@@ -64,34 +65,39 @@ namespace sres.ln
 
                     if (seGuardoConvocatoria)
                     {
+                        foreach (ConvocatoriaCriterioRequerimientoBE iCCR in entidad.LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO)
+                        {
+                            iCCR.ID_CONVOCATORIA = idConvocatoria;
+                            seGuardoConvocatoria = convocatoriaCriterioRequerimientoDA.GuardarConvocatoriaCriterioRequerimiento(iCCR, cn);
+                            if (!seGuardoConvocatoria) break;
+                        }
+                    }
+                    if (seGuardoConvocatoria)
+                    {
                         foreach (var it in entidad.LISTA_REQ)
                         {
                             if (!(seGuardoConvocatoria = convocatoriaDA.GuardarRequerimiento(new RequerimientoBE { ID_REQUERIMIENTO = it.ID_REQUERIMIENTO, FLAG_ESTADO = it.FLAG_ESTADO, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, idConvocatoria, cn, ot).OK)) break;
                         }
-
-                        if (seGuardoConvocatoria)
+                    }
+                    if (seGuardoConvocatoria)
+                    {
+                        foreach (var it in entidad.LISTA_CRI)
                         {
-                            foreach (var it in entidad.LISTA_CRI)
-                            {
-                                if (!(seGuardoConvocatoria = convocatoriaDA.GuardarCriterio(new CriterioBE { ID_CRITERIO = it.ID_CRITERIO, FLAG_ESTADO = it.FLAG_ESTADO, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, idConvocatoria, cn, ot).OK)) break;
-                            }
-
-                            if (seGuardoConvocatoria)
-                            {
-                                foreach (var it in entidad.LISTA_EVA)
-                                {
-                                    if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEvaluador(new UsuarioBE { ID_USUARIO = it.ID_USUARIO, FLAG_ESTADO = it.FLAG_ESTADO, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, idConvocatoria, cn, ot).OK)) break;
-                                }
-
-                                if (seGuardoConvocatoria)
-                                {
-                                    foreach (var it in entidad.LISTA_ETA)
-                                    {
-                                        if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEtapa(new EtapaBE { ID_ETAPA = it.ID_ETAPA, DIAS = it.DIAS, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, idConvocatoria, cn, ot).OK)) break;
-                                    }
-                                }
-                            }                       
-
+                            if (!(seGuardoConvocatoria = convocatoriaDA.GuardarCriterio(new CriterioBE { ID_CRITERIO = it.ID_CRITERIO, FLAG_ESTADO = it.FLAG_ESTADO, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, idConvocatoria, cn, ot).OK)) break;
+                        }
+                    }
+                    if (seGuardoConvocatoria)
+                    {
+                        foreach (var it in entidad.LISTA_EVA)
+                        {
+                            if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEvaluador(new UsuarioBE { ID_USUARIO = it.ID_USUARIO, FLAG_ESTADO = it.FLAG_ESTADO, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, idConvocatoria, cn, ot).OK)) break;
+                        }
+                    }
+                    if (seGuardoConvocatoria)
+                    {
+                        foreach (var it in entidad.LISTA_ETA)
+                        {
+                            if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEtapa(new EtapaBE { ID_ETAPA = it.ID_ETAPA, DIAS = it.DIAS, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, idConvocatoria, cn, ot).OK)) break;
                         }
                     }
 

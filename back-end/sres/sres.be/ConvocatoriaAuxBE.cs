@@ -12,6 +12,7 @@ namespace sres.be
         public List<CriterioBE> LISTA_CRI { get; set; }
         public List<UsuarioBE> LISTA_EVA { get; set; }
         public List<EtapaBE> LISTA_ETA { get; set; }
+        public List<ConvocatoriaCriterioRequerimientoBE> LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO { get; set; }
         public string TXT_FECHA_INICIO { get; set; }
         public string TXT_FECHA_FIN { get; set; }
         public int ID_REQUERIMIENTO { get; set; }

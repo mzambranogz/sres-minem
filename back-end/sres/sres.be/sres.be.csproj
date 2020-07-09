@@ -50,6 +50,7 @@
     <Compile Include="ComponenteBE.cs" />
     <Compile Include="ConvocatoriaAuxBE.cs" />
     <Compile Include="ConvocatoriaBE.cs" />
+    <Compile Include="ConvocatoriaCriterioRequerimientoBE.cs" />
     <Compile Include="ConvocatoriaTrazabilidadBE.cs" />
     <Compile Include="CriterioBE.cs" />
     <Compile Include="EtapaAuxBE.cs" />

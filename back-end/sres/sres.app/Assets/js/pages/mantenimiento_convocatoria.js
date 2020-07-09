@@ -4,10 +4,11 @@
     $('#btnNuevo').on('click', (e) => nuevo());
     $('#btnCerrar').on('click', (e) => cerrarFormulario());
     $('#btnGuardar').on('click', (e) => guardar());
-    consultarRequerimiento('#list-req');
-    consultarCriterio('#list-criterio');
-    consultarEvaluador('#list-evaluador');
-    consultarEtapa('#tbl-etapa');
+    consultarListas();
+    //consultarRequerimiento('#list-req');
+    //consultarCriterio('#list-criterio');
+    //consultarEvaluador('#list-evaluador');
+    //consultarEtapa('#tbl-etapa');
 });
 
 
@@ -124,50 +125,73 @@ var cambiarEstado = (element) => {
         .then(j => { if (j) $('#btnConsultar')[0].click(); });
 };
 
-var consultarRequerimiento = (selector) => {
-
-    let url = `/api/requerimiento/obtenerallrequerimiento`;
-
-    fetch(url)
-    .then(r => r.json())
-    .then(j => cargarCheckRequerimiento(selector, j));
+var consultarListas = () => {
+    let urlConsultarListaCriterio = `/api/criterio/obtenerallcriterio`;
+    let urlConsultarListaRequerimiento = `/api/requerimiento/obtenerallrequerimiento`;
+    let urlConsultarListaEvaluador = `/api/usuario/obtenerallevaluador`;
+    let urlConsultarListaEtapa = `/api/etapa/obteneralletapa`;
+    Promise.all([
+        fetch(urlConsultarListaCriterio),
+        fetch(urlConsultarListaRequerimiento),
+        fetch(urlConsultarListaEvaluador),
+        fetch(urlConsultarListaEtapa)
+    ])
+    .then(r => Promise.all(r.map(v => v.json())))
+    .then(cargarCheckListas);
 }
 
-var consultarCriterio = (selector) => {
-
-    let url = `/api/criterio/obtenerallcriterio`;
-
-    fetch(url)
-    .then(r => r.json())
-    .then(j => cargarCheckCriterio(selector, j));
+var cargarCheckListas = ([listaCriterio, listaRequerimiento, listaEvaluador, listaEtapa]) => {
+    cargarCheckCriterio('#list-criterio', listaCriterio, listaRequerimiento);
+    cargarCheckRequerimiento('#list-req', listaRequerimiento);
+    cargarCheckEvaluador('#list-evaluador', listaEvaluador);
+    cargarCheckEtapa('#tbl-etapa', listaEtapa);
 }
 
-var consultarEvaluador = (selector) => {
+//var consultarRequerimiento = (selector) => {
 
-    let url = `/api/usuario/obtenerallevaluador`;
+//    let url = `/api/requerimiento/obtenerallrequerimiento`;
 
-    fetch(url)
-    .then(r => r.json())
-    .then(j => cargarCheckEvaluador(selector, j));
-}
+//    fetch(url)
+//    .then(r => r.json())
+//    .then(j => cargarCheckRequerimiento(selector, j));
+//}
 
-var consultarEtapa = (selector) => {
+//var consultarCriterio = (selector) => {
 
-    let url = `/api/etapa/obteneralletapa`;
+//    let url = `/api/criterio/obtenerallcriterio`;
 
-    fetch(url)
-    .then(r => r.json())
-    .then(j => cargarCheckEtapa(selector, j));
-}
+//    fetch(url)
+//    .then(r => r.json())
+//    .then(j => cargarCheckCriterio(selector, j));
+//}
+
+//var consultarEvaluador = (selector) => {
+
+//    let url = `/api/usuario/obtenerallevaluador`;
+
+//    fetch(url)
+//    .then(r => r.json())
+//    .then(j => cargarCheckEvaluador(selector, j));
+//}
+
+//var consultarEtapa = (selector) => {
+
+//    let url = `/api/etapa/obteneralletapa`;
+
+//    fetch(url)
+//    .then(r => r.json())
+//    .then(j => cargarCheckEtapa(selector, j));
+//}
 
 var cargarCheckRequerimiento = (selector, data) => {
     let items = data.length == 0 ? '' : data.map(x => `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="requerimiento" id="chk-r-${x.ID_REQUERIMIENTO}"><label for="chk-r-${x.ID_REQUERIMIENTO}">${x.NOMBRE}&nbsp;</label></li></ul></div></div>`).join('');
     $(selector).html(items);
 }
 
-var cargarCheckCriterio = (selector, data) => {
-    let items = data.length == 0 ? '' : data.map(x => `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="criterio" id="chk-c-${x.ID_CRITERIO}"><label for="chk-c-${x.ID_CRITERIO}">${x.NOMBRE}&nbsp;</label></li></ul></div></div>`).join('');
+var cargarCheckCriterio = (selector, data, dataRequerimiento) => {
+    let items = data.length == 0 ? '' : data.map(x => `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="criterio" id="chk-c-${x.ID_CRITERIO}"><label for="chk-c-${x.ID_CRITERIO}">${x.NOMBRE}&nbsp;</label><div id="listaRequerimientoCriterio_${x.ID_CRITERIO}"></div></li></ul></div></div>`).join('');
     $(selector).html(items);
+    cargarCheckRequerimiento('div[id*="listaRequerimientoCriterio_"]', dataRequerimiento);
 }
 
 var cargarCheckEvaluador = (selector, data) => {
@@ -183,7 +207,7 @@ var cargarCheckEtapa = (selector, data) => {
 var nuevo = () => {
     $('#frm').show();
     limpiarFormulario();
-    cargarFormulario();
+    $('#frm').show();
 }
 
 var cerrarFormulario = () => {
@@ -212,6 +236,7 @@ var guardar = () => {
     criterio = [];
     evaluador = [];
     etapa = [];
+    criterioRequerimiento = [];
 
     $('#list-req').find('.requerimiento').each((x, y) => {
         var r = {
@@ -246,9 +271,18 @@ var guardar = () => {
         etapa.push(r);
     });
 
+    Array.from($('div[id*="listaRequerimientoCriterio"]')).forEach(x => {
+        let idCriterio = $(x).parent().find('input[type="checkbox"]').attr('id').replace('chk-c-', '');
+        Array.from($(x).find('.requerimiento')).forEach(y => {
+            let idRequerimiento = $(y).attr('id').replace('chk-r-', '');
+            let obligatorio = $(y).prop('checked').toString()[0].toLocaleUpperCase();
+            criterioRequerimiento.push({ID_CRITERIO: idCriterio, ID_REQUERIMIENTO: idRequerimiento, OBLIGATORIO: obligatorio, UPD_USUARIO: idUsuarioLogin});
+        });
+    });
+
     let url = `/api/convocatoria/guardarconvocatoria`;
 
-    let data = { ID_CONVOCATORIA: id == null ? -1 : id, NOMBRE: nombre, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: id == null ? -1 : id, NOMBRE: nombre, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, USUARIO_GUARDAR: idUsuarioLogin };
     //debugger;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 

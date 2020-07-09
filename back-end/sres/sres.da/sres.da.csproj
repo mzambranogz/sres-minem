@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="AnnoDA.cs" />
     <Compile Include="BaseDA.cs" />
+    <Compile Include="ConvocatoriaCriterioRequerimientoDA.cs" />
     <Compile Include="ConvocatoriaDA.cs" />
     <Compile Include="ConvocatoriaTrazabilidadDA.cs" />
     <Compile Include="CriterioDA.cs" />
