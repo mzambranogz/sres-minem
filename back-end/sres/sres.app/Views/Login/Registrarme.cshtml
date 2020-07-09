@@ -1,80 +1,442 @@
 ﻿
 @{
-    ViewBag.Title = "Registarme";
+    ViewBag.Titulo = "Registarme";
+    ViewBag.Header = new Dictionary<string, object>
+    {
+        ["Imagen"] = "~/Assets//images/bg-registro.png",
+        ["Titulo"] = "REGISTRARSE"
+    };
 }
 
 @section scripts_footer{
     <script src="@Url.Content("~/Assets/js/pages/login_registrarme.js")"></script>
 }
 
-<h2>Registarme</h2>
-
-<form id="frmRegistro" autocomplete="off">
-    <div>
-        <label>
-            RUC: <input type="text" name="txtRucInstitucion" id="txtRucInstitucion" />
-        </label>
-        <button type="button" id="btnConsultarInstitucion">CONSULTAR</button>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12 mb-5 mb-lg-0">
+                <div class="row">
+                    <div class="col-12 wow fadeIn">
+                        <div class="h4 estilo-03">Completa tu información <br><small class="text-muted estilo-02"><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>campos obligatorios</small></div>
+                        <form class="pt-4" id="frmRegistro" action="./login.html" autocomplete="off">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label class="estilo-01" for="txt-ruc">RUC</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Se recomienda un RUC de persona jurídica"></i></span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
+                                            <input class="form-control estilo-01" type="text" name="txtRucInstitucion" id="txtRucInstitucion" placeholder="Ingrese su número de RUC" pattern="[0-9]{11}" maxlength="11" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 d-flex align-items-end">
+                                    <button class="btn btn-primary w-100 mb-3" id="btnConsultarInstitucion" type="button"><i class="fas fa-search px-1"></i>Consultar</button>
+                                </div>
+                            </div>
+                            @*<div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-warning d-flex align-items-stretch" role="alert">
+                                            <div class="alert-wrap mr-3">
+                                                <div class="sa">
+                                                    <div class="sa-warning">
+                                                        <div class="sa-warning-body"></div>
+                                                        <div class="sa-warning-dot"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="alert-wrap">
+                                                <h6>NÚMERO DE RUC NUEVO</h6>
+                                                <hr class="my-1"><small class="mb-0 estilo-01">Por favor continue y complete sus datos en todos los campos del siguiente formulario.</small>
+                                            </div>
+                                        </div>
+                                        <div class="alert alert-success d-flex align-items-stretch" role="alert">
+                                            <div class="alert-wrap mr-3">
+                                                <div class="sa">
+                                                    <div class="sa-success">
+                                                        <div class="sa-success-tip"></div>
+                                                        <div class="sa-success-long"></div>
+                                                        <div class="sa-success-placeholder"></div>
+                                                        <div class="sa-success-fix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="alert-wrap">
+                                                <h6 class="estilo-02">Bien hecho</h6>
+                                                <hr class="my-1"><small class="mb-0 estilo-01">Hemos encontrado información relacionada a su número de RUC, por favor continue y complete sus datos en los campos restantes del siguiente formulario.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="rayado pt-2 mb-3"></div>
+                                    </div>
+                                </div>*@
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label class="estilo-01" for="txt-institucion">Entidad</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Ingrese el nombre comercial o razón social de su empresa"></i></span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
+                                            <input class="form-control estilo-01" type="text" name="txtRazonSocialInstitucion" id="txtRazonSocialInstitucion" readonly placeholder="Ingrese su institución" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{8,70}" maxlength="70" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label class="estilo-01" for="txt-direccion">Domicilio legal</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
+                                            <input class="form-control estilo-01" type="text" name="txtDomicilioLegalInstitucion" id="txtDomicilioLegalInstitucion" readonly placeholder="Ingrese su dirección" pattern="[a-zA-Z0-9 /\@("@")#$%&amp;]+" maxlength="120" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label class="estilo-01" for="cbo-sector">Sector</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-landmark"></i></span></div>
+                                            <select class="form-control estilo-01" name="selIdSectorInstitucion" id="selIdSectorInstitucion" disabled aria-describedby="inputGroup9" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label class="estilo-01" for="txt-user">Correo electrónico</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-envelope"></i></span></div>
+                                            <input class="form-control estilo-01" type="email" name="txtCorreoUsuario" id="txtCorreoUsuario" placeholder="Ingresar correo electrónico" maxlength="50" pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@("@")[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$" title="Ingrese una dirección de correo válida." autocomplete="new-user" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-warning d-lg-flex align-items-stretch" role="alert">
+                                            <div class="alert-wrap mr-3 mb-3 mb-lg-0">
+                                                <div class="sa">
+                                                    <div class="sa-warning">
+                                                        <div class="sa-warning-body"></div>
+                                                        <div class="sa-warning-dot"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="alert-wrap">
+                                                <h6>AUTENTICACIÓN DE CUENTA MRV</h6>
+                                                <hr class="my-1"><small class="mb-0 estilo-01">Encontramos que su Usuario - Correo electrónico se encuentra registrado en la Plataforma MRV del sector energía, por favor inicie sesión con sus credenciales de acceso para continuar.</small>
+                                                <hr class="mt-1 mb-3">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="estilo-01" for="txt-user">Correo electrónico MRV</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend"><span class="input-group-text bg-nama-azul text-white"><i class="fas fa-envelope"></i></span></div>
+                                                                <input class="form-control estilo-01" type="email" id="txt-user-mrv" placeholder="Ingresar correo electrónico" maxlength="50" pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@("@")[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$" title="Ingrese una dirección de correo válida." autocomplete="new-user" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="estilo-01" for="txt-pswd">Contraseña MRV</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend"><span class="input-group-text bg-nama-azul text-white"><i class="fas fa-key"></i></span></div>
+                                                                <input class="form-control estilo-01" type="password" id="txt-pswd-mrv" placeholder="Ingresar contraseña" maxlength="30" title="Ingrese su contraseña." autocomplete="new-password" required>
+                                                                <div class="input-group-append">
+                                                                    <label class="input-group-text cursor-pointer ver-clave estilo-01 bg-nama-azul text-white"><i class="fas fa-eye mr-1"></i>Mostrar</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 offset-md-6 col-md-6 text-center">
+                                                        <button class="btn-lg btn-nama-azul w-100 mb-3" type="button"><img class="px-1" src="@Url.Content("~/Assets/images/mrv-iso.png")">Ingresa con MRV</button><a class="text-sres-verde estilo-01" href="http://sismrv.minem.gob.pe/Home/recuperar" target="_blank">¿Olvidó su contraseña?</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-danger d-flex align-items-stretch" role="alert">
+                                            <div class="alert-wrap mr-3">
+                                                <div class="sa">
+                                                    <div class="sa-error">
+                                                        <div class="sa-error-x">
+                                                            <div class="sa-error-left"></div>
+                                                            <div class="sa-error-right"></div>
+                                                        </div>
+                                                        <div class="sa-error-placeholder"></div>
+                                                        <div class="sa-error-fix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="alert-wrap">
+                                                <h6 class="estilo-02">Ocurrió un Error inesperado</h6>
+                                                <hr class="my-1"><small class="mb-0 estilo-01">Inténtelo nuevamente por favor.</small>
+                                            </div>
+                                        </div>
+                                        <div class="alert alert-success d-flex align-items-stretch" role="alert">
+                                            <div class="alert-wrap mr-3">
+                                                <div class="sa">
+                                                    <div class="sa-success">
+                                                        <div class="sa-success-tip"></div>
+                                                        <div class="sa-success-long"></div>
+                                                        <div class="sa-success-placeholder"></div>
+                                                        <div class="sa-success-fix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="alert-wrap">
+                                                <h6 class="estilo-02">Bien hecho</h6>
+                                                <hr class="my-1"><small class="mb-0 estilo-01">Su cuenta MRV a sido sincronizada</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label class="estilo-01" for="txtNombresUsuario">Nombres</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
+                                            <input class="form-control estilo-01" type="text" name="txtNombresUsuario" id="txtNombresUsuario" readonly placeholder="Ingrese su nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,54}" maxlength="54" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label class="estilo-01" for="txt-apellido">Apellidos</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
+                                            <input class="form-control estilo-01" type="text" name="txtApellidosUsuario" id="txtApellidosUsuario" readonly placeholder="Ingrese su apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{8,54}" maxlength="54" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group tel">
+                                        <label class="estilo-01" for="txt-telefono">Teléfono fijo</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-phone-alt"></i></span></div>
+                                            <input class="form-control estilo-01" type="tel" name="txtTelefonoUsuario" id="txtTelefonoUsuario" readonly placeholder="Ingrese su teléfono" pattern="[0-9]{6,10}" maxlength="10">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group tel">
+                                        <label class="estilo-01" for="txt-anexo">Anexo</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-phone-square-alt"></i></span></div>
+                                            <input class="form-control estilo-01" type="tel" name="txtAnexoUsuario" id="txtAnexoUsuario" readonly placeholder="Ingrese su anexo" pattern="[0-9]{4,5}" maxlength="5" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group cel">
+                                        <label class="estilo-01" for="txt-celular">Teléfono móvil</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-mobile-alt"></i></span></div>
+                                            <input class="form-control estilo-01" type="text" name="txtCelularUsuario" id="txtCelularUsuario" readonly placeholder="Ingrese su celular" pattern="[0-9]{9,12}" maxlength="12" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label class="estilo-01" for="txt-pswd">Contraseña</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Su contraseña debe incluir 6 caracteres como mínimo, 1 minúscula, 1 mayúscula, 1 número y 1 caracter especial (!@("@")#$&amp;*)."></i></span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-key"></i></span></div><input class="form-control estilo-01" type="password" name="txtContraseñaUsuario" id="txtContraseñaUsuario" readonly placeholder="Ingrese se contraseña" pattern="(?=.*\d)(?=.*[!@("@")#$&*])(?=.*[a-z])(?=.*[A-Z]).{6,}" autocomplete="new-password" required>
+                                            <div class="input-group-append">
+                                                <label class="input-group-text cursor-pointer ver-clave"><i class="fas fa-eye mr-1"></i>Mostrar</label>
+                                            </div>
+                                        </div>
+                                        <div class="nivelSeguridad">
+                                            <small class="text-primary">
+                                                <div class="fas fa-shield-alt"></div>&nbsp; Nivel de seguridad: &nbsp;<span class="text-primary font-weight-bold" id="nivelseguridad">bajo</span>
+                                                <div class="nivelesColores">
+                                                    <div class="spanNivelesColores"></div>
+                                                </div>
+                                            </small>
+                                            <div class="NivelesColores"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label class="estilo-01" for="txt-re-pswd">Confirmar contraseña</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-key"></i></span></div>
+                                            <input class="form-control estilo-01" type="password" name="txtConfirmarContraseñaUsuario" id="txtConfirmarContraseñaUsuario" readonly placeholder="Confirmar su contraseña" required>
+                                            <div class="input-group-append">
+                                                <label class="input-group-text cursor-pointer ver-clave"><i class="fas fa-eye mr-1"></i>Mostrar</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="rayado pt-2 mb-3"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="chk-terminos-condiciones">
+                                            <label class="custom-control-label estilo-01" for="chk-terminos-condiciones">Aceptar los términos y condiciones de uso. &nbsp;</label><a class="estilo-01" href="#" data-toggle="modal" data-target="#terminos-condiciones">Ver aquí</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <button class="btn-lg btn-sres-verde w-100" type="submit"><i class="fas fa-paper-plane px-1"></i>Registrarse</button>
+                                    <p class="py-4 mb-0 text-center estilo-01">¿Ya tiene un cuenta?&nbsp;<a class="text-sres-verde" href="./login.html">Ingrese ahora <br></a><a class="text-sres-verde" href="./recuperar.html">¿Olvidó su contraseña?</a></p>
+                                </div>
+                            </div>
+                            @*<div class="alert alert-danger d-flex align-items-stretch" role="alert">
+                                <div class="alert-wrap mr-3">
+                                    <div class="sa">
+                                        <div class="sa-error">
+                                            <div class="sa-error-x">
+                                                <div class="sa-error-left"></div>
+                                                <div class="sa-error-right"></div>
+                                            </div>
+                                            <div class="sa-error-placeholder"></div>
+                                            <div class="sa-error-fix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="alert-wrap">
+                                    <h6 class="estilo-02">Ocurrió un Error inesperado</h6>
+                                    <hr class="my-1"><small class="mb-0 estilo-01">Inténtelo nuevamente por favor.</small>
+                                </div>
+                            </div>
+                            <div class="alert alert-success d-flex align-items-stretch" role="alert">
+                                <div class="alert-wrap mr-3">
+                                    <div class="sa">
+                                        <div class="sa-success">
+                                            <div class="sa-success-tip"></div>
+                                            <div class="sa-success-long"></div>
+                                            <div class="sa-success-placeholder"></div>
+                                            <div class="sa-success-fix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="alert-wrap">
+                                    <h6 class="estilo-02">Bien hecho</h6>
+                                    <hr class="my-1"><small class="mb-0 estilo-01">Hemos recibido sus datos, en breve recibirá nuestra respuesta por correo electrónico.</small>
+                                </div>
+                            </div>*@
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="p-2 estilo-04 text-white bg-degradado wow fadeIn">DOCUMENTOS DE REFERENCIA</h4>
+                        <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow fadeIn">
+                            <li><a class="estilo-01 text-sres-azul" href="http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" target="_blank">Estudio del Impacto del Etiquetado 2018 a 2019</a></li>
+                            <li><a class="estilo-01 text-sres-azul" href="http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" target="_blank">Estudio del Impacto del Etiquetado de Eficiencia Energética 2020</a></li>
+                            <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Piloto de Auditorías Energéticas en el Sector Público</a></li>
+                            <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Piloto de Auditorías Energéticas en el Sector Privado</a></li>
+                            <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Reglamento de Etiquetado de Eficiencia Energética</a></li>
+                            <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Guía de Auditorías Energéticas</a></li>
+                            <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Manual de uso de la plataforma del Sello de Reconocimiento Energético</a></li>
+                        </ul>
+                        <h4 class="p-2 estilo-04 text-white bg-degradado wow fadeIn">LINKS DE INTERÉS</h4>
+                        <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow fadeIn">
+                            <li><a class="estilo-01 text-sres-azul" href="http://www.minem.gob.pe/_publicacion.php?idSector=12&amp;idPublicacion=610" target="_blank">Balance Nacional de Energía 2018</a></li>
+                            <li><a class="estilo-01 text-sres-azul" href="https://www.mef.gob.pe/prosemer/web/estudio/balance-nacional-de-energ%C3%ADa-%C3%BAtil/14" target="_blank">Balance Nacional de Energía Útil 2013</a></li>
+                            <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Guías de orientación del uso eficiente de la energía</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <hr />
-    <div>
-        <label>
-            Entidad: <input type="text" name="txtRazonSocialInstitucion" id="txtRazonSocialInstitucion" readonly />
-        </label>
-        <label>
-            Domicilio Legal: <input type="text" name="txtDomicilioLegalInstitucion" id="txtDomicilioLegalInstitucion" readonly />
-        </label>
-    </div>
-    <div>
-        <label>
-            Sector: <select name="selIdSectorInstitucion" id="selIdSectorInstitucion" disabled ></select>
-        </label>
-    </div>
-    <div>
-        <label>
-            Correo electrónico: <input type="text" name="txtCorreoUsuario" id="txtCorreoUsuario" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Nombres: <input type="text" name="txtNombresUsuario" id="txtNombresUsuario" readonly />
-        </label>
-        <label>
-            Apellidos: <input type="text" name="txtApellidosUsuario" id="txtApellidosUsuario" readonly />
-        </label>
-    </div>
-    <div>
-        <label>
-            Teléfono fijo: <input type="text" name="txtTelefonoUsuario" id="txtTelefonoUsuario" readonly />
-        </label>
-        <label> 
-            Anexo: <input type="text" name="txtAnexoUsuario" id="txtAnexoUsuario" readonly />
-        </label>
-    </div>
-    <div>
-        <label>
-            Celular: <input type="text" name="txtCelularUsuario" id="txtCelularUsuario" readonly />
-        </label>
-    </div>
-    <div id="viewContraseñaUsuario">
-        <label>
-            Contraseña: <input type="password" name="txtContraseñaUsuario" id="txtContraseñaUsuario" readonly />
-        </label>
-        <label>
-            Confirmar Contraseña: <input type="password" name="txtConfirmarContraseñaUsuario" id="txtConfirmarContraseñaUsuario" readonly />
-        </label>
-    </div>
-    <div>
-        <button type="button" id="btnRegistrarme">REGISTRARME</button>
-    </div>
-</form>
-
-<div id="viewLoginMRV" style="display: none;">
-    <label>
-        Correo: <input type="text" name="txtCorreoMRV" id="txtCorreoMRV" readonly />
-    </label>
-    <label>
-        Contraseña: <input type="password" name="txtContraseñaMRV" id="txtContraseñaMRV" />
-    </label>
-    <button id="btnValidarUsuarioMRV">Validar</button>
 </div>
+
+
+
+
+@*<h2>Registarme</h2>
+
+    <form id="frmRegistro" autocomplete="off">
+        <div>
+            <label>
+                RUC: <input type="text" name="txtRucInstitucion" id="txtRucInstitucion" />
+            </label>
+            <button type="button" id="btnConsultarInstitucion">CONSULTAR</button>
+        </div>
+        <hr />
+        <div>
+            <label>
+                Entidad: <input type="text" name="txtRazonSocialInstitucion" id="txtRazonSocialInstitucion" readonly />
+            </label>
+            <label>
+                Domicilio Legal: <input type="text" name="txtDomicilioLegalInstitucion" id="txtDomicilioLegalInstitucion" readonly />
+            </label>
+        </div>
+        <div>
+            <label>
+                Sector: <select name="selIdSectorInstitucion" id="selIdSectorInstitucion" disabled ></select>
+            </label>
+        </div>
+        <div>
+            <label>
+                Correo electrónico: <input type="text" name="txtCorreoUsuario" id="txtCorreoUsuario" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Nombres: <input type="text" name="txtNombresUsuario" id="txtNombresUsuario" readonly />
+            </label>
+            <label>
+                Apellidos: <input type="text" name="txtApellidosUsuario" id="txtApellidosUsuario" readonly />
+            </label>
+        </div>
+        <div>
+            <label>
+                Teléfono fijo: <input type="text" name="txtTelefonoUsuario" id="txtTelefonoUsuario" readonly />
+            </label>
+            <label>
+                Anexo: <input type="text" name="txtAnexoUsuario" id="txtAnexoUsuario" readonly />
+            </label>
+        </div>
+        <div>
+            <label>
+                Celular: <input type="text" name="txtCelularUsuario" id="txtCelularUsuario" readonly />
+            </label>
+        </div>
+        <div id="viewContraseñaUsuario">
+            <label>
+                Contraseña: <input type="password" name="txtContraseñaUsuario" id="txtContraseñaUsuario" readonly />
+            </label>
+            <label>
+                Confirmar Contraseña: <input type="password" name="txtConfirmarContraseñaUsuario" id="txtConfirmarContraseñaUsuario" readonly />
+            </label>
+        </div>
+        <div>
+            <button type="button" id="btnRegistrarme">REGISTRARME</button>
+        </div>
+    </form>
+
+    <div id="viewLoginMRV" style="display: none;">
+        <label>
+            Correo: <input type="text" name="txtCorreoMRV" id="txtCorreoMRV" readonly />
+        </label>
+        <label>
+            Contraseña: <input type="password" name="txtContraseñaMRV" id="txtContraseñaMRV" />
+        </label>
+        <button id="btnValidarUsuarioMRV">Validar</button>
+    </div>*@

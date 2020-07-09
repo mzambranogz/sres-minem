@@ -78,6 +78,7 @@ var cargarDatosInstitucionMRV = (data) => {
 
 var cargarComboSector = (selector, data) => {
     let options = data.length == 0 ? '' : data.map(x => `<option value="${x.ID_SECTOR}">${x.NOMBRE}</option>`).join('');
+    options = `<option>-Seleccione un sector-</option>${options}`;
     $(selector).html(options);
 }
 
@@ -90,7 +91,7 @@ var consultarUsuario = () => {
 
     if(correo == '' || idInstitucion == '') return;
 
-    let urlObtenerUsuarioPorinstitucionCorreo = `/api/obtenerusuarioporinstitucioncorreo?idInstitucion=${idInstitucion}&correo=${correo}`;
+    let urlObtenerUsuarioPorinstitucionCorreo = `/api/usuario/obtenerusuarioporinstitucioncorreo?idInstitucion=${idInstitucion}&correo=${correo}`;
 
     fetch(urlObtenerUsuarioPorinstitucionCorreo)
     .then(r => r.json())

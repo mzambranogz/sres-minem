@@ -22,6 +22,7 @@ namespace sres.ln
                 cn.Open();
                 item = institucionDA.ObtenerInstitucionPorRuc(ruc, cn);
             }
+            catch(Exception ex) { throw ex; }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return item;

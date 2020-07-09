@@ -148,8 +148,8 @@
     <Content Include="Assets\js\pages\mantenimiento_rol.js" />
     <Content Include="Assets\js\pages\mantenimiento_sector.js" />
     <Content Include="Assets\js\pages\mantenimiento_usuario.js" />
-    <Content Include="Assets\js\plugins\script.js" />
-    <Content Include="Assets\styles\style.css" />
+    <Content Include="Assets\css\style.css" />
+    <Content Include="Assets\js\script.js" />
     <Content Include="Global.asax" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -211,6 +211,9 @@
     <Content Include="Views\Convocatoria\Inscribirme.cshtml" />
     <Content Include="Views\Inscripcion\Index.cshtml" />
     <Content Include="Views\Convocatoria\CriterioIngresar.cshtml" />
+    <Content Include="Views\Shared\_MenuTop.cshtml" />
+    <Content Include="Views\Shared\_MenuBottom.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -219,6 +222,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\fonts\" />
+    <Folder Include="Assets\images\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\_Base\" />
