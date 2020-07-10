@@ -12,5 +12,6 @@ namespace sres.be
         public string NOMBRE { get; set; }
         public string FLAG_ESTADO { get; set; }
         public List<RequerimientoBE> LISTA_REQUERIMIENTO { get; set; }
+        public List<CasoBE> LISTA_CASO { get; set; }
     }
 }

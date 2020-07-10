@@ -1,0 +1,32 @@
+﻿@using sres.be
+@{
+    ViewBag.Titulo = "Criterios";
+    ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
+    InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
+    List<CriterioBE> listaCriterio = (List<CriterioBE>)ViewData["listaCriterio"];
+}
+
+<h2>Criterios</h2>
+
+@if (listaCriterio != null)
+{
+    if (listaCriterio.Count > 0)
+    {
+        foreach (CriterioBE item in listaCriterio)
+        {
+            <ul>
+                <li>
+                @item.NOMBRE <a href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">Ingresar Criterio</a>
+                </li>
+            </ul>
+        }
+    }
+    else
+    {
+        <div>No existen criterios</div>
+    }
+}
+else
+{
+    <div>No existen criterios</div>
+}

@@ -76,7 +76,7 @@ var enviarInscripcion = () => {
             UPD_USUARIO: idUsuarioLogin
         }
     });
-    debugger;
+
     let data = {
         ID_INSCRIPCION: idInscripcion == null ? -1 : idInscripcion,
         ID_CONVOCATORIA: idConvocatoria,

@@ -7,12 +7,15 @@ using sres.da;
 using sres.be;
 using System.Data;
 using Oracle.DataAccess.Client;
+using sres.ut;
 
 namespace sres.ln
 {
     public class CriterioLN : BaseLN
     {
-        public CriterioDA criterioDA = new CriterioDA();
+        CriterioDA criterioDA = new CriterioDA();
+        CasoDA casoDA = new CasoDA();
+        ComponenteDA componenteDA = new ComponenteDA();
 
         //public CriterioBE RegistroCriterio(CriterioBE entidad)
         //{
@@ -98,39 +101,46 @@ namespace sres.ln
             return lista;
         }
 
-        public List<ComponenteBE> BuscarCriterioCaso(CasoBE entidad)
+        //public List<CasoBE> BuscarCriterioCaso(CasoBE entidad)
+        public List<CasoBE> BuscarCriterioCaso(int idCriterio, int idInscripcion)
         {
-            List<ComponenteBE> lista = new List<ComponenteBE>();
+            List<CasoBE> lista = new List<CasoBE>();
             try
             {
                 cn.Open();
-                lista = criterioDA.BuscarCriterioCaso(entidad, cn);
-                foreach (var componente in lista)
+                lista = casoDA.ListarCasoPorCriterio(idCriterio, cn);
+
+                foreach (var caso in lista)
                 {
-                    componente.LIST_INDICADOR_HEAD = criterioDA.ArmarIndicador(componente, cn);
-                    foreach (var indicador in componente.LIST_INDICADOR_HEAD)
+                    caso.LIST_COMPONENTE = criterioDA.BuscarCriterioCaso(idCriterio, caso.ID_CASO, cn);
+
+                    foreach (var componente in caso.LIST_COMPONENTE)
                     {
-                        indicador.OBJ_PARAMETRO = criterioDA.ObtenerParametro(indicador, cn);
-                    }
-
-                    componente.ID_INSCRIPCION = entidad.ID_INSCRIPCION;
-                    var flag_n = criterioDA.VerificarIndicador(componente, cn);
-
-                    componente.LIST_INDICADOR_BODY = criterioDA.ObtenerIndicador(componente, cn);
-                    foreach (var ind in componente.LIST_INDICADOR_BODY)
-                    {
-                        ind.FLAG_NUEVO = flag_n;
-                        if (flag_n == 0)
+                        componente.LIST_INDICADOR_HEAD = criterioDA.ArmarIndicador(componente, cn);
+                        foreach (var indicador in componente.LIST_INDICADOR_HEAD)
                         {
-                            ind.LIST_INDICADORFORM = criterioDA.ArmarIndicadorForm(ind, cn);
+                            indicador.OBJ_PARAMETRO = criterioDA.ObtenerParametro(indicador, cn);
                         }
-                        else
-                        {
-                            ind.ID_INSCRIPCION = entidad.ID_INSCRIPCION;
-                            ind.LIST_INDICADORDATA = criterioDA.ArmarIndicadorData(ind, cn);
-                        }
-                    }
 
+                        componente.ID_INSCRIPCION = idInscripcion;
+                        var flag_n = criterioDA.VerificarIndicador(componente, cn);
+
+                        componente.LIST_INDICADOR_BODY = criterioDA.ObtenerIndicador(componente, cn);
+                        foreach (var ind in componente.LIST_INDICADOR_BODY)
+                        {
+                            ind.FLAG_NUEVO = flag_n;
+                            if (flag_n == 0)
+                            {
+                                ind.LIST_INDICADORFORM = criterioDA.ArmarIndicadorForm(ind, cn);
+                            }
+                            else
+                            {
+                                ind.ID_INSCRIPCION = idInscripcion;
+                                ind.LIST_INDICADORDATA = criterioDA.ArmarIndicadorData(ind, cn);
+                            }
+                        }
+
+                    }
                 }
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
@@ -170,6 +180,42 @@ namespace sres.ln
                 }
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
+        public List<CriterioBE> ListarCriterioPorConvocatoria(int idConvocatoria)
+        {
+            List<CriterioBE> lista = null;
+
+            try
+            {
+                cn.Open();
+                lista = criterioDA.ListarCriterioPorConvocatoria(idConvocatoria, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
+
+        public CriterioBE ObtenerCriterioPorConvocatoria(int idConvocatoria, int idCriterio)
+        {
+            CriterioBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = criterioDA.ObtenerCriterioPorConvocatoria(idConvocatoria, idCriterio, cn);
+                //item.LISTA_CASO = casoDA.ListarCasoPorCriterio(idCriterio, cn);
+                //if(item.LISTA_CASO != null)
+                //{
+                //    item.LISTA_CASO.ForEach(x =>
+                //    {
+                //        x.LIST_COMPONENTE = componenteDA.ListarComponentePorCaso(x.ID_CASO, cn);
+                //    });
+                //}
+            }
+            catch (Exception ex) { Log.Error(ex); }
 
             return item;
         }

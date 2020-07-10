@@ -59,9 +59,10 @@ namespace sres.app.Controllers.Api
 
         [Route("buscarcriteriocaso")]
         [HttpGet]
-        public List<ComponenteBE> BuscarCriterioCaso(int id_criterio, int id_caso, int id_inscripcion)
+        //public List<CasoBE> BuscarCriterioCaso(int id_criterio, int id_caso, int id_inscripcion)
+        public List<CasoBE> BuscarCriterioCaso(int id_criterio, int id_inscripcion)
         {
-            return criterioLN.BuscarCriterioCaso(new CasoBE() { ID_CRITERIO = id_criterio, ID_CASO = id_caso, ID_INSCRIPCION = id_inscripcion });
+            return criterioLN.BuscarCriterioCaso(id_criterio, id_inscripcion);
         }
 
         [Route("guardarcriteriocaso")]
@@ -71,5 +72,11 @@ namespace sres.app.Controllers.Api
             return criterioLN.GuardarCriterioCaso(entidad).OK;
         }
 
+        //[Route("listarcriterioporconvocatoria")]
+        //[HttpGet]
+        //public List<CriterioBE> ListarCriterioPorConvocatoria(int idConvocatoria)
+        //{
+        //    return criterioLN.ListarCriterioPorConvocatoria(idConvocatoria);
+        //}
     }
 }

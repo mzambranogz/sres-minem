@@ -46,14 +46,14 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
             let diasTranscurridos = Math.floor((fechaActual - fechaInicio) / (1000 * 60 * 60 * 24));
             let porcentajeAvance = (fechaInicio > fechaActual ? 0.00 : (diasTranscurridos / diasPlazo * 100)).toFixed(2);
 
-            let colNroInforme = `<td>${x.NRO_INFORME}</td>`;
+            let colNroInforme = `<td>${x.NRO_INFORME || ''}</td>`;
             let colPeriodo = `<td>${fechaInicio.getFullYear() == fechaFin.getFullYear() ? fechaInicio.getFullYear() : fechaInicio.getFullYear() + "-" + fechaFin.getFullYear()}</td>`;
             let colNombre = `<td>${x.NOMBRE}</td>`;
             let colFechaInicio = `<td>${fechaInicio.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;
             let colFechaFin = `<td>${fechaFin.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;
             let colVencimiento = `<td>${porcentajeAvance}%</td>`;
             let colEstado = `<td>${obtenerEstadoConvocatoria(x.FLAG_ESTADO)}</td>`;
-            let btnIngresar = `<a target="_blank" href="${baseUrl}Convocatoria/Inscribirme/${x.ID_CONVOCATORIA}" class="btn btn-xs">INGRESAR</a>`;
+            let btnIngresar = `<a target="_blank" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme" class="btn btn-xs">INGRESAR</a>`;
             let colOpciones = `<td>${btnIngresar}</td>`;
             let fila = `<tr>${colNroInforme}${colPeriodo}${colNombre}${colFechaInicio}${colFechaFin}${colVencimiento}${colEstado}${colOpciones}</tr>`;
             return fila;

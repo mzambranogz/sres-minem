@@ -1,0 +1,27 @@
+﻿@using sres.be
+@{
+    ViewBag.Titulo = "Criterio";
+    ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
+    InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
+    CriterioBE criterio = (CriterioBE)ViewData["criterio"];
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/pages/convocatoria_criterio.js")"></script>
+}
+
+<h2>Criterio</h2>
+
+@criterio.NOMBRE
+
+@*<div>
+    <button id="btnConsultar">CONSULTAR</button>
+</div>*@
+<div id="cabecera"></div>
+<div>
+    <button id="btnGuardar">Guardar</button>
+</div>
+<script>
+    const idCriterio = @criterio.ID_CRITERIO;
+    const idInscripcion = @inscripcion.ID_INSCRIPCION;
+</script>

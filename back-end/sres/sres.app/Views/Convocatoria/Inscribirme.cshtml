@@ -17,10 +17,10 @@
 <h2>DATOS DE LA CONVOCATORIA @convocatoria.NOMBRE</h2>
 
 <div>
-    <label>FECHA INICIO: </label> @convocatoria.FECHA_INICIO.ToString("dd//MM/yyyy")
+    <label>FECHA INICIO: </label> @convocatoria.FECHA_INICIO.ToString("dd/MM/yyyy")
 </div>
 <div>
-    <label>FECHA FIN: </label> @convocatoria.FECHA_FIN.ToString("dd//MM/yyyy")
+    <label>FECHA FIN: </label> @convocatoria.FECHA_FIN.ToString("dd/MM/yyyy")
 </div>
 
 <div id="lstInscripcionRequerimiento"></div>
@@ -28,5 +28,5 @@
 <button id="btnInscribirme" type="button">@(inscripcion == null ? "INSCRIBIRME" : "ACTUALIZAR DOCUMENTOS")</button>
 @if(inscripcion != null)
 {
-    <a href="@Url.Content($"~/Inscripcion/{inscripcion.ID_CONVOCATORIA}/{inscripcion.ID_INSCRIPCION}")">COMPLETAR CRITERIOS</a>
+    <a href="@Url.Content($"~/Convocatoria/{inscripcion.ID_CONVOCATORIA}/Criterios")">COMPLETAR CRITERIOS</a>
 }

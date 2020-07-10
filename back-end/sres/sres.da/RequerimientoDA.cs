@@ -182,5 +182,13 @@ namespace sres.da
             return lista;
         }
 
+        public List<RequerimientoBE> ListarRequerimientoPorConvocatoriaCriterio(int idConvocatoria, int idCriterio, OracleConnection db)
+        {
+            List<RequerimientoBE> lista = null;
+
+
+
+            return lista;
+        }
     }
 }

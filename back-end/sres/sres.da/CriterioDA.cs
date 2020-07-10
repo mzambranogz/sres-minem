@@ -143,7 +143,7 @@ namespace sres.da
         }
 
         //=========================================================================================
-        public List<ComponenteBE> BuscarCriterioCaso(CasoBE entidad, OracleConnection db)
+        public List<ComponenteBE> BuscarCriterioCaso(int idCriterio, int idCaso, OracleConnection db)
         {
             List<ComponenteBE> lista = new List<ComponenteBE>();
 
@@ -151,16 +151,16 @@ namespace sres.da
             {
                 string sp = $"{Package.Mantenimiento}USP_SEL_CRI_CAS_COMPONENTE";
                 var p = new OracleDynamicParameters();
-                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
-                p.Add("PI_ID_cASO", entidad.ID_CASO);
+                p.Add("PI_ID_CRITERIO", idCriterio);
+                p.Add("PI_ID_CASO", idCaso);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<ComponenteBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
-                entidad.OK = true;
+                //entidad.OK = true;
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                entidad.OK = false;
+                //entidad.OK = false;
             }
 
             return lista;
@@ -355,6 +355,41 @@ namespace sres.da
                 entidad.OK = false;
             }
             return indicador;
+        }
+
+        public List<CriterioBE> ListarCriterioPorConvocatoria(int idConvocatoria, OracleConnection db)
+        {
+            List<CriterioBE> lista = null;
+
+            try
+            {
+                string sp = $"{Package.Criterio}USP_SEL_LISTA_CRITERIO_CONVOCATORIA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<CriterioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
+
+        public CriterioBE ObtenerCriterioPorConvocatoria(int idConvocatoria, int idCriterio, OracleConnection db)
+        {
+            CriterioBE item = null;
+
+            try
+            {
+                string sp = $"{Package.Criterio}USP_SEL_OBTIENE_CRITERIO_CONVOCATORIA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_CRITERIO", idCriterio);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.QueryFirstOrDefault<CriterioBE>(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return item;
         }
     }
 }
