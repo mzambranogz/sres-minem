@@ -43,27 +43,6 @@
     <link rel="manifest" href="./images/favicon/manifest.json">
   </head>
   <body>
-    <!--.container-fluid.menu-top
-    .container
-      header.navbar.navbar-expand.py-1.px-0
-        a.btn.btn-sm.btn-outline-sres-azul.d-none.d-lg-block.animated.slideInDown(href="http://www.minem.gob.pe/_detalle.php?idSector=12&idTitular=3011&idMenu=sub3001&idCateg=716", target="_blank", role="button")
-          | QUIENES SOMOS
-        a.btn.btn-sm.btn-outline-sres-azul.ml-2.d-none.d-lg-block.animated.slideInDown(href="http://www.minem.gob.pe/_contactos.php", target="_blank",role="button")
-          | CONTACTO
-        ul.navbar-nav.ml-md-auto
-          li.nav-item.align-self-center.mr-2
-            a.nav-link.p-0.animated.fadeIn(href="https://www.gob.pe/minem", target="_blank")
-              img(src="./images/logo-minem.jpg", height="36")
-          li.nav-item.align-self-center.mr-2
-            a.nav-link.p-0.animated.fadeIn(href="https://www.thegef.org/", target="_blank")
-              img(src="./images/logo_gef.svg", height="39")
-          li.nav-item.align-self-center.mr-2
-            a.nav-link.p-0.animated.fadeIn(href="https://www.pe.undp.org/", target="_blank")
-              img(src="./images/logo_pnud.svg", height="42")
-          li.nav-item.align-self-center.mr-0.ml-3
-            a.btn.btn-sm.btn-sres-azul.animated.slideInRight(href="./login.html", role="button")
-              | INICIAR SESIÓN
-    -->
     <div class="container-fluid menu">
       <div class="container">
         <nav class="navbar navbar-expand-lg p-0 d-flex align-items-start"><a class="navbar-brand mr-sm-auto p-0 mt-2 order-sm-1 order-md-1 order-lg-1 animated slideInLeft" id="logo" href="./index.html"><img src="./images/sres-logo.png" height="75"></a>
@@ -71,26 +50,28 @@
           <div class="text-right order-sm-2 order-md-2 order-lg-2" id="instituciones">
             <header class="navbar navbar-expand p-0" id="logos-institucionales">
               <ul class="navbar-nav ml-sm-auto">
-                <li class="nav-item align-self-center pl-0"><a class="nav-link p-0 animated fadeIn" href="https://www.gob.pe/minem" target="_blank"><img src="./images/logo-minem.jpg" height="36"></a></li>
-                <li class="nav-item align-self-center"><a class="nav-link p-0 animated fadeIn" href="https://www.thegef.org/" target="_blank"><img src="./images/logo_gef.svg" height="39"></a></li>
-                <li class="nav-item align-self-center pr-0"><a class="nav-link p-0 animated fadeIn" href="https://www.pe.undp.org/" target="_blank"><img src="./images/logo_pnud.svg" height="42"></a></li>
+                <li class="nav-item align-self-center pl-0"><a class="nav-link p-0 mr-2 animated slideInDown" href="https://www.gob.pe/minem" target="_blank"><img src="./images/logo-minem.jpg" height="36"></a></li>
+                <li class="nav-item align-self-center"><a class="nav-link p-0 mr-2 animated slideInDown" href="https://www.thegef.org/" target="_blank"><img src="./images/logo_gef.svg" height="39"></a></li>
+                <li class="nav-item align-self-center pr-0"><a class="nav-link p-0 animated slideInDown" href="https://www.pe.undp.org/" target="_blank"><img src="./images/logo_pnud.svg" height="42"></a></li>
               </ul>
             </header>
             <div class="text-right mt-2 d-none d-lg-block"><a class="btn btn-sm btn-sres-verde mr-3 animated slideInRight" href="./registro.html" role="button"><i class="fas fa-pencil-alt mr-2"></i>REGISTRARSE</a><a class="btn btn-sm btn-sres-azul animated slideInRight" href="./login.html" role="button"><i class="fas fa-sign-in-alt mr-2"></i>INICIAR SESIÓN</a></div>
             <button class="navbar-toggler my-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto p-2">
-                <li class="nav-item align-self-center activo"><a class="nav-link wow slideInUp nav-active" href="./index.html" data-wow-delay=".2s">INICIO</a></li>
-                <li class="nav-item align-self-center"><a class="nav-link wow slideInUp" href="./participantes.html" data-wow-delay=".3s">PARTICIPANTES</a></li>
-                <li class="nav-item align-self-center"><a class="nav-link wow slideInUp" href="./convocatorias.html" data-wow-delay=".4s">CONVOCATORIAS</a></li>
-                <li class="nav-item align-self-center"><a class="nav-link wow slideInUp" href="./reconocimientos.html" data-wow-delay=".5s">RECONOCIMIENTOS</a></li>
-                <li class="nav-item align-self-center"><a class="nav-link wow slideInUp" href="./estadisticas.html" data-wow-delay=".6s">ESTADÍSTICAS</a></li>
+              <ul class="navbar-nav btn ml-auto p-0">
+                <li class="nav-item btn activo"><a class="nav-link wow slideInUp nav-active" href="./index.html" data-wow-delay=".2s"><i class="fas fa-house-damage fa-lg mr-1 mr-lg-0"></i><span class="d-lg-none">INICIO</span></a></li>
+                <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./index.html" data-wow-delay=".3s"><i class="fas fa-award fa-lg mr-1"></i>SOBRE EL SRES</a></li>
+                <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./participantes.html" data-wow-delay=".4s"><i class="fas fa-users fa-lg mr-1"></i>PARTICIPANTES</a></li>
+                <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./convocatorias.html" data-wow-delay=".5s"><i class="fas fa-bullhorn fa-lg mr-1"></i>CONVOCATORIA</a></li>
+                <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./reconocimientos.html" data-wow-delay=".6s"><i class="fas fa-network-wired fa-lg mr-1"></i>CATEGORÍAS</a></li>
+                <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./estadisticas.html" data-wow-delay=".7s"><i class="fas fa-question-circle fa-lg mr-1"></i>PREGUNTAS FRECUENTES</a></li>
               </ul>
               <div class="d-none d-lg-block" id="line"></div>
             </div>
           </div>
         </nav>
       </div>
+      <div class="d-none d-lg-block" id="line-long"></div>
     </div>
     <div class="container-fluid set-bg" data-setbg="./images/bg-registro.png">
       <div class="container">
@@ -446,8 +427,8 @@
           <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="row">
               <div class="col-12">
-                <h4 class="p-2 estilo-04 text-white bg-degradado wow fadeIn">DOCUMENTOS DE REFERENCIA</h4>
-                <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow fadeIn">
+                <h4 class="p-2 estilo-04 text-white bg-degradado wow slideInUp">DOCUMENTOS DE REFERENCIA</h4>
+                <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow slideInUp">
                   <li><a class="estilo-01 text-sres-azul" href="http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" target="_blank">Estudio del Impacto del Etiquetado 2018 a 2019</a></li>
                   <li><a class="estilo-01 text-sres-azul" href="http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" target="_blank">Estudio del Impacto del Etiquetado de Eficiencia Energética 2020</a></li>
                   <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Piloto de Auditorías Energéticas en el Sector Público</a></li>
@@ -456,8 +437,10 @@
                   <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Guía de Auditorías Energéticas</a></li>
                   <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Manual de uso de la plataforma del Sello de Reconocimiento Energético</a></li>
                 </ul>
-                <h4 class="p-2 estilo-04 text-white bg-degradado wow fadeIn">LINKS DE INTERÉS</h4>
-                <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow fadeIn">
+                <h4 class="p-2 estilo-04 text-white bg-degradado wow slideInUp">LINKS DE INTERÉS</h4>
+                <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow slideInUp">
+                  <li><a class="estilo-01 text-sres-azul" href="http://eficienciaenergetica.minem.gob.pe/" target="_blank">Sistema Interactivo de Eficiencia Energética</a></li>
+                  <li><a class="estilo-01 text-sres-azul" href="http://www.minem.gob.pe/_detalle.php?idSector=12&amp;idTitular=3011&amp;idMenu=sub3001&amp;idCateg=716" target="_blank">Dirección General de Eficiencia Energética</a></li>
                   <li><a class="estilo-01 text-sres-azul" href="http://www.minem.gob.pe/_publicacion.php?idSector=12&amp;idPublicacion=610" target="_blank">Balance Nacional de Energía 2018</a></li>
                   <li><a class="estilo-01 text-sres-azul" href="https://www.mef.gob.pe/prosemer/web/estudio/balance-nacional-de-energ%C3%ADa-%C3%BAtil/14" target="_blank">Balance Nacional de Energía Útil 2013</a></li>
                   <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Guías de orientación del uso eficiente de la energía</a></li>
