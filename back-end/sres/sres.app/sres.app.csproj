@@ -150,6 +150,7 @@
     <Content Include="Assets\js\pages\mantenimiento_sector.js" />
     <Content Include="Assets\js\pages\mantenimiento_usuario.js" />
     <Content Include="Assets\css\style.css" />
+    <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\script.js" />
     <Content Include="Global.asax" />
     <Content Include="Views\web.config" />

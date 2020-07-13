@@ -109,13 +109,7 @@ var cargarDatosUsuario = (data) => {
 
         fetch(urlVerificarCorreo)
         .then(r => r.json())
-        .then(j => {
-            if(j){
-                $('#txtCorreoMRV').val(correo);
-                $('#viewLoginMRV').show();
-                $('#viewContraseñaUsuario').hide();
-            }
-        })
+        .then(abrirModalLoginMRV)
         return;
     }
 
@@ -125,6 +119,14 @@ var cargarDatosUsuario = (data) => {
     $('#txtTelefonoUsuario').val(data.USUARIO.TELEFONO);
     $('#txtAnexoUsuario').val(data.USUARIO.ANEXO);
     $('#txtCelularUsuario').val(data.USUARIO.CELULAR);
+}
+
+var abrirModalLoginMRV = (data) => {
+    if(data == true){
+        $('#txtCorreoMRV').val(correo);
+        $('#viewLoginMRV').show();
+        $('#viewContraseñaUsuario').hide();
+    }
 }
 
 var validarUsuarioLogin = () => {

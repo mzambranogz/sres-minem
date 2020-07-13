@@ -18,12 +18,14 @@ var consultar = () => {
     let url = `/api/criterio/buscarcriteriocaso?${queryParams}`;
     let contenido = '';
     fetch(url).then(r => r.json()).then(j => {
-        contenido = j.map(x => x.LIST_COMPONENTE.map((x, i) => {
-            debugger;
-            let head = armarHead(x.LIST_INDICADOR_HEAD);
-            let body = armarBody(x.LIST_INDICADOR_BODY);
-            return '<table class="get" id="' + x.ID_CRITERIO + '-' + x.ID_CASO + '-' + x.ID_COMPONENTE + '" data-comp="' + x.ID_COMPONENTE + '">' + head + body + '</table>';
-        }).join('')).join('');
+        contenido = j.map(y => {
+            return y.LIST_COMPONENTE.map((x, i) => {
+                //debugger;
+                let head = armarHead(x.LIST_INDICADOR_HEAD);
+                let body = armarBody(x.LIST_INDICADOR_BODY);
+                return '<table class="get" id="' + x.ID_CRITERIO + '-' + x.ID_CASO + '-' + x.ID_COMPONENTE + '" data-comp="' + x.ID_COMPONENTE + '">' + head + body + '</table>';
+            }).join('')
+        }).join('');
         debugger;
         $("#cabecera").html(contenido);
     });
@@ -119,7 +121,7 @@ var guardar = () => {
         if (j) {
             alert('Se registró correctamente');
             $('#frm').hide();
-            $('#btnConsultar')[0].click();
+            consultar();
         }
     });
 }

@@ -27,10 +27,12 @@ namespace sres.app.Controllers
         [SesionIn]
         public async Task<ActionResult> Index()
         {
-            if (AuthEnabled)
-            {
-                return await Validar(AuthUsuario, AuthContraseña);
-            }
+            //if (AuthEnabled)
+            //{
+            //    ActionResult content = await Validar(AuthUsuario, AuthContraseña);
+                
+            //    return 
+            //}
 
             string keySiteCaptcha = AppSettings.Get<string>("ReCAPTCHA_Site_Key");
             ViewData["keySiteCaptcha"] = keySiteCaptcha;
@@ -40,14 +42,19 @@ namespace sres.app.Controllers
         [HttpPost]
         public async Task<ActionResult> Validar(string correo, string contraseña, string token = null)
         {
+            Dictionary<string, object> response = new Dictionary<string, object> { ["success"] = false, ["message"] = "" };
+
             if (!AuthEnabled)
             {
                 bool esCaptchaValido = await IsCaptchaValid(token);
 
                 if (!esCaptchaValido)
                 {
-                    TempData["error_message"] = "Captcha inválido";
-                    return RedirectToAction("Index", "Login");
+                    response["success"] = false;
+                    response["message"] = "Captcha inválido";
+                    return Json(response);
+                    //TempData["error_message"] = "Captcha inválido";
+                    //return RedirectToAction("Index", "Login");
                 }
             }
 
@@ -57,12 +64,17 @@ namespace sres.app.Controllers
             if (esValido)
             {
                 Session["user"] = usuario;
-
-                return RedirectToAction("Index", "Inicio");
+                response["success"] = true;
+                response["message"] = "Validación correcta";
+                return Json(response);
+                //return RedirectToAction("Index", "Inicio");
             }
 
-            TempData["error_message"] = "Usuario y/o contraseña incorrecto";
-            return RedirectToAction("Index", "Login");
+            response["success"] = false;
+            response["message"] = "Usuario y/o contraseña incorrecto";
+            return Json(response);
+            //TempData["error_message"] = "Usuario y/o contraseña incorrecto";
+            //return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
