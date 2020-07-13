@@ -41,6 +41,20 @@ namespace sres.ln
             return item;
         }
 
+        public RolBE ObtenerRol(int idRol)
+        {
+            RolBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = rolDA.ObtenerRol(idRol, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
         public List<RolBE> ListaBusquedaRol(RolBE entidad)
         {
             List<RolBE> lista = new List<RolBE>();

@@ -1,4 +1,4 @@
-﻿@{ViewBag.SRESDocumentation = ViewBag.SRESLinks != null ? ViewBag.SRESLinks : new Dictionary<string, Dictionary<string, object>>
+﻿@{ViewBag.SRESDocumentation = ViewBag.SRESDocumentation != null ? ViewBag.SRESDocumentation : new Dictionary<string, Dictionary<string, object>>
     {
         ["References"] = new Dictionary<string, object>
         {
@@ -34,16 +34,18 @@
         <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="row">
                 <div class="col-12">
-                    @if (ViewBag.SRESDocumentation["References"] != null)
+                    @if (ViewBag.SRESDocumentation.ContainsKey("References"))
                     {
-                        if ((bool)ViewBag.SRESDocumentation["References"]["Show"])
+                        if (ViewBag.SRESDocumentation["References"] != null)
                         {
-                            <h4 class="p-2 estilo-04 text-white bg-degradado wow slideInUp">@($"{ViewBag.SRESDocumentation["References"]["Titulo"]}")</h4>
-                            if (ViewBag.SRESDocumentation["References"]["Data"] != null)
+                            if ((bool)ViewBag.SRESDocumentation["References"]["Show"])
                             {
-                                Dictionary<int, object> data = (Dictionary<int, object>)ViewBag.SRESDocumentation["References"]["Data"];
-                                if (data.Count > 0)
+                            <h4 class="p-2 estilo-04 text-white bg-degradado wow slideInUp">@($"{ViewBag.SRESDocumentation["References"]["Titulo"]}")</h4>
+                                if (ViewBag.SRESDocumentation["References"]["Data"] != null)
                                 {
+                                    Dictionary<int, object> data = (Dictionary<int, object>)ViewBag.SRESDocumentation["References"]["Data"];
+                                    if (data.Count > 0)
+                                    {
                                     <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow slideInUp">
                                         @foreach (KeyValuePair<int, object> item in data)
                                         {
@@ -58,21 +60,24 @@
                                                 <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Manual de uso de la plataforma del Sello de Reconocimiento Energético</a></li>*@
                                         }
                                     </ul>
+                                    }
                                 }
                             }
                         }
                     }
 
-                    @if (ViewBag.SRESDocumentation["Links"] != null)
+                    @if (ViewBag.SRESDocumentation.ContainsKey("Links"))
                     {
-                        if ((bool)ViewBag.SRESDocumentation["Links"]["Show"])
+                        if (ViewBag.SRESDocumentation["Links"] != null)
                         {
-                            <h4 class="p-2 estilo-04 text-white bg-degradado wow slideInUp">@($"{ViewBag.SRESDocumentation["Links"]["Titulo"]}")</h4>
-                            if (ViewBag.SRESDocumentation["References"]["Data"] != null)
+                            if ((bool)ViewBag.SRESDocumentation["Links"]["Show"])
                             {
-                                Dictionary<int, object> data = (Dictionary<int, object>)ViewBag.SRESDocumentation["References"]["Data"];
-                                if (data.Count > 0)
+                            <h4 class="p-2 estilo-04 text-white bg-degradado wow slideInUp">@($"{ViewBag.SRESDocumentation["Links"]["Titulo"]}")</h4>
+                                if (ViewBag.SRESDocumentation["References"]["Data"] != null)
                                 {
+                                    Dictionary<int, object> data = (Dictionary<int, object>)ViewBag.SRESDocumentation["References"]["Data"];
+                                    if (data.Count > 0)
+                                    {
                                     <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow slideInUp">
                                         @foreach (KeyValuePair<int, object> item in data)
                                         {
@@ -83,6 +88,7 @@
                                                 <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Guías de orientación del uso eficiente de la energía</a></li>*@
                                         }
                                     </ul>
+                                    }
                                 }
                             }
                         }

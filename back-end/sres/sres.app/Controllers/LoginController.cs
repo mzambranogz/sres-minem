@@ -18,6 +18,7 @@ namespace sres.app.Controllers
     public class LoginController : Controller
     {
         UsuarioLN usuarioLN = new UsuarioLN();
+        RolLN rolLN = new RolLN();
         ln.MRV.UsuarioLN usuarioLNMRV = new ln.MRV.UsuarioLN();
 
         bool AuthEnabled = AppSettings.Get<bool>("Auth_Enabled");
@@ -63,6 +64,7 @@ namespace sres.app.Controllers
             bool esValido = usuarioLN.ValidarUsuario(correo, contraseña, out usuario);
             if (esValido)
             {
+                usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
                 Session["user"] = usuario;
                 response["success"] = true;
                 response["message"] = "Validación correcta";

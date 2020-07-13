@@ -1,10 +1,18 @@
-﻿<footer class="container-fluid set-bg" data-setbg="@Url.Content("~/Assets/images/bg_footer.png")">
+﻿@using sres.be
+@{
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+}
+
+<footer class="container-fluid set-bg" data-setbg="@Url.Content("~/Assets/images/bg_footer.png")">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-12"><a class="bg-youtube p-4 estilo-02 text-white d-flex justify-content-center align-items-center botones-pie wow bounceInUp" id="btn-youtube" href="https://www.youtube.com/user/videosminem" target="_blank" data-wow-delay=".2s"><i class="fab fa-youtube fa-2x mr-2"></i>YouTube</a></div>
-            <div class="col-lg-3 col-md-6 col-sm-12"><a class="bg-facebook p-4 estilo-02 text-white d-flex justify-content-center align-items-center botones-pie wow bounceInUp" id="btn-facebook" href="https://www.facebook.com/MinemPeru/" target="_blank" data-wow-delay=".3s"><i class="fab fa-facebook-square fa-2x mr-2"></i>facebook</a></div>
-            <div class="col-lg-3 col-md-6 col-sm-12"><a class="bg-sres-azul p-4 estilo-02 text-white d-flex justify-content-center align-items-center botones-pie wow bounceInUp" id="btn-login" href="./login.html" data-wow-delay=".4s"><i class="fas fa-sign-in-alt fa-2x mr-2"></i>INICIAR SESIÓN</a></div>
-            <div class="col-lg-3 col-md-6 col-sm-12"><a class="bg-sres-verde p-4 estilo-02 text-white d-flex justify-content-center align-items-center botones-pie wow bounceInUp" id="btn-register" href="./registro.html" data-wow-delay=".5s"><i class="fas fa-pencil-alt fa-2x mr-2"></i>REGISTRARSE</a></div>
+            <div class="col-lg-@(usuario == null ? "3" : "6") col-md-6 col-sm-12"><a class="bg-youtube p-4 estilo-02 text-white d-flex justify-content-center align-items-center botones-pie wow bounceInUp" id="btn-youtube" href="https://www.youtube.com/user/videosminem" target="_blank" data-wow-delay=".2s"><i class="fab fa-youtube fa-2x mr-2"></i>YouTube</a></div>
+            <div class="col-lg-@(usuario == null ? "3" : "6") col-md-6 col-sm-12"><a class="bg-facebook p-4 estilo-02 text-white d-flex justify-content-center align-items-center botones-pie wow bounceInUp" id="btn-facebook" href="https://www.facebook.com/MinemPeru/" target="_blank" data-wow-delay=".3s"><i class="fab fa-facebook-square fa-2x mr-2"></i>facebook</a></div>
+            @if (usuario == null)
+            {
+                <div class="col-lg-3 col-md-6 col-sm-12"><a class="bg-sres-azul p-4 estilo-02 text-white d-flex justify-content-center align-items-center botones-pie wow bounceInUp" id="btn-login" href="./login.html" data-wow-delay=".4s"><i class="fas fa-sign-in-alt fa-2x mr-2"></i>INICIAR SESIÓN</a></div>
+                <div class="col-lg-3 col-md-6 col-sm-12"><a class="bg-sres-verde p-4 estilo-02 text-white d-flex justify-content-center align-items-center botones-pie wow bounceInUp" id="btn-register" href="./registro.html" data-wow-delay=".5s"><i class="fas fa-pencil-alt fa-2x mr-2"></i>REGISTRARSE</a></div>
+            }
         </div>
         <div class="row my-5">
             <div class="col-lg-5 col-md-12 col-sm-12">

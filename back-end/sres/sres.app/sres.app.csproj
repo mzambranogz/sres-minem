@@ -222,6 +222,7 @@
     <Content Include="Views\Shared\_SRES_Documentation.cshtml" />
     <Content Include="Views\Convocatoria\Criterios.cshtml" />
     <Content Include="Views\Convocatoria\Criterio.cshtml" />
+    <Content Include="Views\Shared\_Menu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -56,6 +56,23 @@ namespace sres.da
             return item;
         }
 
+        public RolBE ObtenerRol(int idRol, OracleConnection db)
+        {
+            RolBE item = null;
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_OBTIENE_ROL";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ROL", idRol);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.QueryFirstOrDefault<RolBE>(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return item;
+        }
+
         public List<RolBE> ListarBusquedaRol(RolBE entidad, OracleConnection db)
         {
             List<RolBE> lista = new List<RolBE>();

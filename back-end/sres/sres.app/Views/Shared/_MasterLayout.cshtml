@@ -1,5 +1,4 @@
 ﻿@using sres.be
-
 @{
     UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
     ViewBag.SRESDescription = ViewBag.SRESDescription == null ? true : ViewBag.SRESDescription;
@@ -50,8 +49,9 @@
     @RenderSection("scripts_header", false)
 </head>
 <body>
-    @Html.Partial("_MenuTop")
-    @Html.Partial("_MenuBottom")
+    @*@Html.Partial("_MenuTop")
+    @Html.Partial("_MenuBottom")*@
+    @Html.Partial("_Menu")
     @Html.Partial("_Header")
     @Html.Partial("_Slider")
     @Html.Partial("_SRES_Description")
