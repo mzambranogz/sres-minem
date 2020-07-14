@@ -15,7 +15,7 @@
     <meta property="og:url" content="http://grupo-zuniga.com/proyectos/sres/">
     <meta property="og:image" content="http://grupo-zuniga.com/proyectos/sres/images/sres-iso.png">
     <meta property="og:description" content="El Sello de Reconocimiento de Energía sostenible (SRES) es un distintivo otorgada por el &lt;b&gt;Ministerio de Energía y Minas del Perú&lt;/b&gt; a través de su órgano directivo la Dirección General de Eficiencia Energética, a aquellas entidades que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.">
-    <title>Plataforma del Sello de Reconocimiento de Energía Sostenible | Login</title>
+    <title>Plataforma del Sello de Reconocimiento de Energía Sostenible | Requisitos</title>
     <meta name="description" content="El Sello de Reconocimiento de Energía sostenible (SRES) es un distintivo otorgada por el &lt;b&gt;Ministerio de Energía y Minas del Perú&lt;/b&gt; a través de su órgano directivo la Dirección General de Eficiencia Energética, a aquellas entidades que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.">
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32">
@@ -55,16 +55,23 @@
                 <li class="nav-item align-self-center pr-0"><a class="nav-link p-0 animated slideInDown" href="https://www.pe.undp.org/" target="_blank"><img src="./images/logo_pnud.svg" height="42"></a></li>
               </ul>
             </header>
-            <div class="text-right mt-2 d-none d-lg-block"><a class="btn btn-sm btn-sres-verde mr-3 animated slideInRight" href="./registro.html" role="button"><i class="fas fa-pencil-alt mr-2"></i>REGISTRARSE</a><a class="btn btn-sm btn-sres-azul animated slideInRight" href="./login.html" role="button"><i class="fas fa-sign-in-alt mr-2"></i>INICIAR SESIÓN</a></div>
+            <div class="text-right mt-2 d-none d-lg-block">
+              <div class="btn-group"><a class="btn btn-sm btn-sres-azul animated slideInRight dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="fas fa-user pr-1"></i>Ricardo Salmón &nbsp;<small class="badge badge-primary estilo-06">Postulante</small></a>
+                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item estilo-01" href="./cambiar.html"><i class="fas fa-id-card mr-1"></i>Mi Perfil</a><a class="dropdown-item estilo-01" href="./mantenimiento-de-tablas.html"><i class="fas fa-cogs mr-1"></i>Mantenimiento de tablas</a><a class="dropdown-item estilo-01" href="./cambiar.html"><i class="fas fa-key mr-1"></i>Cambiar contraseña</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item estilo-01" href="./login.html"><i class="fas fa-sign-out-alt mr-1"></i>Salir del sistema</a>
+                </div>
+              </div>
+            </div>
             <button class="navbar-toggler my-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
               <ul class="navbar-nav btn ml-auto p-0">
-                <li class="nav-item btn activo"><a class="nav-link wow slideInUp nav-active" href="./index.html" data-wow-delay=".2s"><i class="fas fa-house-damage fa-lg mr-1 mr-lg-0"></i><span class="d-lg-none">INICIO</span></a></li>
-                <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./index.html" data-wow-delay=".3s"><i class="fas fa-award fa-lg mr-1"></i>SOBRE EL SRES</a></li>
+                <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./index.html" data-wow-delay=".2s"><i class="fas fa-house-damage fa-lg mr-1 mr-lg-0"></i><span class="d-lg-none">INICIO</span></a></li>
+                <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./sobre-nosotros.html" data-wow-delay=".3s"><i class="fas fa-award fa-lg mr-1"></i>SOBRE EL SRES</a></li>
                 <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./participantes.html" data-wow-delay=".4s"><i class="fas fa-users fa-lg mr-1"></i>PARTICIPANTES</a></li>
                 <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./convocatoria.html" data-wow-delay=".5s"><i class="fas fa-bullhorn fa-lg mr-1"></i>CONVOCATORIA</a></li>
                 <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./categorias.html" data-wow-delay=".6s"><i class="fas fa-network-wired fa-lg mr-1"></i>CATEGORÍAS</a></li>
                 <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./preguntas-frecuentes.html" data-wow-delay=".7s"><i class="fas fa-question-circle fa-lg mr-1"></i>PREGUNTAS FRECUENTES</a></li>
+                <li class="nav-item btn activo"><a class="nav-link wow slideInUp nav-active" href="./bandeja-postulante.html" data-wow-delay=".8s"><i class="fas fa-inbox fa-lg mr-1"></i>BANDEJA</a></li>
               </ul>
               <div class="d-none d-lg-block" id="line"></div>
             </div>
@@ -73,21 +80,53 @@
       </div>
       <div class="d-none d-lg-block" id="line-long"></div>
     </div>
-    <div class="container-fluid set-bg" data-setbg="./images/bg-login.png">
+    <div class="container-fluid mt-5">
       <div class="container">
         <div class="row">
-          <div class="col-12 py-5">
-            <h1 class="estilo-03 text-white barra-blanca px-1 wow fadeIn">INICIAR SESIÓN</h1>
+          <div class="col-12">
+            <nav class="estilo-05" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="text-sres-gris" href="./index.html">Inicio</a></li>
+                <li class="breadcrumb-item"><a class="text-sres-gris" href="./bandeja-postulante.html">Bandeja</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Requisitos</li>
+              </ol>
+            </nav>
           </div>
         </div>
       </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid my-3">
       <div class="container">
         <div class="row">
-          <div class="col-12 my-5">
-            <p class="text-justify estilo-01 text-sres-gris wow fadeIn">El Sello de Reconocimiento de Energía sostenible <b>(SRES)</b> es un distintivo otorgada por el <b>Ministerio de Energía y Minas del Perú</b> a través de su órgano directivo la <b>Dirección General de Eficiencia Energética</b>, a aquellas entidades que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.</p>
-            <div class="rayado wow fadeIn"></div>
+          <div class="col-12">
+            <div class="bg-sres-claro p-3">
+              <div class="row">
+                <div class="col-lg-1 col-md-12 text-left text-lg-center">
+                  <div class="estilo-07 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">16</div>
+                  <div class="estilo-03 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">Jun</div>
+                  <div class="estilo-02 estilo-02-force text-sres-claro d-inline-block d-lg-block">2020</div>
+                </div>
+                <div class="col-lg-11 col-md-12 barra-oscura">
+                  <h2 class="estilo-03 text-sres-oscuro text-limit-1">Cumbre Peruana de Ahorro Energético</h2>
+                  <p class="estilo-01 text-justify text-sres-gris m-0 text-limit-3" data-limit="1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                  <div class="text-right d-none d-lg-block"><a class="estilo-01 text-sres-verde leer-mas" href="#">Leer más</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid mb-3">
+      <div class="container">
+        <div class="rayado wow fadeIn"></div>
+      </div>
+    </div>
+    <div class="container-fluid mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <p class="estilo-02 text-justify text-sres-azul m-0">Ingrese a los criterios que desea postular</p>
           </div>
         </div>
       </div>
@@ -95,131 +134,23 @@
     <div class="container-fluid my-5">
       <div class="container">
         <div class="row">
-          <div class="col-lg-4 col-md-12 col-sm-12 d-none d-lg-block">
-            <div class="row">
-              <div class="col-12 wow fadeIn">
-                <div class="p-5 set-bg" data-setbg="./images/login-left.png">
-                  <p class="estilo-01 text-white text-justify barra-blanca my-5">Si ya está registrado en el Sello de Reconocimiento de Energía Sostenible acceda con sus credenciales de SRES, si ya es un Usuario Administrado en la Plataforma MRV del sector energía, puede optar por ingresar con su cuenta MRV de manera inmediata.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 col-sm-12 mb-5 mb-lg-0">
-            <div class="row">
-              <div class="col-12 wow fadeIn">
-                <div class="h4 estilo-03">Ingresar <br><small class="text-muted estilo-02">Accede con tu cuenta</small></div>
-                <form class="pt-4" id="frmLogin" action="./bandeja-postulante.html" autocomplete="off">
-                  <div class="form-group">
-                    <label class="estilo-01" for="txt-user">Correo electrónico</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend"><span class="input-group-text" id="inputGroup1"><i class="fas fa-envelope"></i></span></div>
-                      <input class="form-control estilo-01" type="email" id="txt-user" placeholder="Ingresar correo electrónico" aria-describedby="inputGroup1" maxlength="50" pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$" title="Ingrese una dirección de correo válida." autocomplete="new-user" required>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="estilo-01" for="txt-pswd">Contraseña</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend"><span class="input-group-text" id="inputGroup2"><i class="fas fa-key"></i></span></div>
-                      <input class="form-control estilo-01" type="password" id="txt-pswd" placeholder="Ingresar contraseña" aria-describedby="inputGroup2" maxlength="30" title="Ingrese su contraseña." autocomplete="new-password" required>
-                      <div class="input-group-append">
-                        <label class="input-group-text cursor-pointer ver-clave estilo-01"><i class="fas fa-eye mr-1"></i>Mostrar</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input class="custom-control-input" type="checkbox" id="chk-recd">
-                      <label class="custom-control-label estilo-01" for="chk-recd">Recordar email</label>
-                    </div>
-                  </div>
-                  <div class="alert alert-danger d-flex align-items-stretch" role="alert">
-                    <div class="alert-wrap mr-3">
-                      <div class="sa">
-                        <div class="sa-error">
-                          <div class="sa-error-x">
-                            <div class="sa-error-left"></div>
-                            <div class="sa-error-right"></div>
-                          </div>
-                          <div class="sa-error-placeholder"></div>
-                          <div class="sa-error-fix"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="alert-wrap">
-                      <h6 class="estilo-02">Error de acceso</h6>
-                      <hr class="my-1"><small class="mb-0 estilo-01">Su cuenta está&nbsp;<strong>pendiente&nbsp;</strong>de aprobación</small>
-                    </div>
-                  </div>
-                  <div class="alert alert-success d-flex align-items-stretch" role="alert">
-                    <div class="alert-wrap mr-3">
-                      <div class="sa">
-                        <div class="sa-success">
-                          <div class="sa-success-tip"></div>
-                          <div class="sa-success-long"></div>
-                          <div class="sa-success-placeholder"></div>
-                          <div class="sa-success-fix"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="alert-wrap">
-                      <h6 class="estilo-02">Bien hecho</h6>
-                      <hr class="my-1"><small class="mb-0 estilo-01">Su cuenta MRV a sido sincronizada</small>
-                    </div>
-                  </div>
-                  <button class="btn-lg btn-primary w-100 mb-3" id="sresBtn" type="submit"><i class="fas fa-sign-in-alt px-1"></i>Ingresar</button>
-                  <button class="btn-lg btn-nama-azul w-100 mb-3" id="mrvBtn" type="button" data-toggle="tooltip" data-placement="bottom" title="Sistema de gestión y reporte de información de las medidas de mitigación de las Contribuciones Nacionalmente Determinadas (NDC).">
-                    <!--img.px-1(src="./images/mrv-iso.png")-->Ingresa con tu cuenta MRV
-                  </button>
-                  <button class="btn-lg btn-secondary w-100" id="rtnBtn" type="button" style="display: none;"><i class="fas fa-arrow-left px-1"></i>Regresar</button>
-                </form>
-                <p class="pt-4 mb-0 text-center estilo-01">¿No tienes una cuenta?&nbsp;<a class="text-sres-verde estilo-01" href="./registro.html">Regístrese ahora <br></a><a class="text-sres-verde estilo-01" href="./recuperar.html">¿Olvidó su contraseña?</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 col-sm-12">
-            <div class="row">
-              <div class="col-12">
-                <h4 class="p-2 estilo-04 text-white bg-degradado wow fadeIn">DOCUMENTOS DE REFERENCIA</h4>
-                <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow fadeIn">
-                  <li><a class="estilo-01 text-sres-azul" href="http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" target="_blank">Estudio del Impacto del Etiquetado 2018 a 2019</a></li>
-                  <li><a class="estilo-01 text-sres-azul" href="http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" target="_blank">Estudio del Impacto del Etiquetado de Eficiencia Energética 2020</a></li>
-                  <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Piloto de Auditorías Energéticas en el Sector Público</a></li>
-                  <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Piloto de Auditorías Energéticas en el Sector Privado</a></li>
-                  <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Reglamento de Etiquetado de Eficiencia Energética</a></li>
-                  <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Guía de Auditorías Energéticas</a></li>
-                  <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Manual de uso de la plataforma del Sello de Reconocimiento Energético</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="verificacion-mrv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-nama-azul text-white">
-            <h5 class="modal-title estilo-01" id="exampleModalLabel">Validación con Plataforma MRV</h5>
-            <!--button.close(type="button", data-dismiss="modal", aria-label="Close")span(aria-hidden="true") &times;
-            -->
-          </div>
-          <div class="modal-body medidas-modal">
-            <div class="row">
-              <div class="col-sm-12 col-md-12 col-lg-12">
-                <h3 class="text-center estilo-03">Comparando datos...</h3>
-                <p class="text-center estilo-01">Estamos procediendo a validar sus datos con la plataforma de MRV del sector energía, en breve confirmaremos los resultados.</p>
-              </div>
-              <div class="col-sm-12 col-md-12 col-lg-12">
-                <div class="progress mb-3" style="height: 25px;">
-                  <div class="progress-bar progress-bar-striped progress-bar-animated estilo-01" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">Validando, espere un momento por favor...</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--.modal-footer.d-flex.justify-content-center
-          button(type="button", class="btn btn-info") Si, grabar
-          button(type="button", class="btn btn-dark", data-dismiss="modal") Cancelar
-          -->
+          <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3"><i class="fas fa-copy text-sres-verde indicador"></i><a class="d-block bg-sres-verde-claro border-linea-verde rounded h-100 p-3" href="./criterio-01.html"><img class="img-fluid" src="./images/criterio-01.png">
+              <div class="estilo-01 text-sres-azul pt-3">Ahorro de energía eléctrica total.</div></a></div>
+          <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3"><a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="./criterio-02.html"><img class="img-fluid" src="./images/criterio-02.png">
+              <div class="estilo-01 text-sres-azul pt-3">Ahorro de consumo de combustible.</div></a></div>
+          <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3"><a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="./criterio-04.html"><img class="img-fluid" src="./images/criterio-04.png">
+              <div class="estilo-01 text-sres-azul pt-3">Implementación de un sistema de gestión de la energía.</div></a></div>
+          <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3"><a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="./criterio-3.html"><img class="img-fluid" src="./images/criterio-03.png">
+              <div class="estilo-01 text-sres-azul pt-3">Generación de puestos de trabajo relacionado a la gestión de la energía.</div></a></div>
+          <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3"><a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="./criterio-05.html"><img class="img-fluid" src="./images/criterio-05.png">
+              <div class="estilo-01 text-sres-azul pt-3">Diagnóstico energético.</div></a></div>
+          <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3"><i class="fas fa-copy text-sres-verde indicador"></i><a class="d-block bg-sres-verde-claro border-linea-verde rounded h-100 p-3" href="./criterio-06.html"><img class="img-fluid" src="./images/criterio-06.png">
+              <div class="estilo-01 text-sres-azul pt-3">Cálculo de la huella de carbono.</div></a></div>
+          <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3"><a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="./criterio-07.html"><img class="img-fluid" src="./images/criterio-07.png">
+              <div class="estilo-01 text-sres-azul pt-3">Fortalecimiento de capacidades para el buen uso de la energía.</div></a></div>
+          <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3"><a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="./criterio-08.html"><img class="img-fluid" src="./images/criterio-08.png">
+              <div class="estilo-01 text-sres-azul pt-3">Enfoque transversal de género.</div></a></div>
+          <div class="offset-lg-9 col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="./bandeja-postulante.html">Regresar</a></div>
         </div>
       </div>
     </div>
