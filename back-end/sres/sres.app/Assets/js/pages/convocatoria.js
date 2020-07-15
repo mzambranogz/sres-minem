@@ -47,7 +47,7 @@ var cargarDataBusqueda = (data) => {
     });
 }
 
-var renderizar = (data, cantidadCeldas) => {
+var renderizar = (data, cantidadCeldas) => {    
     let deboRenderizar = data.CANTIDAD_REGISTROS > 0;
     let contenido = `<tr><th colspan='${cantidadCeldas}'>No existe información</th></tr>`;
 
