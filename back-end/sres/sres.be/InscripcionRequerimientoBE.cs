@@ -22,5 +22,6 @@ namespace sres.be
         public bool? VALIDO { get; set; }
         public string OBSERVACION { get; set; }
         public int? UPD_USUARIO { get; set; }
+        public int? ID_INSTITUCION { get; set; }
     }
 }

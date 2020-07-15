@@ -67,11 +67,13 @@ var renderizar = (data, cantidadCeldas) => {
             let colFechaFin = `<td class="text-center" data-encabezado="Fecha Fin">${fechaFin.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;
             let colVencimiento = `<td class="text-center" data-encabezado="Vencimiento"><div class="progress" style="height: 21px;" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance"><div class="progress-bar ${porcentajeAvance > 0 ? "vigente" : "preparado"} estilo-01" role="progressbar" style="width: ${porcentajeAvance}%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">${porcentajeAvance}%</div></div></td>`;
             let colEstado = `<td data-encabezado="Estado"><b class="text-sres-verde">${obtenerEstadoConvocatoria(x.FLAG_ESTADO)}</b></td>`;
+            let btnIngresar = `<a class="btn btn-sm btn-success w-100" target="_blank" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
             let btnGestionar = `<a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>`;
-            let btnIngresar = `<a class="dropdown-item" target="_blank" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme"><i class="fas fa-edit mr-1"></i>Ingresar</a>`;
+            let btnEditarRequisitos = `<a class="dropdown-item estilo-01" target="_blank" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme"><i class="fas fa-edit mr-1"></i>Editar requisitos</a>`
+            let btnEditarCriterios = `<a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a>`
             let btnSeguimiento = `<a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a>`;
             let btnVerReconocimiento = `<a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a>`;
-            let colOpciones = `<td class="text-center" data-encabezado="Gestión">${btnGestionar}<div class="dropdown-menu">${btnIngresar}${btnSeguimiento}${btnVerReconocimiento}</div></div></td>`;
+            let colOpciones = `<td class="text-center" data-encabezado="Gestión">${x.FLAG_ESTADO == '1' ? btnIngresar : btnGestionar}<div class="dropdown-menu">${btnEditarRequisitos}${btnEditarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div></div></td>`;
             let fila = `<tr>${colNroInforme}${colPeriodo}${colNombre}${colFechaInicio}${colFechaFin}${colVencimiento}${colEstado}${colOpciones}</tr>`;
             return fila;
         }).join('');
@@ -84,12 +86,12 @@ var obtenerEstadoConvocatoria = (flagEstado) => {
     let estado = '';
 
     switch(flagEstado){
-        case 'A' : estado = 'ABIERTO'; break;
-        case 'E' : estado = 'EN PROCESO'; break;
-        case 'R' : estado = 'EN REVISIÓN'; break;
-        case 'P' : estado = 'PENDIENTE'; break;
-        case 'C' : estado = 'CERRADO'; break;
-        case 'V' : estado = 'VENCIDO'; break;
+        case '1' : estado = 'ABIERTO'; break;
+        case '2' : estado = 'EN PROCESO'; break;
+        case '3' : estado = 'EN REVISIÓN'; break;
+        case '4' : estado = 'PENDIENTE'; break;
+        case '5' : estado = 'CERRADO'; break;
+        case '6' : estado = 'VENCIDO'; break;
     }
 
     return estado;

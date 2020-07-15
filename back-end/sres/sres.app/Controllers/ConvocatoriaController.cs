@@ -17,6 +17,7 @@ namespace sres.app.Controllers
         InscripcionRequerimientoLN inscripcionRequerimientoLN = new InscripcionRequerimientoLN();
         CriterioLN criterioLN = new CriterioLN();
 
+        [SesionOut]
         public ActionResult Index()
         {
             return View();

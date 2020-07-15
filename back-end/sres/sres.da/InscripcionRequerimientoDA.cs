@@ -31,7 +31,8 @@ namespace sres.da
                     ARCHIVO_BASE = (string)x.ARCHIVO_BASE,
                     ARCHIVO_CIFRADO = (string)x.ARCHIVO_CIFRADO,
                     VALIDO = x.VALIDO == null ? null : (bool?)Convert.ToBoolean((int)x.VALIDO),
-                    OBSERVACION = (string)x.OBSERVACION
+                    OBSERVACION = (string)x.OBSERVACION,
+                    ID_INSTITUCION = (int?)x.ID_INSTITUCION
                 }).ToList();
             }
             catch (Exception ex) { Log.Error(ex); }

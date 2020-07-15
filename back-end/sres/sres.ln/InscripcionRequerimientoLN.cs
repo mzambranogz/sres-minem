@@ -14,6 +14,7 @@ namespace sres.ln
     public class InscripcionRequerimientoLN : BaseLN
     {
         InscripcionRequerimientoDA inscripcionRequerimientoDA = new InscripcionRequerimientoDA();
+        InscripcionDA inscripcionDA = new InscripcionDA();
 
         public List<InscripcionRequerimientoBE> ListarInscripcionRequerimientoPorConvocatoriaInscripcion(int idConvocatoria, int? idInscripcion)
         {
@@ -26,6 +27,17 @@ namespace sres.ln
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            if (lista != null)
+            {
+                lista.ForEach(x =>
+                {
+                    int idInstitucion = x.ID_INSTITUCION == null ? 0 : x.ID_INSTITUCION.Value;
+                    int idInscripcionValue = idInscripcion == null ? 0 : idInscripcion.Value;
+                    string pathFile = ObtenerRutaArchivoRequerimiento(idConvocatoria, idInscripcionValue, idInstitucion, x.ID_REQUERIMIENTO);
+                    x.ARCHIVO_CONTENIDO = pathFile == null ? null : File.ReadAllBytes(pathFile);
+                });
+            }
 
             return lista;
         }

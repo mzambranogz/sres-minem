@@ -1,6 +1,7 @@
 ﻿@using sres.be
 @{
     ViewBag.Titulo = "Criterios";
+    ViewBag.SRESDescription = false;
     ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
     InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
     List<CriterioBE> listaCriterio = (List<CriterioBE>)ViewData["listaCriterio"];
@@ -61,54 +62,65 @@
 <div class="container-fluid my-5">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                <i class="fas fa-copy text-sres-verde indicador"></i><a class="d-block bg-sres-verde-claro border-linea-verde rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{1}")">
-                    <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-01.png")">
-                    <div class="estilo-01 text-sres-azul pt-3">Ahorro de energía eléctrica total.</div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                <a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{2}")">
-                    <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-02.png")">
-                    <div class="estilo-01 text-sres-azul pt-3">Ahorro de consumo de combustible.</div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                <a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{4}")">
-                    <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-04.png")">
-                    <div class="estilo-01 text-sres-azul pt-3">Implementación de un sistema de gestión de la energía.</div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                <a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{3}")">
-                    <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-03.png")">
-                    <div class="estilo-01 text-sres-azul pt-3">Generación de puestos de trabajo relacionado a la gestión de la energía.</div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                <a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{5}")">
-                    <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-05.png")">
-                    <div class="estilo-01 text-sres-azul pt-3">Diagnóstico energético.</div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                <i class="fas fa-copy text-sres-verde indicador"></i><a class="d-block bg-sres-verde-claro border-linea-verde rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{6}")">
-                    <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-06.png")">
-                    <div class="estilo-01 text-sres-azul pt-3">Cálculo de la huella de carbono.</div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                <a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{7}")">
-                    <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-07.png")">
-                    <div class="estilo-01 text-sres-azul pt-3">Fortalecimiento de capacidades para el buen uso de la energía.</div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                <a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{8}")">
-                    <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-08.png")">
-                    <div class="estilo-01 text-sres-azul pt-3">Enfoque transversal de género.</div>
-                </a>
-            </div>
+            @if (listaCriterio != null)
+            {
+                if (listaCriterio.Count > 0)
+                {
+                    int index = 0;
+                    foreach (CriterioBE item in listaCriterio)
+                    {
+                        index++;
+                        <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                            <i class="fas fa-copy text-sres-verde indicador"></i><a class="d-block bg-sres-verde-claro border-linea-verde rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{1}")">
+                                <img class="img-fluid" src="@Url.Content($"~/Assets/images/criterio-0{index}.png")">
+                                <div class="estilo-01 text-sres-azul pt-3">@item.NOMBRE</div>
+                            </a>
+                        </div>
+                        @*<div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                            <a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{2}")">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-02.png")">
+                                <div class="estilo-01 text-sres-azul pt-3">Ahorro de consumo de combustible.</div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                            <a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{4}")">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-04.png")">
+                                <div class="estilo-01 text-sres-azul pt-3">Implementación de un sistema de gestión de la energía.</div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                            <a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{3}")">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-03.png")">
+                                <div class="estilo-01 text-sres-azul pt-3">Generación de puestos de trabajo relacionado a la gestión de la energía.</div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                            <a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{5}")">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-05.png")">
+                                <div class="estilo-01 text-sres-azul pt-3">Diagnóstico energético.</div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                            <i class="fas fa-copy text-sres-verde indicador"></i><a class="d-block bg-sres-verde-claro border-linea-verde rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{6}")">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-06.png")">
+                                <div class="estilo-01 text-sres-azul pt-3">Cálculo de la huella de carbono.</div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                            <a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{7}")">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-07.png")">
+                                <div class="estilo-01 text-sres-azul pt-3">Fortalecimiento de capacidades para el buen uso de la energía.</div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                            <a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{8}")">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-08.png")">
+                                <div class="estilo-01 text-sres-azul pt-3">Enfoque transversal de género.</div>
+                            </a>
+                        </div>*@
+                    }
+                }
+            }
             <div class="offset-lg-9 col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="./bandeja-postulante.html">Regresar</a></div>
         </div>
     </div>
@@ -119,25 +131,25 @@
 
 @*<h2>Criterios</h2>
 
-@if (listaCriterio != null)
-{
-    if (listaCriterio.Count > 0)
+    @if (listaCriterio != null)
     {
-        foreach (CriterioBE item in listaCriterio)
+        if (listaCriterio.Count > 0)
         {
-            <ul>
-                <li>
-                @item.NOMBRE <a href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">Ingresar Criterio</a>
-                </li>
-            </ul>
+            foreach (CriterioBE item in listaCriterio)
+            {
+                <ul>
+                    <li>
+                    @item.NOMBRE <a href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">Ingresar Criterio</a>
+                    </li>
+                </ul>
+            }
+        }
+        else
+        {
+            <div>No existen criterios</div>
         }
     }
     else
     {
         <div>No existen criterios</div>
-    }
-}
-else
-{
-    <div>No existen criterios</div>
-}*@
+    }*@

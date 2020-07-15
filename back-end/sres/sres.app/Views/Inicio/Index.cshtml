@@ -5,7 +5,7 @@
     {
         [1] = new Dictionary<string, object>
         {
-            ["Imagen"] = "~/Assets/images/slide-01.jpg",
+            ["Imagen"] = "~/Assets/images/slide-05.jpg",
             ["Titulo"] = "¡REGÍSTRATE AHORA!",
             ["SubTitulo"] = "Y OBTÉN LOGROS POR TU COMPROMISO",
             ["Descripcion"] = "El Sello de Reconocimiento de Energía Sostenible es un distintivo entregado por el Ministerio de Energía y Minas, a través de la Dirección General de Eficiencia Energética.",
@@ -13,7 +13,7 @@
         },
         [2] = new Dictionary<string, object>
         {
-            ["Imagen"] = "~/Assets/images/slide-02.jpg",
+            ["Imagen"] = "~/Assets/images/slide-03.jpg",
             ["Titulo"] = "¡POSTULA YA!",
             ["SubTitulo"] = "EL SELLO DE RECONOCIMIENTO DE ENERGÍA SOSTENIBLE",
             ["Descripcion"] = "Será otorgado a aquellas entidades públicas y/o privadas que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.",
@@ -21,7 +21,7 @@
         },
         [3] = new Dictionary<string, object>
         {
-            ["Imagen"] = "~/Assets/images/slide-03.jpg",
+            ["Imagen"] = "~/Assets/images/slide-01.jpg",
             ["Titulo"] = "¿ESTÁS LISTO?",
             ["SubTitulo"] = "YA TENEMOS LA PRIMERA FECHA",
             ["Descripcion"] = "La convocatoria se inicia en noviembre. Último día para presentar los mecanismos postulación es el <small class='badge badge-primary estilo-01'>20 de noviembre 2020.</small>",
@@ -64,27 +64,43 @@
                     <div class="col-12 mb-5">
                         <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">OBJETIVO</h2>
                         <p class="text-justify estilo-01 text-sres-gris wow slideInUp">El Sello de Reconocimiento de Energía sostenible busca <b>identificar y premiar</b> cada dos años a entidades del sector público y privado a nivel nacional en el desarrollo de la eficiencia y gestión energética implementada en sus instalaciones y procesos, permitiendo así, <b>incentivar al ahorro de energía primaria</b>, <b>reducción de costos energéticos</b> y <b>aumentar su competitividad</b>, <b>además de la reducción de gases de efecto invernadero</b>.</p>
+                        <p class="text-justify estilo-01 text-sres-gris wow slideInUp">El Sello de reconocimiento de energía sostenible es una distinción que premia al esfuerzo de las entidades, categorizada en tres niveles: <a href="./categorias-y-reconocimientos.html" class="text-sres-verde">Oro, Plata y Bronce</a>, a los cuales se acceden <b>mediante el cumplimiento de 8 criterios</b></p>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-12 mb-5">
-                        <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">CRITERIOS DE EVALUACIÓN</h2>
-                        <ol class="criterios wow slideInUp">
-                            <li>Ahorro de energía eléctrica total.</li>
-                            <li>Ahorro de consumo de combustible.</li>
-                            <li>Implementación de un sistema de gestión de la energía.</li>
-                            <li>Generación de puestos de trabajo relacionado a la gestión de la energía.</li>
-                            <li>Diagnóstico energético.</li>
-                            <li>Cálculo de la huella de carbono.</li>
-                            <li>Fortalecimiento de capacidades para el buen uso de la energía.</li>
-                            <li>Enfoque transversal de género.</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 mb-5">
-                        <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">MARCO LEGAL</h2>
-                        <p class="text-justify estilo-01 text-sres-gris wow slideInUp">En marco del <b>Decreto Supremo Nº 053-2007-EM</b> reglamento de la Ley de Promoción del Uso Eficiente de la Energía - <b>Ley Nº 27345</b>, según lo señalado en el <b>Artículo N°9</b>, el Ministerio de Energía y Minas propondrá criterios de evaluación para premios nacionales, en ese sentido la Dirección General de Eficiencia Energética en cumplimiento de lo señalado ha desarrollado esta herramienta para reconocimiento de energía sostenible, con el fin de promover iniciativas por parte de instituciones públicas y privadas para mitigar emisiones mediante eficiencia energética, las cuales serán reportadas en las contribuciones Nacionalmente Determinadas del Perú (<b>NDC – Perú</b>) presentadas en la COP 21 en diciembre del 2015, la mismas que fueron ratificadas en abril del 2016, mediante <b>Decreto Supremo Nº 058-2016-RE</b>.</p>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-01.png")">
+                                <div class="estilo-01 text-sres-verde">Ahorro de energía eléctrica total.</div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-02.png")">
+                                <div class="estilo-01 text-sres-verde">Ahorro de consumo de combustible.</div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-04.png")">
+                                <div class="estilo-01 text-sres-verde">Implementación de un sistema de gestión de la energía.</div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-03.png")">
+                                <div class="estilo-01 text-sres-verde">Generación de puestos de trabajo relacionado a la gestión de la energía.</div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-05.png")">
+                                <div class="estilo-01 text-sres-verde">Diagnóstico energético.</div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-06.png")">
+                                <div class="estilo-01 text-sres-verde">Cálculo de la huella de carbono.</div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-07.png")">
+                                <div class="estilo-01 text-sres-verde">Fortalecimiento de capacidades para el buen uso de la energía.</div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
+                                <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-08.png")">
+                                <div class="estilo-01 text-sres-verde">Enfoque transversal de género.</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -101,36 +117,15 @@
                         <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Estas entidades asumen un compromiso, que cumplen y desarrollan obteniendo resultados cuantificables, dando evidencia de las buenas prácticas y <b>destacándose entre otras del mismo rubro</b>. Estos esfuerzos generan finalmente una percepción positiva entre sus clientes y la sociedad.</p>
                     </div>
                 </div>
-            </div>
-            @Html.Partial("_SRES_Documentation")
-            @*<div class="col-lg-4 col-md-12 col-sm-12">
                 <div class="row">
-                    <div class="col-12">
-                        <h4 class="p-2 estilo-04 text-white bg-degradado wow slideInUp">DOCUMENTOS DE REFERENCIA</h4>
-                        <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow slideInUp">
-                            <li><a class="estilo-01 text-sres-azul" href="http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" target="_blank">Estudio del Impacto del Etiquetado 2018 a 2019</a></li>
-                            <li><a class="estilo-01 text-sres-azul" href="http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" target="_blank">Estudio del Impacto del Etiquetado de Eficiencia Energética 2020</a></li>
-                            <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Piloto de Auditorías Energéticas en el Sector Público</a></li>
-                            <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Piloto de Auditorías Energéticas en el Sector Privado</a></li>
-                            <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Reglamento de Etiquetado de Eficiencia Energética</a></li>
-                            <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Guía de Auditorías Energéticas</a></li>
-                            <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Manual de uso de la plataforma del Sello de Reconocimiento Energético</a></li>
-                        </ul>
-                        <h4 class="p-2 estilo-04 text-white bg-degradado wow slideInUp">LINKS DE INTERÉS</h4>
-                        <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow slideInUp">
-                            <li><a class="estilo-01 text-sres-azul" href="http://www.minem.gob.pe/_publicacion.php?idSector=12&amp;idPublicacion=610" target="_blank">Balance Nacional de Energía 2018</a></li>
-                            <li><a class="estilo-01 text-sres-azul" href="https://www.mef.gob.pe/prosemer/web/estudio/balance-nacional-de-energ%C3%ADa-%C3%BAtil/14" target="_blank">Balance Nacional de Energía Útil 2013</a></li>
-                            <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Guías de orientación del uso eficiente de la energía</a></li>
-                        </ul>
+                    <div class="col-12 mb-5">
+                        <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">MARCO LEGAL</h2>
+                        <p class="text-justify estilo-01 text-sres-gris wow slideInUp">En marco del <b>Decreto Supremo Nº 053-2007-EM</b> reglamento de la Ley de Promoción del Uso Eficiente de la Energía - <b>Ley Nº 27345</b>, según lo señalado en el <b>Artículo N°9</b>, el Ministerio de Energía y Minas propondrá criterios de evaluación para premios nacionales, en ese sentido la Dirección General de Eficiencia Energética en cumplimiento de lo señalado ha desarrollado esta herramienta para reconocimiento de energía sostenible, con el fin de promover iniciativas por parte de instituciones públicas y privadas para mitigar emisiones mediante eficiencia energética, las cuales serán reportadas en las contribuciones Nacionalmente Determinadas del Perú (<b>NDC – Perú</b>) presentadas en la COP 21 en diciembre del 2015, la mismas que fueron ratificadas en abril del 2016, mediante <b>Decreto Supremo Nº 058-2016-RE</b>.</p>
                     </div>
                 </div>
-            </div>*@
+            </div>
+            @Html.Partial("_SRES_Documentation")
+            
         </div>
     </div>
 </div>
-@*<h2>Index</h2>
-
-
-<div class="col-sm-12 col-md-6 col-lg-6"><a class="btn btn-success w-100 mb-2 go-select" href="@Url.Action("TablaMantenimiento", "Mantenimiento")"><i class="far fa-hand-point-up px-1"></i>Ir al mantenimiento</a></div>
-
-<div class="col-sm-12 col-md-6 col-lg-6"><a class="btn btn-success w-100 mb-2 go-select" href="@Url.Action("CriterioIngresar", "Convocatoria")"><i class="far fa-hand-point-up px-1"></i>Ir al Criterio</a></div>*@
