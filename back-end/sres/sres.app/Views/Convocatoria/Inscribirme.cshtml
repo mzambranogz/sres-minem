@@ -1,6 +1,7 @@
 ﻿@using sres.be
 @{
     ViewBag.Titulo = "Inscribirme";
+    ViewBag.SRESDescription = false;
 
     ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
     InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
@@ -14,7 +15,331 @@
     <script src="@Url.Content("~/Assets/js/pages/convocatoria_inscribirme.js")"></script>
 }
 
-<h2>DATOS DE LA CONVOCATORIA @convocatoria.NOMBRE</h2>
+
+<div class="container-fluid mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="estilo-05" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="./index.html">Inicio</a></li>
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="./bandeja-postulante.html">Bandeja</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Requisitos</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bg-sres-claro p-3">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-12 text-left text-lg-center">
+                            <div class="estilo-07 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("dd")</div>
+                            <div class="estilo-03 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("MMM").Replace(".", "").ToUpper()</div>
+                            <div class="estilo-02 estilo-02-force text-sres-claro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("yyyy")</div>
+                        </div>
+                        <div class="col-lg-11 col-md-12 barra-oscura">
+                            <h2 class="estilo-03 text-sres-oscuro text-limit-1">@convocatoria.NOMBRE</h2>
+                            <p class="estilo-01 text-justify text-sres-gris m-0 text-limit-3" data-limit="1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                            <div class="text-right d-none d-lg-block"><a class="estilo-01 text-sres-verde leer-mas" href="#">Leer más</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mb-3">
+    <div class="container">
+        <div class="rayado wow fadeIn"></div>
+    </div>
+</div>
+<div class="container-fluid mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p class="estilo-01 text-justify text-sres-gris m-0">Con la finalidad de que la entidad postulante demuestre las condiciones legales para realizar sus actividades económicas, se sugiere que éstas puedan cumplir con los siguientes criterios:</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bg-sres-claro py-5 px-3">
+                    <div class="row">
+                        <div class="col-12" id="lstInscripcionRequerimiento">
+                            @*<div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <h3 class="estilo-02 text-sres-azul mb-5">CRITERIOS GENERALES</h3>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12 d-none d-lg-block">
+                                    <h3 class="estilo-02 text-sres-azul mb-5">ARCHIVOS ADJUNTOS</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01 text-limit-1" for="fle-requisito-01">Reporte de INFOCORP<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-01" placeholder="Subir documentos" required>
+                                            <input class="d-none fil-file-control" type="file" id="fle-requisito-01" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
+                                            <div class="input-group-append">
+                                                <label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-01"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01">&nbsp;</label>
+                                        <div class="alert alert-success p-1 d-flex">
+                                            <div class="mr-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">Nombre del archivo subido.pdf</span></div>
+                                            <div class="ml-auto"><a class="text-sres-verde" href="#"><i class="fas fa-download px-2 py-1"></i></a><a class="text-sres-verde" href="#"><i class="fas fa-trash px-2 py-1"></i></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01 text-limit-1" for="fle-requisito-02">Reporte de INFOCORP<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-02" placeholder="Subir documentos" required>
+                                            <input class="d-none fil-file-control" type="file" id="fle-requisito-02" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
+                                            <div class="input-group-append">
+                                                <label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-02"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01">&nbsp;</label>
+                                        <div class="alert alert-success p-1 d-flex">
+                                            <div class="mr-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">Nombre del archivo subido.pdf</span></div>
+                                            <div class="ml-auto"><a class="text-sres-verde" href="#"><i class="fas fa-download px-2 py-1"></i></a><a class="text-sres-verde" href="#"><i class="fas fa-trash px-2 py-1"></i></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01 text-limit-1" for="fle-requisito-03">Saneamiento legal<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-03" placeholder="Subir documentos" required>
+                                            <input class="d-none fil-file-control" type="file" id="fle-requisito-03" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
+                                            <div class="input-group-append">
+                                                <label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-03"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01">&nbsp;</label>
+                                        <div class="alert alert-danger p-1 d-flex">
+                                            <div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">Error vuelva a intentarlo nuevamente</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01 text-limit-1" for="fle-requisito-04">Ficha RUC de la SUNAT<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-04" placeholder="Subir documentos" required>
+                                            <input class="d-none fil-file-control" type="file" id="fle-requisito-04" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
+                                            <div class="input-group-append">
+                                                <label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-04"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01">&nbsp;</label>
+                                        <div class="alert alert-danger p-1 d-flex">
+                                            <div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">Error vuelva a intentarlo nuevamente</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01 text-limit-1" for="fle-requisito-05">Compromiso de acceso a la información y confidencialidad<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-05" placeholder="Subir documentos" required>
+                                            <input class="d-none fil-file-control" type="file" id="fle-requisito-05" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
+                                            <div class="input-group-append">
+                                                <label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-05"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01">&nbsp;</label>
+                                        <div class="alert alert-danger p-1 d-flex">
+                                            <div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">Error vuelva a intentarlo nuevamente</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01 text-limit-1" for="fle-requisito-06">Postulación firmada por el titular o representante<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-06" placeholder="Subir documentos" required>
+                                            <input class="d-none fil-file-control" type="file" id="fle-requisito-06" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
+                                            <div class="input-group-append">
+                                                <label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-06"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01">&nbsp;</label>
+                                        <div class="alert alert-success p-1 d-flex">
+                                            <div class="mr-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">Nombre del archivo subido.pdf</span></div>
+                                            <div class="ml-auto"><a class="text-sres-verde" href="#"><i class="fas fa-download px-2 py-1"></i></a><a class="text-sres-verde" href="#"><i class="fas fa-trash px-2 py-1"></i></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01 text-limit-1" for="fle-requisito-07">Documento de constitución de la empresa en registro públicos<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-07" placeholder="Subir documentos" required>
+                                            <input class="d-none fil-file-control" type="file" id="fle-requisito-07" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
+                                            <div class="input-group-append">
+                                                <label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-07"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01">&nbsp;</label>
+                                        <div class="alert alert-secondary p-1 d-flex">
+                                            <div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01 text-limit-1" for="fle-requisito-08">Declaración jurada de veracidad de la información suministrada<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-08" placeholder="Subir documentos" required>
+                                            <input class="d-none fil-file-control" type="file" id="fle-requisito-08" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
+                                            <div class="input-group-append">
+                                                <label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-08"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01">&nbsp;</label>
+                                        <div class="alert alert-secondary p-1 d-flex">
+                                            <div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="chk-norma-01">
+                                            <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-01">Acepto cumplir con la normativa vigente que corresponda, pudiendo ser excluidas del premio en caso de verificarse incumplimiento de ésta, incluso una vez entregado el mismo</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="chk-norma-02">
+                                            <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-02">Acepto permitir la visita a las instalaciones, facilitar información complementaria y/o presentar el proyecto al Comité Organizador y Evaluador, en caso que éste lo solicite.</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-secondary text-white w-100 mb-3" href="./bandeja-postulante.html">Regresar</a></div>
+                                        <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-primary text-white w-100 mb-3" href="./criterios.html" id="btnInscribirme">@(inscripcion == null ? "Participar" : "Actualizar")</a></div>
+                                    </div>
+                                    @*<div class="alert alert-danger d-flex align-items-stretch" role="alert">
+                                        <div class="alert-wrap mr-3">
+                                            <div class="sa">
+                                                <div class="sa-error">
+                                                    <div class="sa-error-x">
+                                                        <div class="sa-error-left"></div>
+                                                        <div class="sa-error-right"></div>
+                                                    </div>
+                                                    <div class="sa-error-placeholder"></div>
+                                                    <div class="sa-error-fix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="alert-wrap">
+                                            <h6 class="estilo-02">Ocurrió un Error inesperado</h6>
+                                            <hr class="my-1"><small class="mb-0 estilo-01">Inténtelo nuevamente por favor.</small>
+                                        </div>
+                                    </div>
+                                    <div class="alert alert-success d-flex align-items-stretch" role="alert">
+                                        <div class="alert-wrap mr-3">
+                                            <div class="sa">
+                                                <div class="sa-success">
+                                                    <div class="sa-success-tip"></div>
+                                                    <div class="sa-success-long"></div>
+                                                    <div class="sa-success-placeholder"></div>
+                                                    <div class="sa-success-fix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="alert-wrap">
+                                            <h6 class="estilo-02">Bien hecho</h6>
+                                            <hr class="my-1"><small class="mb-0 estilo-01">Ah ingresado todos los requisitos, iniciará el proceso de registro de los criterios de su postulación.</small>
+                                        </div>
+                                    </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<h2>DATOS DE LA CONVOCATORIA @convocatoria.NOMBRE</h2>
 
 <div>
     <label>FECHA INICIO: </label> @convocatoria.FECHA_INICIO.ToString("dd/MM/yyyy")
@@ -26,7 +351,7 @@
 <div id="lstInscripcionRequerimiento"></div>
 
 <button id="btnInscribirme" type="button">@(inscripcion == null ? "INSCRIBIRME" : "ACTUALIZAR DOCUMENTOS")</button>
-@if(inscripcion != null)
+@if (inscripcion != null)
 {
     <a href="@Url.Content($"~/Convocatoria/{inscripcion.ID_CONVOCATORIA}/Criterios")">COMPLETAR CRITERIOS</a>
-}
+}*@

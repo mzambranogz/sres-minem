@@ -149,7 +149,6 @@
     <Content Include="Assets\js\pages\mantenimiento_rol.js" />
     <Content Include="Assets\js\pages\mantenimiento_sector.js" />
     <Content Include="Assets\js\pages\mantenimiento_usuario.js" />
-    <Content Include="Assets\css\style.css" />
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
@@ -232,6 +231,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\css\" />
     <Folder Include="Assets\fonts\" />
     <Folder Include="Assets\images\" />
     <Folder Include="Models\" />
