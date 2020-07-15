@@ -1,12 +1,14 @@
-﻿
+﻿@using sres.be
 @{
     ViewBag.Titulo = "Index";
+    ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
 }
-
 @section scripts_footer{
     <script src="@Url.Content("~/Assets/js/pages/convocatoria.js")"></script>
 }
 
+@if (usuario != null) {
 <div class="container-fluid my-5">
     <div class="container">
         <div class="row">
@@ -14,7 +16,7 @@
                 <div class="resaltar">
                     <div class="row">
                         <div class="col-12 text-center">
-                            <img class="img-fluid" src="./images/sin-foto.png" alt="">
+                            <img class="img-fluid" src="@Url.Content("~/Assets/images/sin-foto.png")" alt="">
                             <label class="cursor-pointer fle-logo" for="fle-logo" data-toggle="tooltip" data-placement="bottom" title="Editar logo">
                                 <i class="fas fa-camera fa-lg"></i>
                                 <input class="d-none" type="file" id="fle-logo" accept="image/jpeg, .jpg, .png">
@@ -26,8 +28,8 @@
             </div>
             <div class="col-lg-6 col-md col-sm-12">
                 <div class="bg-sres-claro p-2">
-                    <h2 class="estilo-03 text-sres-oscuro text-limit-1">Representaciones Eléctricas del Perú</h2>
-                    <h3 class="estilo-04 text-sres-gris py-2">20102030405</h3>
+                    <h2 class="estilo-03 text-sres-oscuro text-limit-1">@usuario.INSTITUCION.RAZON_SOCIAL</h2>
+                    <h3 class="estilo-04 text-sres-gris py-2">@usuario.INSTITUCION.RUC</h3>
                     <div class="resaltar">
                         <p class="estilo-01 text-justify text-sres-gris text-limit-3 pr-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><span data-toggle="modal" data-target="#modal-edit-descripcion">
                             <label class="cursor-pointer edit-descripcion" data-toggle="tooltip" data-placement="bottom" title="Editar descripción"><i class="fas fa-edit fa-lg"></i></label>
@@ -40,19 +42,19 @@
                     <h3 class="estilo-04 text-sres-gris py-2">ÚLTIMOS RECONOCIMIENTOS</h3>
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-12 text-center">
-                            <img class="img-fluid pt-2 pb-1" src="./images/oro.png">
+                            <img class="img-fluid pt-2 pb-1" src="@Url.Content("~/Assets/images/oro.png")">
                             <div class="span estilo-01 text-sres-gris py-2">2020-01</div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12 text-center">
-                            <img class="img-fluid pt-2 pb-1" src="./images/plata.png">
+                            <img class="img-fluid pt-2 pb-1" src="@Url.Content("~/Assets/images/plata.png")">
                             <div class="span estilo-01 text-sres-gris py-2">2020-01</div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12 text-center">
-                            <img class="img-fluid pt-2 pb-1" src="./images/bronce.png">
+                            <img class="img-fluid pt-2 pb-1" src="@Url.Content("~/Assets/images/bronce.png")">
                             <div class="span estilo-01 text-sres-gris py-2">2020-01</div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12 text-center">
-                            <img class="img-fluid pt-2 pb-1" src="./images/sin-sres.png">
+                            <img class="img-fluid pt-2 pb-1" src="@Url.Content("~/Assets/images/sin-sres.png")">
                             <div class="span estilo-01 text-sres-gris py-2">-------</div>
                         </div>
                     </div>
@@ -62,13 +64,13 @@
         <div class="rayado pt-5 wow fadeIn"></div>
     </div>
 </div>
-
+}
 <div class="container-fluid">
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
                 <div class="form-group">
-                    <label for="txt-expediente">NRO. EXPEDIENTE</label>
+                    <label class="estilo-01 text-sres-oscuro" for="txt-expediente">NRO. EXPEDIENTE</label>
                     <div class="input-group">
                         <input class="form-control form-control-sm" type="text" id="txt-expediente" placeholder="#######">
                     </div>
@@ -102,7 +104,7 @@
                 <div class="form-group">
                     <label class="estilo-01 text-sres-oscuro" for="dat-hasta">&nbsp;</label>
                     <div class="input-group">
-                        <button class="btn btn-primary w-100">Consultar</button>
+                        <button id="btnConsultar" class="btn btn-primary w-100">Consultar</button>
                     </div>
                 </div>
             </div>
@@ -115,7 +117,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive tabla-principal">
-                    <table class="table table-sm table-hover">
+                    <table id="tblConvocatoria" class="table table-sm table-hover">
                         <thead class="estilo-06">
                             <tr>
                                 <th scope="col" width="10%">
@@ -144,238 +146,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="estilo-01">
-                            <tr>
-                                <td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row"><a href="#"><i class="fas fa-eye mr-1"></i><span>3037811</span></a></td>
-                                <td class="text-center" data-encabezado="Período">2020-2</td>
-                                <td data-encabezado="Progreso">
-                                    <div class="text-limi-1">Nombre de la Iniciativa Demasiado Largo</div>
-                                </td>
-                                <td class="text-center" data-encabezado="Fecha Inicio">20/03/2020</td>
-                                <td class="text-center" data-encabezado="Fecha Fin">20/03/2025</td>
-                                <td class="text-center" data-encabezado="Vencimiento">
-                                    <div class="progress" style="height: 21px;" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance">
-                                        <div class="progress-bar preparado estilo-01" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
-                                    </div>
-                                </td>
-                                <td data-encabezado="Estado">
-                                    <b class="text-sres-verde">ABIERTO</b>
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group">
-                                        <a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row"><a href="#"><i class="fas fa-eye mr-1"></i><span>3037812</span></a></td>
-                                <td class="text-center" data-encabezado="Período">2020-3</td>
-                                <td data-encabezado="Progreso">
-                                    <div class="text-limi-1">Nombre de la Iniciativa Demasiado Largo</div>
-                                </td>
-                                <td class="text-center" data-encabezado="Fecha Inicio">20/03/2020</td>
-                                <td class="text-center" data-encabezado="Fecha Fin">20/03/2025</td>
-                                <td class="text-center" data-encabezado="Vencimiento">
-                                    <div class="progress" style="height: 21px;" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance">
-                                        <div class="progress-bar vigente estilo-01" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                                    </div>
-                                </td>
-                                <td data-encabezado="Estado">
-                                    <b class="text-sres-oscuro">EN PROCESO</b>
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group">
-                                        <a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row"><a href="#"><i class="fas fa-eye mr-1"></i><span>3037813</span></a></td>
-                                <td class="text-center" data-encabezado="Período">2020-4</td>
-                                <td data-encabezado="Progreso">
-                                    <div class="text-limi-1">Nombre de la Iniciativa Demasiado Largo</div>
-                                </td>
-                                <td class="text-center" data-encabezado="Fecha Inicio">20/03/2020</td>
-                                <td class="text-center" data-encabezado="Fecha Fin">20/03/2025</td>
-                                <td class="text-center" data-encabezado="Vencimiento">
-                                    <div class="progress" style="height: 21px;" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance">
-                                        <div class="progress-bar vigente estilo-01" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="50" aria-valuemax="100">50%</div>
-                                    </div>
-                                </td>
-                                <td data-encabezado="Estado">
-                                    <b class="text-sres-azul">EN REVISIÓN</b>
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group">
-                                        <a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row"><a href="#"><i class="fas fa-eye mr-1"></i><span>3037814</span></a></td>
-                                <td class="text-center" data-encabezado="Período">2020-5</td>
-                                <td data-encabezado="Progreso">
-                                    <div class="text-limi-1">Nombre de la Iniciativa Demasiado Largo</div>
-                                </td>
-                                <td class="text-center" data-encabezado="Fecha Inicio">20/03/2020</td>
-                                <td class="text-center" data-encabezado="Fecha Fin">20/03/2025</td>
-                                <td class="text-center" data-encabezado="Vencimiento">
-                                    <div class="progress" style="height: 21px;" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance">
-                                        <div class="progress-bar vigente estilo-01" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="75" aria-valuemax="100">75%</div>
-                                    </div>
-                                </td>
-                                <td data-encabezado="Estado">
-                                    <b class="text-nama-roja">PENDIENTE</b>
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group">
-                                        <a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row"><a href="#"><i class="fas fa-eye mr-1"></i><span>3037815</span></a></td>
-                                <td class="text-center" data-encabezado="Período">2020-6</td>
-                                <td data-encabezado="Progreso">
-                                    <div class="text-limi-1">Nombre de la Iniciativa Demasiado Largo</div>
-                                </td>
-                                <td class="text-center" data-encabezado="Fecha Inicio">20/03/2020</td>
-                                <td class="text-center" data-encabezado="Fecha Fin">20/03/2025</td>
-                                <td class="text-center" data-encabezado="Vencimiento">
-                                    <div class="progress" style="height: 21px;" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance">
-                                        <div class="progress-bar vigente estilo-01" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
-                                    </div>
-                                </td>
-                                <td data-encabezado="Estado">
-                                    <b class="text-sres-gris">CERRADO</b>
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group">
-                                        <a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row"><a href="#"><i class="fas fa-eye mr-1"></i><span>3037816</span></a></td>
-                                <td class="text-center" data-encabezado="Período">2020-7</td>
-                                <td data-encabezado="Progreso">
-                                    <div class="text-limi-1">Nombre de la Iniciativa Demasiado Largo</div>
-                                </td>
-                                <td class="text-center" data-encabezado="Fecha Inicio">20/03/2020</td>
-                                <td class="text-center" data-encabezado="Fecha Fin">20/03/2025</td>
-                                <td class="text-center" data-encabezado="Vencimiento">
-                                    <div class="progress" style="height: 21px;" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance">
-                                        <div class="progress-bar vencido estilo-01" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
-                                    </div>
-                                </td>
-                                <td data-encabezado="Estado">
-                                    <b class="text-sres-gris">CERRADO</b>
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group">
-                                        <a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row"><a href="#"><i class="fas fa-eye mr-1"></i><span>3037817</span></a></td>
-                                <td class="text-center" data-encabezado="Período">2020-8</td>
-                                <td data-encabezado="Progreso">
-                                    <div class="text-limi-1">Nombre de la Iniciativa Demasiado Largo</div>
-                                </td>
-                                <td class="text-center" data-encabezado="Fecha Inicio">20/03/2020</td>
-                                <td class="text-center" data-encabezado="Fecha Fin">20/03/2025</td>
-                                <td class="text-center" data-encabezado="Vencimiento">
-                                    <div class="progress" style="height: 21px;" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance">
-                                        <div class="progress-bar vencido estilo-01" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
-                                    </div>
-                                </td>
-                                <td data-encabezado="Estado">
-                                    <b class="text-sres-gris">CERRADO</b>
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group">
-                                        <a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row"><a href="#"><i class="fas fa-eye mr-1"></i><span>3037818</span></a></td>
-                                <td class="text-center" data-encabezado="Período">2020-9</td>
-                                <td data-encabezado="Progreso">
-                                    <div class="text-limi-1">Nombre de la Iniciativa Demasiado Largo</div>
-                                </td>
-                                <td class="text-center" data-encabezado="Fecha Inicio">20/03/2020</td>
-                                <td class="text-center" data-encabezado="Fecha Fin">20/03/2025</td>
-                                <td class="text-center" data-encabezado="Vencimiento">
-                                    <div class="progress" style="height: 21px;" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance">
-                                        <div class="progress-bar vencido estilo-01" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
-                                    </div>
-                                </td>
-                                <td data-encabezado="Estado">
-                                    <b class="text-sres-gris">CERRADO</b>
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group">
-                                        <a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row"><a href="#"><i class="fas fa-eye mr-1"></i><span>3037819</span></a></td>
-                                <td class="text-center" data-encabezado="Período">2020-10</td>
-                                <td data-encabezado="Progreso">
-                                    <div class="text-limi-1">Nombre de la Iniciativa Demasiado Largo</div>
-                                </td>
-                                <td class="text-center" data-encabezado="Fecha Inicio">20/03/2020</td>
-                                <td class="text-center" data-encabezado="Fecha Fin">20/03/2025</td>
-                                <td class="text-center" data-encabezado="Vencimiento">
-                                    <div class="progress" style="height: 21px;" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance">
-                                        <div class="progress-bar vencido estilo-01" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
-                                    </div>
-                                </td>
-                                <td data-encabezado="Estado">
-                                    <b class="text-sres-gris">CERRADO</b>
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group">
-                                        <a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row"><a href="#"><i class="fas fa-eye mr-1"></i><span>30378110</span></a></td>
-                                <td class="text-center" data-encabezado="Período">2020-11</td>
-                                <td data-encabezado="Progreso">
-                                    <div class="text-limi-1">Nombre de la Iniciativa Demasiado Largo</div>
-                                </td>
-                                <td class="text-center" data-encabezado="Fecha Inicio">20/03/2020</td>
-                                <td class="text-center" data-encabezado="Fecha Fin">20/03/2025</td>
-                                <td class="text-center" data-encabezado="Vencimiento">
-                                    <div class="progress" style="height: 21px;" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance">
-                                        <div class="progress-bar vencido estilo-01" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
-                                    </div>
-                                </td>
-                                <td data-encabezado="Estado">
-                                    <b class="text-sres-gris">CERRADO</b>
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group">
-                                        <a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tbody class="estilo-01"></tbody>
                     </table>
                 </div>
             </div>
@@ -383,10 +154,10 @@
         <div class="row">
             <div class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-start align-items-center">
                 <div class="row">
-                    <div class="col-12"><strong>Resultado:&nbsp;</strong>1-10 de 750 registros</div>
+                    <div class="col-12"><strong>Resultado:&nbsp;</strong><span class="inicio-registros">1</span>-<span class="fin-registros">1</span> de <span class="total-registros">1</span> registros</div>
                 </div>
             </div>
-            <div class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-end align-items-center">
+            <div id="viewPagination" class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-end align-items-center" style="display: none">
                 <div class="row">
                     <div class="col-12">
                         <strong>Registros por página&nbsp;</strong>
@@ -396,13 +167,13 @@
                             <option value="50">50</option>
                             <option value="100">100</option>
                         </select>&nbsp;
-                        1 de 75 páginas&nbsp;
+                        <span class="pagina">1</span> de <span class="total-paginas">75</span> páginas&nbsp;
                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-double-left"></i></button>
-                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-left"></i></button>
-                            <input class="ir-pagina" type="number" value="1" min="1">
-                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-right"></i></button>
-                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-double-right"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" id="btnFirstPagination"><i class="fas fa-angle-double-left"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" id="btnPreviousPagination"><i class="fas fa-angle-left"></i></button>
+                            <input id="ir-pagina" class="ir-pagina" type="number" value="1" min="1">
+                            <button class="btn btn-sm btn-primary" type="button" id="btnNextPagination"><i class="fas fa-angle-right"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" id="btnLastPagination"><i class="fas fa-angle-double-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -412,7 +183,7 @@
 </div>
 
 
-<div>
+@*<div>
     <div>
         <label>
             N° Expediente: <input type="text" name="txtNroInformeBusqueda" id="txtNroInformeBusqueda" />
@@ -445,4 +216,4 @@
         </thead>
         <tbody></tbody>
     </table>
-</div>
+</div>*@

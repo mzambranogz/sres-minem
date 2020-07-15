@@ -27,11 +27,13 @@
 }
 
 @section scripts_header{
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    @*<script src="https://www.google.com/recaptcha/api.js" async defer></script>*@
+    <script src="https://www.google.com/recaptcha/api.js?render=@(ViewData["keySiteCaptcha"].ToString())"></script>
 }
 
 @section scripts_footer{
     <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/plugins/counter.js")"></script>
     <script src="@Url.Content("~/Assets/js/pages/login.js")"></script>
 }
 
@@ -54,12 +56,10 @@
                         <div class="h4 estilo-03">Ingresar <br><small class="text-muted estilo-02">Accede con tu cuenta</small></div>
                         <form id="frmLogin" action="@Url.Action("Validar", "Login")" method="post" autocomplete="off">
                             <input type="hidden" name="token" id="token" />
-                            @*<form class="pt-4" id="frmLogin" action="./bandeja-postulante.html" autocomplete="off">*@
                             <div class="form-group">
                                 <label class="estilo-01" for="txt-user">Correo electrónico</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text" id="inputGroup1"><i class="fas fa-envelope"></i></span></div>
-                                    @*<input class="form-control estilo-01" type="email" name="correo" id="correo" placeholder="Ingresar correo electrónico" aria-describedby="inputGroup1" maxlength="50" pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@("@")[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$" title="Ingrese una dirección de correo válida." autocomplete="new-user" required />*@
                                     <input class="form-control estilo-01" type="email" id="txt-user" placeholder="Ingresar correo electrónico" aria-describedby="inputGroup1" maxlength="50" pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@("@")[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$" title="Ingrese una dirección de correo válida." autocomplete="new-user" required>
                                 </div>
                             </div>
@@ -67,7 +67,6 @@
                                 <label class="estilo-01" for="txt-pswd">Contraseña</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text" id="inputGroup2"><i class="fas fa-key"></i></span></div>
-                                    @*<input class="form-control estilo-01" type="password" name="contraseña" id="contraseña" placeholder="Ingresar contraseña" aria-describedby="inputGroup2" maxlength="30" title="Ingrese su contraseña." autocomplete="new-password" required />*@
                                     <input class="form-control estilo-01" type="password" id="txt-pswd" placeholder="Ingresar contraseña" aria-describedby="inputGroup2" maxlength="30" title="Ingrese su contraseña." autocomplete="new-password" required>
                                     <div class="input-group-append">
                                         <label class="input-group-text cursor-pointer ver-clave estilo-01"><i class="fas fa-eye mr-1"></i>Mostrar</label>
@@ -80,32 +79,6 @@
                                     <label class="custom-control-label estilo-01" for="chk-recd">Recordar email</label>
                                 </div>
                             </div>
-                            @if (TempData["error_message"] != null)
-                            {
-                                <div class="alert alert-danger d-flex align-items-stretch" role="alert">
-                                    <div class="alert-wrap mr-3">
-                                        <div class="sa">
-                                            <div class="sa-error">
-                                                <div class="sa-error-x">
-                                                    <div class="sa-error-left"></div>
-                                                    <div class="sa-error-right"></div>
-                                                </div>
-                                                <div class="sa-error-placeholder"></div>
-                                                <div class="sa-error-fix"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="alert-wrap">
-                                        <h6 class="estilo-02">Error de acceso</h6>
-                                        <hr class="my-1">
-                                        @TempData["error_message"].ToString()
-                                        @*<small class="mb-0 estilo-01">Su cuenta está&nbsp;<strong>pendiente&nbsp;</strong>de aprobación</small>*@
-                                    </div>
-                                </div>
-                                <div>
-                                    <label></label>
-                                </div>
-                            }
                             @*<div class="alert alert-success d-flex align-items-stretch" role="alert">
                                     <div class="alert-wrap mr-3">
                                         <div class="sa">
@@ -123,7 +96,7 @@
                                     </div>
                                 </div>*@
                             <button class="btn-lg btn-primary w-100 mb-3" id="sresBtn" type="submit"><i class="fas fa-sign-in-alt px-1"></i>Ingresar</button>
-                            <button class="btn-lg btn-nama-azul w-100 mb-3" id="btnIniciarSesionMRV" type="button"><img class="px-1" src="@Url.Content("~/Assets/images/mrv-iso.png")">Ingresa con MRV</button>
+                            <button class="btn-lg btn-nama-azul w-100 mb-3" id="mrvBtn" type="button" data-toggle="tooltip" data-placement="bottom" title="Sistema de gestión y reporte de información de las medidas de mitigación de las Contribuciones Nacionalmente Determinadas (NDC).">Ingresa con tu cuenta MRV</button>
                             <button class="btn-lg btn-secondary w-100" id="rtnBtn" type="button" style="display: none;"><i class="fas fa-arrow-left px-1"></i>Regresar</button>
                         </form>
                         <p class="pt-4 mb-0 text-center estilo-01">¿No tienes una cuenta?&nbsp;<a class="text-sres-verde estilo-01" href="@Url.Action("Registrarme", "Login")">Regístrese ahora <br></a><a class="text-sres-verde estilo-01" href="@Url.Action("RecuperarContraseña", "Login")">¿Olvidó su contraseña?</a></p>
@@ -131,28 +104,6 @@
                 </div>
             </div>
             @Html.Partial("_SRES_Documentation")
-            @*<div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class="row">
-                        <div class="col-12">
-                            <h4 class="p-2 estilo-04 text-white bg-degradado wow fadeIn">DOCUMENTOS DE REFERENCIA</h4>
-                            <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow fadeIn">
-                                <li><a class="estilo-01 text-sres-azul" href="http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" target="_blank">Estudio del Impacto del Etiquetado 2018 a 2019</a></li>
-                                <li><a class="estilo-01 text-sres-azul" href="http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" target="_blank">Estudio del Impacto del Etiquetado de Eficiencia Energética 2020</a></li>
-                                <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Piloto de Auditorías Energéticas en el Sector Público</a></li>
-                                <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Piloto de Auditorías Energéticas en el Sector Privado</a></li>
-                                <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Reglamento de Etiquetado de Eficiencia Energética</a></li>
-                                <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Guía de Auditorías Energéticas</a></li>
-                                <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Manual de uso de la plataforma del Sello de Reconocimiento Energético</a></li>
-                            </ul>
-                            <h4 class="p-2 estilo-04 text-white bg-degradado wow fadeIn">LINKS DE INTERÉS</h4>
-                            <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow fadeIn">
-                                <li><a class="estilo-01 text-sres-azul" href="http://www.minem.gob.pe/_publicacion.php?idSector=12&amp;idPublicacion=610" target="_blank">Balance Nacional de Energía 2018</a></li>
-                                <li><a class="estilo-01 text-sres-azul" href="https://www.mef.gob.pe/prosemer/web/estudio/balance-nacional-de-energ%C3%ADa-%C3%BAtil/14" target="_blank">Balance Nacional de Energía Útil 2013</a></li>
-                                <li><a class="estilo-01 text-sres-azul" href="#" target="_blank">Guías de orientación del uso eficiente de la energía</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>*@
         </div>
     </div>
 </div>
@@ -178,52 +129,10 @@
                     </div>
                 </div>
             </div>
-            <!--.modal-footer.d-flex.justify-content-center
-            button(type="button", class="btn btn-info") Si, grabar
-            button(type="button", class="btn btn-dark", data-dismiss="modal") Cancelar
-            -->
         </div>
     </div>
 </div>
-@*<div>
-        <form id="frmLogin" action="@Url.Action("Validar", "Login")" method="post">
-            <input type="hidden" name="token" id="token" />
-            <div>
-                <label>
-                    Usuario: <input type="text" name="correo" id="correo" placeholder="Ingrese correo" />
-                </label>
-                <label>
-                    Contraseña: <input type="password" name="contraseña" id="contraseña" placeholder="Ingrese contraseña" />
-                </label>
-            </div>
-            <div>
-                <button>Iniciar sesión</button>
-                <button type="button" id="btnIniciarSesionMRV">Iniciar sesión con MRV</button>
-            </div>
-            <div>
-                <a href="@Url.Action("RecuperarContraseña", "Login")">¿Olvidaste tu contraseña?</a>
-            </div>
-            @if (TempData["error_message"] != null)
-                {
-                <div>
-                    <label>@TempData["error_message"].ToString()</label>
-                </div>
-            }
-        </form>
-    </div>*@
-@*<div id="viewLoginMRV" style="display: none;">
-    <form id="frmLoginMRV" action="@Url.Action("ValidarMRV", "Login")" method="post">
-        <input type="hidden" name="tokenMRV" id="tokenMRV" />
-        <label>
-            Correo: <input type="text" name="txtCorreoMRV" id="txtCorreoMRV" />
-        </label>
-        <label>
-            Contraseña: <input type="password" name="txtContraseñaMRV" id="txtContraseñaMRV" />
-        </label>
-        <button id="btnValidarUsuarioMRV">Iniciar Sesión</button>
-    </form>
-</div>*@
-<script src="https://www.google.com/recaptcha/api.js?render=@(ViewData["keySiteCaptcha"].ToString())"></script>
+
 <script>
     var key = '@ViewData["keySiteCaptcha"].ToString()';
 </script>

@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AnnoBE.cs" />
     <Compile Include="BaseBE.cs" />
+    <Compile Include="DataPaginateBE.cs" />
     <Compile Include="CasoAuxBE.cs" />
     <Compile Include="CasoBE.cs" />
     <Compile Include="ComponenteAuxBE.cs" />

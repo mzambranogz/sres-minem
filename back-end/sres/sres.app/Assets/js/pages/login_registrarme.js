@@ -10,20 +10,20 @@ var cargarInformacionInicial = (fn) => {
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(([listaSector]) => {
-        cargarComboSector('#selIdSectorInstitucion', listaSector);
+        cargarComboSector('#cbo-sector', listaSector);
         fn;
     })
 }
 
 var inicializar = () => {
-    $('#btnConsultarInstitucion').on('click', (e) => consultarInstitucion());
-    $('#txtCorreoUsuario').on('blur', (e) => consultarUsuario());
+    $('#sresBtn').on('click', (e) => consultarInstitucion());
+    $('#txt-user').on('blur', (e) => consultarUsuario());
     $('#btnValidarUsuarioMRV').on('click', (e) => validarUsuarioLogin());
-    $('#btnRegistrarme').on('click', (e) => registrarUsuario());
+    $('#frmRegister').on('submit', (e) => { e.preventDefault(); registrarUsuario();});
 }
 
 var consultarInstitucion = () => {
-    let rucInstitucion = $('#txtRucInstitucion').val().trim();
+    let rucInstitucion = $('#txt-ruc').val().trim();
 
     if (rucInstitucion == "") return;
 
@@ -37,14 +37,14 @@ var consultarInstitucion = () => {
 var cargarDatosInstitucion = (data) => {
     let existeInformacion = data != null;
 
-    $('#txtCorreoUsuario').val('');
+    $('#txt-user').val('');
     limpiarDatosInstitucion();
     limpiarDatosUsuario();
     cambiarPropiedadLecturaInstitucion(!existeInformacion);
     cambiarPropiedadLecturaUsuario(!existeInformacion);
 
     if (!existeInformacion) {
-        let ruc = $('#txtRucInstitucion').val();
+        let ruc = $('#txt-ruc').val();
         let urlObtenerInstitucionMRVPorRuc = `/api/mrv/institucion/obtenerinstitucionporruc?ruc=${ruc}`;
 
         fetch(urlObtenerInstitucionMRVPorRuc)
@@ -53,27 +53,35 @@ var cargarDatosInstitucion = (data) => {
         return;
     }
 
-    $('#frmRegistro').data('idInstitucion', data.ID_INSTITUCION);
-    $('#txtRazonSocialInstitucion').val(data.RAZON_SOCIAL);
-    $('#txtDomicilioLegalInstitucion').val(data.DOMICILIO_LEGAL);
-    $('#selIdSectorInstitucion').val(data.ID_SECTOR);
+
+    $('#frmRegister').data('idInstitucion', data.ID_INSTITUCION);
+    $('#txt-institucion').val(data.RAZON_SOCIAL);
+    $('#txt-direccion').val(data.DOMICILIO_LEGAL);
+    $('#cbo-sector').val(data.ID_SECTOR);
+
+    $('form .row:nth(2)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continue y complete sus datos en los campos restantes del siguiente formulario.' });
 }
 
 var cargarDatosInstitucionMRV = (data) => {
     let existeInformacion = data != null;
 
-    $('#txtCorreoUsuario').val('');
+    //$('#txt-ruc').val('');
     limpiarDatosInstitucion();
     limpiarDatosUsuario();
     cambiarPropiedadLecturaInstitucion(!existeInformacion);
     cambiarPropiedadLecturaUsuario(!existeInformacion);
 
-    if (!existeInformacion) return;
+    if (!existeInformacion) {
+        $('form .row:nth(2)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continue y complete sus datos en todos los campos del siguiente formulario.' });
+        return;
+    }
 
-    $('#frmRegistro').data('idInstitucion', data.ID_INSTITUCION);
-    $('#txtRazonSocialInstitucion').val(data.NOMBRE_INSTITUCION);
-    $('#txtDomicilioLegalInstitucion').val(data.DIRECCION_INSTITUCION);
-    $('#selIdSectorInstitucion').val(data.ID_SECTOR_INSTITUCION);
+    $('#frmRegister').data('idInstitucion', data.ID_INSTITUCION);
+    $('#txt-institucion').val(data.NOMBRE_INSTITUCION);
+    $('#txt-direccion').val(data.DIRECCION_INSTITUCION);
+    $('#cbo-sector').val(data.ID_SECTOR_INSTITUCION);
+
+    $('form .row:nth(2)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continue y complete sus datos en los campos restantes del siguiente formulario.' });
 }
 
 var cargarComboSector = (selector, data) => {
@@ -83,11 +91,11 @@ var cargarComboSector = (selector, data) => {
 }
 
 var consultarUsuario = () => {
-    let idInstitucion = $('#frmRegistro').data('idInstitucion');
+    let idInstitucion = $('#frmRegister').data('idInstitucion');
 
     if(idInstitucion == null) return;
 
-    let correo = $('#txtCorreoUsuario').val().trim();
+    let correo = $('#txt-user').val().trim();
 
     if(correo == '' || idInstitucion == '') return;
 
@@ -103,7 +111,7 @@ var cargarDatosUsuario = (data) => {
     cambiarPropiedadLecturaUsuario(!data.EXISTE);
 
     if(!data.EXISTE) {
-        let correo = $('#txtCorreoUsuario').val().trim();
+        let correo = $('#txt-user').val().trim();
 
         let urlVerificarCorreo = `/api/mrv/usuario/verificarcorreo?correo=${correo}`;
 
@@ -113,30 +121,37 @@ var cargarDatosUsuario = (data) => {
         return;
     }
 
-    $('#frmRegistro').data('idUsuario', data.USUARIO.ID_USUARIO);
-    $('#txtNombresUsuario').val(data.USUARIO.NOMBRES);
-    $('#txtApellidosUsuario').val(data.USUARIO.APELLIDOS);
-    $('#txtTelefonoUsuario').val(data.USUARIO.TELEFONO);
-    $('#txtAnexoUsuario').val(data.USUARIO.ANEXO);
-    $('#txtCelularUsuario').val(data.USUARIO.CELULAR);
+    $('form .row:nth(3)').alert({ type: 'warning', title: 'ADVERTENCIA', message: 'El correo ya se encuentra registrado', close: { time: 3000 } });
+
+    //$('#frmRegister').data('idUsuario', data.USUARIO.ID_USUARIO);
+    //$('#txtNombresUsuario').val(data.USUARIO.NOMBRES);
+    //$('#txtApellidosUsuario').val(data.USUARIO.APELLIDOS);
+    //$('#txtTelefonoUsuario').val(data.USUARIO.TELEFONO);
+    //$('#txtAnexoUsuario').val(data.USUARIO.ANEXO);
+    //$('#txtCelularUsuario').val(data.USUARIO.CELULAR);
 }
 
 var abrirModalLoginMRV = (data) => {
     if(data == true){
-        $('#txtCorreoMRV').val(correo);
-        $('#viewLoginMRV').show();
-        $('#viewContraseñaUsuario').hide();
+        let correo = $('#txt-user').val().trim();
+
+        $('#txt-user-mrv').val(correo);
+
+        $('#modalValidacionMrv').modal('show');
+        //$('#txtCorreoMRV').val(correo);
+        //$('#viewLoginMRV').show();
+        //$('#viewContraseñaUsuario').hide();
     }
 }
 
 var validarUsuarioLogin = () => {
-    let correo = $('#txtCorreoMRV').val().trim();
-    let contraseña = $('#txtContraseñaMRV').val().trim();
+    let correo = $('#txt-user-mrv').val().trim();
+    let contraseña = $('#txt-pswd-mrv').val().trim();
 
-    if (ruc == '' || correo == '' || contraseña == '') return;
+    if (correo == '' || contraseña == '') return;
 
     let init = { method: 'POST' };
-    let params = { ruc, correo, contraseña };
+    let params = { correo, contraseña };
     let paramsString = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
     let urlObtenerUsuarioRucCorreo = `/api/mrv/usuario/validarloginusuario?${paramsString}`;
 
@@ -149,82 +164,89 @@ var cargarDatosUsuarioMRV = (data) => {
     limpiarDatosUsuario();
     cambiarPropiedadLecturaUsuario(!data.VALIDO);
 
-    $('#viewLoginMRV').hide();
+    //$('#viewLoginMRV').hide();
 
     if(!data.VALIDO) {
-        $('#viewContraseñaUsuario').show();
+        $('form .row:nth(7)').show();
+        //$('#viewContraseñaUsuario').show();
+        $('#modalValidacionMrv .modal-content .modal-body .row:first').alert({ type: 'danger', title: 'ERROR', message: 'Usuario y/o contraseña inválidos', close: { time: 3000 } });
         return;
     }
+    
+    $('#modalValidacionMrv').modal('hide');
 
-    let contraseña = $('#txtContraseñaMRV').val();
+    let contraseña = $('#txt-pswd-mrv').val();
 
-    $('#frmRegistro').data('idUsuario', data.USUARIO.ID_USUARIO);
-    $('#txtNombresUsuario').val(data.USUARIO.NOMBRES_USUARIO);
-    $('#txtApellidosUsuario').val(data.USUARIO.APELLIDOS_USUARIO);
-    $('#txtTelefonoUsuario').val(data.USUARIO.TELEFONO_USUARIO);
-    $('#txtAnexoUsuario').val(data.USUARIO.ANEXO_USUARIO);
-    $('#txtCelularUsuario').val(data.USUARIO.CELULAR_USUARIO);
-    $('#txtContraseñaUsuario').val(contraseña);
-    $('#txtConfirmarContraseñaUsuario').val(contraseña);
+    $('#frmRegister').data('idUsuario', data.USUARIO.ID_USUARIO);
+    $('#txt-nombre').val(data.USUARIO.NOMBRES_USUARIO);
+    $('#txt-apellido').val(data.USUARIO.APELLIDOS_USUARIO);
+    $('#txt-telefono').val(data.USUARIO.TELEFONO_USUARIO);
+    $('#txt-anexo').val(data.USUARIO.ANEXO_USUARIO);
+    $('#txt-celular').val(data.USUARIO.CELULAR_USUARIO);
+    $('#txt-pswd').val(contraseña);
+    $('#txt-re-pswd').val(contraseña);
 }
 
 var limpiarFormulario = () => {
-    $('#txtRucInstitucion').val('');
+    $('#txt-ruc').val('');
     limpiarDatosInstitucion();
-    $('#txtCorreoUsuario').val('');
+    $('#txt-user').val('');
     limpiarDatosUsuario();
+    $('form .alert').remove();
 }
 
 var limpiarDatosInstitucion = () => {
-    $('#frmRegistro').removeData('idInstitucion');
-    $('#txtRazonSocialInstitucion').val('');
-    $('#txtDomicilioLegalInstitucion').val('');
-    $('#selIdSectorInstitucion option:first').prop('checked', true);
+    $('#frmRegister').removeData('idInstitucion');
+    $('#txt-institucion').val('');
+    $('#txt-direccion').val('');
+    $('#cbo-sector option:first').prop('checked', true);
     cambiarPropiedadLecturaInstitucion(false);
 }
 
 var limpiarDatosUsuario = () => {
-    $('#frmRegistro').val('idUsuario');
-    $('#txtNombresUsuario').val('');
-    $('#txtApellidosUsuario').val('');
-    $('#txtTelefonoUsuario').val('');
-    $('#txtAnexoUsuario').val('');
-    $('#txtCelularUsuario').val('');
-    $('#txtContraseñaUsuario').val('');
-    $('#txtConfirmarContraseñaUsuario').val('');
+    $('#frmRegister').val('idUsuario');
+    $('#txt-nombre').val('');
+    $('#txt-apellido').val('');
+    $('#txt-telefono').val('');
+    $('#txt-anexo').val('');
+    $('#txt-celular').val('');
+    $('#txt-pswd').val('');
+    $('#txt-re-pswd').val('');
     cambiarPropiedadLecturaUsuario(false);
 }
 
 var cambiarPropiedadLecturaInstitucion = (valor) => {
-    $('#txtRazonSocialInstitucion').prop('readonly', !valor);
-    $('#txtDomicilioLegalInstitucion').prop('readonly', !valor);
-    $('#selIdSectorInstitucion').prop('disabled', !valor);
+    $('#txt-institucion').prop('readonly', !valor);
+    $('#txt-direccion').prop('readonly', !valor);
+    $('#cbo-sector').prop('disabled', !valor);
 }
 
 var cambiarPropiedadLecturaUsuario = (valor) => {
-    $('#txtNombresUsuario').prop('readonly', !valor);
-    $('#txtApellidosUsuario').prop('readonly', !valor);
-    $('#txtTelefonoUsuario').prop('readonly', !valor);
-    $('#txtAnexoUsuario').prop('readonly', !valor);
-    $('#txtCelularUsuario').prop('readonly', !valor);
-    $('#txtContraseñaUsuario').prop('readonly', !valor);
-    $('#txtConfirmarContraseñaUsuario').prop('readonly', !valor);
+    $('#txt-nombre').prop('readonly', !valor);
+    $('#txt-apellido').prop('readonly', !valor);
+    $('#txt-telefono').prop('readonly', !valor);
+    $('#txt-anexo').prop('readonly', !valor);
+    $('#txt-celular').prop('readonly', !valor);
+    $('#txt-pswd').prop('readonly', !valor);
+    $('#txt-re-pswd').prop('readonly', !valor);
 }
 
 var registrarUsuario = () => {
-    let idUsuario = $('#frmRegistro').data('id_usuario');
-    let nombres = $('#txtNombresUsuario').val();
-    let apellidos = $('#txtApellidosUsuario').val();
-    let correo = $('#txtCorreoUsuario').val();
-    let contraseña = $('#txtContraseñaUsuario').val();
-    let telefono = $('#txtTelefonoUsuario').val();
-    let anexo = $('#txtAnexoUsuario').val();
-    let celular = $('#txtCelularUsuario').val();
-    let idInstitucion = $('#frmUsuario').data('id_institucion');
-    let rucInstitucion = $('#txtRucInstitucion').val();
-    let razonSocialInstitucion = $('#txtRazonSocialInstitucion').val();
-    let domicilioLegalInstitucion = $('#txtDomicilioLegalInstitucion').val();
-    let idSectorInstitucion = $('#selIdSectorInstitucion').val();
+    $('#modalValidacionSres').modal('show');
+
+    let idUsuario = $('#frmRegister').data('id_usuario');
+    let nombres = $('#txt-nombre').val();
+    let apellidos = $('#txt-apellido').val();
+    let correo = $('#txt-user').val();
+    let contraseña = $('#txt-pswd').val();
+    let telefono = $('#txt-telefono').val();
+    let anexo = $('#txt-anexo').val();
+    let celular = $('#txt-celular').val();
+    let idInstitucion = $('#frmRegister').data('id_institucion');
+    let rucInstitucion = $('#txt-ruc').val();
+    let razonSocialInstitucion = $('#txt-institucion').val();
+    let domicilioLegalInstitucion = $('#txt-direccion').val();
+    let idSectorInstitucion = $('#cbo-sector').val();
 
     let url = `/api/usuario/guardarusuario`;
 
@@ -236,8 +258,12 @@ var registrarUsuario = () => {
     .then(r => r.json())
     .then(j => {
         console.log(j);
-        if(j) {
-            alert('Se registró correctamente');
+        if(j == true) {
+            $('#modalValidacionSres .modal-content .modal-body .row').alert({ type: 'success', title: 'BIEN HECHO', message: '¡Se registró correctamente!' });
+            $('#modalValidacionSres .modal-content .modal-body .row > *:last > *:last').remove();
+            $('#redireccionarText').show();
+            $('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.href = `${baseUrl}Login` });
+            //alert('Se registró correctamente');
             limpiarFormulario();
         }
     });

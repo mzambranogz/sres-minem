@@ -18,6 +18,7 @@ namespace sres.app.Controllers
     public class LoginController : Controller
     {
         UsuarioLN usuarioLN = new UsuarioLN();
+        InstitucionLN institucionLN = new InstitucionLN();
         RolLN rolLN = new RolLN();
         ln.MRV.UsuarioLN usuarioLNMRV = new ln.MRV.UsuarioLN();
 
@@ -45,63 +46,53 @@ namespace sres.app.Controllers
         {
             Dictionary<string, object> response = new Dictionary<string, object> { ["success"] = false, ["message"] = "" };
 
-            if (!AuthEnabled)
-            {
-                bool esCaptchaValido = await IsCaptchaValid(token);
-
-                if (!esCaptchaValido)
-                {
-                    response["success"] = false;
-                    response["message"] = "Captcha inválido";
-                    return Json(response);
-                    //TempData["error_message"] = "Captcha inválido";
-                    //return RedirectToAction("Index", "Login");
-                }
-            }
-
             UsuarioBE usuario = null;
 
             bool esValido = usuarioLN.ValidarUsuario(correo, contraseña, out usuario);
             if (esValido)
             {
-                usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
+                usuario.INSTITUCION = institucionLN.ObtenerInstitucion(usuario.ID_INSTITUCION.Value);
+                if (usuario.ID_ROL != null) usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
                 Session["user"] = usuario;
                 response["success"] = true;
                 response["message"] = "Validación correcta";
                 return Json(response);
-                //return RedirectToAction("Index", "Inicio");
             }
 
             response["success"] = false;
-            response["message"] = "Usuario y/o contraseña incorrecto";
+            response["message"] = "contraseña incorrecta";
+            if (usuario == null) response["message"] = "Usuario no existe";
             return Json(response);
-            //TempData["error_message"] = "Usuario y/o contraseña incorrecto";
-            //return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
-        public async Task<ActionResult> ValidarMRV(string txtCorreoMRV, string txtContraseñaMRV, string tokenMRV = null)
+        public async Task<ActionResult> ValidarMRV(string correo, string contraseña, string token = null)
         {
-            bool esValido = usuarioLNMRV.ValidarUsuario(txtCorreoMRV, txtContraseñaMRV);
+            Dictionary<string, object> response = new Dictionary<string, object> { ["success"] = false, ["message"] = "" };
+
+            bool esValido = usuarioLNMRV.ValidarUsuario(correo, contraseña);
 
             if (esValido)
             {
                 bool seMigro = false, existeUsuario = false, existeUsuarioMRV = false, existeInstitucion = false, seGuardoInstitucion = false;
 
-                seMigro = usuarioLN.MigrarUsuario(txtCorreoMRV, out existeUsuario, out existeUsuarioMRV, out existeInstitucion, out seGuardoInstitucion);
+                seMigro = usuarioLN.MigrarUsuario(correo, out existeUsuario, out existeUsuarioMRV, out existeInstitucion, out seGuardoInstitucion);
 
-                UsuarioBE usuario = usuarioLN.ObtenerUsuarioPorCorreo(txtCorreoMRV);
+                UsuarioBE usuario = usuarioLN.ObtenerUsuarioPorCorreo(correo);
 
                 if (usuario != null)
                 {
                     Session["user"] = usuario;
+                    response["success"] = true;
+                    response["message"] = $"Validación correcta{(!existeUsuario ? ". Se migró correctamente los datos del usuario MRV" : "")}";
 
-                    return RedirectToAction("Index", "Inicio");
+                    return Json(response);
                 }
             }
 
-            TempData["error_message"] = "Usuario y/o contraseña incorrecto";
-            return RedirectToAction("Index", "Login");
+            response["success"] = false;
+            response["message"] = "Las credenciales MRV no son válidas";
+            return Json(response);
         }
 
         public ActionResult Salir()

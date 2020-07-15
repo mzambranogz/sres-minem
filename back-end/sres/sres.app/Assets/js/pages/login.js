@@ -1,42 +1,26 @@
 ﻿$(document).ready(() => {
     $('#frmLogin').submit(sendLogin);
-    $('#btnIniciarSesionMRV').on('click', validarUsuarioMRV);
-    $('#btnValidarUsuarioMRV').on('click', sendLoginWithMRV);
+    //$('#mrvBtn').on('click', validarUsuarioMRV);
+    $('#mrvBtn').on('click', sendLoginWithMRV);
 });
 
 var sendLogin = (e) => {
     e.preventDefault();
 
-    let correo = $('#txt-user').val().trim();
+    $('#modalValidacionSres').modal('show');
 
-    let urlVerificarCorreo = `/api/mrv/usuario/verificarcorreo?correo=${correo}`;
-
-    fetch(urlVerificarCorreo)
-    .then(r => r.json())
-    .then(validacionCorreoMRV)
-}
-
-var validacionCorreoMRV = (data) => {
-    if (data == true) {
-        $('#txtCorreoMRV').val(correo);
-        $('#viewLoginMRV').show();
-    } else {
-        grecaptcha.ready(() => {
-            grecaptcha.execute(key).then(iniciarSesionConCaptcha);
-        });
-    }
+    grecaptcha.ready(() => {
+        grecaptcha.execute(key).then(iniciarSesionConCaptcha);
+    });
 }
 
 var iniciarSesionConCaptcha = (token) => {
-    $('#modalValidacionSres').modal('show');
-
     let correo = $('#txt-user').val().trim();
     let contraseña = $('#txt-pswd').val().trim();
     let data = { correo, contraseña, token };
 
     let url = `${baseUrl}Login/Validar`;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-
 
     fetch(url, init)
     .then(r => r.json())
@@ -45,86 +29,90 @@ var iniciarSesionConCaptcha = (token) => {
 
 var validarInicioSesion = (data) => {
     if (data.success == true) {
-        $('#modalValidacionSres .modal-content .row:last').alert({
-            type: 'success', title: 'Validación correcta', message: data.message
-        });
+        $('#modalValidacionSres .modal-content .modal-body .row').alert({ type: 'success', title: 'Validación correcta', message: data.message });
+        $('#modalValidacionSres .modal-content .modal-body .row > *:last > *:last').remove();
         $('#redireccionarText').show();
-        contador('#txtSegundosRedirigir', 5, 0, 1000, () => location.reload());
-        //setTimeout(() => { location.reload() }, 5000);
+        $('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.reload() });
     }
     else {
-        $('#modalValidacionSres').modal('hide');
-        $('#frmLogin .form-group:last').alert({
-            type: 'danger', title: 'Error de acceso', message: data.message, close: { time: 3000 }
-        })
-        //mostrarAlerta('#frmLogin .form-group:last', 'success', 'Error de acceso', data.message, 3000);
-    }
-}
-
-var contador = function (selector, start, end, time, callback) {
-    this.timeout = () => {
-        $(selector).html(current);
-        if (current == end) {
-            clearInterval(sto);
-            callback();
-        }
-        else {
-            increment = start > end ? -1 : 1;
-            current += increment;
-        }
-    };
-    var current = start;
-    var sto = setInterval(this.timeout, time);
-
-    //$(selector)
-}
-
-//var mostrarAlerta = (selector, type, title, message, closeTime = 1000) => {
-//    let element = $(`<div class="alert alert-${type} d-flex align-items-stretch" role="alert"></div>`);
-//    let optionsContent = `<div class="alert-wrap mr-3"><div class="sa"><div class="sa-error"><div class="sa-error-x"><div class="sa-error-left"></div><div class="sa-error-right"></div></div><div class="sa-error-placeholder"></div><div class="sa-error-fix"></div></div></div></div>`;
-//    let titleContent = `<h6 class="estilo-02">${title}</h6>`;
-//    let messageContent = `<small class="mb-0 estilo-01">${message}</small>`;
-//    let content = `${optionsContent}<div class="alert-wrap">${titleContent}<hr class="my-1">${messageContent}</div>`;
-//    element.html(content);
-//    $(selector).after(element);
-//    setTimeout(() => { element.remove(); }, closeTime);
-//}
-
-var sendLoginWithMRV = (e) => {
-    let tokenValue = $('#tokenMRV').val();
-
-    if (tokenValue == "") {
-        e.preventDefault();
-
-        let correo = $('#txtCorreoMRV').val().trim();
+        let correo = $('#txt-user').val().trim();
 
         let urlVerificarCorreo = `/api/mrv/usuario/verificarcorreo?correo=${correo}`;
 
         fetch(urlVerificarCorreo)
         .then(r => r.json())
-        .then(j => {
-            if (j) {
-                grecaptcha.ready(() => {
-                    grecaptcha.execute(key).then((token) => {
-                        $('#tokenMRV').val(token);
-                        $('#frmLoginMRV').submit();
-                    });
-                });
-            } else {
-                alert('Correo no registrado en MRV');
-            }
-        })
+        .then((j) => validacionCorreoMRV(j, data.message))
     }
 }
 
-var validarUsuarioMRV = (e) => {
+var validacionCorreoMRV = (data, message) => {
+    if (data == true) $('#mrvBtn')[0].click();
+    else {
+        $('#modalValidacionSres').modal('hide');
+        $('form .form-group:last').alert({ type: 'danger', title: 'Error de acceso', message: message, close: { time: 3000 } });
+    }
+}
+
+var sendLoginWithMRV = (e) => {
     e.preventDefault();
+    
+    $('#modalValidacionSres').modal('show');
 
-    let correo = $('#correo').val().trim();
-    let contraseña = $('#contraseña').val().trim();
+    let correo = $('#txt-user').val().trim();
 
-    $('#txtCorreoMRV').val(correo);
-    $('#txtContraseñaMRV').val(contraseña);
+    let urlVerificarCorreo = `/api/mrv/usuario/verificarcorreo?correo=${correo}`;
 
-    $('#viewLoginMRV').show();
+    fetch(urlVerificarCorreo)
+    .then(r => r.json())
+    .then(validarCorreoMRV);
+}
+
+var validarCorreoMRV = (data) =>  {
+    if (data == true) {
+        grecaptcha.ready(() => {
+            grecaptcha.execute(key).then(iniciarSesionMRVConCaptcha);
+        });
+    } else {
+
+        
+        //do {
+        //} while ($('#modalValidacionSres').is(':visible'));
+        $('#modalValidacionSres').modal('hide');
+        //$("#modalValidacionSres").removeClass("show");
+        //$("#modalValidacionSres").removeAttr("style");
+        //$('body').removeClass('modal-open');
+        //$('.modal-backdrop').remove();
+        //$('#modalValidacionSres').modal('hide');
+        //$('#modalValidacionSres').modal('hide');
+
+        $('form .form-group:last').alert({ type: 'danger', title: 'Error de acceso', message: 'Las credenciales MRV no son válidas', close: { time: 3000 } });
+        //console.log($('#modalValidacionSres')[0]);
+    }
+}
+
+var iniciarSesionMRVConCaptcha = (token) => {
+    let correo = $('#txt-user').val().trim();
+    let contraseña = $('#txt-pswd').val().trim();
+    let data = { correo, contraseña, token };
+
+    let url = `${baseUrl}Login/ValidarMRV`;
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+
+    fetch(url, init)
+    .then(r => r.json())
+    .then(validarInicioSesionConMRV)
+}
+
+var validarInicioSesionConMRV = (data) => {
+    if (data.success == true) {
+        $('#modalValidacionSres .modal-content .modal-body .row').alert({ type: 'success', title: 'Validación correcta', message: data.message });
+        $('#modalValidacionSres .modal-content .modal-body .row > *:last > *:last').remove();
+        $('#redireccionarText').show();
+        $('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.reload() });
+    }
+    else {
+        $('#modalValidacionSres').modal('hide');
+        $('form .form-group:last').alert({ type: 'danger', title: 'Error de acceso', message: 'Las credenciales MRV no son válidas', close: { time: 3000 } });
+    }
 }

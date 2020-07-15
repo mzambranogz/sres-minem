@@ -14,6 +14,8 @@
         let messageContent = `<small class="mb-0 estilo-01">${settings.message}</small>`;
         let content = `${optionsContent}<div class="alert-wrap">${titleContent}<hr class="my-1">${messageContent}</div>`;
         element.html(content);
+        let nextElement = this.next();
+        if (nextElement.hasClass('alert')) nextElement.remove();
         this.after(element);
         if(settings.close != null) setTimeout(() => { element.remove(); }, settings.close.time);
         //return this;

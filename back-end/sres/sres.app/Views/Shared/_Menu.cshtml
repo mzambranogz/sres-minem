@@ -18,7 +18,7 @@
                 <div class="text-right mt-2 d-none d-lg-block">
                     @if (usuario == null)
                     {
-                    <a class="btn btn-sm btn-sres-verde mr-3 animated slideInRight" href="@Url.Action("Index", "Inicio")" role="button">
+                    <a class="btn btn-sm btn-sres-verde mr-3 animated slideInRight" href="@Url.Action("Registrarme", "Login")" role="button">
                         <i class="fas fa-pencil-alt mr-2"></i>REGISTRARSE
                     </a>
                     <a class="btn btn-sm btn-sres-azul animated slideInRight" href="@Url.Action("Index", "Login")" role="button">
@@ -30,7 +30,10 @@
                         <div class="btn-group">
                             <a class="btn btn-sm btn-sres-azul animated slideInRight dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
                                 <i class="fas fa-user pr-1"></i>@usuario.NOMBRES.Split(' ')[0] @usuario.APELLIDOS.Split(' ')[0]&nbsp;
-                                <small class="badge badge-primary estilo-06">@usuario.ROL.NOMBRE</small>
+                                @if (usuario.ROL != null)
+                                {
+                                    <small class="badge badge-primary estilo-06">@usuario.ROL.NOMBRE</small>
+                                }
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 @if (usuario.ID_ROL == 1) {

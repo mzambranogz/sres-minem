@@ -251,6 +251,7 @@ namespace sres.ln
                 else ot.Rollback();
             }
             catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return seMigro;
         }
