@@ -14,5 +14,6 @@ namespace sres.be
         public string EDITABLE { get; set; }
         public string OBTENIBLE { get; set; }
         public string ESTATICO { get; set; }
+        public string NOMBRE { get; set; }
     }
 }

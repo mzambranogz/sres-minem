@@ -60,7 +60,7 @@ namespace sres.app.Controllers.Api
         [Route("buscarcriteriocaso")]
         [HttpGet]
         //public List<CasoBE> BuscarCriterioCaso(int id_criterio, int id_caso, int id_inscripcion)
-        public List<CasoBE> BuscarCriterioCaso(int id_criterio, int id_inscripcion)
+        public List<ComponenteBE> BuscarCriterioCaso(int id_criterio, int id_inscripcion)
         {
             return criterioLN.BuscarCriterioCaso(id_criterio, id_inscripcion);
         }
@@ -70,6 +70,14 @@ namespace sres.app.Controllers.Api
         public bool GuardarCriterioCaso(CasoBE entidad)
         {
             return criterioLN.GuardarCriterioCaso(entidad).OK;
+        }
+
+        [Route("filacriteriocaso")]
+        [HttpGet]
+        //public List<CasoBE> BuscarCriterioCaso(int id_criterio, int id_caso, int id_inscripcion)
+        public ComponenteBE FilaCriterioCaso(int id_criterio, int id_caso, int id_componente)
+        {
+            return criterioLN.FilaCriterioCaso(id_criterio, id_caso, id_componente);
         }
 
         //[Route("listarcriterioporconvocatoria")]

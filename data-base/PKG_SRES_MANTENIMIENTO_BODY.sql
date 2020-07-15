@@ -1,4 +1,4 @@
-CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
+CREATE OR REPLACE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
 
   --M CRITERIO-------------------------------
   PROCEDURE USP_PRC_MAN_CRITERIO(
@@ -67,7 +67,7 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_CRITERIO C
-                    WHERE LOWER(TRANSLATE(C.NOMBRE,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(C.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                     FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -92,7 +92,7 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_CRITERIO C
-                        WHERE LOWER(TRANSLATE(C.NOMBRE,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(C.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                         FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -174,10 +174,10 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_USUARIO U
                     WHERE (
-                    LOWER(TRANSLATE(U.NOMBRES,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(U.APELLIDOS,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(U.CORREO,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(U.CELULAR,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%''
+                    LOWER(TRANSLATE(U.NOMBRES,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(U.APELLIDOS,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(U.CORREO,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(U.CELULAR,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%''
                     ) AND
                     FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
@@ -209,10 +209,10 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_USUARIO U
                         WHERE (
-                        LOWER(TRANSLATE(U.NOMBRES,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(U.APELLIDOS,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(U.CORREO,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(U.CELULAR,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%''
+                        LOWER(TRANSLATE(U.NOMBRES,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(U.APELLIDOS,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(U.CORREO,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(U.CELULAR,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%''
                         ) AND
                         FLAG_ESTADO = ''1''
                         )
@@ -436,7 +436,7 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_REQUERIMIENTO R
-                    WHERE LOWER(TRANSLATE(R.NOMBRE,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(R.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                     R.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -461,7 +461,7 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_REQUERIMIENTO R
-                        WHERE LOWER(TRANSLATE(R.NOMBRE,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(R.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                         FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -524,7 +524,7 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_MAE_PROCESO P
-                    WHERE LOWER(TRANSLATE(P.NOMBRE,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(P.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                     P.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -549,7 +549,7 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_MAE_PROCESO P
-                        WHERE LOWER(TRANSLATE(P.NOMBRE,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(P.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' AND
                         P.FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -605,8 +605,8 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
                     FROM T_MAE_ETAPA E
                     LEFT JOIN T_MAE_PROCESO P ON E.ID_PROCESO = P.ID_PROCESO
                     WHERE 
-                    (LOWER(TRANSLATE(E.NOMBRE,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(P.NOMBRE,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'') AND
+                    (LOWER(TRANSLATE(E.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(P.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'') AND
                     E.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -643,8 +643,8 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
                         FROM T_MAE_ETAPA E
                         LEFT JOIN T_MAE_PROCESO P ON E.ID_PROCESO = P.ID_PROCESO
                         WHERE
-                        (LOWER(TRANSLATE(E.NOMBRE,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(P.NOMBRE,''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΓΓ‰ΓΓ“ΓΓ΅Γ©Γ­Γ³ΓΊ'',''AEIOUaeiou'')) ||''%'') AND
+                        (LOWER(TRANSLATE(E.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(P.NOMBRE,''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ΑΙΝΣΪαινσϊ'',''AEIOUaeiou'')) ||''%'') AND
                         E.FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -1024,7 +1024,8 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
     OPEN PO_REF FOR
     SELECT  DISTINCT ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_INDICADOR
     FROM    T_MAEM_INDICADOR_FORM
-    WHERE   ID_CRITERIO = PI_ID_CRITERIO AND ID_CASO = PI_ID_CASO AND ID_COMPONENTE = PI_ID_COMPONENTE /*AND ID_PARAMETRO = PI_ID_PARAMETRO*/ AND FLAG_ESTADO = '1';            
+    WHERE   ID_CRITERIO = PI_ID_CRITERIO AND ID_CASO = PI_ID_CASO AND ID_COMPONENTE = PI_ID_COMPONENTE /*AND ID_PARAMETRO = PI_ID_PARAMETRO*/ AND FLAG_ESTADO = '1'
+    ORDER BY ID_INDICADOR ASC;
   END USP_SEL_INDICADOR_ID;
   
   PROCEDURE USP_SEL_INDICADOR_FORM(
@@ -1134,6 +1135,7 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_MANTENIMIENTO AS
       WHERE ID_CRITERIO = PI_ID_CRITERIO
           AND ID_CASO = PI_ID_CASO
           AND ID_COMPONENTE = PI_ID_COMPONENTE
-          AND ID_INSCRIPCION = PI_ID_INSCRIPCION;
+          AND ID_INSCRIPCION = PI_ID_INSCRIPCION
+          AND FLAG_ESTADO = '1';
   END USP_SEL_VERIFICAR_INDICADOR;
 END PKG_SRES_MANTENIMIENTO;
