@@ -24,9 +24,9 @@ CREATE OR REPLACE PACKAGE BODY PKG_SRES_CRITERIO AS
                     WHERE ' ||
                     CASE
                       WHEN PI_NRO_INFORME IS NOT NULL THEN
-                      'LOWER(TRANSLATE(C.NRO_INFORME,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND '
+                      'LOWER(TRANSLATE(C.NRO_INFORME,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' AND '
                     END ||
-                    'LOWER(TRANSLATE(C.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND ' ||
+                    'LOWER(TRANSLATE(C.NOMBRE,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' AND ' ||
                     CASE
                       WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NOT NULL THEN
                       '(
@@ -71,9 +71,9 @@ CREATE OR REPLACE PACKAGE BODY PKG_SRES_CRITERIO AS
                           WHERE ' ||
                           CASE
                             WHEN PI_NRO_INFORME IS NOT NULL THEN
-                            'LOWER(TRANSLATE(C.NRO_INFORME,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND '
+                            'LOWER(TRANSLATE(C.NRO_INFORME,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' AND '
                           END ||
-                          'LOWER(TRANSLATE(C.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND ' ||
+                          'LOWER(TRANSLATE(C.NOMBRE,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' AND ' ||
                           CASE
                             WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NOT NULL THEN
                             '(
@@ -177,10 +177,12 @@ CREATE OR REPLACE PACKAGE BODY PKG_SRES_CRITERIO AS
     IR.ARCHIVO_BASE,
     IR.ARCHIVO_CIFRADO,
     IR.VALIDO AS "VALIDO",
-    IR.OBSERVACION
+    IR.OBSERVACION,
+    I.ID_INSTITUCION
     FROM T_GENM_REQUERIMIENTO R INNER JOIN
     T_GEND_CONVOCATORIA_REQUERIM CR ON R.ID_REQUERIMIENTO = CR.ID_REQUERIMIENTO AND R.FLAG_ESTADO = '1' LEFT JOIN
     T_GEND_INSCRIPCION_REQUERIR IR ON CR.ID_CONVOCATORIA = IR.ID_CONVOCATORIA AND CR.ID_REQUERIMIENTO = IR.ID_REQUERIMIENTO AND IR.ID_INSCRIPCION = PI_ID_INSCRIPCION
+    T_GENM_INSCRIPCION I ON IR.ID_INSCRIPCION = I.ID_INSCRIPCION
     WHERE CR.ID_CONVOCATORIA = PI_ID_CONVOCATORIA
     AND CR.FLAG_ESTADO = '1';
   END USP_SEL_LISTA_INSCRIPCIONREQUERIMIENTO_CONVOCATORIA_INSCRIPCION;
