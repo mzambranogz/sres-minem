@@ -1,4 +1,4 @@
-CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_CRITERIO AS
+CREATE OR REPLACE PACKAGE BODY PKG_SRES_CRITERIO AS
   -- CONVOCATORIA
   PROCEDURE USP_SEL_BUSQ_CONVOCATORIA(
     PI_NRO_INFORME VARCHAR2,
@@ -24,9 +24,9 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_CRITERIO AS
                     WHERE ' ||
                     CASE
                       WHEN PI_NRO_INFORME IS NOT NULL THEN
-                      'LOWER(TRANSLATE(C.NRO_INFORME,''√Å√â√ç√ì√ö√°√©√≠√≥√∫'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''√Å√â√ç√ì√ö√°√©√≠√≥√∫'',''AEIOUaeiou'')) ||''%'' AND '
+                      'LOWER(TRANSLATE(C.NRO_INFORME,''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) ||''%'' AND '
                     END ||
-                    'LOWER(TRANSLATE(C.NOMBRE,''√Å√â√ç√ì√ö√°√©√≠√≥√∫'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''√Å√â√ç√ì√ö√°√©√≠√≥√∫'',''AEIOUaeiou'')) ||''%'' AND ' ||
+                    'LOWER(TRANSLATE(C.NOMBRE,''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) ||''%'' AND ' ||
                     CASE
                       WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NOT NULL THEN
                       '(
@@ -71,9 +71,9 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_CRITERIO AS
                           WHERE ' ||
                           CASE
                             WHEN PI_NRO_INFORME IS NOT NULL THEN
-                            'LOWER(TRANSLATE(C.NRO_INFORME,''√Å√â√ç√ì√ö√°√©√≠√≥√∫'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''√Å√â√ç√ì√ö√°√©√≠√≥√∫'',''AEIOUaeiou'')) ||''%'' AND '
+                            'LOWER(TRANSLATE(C.NRO_INFORME,''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) ||''%'' AND '
                           END ||
-                          'LOWER(TRANSLATE(C.NOMBRE,''√Å√â√ç√ì√ö√°√©√≠√≥√∫'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''√Å√â√ç√ì√ö√°√©√≠√≥√∫'',''AEIOUaeiou'')) ||''%'' AND ' ||
+                          'LOWER(TRANSLATE(C.NOMBRE,''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''¡…Õ”⁄·ÈÌÛ˙'',''AEIOUaeiou'')) ||''%'' AND ' ||
                           CASE
                             WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NOT NULL THEN
                             '(
@@ -331,4 +331,32 @@ CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY PKG_SRES_CRITERIO AS
     FROM T_GENM_COMPONENTE C
     WHERE C.ID_CASO = PI_ID_CASO;
   END USP_SEL_LISTA_COMPONENTE_CASO;
+  
+  PROCEDURE USP_DEL_INDICADOR_DATA(
+        PI_ID_CRITERIO IN NUMBER,
+        PI_ID_CASO  IN NUMBER,
+        PI_ID_COMPONENTE IN NUMBER,
+        PI_ID_INSCRIPCION IN NUMBER,
+        PI_ELIMINAR_INDICADOR IN VARCHAR2
+  )IS
+        vSql            VARCHAR2(250);
+  BEGIN
+        vSql := 'UPDATE T_MAEM_INDICADOR_DATA SET FLAG_ESTADO = ''0'' WHERE ID_CRITERIO ='||PI_ID_CRITERIO||' AND ID_CASO = '||PI_ID_CASO||' AND ID_COMPONENTE = '||PI_ID_COMPONENTE||' AND ID_INSCRIPCION = '||PI_ID_INSCRIPCION||' AND ID_INDICADOR IN ('||PI_ELIMINAR_INDICADOR||')';
+        EXECUTE IMMEDIATE vSql;
+  END USP_DEL_INDICADOR_DATA;
+  
+  PROCEDURE USP_SEL_INDICADORDATA_ID(
+    PI_ID_CRITERIO NUMBER,
+    PI_ID_CASO NUMBER,
+    PI_ID_COMPONENTE NUMBER,
+    PI_ID_INSCRIPCION NUMBER,
+    PO_REF OUT SYS_REFCURSOR
+  )AS
+  BEGIN
+    OPEN PO_REF FOR
+    SELECT  DISTINCT ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_INDICADOR
+    FROM    T_MAEM_INDICADOR_DATA
+    WHERE   ID_CRITERIO = PI_ID_CRITERIO AND ID_CASO = PI_ID_CASO AND ID_COMPONENTE = PI_ID_COMPONENTE AND FLAG_ESTADO = '1'            
+    ORDER BY ID_INDICADOR ASC;
+  END USP_SEL_INDICADORDATA_ID;
 END PKG_SRES_CRITERIO;
