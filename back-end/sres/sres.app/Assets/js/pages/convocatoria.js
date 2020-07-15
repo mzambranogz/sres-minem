@@ -27,7 +27,7 @@ var consultar = () => {
 var cargarDataBusqueda = (data) => {
     let tabla = $('#tblConvocatoria');
     let cantidadCeldasCabecera = tabla.find('thead tr th').length;
-    debugger;
+    //debugger;
     $('#viewPagination').attr('style', 'display: none !important');
     console.log(data.TOTAL_REGISTROS, data.CANTIDAD_REGISTROS);
     if (data.TOTAL_REGISTROS > data.CANTIDAD_REGISTROS) $('#viewPagination').show();
@@ -60,8 +60,8 @@ var renderizar = (data, cantidadCeldas) => {
             let diasTranscurridos = Math.floor((fechaActual - fechaInicio) / (1000 * 60 * 60 * 24));
             let porcentajeAvance = (fechaInicio > fechaActual ? 0.00 : fechaActual > fechaFin ? 100 : (diasTranscurridos / diasPlazo * 100)).toFixed(2);
 
-            let colNroInforme = `<td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row">${x.NRO_INFORME == null ? '' : `<a href="#"><i class="fas fa-eye mr-1"></i><span>${x.NRO_INFORME}</span></a>`}</td>`;
-            let colPeriodo = `<td class="text-center" data-encabezado="Período">${fechaInicio.getFullYear() == fechaFin.getFullYear() ? fechaInicio.getFullYear() : fechaInicio.getFullYear() + "-" + fechaFin.getFullYear()}</td>`;
+            let colNroInforme = `<td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row">${x.NRO_INFORME == null ? '-----' : `<a href="#"><i class="fas fa-eye mr-1"></i><span>${x.NRO_INFORME}</span></a>`}</td>`;
+            let colPeriodo = `<td class="text-center" data-encabezado="Período">${fechaInicio.getFullYear()} - ${fechaInicio.getMonth().toFixed('00')}</td>`;
             let colNombre = `<td data-encabezado="Progreso"><div class="text-limi-1">${x.NOMBRE}</div></td>`;
             let colFechaInicio = `<td class="text-center" data-encabezado="Fecha Inicio">${fechaInicio.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;
             let colFechaFin = `<td class="text-center" data-encabezado="Fecha Fin">${fechaFin.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;

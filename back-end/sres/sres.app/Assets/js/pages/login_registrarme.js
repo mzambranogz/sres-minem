@@ -18,7 +18,7 @@ var cargarInformacionInicial = (fn) => {
 var inicializar = () => {
     $('#sresBtn').on('click', (e) => consultarInstitucion());
     $('#txt-user').on('blur', (e) => consultarUsuario());
-    $('#btnValidarUsuarioMRV').on('click', (e) => validarUsuarioLogin());
+    
     $('#frmRegister').on('submit', (e) => { e.preventDefault(); registrarUsuario();});
 }
 
@@ -59,7 +59,7 @@ var cargarDatosInstitucion = (data) => {
     $('#txt-direccion').val(data.DOMICILIO_LEGAL);
     $('#cbo-sector').val(data.ID_SECTOR);
 
-    $('form .row:nth(2)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continue y complete sus datos en los campos restantes del siguiente formulario.' });
+    $('form > .row:nth(0)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continue y complete sus datos en los campos restantes del siguiente formulario.' });
 }
 
 var cargarDatosInstitucionMRV = (data) => {
@@ -72,7 +72,7 @@ var cargarDatosInstitucionMRV = (data) => {
     cambiarPropiedadLecturaUsuario(!existeInformacion);
 
     if (!existeInformacion) {
-        $('form .row:nth(2)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continue y complete sus datos en todos los campos del siguiente formulario.' });
+        $('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continue y complete sus datos en todos los campos del siguiente formulario.' });
         return;
     }
 
@@ -81,7 +81,7 @@ var cargarDatosInstitucionMRV = (data) => {
     $('#txt-direccion').val(data.DIRECCION_INSTITUCION);
     $('#cbo-sector').val(data.ID_SECTOR_INSTITUCION);
 
-    $('form .row:nth(2)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continue y complete sus datos en los campos restantes del siguiente formulario.' });
+    $('form > .row:nth(0)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continue y complete sus datos en los campos restantes del siguiente formulario.' });
 }
 
 var cargarComboSector = (selector, data) => {
@@ -107,8 +107,8 @@ var consultarUsuario = () => {
 }
 
 var cargarDatosUsuario = (data) => {
-    limpiarDatosUsuario();
-    cambiarPropiedadLecturaUsuario(!data.EXISTE);
+    //limpiarDatosUsuario();
+    //cambiarPropiedadLecturaUsuario(!data.EXISTE);
 
     if(!data.EXISTE) {
         let correo = $('#txt-user').val().trim();
@@ -121,7 +121,7 @@ var cargarDatosUsuario = (data) => {
         return;
     }
 
-    $('form .row:nth(3)').alert({ type: 'warning', title: 'ADVERTENCIA', message: 'El correo ya se encuentra registrado', close: { time: 3000 } });
+    $('form > .row:nth(3)').alert({ type: 'warning', title: 'ADVERTENCIA', message: 'El correo ya se encuentra registrado', close: { time: 3000 } });
 
     //$('#frmRegister').data('idUsuario', data.USUARIO.ID_USUARIO);
     //$('#txtNombresUsuario').val(data.USUARIO.NOMBRES);
@@ -133,15 +133,22 @@ var cargarDatosUsuario = (data) => {
 
 var abrirModalLoginMRV = (data) => {
     if(data == true){
+
+        $('form > .row:nth(4)').alert({ type: 'warning', title: 'AUTENTICACIÓN DE CUENTA MRV', message: 'Encontramos que su Usuario - Correo electrónico se encuentra registrado en la Plataforma MRV del sector energía, por favor inicie sesión con sus credenciales de acceso para continuar.', html: '<hr class="mt-1 mb-3"><div class="row"><div class="col-sm-12"><div class="form-group"><label class="estilo-01" for="txt-user">Correo electrónico MRV</label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text bg-nama-azul text-white"><i class="fas fa-envelope"></i></span></div><input class="form-control estilo-01" type="email" id="txt-user-mrv" placeholder="Ingresar correo electrónico" maxlength="50" pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$" title="Ingrese una dirección de correo válida." autocomplete="new-user" required></div></div></div><div class="col-sm-12"><div class="form-group"><label class="estilo-01" for="txt-pswd">Contraseña MRV</label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text bg-nama-azul text-white"><i class="fas fa-key"></i></span></div><input class="form-control estilo-01" type="password" id="txt-pswd-mrv" placeholder="Ingresar contraseña" maxlength="30" title="Ingrese su contraseña." autocomplete="new-password" required><div class="input-group-append"><label class="input-group-text cursor-pointer ver-clave estilo-01 bg-nama-azul text-white"><i class="fas fa-eye mr-1"></i>Mostrar</label></div></div></div></div></div><div class="row"><div class="col-sm-12 text-center"><button class="btn-lg btn-nama-azul w-100 mb-3" id="mrvBtn" type="button" data-toggle="tooltip" data-placement="bottom" title="Sistema de gestión y reporte de información de las medidas de mitigación de las Contribuciones Nacionalmente Determinadas (NDC).">Ingresa con tu cuenta MRV</button><a class="text-sres-verde estilo-01" href="http://sismrv.minem.gob.pe/Home/recuperar" target="_blank">¿Olvidó su contraseña?</a></div></div>' })
+        $('#mrvBtn').on('click', (e) => validarUsuarioLogin());
+
         let correo = $('#txt-user').val().trim();
 
         $('#txt-user-mrv').val(correo);
 
-        $('#modalValidacionMrv').modal('show');
+        //$('#modalValidacionMrv').modal('show');
         //$('#txtCorreoMRV').val(correo);
         //$('#viewLoginMRV').show();
         //$('#viewContraseñaUsuario').hide();
+        return;
     }
+    limpiarDatosUsuario();
+    cambiarPropiedadLecturaUsuario(!data.EXISTE);
 }
 
 var validarUsuarioLogin = () => {
@@ -164,16 +171,21 @@ var cargarDatosUsuarioMRV = (data) => {
     limpiarDatosUsuario();
     cambiarPropiedadLecturaUsuario(!data.VALIDO);
 
+    debugger;
+    $('form > .row:nth(8)').hide();
     //$('#viewLoginMRV').hide();
 
     if(!data.VALIDO) {
-        $('form .row:nth(7)').show();
+        $('form > .row:nth(8)').show();
         //$('#viewContraseñaUsuario').show();
-        $('#modalValidacionMrv .modal-content .modal-body .row:first').alert({ type: 'danger', title: 'ERROR', message: 'Usuario y/o contraseña inválidos', close: { time: 3000 } });
+        let modal = $('form > .row:nth(4)').alert('get');
+        if (modal != null) modal.find('.modal-content .modal-body .row:first').alert({ type: 'danger', title: 'ERROR', message: 'Usuario y/o contraseña inválidos', close: { time: 3000 } });
         return;
     }
     
-    $('#modalValidacionMrv').modal('hide');
+    $('form > .row:nth(4)').alert('remove');
+
+    //$('#modalValidacionMrv').modal('hide');
 
     let contraseña = $('#txt-pswd-mrv').val();
 
@@ -232,7 +244,14 @@ var cambiarPropiedadLecturaUsuario = (valor) => {
 }
 
 var registrarUsuario = () => {
-    $('#modalValidacionSres').modal('show');
+    let aceptarTerminosYCondiciones = $('#chk-terminos-condiciones').prop('checked');
+
+    if(!aceptarTerminosYCondiciones){
+        $('form > .row:last').alert({ type: 'danger', title: 'Error', message: 'Debe aceptar los términos y condiciones' });
+        return;
+    }
+
+    //$('#modalValidacionSres').modal('show');
 
     let idUsuario = $('#frmRegister').data('id_usuario');
     let nombres = $('#txt-nombre').val();
@@ -259,12 +278,12 @@ var registrarUsuario = () => {
     .then(j => {
         console.log(j);
         if(j == true) {
-            $('#modalValidacionSres .modal-content .modal-body .row').alert({ type: 'success', title: 'BIEN HECHO', message: '¡Se registró correctamente!' });
-            $('#modalValidacionSres .modal-content .modal-body .row > *:last > *:last').remove();
-            $('#redireccionarText').show();
+            limpiarFormulario();
+            $('form > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: '¡Se registró correctamente!', html: '<p id="redireccionarText" class="text-center estilo-01">Lo estamos redirigiendo en <strong id="txtSegundosRedirigir"></strong> segundos</p>' });
+            //$('#modalValidacionSres .modal-content .modal-body .row > *:last > *:last').remove();
+            //$('#redireccionarText').show();
             $('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.href = `${baseUrl}Login` });
             //alert('Se registró correctamente');
-            limpiarFormulario();
         }
     });
 }

@@ -1,13 +1,20 @@
 ﻿$(document).ready(() => {
-    $('#frmLogin').submit(sendLogin);
+    $('form').submit((e) => {
+        let id = e.currentTarget.id;
+        if (id == "frmLogin") sendLogin(e);
+        else sendLoginWithMRV(e);
+    })
+    //$('#frmLogin').submit(sendLogin);
     //$('#mrvBtn').on('click', validarUsuarioMRV);
-    $('#mrvBtn').on('click', sendLoginWithMRV);
+    //$('#frmMRV').on('submit', sendLoginWithMRV)
+    //$('#mrvBtn').on('click', () => );
 });
 
 var sendLogin = (e) => {
     e.preventDefault();
 
-    $('#modalValidacionSres').modal('show');
+    $('form .form-group:last').alert({ type: 'info', title: 'Validando credenciales', message: 'Espere un momento por favor.' })
+    //$('#modalValidacionSres').modal('show');
 
     grecaptcha.ready(() => {
         grecaptcha.execute(key).then(iniciarSesionConCaptcha);
@@ -29,10 +36,11 @@ var iniciarSesionConCaptcha = (token) => {
 
 var validarInicioSesion = (data) => {
     if (data.success == true) {
-        $('#modalValidacionSres .modal-content .modal-body .row').alert({ type: 'success', title: 'Validación correcta', message: data.message });
-        $('#modalValidacionSres .modal-content .modal-body .row > *:last > *:last').remove();
+        //$('#modalValidacionSres .modal-content .modal-body .row').alert({ type: 'success', title: 'Validación correcta', message: data.message });
+        //$('#modalValidacionSres .modal-content .modal-body .row > *:last > *:last').remove();
+        $('form .form-group:last').alert({ type: 'success', title: 'BIEN HECHO', message: data.message, html: '<p id="redireccionarText" class="text-center estilo-01" style="display: none">Lo estamos redirigiendo en <strong id="txtSegundosRedirigir"></strong> segundos</p>' });
         $('#redireccionarText').show();
-        $('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.reload() });
+        $('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.href = `${baseUrl}Convocatoria` });
     }
     else {
         let correo = $('#txt-user').val().trim();
@@ -48,7 +56,7 @@ var validarInicioSesion = (data) => {
 var validacionCorreoMRV = (data, message) => {
     if (data == true) $('#mrvBtn')[0].click();
     else {
-        $('#modalValidacionSres').modal('hide');
+        //$('#modalValidacionSres').modal('hide');
         $('form .form-group:last').alert({ type: 'danger', title: 'Error de acceso', message: message, close: { time: 3000 } });
     }
 }
@@ -56,7 +64,8 @@ var validacionCorreoMRV = (data, message) => {
 var sendLoginWithMRV = (e) => {
     e.preventDefault();
     
-    $('#modalValidacionSres').modal('show');
+    $('form .form-group:last').alert({ type: 'info', title: 'Validando credenciales', message: 'Espere un momento por favor.', html: '<p id="redireccionarText" class="text-center estilo-01" style="display: none">Lo estamos redirigiendo en <strong id="txtSegundosRedirigir"></strong> segundos</p>' });
+    //$('#modalValidacionSres').modal('show');
 
     let correo = $('#txt-user').val().trim();
 
@@ -77,7 +86,7 @@ var validarCorreoMRV = (data) =>  {
         
         //do {
         //} while ($('#modalValidacionSres').is(':visible'));
-        $('#modalValidacionSres').modal('hide');
+        //$('#modalValidacionSres').modal('hide');
         //$("#modalValidacionSres").removeClass("show");
         //$("#modalValidacionSres").removeAttr("style");
         //$('body').removeClass('modal-open');
@@ -106,13 +115,14 @@ var iniciarSesionMRVConCaptcha = (token) => {
 
 var validarInicioSesionConMRV = (data) => {
     if (data.success == true) {
-        $('#modalValidacionSres .modal-content .modal-body .row').alert({ type: 'success', title: 'Validación correcta', message: data.message });
-        $('#modalValidacionSres .modal-content .modal-body .row > *:last > *:last').remove();
+        $('form .form-group:last').alert({ type: 'success', title: 'BIEN HECHO', message: data.message, html: '<p id="redireccionarText" class="text-center estilo-01" style="display: none">Lo estamos redirigiendo en <strong id="txtSegundosRedirigir"></strong> segundos</p>' });
+        //$('#modalValidacionSres .modal-content .modal-body .row').alert({ type: 'success', title: 'Validación correcta', message: data.message });
+        //$('#modalValidacionSres .modal-content .modal-body .row > *:last > *:last').remove();
         $('#redireccionarText').show();
-        $('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.reload() });
+        $('#txtSegundosRedirigir').counter({ start: 5, end: 0, time: 1000, callback: () => location.href = `${baseUrl}Convocatoria` });
     }
     else {
-        $('#modalValidacionSres').modal('hide');
+        //$('#modalValidacionSres').modal('hide');
         $('form .form-group:last').alert({ type: 'danger', title: 'Error de acceso', message: 'Las credenciales MRV no son válidas', close: { time: 3000 } });
     }
 }
