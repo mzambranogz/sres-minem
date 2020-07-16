@@ -237,7 +237,8 @@ namespace sres.ln
                             TELEFONO = usuarioMRV.TELEFONO_USUARIO,
                             ANEXO = usuarioMRV.ANEXO_USUARIO,
                             CELULAR = usuarioMRV.CELULAR_USUARIO,
-                            ID_INSTITUCION = existeInstitucion ? institucion.ID_INSTITUCION : (seGuardoInstitucion ? (int?)idInstitucion : null)
+                            ID_INSTITUCION = existeInstitucion ? institucion.ID_INSTITUCION : (seGuardoInstitucion ? (int?)idInstitucion : null),
+                            ID_ROL = 3
                         };
 
                         if (seGuardoInstitucion)
