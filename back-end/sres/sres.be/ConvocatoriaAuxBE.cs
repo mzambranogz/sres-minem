@@ -18,7 +18,7 @@ namespace sres.be
         public int ID_REQUERIMIENTO { get; set; }
         public int ID_CRITERIO { get; set; }
         public int ID_USUARIO { get; set; }
-        public int ID_ETAPA { get; set; }
+        //public int ID_ETAPA { get; set; }
         public int DIAS { get; set; }
     }
 }

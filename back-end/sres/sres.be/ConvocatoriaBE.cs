@@ -17,6 +17,8 @@ namespace sres.be
         public string REQUERIMIENTO { get; set; }
         public string CRITERIO { get; set; }
         public string EVALUADOR { get; set; }
+        public int? ID_ETAPA { get; set; }
+        public EtapaBE ETAPA { get; set; }
         public string FLAG_ESTADO { get; set; }
 
     }
