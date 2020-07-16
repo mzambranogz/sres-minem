@@ -79,6 +79,8 @@ namespace sres.app.Controllers
                 seMigro = usuarioLN.MigrarUsuario(correo, out existeUsuario, out existeUsuarioMRV, out existeInstitucion, out seGuardoInstitucion);
 
                 UsuarioBE usuario = usuarioLN.ObtenerUsuarioPorCorreo(correo);
+                usuario.INSTITUCION = institucionLN.ObtenerInstitucion(usuario.ID_INSTITUCION.Value);
+                if (usuario.ID_ROL != null) usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
 
                 if (usuario != null)
                 {
