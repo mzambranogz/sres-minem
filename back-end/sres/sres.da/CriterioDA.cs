@@ -363,7 +363,7 @@ namespace sres.da
 
             try
             {
-                string sp = $"{Package.Criterio}USP_SEL_LISTA_CRITERIO_CONVOCATORIA";
+                string sp = $"{Package.Criterio}USP_SEL_LISTA_CRI_CONV";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
@@ -380,7 +380,7 @@ namespace sres.da
 
             try
             {
-                string sp = $"{Package.Criterio}USP_SEL_OBTIENE_CRITERIO_CONVOCATORIA";
+                string sp = $"{Package.Criterio}USP_SEL_OBTIENE_CRI_CONV";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
                 p.Add("PI_ID_CRITERIO", idCriterio);

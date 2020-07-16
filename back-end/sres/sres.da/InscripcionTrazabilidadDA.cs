@@ -19,7 +19,7 @@ namespace sres.da
 
             try
             {
-                string sp = $"{Package.Criterio}USP_INS_REGISTRA_INSCRIPCIONTRAZABILIDAD";
+                string sp = $"{Package.Criterio}USP_INS_REGISTRA_INSCTRAZA";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_INSCRIPCION", inscripcionTrazabilidad.ID_INSCRIPCION);
                 p.Add("PI_DESCRIPCION", inscripcionTrazabilidad.DESCRIPCION);

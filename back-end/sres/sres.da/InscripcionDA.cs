@@ -19,7 +19,7 @@ namespace sres.da
 
             try
             {
-                string sp = $"{Package.Criterio}USP_SEL_OBTIENE_INSCRIPCION_CONVOCATORIA_INSTITUCION";
+                string sp = $"{Package.Criterio}USP_SEL_OBTIENE_INSC_CONV_INST";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
                 p.Add("PI_ID_INSTITUCION", idInstitucion);

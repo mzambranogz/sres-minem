@@ -19,7 +19,7 @@ namespace sres.da
 
             try
             {
-                string sp = $"{Package.Criterio}USP_SEL_LISTA_INSCRIPCIONREQUERIMIENTO_CONVOCATORIA_INSCRIPCION";
+                string sp = $"{Package.Criterio}USP_SEL_LISTA_INSCRQ_CONV_INSC";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
                 p.Add("PI_ID_INSCRIPCION", idInscripcion);
@@ -46,7 +46,7 @@ namespace sres.da
 
             try
             {
-                string sp = $"{Package.Criterio}USP_SEL_OBTIENE_INSCRIPCIONREQUERIMIENTO";
+                string sp = $"{Package.Criterio}USP_SEL_OBTIENE_INSCRQ";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
                 p.Add("PI_ID_INSCRIPCION", idInscripcion);
@@ -65,7 +65,7 @@ namespace sres.da
 
             try
             {
-                string sp = $"{Package.Criterio}USP_MAN_GUARDA_INSCRIPCIONREQUERIMIENTO";
+                string sp = $"{Package.Criterio}USP_MAN_GUARDA_INSCRQ";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CONVOCATORIA", inscripcionRequerimiento.ID_CONVOCATORIA);
                 p.Add("PI_ID_INSCRIPCION", inscripcionRequerimiento.ID_INSCRIPCION);
