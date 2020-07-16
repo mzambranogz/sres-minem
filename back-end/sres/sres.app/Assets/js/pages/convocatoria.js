@@ -31,7 +31,7 @@ var cargarDataBusqueda = (data) => {
     $('#viewPagination').attr('style', 'display: none !important');
     console.log(data.TOTAL_REGISTROS, data.CANTIDAD_REGISTROS);
     if (data.TOTAL_REGISTROS > data.CANTIDAD_REGISTROS) $('#viewPagination').show();
-    $('.inicio-registros').text((data.PAGINA - 1) * data.CANTIDAD_REGISTROS + 1);
+    $('.inicio-registros').text(data.CANTIDAD_REGISTROS == 0 ? 'No se encontraron resultados' : (data.PAGINA - 1) * data.CANTIDAD_REGISTROS + 1);
     $('.fin-registros').text(data.TOTAL_REGISTROS < data.PAGINA * data.CANTIDAD_REGISTROS ? data.TOTAL_REGISTROS : data.PAGINA * data.CANTIDAD_REGISTROS);
     $('.total-registros').text(data.TOTAL_REGISTROS);
     $('.pagina').text(data.PAGINA);
@@ -45,6 +45,7 @@ var cargarDataBusqueda = (data) => {
         let elementButton = tabla.find('.btnParticipar')[x];
         $(elementButton).on('click', btnParticiparClick);
     });
+    $('html, body').animate({ scrollTop: $('#sectionSearch').offset().top }, 'slow');
 }
 
 var renderizar = (data, cantidadCeldas) => {    
@@ -61,16 +62,16 @@ var renderizar = (data, cantidadCeldas) => {
             let porcentajeAvance = (fechaInicio > fechaActual ? 0.00 : fechaActual > fechaFin ? 100 : (diasTranscurridos / diasPlazo * 100)).toFixed(2);
 
             let colNroInforme = `<td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row">${x.NRO_INFORME == null ? '-----' : `<a href="#"><i class="fas fa-eye mr-1"></i><span>${x.NRO_INFORME}</span></a>`}</td>`;
-            let colPeriodo = `<td class="text-center" data-encabezado="Período">${fechaInicio.getFullYear()} - ${fechaInicio.getMonth().toFixed('00')}</td>`;
+            let colPeriodo = `<td class="text-center" data-encabezado="Período">${fechaInicio.getFullYear()} - ${fechaInicio.getMonth() + 1}</td>`;
             let colNombre = `<td data-encabezado="Progreso"><div class="text-limi-1">${x.NOMBRE}</div></td>`;
             let colFechaInicio = `<td class="text-center" data-encabezado="Fecha Inicio">${fechaInicio.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;
             let colFechaFin = `<td class="text-center" data-encabezado="Fecha Fin">${fechaFin.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;
             let colVencimiento = `<td class="text-center" data-encabezado="Vencimiento"><div class="progress" style="height: 21px;" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance"><div class="progress-bar ${porcentajeAvance > 0 ? "vigente" : "preparado"} estilo-01" role="progressbar" style="width: ${porcentajeAvance}%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">${porcentajeAvance}%</div></div></td>`;
-            let colEstado = `<td data-encabezado="Estado"><b class="text-sres-verde">${obtenerEstadoConvocatoria(x.FLAG_ESTADO)}</b></td>`;
-            let btnIngresar = `<a class="btn btn-sm btn-success w-100" target="_blank" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
+            let colEstado = `<td data-encabezado="Estado"><b class="text-sres-verde">${x.ETAPA.NOMBRE}</b></td>`;
+            let btnIngresar = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
             let btnGestionar = `<a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>`;
-            let btnEditarRequisitos = `<a class="dropdown-item estilo-01" target="_blank" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme"><i class="fas fa-edit mr-1"></i>Editar requisitos</a>`
-            let btnEditarCriterios = `<a class="dropdown-item estilo-01" href="#"><i class="fas fa-edit mr-1"></i>Editar criterios</a>`
+            let btnEditarRequisitos = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme"><i class="fas fa-edit mr-1"></i>Editar requisitos</a>`
+            let btnEditarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Criterios"><i class="fas fa-edit mr-1"></i>Editar criterios</a>`
             let btnSeguimiento = `<a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a>`;
             let btnVerReconocimiento = `<a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Gestión">${x.FLAG_ESTADO == '1' ? btnIngresar : btnGestionar}<div class="dropdown-menu">${btnEditarRequisitos}${btnEditarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div></div></td>`;
