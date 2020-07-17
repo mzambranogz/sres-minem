@@ -69,7 +69,7 @@ namespace sres.ln
 
                             InscripcionTrazabilidadBE inscripcionTrazabilidad = new InscripcionTrazabilidadBE
                             {
-                                ID_INSCRIPCION = inscripcion.ID_INSCRIPCION,
+                                ID_INSCRIPCION = idInscripcion,
                                 DESCRIPCION = trazabilidadDescripcionRegistrarInscripcion,
                                 UPD_USUARIO = inscripcion.UPD_USUARIO
                             };

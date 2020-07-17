@@ -27,5 +27,25 @@ namespace sres.app.Controllers.Api
         {
             return institucionLN.ObtenerInstitucion(idInstitucion);
         }
+
+        //[Route("buscarparticipantes")]
+        //[HttpGet]
+        //public DataPaginateBE BuscarParticipantes(string busqueda, int registros, int pagina, string columna, string orden)
+        //{
+        //    List<InstitucionBE> institucion = insc.BuscarConvocatoria(nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden);
+
+        //    DataPaginateBE data = new DataPaginateBE
+        //    {
+        //        DATA = convocatoria,
+        //        PAGINA = convocatoria.Count == 0 ? 0 : convocatoria[0].PAGINA,
+        //        CANTIDAD_REGISTROS = convocatoria.Count == 0 ? 0 : convocatoria[0].CANTIDAD_REGISTROS,
+        //        TOTAL_PAGINAS = convocatoria.Count == 0 ? 0 : convocatoria[0].TOTAL_PAGINAS,
+        //        TOTAL_REGISTROS = convocatoria.Count == 0 ? 0 : convocatoria[0].TOTAL_REGISTROS
+        //    };
+
+        //    return data;
+
+        //    return institucionLN.BuscarParticipantes(busqueda, registros, pagina, columna, orden);
+        //}
     }
 }

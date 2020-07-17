@@ -272,6 +272,7 @@
     <Content Include="Assets\js\pages\mantenimiento_rol.js" />
     <Content Include="Assets\js\pages\mantenimiento_sector.js" />
     <Content Include="Assets\js\pages\mantenimiento_usuario.js" />
+    <Content Include="Assets\js\pages\participantes.js" />
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
@@ -305,6 +306,7 @@
     <Compile Include="Controllers\InscripcionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MantenimientoController.cs" />
+    <Compile Include="Controllers\ParticipanteController.cs" />
     <Compile Include="Controllers\_Base\SesionIn.cs" />
     <Compile Include="Controllers\_Base\SesionOut.cs" />
     <Compile Include="Global.asax.cs">
@@ -346,6 +348,7 @@
     <Content Include="Views\Convocatoria\Criterios.cshtml" />
     <Content Include="Views\Convocatoria\Criterio.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Views\Participante\Index.cshtml" />
     <Content Include="Assets\fonts\fa-brands-400.eot" />
     <Content Include="Assets\fonts\fa-brands-400.ttf" />
     <Content Include="Assets\fonts\fa-brands-400.woff" />

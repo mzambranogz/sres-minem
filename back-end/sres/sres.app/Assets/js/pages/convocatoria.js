@@ -59,10 +59,11 @@ var renderizar = (data, cantidadCeldas) => {
             let fechaFin = new Date(x.FECHA_FIN);
             let diasPlazo = Math.floor((fechaFin - fechaInicio) / (1000 * 60 * 60 * 24));
             let diasTranscurridos = Math.floor((fechaActual - fechaInicio) / (1000 * 60 * 60 * 24));
-            let porcentajeAvance = (fechaInicio > fechaActual ? 0.00 : fechaActual > fechaFin ? 100 : (diasTranscurridos / diasPlazo * 100)).toFixed(2);
+            let porcentajeAvance = Math.floor(fechaInicio > fechaActual ? 0.00 : fechaActual > fechaFin ? 100 : (diasTranscurridos / diasPlazo * 100))
+            let formatoCodigo = '00000000';
 
-            let colNroInforme = `<td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row">${x.NRO_INFORME == null ? '-----' : `<a href="#"><i class="fas fa-eye mr-1"></i><span>${x.NRO_INFORME}</span></a>`}</td>`;
-            let colPeriodo = `<td class="text-center" data-encabezado="Período">${fechaInicio.getFullYear()} - ${fechaInicio.getMonth() + 1}</td>`;
+            let colNroInforme = `<td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row">${(`${formatoCodigo}${x.ID_CONVOCATORIA}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</td>`;
+            let colPeriodo = `<td class="text-center" data-encabezado="Período">${fechaInicio.getFullYear()}</td>`;
             let colNombre = `<td data-encabezado="Progreso"><div class="text-limi-1">${x.NOMBRE}</div></td>`;
             let colFechaInicio = `<td class="text-center" data-encabezado="Fecha Inicio">${fechaInicio.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;
             let colFechaFin = `<td class="text-center" data-encabezado="Fecha Fin">${fechaFin.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;
@@ -81,21 +82,6 @@ var renderizar = (data, cantidadCeldas) => {
     };
 
     return contenido;
-};
-
-var obtenerEstadoConvocatoria = (flagEstado) => {
-    let estado = '';
-
-    switch(flagEstado){
-        case '1' : estado = 'ABIERTO'; break;
-        case '2' : estado = 'EN PROCESO'; break;
-        case '3' : estado = 'EN REVISIÓN'; break;
-        case '4' : estado = 'PENDIENTE'; break;
-        case '5' : estado = 'CERRADO'; break;
-        case '6' : estado = 'VENCIDO'; break;
-    }
-
-    return estado;
 };
 
 var btnFirstPaginationClick = (e) => {

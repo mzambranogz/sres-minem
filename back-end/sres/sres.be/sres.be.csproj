@@ -65,6 +65,7 @@
     <Compile Include="InscripcionBE.cs" />
     <Compile Include="InscripcionRequerimientoBE.cs" />
     <Compile Include="InscripcionTrazabilidadBE.cs" />
+    <Compile Include="InstitucionAuxBE.cs" />
     <Compile Include="InstitucionBE.cs" />
     <Compile Include="MRV\InstitucionBE.cs" />
     <Compile Include="MRV\UsuarioBE.cs" />

@@ -51,6 +51,27 @@ namespace sres.da
             return item;
         }
 
+        public List<InstitucionBE> BuscarParticipantes(string busqueda, int registros, int pagina, string columna, string orden, OracleConnection db)
+        {
+            List<InstitucionBE> lista = new List<InstitucionBE>();
+
+            try
+            {
+                string sp = $"{Package.Criterio}USP_SEL_BUSQ_PARTICIPANTES";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_BUSQUEDA", busqueda);
+                p.Add("PI_REGISTROS", registros);
+                p.Add("PI_PAGINA", pagina);
+                p.Add("PI_COLUMNA", columna);
+                p.Add("PI_ORDEN", orden);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<InstitucionBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
+
         public bool GuardarInstitucion(InstitucionBE institucion, OracleConnection db, out int idInstitucion)
         {
             bool seGuardo = false;

@@ -1,4 +1,5 @@
 ﻿@using sres.be
+@using sres.ut
 @{
     ViewBag.Titulo = "Inscribirme";
     ViewBag.SRESDescription = false;
@@ -11,6 +12,7 @@
     <script>
         const idConvocatoria = @(convocatoria.ID_CONVOCATORIA);
         const idInscripcion = @(inscripcion == null ? "null" : inscripcion.ID_INSCRIPCION.ToString());
+        const maxBytes = @(AppSettings.Get<long>("File.MaxBytes"));
     </script>
     <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
     <script src="@Url.Content("~/Assets/js/plugins/counter.js")"></script>

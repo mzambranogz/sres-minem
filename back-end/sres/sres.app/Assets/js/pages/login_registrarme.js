@@ -132,6 +132,9 @@ var cargarDatosUsuario = (data) => {
 }
 
 var abrirModalLoginMRV = (data) => {
+    debugger;
+    limpiarDatosUsuario();
+    cambiarPropiedadLecturaUsuario(!data);
     if(data == true){
 
         $('form > .row:nth(4)').alert({ type: 'warning', title: 'AUTENTICACIÓN DE CUENTA MRV', message: 'Encontramos que su Usuario - Correo electrónico se encuentra registrado en la Plataforma MRV del sector energía, por favor inicie sesión con sus credenciales de acceso para continuar.', html: '<hr class="mt-1 mb-3"><div class="row"><div class="col-sm-12"><div class="form-group"><label class="estilo-01" for="txt-user">Correo electrónico MRV</label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text bg-nama-azul text-white"><i class="fas fa-envelope"></i></span></div><input class="form-control estilo-01" type="email" id="txt-user-mrv" placeholder="Ingresar correo electrónico" maxlength="50" pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$" title="Ingrese una dirección de correo válida." autocomplete="new-user" required></div></div></div><div class="col-sm-12"><div class="form-group"><label class="estilo-01" for="txt-pswd">Contraseña MRV</label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text bg-nama-azul text-white"><i class="fas fa-key"></i></span></div><input class="form-control estilo-01" type="password" id="txt-pswd-mrv" placeholder="Ingresar contraseña" maxlength="30" title="Ingrese su contraseña." autocomplete="new-password" required><div class="input-group-append"><label class="input-group-text cursor-pointer ver-clave estilo-01 bg-nama-azul text-white"><i class="fas fa-eye mr-1"></i>Mostrar</label></div></div></div></div></div><div class="row"><div class="col-sm-12 text-center"><button class="btn-lg btn-nama-azul w-100 mb-3" id="mrvBtn" type="button" data-toggle="tooltip" data-placement="bottom" title="Sistema de gestión y reporte de información de las medidas de mitigación de las Contribuciones Nacionalmente Determinadas (NDC).">Ingresa con tu cuenta MRV</button><a class="text-sres-verde estilo-01" href="http://sismrv.minem.gob.pe/Home/recuperar" target="_blank">¿Olvidó su contraseña?</a></div></div>' })
@@ -147,8 +150,6 @@ var abrirModalLoginMRV = (data) => {
         //$('#viewContraseñaUsuario').hide();
         return;
     }
-    limpiarDatosUsuario();
-    cambiarPropiedadLecturaUsuario(!data.EXISTE);
 }
 
 var validarUsuarioLogin = () => {
@@ -168,8 +169,8 @@ var validarUsuarioLogin = () => {
 }
 
 var cargarDatosUsuarioMRV = (data) => {
-    limpiarDatosUsuario();
-    cambiarPropiedadLecturaUsuario(!data.VALIDO);
+    //limpiarDatosUsuario();
+    //cambiarPropiedadLecturaUsuario(!data.VALIDO);
 
     debugger;
     $('form > .row:nth(8)').hide();
@@ -179,15 +180,16 @@ var cargarDatosUsuarioMRV = (data) => {
         $('form > .row:nth(8)').show();
         //$('#viewContraseñaUsuario').show();
         let modal = $('form > .row:nth(4)').alert('get');
-        if (modal != null) modal.find('.modal-content .modal-body .row:first').alert({ type: 'danger', title: 'ERROR', message: 'Usuario y/o contraseña inválidos', close: { time: 3000 } });
+        if (modal != null) modal.find('.row:first').alert({ type: 'danger', title: 'ERROR', message: 'Usuario y/o contraseña inválidos', close: { time: 3000 } });
         return;
     }
     
+    let contraseña = $('#txt-pswd-mrv').val();
+
     $('form > .row:nth(4)').alert('remove');
 
     //$('#modalValidacionMrv').modal('hide');
 
-    let contraseña = $('#txt-pswd-mrv').val();
 
     $('#frmRegister').data('idUsuario', data.USUARIO.ID_USUARIO);
     $('#txt-nombre').val(data.USUARIO.NOMBRES_USUARIO);

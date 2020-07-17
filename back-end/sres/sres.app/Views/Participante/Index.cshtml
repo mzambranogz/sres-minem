@@ -1,0 +1,358 @@
+﻿@{
+    ViewBag.Titulo = "Participantes";
+    ViewBag.SRESDescription = false;
+    ViewBag.Header = new Dictionary<string, object>
+    {
+        ["Imagen"] = "~/Assets/images/bg-participantes.png",
+        ["Titulo"] = "PARTICIPANTES"
+    };
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/pages/participantes.js")"></script>
+}
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 my-5">
+                <p class="text-justify estilo-01 text-sres-gris wow fadeIn">A continuación, presentamos a las entidades públicas y privadas que cuentan con el Sello de Reconocimiento de Energía Sostenible <b>(vigente o no vigente)</b> en el territorio nacional.</p>
+                <p class="text-justify estilo-01 text-sres-gris wow fadeIn">Todas y cada una de ellas desarrollan e implementan diversas medidas de energía sostenible, eficiencia energética y uso racional de la energía, permitiendo así la competitividad, el incentivo del ahorro por consumo, la reducción de costos, además de la reducción de gases de efecto invernadero.</p>
+                <div class="rayado wow fadeIn"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-12 col-sm-12">
+                <div class="form-group m-0">
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="text" id="txt-buscar" placeholder="Buscar aquí">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 estilo-01 d-flex justify-content-start align-items-center">
+                        <div class="row">
+                            <div class="col-12"><strong>Resultado:&nbsp;</strong>1-10 de 750 registros</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 estilo-01 d-flex justify-content-end align-items-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                    <button class="estilo-01 btn btn-sm btn-sres-verde btnFirstPagination" type="button"><i class="fas fa-angle-double-left"></i></button>
+                                    <button class="estilo-01 btn btn-sm btn-sres-verde btnPreviousPagination" type="button"><i class="fas fa-angle-left"></i></button>
+                                    <input class="ir-pagina estilo-01" type="number" value="1" min="1">
+                                    <button class="estilo-01 btn btn-sm btn-sres-verde btnNextPagination" type="button"><i class="fas fa-angle-right"></i></button>
+                                    <button class="estilo-01 btn btn-sm btn-sres-verde btnLastPagination" type="button"><i class="fas fa-angle-double-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-12 col-sm-12">
+                <h4 class="p-2 estilo-04 text-white bg-degradado wow fadeIn">FILTROS</h4>
+                <div class="bg-sres-claro px-2 py-3 mb-5 text-sres-claro h-100 wow fadeIn">
+                    <span class="estilo-01 mb-5">Reconocimientos</span>
+                    <div class="my-2">
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="chk-oro">
+                                <label class="custom-control-label estilo-01" for="chk-oro">Oro</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="chk-plata">
+                                <label class="custom-control-label estilo-01" for="chk-plata">Plata</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="chk-bronce">
+                                <label class="custom-control-label estilo-01" for="chk-bronce">Bronce</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <div class="estilo-01 text-right"><a class="text-sres-verde btn-all" href="#">Todos</a><span class="mx-2 text-sres-gris">|</span><a class="text-sres-verde btn-not" href="#">Ninguno</a></div>
+                    </div><span class="estilo-01 mb-5">Estrellas</span>
+                    <div class="my-2">
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="chk-1-estrella">
+                                <label class="custom-control-label estilo-01" for="chk-1-estrella">1 estrella</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="chk-2-estrellas">
+                                <label class="custom-control-label estilo-01" for="chk-2-estrellas">2 estrellas</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="chk-3-estrellas">
+                                <label class="custom-control-label estilo-01" for="chk-3-estrellas">3 estrellas</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <div class="estilo-01 text-right"><a class="text-sres-verde btn-all" href="#">Todos</a><span class="mx-2 text-sres-gris">|</span><a class="text-sres-verde btn-not" href="#">Ninguno</a></div>
+                    </div><span class="estilo-01 mb-5">Resultados</span>
+                    <div class="my-2">
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="chk-excel">
+                                <label class="custom-control-label estilo-01" for="chk-excel">Formato Excel</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="chk-pdf">
+                                <label class="custom-control-label estilo-01" for="chk-pdf">Formato PDF</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <div class="estilo-01 text-right"><a class="text-sres-verde" href="#">Descargar</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-12 col-sm-12">
+                <div class="table-responsive tabla-principal">
+                    <table class="table table-sm table-hover" id="tblParticipantes">
+                        <thead class="estilo-06">
+                            <tr>
+                                <th scope="col" width="10%">
+                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Logotipo de la empresa"></i><span>LOGO&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                                </th>
+                                <th scope="col" width="20%">
+                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reconocimiento otorgrado"></i><span>RECONOCIMIENTO&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                                </th>
+                                <th scope="col" width="45%">
+                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre de la empresa participante"></i><span>EMPRESA PARTICIPANTE&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                                </th>
+                                <th scope="col" width="15%">
+                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre de la meidida de mitigación"></i><span>MEDIDA NDC&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                                </th>
+                                <th scope="col" width="10%">
+                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Herramientas y opciones"></i><span>FICHA&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="estilo-01">
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="0">
+                                    <img class="img-fluid" src="./images/empresa-05.png" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="./images/dos_estrellas.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="1">
+                                    <img class="img-fluid" src="./images/empresa-01.png" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="./images/oro.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">ABC</b>
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="2">
+                                    <img class="img-fluid" src="./images/empresa-02.png" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="./images/plata.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">DEF</b>
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="3">
+                                    <img class="img-fluid" src="./images/empresa-03.png" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="./images/bronce.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">GHI</b>
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="4">
+                                    <img class="img-fluid" src="./images/empresa-04.png" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="./images/una_estrella.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    <b class="text-nama-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">JKL</b>
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="5">
+                                    <img class="img-fluid" src="./images/empresa-01.png" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="./images/oro.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="6">
+                                    <img class="img-fluid" src="./images/empresa-02.png" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="./images/plata.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="7">
+                                    <img class="img-fluid" src="./images/empresa-03.png" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="./images/bronce.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="8">
+                                    <img class="img-fluid" src="./images/empresa-04.png" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="./images/una_estrella.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="9">
+                                    <img class="img-fluid" src="./images/empresa-05.png" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="./images/dos_estrellas.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="10">
+                                    <img class="img-fluid" src="./images/empresa-05.png" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="./images/dos_estrellas.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-0 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="offset-lg-3 col-lg-9 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 estilo-01 d-flex justify-content-start align-items-center">
+                        <div class="row">
+                            <div class="col-12"><strong>Resultado:&nbsp;</strong>1-10 de 750 registros</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6 estilo-01 d-flex justify-content-end align-items-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                    <button class="estilo-01 btn btn-sm btn-sres-verde" type="button"><i class="fas fa-angle-double-left"></i></button>
+                                    <button class="estilo-01 btn btn-sm btn-sres-verde" type="button"><i class="fas fa-angle-left"></i></button>
+                                    <input class="ir-pagina estilo-01" type="number" value="1" min="1">
+                                    <button class="estilo-01 btn btn-sm btn-sres-verde" type="button"><i class="fas fa-angle-right"></i></button>
+                                    <button class="estilo-01 btn btn-sm btn-sres-verde" type="button"><i class="fas fa-angle-double-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

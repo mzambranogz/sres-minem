@@ -79,22 +79,6 @@ var enviarInscripcion = () => {
         return;
     }
 
-    //let formData = new FormData();
-    //formData.append('ID_INSCRIPCION', idInscripcion == null ? -1 : idInscripcion);
-    //formData.append('ID_CONVOCATORIA', idConvocatoria);
-    //formData.append('ID_INSTITUCION', idInstitucionLogin);
-    //formData.append('UPD_USUARIO', idUsuarioLogin);
-
-
-    //listaInscripcionRequerimiento.forEach((x, i) => {
-    //    formData.append(`LISTA_INSCRIPCION_REQUERIMIENTO[${i}].ID_CONVOCATORIA`, idConvocatoria);
-    //    formData.append(`LISTA_INSCRIPCION_REQUERIMIENTO[${i}].ID_INSCRIPCION`, idInscripcion == null ? -1 : idInscripcion);
-    //    formData.append(`LISTA_INSCRIPCION_REQUERIMIENTO[${i}].ID_REQUERIMIENTO`, $(x).attr('data-id'));
-    //    formData.append(`LISTA_INSCRIPCION_REQUERIMIENTO[${i}].ARCHIVO_BASE`, x.files[0] == null ? null : x.files[0].name);
-    //    formData.append(`LISTA_INSCRIPCION_REQUERIMIENTO[${i}].FILE`, x.files[0] == null ? null : x.files[0], x.files[0] == null ? null : x.files[0].name);
-    //    formData.append(`LISTA_INSCRIPCION_REQUERIMIENTO[${i}].UPD_USUARIO`, idUsuarioLogin);
-    //});
-
     listaInscripcionRequerimiento = listaInscripcionRequerimiento.map((x, i) => {
         let idRequerimiento = $(x).attr('data-id');
         let name = $(`#txt-requisito-${idRequerimiento}`).val();
@@ -142,6 +126,7 @@ var mostrarMensaje = (data) => {
 
 var fileRequerimientoChange = (e) => {
     let elFile = $(e.currentTarget);
+
     if (e.currentTarget.files.length == 0) {
         $(e.currentTarget).removeData('file');
         $(e.currentTarget).removeData('fileContent');
@@ -150,6 +135,12 @@ var fileRequerimientoChange = (e) => {
     }
 
     var fileContent = e.currentTarget.files[0];
+
+    if (fileContent.size > maxBytes) $(elFile).parent().parent().parent().parent().alert({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo debe tener uun peso máximo de 4MB` });
+    else
+        $(elFile).parent().parent().parent().parent().alert('remove');
+
+
     var idElement = $(e.currentTarget).attr("data-id");
     $(`#txt-requisito-${idElement}`).val(fileContent.name);
 
@@ -172,7 +163,13 @@ var fileRequerimientoChange = (e) => {
 var btnEliminarFileClick = (e) => {
     e.preventDefault();
     let id = $(e.currentTarget).attr('data-id');
-    $(`#txt-requisito-${id}, #fle-requisito-${id}`).each((i, x) => { $(x).val(''); console.log(x); });
+    $(`#txt-requisito-${id}, #fle-requisito-${id}`).each((i, x) => {
+        $(x).val('');
+        $(x).removeData('file');
+        $(x).removeData('fileContent');
+        $(x).removeData('type');
+        console.log(x);
+    });
     $(e.currentTarget).closest('.form-group').html(`<label class="estilo-01">&nbsp;</label><div class="alert alert-secondary p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div></div>`);
 }
 
