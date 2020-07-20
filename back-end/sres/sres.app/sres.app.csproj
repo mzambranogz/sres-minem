@@ -393,6 +393,7 @@
     <Content Include="Assets\fonts\gothamroundedmedium.ttf" />
     <Content Include="Assets\fonts\gothamroundedmedium.woff" />
     <Content Include="Assets\images\favicon\manifest.json" />
+    <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

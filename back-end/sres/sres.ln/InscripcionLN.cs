@@ -81,13 +81,15 @@ namespace sres.ln
                         {
                             foreach (InscripcionRequerimientoBE iInscripcionRequerimiento in inscripcion.LISTA_INSCRIPCION_REQUERIMIENTO)
                             {
-                                if (iInscripcionRequerimiento.ID_INSCRIPCION <= 0) iInscripcionRequerimiento.ID_INSCRIPCION = idInscripcion;
+                                //if (iInscripcionRequerimiento.ID_INSCRIPCION <= 0)
+                                iInscripcionRequerimiento.ID_INSCRIPCION = idInscripcion;
                                 if (seGuardo)
                                 {
+
                                     if(iInscripcionRequerimiento.ARCHIVO_CONTENIDO != null)
                                     {
                                         string pathFormat = AppSettings.Get<string>("Path.Inscripcion.Requerimiento");
-                                        string pathDirectoryRelative = string.Format(pathFormat, inscripcion.ID_INSTITUCION, inscripcion.ID_INSCRIPCION);
+                                        string pathDirectoryRelative = string.Format(pathFormat, inscripcion.ID_INSTITUCION, idInscripcion);
                                         string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
                                         string pathFile = Path.Combine(pathDirectory, iInscripcionRequerimiento.ARCHIVO_BASE);
                                         if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
