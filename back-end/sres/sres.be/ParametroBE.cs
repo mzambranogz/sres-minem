@@ -11,6 +11,7 @@ namespace sres.be
         public int ID_PARAMETRO { get; set; }
         public string NOMBRE { get; set; }
         public string ETIQUETA { get; set; }
+        public int ID_TIPO_CONTROL { get; set; }
         public int ID_TIPO_DATO { get; set; }
         public string DECIMAL_V { get; set; }
         public string VERIFICABLE { get; set; }
@@ -18,5 +19,9 @@ namespace sres.be
         public string OBTENIBLE { get; set; }
         public string ESTATICO { get; set; }
         public string UNIDAD { get; set; }
+        public string FILTRO { get; set; }
+        public string RESULTADO { get; set; }
+        public int TAMANO { get; set; }
+        public string DESCRIPCION { get; set; }
     }
 }

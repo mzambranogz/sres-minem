@@ -16,9 +16,11 @@ namespace sres.be
         public string OBTENIBLE { get; set; }
         public string ESTATICO { get; set; }
         public string NOMBRE { get; set; }
+        public string UNIDAD { get; set; }
         public string FILTRO { get; set; }
         public string RESULTADO { get; set; }
         public int TAMANO { get; set; }
+        public string DESCRIPCION { get; set; }
         public List<ParametroDetalleBE> LIST_PARAMDET { get; set; }
     }
 }
