@@ -8,6 +8,7 @@ using sres.be;
 using System.Data;
 using Oracle.DataAccess.Client;
 using sres.ut;
+using System.IO;
 
 namespace sres.ln
 {
@@ -17,6 +18,9 @@ namespace sres.ln
         CasoDA casoDA = new CasoDA();
         ComponenteDA componenteDA = new ComponenteDA();
         IndicadorDataDA indicadorDataDA = new IndicadorDataDA();
+        ParametroDetalleDA paramdetalleDA = new ParametroDetalleDA();
+        DocumentoDA documentoDA = new DocumentoDA();
+        InscripcionDocumentoDA inscripcionDocDA = new InscripcionDocumentoDA();
 
         //public CriterioBE RegistroCriterio(CriterioBE entidad)
         //{
@@ -103,63 +107,90 @@ namespace sres.ln
         }
 
         //public List<CasoBE> BuscarCriterioCaso(CasoBE entidad)
-        public List<ComponenteBE> BuscarCriterioCaso(int idCriterio, int idInscripcion)
+        public List<ComponenteBE> BuscarCriterioCaso(int idCriterio, int idInscripcion, int idCaso)
         {
-            List<CasoBE> lista = new List<CasoBE>();
+            //List<CasoBE> lista = new List<CasoBE>();
             List<ComponenteBE> listaComponente = new List<ComponenteBE>();
-            int id_caso = 0;
+            //int id_caso = 0;
             try
             {
                 cn.Open();
-                lista = casoDA.ListarCasoPorCriterio(idCriterio, cn);
-                foreach (var caso in lista) {
-                    id_caso = caso.ID_CASO;
+                listaComponente = criterioDA.BuscarCriterioCaso(idCriterio, idCaso, cn);
+
+                foreach (var componente in listaComponente)
+                {
+                    componente.LIST_INDICADOR_HEAD = criterioDA.ArmarIndicador(componente, cn);
+                    foreach (var indicador in componente.LIST_INDICADOR_HEAD)
+                    {
+                        indicador.OBJ_PARAMETRO = criterioDA.ObtenerParametro(indicador, cn);
+                    }
+
+                    componente.ID_INSCRIPCION = idInscripcion;
+                    var flag_n = componente.INCREMENTABLE == "1" ? criterioDA.VerificarIndicador(componente, cn) : 0;
+
+                    if (componente.INCREMENTABLE == "1" && flag_n > 0)
+                        componente.LIST_INDICADOR_BODY = indicadorDataDA.ObtenerIndicadorData(componente, cn);
+                    else
+                        componente.LIST_INDICADOR_BODY = criterioDA.ObtenerIndicador(componente, cn);
+
+                    foreach (var ind in componente.LIST_INDICADOR_BODY)
+                    {
+                        ind.FLAG_NUEVO = flag_n;
+                        if (flag_n == 0)
+                        {
+                            ind.ID_INSCRIPCION = idInscripcion;
+                            ind.LIST_INDICADORFORM = criterioDA.ArmarIndicadorForm(ind, cn);
+                            if (ind.LIST_INDICADORFORM.Count > 0) foreach (var indForm in ind.LIST_INDICADORFORM) indForm.LIST_PARAMDET = indForm.ID_TIPO_CONTROL == 1 ? paramdetalleDA.ParametroDetalleForm(indForm, cn) : null;
+                            ind.LIST_INDICADORDATA = componente.INCREMENTABLE == "0" ? criterioDA.ArmarIndicadorData(ind, cn) : null; //add
+                            if (componente.INCREMENTABLE == "0" && ind.LIST_INDICADORDATA != null) foreach (var indData in ind.LIST_INDICADORDATA) indData.LIST_PARAMDET = indData.ID_TIPO_CONTROL == 1 ? paramdetalleDA.ParametroDetalleData(indData, cn) : null;
+                        }
+                        else
+                        {
+                            ind.ID_INSCRIPCION = idInscripcion;
+                            ind.LIST_INDICADORDATA = criterioDA.ArmarIndicadorData(ind, cn);
+                            if (ind.LIST_INDICADORDATA != null) foreach (var indData in ind.LIST_INDICADORDATA) indData.LIST_PARAMDET = indData.ID_TIPO_CONTROL == 1 ? paramdetalleDA.ParametroDetalleData(indData, cn) : null;
+                        }
+                    }
+
                 }
 
-                //foreach (var caso in lista)
-                //{
-                    //caso.LIST_COMPONENTE = criterioDA.BuscarCriterioCaso(idCriterio, caso.ID_CASO, cn);
-                    listaComponente = criterioDA.BuscarCriterioCaso(idCriterio, id_caso, cn);
-
-                    //foreach (var componente in caso.LIST_COMPONENTE)
-                    foreach (var componente in listaComponente)
-                    {
-                        componente.LIST_INDICADOR_HEAD = criterioDA.ArmarIndicador(componente, cn);
-                        foreach (var indicador in componente.LIST_INDICADOR_HEAD)
-                        {
-                            indicador.OBJ_PARAMETRO = criterioDA.ObtenerParametro(indicador, cn);
-                        }
-                        
-                        componente.ID_INSCRIPCION = idInscripcion;
-                        var flag_n = componente.INCREMENTABLE == "1" ? criterioDA.VerificarIndicador(componente, cn) : 0;
-
-                        if (componente.INCREMENTABLE == "1" && flag_n > 0)
-                            componente.LIST_INDICADOR_BODY = indicadorDataDA.ObtenerIndicadorData(componente, cn);
-                        else
-                            componente.LIST_INDICADOR_BODY = criterioDA.ObtenerIndicador(componente, cn);
-
-                        foreach (var ind in componente.LIST_INDICADOR_BODY)
-                        {
-                            ind.FLAG_NUEVO = flag_n;
-                            if (flag_n == 0)
-                            {
-                                ind.ID_INSCRIPCION = idInscripcion;
-                                ind.LIST_INDICADORFORM = criterioDA.ArmarIndicadorForm(ind, cn);
-                                ind.LIST_INDICADORDATA = componente.INCREMENTABLE == "0"? criterioDA.ArmarIndicadorData(ind, cn) : null; //add
-                            }
-                            else
-                            {
-                                ind.ID_INSCRIPCION = idInscripcion;
-                                ind.LIST_INDICADORDATA = criterioDA.ArmarIndicadorData(ind, cn);
-                            }
-                        }
-
-                    }
                 //}
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return listaComponente;
+        }
+
+        public List<DocumentoBE> BuscarCriterioCasoDocumento(int idCriterio, int idCaso, int idConvocatoria, int id_inscripcion)
+        {
+            List<DocumentoBE> lista = new List<DocumentoBE>();
+            try
+            {
+                cn.Open();
+                lista = documentoDA.BuscarCriterioCasoDocumento(new CasoBE { ID_CONVOCATORIA = idConvocatoria, ID_CRITERIO = idCriterio, ID_CASO = idCaso }, cn);
+                if (lista != null)
+                {
+                    foreach (DocumentoBE item in lista)
+                    {
+                        item.ID_INSCRIPCION = id_inscripcion;
+                        item.OBJ_INSCDOC = inscripcionDocDA.ObtenerInscripcionDocumento(item, cn);
+                        if (item.OBJ_INSCDOC != null)
+                        {
+                            string pathFormat = AppSettings.Get<string>("Path.Inscripcion.Documento");
+                            string pathDirectoryRelative = string.Format(pathFormat, id_inscripcion, idCriterio, idCaso, item.ID_DOCUMENTO);
+                            string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                            string pathFile = Path.Combine(pathDirectory, item.OBJ_INSCDOC.ARCHIVO_BASE);
+                            if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                            pathFile = !File.Exists(pathFile) ? null : pathFile;
+                            item.OBJ_INSCDOC.ARCHIVO_CONTENIDO = pathFile == null ? null : File.ReadAllBytes(pathFile);
+                        }
+                    }
+                }
+
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
 
         public CasoBE GuardarCriterioCaso(CasoBE item)
@@ -172,22 +203,50 @@ namespace sres.ln
                 {
                     bool seGuardoConvocatoria = true;
 
-                    foreach (var componente in item.LIST_COMPONENTE)
+                    seGuardoConvocatoria = casoDA.GuardarConvocatoriaCriterioCasoInscripcion(item, cn).OK ? true : false;
+                    if (seGuardoConvocatoria)
                     {
-                        foreach (var indicador in componente.LIST_INDICADOR)
+                        //==============================================================
+                        foreach (var componente in item.LIST_COMPONENTE)
                         {
-                            var id_indicador = indicador.ID_INDICADOR == 0 ? criterioDA.ObtenerIdIndicador(componente, cn, ot) : indicador.ID_INDICADOR;
-                            foreach (var indicador_data in indicador.LIST_INDICADORDATA)
+                            foreach (var indicador in componente.LIST_INDICADOR)
                             {
-                                indicador_data.ID_INDICADOR = id_indicador;
-                                if (!(seGuardoConvocatoria = criterioDA.GuardarIndicadorData(indicador_data, item.USUARIO_GUARDAR, cn, ot).OK)) break;
+                                var id_indicador = indicador.ID_INDICADOR == 0 ? criterioDA.ObtenerIdIndicador(componente, cn, ot) : indicador.ID_INDICADOR;
+                                foreach (var indicador_data in indicador.LIST_INDICADORDATA)
+                                {
+                                    indicador_data.ID_INDICADOR = id_indicador;
+                                    if (!(seGuardoConvocatoria = criterioDA.GuardarIndicadorData(indicador_data, item.USUARIO_GUARDAR, cn, ot).OK)) break;
+                                }
+                                if (!seGuardoConvocatoria) break;
                             }
                             if (!seGuardoConvocatoria) break;
+                            if (!string.IsNullOrEmpty(componente.ELIMINAR_INDICADOR)) if (!(seGuardoConvocatoria = indicadorDataDA.EliminarIndicadorData(componente, cn, ot).OK)) break;
                         }
-                        if (!seGuardoConvocatoria) break;
-                        if (!string.IsNullOrEmpty(componente.ELIMINAR_INDICADOR)) if (!(seGuardoConvocatoria = indicadorDataDA.EliminarIndicadorData(componente, cn, ot).OK)) break;
-                    }
+                        //==============================================================
+                        if (item.LIST_DOCUMENTO != null)
+                        {
+                            foreach (InscripcionDocumentoBE iDoc in item.LIST_DOCUMENTO)
+                            {
+                                //if (iDoc.ID_INSCRIPCION <= 0) iInscripcionRequerimiento.ID_INSCRIPCION = idInscripcion;
+                                if (seGuardoConvocatoria)
+                                {
+                                    if (iDoc.ARCHIVO_CONTENIDO != null && iDoc.ARCHIVO_CONTENIDO.Length > 0)
+                                    {
+                                        string pathFormat = AppSettings.Get<string>("Path.Inscripcion.Documento");
+                                        string pathDirectoryRelative = string.Format(pathFormat, iDoc.ID_INSCRIPCION, iDoc.ID_CRITERIO, iDoc.ID_CASO, iDoc.ID_DOCUMENTO);
+                                        string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                                        string pathFile = Path.Combine(pathDirectory, iDoc.ARCHIVO_BASE);
+                                        if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                                        File.WriteAllBytes(pathFile, iDoc.ARCHIVO_CONTENIDO);
+                                    }
+                                    seGuardoConvocatoria = inscripcionDocDA.GuardarInscripcionDocumento(iDoc, cn).OK;
 
+                                }
+                                else break;
+                            }
+                        }
+                        //=======================================================================
+                    }
 
                     if (seGuardoConvocatoria) ot.Commit();
                     else ot.Rollback();
@@ -206,6 +265,7 @@ namespace sres.ln
             foreach (var ind in comp.LIST_INDICADOR_BODY)
             {
                 ind.LIST_INDICADORFORM = criterioDA.ArmarIndicadorForm(ind, cn);
+                foreach (var indForm in ind.LIST_INDICADORFORM) indForm.LIST_PARAMDET = indForm.ID_TIPO_CONTROL == 1 ? paramdetalleDA.ParametroDetalleForm(indForm, cn) : null;
             }
             return comp;
         }

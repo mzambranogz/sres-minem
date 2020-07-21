@@ -84,6 +84,7 @@ namespace sres.da
                 p.Add("PI_FECHA_INICIO", entidad.FECHA_INICIO);
                 p.Add("PI_FECHA_FIN", entidad.FECHA_FIN);
                 p.Add("PI_LIMITE_POSTULANTE", entidad.LIMITE_POSTULANTE);
+                p.Add("PI_ID_ETAPA", entidad.ID_ETAPA);
                 p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);

@@ -77,7 +77,8 @@
             type: 'success',
             title: 'Titulo',
             message: 'Mensaje',
-            close: null
+            close: null,
+            url: ''
         };
 
         var settings = $.extend($.fn.alertSuccess.defaults, options);
@@ -90,7 +91,8 @@
         let nextElement = this.next();
         if (nextElement.hasClass('alert')) nextElement.remove();
         this.append(element);
-        if (settings.close != null) setTimeout(() => { element.remove(); }, settings.close.time);
+        //$('#btnGuardar').parent().parent().hide();
+        if (settings.close != null) setTimeout(() => { settings.url == '' ? '' : location.href = settings.url }, settings.close.time);
         //return this;
     }
 })(jQuery);
