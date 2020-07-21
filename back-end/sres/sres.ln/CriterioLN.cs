@@ -100,6 +100,14 @@ namespace sres.ln
             {
                 cn.Open();
                 lista = criterioDA.getAllCriterio(cn);
+                if (lista != null)
+                {
+                    foreach (CriterioBE cri in lista)
+                    {
+                        cri.LISTA_CASO = casoDA.ObtenerCriterioCaso(cri, cn);
+                        cri.LISTA_DOCUMENTO = documentoDA.ObtenerCriterioDocumento(cri, cn);
+                    }
+                }
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 

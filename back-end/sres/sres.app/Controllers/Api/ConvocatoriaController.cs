@@ -103,9 +103,9 @@ namespace sres.app.Controllers.Api
 
         [Route("listarconvocatoriacri")]
         [HttpGet]
-        public List<ConvocatoriaBE> listarConvocatoriaCri(int id)
+        public List<CriterioBE> listarConvocatoriaCri(int id)
         {
-            List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
+            List<CriterioBE> lista = new List<CriterioBE>();
             try
             {
                 lista = convocatoriaLN.listarConvocatoriaCri(new ConvocatoriaBE() { ID_CONVOCATORIA = id });

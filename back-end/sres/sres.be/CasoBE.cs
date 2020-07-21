@@ -11,5 +11,6 @@ namespace sres.be
         public int ID_CASO { get; set; }
         public string NOMBRE { get; set; }
         public int ID_CRITERIO { get; set; }
+        public string FLAG_ESTADO { get; set; }
     }
 }

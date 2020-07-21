@@ -17,6 +17,9 @@ namespace sres.ln
         ConvocatoriaDA convocatoriaDA = new ConvocatoriaDA();
         RequerimientoDA requerimientoDA = new RequerimientoDA();
         ConvocatoriaCriterioRequerimientoDA convocatoriaCriterioRequerimientoDA = new ConvocatoriaCriterioRequerimientoDA();
+        CriterioDA criterioDA = new CriterioDA();
+        CasoDA casoDA = new CasoDA();
+        DocumentoDA documentoDA = new DocumentoDA();
 
         public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden)
         {
@@ -81,9 +84,19 @@ namespace sres.ln
                     }
                     if (seGuardoConvocatoria)
                     {
-                        foreach (var it in entidad.LISTA_CRI)
+                        foreach (CriterioBE it in entidad.LISTA_CRI)
                         {
                             if (!(seGuardoConvocatoria = convocatoriaDA.GuardarCriterio(new CriterioBE { ID_CRITERIO = it.ID_CRITERIO, FLAG_ESTADO = it.FLAG_ESTADO, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, idConvocatoria, cn, ot).OK)) break;
+                            foreach (CasoBE c in it.LISTA_CASO)
+                            {
+                                if (!(seGuardoConvocatoria = casoDA.GuardarConvocatoriaCriterioCaso(c, idConvocatoria, cn).OK)) break;
+                                foreach (DocumentoBE d in c.LIST_DOC)
+                                {
+                                    if (!(seGuardoConvocatoria = documentoDA.GuardarConvocatoriaCriterioCasoDoc(d, idConvocatoria, cn).OK)) break;
+                                }
+                                if (!seGuardoConvocatoria) break;
+                            }
+                            if (!seGuardoConvocatoria) break;
                         }
                     }
                     if (seGuardoConvocatoria)
@@ -167,14 +180,28 @@ namespace sres.ln
             return lista;
         }
 
-        public List<ConvocatoriaBE> listarConvocatoriaCri(ConvocatoriaBE entidad)
+        public List<CriterioBE> listarConvocatoriaCri(ConvocatoriaBE entidad)
         {
-            List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
+            List<CriterioBE> lista = new List<CriterioBE>();
 
             try
             {
                 cn.Open();
                 lista = convocatoriaDA.listarConvocatoriaCri(entidad, cn);
+                if (lista.Count > 0)
+                {
+                    foreach (CriterioBE cr in lista)
+                    {
+                        cr.LISTA_CASO = casoDA.listarConvocatoriaCriCaso(cr, cn);
+                        if (cr.LISTA_CASO.Count > 0)
+                        {
+                            foreach (CasoBE c in cr.LISTA_CASO)
+                            {
+                                c.LIST_DOC = documentoDA.listarConvocatoriaCriCasoDoc(c, cn);
+                            }
+                        }
+                    }
+                }
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 

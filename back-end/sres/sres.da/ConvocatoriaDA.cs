@@ -12,7 +12,7 @@ using sres.ut;
 
 namespace sres.da
 {
-    public class ConvocatoriaDA :BaseDA
+    public class ConvocatoriaDA : BaseDA
     {
         public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, OracleConnection db)
         {
@@ -33,20 +33,20 @@ namespace sres.da
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<dynamic>(sp, p, commandType: CommandType.StoredProcedure).Select(x => new ConvocatoriaBE
                 {
-                     ID_CONVOCATORIA = (int)x.ID_CONVOCATORIA,
-                     NOMBRE = (string)x.NOMBRE,
-                     FECHA_INICIO = (DateTime)x.FECHA_INICIO,
-                     FECHA_FIN = (DateTime)x.FECHA_FIN,
-                     LIMITE_POSTULANTE = (int)x.LIMITE_POSTULANTE,
-                     NRO_INFORME = (string)x.NRO_INFORME,
-                     ID_ETAPA = (int?)x.ID_ETAPA,
-                     ETAPA = x.ID_ETAPA == null ? null : new EtapaBE { ID_ETAPA = (int)x.ID_ETAPA, NOMBRE = (string)x.NOMBRE_ETAPA },
-                     FLAG_ESTADO = (string)x.FLAG_ESTADO,
-                     ROWNUMBER = (int)x.ROWNUMBER,
-                     TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
-                     PAGINA = (int)x.PAGINA,
-                     CANTIDAD_REGISTROS = (int)x.CANTIDAD_REGISTROS,
-                     TOTAL_REGISTROS = (int)x.TOTAL_REGISTROS
+                    ID_CONVOCATORIA = (int)x.ID_CONVOCATORIA,
+                    NOMBRE = (string)x.NOMBRE,
+                    FECHA_INICIO = (DateTime)x.FECHA_INICIO,
+                    FECHA_FIN = (DateTime)x.FECHA_FIN,
+                    LIMITE_POSTULANTE = (int)x.LIMITE_POSTULANTE,
+                    NRO_INFORME = (string)x.NRO_INFORME,
+                    ID_ETAPA = (int?)x.ID_ETAPA,
+                    ETAPA = x.ID_ETAPA == null ? null : new EtapaBE { ID_ETAPA = (int)x.ID_ETAPA, NOMBRE = (string)x.NOMBRE_ETAPA },
+                    FLAG_ESTADO = (string)x.FLAG_ESTADO,
+                    ROWNUMBER = (int)x.ROWNUMBER,
+                    TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
+                    PAGINA = (int)x.PAGINA,
+                    CANTIDAD_REGISTROS = (int)x.CANTIDAD_REGISTROS,
+                    TOTAL_REGISTROS = (int)x.TOTAL_REGISTROS
                 }).ToList();
             }
             catch (Exception ex) { Log.Error(ex); }
@@ -135,7 +135,7 @@ namespace sres.da
             {
                 string sp = $"{Package.Mantenimiento}USP_SEL_GET_CONVOCATORIA";
                 var p = new OracleDynamicParameters();
-                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);                
+                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 item = db.Query<ConvocatoriaBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
                 item.OK = true;
@@ -288,9 +288,9 @@ namespace sres.da
             return lista;
         }
 
-        public List<ConvocatoriaBE> listarConvocatoriaCri(ConvocatoriaBE entidad, OracleConnection db)
+        public List<CriterioBE> listarConvocatoriaCri(ConvocatoriaBE entidad, OracleConnection db)
         {
-            List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
+            List<CriterioBE> lista = new List<CriterioBE>();
 
             try
             {
@@ -298,7 +298,7 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-                lista = db.Query<ConvocatoriaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                lista = db.Query<CriterioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
                 entidad.OK = true;
             }
             catch (Exception ex)

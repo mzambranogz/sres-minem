@@ -87,5 +87,69 @@ namespace sres.da
 
             return entidad;
         }
+
+        public List<CasoBE> ObtenerCriterioCaso(CriterioBE entidad, OracleConnection db)
+        {
+            List<CasoBE> lista = new List<CasoBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_CRITERIO_CASO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<CasoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
+
+        public CasoBE GuardarConvocatoriaCriterioCaso(CasoBE entidad, int idConvocatoria, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_PRC_CONV_CRI_CASO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_CASO", entidad.ID_CASO);
+                p.Add("PI_FLAG_ESTADO", entidad.FLAG_ESTADO);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0 && idConvocatoria != -1;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
+
+        public List<CasoBE> listarConvocatoriaCriCaso(CriterioBE entidad, OracleConnection db)
+        {
+            List<CasoBE> lista = new List<CasoBE>();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_LIST_CONV_CRI_CASO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<CasoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                entidad.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return lista;
+        }
     }
 }

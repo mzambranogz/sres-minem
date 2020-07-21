@@ -70,8 +70,22 @@ var consultarConvocatoria = (element) => {
         .then(r => Promise.all(r.map(v => v.json())))
         .then(([jReq, jCri, jEva, jEta]) => {
             cargarDatos(j);
+            //jCri.length == 0 ? '' : jReq.map(x => $('#chk-r-'+x.ID_REQUERIMIENTO).prop('checked', true));
+            if (jCri.length > 0){
+                jCri.map((x,y) => {
+                    $('#chk-c-'+x.ID_CRITERIO).prop('checked', true);
+                    x.LISTA_CASO.map((w,z) => {
+                        $('#chk-c-'+w.ID_CRITERIO+'-s-'+w.ID_CASO).prop('checked', true);
+                        w.LIST_DOC.map((a,b) => {
+                            $('#chk-c-'+a.ID_CRITERIO+'-s-'+a.ID_CASO+'-d-'+a.ID_DOCUMENTO).prop('checked', true);
+                        });
+                    });
+                    
+                });
+            }
+
             jReq.length == 0 ? '' : jReq.map(x => $('#chk-r-'+x.ID_REQUERIMIENTO).prop('checked', true));
-            jCri.length == 0 ? '' : jCri.map(x => $('#chk-c-'+x.ID_CRITERIO).prop('checked', true));
+            //jCri.length == 0 ? '' : jCri.map(x => $('#chk-c-'+x.ID_CRITERIO).prop('checked', true));
             jEva.length == 0 ? '' : jEva.map(x => $('#chk-e-'+x.ID_USUARIO).prop('checked', true));
             jEta.length == 0 ? '' : jEta.map(x => $('#txt-e-'+x.ID_ETAPA).val(x.DIAS));
         });
@@ -80,6 +94,7 @@ var consultarConvocatoria = (element) => {
 
 var cargarDatos = (data) => {
     //debugger;
+    $('#cbo-etapa').val(data.ID_ETAPA);
     $('#frm').data('id', data.ID_CONVOCATORIA);
     $('#txtConvocatoria').val(data.NOMBRE);
     data.TXT_FECHA_INICIO == '0001-01-01' ? null : $('#fchFechaInicio').val(data.TXT_FECHA_INICIO);
@@ -142,7 +157,7 @@ var consultarListas = () => {
 }
 
 var cargarCheckListas = ([listaCriterio, listaRequerimiento, listaEvaluador, listaEtapa]) => {
-    cargarCheckCriterio('#list-criterio', listaCriterio, listaRequerimiento);
+    cargarCheckCriterio('#list-criterio', listaCriterio);
     cargarCheckRequerimiento('#list-req', listaRequerimiento);
     cargarCheckEvaluador('#list-evaluador', listaEvaluador);
     cargarCheckEtapa('#tbl-etapa', listaEtapa);
@@ -190,10 +205,34 @@ var cargarCheckRequerimiento = (selector, data) => {
     $(selector).html(items);
 }
 
-var cargarCheckCriterio = (selector, data, dataRequerimiento) => {
-    let items = data.length == 0 ? '' : data.map(x => `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="criterio" id="chk-c-${x.ID_CRITERIO}"><label for="chk-c-${x.ID_CRITERIO}">${x.NOMBRE}&nbsp;</label><div id="listaRequerimientoCriterio_${x.ID_CRITERIO}"></div></li></ul></div></div>`).join('');
-    $(selector).html(items);
-    cargarCheckRequerimiento('div[id*="listaRequerimientoCriterio_"]', dataRequerimiento);
+var cargarCheckCriterio = (selector, data) => {
+    //let items = data.length == 0 ? '' : data.map(x => `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="criterio" id="chk-c-${x.ID_CRITERIO}"><label for="chk-c-${x.ID_CRITERIO}">${x.NOMBRE}&nbsp;</label><div id="listaRequerimientoCriterio_${x.ID_CRITERIO}"></div></li></ul></div></div>`).join('');
+    //$(selector).html(items);
+    //cargarCheckRequerimiento('div[id*="listaRequerimientoCriterio_"]', dataRequerimiento);
+
+    let contenido = data.map((x, i) => {
+        let caso = armarcaso(x.LISTA_CASO, x.LISTA_DOCUMENTO);
+        let criterio = `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="criterio" id="chk-c-${x.ID_CRITERIO}"><label for="chk-c-${x.ID_CRITERIO}">${x.NOMBRE}&nbsp;</label>${caso}</li></ul></div></div>`;
+        return criterio;
+    }).join('');
+    $(selector).html(contenido);
+}
+
+var armarcaso = (datacaso, datadoc) => {
+    let caso = ``;
+    datacaso.map((x, i) => {
+        let documentos = armarDocumento(datadoc,x.ID_CASO);
+        caso += `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="caso" id="chk-c-${x.ID_CRITERIO}-s-${x.ID_CASO}"><label for="chk-c-${x.ID_CRITERIO}-s-${x.ID_CASO}">${x.NOMBRE}&nbsp;</label>${documentos}</li></ul></div></div>`;    
+    });
+    return caso;
+}
+
+var armarDocumento = (datadoc,idcaso) => {
+    let doc = ``;
+    datadoc.map((x, i) => {
+        doc += `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="documento" id="chk-c-${x.ID_CRITERIO}-s-${idcaso}-d-${x.ID_DOCUMENTO}"><label for="chk-c-${x.ID_CRITERIO}-s-${idcaso}-d-${x.ID_DOCUMENTO}">${x.NOMBRE}&nbsp;</label></li></ul></div></div>`;    
+    });
+    return doc
 }
 
 var cargarCheckEvaluador = (selector, data) => {
@@ -254,13 +293,42 @@ var guardar = () => {
     });
 
     $('#list-criterio').find('.criterio').each((x, y) => {
+        let idcriterio = $(y).attr("id").substring(6, $(y).attr("id").length);
+        let arr_caso = [];
+        
+        $(y).parent().find('.caso').each((w,z) => {
+            let idcaso = $(z).attr('id').substring($(z).attr('id').indexOf("s")+2,$(z).attr('id').length);
+            let arr_doc = [];
+            $(z).parent().find('.documento').each((a,b) => {
+                var d = {
+                    ID_CRITERIO: idcriterio,
+                    ID_CASO: idcaso,
+                    ID_DOCUMENTO: $(b).attr('id').substring($(b).attr('id').indexOf("d")+2,$(b).attr('id').length),
+                    FLAG_ESTADO: $(b).prop('checked') ? '1' : '0',
+                    USUARIO_GUARDAR: idUsuarioLogin
+                }
+                arr_doc.push(d);
+            });
+
+            var c = {
+                ID_CRITERIO: idcriterio,
+                ID_CASO: idcaso,
+                LIST_DOC: arr_doc,
+                FLAG_ESTADO: $(z).prop('checked') ? '1' : '0',
+                USUARIO_GUARDAR: idUsuarioLogin
+            }
+            arr_caso.push(c);
+        });
+
         var r = {
             ID_CRITERIO: $(y).attr("id").substring(6, $(y).attr("id").length),
-            FLAG_ESTADO: $(y).prop('checked') ? '1' : '0'
+            LISTA_CASO: arr_caso,
+            FLAG_ESTADO: $(y).prop('checked') ? '1' : '0',
+            USUARIO_GUARDAR: idUsuarioLogin
         }
         criterio.push(r);
     });
-
+    //debugger;
     $('#list-evaluador').find('.evaluador').each((x, y) => {
         var r = {
             ID_USUARIO: $(y).attr("id").substring(6, $(y).attr("id").length),
@@ -270,7 +338,6 @@ var guardar = () => {
     });
 
     $('#tbl-etapa').find('.etapa').each((x, y) => {
-        //debugger;
         var r = {
             ID_ETAPA: $(y).attr("id").substring(6, $(y).attr("id").length),
             DIAS: $(y).val()

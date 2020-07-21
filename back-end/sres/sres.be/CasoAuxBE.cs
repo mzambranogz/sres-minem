@@ -10,6 +10,7 @@ namespace sres.be
     {
         public List<ComponenteBE> LIST_COMPONENTE { get; set; }
         public List<InscripcionDocumentoBE> LIST_DOCUMENTO { get; set; }
+        public List<DocumentoBE> LIST_DOC { get; set; }
         public int ID_INSCRIPCION { get; set; }
         public int ID_CONVOCATORIA { get; set; }
     }
