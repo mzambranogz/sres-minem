@@ -48,6 +48,7 @@ var consultar = () => {
 
 var consultarConvocatoria = (element) => {
     $('#frm').show();
+    $('#etapa-convocatoria').show();
     limpiarFormulario();
     let id = $(element).attr('data-id');
 
@@ -145,6 +146,7 @@ var cargarCheckListas = ([listaCriterio, listaRequerimiento, listaEvaluador, lis
     cargarCheckRequerimiento('#list-req', listaRequerimiento);
     cargarCheckEvaluador('#list-evaluador', listaEvaluador);
     cargarCheckEtapa('#tbl-etapa', listaEtapa);
+    cargarComboEtapa('#cbo-etapa', listaEtapa);
 }
 
 //var consultarRequerimiento = (selector) => {
@@ -204,10 +206,15 @@ var cargarCheckEtapa = (selector, data) => {
     $(selector).find('tbody').html(items);
 }
 
+var cargarComboEtapa = (selector, data) => {
+    let items = data.length == 0 ? '' : data.map(x => `<option value="${x.ID_ETAPA}">${x.ETAPA}</option>`).join('');
+    $(selector).html(items);
+}
+
 var nuevo = () => {
-    $('#frm').show();
     limpiarFormulario();
     $('#frm').show();
+    $('#etapa-convocatoria').hide();
 }
 
 var cerrarFormulario = () => {
@@ -282,7 +289,7 @@ var guardar = () => {
 
     let url = `/api/convocatoria/guardarconvocatoria`;
 
-    let data = { ID_CONVOCATORIA: id == null ? -1 : id, NOMBRE: nombre, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, USUARIO_GUARDAR: idUsuarioLogin };
     //debugger;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
