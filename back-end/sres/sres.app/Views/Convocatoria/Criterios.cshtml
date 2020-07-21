@@ -54,7 +54,18 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <p class="estilo-02 text-justify text-sres-azul m-0">Ingrese a los criterios que desea postular</p>
+                <p class="estilo-02 text-justify text-sres-azul m-0">Ingrese y complete todos los criterios de evaluación</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="progress" style="height: 25px;">
+                    <div class="progress-bar estilo-01 bg-degradado" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">Criterios registrados 2/8</div>
+                </div>
             </div>
         </div>
     </div>
@@ -71,7 +82,7 @@
                     {
                         index++;
                         <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                            <i class="fas fa-copy text-sres-verde indicador"></i><a class="d-block bg-sres-verde-claro border-linea-verde rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">
+                            @*<i class="fas fa-copy text-sres-verde indicador"></i>*@<a class="d-block bg-sres-claro border-linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">
                                 <img class="img-fluid" src="@Url.Content($"~/Assets/images/criterio-0{index}.png")">
                                 <div class="estilo-01 text-sres-azul pt-3">@item.NOMBRE</div>
                             </a>
@@ -121,7 +132,15 @@
                     }
                 }
             }
-            <div class="offset-lg-9 col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="./bandeja-postulante.html">Regresar</a></div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="rayado my-5 wow fadeIn"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-lg-6 col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Action("Index","Convocatoria")">Regresar</a></div>
+            <div class="col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-primary text-white w-100 mb-3" href="@Url.Action("Index","Convocatoria")">Finalizar</a></div>
         </div>
     </div>
 </div>
