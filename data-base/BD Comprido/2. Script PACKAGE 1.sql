@@ -1,0 +1,60 @@
+prompt PL/SQL Developer Export User Objects for user SRES@MYDB
+prompt Created by ALFRE on martes, 21 de Julio de 2020
+set define off
+spool Script PACKAGE.log
+
+prompt
+prompt Creating package PKG_SRES_ADMIN
+prompt ===============================
+prompt
+CREATE OR REPLACE NONEDITIONABLE PACKAGE SRES."PKG_SRES_ADMIN" AS
+
+  PROCEDURE USP_SEL_USUARIO(
+        PO  OUT SYS_REFCURSOR
+    );
+    
+  PROCEDURE USP_SEL_USUARIO_CORREO(
+      pCORREO  IN VARCHAR2,
+      pCursor  OUT SYS_REFCURSOR
+    );
+    
+END PKG_SRES_ADMIN;
+/
+
+
+prompt
+prompt Creating package body PKG_SRES_ADMIN
+prompt ====================================
+prompt
+CREATE OR REPLACE NONEDITIONABLE PACKAGE BODY SRES."PKG_SRES_ADMIN" AS
+
+  PROCEDURE USP_SEL_USUARIO(
+        PO  OUT SYS_REFCURSOR
+    ) AS
+  BEGIN
+    OPEN PO FOR
+    SELECT * FROM T_GENM_USUARIO;
+  END USP_SEL_USUARIO;
+  
+  PROCEDURE USP_SEL_USUARIO_CORREO(
+        pCORREO  IN VARCHAR2,
+        pCURSOR  OUT SYS_REFCURSOR
+    ) AS
+    BEGIN
+      OPEN pCURSOR FOR
+      SELECT
+      ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA,
+      TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL,
+      FLAG_ESTADO, REG_USUARIO, REG_FECHA, UPD_USUARIO, UPD_FECHA
+      FROM T_GENM_USUARIO
+      WHERE CORREO = pCORREO;
+    END USP_SEL_USUARIO_CORREO;
+
+END PKG_SRES_ADMIN;
+/
+
+
+
+
+
+
