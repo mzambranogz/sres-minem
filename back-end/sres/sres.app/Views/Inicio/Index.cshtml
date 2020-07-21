@@ -5,7 +5,7 @@
     {
         [1] = new Dictionary<string, object>
         {
-            ["Imagen"] = "~/Assets/images/slide-05.jpg",
+            ["Imagen"] = "~/Assets/images/carousel-01.jpg",
             ["Titulo"] = "¡REGÍSTRATE AHORA!",
             ["SubTitulo"] = "Y OBTÉN LOGROS POR TU COMPROMISO",
             ["Descripcion"] = "El Sello de Reconocimiento de Energía Sostenible es un distintivo entregado por el Ministerio de Energía y Minas, a través de la Dirección General de Eficiencia Energética.",
@@ -13,7 +13,7 @@
         },
         [2] = new Dictionary<string, object>
         {
-            ["Imagen"] = "~/Assets/images/slide-03.jpg",
+            ["Imagen"] = "~/Assets/images/carousel-02.jpg",
             ["Titulo"] = "¡POSTULA YA!",
             ["SubTitulo"] = "EL SELLO DE RECONOCIMIENTO DE ENERGÍA SOSTENIBLE",
             ["Descripcion"] = "Será otorgado a aquellas entidades públicas y/o privadas que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.",
@@ -21,7 +21,31 @@
         },
         [3] = new Dictionary<string, object>
         {
-            ["Imagen"] = "~/Assets/images/slide-01.jpg",
+            ["Imagen"] = "~/Assets/images/carousel-03.jpg",
+            ["Titulo"] = "¿ESTÁS LISTO?",
+            ["SubTitulo"] = "YA TENEMOS LA PRIMERA FECHA",
+            ["Descripcion"] = "La convocatoria se inicia en noviembre. Último día para presentar los mecanismos postulación es el <small class='badge badge-primary estilo-01'>20 de noviembre 2020.</small>",
+            ["Html"] = "<a class='btn btn-sm btn-sres-linea-blanca wow slideInUp' href='#'>CONVOCATORIAS</a><a class='btn btn-sm btn-sres-linea-azul ml-3 wow slideInUp' href='#'>RECONOCIMIENTOS</a>"
+        },
+        [4] = new Dictionary<string, object>
+        {
+            ["Imagen"] = "~/Assets/images/carousel-04.jpg",
+            ["Titulo"] = "¡REGÍSTRATE AHORA!",
+            ["SubTitulo"] = "Y OBTÉN LOGROS POR TU COMPROMISO",
+            ["Descripcion"] = "El Sello de Reconocimiento de Energía Sostenible es un distintivo entregado por el Ministerio de Energía y Minas, a través de la Dirección General de Eficiencia Energética.",
+            ["Html"] = "<a class='btn btn-sm btn-sres-linea-blanca wow slideInUp' href='#'>CONVOCATORIAS</a><a class='btn btn-sm btn-sres-linea-azul ml-3 wow slideInUp' href='#'>RECONOCIMIENTOS</a>"
+        },
+        [5] = new Dictionary<string, object>
+        {
+            ["Imagen"] = "~/Assets/images/carousel-05.jpg",
+            ["Titulo"] = "¡POSTULA YA!",
+            ["SubTitulo"] = "EL SELLO DE RECONOCIMIENTO DE ENERGÍA SOSTENIBLE",
+            ["Descripcion"] = "Será otorgado a aquellas entidades públicas y/o privadas que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.",
+            ["Html"] = "<a class='btn btn-sm btn-sres-linea-blanca wow slideInUp' href='#'>CONVOCATORIAS</a><a class='btn btn-sm btn-sres-linea-azul ml-3 wow slideInUp' href='#'>RECONOCIMIENTOS</a>"
+        },
+        [6] = new Dictionary<string, object>
+        {
+            ["Imagen"] = "~/Assets/images/carousel-06.jpg",
             ["Titulo"] = "¿ESTÁS LISTO?",
             ["SubTitulo"] = "YA TENEMOS LA PRIMERA FECHA",
             ["Descripcion"] = "La convocatoria se inicia en noviembre. Último día para presentar los mecanismos postulación es el <small class='badge badge-primary estilo-01'>20 de noviembre 2020.</small>",
@@ -58,8 +82,6 @@
 </div>
 <div class="container-fluid my-5">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-12 col-sm-12">
                 <div class="row">
                     <div class="col-12 mb-5">
                         <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">OBJETIVO</h2>
@@ -103,6 +125,9 @@
                         </div>
                     </div>
                 </div>
+
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
                 <div class="row">
                     <div class="col-12 mb-5">
                         <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">BENEFICIOS</h2>
@@ -125,7 +150,11 @@
                 </div>
             </div>
             @Html.Partial("_SRES_Documentation")
-            
+
         </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
     </div>
 </div>
