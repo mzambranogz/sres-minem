@@ -136,7 +136,7 @@ var fileRequerimientoChange = (e) => {
 
     var fileContent = e.currentTarget.files[0];
 
-    if (fileContent.size > maxBytes) $(elFile).parent().parent().parent().parent().alert({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo debe tener uun peso máximo de 4MB` });
+    if (fileContent.size > maxBytes) $(elFile).parent().parent().parent().parent().alert({ type: 'danger', title: 'ERROR', message: `El archivo debe tener un peso máximo de 4MB` });
     else
         $(elFile).parent().parent().parent().parent().alert('remove');
 
