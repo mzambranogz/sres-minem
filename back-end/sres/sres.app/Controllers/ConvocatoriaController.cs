@@ -17,6 +17,7 @@ namespace sres.app.Controllers
         InscripcionLN inscripcionLN = new InscripcionLN();
         InscripcionRequerimientoLN inscripcionRequerimientoLN = new InscripcionRequerimientoLN();
         CriterioLN criterioLN = new CriterioLN();
+        CasoLN casoLN = new CasoLN();
 
         [SesionOut]
         public ActionResult Index()
@@ -88,9 +89,14 @@ namespace sres.app.Controllers
 
             if (criterio == null) return HttpNotFound();
 
+            List<CasoBE> listaCaso = casoLN.ObtenerListaCasoCriterioPorConvocatoria(new CasoBE { ID_CONVOCATORIA = idConvocatoria, ID_CRITERIO = idCriterio, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION });
+
+            if (listaCaso == null) return HttpNotFound();
+
             ViewData["convocatoria"] = convocatoria;
             ViewData["inscripcion"] = inscripcion;
             ViewData["criterio"] = criterio;
+            ViewData["listaCaso"] = listaCaso;
 
             return View();
         }

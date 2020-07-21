@@ -59,10 +59,16 @@ namespace sres.app.Controllers.Api
 
         [Route("buscarcriteriocaso")]
         [HttpGet]
-        //public List<CasoBE> BuscarCriterioCaso(int id_criterio, int id_caso, int id_inscripcion)
-        public List<ComponenteBE> BuscarCriterioCaso(int id_criterio, int id_inscripcion)
+        public List<ComponenteBE> BuscarCriterioCaso(int id_criterio, int id_inscripcion, int id_caso)
         {
-            return criterioLN.BuscarCriterioCaso(id_criterio, id_inscripcion);
+            return criterioLN.BuscarCriterioCaso(id_criterio, id_inscripcion, id_caso);
+        }
+
+        [Route("buscarcriteriocasodocumento")]
+        [HttpGet]
+        public List<DocumentoBE> BuscarCriterioCasoDocumento(int id_criterio, int id_caso, int id_convocatoria, int id_inscripcion)
+        {
+            return criterioLN.BuscarCriterioCasoDocumento(id_criterio, id_caso, id_convocatoria, id_inscripcion);
         }
 
         [Route("guardarcriteriocaso")]

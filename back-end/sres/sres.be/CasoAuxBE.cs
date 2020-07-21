@@ -9,6 +9,8 @@ namespace sres.be
     public partial class CasoBE
     {
         public List<ComponenteBE> LIST_COMPONENTE { get; set; }
+        public List<InscripcionDocumentoBE> LIST_DOCUMENTO { get; set; }
         public int ID_INSCRIPCION { get; set; }
+        public int ID_CONVOCATORIA { get; set; }
     }
 }

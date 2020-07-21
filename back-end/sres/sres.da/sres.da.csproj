@@ -64,9 +64,12 @@
     <Compile Include="ConvocatoriaTrazabilidadDA.cs" />
     <Compile Include="CriterioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
+    <Compile Include="DocumentoDA.cs" />
     <Compile Include="EtapaDA.cs" />
+    <Compile Include="FormulaParametroDA.cs" />
     <Compile Include="IndicadorDataDA.cs" />
     <Compile Include="InscripcionDA.cs" />
+    <Compile Include="InscripcionDocumentoDA.cs" />
     <Compile Include="InscripcionRequerimientoDA.cs" />
     <Compile Include="InscripcionTrazabilidadDA.cs" />
     <Compile Include="InstitucionDA.cs" />
@@ -74,6 +77,8 @@
     <Compile Include="MRV\InstitucionDA.cs" />
     <Compile Include="MRV\UsuarioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleDynamicParameters.cs" />
+    <Compile Include="ParametroDetalleDA.cs" />
+    <Compile Include="ParametroDetalleRelacionDA.cs" />
     <Compile Include="ProcesoDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequerimientoDA.cs" />
