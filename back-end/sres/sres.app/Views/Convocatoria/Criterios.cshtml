@@ -1,4 +1,5 @@
 ﻿@using sres.be
+@using sres.ut
 @{
     ViewBag.Titulo = "Criterios";
     ViewBag.SRESDescription = false;
@@ -9,6 +10,7 @@
     decimal ingresados = 0;
     foreach (var cri in listaCriterio) { if (cri.INGRESO_DATOS > 0) { ingresados++; } }
     decimal porcentaje_avance = Decimal.Round(ingresados * 100 / total_criterio);
+    string pathFormat = AppSettings.Get<string>("Path.Criterio");
 }
 
 
@@ -85,17 +87,20 @@
                     string bg = "";
                     string linea = "";
                     string icono = "";
+                    string pathDirectoryRelative = "";
                     foreach (CriterioBE item in listaCriterio)
                     {
                         index++;
                         <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
                             @{bg = item.INGRESO_DATOS == 0 ? "bg-sres-claro" : "bg-sres-verde-claro";
                                 linea = item.INGRESO_DATOS == 0 ? "border-linea" : "border-linea-verde";
-                                icono = item.INGRESO_DATOS == 0 ? "" : "<i class='fas fa-copy text-sres-verde indicador'></i>";}
-                             
+                                icono = item.INGRESO_DATOS == 0 ? "" : "<i class='fas fa-copy text-sres-verde indicador'></i>";
+                                pathDirectoryRelative = string.Format(pathFormat, item.ID_CRITERIO);
+                                }
+                                
                             @Html.Raw(icono)  
                             <a class="d-block @bg @linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">
-                                <img class="img-fluid" src="@Url.Content($"~/Assets/images/criterio-0{index}.png")">
+                                <img class="img-fluid" src="@Url.Content($"~/{pathDirectoryRelative}/{item.ARCHIVO_BASE}")">
                                 <div class="estilo-01 text-sres-azul pt-3">@item.NOMBRE</div>
                             </a>
                         </div>

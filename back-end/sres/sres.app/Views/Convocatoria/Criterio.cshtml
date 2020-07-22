@@ -7,6 +7,8 @@
     InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
     CriterioBE criterio = (CriterioBE)ViewData["criterio"];
     List<CasoBE> listaCaso = (List<CasoBE>)ViewData["listaCaso"];
+    string pathFormat = AppSettings.Get<string>("Path.Criterio");
+    string pathDirectoryRelative = string.Format(pathFormat, criterio.ID_CRITERIO);
 }
 
 @section scripts_footer{
@@ -63,7 +65,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
                 <div class="d-block bg-sres-claro border-linea rounded p-3">
-                    <img class="img-fluid" src="@Url.Content("~/Assets/images/criterio-01.png")">
+                    <img class="img-fluid" src="@Url.Content($"~/{pathDirectoryRelative}/{criterio.ARCHIVO_BASE}")">
                     <div class="estilo-01 text-sres-azul pt-3">Ahorro de energía eléctrica total.</div>
                 </div>
             </div>
