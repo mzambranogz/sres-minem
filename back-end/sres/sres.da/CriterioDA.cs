@@ -357,7 +357,7 @@ namespace sres.da
             return indicador;
         }
 
-        public List<CriterioBE> ListarCriterioPorConvocatoria(int idConvocatoria, OracleConnection db)
+        public List<CriterioBE> ListarCriterioPorConvocatoria(int idConvocatoria, int idInscripcion, OracleConnection db)
         {
             List<CriterioBE> lista = null;
 
@@ -366,6 +366,7 @@ namespace sres.da
                 string sp = $"{Package.Criterio}USP_SEL_LISTA_CRI_CONV";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<CriterioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }

@@ -62,7 +62,7 @@ namespace sres.app.Controllers
 
             if (inscripcion == null) return HttpNotFound();
 
-            List<CriterioBE> listaCriterio = criterioLN.ListarCriterioPorConvocatoria(idConvocatoria);
+            List<CriterioBE> listaCriterio = criterioLN.ListarCriterioPorConvocatoria(idConvocatoria, inscripcion.ID_INSCRIPCION);
 
             ViewData["convocatoria"] = convocatoria;
             ViewData["inscripcion"] = inscripcion;

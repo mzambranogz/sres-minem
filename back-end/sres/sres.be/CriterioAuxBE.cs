@@ -12,5 +12,6 @@ namespace sres.be
         public List<CasoBE> LISTA_CASO { get; set; }
         public List<DocumentoBE> LISTA_DOCUMENTO { get; set; }
         public int ID_CONVOCATORIA { get; set; }
+        public int INGRESO_DATOS { get; set; }
     }
 }

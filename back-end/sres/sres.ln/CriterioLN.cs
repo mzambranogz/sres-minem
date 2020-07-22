@@ -278,14 +278,14 @@ namespace sres.ln
             return comp;
         }
 
-        public List<CriterioBE> ListarCriterioPorConvocatoria(int idConvocatoria)
+        public List<CriterioBE> ListarCriterioPorConvocatoria(int idConvocatoria, int idInscripcion)
         {
             List<CriterioBE> lista = null;
 
             try
             {
                 cn.Open();
-                lista = criterioDA.ListarCriterioPorConvocatoria(idConvocatoria, cn);
+                lista = criterioDA.ListarCriterioPorConvocatoria(idConvocatoria, idInscripcion, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
 
