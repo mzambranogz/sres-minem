@@ -1,4 +1,11 @@
-CREATE OR REPLACE PACKAGE BODY PKG_SRE_VERIFICACION AS
+--------------------------------------------------------
+-- Archivo creado  - martes-julio-21-2020   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Package Body PKG_SRE_VERIFICACION
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE BODY "SRES"."PKG_SRE_VERIFICACION" AS
   PROCEDURE USP_INS_REGISTRA_CONVOCATORIATRAZABILIDAD(
     PI_ID_CONVOCATORIA NUMBER,
     PI_DESCRIPCION VARCHAR2,
@@ -17,3 +24,5 @@ CREATE OR REPLACE PACKAGE BODY PKG_SRE_VERIFICACION AS
     PO_ROWAFFECTED := SQL%ROWCOUNT;
   END USP_INS_REGISTRA_CONVOCATORIATRAZABILIDAD;
 END PKG_SRE_VERIFICACION;
+
+/
