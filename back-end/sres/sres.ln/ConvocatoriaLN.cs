@@ -68,11 +68,14 @@ namespace sres.ln
 
                     if (seGuardoConvocatoria)
                     {
-                        foreach (ConvocatoriaCriterioRequerimientoBE iCCR in entidad.LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO)
+                        if (entidad.LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO != null)
                         {
-                            iCCR.ID_CONVOCATORIA = idConvocatoria;
-                            seGuardoConvocatoria = convocatoriaCriterioRequerimientoDA.GuardarConvocatoriaCriterioRequerimiento(iCCR, cn);
-                            if (!seGuardoConvocatoria) break;
+                            foreach (ConvocatoriaCriterioRequerimientoBE iCCR in entidad.LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO)
+                            {
+                                iCCR.ID_CONVOCATORIA = idConvocatoria;
+                                seGuardoConvocatoria = convocatoriaCriterioRequerimientoDA.GuardarConvocatoriaCriterioRequerimiento(iCCR, cn);
+                                if (!seGuardoConvocatoria) break;
+                            }
                         }
                     }
                     if (seGuardoConvocatoria)

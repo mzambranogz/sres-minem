@@ -18,11 +18,15 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav btn mr-auto p-0">
-                    <li class="nav-item btn activo"><a class="nav-link wow slideInUp nav-active" href="@Url.Action("Index", "Inicio")" data-wow-delay=".2s"><i class="fas fa-house-damage fa-lg mr-1 mr-lg-0"></i><span class="d-lg-none">INICIO</span></a></li>
+                    <li class="nav-item btn"><a class="nav-link wow slideInUp" href="@Url.Action("Index", "Inicio")" data-wow-delay=".2s"><i class="fas fa-house-damage fa-lg mr-1 mr-lg-0"></i><span class="d-lg-none">INICIO</span></a></li>
                     <li class="nav-item btn"><a class="nav-link wow slideInUp" href="@Url.Action("Index", "Participantes")" data-wow-delay=".4s"><i class="fas fa-users fa-lg mr-1"></i>PARTICIPANTES</a></li>
                     <li class="nav-item btn"><a class="nav-link wow slideInUp" href="@Url.Action("Index", "Convocatoria")" data-wow-delay=".5s"><i class="fas fa-bullhorn fa-lg mr-1"></i>CONVOCATORIA</a></li>
                     <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./categorias.html" data-wow-delay=".6s"><i class="fas fa-network-wired fa-lg mr-1"></i>CATEGORÍAS</a></li>
                     <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./preguntas-frecuentes.html" data-wow-delay=".7s"><i class="fas fa-question-circle fa-lg mr-1"></i>PREGUNTAS FRECUENTES</a></li>
+                    @if (usuario != null)
+                    {
+                        <li class="nav-item btn activo"><a class="nav-link wow slideInUp nav-active" href="@Url.Action("Index", "Convocatoria")" data-wow-delay=".5s"><i class="fas fa-inbox fa-lg mr-1"></i>BANDEJA</a></li>
+                    }
                 </ul>
                 @if (usuario == null)
                 {
@@ -47,66 +51,3 @@
 </div>
 
 <div class="flecha-top d-print-none"><i class="fas fa-angle-double-right fa-2x text-white"></i></div>
-
-@*<div class="container-fluid menu">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg p-0 d-flex align-items-start">
-                <a class="navbar-brand mr-sm-auto p-0 mt-2 order-sm-1 order-md-1 order-lg-1 animated slideInLeft" id="logo" href="@Url.Action("Index", "Inicio")"><img src="@Url.Content("~/Assets/images/sres-logo.png")" height="75"></a>
-                <div class="text-right order-sm-2 order-md-2 order-lg-2" id="instituciones">
-                    <header class="navbar navbar-expand p-0" id="logos-institucionales">
-                        <ul class="navbar-nav ml-sm-auto">
-                            <li class="nav-item align-self-center pl-0"><a class="nav-link p-0 mr-2 animated slideInDown" href="https://www.gob.pe/minem" target="_blank"><img src="@Url.Content("~/Assets/images/logo-minem.jpg")" height="36"></a></li>
-                            <li class="nav-item align-self-center"><a class="nav-link p-0 mr-2 animated slideInDown" href="https://www.thegef.org/" target="_blank"><img src="@Url.Content("~/Assets/images/logo_gef.svg")" height="39"></a></li>
-                            <li class="nav-item align-self-center pr-0"><a class="nav-link p-0 animated slideInDown" href="https://www.pe.undp.org/" target="_blank"><img src="@Url.Content("~/Assets/images/logo_pnud.svg")" height="42"></a></li>
-                        </ul>
-                    </header>
-                    <div class="text-right mt-2 d-none d-lg-block">
-                        @if (usuario == null)
-                        {
-                        <a class="btn btn-sm btn-sres-verde mr-3 animated slideInRight" href="@Url.Action("Registrarme", "Login")" role="button">
-                            <i class="fas fa-pencil-alt mr-2"></i>REGISTRARSE
-                        </a>
-                        <a class="btn btn-sm btn-sres-azul animated slideInRight" href="@Url.Action("Index", "Login")" role="button">
-                            <i class="fas fa-sign-in-alt mr-2"></i>INICIAR SESIÓN
-                        </a>
-                        }
-                        else
-                        {
-                            <div class="btn-group">
-                                <a class="btn btn-sm btn-sres-azul animated slideInRight dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
-                                    <i class="fas fa-user pr-1"></i>@usuario.NOMBRES.Split(' ')[0] @usuario.APELLIDOS.Split(' ')[0]&nbsp;
-                                    @if (usuario.ROL != null)
-                                    {
-                                        <small class="badge badge-primary estilo-06">@usuario.ROL.NOMBRE</small>
-                                    }
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    @if (usuario.ID_ROL == 1) {
-                                        <a class="dropdown-item estilo-01" href="./mantenimiento-de-tablas.html"><i class="fas fa-cogs mr-1"></i>Mantenimiento de tablas</a>
-                                    }
-                                    <a class="dropdown-item estilo-01" href="./cambiar.html"><i class="fas fa-key mr-1"></i>Cambiar contraseña</a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item estilo-01" href="@Url.Action("Salir", "Login")"><i class="fas fa-sign-out-alt mr-1"></i>Salir del sistema</a>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                    <button class="navbar-toggler my-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
-                        <ul class="navbar-nav btn ml-auto p-0">
-                            <li class="nav-item btn"><a class="nav-link wow slideInUp" href="@Url.Action("Index", "Inicio")" data-wow-delay=".2s"><i class="fas fa-house-damage fa-lg mr-1 mr-lg-0"></i><span class="d-lg-none">INICIO</span></a></li>
-                            <li class="nav-item btn"><a class="nav-link wow slideInUp" href="@Url.Action("Index", "Participantes")" data-wow-delay=".4s"><i class="fas fa-users fa-lg mr-1"></i>PARTICIPANTES</a></li>
-                            <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./convocatoria.html" data-wow-delay=".5s"><i class="fas fa-bullhorn fa-lg mr-1"></i>CONVOCATORIAS</a></li>
-                            <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./categorias.html" data-wow-delay=".6s"><i class="fas fa-network-wired fa-lg mr-1"></i>CATEGORÍAS</a></li>
-                            <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./preguntas-frecuentes.html" data-wow-delay=".7s"><i class="fas fa-question-circle fa-lg mr-1"></i>PREGUNTAS FRECUENTES</a></li>
-                            @if (usuario != null)
-                            {
-                                <li class="nav-item btn activo"><a class="nav-link wow slideInUp nav-active" href="@Url.Action("Index", "Convocatoria")" data-wow-delay=".8s"><i class="fas fa-inbox fa-lg mr-1"></i>BANDEJA</a></li>
-                            }
-                        </ul>
-                        <div class="d-none d-lg-block" id="line"></div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div class="d-none d-lg-block" id="line-long"></div>
-    </div>*@

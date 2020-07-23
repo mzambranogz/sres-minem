@@ -31,6 +31,8 @@ var cargarDataBusqueda = (data) => {
     $('#viewPagination').attr('style', 'display: none !important');
     console.log(data.TOTAL_REGISTROS, data.CANTIDAD_REGISTROS);
     if (data.TOTAL_REGISTROS > data.CANTIDAD_REGISTROS) $('#viewPagination').show();
+    if (data.CANTIDAD_REGISTROS == 0) $('#view-page-result').hide();
+    else $('#view-page-result').show();
     $('.inicio-registros').text(data.CANTIDAD_REGISTROS == 0 ? 'No se encontraron resultados' : (data.PAGINA - 1) * data.CANTIDAD_REGISTROS + 1);
     $('.fin-registros').text(data.TOTAL_REGISTROS < data.PAGINA * data.CANTIDAD_REGISTROS ? data.TOTAL_REGISTROS : data.PAGINA * data.CANTIDAD_REGISTROS);
     $('.total-registros').text(data.TOTAL_REGISTROS);
@@ -62,6 +64,7 @@ var renderizar = (data, cantidadCeldas) => {
             let porcentajeAvance = Math.floor(fechaInicio > fechaActual ? 0.00 : fechaActual > fechaFin ? 100 : (diasTranscurridos / diasPlazo * 100))
             let formatoCodigo = '00000000';
 
+            let colNro = `<td class="text-center text-sm-left" data-encabezado="Número" scope="row">${x.ROWNUMBER}</td>`
             let colNroInforme = `<td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row">${(`${formatoCodigo}${x.ID_CONVOCATORIA}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</td>`;
             let colPeriodo = `<td class="text-center" data-encabezado="Período">${fechaInicio.getFullYear()}</td>`;
             let colNombre = `<td data-encabezado="Progreso"><div class="text-limi-1">${x.NOMBRE}</div></td>`;
@@ -80,7 +83,7 @@ var renderizar = (data, cantidadCeldas) => {
             if (x.ID_ETAPA == 1);
             let colOpciones = `<td class="text-center" data-encabezado="Gestión">${x.ID_ETAPA == 1 ? btnDetalles : ''}${x.ID_ETAPA == 2 ? btnIngresar : ''}${x.ID_ETAPA == 3 ? btnGestionar : ''}<div class="dropdown-menu">${btnEditarRequisitos}${btnEditarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div></div></td>`;
             //let colOpciones = `<td class="text-center" data-encabezado="Gestión">${x.FLAG_ESTADO == '1' ? btnIngresar : btnGestionar}<div class="dropdown-menu">${btnEditarRequisitos}${btnEditarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div></div></td>`;
-            let fila = `<tr>${colNroInforme}${colPeriodo}${colNombre}${colFechaInicio}${colFechaFin}${colVencimiento}${colEstado}${colOpciones}</tr>`;
+            let fila = `<tr>${colNro}${colNroInforme}${colPeriodo}${colNombre}${colFechaInicio}${colFechaFin}${colVencimiento}${colEstado}${colOpciones}</tr>`;
             return fila;
         }).join('');
     };

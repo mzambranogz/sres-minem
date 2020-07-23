@@ -38,9 +38,10 @@ var validarInicioSesion = (data) => {
     if (data.success == true) {
         //$('#modalValidacionSres .modal-content .modal-body .row').alert({ type: 'success', title: 'Validación correcta', message: data.message });
         //$('#modalValidacionSres .modal-content .modal-body .row > *:last > *:last').remove();
-        $('form .form-group:last').alert({ type: 'success', title: 'BIEN HECHO', message: data.message, html: '<p id="redireccionarText" class="text-center estilo-01" style="display: none">Lo estamos redirigiendo en <strong id="txtSegundosRedirigir"></strong> segundos</p>' });
-        $('#redireccionarText').show();
-        $('#txtSegundosRedirigir').counter({ start: 2, end: 0, time: 1000, callback: () => location.href = `${baseUrl}Convocatoria` });
+        //$('form .form-group:last').alert({ type: 'success', title: 'BIEN HECHO', message: data.message, html: '<p id="redireccionarText" class="text-center estilo-01" style="display: none">Lo estamos redirigiendo en <strong id="txtSegundosRedirigir"></strong> segundos</p>' });
+        //$('#redireccionarText').show();
+        //$('#txtSegundosRedirigir').counter({ start: 2, end: 0, time: 1000, callback: () => location.href = `${baseUrl}Convocatoria` });
+        location.href = `${baseUrl}Convocatoria`;
     }
     else {
         let correo = $('#txt-user').val().trim();
