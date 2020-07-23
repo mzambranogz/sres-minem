@@ -31,8 +31,7 @@ namespace sres.app.Controllers.Api
         [Route("guardarcriterio")]
         public bool GuardarCriterio(CriterioBE criterio)
         {
-            CriterioBE c = criterioLN.GuardarCriterio(criterio);
-            return c.OK;
+            return criterioLN.GuardarCriterio(criterio);
         }
 
         [Route("cambiarestadocriterio")]

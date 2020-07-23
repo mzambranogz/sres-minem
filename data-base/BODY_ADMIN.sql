@@ -1,4 +1,11 @@
-CREATE OR REPLACE PACKAGE BODY PKG_SRES_ADMIN AS
+--------------------------------------------------------
+-- Archivo creado  - martes-julio-21-2020   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Package Body PKG_SRES_ADMIN
+--------------------------------------------------------
+
+  CREATE OR REPLACE PACKAGE BODY "SRES"."PKG_SRES_ADMIN" AS
 
   PROCEDURE USP_SEL_USUARIO(
         PO  OUT SYS_REFCURSOR
@@ -23,3 +30,5 @@ CREATE OR REPLACE PACKAGE BODY PKG_SRES_ADMIN AS
     END USP_SEL_USUARIO_CORREO;
 
 END PKG_SRES_ADMIN;
+
+/

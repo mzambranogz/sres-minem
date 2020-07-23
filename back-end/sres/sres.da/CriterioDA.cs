@@ -41,6 +41,7 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
                 p.Add("PI_NOMBRE", entidad.NOMBRE);
+                p.Add("PI_ARCHIVO_BASE", entidad.ARCHIVO_BASE);
                 p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
                 entidad.OK = true;
@@ -357,7 +358,7 @@ namespace sres.da
             return indicador;
         }
 
-        public List<CriterioBE> ListarCriterioPorConvocatoria(int idConvocatoria, OracleConnection db)
+        public List<CriterioBE> ListarCriterioPorConvocatoria(int idConvocatoria, int idInscripcion, OracleConnection db)
         {
             List<CriterioBE> lista = null;
 
@@ -366,6 +367,7 @@ namespace sres.da
                 string sp = $"{Package.Criterio}USP_SEL_LISTA_CRI_CONV";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<CriterioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }
@@ -377,7 +379,6 @@ namespace sres.da
         public CriterioBE ObtenerCriterioPorConvocatoria(int idConvocatoria, int idCriterio, OracleConnection db)
         {
             CriterioBE item = null;
-
             try
             {
                 string sp = $"{Package.Criterio}USP_SEL_OBTIENE_CRI_CONV";
@@ -388,7 +389,6 @@ namespace sres.da
                 item = db.QueryFirstOrDefault<CriterioBE>(sp, p, commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex) { Log.Error(ex); }
-
             return item;
         }
     }

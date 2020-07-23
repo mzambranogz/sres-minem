@@ -36,18 +36,29 @@ namespace sres.ln
         //    return item;
         //}
 
-        public CriterioBE GuardarCriterio(CriterioBE entidad)
+        public bool GuardarCriterio(CriterioBE entidad)
         {
-            CriterioBE item = null;
-
+            //CriterioBE item = null;
+            bool seGuardoConvocatoria = false;
             try
             {
                 cn.Open();
-                item = criterioDA.GuardarCriterio(entidad, cn);
+                //item = criterioDA.GuardarCriterio(entidad, cn);
+
+                if (entidad.ARCHIVO_CONTENIDO != null && entidad.ARCHIVO_CONTENIDO.Length > 0)
+                {
+                    string pathFormat = AppSettings.Get<string>("Path.Criterio");
+                    string pathDirectoryRelative = string.Format(pathFormat, entidad.ID_CRITERIO);
+                    string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                    string pathFile = Path.Combine(pathDirectory, entidad.ARCHIVO_BASE);
+                    if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                    File.WriteAllBytes(pathFile, entidad.ARCHIVO_CONTENIDO);
+                }
+                seGuardoConvocatoria = criterioDA.GuardarCriterio(entidad, cn).OK; 
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
-            return item;
+            return seGuardoConvocatoria;
         }
 
         public CriterioBE EliminarCriterio(CriterioBE entidad)
@@ -72,6 +83,13 @@ namespace sres.ln
             {
                 cn.Open();
                 item = criterioDA.getCriterio(entidad, cn);
+                string pathFormat = AppSettings.Get<string>("Path.Criterio");
+                string pathDirectoryRelative = string.Format(pathFormat, item.ID_CRITERIO);
+                string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                string pathFile = Path.Combine(pathDirectory, item.ARCHIVO_BASE);
+                if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                pathFile = !File.Exists(pathFile) ? null : pathFile;
+                item.ARCHIVO_CONTENIDO = pathFile == null ? null : File.ReadAllBytes(pathFile);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
@@ -278,14 +296,14 @@ namespace sres.ln
             return comp;
         }
 
-        public List<CriterioBE> ListarCriterioPorConvocatoria(int idConvocatoria)
+        public List<CriterioBE> ListarCriterioPorConvocatoria(int idConvocatoria, int idInscripcion)
         {
             List<CriterioBE> lista = null;
 
             try
             {
                 cn.Open();
-                lista = criterioDA.ListarCriterioPorConvocatoria(idConvocatoria, cn);
+                lista = criterioDA.ListarCriterioPorConvocatoria(idConvocatoria, idInscripcion, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
 
