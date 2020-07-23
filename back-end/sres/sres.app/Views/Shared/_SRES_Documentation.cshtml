@@ -76,9 +76,9 @@
                             if ((bool)ViewBag.SRESDocumentation["Links"]["Show"])
                             {
                             <h4 class="p-2 estilo-04 text-white bg-degradado wow slideInUp">@($"{ViewBag.SRESDocumentation["Links"]["Titulo"]}")</h4>
-                                if (ViewBag.SRESDocumentation["References"]["Data"] != null)
+                                if (ViewBag.SRESDocumentation["Links"]["Data"] != null)
                                 {
-                                    Dictionary<int, object> data = (Dictionary<int, object>)ViewBag.SRESDocumentation["References"]["Data"];
+                                    Dictionary<int, object> data = (Dictionary<int, object>)ViewBag.SRESDocumentation["Links"]["Data"];
                                     if (data.Count > 0)
                                     {
                                     <ul class="mb-5 py-3 text-sres-azul square bg-sres-claro wow slideInUp">
