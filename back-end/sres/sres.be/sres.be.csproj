@@ -58,6 +58,9 @@
     <Compile Include="DocumentoAuxBE.cs" />
     <Compile Include="EtapaAuxBE.cs" />
     <Compile Include="EtapaBE.cs" />
+    <Compile Include="FactorBE.cs" />
+    <Compile Include="FactorDataBE.cs" />
+    <Compile Include="FactorParametroBE.cs" />
     <Compile Include="FormulaParametroBE.cs" />
     <Compile Include="IndicadorAuxBE.cs" />
     <Compile Include="IndicadorBE.cs" />

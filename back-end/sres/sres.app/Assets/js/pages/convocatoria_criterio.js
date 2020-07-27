@@ -135,7 +135,7 @@ var armarHead = (lista, incremental, id, componente) => {
         debugger;
         cont += `<th scope="col"><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? `<i class="mt-2"></i>` : `<i class="fas fa-question-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i>`}</div></th>`;
     }
-    cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center"><div class="btn btn-sres-azul text-white" type="button" onclick="agregarFila(${id},${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div></th>` : ``;
+    cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center"><div class="btn btn-warning btn-sm estilo-01" type="button" onclick="agregarFila(${id},${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div></th>` : ``;
     return `<thead class="estilo-06"><tr>${cont}</tr></thead>`;
 };
 
@@ -155,9 +155,9 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
             if (lista[i]["ESTATICO"] == '1')
                 filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="text-center estilo-01">${validarNull(lista[i]["VALOR"])}</div><input class="get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" type="hidden" /></td>`;
             else
-                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><input class="form-control form-control-sm estilo-01 ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} /></div></td>`;
+                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><input class="form-control form-control-sm estilo-01 ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} /></div></td>`;
         } else {
-            filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><select class="form-control form-control-sm multi-opciones get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["FILTRO"] == null ? `` : lista[i]["FILTRO"] == '' ? `` : `data-filtro="${lista[i]["FILTRO"]}" onchange="filtrar(this)"`}><option value="0">Seleccione</option>`;
+            filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><select class="form-control form-control-sm multi-opciones ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["FILTRO"] == null ? `` : lista[i]["FILTRO"] == '' ? `` : `data-filtro="${lista[i]["FILTRO"]}" onchange="filtrar(this)"`}  ${lista[i]["VERIFICABLE"] == '1' ? `onchange="verificarValor(this)"` : ``}><option value="0">Seleccione</option>`;
             for (var j = 0; j < lista[i]["LIST_PARAMDET"].length; j++)
                 filas += `<option value="${lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"]}" ${validarNull(lista[i]["VALOR"]) == lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"] ? `selected` : ``}>${lista[i]["LIST_PARAMDET"][j]["NOMBRE"]}</option>`;
             filas += `</select></div></td>`;
@@ -165,7 +165,7 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
         }
 
     }
-    filas += incremental == '1' ? `<td><div class="btn btn-sres-azul text-white" type="button" onclick="eliminarFila(this);"><i class="fas fa-minus-circle mr-1"></i>Quitar</div></td>` : ``;
+    filas += incremental == '1' ? `<td><div class="btn btn-info btn-sm estilo-01" type="button" onclick="eliminarFila(this);"><i class="fas fa-minus-circle mr-1"></i>Quitar</div></td>` : ``;
     return `${filas}</tr>`;
 }
 
@@ -329,7 +329,7 @@ var verificarValor = (e) => {
     let verificar = 0;
     let obj = $(e).parent().parent().parent();
     $(e).parent().parent().parent().find('.verificar').each((x, y) => {
-        verificar += $(y).val() == "" ? 1 : 0;
+        verificar += $(y).val() == "" || $(y).val() == "0" ? 1 : 0;
     });
     verificar == 0 ? calcular(obj, $(e).parent().parent().parent().attr('id').split('-')[2], $(e).parent().parent().parent().attr('id').split('-')[3]) : '';
 }
@@ -343,6 +343,7 @@ var calcular = (obj, id_componente, fila) => {
             ID_COMPONENTE: id_componente,
             ID_PARAMETRO: $(y).attr('data-param'),
             RESULTADO: $(y).attr('data-resultado') == undefined ? 0 : 1,
+            OBTENIBLE: $(y).attr('data-obtenible') == undefined ? 0 : 1,
             VALOR: $(y)[0].className.indexOf("multi-opciones") != -1 ? $(y).val() : $(y)[0].className.indexOf("solo-numero") != -1 && $(y)[0].className.indexOf("formato-decimal") != -1 ? $(y).val().replace(/,/gi, '') : $(y).val()
         };
         valores.push(v);
@@ -399,29 +400,31 @@ var filtrar = (e) => {
     let filtro = $(e).attr('data-filtro').split('|');
 
     for (var i = 0; i < filtro.length; i++) {
-        let arrFiltro = verificarFiltro(filtro[i], $(e).parent().parent().parent());
-        if (arrFiltro.length > 0) {
-            var lista = {
-                ID_PARAMETRO: parseInt(filtro[i]),
-                PARAMETROS: arrFiltro[0],
-                DETALLES: arrFiltro[1]
-            }
-            let url = `/api/parametrodetallerelacion/filtrar`;
-            let data = { PARAMDETREL: lista, USUARIO_GUARDAR: idUsuarioLogin };
-
-            let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-            let contenido = ``;
-            fetch(url, init)
-            .then(r => r.json())
-            .then(j => {
-                if (j.length > 0) {
-                    contenido = j.map((x, m) => {
-                        let opciones = `<option value="${x.ID_DETALLE}">${x.NOMBRE}</option>`;
-                        return opciones;
-                    }).join('');
-                    $(`#${arr}-${j[0].ID_PARAMETRO}`).html(`<option value="0">Seleccione</option>${contenido}`);
+        if ($(e).parent().parent().parent().find('td').find(`[data-param=${filtro[i]}]`).length > 0) {
+            let arrFiltro = verificarFiltro(filtro[i], $(e).parent().parent().parent());
+            if (arrFiltro.length > 0) {
+                var lista = {
+                    ID_PARAMETRO: parseInt(filtro[i]),
+                    PARAMETROS: arrFiltro[0],
+                    DETALLES: arrFiltro[1]
                 }
-            });
+                let url = `/api/parametrodetallerelacion/filtrar`;
+                let data = { PARAMDETREL: lista, USUARIO_GUARDAR: idUsuarioLogin };
+
+                let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+                let contenido = ``;
+                fetch(url, init)
+                .then(r => r.json())
+                .then(j => {
+                    if (j.length > 0) {
+                        contenido = j.map((x, m) => {
+                            let opciones = `<option value="${x.ID_DETALLE}">${x.NOMBRE}</option>`;
+                            return opciones;
+                        }).join('');
+                        $(`#${arr}-${j[0].ID_PARAMETRO}`).html(`<option value="0">Seleccione</option>${contenido}`);
+                    }
+                });
+            }
         }
     }
 }
