@@ -197,6 +197,17 @@ CREATE OR REPLACE PACKAGE SISSELLO."PKG_SISSELLO_CRITERIO" AS
     PI_ID_INSCRIPCION NUMBER,
     PO_REF OUT SYS_REFCURSOR
   );
+
+  PROCEDURE USP_SEL_FACTOR_PARAMETRO(
+    PI_ID_FACTOR NUMBER,
+    PO_REF OUT SYS_REFCURSOR
+  );
+  
+  PROCEDURE USP_SEL_FACTOR_VALOR(
+    PI_ID_FACTOR NUMBER,
+    PI_SQL_WHERE VARCHAR2,
+    PO_REF OUT SYS_REFCURSOR
+  );
 END PKG_SISSELLO_CRITERIO;
 /
 
@@ -681,9 +692,9 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                     WHERE ' ||
                     CASE
                       WHEN PI_NRO_INFORME IS NOT NULL THEN
-                      'LOWER(TRANSLATE(C.NRO_INFORME,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND '
+                      'LOWER(TRANSLATE(C.NRO_INFORME,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND '
                     END ||
-                    'LOWER(TRANSLATE(C.NOMBRE,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND ' ||
+                    'LOWER(TRANSLATE(C.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND ' ||
                     CASE
                       WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NOT NULL THEN
                       '(
@@ -731,9 +742,9 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                           WHERE ' ||
                           CASE
                             WHEN PI_NRO_INFORME IS NOT NULL THEN
-                            'LOWER(TRANSLATE(C.NRO_INFORME,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND '
+                            'LOWER(TRANSLATE(C.NRO_INFORME,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND '
                           END ||
-                          'LOWER(TRANSLATE(C.NOMBRE,''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''�?É�?ÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND ' ||
+                          'LOWER(TRANSLATE(C.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND ' ||
                           CASE
                             WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NOT NULL THEN
                             '(
@@ -1214,6 +1225,44 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
             AND CCID.ID_INSCRIPCION = PI_ID_INSCRIPCION
             AND CCID.FLAG_ESTADO = '1';
   END USP_SEL_VERF_CONV_CRITERIO_INSC;
+
+  PROCEDURE USP_SEL_FACTOR_PARAMETRO(
+        PI_ID_FACTOR NUMBER,
+        PO_REF OUT SYS_REFCURSOR
+  )
+  AS
+  BEGIN
+        OPEN PO_REF FOR
+        SELECT  FP.*,
+                (SELECT COUNT(1)
+                FROM    T_MAEM_FACTOR_PARAMETRO FP
+                WHERE   FP.ID_FACTOR = PI_ID_FACTOR
+                        AND FP.ID_PARAMETRO IS NOT NULL) NUMERO_PARAMETROS
+        FROM    T_MAEM_FACTOR F,
+                T_MAEM_FACTOR_PARAMETRO FP
+        WHERE   F.ID_FACTOR = PI_ID_FACTOR
+                AND F.ID_FACTOR = FP.ID_FACTOR
+                AND FP.ID_PARAMETRO IS NOT NULL
+                AND FP.FLAG_ESTADO = '1'
+        ORDER BY FP.ORDEN;
+
+  END USP_SEL_FACTOR_PARAMETRO;
+  
+  PROCEDURE USP_SEL_FACTOR_VALOR(
+        PI_ID_FACTOR NUMBER,
+        PI_SQL_WHERE VARCHAR2,
+        PO_REF OUT SYS_REFCURSOR
+  )
+  AS
+        V_SQL VARCHAR2(4000);
+  BEGIN
+        V_SQL := 'SELECT  *
+                FROM    T_MAEM_FACTOR_DATA F
+                WHERE   F.ID_FACTOR = ' || TO_CHAR(PI_ID_FACTOR) || ' ';
+        V_SQL := V_SQL || PI_SQL_WHERE;
+
+        OPEN PO_REF FOR V_SQL;
+  END USP_SEL_FACTOR_VALOR;
 END PKG_SISSELLO_CRITERIO;
 /
 
@@ -1293,7 +1342,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_CRITERIO C
-                    WHERE LOWER(TRANSLATE(C.NOMBRE,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(C.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
                     FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -1318,7 +1367,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_CRITERIO C
-                        WHERE LOWER(TRANSLATE(C.NOMBRE,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(C.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
                         FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -1398,10 +1447,10 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_USUARIO U
                     WHERE (
-                    LOWER(TRANSLATE(U.NOMBRES,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(U.APELLIDOS,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(U.CORREO,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(U.CELULAR,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%''
+                    LOWER(TRANSLATE(U.NOMBRES,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(U.APELLIDOS,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(U.CORREO,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(U.CELULAR,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%''
                     ) AND
                     FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
@@ -1433,10 +1482,10 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_USUARIO U
                         WHERE (
-                        LOWER(TRANSLATE(U.NOMBRES,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(U.APELLIDOS,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(U.CORREO,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(U.CELULAR,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%''
+                        LOWER(TRANSLATE(U.NOMBRES,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(U.APELLIDOS,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(U.CORREO,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(U.CELULAR,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%''
                         ) AND
                         FLAG_ESTADO = ''1''
                         )
@@ -1660,7 +1709,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_REQUERIMIENTO R
-                    WHERE LOWER(TRANSLATE(R.NOMBRE,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(R.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
                     R.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -1685,7 +1734,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_REQUERIMIENTO R
-                        WHERE LOWER(TRANSLATE(R.NOMBRE,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(R.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
                         FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -1748,7 +1797,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_MAE_PROCESO P
-                    WHERE LOWER(TRANSLATE(P.NOMBRE,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(P.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
                     P.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -1773,7 +1822,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_MAE_PROCESO P
-                        WHERE LOWER(TRANSLATE(P.NOMBRE,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(P.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
                         P.FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -1829,8 +1878,8 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                     FROM T_MAE_ETAPA E
                     LEFT JOIN T_MAE_PROCESO P ON E.ID_PROCESO = P.ID_PROCESO
                     WHERE 
-                    (LOWER(TRANSLATE(E.NOMBRE,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' OR
-                    LOWER(TRANSLATE(P.NOMBRE,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'') AND
+                    (LOWER(TRANSLATE(E.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(P.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'') AND
                     E.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -1867,8 +1916,8 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                         FROM T_MAE_ETAPA E
                         LEFT JOIN T_MAE_PROCESO P ON E.ID_PROCESO = P.ID_PROCESO
                         WHERE
-                        (LOWER(TRANSLATE(E.NOMBRE,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'' OR
-                        LOWER(TRANSLATE(P.NOMBRE,''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'',''AEIOUaeiou'')) ||''%'') AND
+                        (LOWER(TRANSLATE(E.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(P.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'') AND
                         E.FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -1981,7 +2030,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_CONVOCATORIA C
-                    WHERE LOWER(TRANSLATE(C.NOMBRE,''??????????'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''??????????'',''AEIOUaeiou'')) ||''%'' AND
+                    WHERE LOWER(TRANSLATE(C.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
                     C.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
@@ -2009,7 +2058,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_CONVOCATORIA C
-                        WHERE LOWER(TRANSLATE(C.NOMBRE,''??????????'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''??????????'',''AEIOUaeiou'')) ||''%'' AND
+                        WHERE LOWER(TRANSLATE(C.NOMBRE,''����������'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''����������'',''AEIOUaeiou'')) ||''%'' AND
                         C.FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
@@ -2269,7 +2318,8 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     OPEN PO_REF FOR
     SELECT  *
     FROM    T_MAEM_INDICADOR
-    WHERE   ID_CRITERIO = PI_ID_CRITERIO AND ID_CASO = PI_ID_CASO AND ID_COMPONENTE = PI_ID_COMPONENTE AND FLAG_ESTADO = '1';            
+    WHERE   ID_CRITERIO = PI_ID_CRITERIO AND ID_CASO = PI_ID_CASO AND ID_COMPONENTE = PI_ID_COMPONENTE AND FLAG_ESTADO = '1'
+    ORDER BY ORDEN ASC; --ADD            
   END USP_SEL_INDICADOR;
   
   PROCEDURE USP_SEL_GET_PARAMETRO(
@@ -2307,10 +2357,12 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
   BEGIN
     OPEN PO_REF FOR
     SELECT  IND.ID_CRITERIO, IND.ID_CASO, IND.ID_COMPONENTE, IND.ID_PARAMETRO, IND.ID_INDICADOR, IND.VALOR,
-            P.ID_TIPO_CONTROL, P.ID_TIPO_DATO, P.DECIMAL_V, P.VERIFICABLE, P.EDITABLE, P.OBTENIBLE, P.ESTATICO, P.NOMBRE, P.FILTRO, P.RESULTADO, P.TAMANO
+            P.ID_TIPO_CONTROL, P.ID_TIPO_DATO, P.DECIMAL_V, P.VERIFICABLE, P.EDITABLE, P.OBTENIBLE, P.ESTATICO, P.NOMBRE, P.FILTRO, P.RESULTADO, P.TAMANO----17-07-20
     FROM    T_MAEM_INDICADOR_FORM IND
+    INNER JOIN T_MAEM_INDICADOR INDIC ON IND.ID_CRITERIO = INDIC.ID_CRITERIO AND IND.ID_CASO = INDIC.ID_CASO AND IND.ID_COMPONENTE = INDIC.ID_COMPONENTE AND IND.ID_PARAMETRO = INDIC.ID_PARAMETRO
     INNER JOIN T_MAEM_PARAMETRO P ON IND.ID_PARAMETRO = P.ID_PARAMETRO
-    WHERE   IND.ID_CRITERIO = PI_ID_CRITERIO AND IND.ID_CASO = PI_ID_CASO AND IND.ID_COMPONENTE = PI_ID_COMPONENTE AND IND.ID_INDICADOR = PI_ID_INDICADOR AND IND.FLAG_ESTADO = '1';            
+    WHERE   IND.ID_CRITERIO = PI_ID_CRITERIO AND IND.ID_CASO = PI_ID_CASO AND IND.ID_COMPONENTE = PI_ID_COMPONENTE AND IND.ID_INDICADOR = PI_ID_INDICADOR AND IND.FLAG_ESTADO = '1'
+    ORDER BY INDIC.ORDEN ASC;            
   END USP_SEL_INDICADOR_FORM;
   
   PROCEDURE USP_SEL_INDICADOR_DATA(
@@ -2324,15 +2376,17 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
   BEGIN
     OPEN PO_REF FOR
     SELECT  IND.ID_CRITERIO, IND.ID_CASO, IND.ID_COMPONENTE, IND.ID_PARAMETRO, IND.ID_INDICADOR, IND.VALOR,
-            P.ID_TIPO_CONTROL, P.ID_TIPO_DATO, P.DECIMAL_V, P.VERIFICABLE, P.EDITABLE, P.OBTENIBLE, P.ESTATICO, P.NOMBRE, P.FILTRO, P.RESULTADO, P.TAMANO
+            P.ID_TIPO_CONTROL, P.ID_TIPO_DATO, P.DECIMAL_V, P.VERIFICABLE, P.EDITABLE, P.OBTENIBLE, P.ESTATICO, P.NOMBRE, P.FILTRO, P.RESULTADO, P.TAMANO----17-07-20
     FROM    T_MAEM_INDICADOR_DATA IND
+    INNER JOIN T_MAEM_INDICADOR INDIC ON IND.ID_CRITERIO = INDIC.ID_CRITERIO AND IND.ID_CASO = INDIC.ID_CASO AND IND.ID_COMPONENTE = INDIC.ID_COMPONENTE AND IND.ID_PARAMETRO = INDIC.ID_PARAMETRO
     INNER JOIN T_MAEM_PARAMETRO P ON IND.ID_PARAMETRO = P.ID_PARAMETRO
     WHERE   IND.ID_CRITERIO = PI_ID_CRITERIO 
             AND IND.ID_CASO = PI_ID_CASO 
             AND IND.ID_COMPONENTE = PI_ID_COMPONENTE 
             AND IND.ID_INDICADOR = PI_ID_INDICADOR
             AND IND.ID_INSCRIPCION = PI_ID_INSCRIPCION
-            AND IND.FLAG_ESTADO = '1';            
+            AND IND.FLAG_ESTADO = '1'
+    ORDER BY INDIC.ORDEN ASC;            
   END USP_SEL_INDICADOR_DATA;
   
   PROCEDURE USP_PRC_MAN_INDICADOR_DATA(
