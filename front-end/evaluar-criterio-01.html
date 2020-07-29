@@ -15,7 +15,7 @@
     <meta property="og:url" content="http://grupo-zuniga.com/proyectos/sres/">
     <meta property="og:image" content="http://grupo-zuniga.com/proyectos/sres/images/sres-iso.png">
     <meta property="og:description" content="El Sello de Reconocimiento de Energía sostenible (SRES) es un distintivo otorgada por el &lt;b&gt;Ministerio de Energía y Minas del Perú&lt;/b&gt; a través de su órgano directivo la Dirección General de Eficiencia Energética, a aquellas entidades que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.">
-    <title>Plataforma del Sello de Reconocimiento de Energía Sostenible | Criterios | Ahorro de energía eléctrica total</title>
+    <title>Plataforma del Sello de Reconocimiento de Energía Sostenible | Evaluación de Criterios | Ahorro de energía eléctrica total</title>
     <meta name="description" content="El Sello de Reconocimiento de Energía sostenible (SRES) es un distintivo otorgada por el &lt;b&gt;Ministerio de Energía y Minas del Perú&lt;/b&gt; a través de su órgano directivo la Dirección General de Eficiencia Energética, a aquellas entidades que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.">
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32">
@@ -70,7 +70,7 @@
               <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./preguntas-frecuentes.html" data-wow-delay=".7s"><i class="fas fa-question-circle fa-lg mr-1"></i>PREGUNTAS FRECUENTES</a></li>
               <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./bandeja-postulante.html" data-wow-delay=".4s"><i class="fas fa-inbox fa-lg mr-1"></i>BANDEJA</a></li>
             </ul>
-            <div class="btn-group"><a class="btn btn-sm btn-sres-mix animated slideInRight dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="fas fa-user pr-1"></i>Ricardo Salmón &nbsp;<small class="badge badge-primary estilo-06">Postulante</small></a>
+            <div class="btn-group"><a class="btn btn-sm btn-sres-azul animated slideInRight dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0"><i class="fas fa-user pr-1"></i>Patricia Salazar &nbsp;<small class="badge badge-success estilo-06">Evaluador</small></a>
               <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item estilo-01" href="./cambiar.html"><i class="fas fa-id-card mr-1"></i>Mi Perfil</a><a class="dropdown-item estilo-01" href="./mantenimiento-de-tablas.html"><i class="fas fa-cogs mr-1"></i>Mantenimiento de tablas</a><a class="dropdown-item estilo-01" href="./cambiar.html"><i class="fas fa-key mr-1"></i>Cambiar contraseña</a>
                 <div class="dropdown-divider"></div><a class="dropdown-item estilo-01" href="./login.html"><i class="fas fa-sign-out-alt mr-1"></i>Salir del sistema</a>
               </div>
@@ -162,8 +162,9 @@
             <nav class="estilo-05" aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="text-sres-gris" href="./index.html">Inicio</a></li>
-                <li class="breadcrumb-item"><a class="text-sres-gris" href="./bandeja-postulante.html">Bandeja</a></li>
-                <li class="breadcrumb-item"><a class="text-sres-gris" href="./criterios.html">Criterios</a></li>
+                <li class="breadcrumb-item"><a class="text-sres-gris" href="./bandeja-evaluador.html">Bandeja Convocatorias</a></li>
+                <li class="breadcrumb-item"><a class="text-sres-gris" href="./bandeja-participantes.html">Bandeja Participantes</a></li>
+                <li class="breadcrumb-item"><a class="text-sres-gris" href="./evaluar-criterios.html">Criterios</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Ahorro de energía eléctrica total</li>
               </ol>
             </nav>
@@ -212,14 +213,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text bg-sres-azul text-white"><i class="fas fa-list"></i></span></div>
-                    <select class="form-control" id="cbo-opcional">
-                      <option>-Seleccione-</option>
-                      <option>Nombre largo que describe la opción a seleccionar en esta lista desplegable para algunos criterios 01</option>
-                      <option>Nombre largo que describe la opción a seleccionar en esta lista desplegable para algunos criterios 02</option>
-                      <option>Nombre largo que describe la opción a seleccionar en esta lista desplegable para algunos criterios 03</option>
-                      <option>Nombre largo que describe la opción a seleccionar en esta lista desplegable para algunos criterios 04</option>
-                      <option>Nombre largo que describe la opción a seleccionar en esta lista desplegable para algunos criterios 05</option>
-                    </select>
+                    <input class="form-control-plaintext text-sres-gris" id="cbo-opcional" value="Nombre largo que describe la opción a seleccionar en esta lista desplegable para algunos criterios 01" readonly>
                   </div>
                 </div>
               </div>
@@ -268,63 +262,65 @@
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
                       <div class="form-group m-0">
                         <div class="input-group">
-                          <select class="form-control form-control-sm">
-                            <option>-Seleccione-</option>
-                            <option>Opción 01</option>
-                            <option>Opción 02</option>
-                            <option>Opción 03</option>
-                            <option>Opción 04</option>
-                          </select>
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
                         </div>
                       </div>
                     </td>
                     <td data-encabezado="Diferencia">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Porcentaje de ahorro">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Detalles">
                       <div class="form-group m-0">
                         <div class="input-group">
-                          <select class="form-control form-control-sm">
-                            <option>-Seleccione-</option>
-                            <option>Opción 01</option>
-                            <option>Opción 02</option>
-                            <option>Opción 03</option>
-                            <option>Opción 04</option>
-                          </select>
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
                         </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Diferencia">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Porcentaje de ahorro">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -335,63 +331,65 @@
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
                       <div class="form-group m-0">
                         <div class="input-group">
-                          <select class="form-control form-control-sm">
-                            <option>-Seleccione-</option>
-                            <option>Opción 01</option>
-                            <option>Opción 02</option>
-                            <option>Opción 03</option>
-                            <option>Opción 04</option>
-                          </select>
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
                         </div>
                       </div>
                     </td>
                     <td data-encabezado="Diferencia">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Porcentaje de ahorro">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Detalles">
                       <div class="form-group m-0">
                         <div class="input-group">
-                          <select class="form-control form-control-sm">
-                            <option>-Seleccione-</option>
-                            <option>Opción 01</option>
-                            <option>Opción 02</option>
-                            <option>Opción 03</option>
-                            <option>Opción 04</option>
-                          </select>
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
                         </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Diferencia">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Porcentaje de ahorro">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -402,63 +400,65 @@
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
                       <div class="form-group m-0">
                         <div class="input-group">
-                          <select class="form-control form-control-sm">
-                            <option>-Seleccione-</option>
-                            <option>Opción 01</option>
-                            <option>Opción 02</option>
-                            <option>Opción 03</option>
-                            <option>Opción 04</option>
-                          </select>
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
                         </div>
                       </div>
                     </td>
                     <td data-encabezado="Diferencia">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Porcentaje de ahorro">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Detalles">
                       <div class="form-group m-0">
                         <div class="input-group">
-                          <select class="form-control form-control-sm">
-                            <option>-Seleccione-</option>
-                            <option>Opción 01</option>
-                            <option>Opción 02</option>
-                            <option>Opción 03</option>
-                            <option>Opción 04</option>
-                          </select>
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
                         </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Diferencia">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Porcentaje de ahorro">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -469,63 +469,65 @@
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
                       <div class="form-group m-0">
                         <div class="input-group">
-                          <select class="form-control form-control-sm">
-                            <option>-Seleccione-</option>
-                            <option>Opción 01</option>
-                            <option>Opción 02</option>
-                            <option>Opción 03</option>
-                            <option>Opción 04</option>
-                          </select>
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
                         </div>
                       </div>
                     </td>
                     <td data-encabezado="Diferencia">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Porcentaje de ahorro">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Detalles">
                       <div class="form-group m-0">
                         <div class="input-group">
-                          <select class="form-control form-control-sm">
-                            <option>-Seleccione-</option>
-                            <option>Opción 01</option>
-                            <option>Opción 02</option>
-                            <option>Opción 03</option>
-                            <option>Opción 04</option>
-                          </select>
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
                         </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Diferencia">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Porcentaje de ahorro">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -536,63 +538,65 @@
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
                       <div class="form-group m-0">
                         <div class="input-group">
-                          <select class="form-control form-control-sm">
-                            <option>-Seleccione-</option>
-                            <option>Opción 01</option>
-                            <option>Opción 02</option>
-                            <option>Opción 03</option>
-                            <option>Opción 04</option>
-                          </select>
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
                         </div>
                       </div>
                     </td>
                     <td data-encabezado="Diferencia">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Porcentaje de ahorro">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Detalles">
                       <div class="form-group m-0">
                         <div class="input-group">
-                          <select class="form-control form-control-sm">
-                            <option>-Seleccione-</option>
-                            <option>Opción 01</option>
-                            <option>Opción 02</option>
-                            <option>Opción 03</option>
-                            <option>Opción 04</option>
-                          </select>
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
                         </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Diferencia">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Porcentaje de ahorro">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -620,12 +624,16 @@
                   <tr>
                     <td data-encabezado="Detalles" scope="row" data-count="0">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
@@ -635,12 +643,16 @@
                   <tr>
                     <td data-encabezado="Detalles" scope="row" data-count="1">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
@@ -650,12 +662,16 @@
                   <tr>
                     <td data-encabezado="Detalles" scope="row" data-count="2">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
@@ -665,12 +681,16 @@
                   <tr>
                     <td data-encabezado="Detalles" scope="row" data-count="3">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
@@ -680,12 +700,16 @@
                   <tr>
                     <td data-encabezado="Detalles" scope="row" data-count="4">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato inicial">
                       <div class="form-group m-0">
-                        <input class="form-control form-control-sm estilo-01" type="text" placeholder="Texto aquí">
+                        <div class="input-group">
+                          <input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" type="text" value="Texto aquí" readonly>
+                        </div>
                       </div>
                     </td>
                     <td data-encabezado="Dato final">
@@ -707,7 +731,9 @@
                 <tbody class="estilo-01">
                   <td data-encabezado="DESCRIPCIÓN DE LA ACTIVIDAD RELACIONADA">
                     <div class="form-group m-0">
-                      <textarea class="form-control form-control-sm estilo-01" cols="30" rows="5" placeholder="Texto aquí"></textarea>
+                      <div class="input-group">
+                        <textarea class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" cols="30" rows="5" readonly>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos quaerat consectetur tenetur, quam nesciunt labore dolorem vel autem temporibus architecto repellat fugiat nobis sunt, nulla maiores fuga, nostrum corporis ad.</textarea>
+                      </div>
                     </div>
                   </td>
                 </tbody>
@@ -723,29 +749,34 @@
                           <h3 class="estilo-02 text-sres-azul mb-5 text-left">CRITERIOS GENERALES</h3>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 d-none d-lg-block">
-                          <h3 class="estilo-02 text-sres-azul mb-5 text-left">ARCHIVOS ADJUNTOS</h3>
+                          <h3 class="estilo-02 text-sres-azul mb-5 text-left">EVALUACIÓN DE SUSTENTOS</h3>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-lg-6 col-md-12 col-sm-12">
                           <div class="form-group">
-                            <label class="estilo-01 text-limit-1 text-left" for="fle-requisito-01">Documento requerido<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                            <label class="estilo-01 text-limit-1 text-left">Documento requerido</label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
-                              <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-01" placeholder="Subir documentos" required>
-                              <input class="d-none fil-file-control" type="file" id="fle-requisito-01" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
-                              <div class="input-group-append">
-                                <label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-01"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
-                              </div>
+                              <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-01" value="nombre-archivo.pdf" disabled>
+                              <div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="#" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>
                             </div>
                           </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12">
                           <div class="form-group">
-                            <label class="estilo-01">&nbsp;</label>
+                            <label class="estilo-01 text-left w-100">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rad-evaluacion-01" id="rad-eva-01" value="1">
+                                <label class="form-check-label" for="rad-eva-01">Aprobado</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rad-evaluacion-01" id="rad-eva-02" value="0">
+                                <label class="form-check-label" for="rad-eva-02">Desaprobado</label>
+                              </div>
+                            </label>
                             <div class="alert alert-success p-1 d-flex">
-                              <div class="mr-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">Nombre del archivo subido.pdf</span></div>
-                              <div class="ml-auto"><a class="text-sres-verde" href="#"><i class="fas fa-download px-2 py-1"></i></a><a class="text-sres-verde" href="#"><i class="fas fa-trash px-2 py-1"></i></a></div>
+                              <div class="mr-lg-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">El documento es correcto</span></div>
                             </div>
                           </div>
                         </div>
@@ -753,22 +784,28 @@
                       <div class="row">
                         <div class="col-lg-6 col-md-12 col-sm-12">
                           <div class="form-group">
-                            <label class="estilo-01 text-limit-1 text-left" for="fle-requisito-05">Documento requerido<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                            <label class="estilo-01 text-limit-1 text-left">Documento requerido</label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
-                              <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-05" placeholder="Subir documentos" required>
-                              <input class="d-none fil-file-control" type="file" id="fle-requisito-05" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
-                              <div class="input-group-append">
-                                <label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-05"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
-                              </div>
+                              <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-05" value="nombre-archivo.pdf" disabled>
+                              <div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="#" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>
                             </div>
                           </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12">
                           <div class="form-group">
-                            <label class="estilo-01">&nbsp;</label>
+                            <label class="estilo-01 text-left w-100">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rad-evaluacion-02" id="rad-eva-03" value="1">
+                                <label class="form-check-label" for="rad-eva-03">Aprobado</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rad-evaluacion-02" id="rad-eva-04" value="0">
+                                <label class="form-check-label" for="rad-eva-04">Desaprobado</label>
+                              </div>
+                            </label>
                             <div class="alert alert-danger p-1 d-flex">
-                              <div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">Error vuelva a intentarlo nuevamente</span></div>
+                              <div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div>
                             </div>
                           </div>
                         </div>
@@ -776,22 +813,28 @@
                       <div class="row">
                         <div class="col-lg-6 col-md-12 col-sm-12">
                           <div class="form-group">
-                            <label class="estilo-01 text-limit-1 text-left" for="fle-requisito-08">Documento requerido<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label>
+                            <label class="estilo-01 text-limit-1 text-left">Documento requerido</label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
-                              <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-08" placeholder="Subir documentos" required>
-                              <input class="d-none fil-file-control" type="file" id="fle-requisito-08" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*">
-                              <div class="input-group-append">
-                                <label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-08"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
-                              </div>
+                              <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-08" value="nombre-archivo.pdf" disabled>
+                              <div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="#" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>
                             </div>
                           </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12">
                           <div class="form-group">
-                            <label class="estilo-01">&nbsp;</label>
+                            <label class="estilo-01 text-left w-100">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rad-evaluacion-06" id="rad-eva-11" value="1">
+                                <label class="form-check-label" for="rad-eva-11">Aprobado</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rad-evaluacion-06" id="rad-eva-12" value="0">
+                                <label class="form-check-label" for="rad-eva-12">Desaprobado</label>
+                              </div>
+                            </label>
                             <div class="alert alert-secondary p-1 d-flex">
-                              <div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div>
+                              <div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha evaluado el documento</span></div>
                             </div>
                           </div>
                         </div>
@@ -801,10 +844,59 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-12 mt-5">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="estilo-02 text-sres-azul text-left w-100 mb-2">EVALUACIÓN</label>
+                      <div class="input-group">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="rad-evaluacion-criterios-01" id="rad-eva-cri-01" value="1">
+                          <label class="form-check-label estilo-01" for="rad-eva-cri-01">Aprobado</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="rad-evaluacion-criterios-01" id="rad-eva-cri-02" value="0">
+                          <label class="form-check-label estilo-01" for="rad-eva-cri-02">Desaprobado</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label class="estilo-02 text-sres-azul text-left w-100 mb-2">PUNTAJE</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-list"></i></span></div>
+                        <select class="form-control" id="cbo-puntaje">
+                          <option>-Seleccione puntaje-</option>
+                          <option>5% - 10% = 5</option>
+                          <option>11% - 15% = 10</option>
+                          <option>Más de 15%</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="alert alert-warning" role="alert">
+                  <div class="alert-wrap">
+                    <div class="form-group">
+                      <div class="text-left" for="txa-observaciones">Observaciones:</div>
+                      <div class="input-group">
+                        <div class="input-group-prepend bg-warning"><span class="input-group-text"><i class="fas fa-comment"></i></span></div>
+                        <!--.form-control-plaintext-->
+                        <textarea class="form-control estilo-01" id="txa-observaciones" cols="30" rows="5" maxlenght="400" placeholder="Ingrese la descripción de sus observaciones"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="offset-lg-3 col-lg-9 col-md-12 col-sm-12 mb-3">
             <div class="row">
-              <div class="col-lg-6"><a class="btn btn-secondary text-white w-100" href="./criterios.html">Regresar</a></div>
+              <div class="col-lg-6"><a class="btn btn-secondary text-white w-100" href="./evaluar-criterios.html">Regresar</a></div>
               <div class="col-lg-6">
                 <div class="btn btn-primary text-white w-100" type="button">Guardar</div>
               </div>

@@ -26,12 +26,12 @@ namespace sres.da
                 p.Add("PI_ID_PARAMETRO", entidad.ID_PARAMETRO);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 entidad = db.Query<FormulaParametroBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                entidad.OK = true;
+                //entidad.OK = true;
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                entidad.OK = false;
+                //entidad.OK = false;
             }
             return entidad;
         }

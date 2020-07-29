@@ -66,6 +66,7 @@
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
     <Compile Include="DocumentoDA.cs" />
     <Compile Include="EtapaDA.cs" />
+    <Compile Include="FactorDA.cs" />
     <Compile Include="FormulaParametroDA.cs" />
     <Compile Include="IndicadorDataDA.cs" />
     <Compile Include="InscripcionDA.cs" />
