@@ -118,5 +118,27 @@ namespace sres.da
 
             return lista;
         }
+
+        public SectorBE ObtenerSector(int idSector, OracleConnection db)
+        {
+            SectorBE item = new SectorBE();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_OBTIENE_SECTOR";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_SECTOR", idSector);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.QueryFirstOrDefault<SectorBE>(sp, p, commandType: CommandType.StoredProcedure);
+                item.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                item.OK = false;
+            }
+
+            return item;
+        }
     }
 }

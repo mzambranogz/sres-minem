@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.Mvc;
 using sres.be;
 using sres.ln;
+using System.Net.Mail;
 
 namespace sres.app.Controllers
 {
@@ -19,6 +20,7 @@ namespace sres.app.Controllers
     {
         UsuarioLN usuarioLN = new UsuarioLN();
         InstitucionLN institucionLN = new InstitucionLN();
+        SectorLN sectorLN = new SectorLN();
         RolLN rolLN = new RolLN();
         ln.MRV.UsuarioLN usuarioLNMRV = new ln.MRV.UsuarioLN();
 
@@ -41,6 +43,20 @@ namespace sres.app.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult RefrescarDatosSession()
+        {
+            if (Session["user"] == null) return Json(new { success = false, message = "La sesión no existe" });
+
+            UsuarioBE usuario = (UsuarioBE)Session["user"];
+            usuario = usuarioLN.ObtenerUsuario(usuario.ID_USUARIO);
+            usuario.INSTITUCION = institucionLN.ObtenerInstitucion(usuario.ID_INSTITUCION.Value);
+            usuario.INSTITUCION.SECTOR = sectorLN.ObtenerSector(usuario.INSTITUCION.ID_SECTOR);
+            if (usuario.ID_ROL != null) usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
+            Session["user"] = usuario;
+            return Json(new { success = true, message = "Se refrescaron los datos de la sesión correctamente" });
+        }
+
         [HttpPost]
         public async Task<ActionResult> Validar(string correo, string contraseña, string token = null)
         {
@@ -51,7 +67,14 @@ namespace sres.app.Controllers
             bool esValido = usuarioLN.ValidarUsuario(correo, contraseña, out usuario);
             if (esValido)
             {
+                if(usuario.FLAG_ESTADO == "0")
+                {
+                    response["success"] = false;
+                    response["message"] = "Usuario no se encuentra habilitado";
+                    return Json(response);
+                }
                 usuario.INSTITUCION = institucionLN.ObtenerInstitucion(usuario.ID_INSTITUCION.Value);
+                usuario.INSTITUCION.SECTOR = sectorLN.ObtenerSector(usuario.INSTITUCION.ID_SECTOR);
                 if (usuario.ID_ROL != null) usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
                 Session["user"] = usuario;
                 response["success"] = true;
@@ -60,7 +83,7 @@ namespace sres.app.Controllers
             }
 
             response["success"] = false;
-            response["message"] = "contraseña incorrecta";
+            response["message"] = "Contraseña incorrecta";
             if (usuario == null) response["message"] = "Usuario no existe";
             return Json(response);
         }
@@ -80,6 +103,7 @@ namespace sres.app.Controllers
 
                 UsuarioBE usuario = usuarioLN.ObtenerUsuarioPorCorreo(correo);
                 usuario.INSTITUCION = institucionLN.ObtenerInstitucion(usuario.ID_INSTITUCION.Value);
+                usuario.INSTITUCION.SECTOR = sectorLN.ObtenerSector(usuario.INSTITUCION.ID_SECTOR);
                 if (usuario.ID_ROL != null) usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
 
                 if (usuario != null)

@@ -28,6 +28,20 @@ namespace sres.app.Controllers.Api
             return institucionLN.ObtenerInstitucion(idInstitucion);
         }
 
+        [Route("modificarlogoinstitucion")]
+        [HttpPut]
+        public bool ModificarLogoInstitucion(InstitucionBE institucion)
+        {
+            return institucionLN.ModificarLogoInstitucion(institucion);
+        }
+
+        [Route("modificardatosinstitucion")]
+        [HttpPut]
+        public bool ModificarDatosInstitucion(InstitucionBE institucion)
+        {
+            return institucionLN.ModificarDatosInstitucion(institucion);
+        }
+
         //[Route("buscarparticipantes")]
         //[HttpGet]
         //public DataPaginateBE BuscarParticipantes(string busqueda, int registros, int pagina, string columna, string orden)

@@ -1,4 +1,8 @@
 ﻿$(document).ready((e) => {
+    $('#fle-logo').on('change', logoChange);
+    $('#btnGuardarLogo').on('click', btnGuardarLogoClick);
+    $('#btnMostrarDatosInstitucion').on('click', btnMostrarDatosInstitucionClick);
+    $('#btnActualizarDatosInstitucion').on('click', btnActualizarDatosInstitucionClick);
     $('#btnConsultar').on('click', (e) => consultar());
     $('#btnConsultar')[0].click();
     $('#btnFirstPagination').on('click', btnFirstPaginationClick);
@@ -113,4 +117,115 @@ var btnLastPaginationClick = (e) => {
     let valor = $('#ir-pagina').attr('max');
     $('#ir-pagina').val(valor);
     consultar();
+}
+
+var btnGuardarLogoClick = (e) => {
+    e.preventDefault();
+    if ($('#fle-logo').data('fileContent') == null) {
+        $('#fle-logo').parent().parent().parent().parent().parent().parent().alert({ type: 'danger', title: 'ERROR', message: `Debe seleccionar una imagen` });
+        return;
+    }
+
+    let data = { ID_INSTITUCION: idInstitucionLogin, LOGO_CONTENIDO: $('#fle-logo').data('file'), LOGO: $('#fle-logo').data('fileName'), LOGO_TIPO: $('#fle-logo').data('type'), UPD_USUARIO: idUsuarioLogin };
+
+    let url = `/api/institucion/modificarlogoinstitucion`;
+    let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }
+
+    fetch(url, init)
+    .then(r => r.json())
+    .then(responseGuardarLogo)
+}
+
+var responseGuardarLogo = (data) => {
+    if (data == true) {
+        $('#fle-logo').parent().parent().parent().parent().parent().parent().alert({ type: 'success', title: '¡BIEN HECHO!', message: `Se actualizó el logo correctamente`, close: { time: 3000 } });
+        $('#btnGuardarLogo').hide();
+        
+        let url = `${baseUrl}Login/RefrescarDatosSession`;
+        fetch(url).then(r => r.json()).then(j => console.log(j));
+
+    } else {
+        $('#fle-logo').parent().parent().parent().parent().parent().parent().alert({ type: 'danger', title: 'ERROR', message: `No se pudo actualizar el logo` });
+        let srcDefault = $('#fle-logo').parent().parent().find('.img-fluid').attr('data-src-default');
+        $('#fle-logo').parent().parent().find('.img-fluid').attr('src', srcDefault);
+    }
+}
+
+var logoChange = (e) => {
+    let elFile = $(e.currentTarget);
+
+    if (e.currentTarget.files.length == 0) {
+        let srcDefault = $(e.currentTarget).parent().parent().find('.img-fluid').attr('data-src-default');
+        $(e.currentTarget).parent().parent().find('.img-fluid').attr('src', srcDefault);
+        $('#btnGuardarLogo').hide();
+        $(e.currentTarget).removeData('file');
+        $(e.currentTarget).removeData('fileName');
+        $(e.currentTarget).removeData('fileContent');
+        $(e.currentTarget).removeData('type');
+        return;
+    }
+
+    var fileContent = e.currentTarget.files[0];
+
+    if (fileContent.size > maxBytes) $(elFile).parent().parent().parent().parent().parent().parent().alert({ type: 'danger', title: 'ERROR', message: `El archivo debe tener un peso máximo de 4MB` });
+    else $(elFile).parent().parent().parent().parent().parent().parent().alert('remove');
+
+
+    var idElement = $(e.currentTarget).attr("data-id");
+
+    let reader = new FileReader();
+    reader.onload = function (e) {
+        let base64 = e.currentTarget.result.split(',')[1];
+        elFile.data('file', base64);
+        elFile.data('fileContent', e.currentTarget.result);
+        elFile.data('fileName', fileContent.name);
+        elFile.data('type', fileContent.type);
+    }
+    reader.readAsDataURL(e.currentTarget.files[0]);
+}
+
+var btnMostrarDatosInstitucionClick = (e) => {
+    e.preventDefault();
+
+    let url = `/api/institucion/obtenerinstitucion?idInstitucion=${idInstitucionLogin}`;
+
+    fetch(url)
+    .then(r => r.json())
+    .then(responseMostrarDatosInstitucion);
+}
+
+var responseMostrarDatosInstitucion = (data) => {
+    $('#txt-nombre-corto').val(data.NOMBRE_COMERCIAL);
+    $('#txa-descripcion').val(data.DESCRIPCION);
+    $('#modal-edit-descripcion').modal('show');
+}
+
+var btnActualizarDatosInstitucionClick = (e) => {
+    e.preventDefault();
+
+    let nombreComercial = $('#txt-nombre-corto').val();
+    let descripcion = $('#txa-descripcion').val();
+
+    let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, UPD_USUARIO: idUsuarioLogin };
+
+    let url = `/api/institucion/modificardatosinstitucion`;
+    let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+    fetch(url, init)
+    .then(r => r.json())
+    .then(responseActualizarDatosInstitucion);
+}
+
+var responseActualizarDatosInstitucion = (data) => {
+    if (data == true) {
+        $('#lblDescripcionInstitucion').text($('#txa-descripcion').val());
+        $('#txt-nombre-corto').val('');
+        $('#txa-descripcion').val('');
+        $('#modal-edit-descripcion').modal('hide');
+        $('#fle-logo').parent().parent().parent().parent().parent().parent().alert({ type: 'success', title: '¡BIEN HECHO!', message: `Se actualizó los datos de la institución correctamente`, close: { time: 3000 } });
+        let url = `${baseUrl}Login/RefrescarDatosSession`;
+        fetch(url).then(r => r.json()).then(j => console.log(j));
+    } else {
+        $('#modal-edit-descripcion .modal-body >*:last').alert({ type: 'danger', title: 'ERROR', message: `No se pudo actualizar los datos de la institución` });
+    }
 }

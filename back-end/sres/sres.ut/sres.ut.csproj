@@ -52,6 +52,7 @@
     <Compile Include="Extensiones.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="Mailing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguridad.cs" />
   </ItemGroup>

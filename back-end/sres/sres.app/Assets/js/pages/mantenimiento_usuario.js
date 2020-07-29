@@ -190,10 +190,11 @@ var guardarUsuario = () => {
     let celular = $('#txtCelular').val();
     let idInstitucion = $('#frmUsuario').data('id_institucion');
     let idRol = $('#selIdRol').val();
+    let flagEstado = '0';
 
     let url = `/api/usuario/guardarusuario`;
 
-    let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, NOMBRES: nombres, APELLIDOS: apellidos, CORREO: correo, TELEFONO: telefono, ANEXO: anexo, CELULAR: celular, ID_INSTITUCION: idInstitucion, ID_ROL: idRol, UPD_USUARIO: idUsuarioLogin };
+    let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, NOMBRES: nombres, APELLIDOS: apellidos, CORREO: correo, TELEFONO: telefono, ANEXO: anexo, CELULAR: celular, ID_INSTITUCION: idInstitucion, ID_ROL: idRol, FLAG_ESTADO: flagEstado, UPD_USUARIO: idUsuarioLogin };
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 

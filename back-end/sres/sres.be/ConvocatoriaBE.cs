@@ -10,6 +10,7 @@ namespace sres.be
     {
         public int ID_CONVOCATORIA { get; set; }
         public string NOMBRE { get; set; }
+        public string DESCRIPCION { get; set; }
         public DateTime FECHA_INICIO { get; set; }
         public DateTime FECHA_FIN { get; set; }
         public int LIMITE_POSTULANTE { get; set; }

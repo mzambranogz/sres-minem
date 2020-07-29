@@ -170,6 +170,7 @@ namespace sres.da
                 p.Add("PI_CELULAR", usuario.CELULAR);
                 p.Add("PI_ID_INSTITUCION", usuario.ID_INSTITUCION);
                 p.Add("PI_ID_ROL", usuario.ID_ROL);
+                p.Add("PI_FLAG_ESTADO", usuario.FLAG_ESTADO);
                 p.Add("PI_UPD_USUARIO", usuario.UPD_USUARIO);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);

@@ -165,6 +165,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Mailing\AprobacionUsuario.html" />
+    <Content Include="Mailing\CreacionUsuario.html" />
+    <Content Include="Mailing\RecuperarClave.html" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config">

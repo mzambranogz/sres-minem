@@ -176,6 +176,8 @@ var cargarDatosUsuarioMRV = (data) => {
     $('form > .row:nth(8)').hide();
     //$('#viewLoginMRV').hide();
 
+    $('#frmRegister').data('usuarioMRV', data.VALIDO);
+
     if(!data.VALIDO) {
         $('form > .row:nth(8)').show();
         //$('#viewContraseñaUsuario').show();
@@ -191,7 +193,7 @@ var cargarDatosUsuarioMRV = (data) => {
     //$('#modalValidacionMrv').modal('hide');
 
 
-    $('#frmRegister').data('idUsuario', data.USUARIO.ID_USUARIO);
+    //$('#frmRegister').data('idUsuario', data.USUARIO.ID_USUARIO);
     $('#txt-nombre').val(data.USUARIO.NOMBRES_USUARIO);
     $('#txt-apellido').val(data.USUARIO.APELLIDOS_USUARIO);
     $('#txt-telefono').val(data.USUARIO.TELEFONO_USUARIO);
@@ -218,7 +220,8 @@ var limpiarDatosInstitucion = () => {
 }
 
 var limpiarDatosUsuario = () => {
-    $('#frmRegister').val('idUsuario');
+    $('#frmRegister').removeData('idUsuario');
+    $('#frmRegister').removeData('usuarioMRV');
     $('#txt-nombre').val('');
     $('#txt-apellido').val('');
     $('#txt-telefono').val('');
@@ -255,6 +258,8 @@ var registrarUsuario = () => {
 
     //$('#modalValidacionSres').modal('show');
 
+    let usuarioMRV = $('#frmRegister').data('usuarioMRV');
+
     let idUsuario = $('#frmRegister').data('id_usuario');
     let nombres = $('#txt-nombre').val();
     let apellidos = $('#txt-apellido').val();
@@ -268,10 +273,11 @@ var registrarUsuario = () => {
     let razonSocialInstitucion = $('#txt-institucion').val();
     let domicilioLegalInstitucion = $('#txt-direccion').val();
     let idSectorInstitucion = $('#cbo-sector').val();
+    let flagEstado = usuarioMRV ? '1' : '0';
 
     let url = `/api/usuario/guardarusuario`;
 
-    let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, NOMBRES: nombres, APELLIDOS: apellidos, CORREO: correo, CONTRASENA: contraseña, TELEFONO: telefono, ANEXO: anexo, CELULAR: celular, ID_INSTITUCION: idInstitucion, INSTITUCION: idInstitucion != null ? null : { idInstitucion: idInstitucion == null ? -1 : idInstitucion, RUC: rucInstitucion, RAZON_SOCIAL: razonSocialInstitucion,  DOMICILIO_LEGAL: domicilioLegalInstitucion, ID_SECTOR: idSectorInstitucion, UPD_USUARIO: idUsuarioLogin }, ID_ROL: 3, UPD_USUARIO: idUsuarioLogin };
+    let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, NOMBRES: nombres, APELLIDOS: apellidos, CORREO: correo, CONTRASENA: contraseña, TELEFONO: telefono, ANEXO: anexo, CELULAR: celular, ID_INSTITUCION: idInstitucion, INSTITUCION: idInstitucion != null ? null : { idInstitucion: idInstitucion == null ? -1 : idInstitucion, RUC: rucInstitucion, RAZON_SOCIAL: razonSocialInstitucion,  DOMICILIO_LEGAL: domicilioLegalInstitucion, ID_SECTOR: idSectorInstitucion, UPD_USUARIO: idUsuarioLogin }, ID_ROL: 3, FLAG_ESTADO: flagEstado, UPD_USUARIO: idUsuarioLogin };
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 

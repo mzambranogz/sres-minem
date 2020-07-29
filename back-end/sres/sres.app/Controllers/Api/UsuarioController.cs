@@ -1,10 +1,13 @@
 ﻿using sres.be;
 using sres.ln;
+using sres.ut;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace sres.app.Controllers.Api
@@ -13,6 +16,10 @@ namespace sres.app.Controllers.Api
     public class UsuarioController : ApiController
     {
         UsuarioLN usuarioLN = new UsuarioLN();
+        InstitucionLN institucionLN = new InstitucionLN();
+        SectorLN sectorLN = new SectorLN();
+
+        Mailing mailing = new Mailing();
 
         [Route("buscarusuario")]
         [HttpGet]
@@ -44,22 +51,54 @@ namespace sres.app.Controllers.Api
         [HttpPost]
         public bool CambiarEstadoUsuario(UsuarioBE usuario)
         {
-            return usuarioLN.CambiarEstadoUsuario(usuario);
+            bool habilitar = usuario.FLAG_ESTADO == "1";
+            bool seGuardo = usuarioLN.CambiarEstadoUsuario(usuario);
+
+            if (seGuardo)
+            {
+                if (habilitar)
+                {
+                    usuario = usuarioLN.ObtenerUsuario(usuario.ID_USUARIO);
+
+                    string fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldServer = "[SERVER]";
+                    string[] fields = new string[] { fieldNombres, fieldApellidos, fieldServer };
+                    string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldServer };
+                    Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS, [fieldServer] = AppSettings.Get<string>("Server") };
+                    string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Gracias por registrarte en nuestra plataforma SRES del sector energía";
+                    MailAddressCollection mailTo = new MailAddressCollection();
+                    mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
+
+                    Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.AprobacionUsuario, dataBody, fields, fieldsRequire, subject, mailTo));
+                }
+            }
+
+            return seGuardo;
         }
 
         [Route("guardarusuario")]
         [HttpPost]
         public bool GuardarUsuario(UsuarioBE usuario)
         {
-            return usuarioLN.GuardarUsuario(usuario);
-        }
+            bool esRegistroNuevo = usuario.ID_USUARIO > 1;
+            bool seGuardo = usuarioLN.GuardarUsuario(usuario);
 
-        //[Route("registrarusuario")]
-        //[HttpPost]
-        //public bool RegistrarUsuario(UsuarioBE usuario)
-        //{
-        //    return UsuarioLN.RegistrarUsuario(usuario);
-        //}
+            if (seGuardo && esRegistroNuevo)
+            {
+                usuario.INSTITUCION.SECTOR = sectorLN.ObtenerSector(usuario.INSTITUCION.ID_SECTOR);
+
+                string fieldRuc = "[RUC]", fieldDireccion = "[DIRECCION]", fieldSector = "[SECTOR]", fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldEmail = "[EMAIL]", fieldTelefono = "[TELEFONO]", fieldCelular = "[CELULAR]", fieldAnexo = "[ANEXO]";
+                string[] fields = new string[] { fieldRuc, fieldDireccion, fieldSector, fieldNombres, fieldApellidos, fieldEmail, fieldTelefono, fieldCelular, fieldAnexo };
+                string[] fieldsRequire = new string[] { fieldRuc, fieldDireccion, fieldSector, fieldNombres, fieldApellidos, fieldEmail, fieldCelular };
+                Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldRuc] = usuario.INSTITUCION.RAZON_SOCIAL, [fieldDireccion] = usuario.INSTITUCION.DOMICILIO_LEGAL, [fieldSector] = usuario.INSTITUCION.SECTOR.NOMBRE, [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS, [fieldEmail] = usuario.CORREO, [fieldTelefono] = usuario.TELEFONO, [fieldCelular] = usuario.CELULAR, [fieldAnexo] = usuario.ANEXO };
+                string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Gracias por registrarte en nuestra plataforma SRES del sector energía";
+                MailAddressCollection mailTo = new MailAddressCollection();
+                mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
+
+                Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.CreacionUsuario, dataBody, fields, fieldsRequire, subject, mailTo));
+            }
+
+            return seGuardo;
+        }
 
         [Route("obtenerallevaluador")]
         [HttpGet]

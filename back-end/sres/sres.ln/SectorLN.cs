@@ -82,5 +82,19 @@ namespace sres.ln
 
             return lista;
         }
+
+        public SectorBE ObtenerSector(int idSector)
+        {
+            SectorBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = sectorDA.ObtenerSector(idSector, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
     }
 }

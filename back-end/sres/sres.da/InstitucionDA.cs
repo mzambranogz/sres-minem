@@ -97,5 +97,50 @@ namespace sres.da
 
             return seGuardo;
         }
+
+        public bool ModificarLogoInstitucion(InstitucionBE institucion, OracleConnection db)
+        {
+            bool seModifico = false;
+
+            try
+            {
+                string sp = $"{Package.Criterio}USP_UPD_MOD_LOGO_INSTITUCION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSTITUCION", institucion.ID_INSTITUCION);
+                p.Add("PI_LOGO", institucion.LOGO);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seModifico = filasAfectadas > 0;
+
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seModifico;
+        }
+
+        public bool ModificarDatosInstitucion(InstitucionBE institucion, OracleConnection db)
+        {
+            bool seModifico = false;
+
+            try
+            {
+                string sp = $"{Package.Criterio}USP_UPD_MOD_DATOS_INSTITUCION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSTITUCION", institucion.ID_INSTITUCION);
+                p.Add("PI_NOMBRE_COMERCIAL", institucion.NOMBRE_COMERCIAL);
+                p.Add("PI_DESCRIPCION", institucion.DESCRIPCION);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seModifico = filasAfectadas > 0;
+
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seModifico;
+        }
     }
 }

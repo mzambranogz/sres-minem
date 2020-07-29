@@ -4,9 +4,11 @@ using sres.ut;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace sres.ln
 {
@@ -23,8 +25,23 @@ namespace sres.ln
                 cn.Open();
                 item = institucionDA.ObtenerInstitucionPorRuc(ruc, cn);
             }
-            catch(Exception ex) { throw ex; }
+            catch(Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            if (item != null)
+            {
+                string pathFormat = AppSettings.Get<string>("Path.Institucion");
+                string pathDirectoryRelative = string.Format(pathFormat, item.ID_INSTITUCION);
+                string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                string pathFile = Path.Combine(pathDirectory, item.LOGO);
+                if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                pathFile = !File.Exists(pathFile) ? null : pathFile;
+                if (!string.IsNullOrEmpty(pathFile))
+                {
+                    item.LOGO_CONTENIDO = File.ReadAllBytes(pathFile);
+                    item.LOGO_TIPO = MimeMapping.GetMimeMapping(pathFile);
+                }
+            }
 
             return item;
         }
@@ -53,9 +70,68 @@ namespace sres.ln
                 cn.Open();
                 item = institucionDA.ObtenerInstitucion(idInstitucion, cn);
             }
+            catch(Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
+            if (item != null)
+            {
+                if (!string.IsNullOrEmpty(item.LOGO))
+                {
+                    string pathFormat = AppSettings.Get<string>("Path.Institucion");
+                    string pathDirectoryRelative = string.Format(pathFormat, item.ID_INSTITUCION);
+                    string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                    string pathFile = Path.Combine(pathDirectory, item.LOGO);
+                    if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                    pathFile = !File.Exists(pathFile) ? null : pathFile;
+                    if (!string.IsNullOrEmpty(pathFile))
+                    {
+                        item.LOGO_CONTENIDO = File.ReadAllBytes(pathFile);
+                        item.LOGO_TIPO = MimeMapping.GetMimeMapping(pathFile);
+                    }
+                }
+            }
+
             return item;
+        }
+
+        public bool ModificarLogoInstitucion(InstitucionBE institucion)
+        {
+            bool seModifico = false;
+
+            try
+            {
+                cn.Open();
+                seModifico = institucionDA.ModificarLogoInstitucion(institucion, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            if(seModifico == true)
+            {
+                string pathFormat = AppSettings.Get<string>("Path.Institucion");
+                string pathDirectoryRelative = string.Format(pathFormat, institucion.ID_INSTITUCION);
+                string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                string pathFile = Path.Combine(pathDirectory, institucion.LOGO);
+                if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                if (institucion.LOGO_CONTENIDO != null) File.WriteAllBytes(pathFile, institucion.LOGO_CONTENIDO);
+            }
+
+            return seModifico;
+        }
+
+        public bool ModificarDatosInstitucion(InstitucionBE institucion)
+        {
+            bool seModifico = false;
+
+            try
+            {
+                cn.Open();
+                seModifico = institucionDA.ModificarDatosInstitucion(institucion, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return seModifico;
         }
     }
 }
