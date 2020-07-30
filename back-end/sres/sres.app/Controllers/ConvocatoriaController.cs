@@ -36,7 +36,7 @@ namespace sres.app.Controllers
             UsuarioBE usuario = ObtenerUsuarioLogin();
 
             InscripcionBE inscripcion = usuario == null ? null : inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, usuario.ID_INSTITUCION.Value);
-
+            
             //int? idInscripcion = inscripcion == null ? null : (int?)inscripcion.ID_INSCRIPCION;
 
             //List<InscripcionRequerimientoBE> inscripcionRequerimiento = inscripcionRequerimientoLN.ListarInscripcionRequerimientoPorConvocatoriaInscripcion(idConvocatoria, idInscripcion);

@@ -18,7 +18,13 @@ namespace sres.ut
             CreacionUsuario,
             [Description("AprobacionUsuario.html")]
             AprobacionUsuario,
+            [Description("DeshabilitarUsuario.html")]
+            DeshabilitarUsuario,
             RecuperacionClave,
+            [Description("CreacionConvocatoria.html")]
+            CreacionConvocatoria,
+            [Description("InscripcionConvocatoria.html")]
+            InscripcionConvocatoria
 
         }
 

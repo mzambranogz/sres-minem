@@ -13,7 +13,7 @@ var cargarListaInscripcionRequerimiento = () => {
 
 var mostrarListaInscripcionRequerimiento = (data) => {
     if (data.length > 0) {
-        let tituloCriterios = '<div class="col-lg-6 col-md-12 col-sm-12"><h3 class="estilo-02 text-sres-azul mb-5">CRITERIOS GENERALES</h3></div>';
+        let tituloCriterios = '<div class="col-lg-6 col-md-12 col-sm-12"><h3 class="estilo-02 text-sres-azul mb-5">REQUISITOS GENERALES</h3></div>';
         let tituloArchivosAdjuntos = '<div class="col-lg-6 col-md-12 col-sm-12 d-none d-lg-block"><h3 class="estilo-02 text-sres-azul mb-5">ARCHIVOS ADJUNTOS</h3></div>';
         let cabecera = `<div class="row">${tituloCriterios}${tituloArchivosAdjuntos}</div>`;
 
@@ -115,7 +115,8 @@ var enviarInscripcion = () => {
 };
 
 var mostrarMensaje = (data) => {
-    if (data == true) {
+    if (data.success == true) {
+        idInscripcion = data.id;
         $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: `¡Se guardó correctamente!`, close: { time: 3000 } });
 
         //alert('¡Se guardó correctamente!');

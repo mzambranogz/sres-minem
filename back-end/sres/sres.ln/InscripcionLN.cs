@@ -34,8 +34,9 @@ namespace sres.ln
             return item;
         }
 
-        public bool GuardarInscripcion(InscripcionBE inscripcion, UsuarioBE usuario = null, InstitucionBE institucion = null)
+        public bool GuardarInscripcion(InscripcionBE inscripcion, out int outIdInscripcion, UsuarioBE usuario = null, InstitucionBE institucion = null)
         {
+            outIdInscripcion = 0;
             bool seGuardo = false;
 
             try
@@ -43,8 +44,7 @@ namespace sres.ln
                 cn.Open();
                 using (OracleTransaction ot = cn.BeginTransaction())
                 {
-                    int idInscripcion = -1;
-                    seGuardo = inscripcionDA.GuardarInscripcion(inscripcion, out idInscripcion, cn);
+                    seGuardo = inscripcionDA.GuardarInscripcion(inscripcion, out outIdInscripcion, cn);
 
                     if (seGuardo)
                     {
@@ -69,7 +69,7 @@ namespace sres.ln
 
                             InscripcionTrazabilidadBE inscripcionTrazabilidad = new InscripcionTrazabilidadBE
                             {
-                                ID_INSCRIPCION = idInscripcion,
+                                ID_INSCRIPCION = outIdInscripcion,
                                 DESCRIPCION = trazabilidadDescripcionRegistrarInscripcion,
                                 UPD_USUARIO = inscripcion.UPD_USUARIO
                             };
@@ -82,14 +82,14 @@ namespace sres.ln
                             foreach (InscripcionRequerimientoBE iInscripcionRequerimiento in inscripcion.LISTA_INSCRIPCION_REQUERIMIENTO)
                             {
                                 //if (iInscripcionRequerimiento.ID_INSCRIPCION <= 0)
-                                iInscripcionRequerimiento.ID_INSCRIPCION = idInscripcion;
+                                iInscripcionRequerimiento.ID_INSCRIPCION = outIdInscripcion;
                                 if (seGuardo)
                                 {
 
                                     if(iInscripcionRequerimiento.ARCHIVO_CONTENIDO != null)
                                     {
                                         string pathFormat = AppSettings.Get<string>("Path.Inscripcion.Requerimiento");
-                                        string pathDirectoryRelative = string.Format(pathFormat, inscripcion.ID_INSTITUCION, idInscripcion);
+                                        string pathDirectoryRelative = string.Format(pathFormat, inscripcion.ID_INSTITUCION, outIdInscripcion);
                                         string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
                                         string pathFile = Path.Combine(pathDirectory, iInscripcionRequerimiento.ARCHIVO_BASE);
                                         if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);

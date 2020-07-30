@@ -81,6 +81,7 @@ namespace sres.da
                 p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
                 p.Add("PI_ID_GET", 0, OracleDbType.Int32, ParameterDirection.Output);
                 p.Add("PI_NOMBRE", entidad.NOMBRE);
+                p.Add("PI_DESCRIPCION", entidad.DESCRIPCION);
                 p.Add("PI_FECHA_INICIO", entidad.FECHA_INICIO);
                 p.Add("PI_FECHA_FIN", entidad.FECHA_FIN);
                 p.Add("PI_LIMITE_POSTULANTE", entidad.LIMITE_POSTULANTE);

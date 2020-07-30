@@ -46,6 +46,21 @@ namespace sres.ln
             return item;
         }
 
+        public List<InstitucionBE> ListarInstitucion()
+        {
+            List<InstitucionBE> lista = new List<InstitucionBE>();
+
+            try
+            {
+                cn.Open();
+                lista = institucionDA.ListarInstitucion(cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
         public List<InstitucionBE> BuscarParticipantes(string busqueda, int registros, int pagina, string columna, string orden)
         {
             List<InstitucionBE> lista = new List<InstitucionBE>();

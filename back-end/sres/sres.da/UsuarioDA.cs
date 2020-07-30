@@ -86,8 +86,26 @@ namespace sres.da
                             INSTITUCION = x.ID_INSTITUCION == null ? null : new InstitucionBE { ID_INSTITUCION = (int)x.ID_INSTITUCION, RAZON_SOCIAL = (string)x.RAZON_SOCIAL_INSTITUCION, RUC = (string)x.RUC_INSTITUCION },
                             ID_ROL = (int?)x.ID_ROL,
                             ROL = x.ID_ROL == null ? null : new RolBE { ID_ROL = (int)x.ID_ROL, NOMBRE = (string)x.NOMBRE_ROL },
+                            FLAG_ESTADO = (string)x.FLAG_ESTADO
                         })
                         .ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
+
+        public List<UsuarioBE> ListarUsuarioPorRol(int idRol, OracleConnection db)
+        {
+            List<UsuarioBE> lista = null;
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_USUARIO_ROL";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ROL", idRol);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex) { Log.Error(ex); }
 

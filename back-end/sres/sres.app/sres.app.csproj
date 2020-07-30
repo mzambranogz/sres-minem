@@ -165,6 +165,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Mailing\CreacionConvocatoria.html" />
+    <Content Include="Mailing\InscripcionConvocatoria.html" />
+    <Content Include="Mailing\DeshabilitarUsuario.html" />
     <Content Include="Mailing\AprobacionUsuario.html" />
     <Content Include="Mailing\CreacionUsuario.html" />
     <Content Include="Mailing\RecuperarClave.html" />
@@ -205,6 +208,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EnumsCustom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\GoogleResponse.cs" />
   </ItemGroup>
@@ -254,7 +258,6 @@
     <Folder Include="Assets\css\" />
     <Folder Include="Assets\fonts\" />
     <Folder Include="Assets\images\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\_Base\" />
   </ItemGroup>

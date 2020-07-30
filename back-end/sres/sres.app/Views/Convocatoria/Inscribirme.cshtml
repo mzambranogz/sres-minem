@@ -11,7 +11,7 @@
 @section scripts_footer{
     <script>
         const idConvocatoria = @(convocatoria.ID_CONVOCATORIA);
-        const idInscripcion = @(inscripcion == null ? "null" : inscripcion.ID_INSCRIPCION.ToString());
+        var idInscripcion = @(inscripcion == null ? "null" : inscripcion.ID_INSCRIPCION.ToString());
         const maxBytes = @(AppSettings.Get<long>("File.MaxBytes"));
     </script>
     <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>

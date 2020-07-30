@@ -1,4 +1,5 @@
-﻿using sres.be;
+﻿using sres.app.Models;
+using sres.be;
 using sres.ln;
 using sres.ut;
 using System;
@@ -6,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace sres.app.Controllers.Api
@@ -14,6 +17,9 @@ namespace sres.app.Controllers.Api
     public class ConvocatoriaController : ApiController
     {    
         ConvocatoriaLN convocatoriaLN = new ConvocatoriaLN();
+        UsuarioLN usuarioLN = new UsuarioLN();
+
+        Mailing mailing = new Mailing();
 
         [Route("buscarconvocatoria")]
         [HttpGet]
@@ -44,14 +50,33 @@ namespace sres.app.Controllers.Api
         [HttpPost]
         public ConvocatoriaBE GuardarConvocatoria(ConvocatoriaBE obj)
         {
+            ConvocatoriaBE convocatoria = null;
             try
             {
-                return convocatoriaLN.RegistroConvocatoria(obj);
+                bool esNuevoRegistro = obj.ID_CONVOCATORIA <= 0;
+                convocatoria = convocatoriaLN.RegistroConvocatoria(obj);
+                if (convocatoria.OK && esNuevoRegistro)
+                {
+                    List<UsuarioBE> listaUsuario = usuarioLN.ListarUsuarioPorRol((int)EnumsCustom.Roles.POSTULANTE);
+
+                    string fieldConvocatoria = "[CONVOCATORIA]", fieldServer = "[SERVER]";
+                    string[] fields = new string[] { fieldConvocatoria, fieldServer };
+                    string[] fieldsRequire = new string[] { fieldConvocatoria, fieldServer };
+                    Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldConvocatoria] = obj.NOMBRE, [fieldServer] = AppSettings.Get<string>("Server") };
+                    string subject = $"Inscríbete en la nueva convocatoria {obj.NOMBRE}";
+                    MailAddressCollection mailTo = new MailAddressCollection();
+                    foreach (UsuarioBE usuario in listaUsuario)
+                    {
+                        mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
+                    }
+                    Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.CreacionConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+            return convocatoria;
         }
 
         [Route("buscarconvocatoria")]

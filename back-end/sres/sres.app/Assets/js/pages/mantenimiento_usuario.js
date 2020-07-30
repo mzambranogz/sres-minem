@@ -57,7 +57,7 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
             let colRucInstitucion = `<td>${x.INSTITUCION == null ? '' : x.INSTITUCION.RUC}</td>`;
             let colRazonSocialInstitucion = `<td>${x.INSTITUCION == null ? '' : x.INSTITUCION.RAZON_SOCIAL}</td>`;
             let colNombreRol = `<td>${x.ROL == null ? '' : x.ROL.NOMBRE}</td>`;
-            let btnCambiarEstado = `${[0, 1].includes(x.FLAG_ESTADO) ? "" : `<a href="#" data-id="${x.ID_USUARIO}" data-estado="${x.FLAG_ESTADO}" class="btnCambiarEstado">${x.FLAG_ESTADO == "1" ? "DESHABILITAR" : "HABILITAR"}</a> `}`;
+            let btnCambiarEstado = `${!["0", "1"].includes(x.FLAG_ESTADO) ? "" : `<a href="#" data-id="${x.ID_USUARIO}" data-estado="${x.FLAG_ESTADO}" class="btnCambiarEstado">${x.FLAG_ESTADO == "1" ? "DESHABILITAR" : "HABILITAR"}</a> `}`;
             let btnEditar = `<a href="#" data-id="${x.ID_USUARIO}" class="btnEditar">EDITAR</a>`;
             let colOpciones = `<td>${btnCambiarEstado}${btnEditar}</td>`;
             let fila = `<tr>${colNro}${colNombres}${colApellidos}${colCorreo}${colTelefono}${colAnexo}${colCelular}${colRucInstitucion}${colRazonSocialInstitucion}${colNombreRol}${colOpciones}</tr>`;

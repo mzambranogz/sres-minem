@@ -56,19 +56,30 @@ namespace sres.app.Controllers.Api
 
             if (seGuardo)
             {
+                string fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldServer = "[SERVER]";
+                usuario = usuarioLN.ObtenerUsuario(usuario.ID_USUARIO);
+
                 if (habilitar)
                 {
-                    usuario = usuarioLN.ObtenerUsuario(usuario.ID_USUARIO);
-
-                    string fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldServer = "[SERVER]";
                     string[] fields = new string[] { fieldNombres, fieldApellidos, fieldServer };
                     string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldServer };
                     Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS, [fieldServer] = AppSettings.Get<string>("Server") };
-                    string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Gracias por registrarte en nuestra plataforma SRES del sector energía";
+                    string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Su cuenta ha sido aprobada en nuestra plataforma SRES del sector energía";
                     MailAddressCollection mailTo = new MailAddressCollection();
                     mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
 
                     Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.AprobacionUsuario, dataBody, fields, fieldsRequire, subject, mailTo));
+                }
+                else
+                {
+                    string[] fields = new string[] { fieldNombres, fieldApellidos };
+                    string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos };
+                    Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS };
+                    string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Su cuenta ha sido deshabilitada en nuestra plataforma SRES del sector energía";
+                    MailAddressCollection mailTo = new MailAddressCollection();
+                    mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
+
+                    Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.DeshabilitarUsuario, dataBody, fields, fieldsRequire, subject, mailTo));
                 }
             }
 

@@ -64,6 +64,21 @@ namespace sres.ln
             return lista;
         }
 
+        public List<UsuarioBE> ListarUsuarioPorRol(int idRol)
+        {
+            List<UsuarioBE> lista = new List<UsuarioBE>();
+
+            try
+            {
+                cn.Open();
+                lista = usuarioDA.ListarUsuarioPorRol(idRol, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
         public UsuarioBE ObtenerUsuario(int idUsuario)
         {
             UsuarioBE item = null;
