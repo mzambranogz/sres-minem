@@ -20,6 +20,7 @@ namespace sres.ln
         CriterioDA criterioDA = new CriterioDA();
         CasoDA casoDA = new CasoDA();
         DocumentoDA documentoDA = new DocumentoDA();
+        ConvocatoriaCriterioPuntajeDA convcripuntDA = new ConvocatoriaCriterioPuntajeDA();
 
         public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden)
         {
@@ -114,6 +115,12 @@ namespace sres.ln
                                     if (!(seGuardoConvocatoria = documentoDA.GuardarConvocatoriaCriterioCasoDoc(d, idConvocatoria, cn).OK)) break;
                                 }
                                 if (!seGuardoConvocatoria) break;
+                            }
+                            if (!seGuardoConvocatoria) break;
+
+                            foreach (ConvocatoriaCriterioPuntajeBE p in it.LISTA_CONVCRIPUNT)
+                            {
+                                if (!(seGuardoConvocatoria = convcripuntDA.GuardarConvocatoriaCriterioPuntaje(p, idConvocatoria, cn).OK)) break;
                             }
                             if (!seGuardoConvocatoria) break;
                         }
@@ -219,6 +226,7 @@ namespace sres.ln
                                 c.LIST_DOC = documentoDA.listarConvocatoriaCriCasoDoc(c, cn);
                             }
                         }
+                        cr.LISTA_CONVCRIPUNT = convcripuntDA.listarConvocatoriaCriterioPuntaje(cr.ID_CONVOCATORIA, cr.ID_CRITERIO, cn);
                     }
                 }
             }

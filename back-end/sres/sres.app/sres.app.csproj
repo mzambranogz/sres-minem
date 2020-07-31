@@ -136,6 +136,8 @@
     <Content Include="Assets\js\pages\convocatoria.js" />
     <Content Include="Assets\js\pages\convocatoria_criterio.js" />
     <Content Include="Assets\js\pages\convocatoria_criterioingresar.js" />
+    <Content Include="Assets\js\pages\convocatoria_evaluacioncriterio.js" />
+    <Content Include="Assets\js\pages\convocatoria_evaluacioncriterios.js" />
     <Content Include="Assets\js\pages\convocatoria_inscribirme.js" />
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\login_registrarme.js" />
