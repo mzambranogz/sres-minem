@@ -80,7 +80,9 @@ var consultarConvocatoria = (element) => {
                             $('#chk-c-'+a.ID_CRITERIO+'-s-'+a.ID_CASO+'-d-'+a.ID_DOCUMENTO).prop('checked', true);
                         });
                     });
-                    
+                    x.LISTA_CONVCRIPUNT.map((w,z) => {
+                        $('#puntaje-'+w.ID_CRITERIO+'-'+w.ID_DETALLE).val(w.PUNTAJE);
+                    });
                 });
             }
 
@@ -214,10 +216,20 @@ var cargarCheckCriterio = (selector, data) => {
 
     let contenido = data.map((x, i) => {
         let caso = armarcaso(x.LISTA_CASO, x.LISTA_DOCUMENTO);
-        let criterio = `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="criterio" id="chk-c-${x.ID_CRITERIO}"><label for="chk-c-${x.ID_CRITERIO}">${x.NOMBRE}&nbsp;</label>${caso}</li></ul></div></div>`;
+        let puntaje = armarpuntaje(x.LISTA_CONVCRIPUNT);
+        let criterio = `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="criterio" id="chk-c-${x.ID_CRITERIO}"><label for="chk-c-${x.ID_CRITERIO}">${x.NOMBRE}&nbsp;</label>${caso}</li></ul>${puntaje}</div></div>`;
         return criterio;
     }).join('');
     $(selector).html(contenido);
+}
+
+var armarpuntaje = (datapuntaje) => {
+    let puntaje = ``;
+    datapuntaje.map((x, i) => {
+        puntaje += `<tr><td class="get-detalle" id="${x.ID_DETALLE}">${x.ID_DETALLE}</td><td>${x.DESCRIPCION}</td><td><input id="puntaje-${x.ID_CRITERIO}-${x.ID_DETALLE}" class="get-puntaje" type="text" value="${x.PUNTAJE}" /></td></tr>`;    
+    });
+    puntaje = `<div class="ml-5"><table id="puntaje-${datapuntaje[0].ID_CRITERIO}" class="get-tabla-puntaje"><thead><th>N°</th><th>Descripción</th><th>Puntaje</th></thead><tbody>${puntaje}</tbody></table></div>`;  
+    return puntaje;
 }
 
 var armarcaso = (datacaso, datadoc) => {
@@ -298,6 +310,7 @@ var guardar = () => {
     $('#list-criterio').find('.criterio').each((x, y) => {
         let idcriterio = $(y).attr("id").substring(6, $(y).attr("id").length);
         let arr_caso = [];
+        let arr_puntaje = [];
         
         $(y).parent().find('.caso').each((w,z) => {
             let idcaso = $(z).attr('id').substring($(z).attr('id').indexOf("s")+2,$(z).attr('id').length);
@@ -323,9 +336,24 @@ var guardar = () => {
             arr_caso.push(c);
         });
 
+        $(y).parent().parent().parent().find('.get-tabla-puntaje').each((w,z) => {            
+            $(z).parent().find('tbody').find('tr').each((a,b) => {
+                var d = {
+                    ID_CRITERIO: idcriterio,
+                    ID_DETALLE: $(b).find('.get-detalle').attr('id'),
+                    //PUNTAJE: $(b).find('.get-puntaje').val(),
+                    PUNTAJE: $(b).find('#puntaje-'+idcriterio+'-'+$(b).find('.get-detalle').attr('id')).val(),
+                    USUARIO_GUARDAR: idUsuarioLogin
+                }
+                arr_puntaje.push(d);
+            });
+
+        });
+
         var r = {
             ID_CRITERIO: $(y).attr("id").substring(6, $(y).attr("id").length),
             LISTA_CASO: arr_caso,
+            LISTA_CONVCRIPUNT: arr_puntaje,
             FLAG_ESTADO: $(y).prop('checked') ? '1' : '0',
             USUARIO_GUARDAR: idUsuarioLogin
         }

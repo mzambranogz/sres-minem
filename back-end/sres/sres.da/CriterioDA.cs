@@ -391,5 +391,73 @@ namespace sres.da
             catch (Exception ex) { Log.Error(ex); }
             return item;
         }
+
+        public ConvocatoriaCriterioPuntajeInscripBE ObtenerConvCriPuntajeInsc(int idConvocatoria, int idCriterio, int idInscripcion, OracleConnection db)
+        {
+            ConvocatoriaCriterioPuntajeInscripBE item = null;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_SEL_OBTIENE_CONV_CRI_INSC";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_CRITERIO", idCriterio);
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.QueryFirstOrDefault<ConvocatoriaCriterioPuntajeInscripBE>(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            return item;
+        }
+
+        public ConvocatoriaCriterioPuntajeInscripBE GuardarEvaluacionCriterio(ConvocatoriaCriterioPuntajeInscripBE entidad, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Criterio}USP_PRC_GUARDAR_EVA_CRITERIO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_DETALLE", entidad.ID_DETALLE);
+                p.Add("PI_ID_INSCRIPCION", entidad.ID_INSCRIPCION);
+                p.Add("PI_ID_TIPO_EVALUACION", entidad.ID_TIPO_EVALUACION);
+                p.Add("PI_OBSERVACION", entidad.OBSERVACION);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
+
+        public ConvocatoriaCriterioPuntajeInscripBE GuardarEvaluacionCriterioInscripcion(ConvocatoriaCriterioPuntajeInscripBE entidad, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Criterio}USP_UPD_INSCRIPCION_EVA_CRI";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", entidad.ID_INSCRIPCION);
+                p.Add("PI_ID_TIPO_EVALUACION", entidad.ID_TIPO_EVALUACION);
+                p.Add("PI_OBSERVACION", entidad.OBSERVACION);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
     }
 }

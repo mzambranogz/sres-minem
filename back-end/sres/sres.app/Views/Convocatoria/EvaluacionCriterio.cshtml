@@ -1,0 +1,186 @@
+﻿@using sres.be
+@using sres.ut
+@{
+    ViewBag.Titulo = "Criterio";
+    ViewBag.SRESDescription = false;
+    ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
+    InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
+    CriterioBE criterio = (CriterioBE)ViewData["criterio"];
+    List<CasoBE> listaCaso = (List<CasoBE>)ViewData["listaCaso"];
+    List<ConvocatoriaCriterioPuntajeBE> listaConCriPuntaje = (List<ConvocatoriaCriterioPuntajeBE>)ViewData["listaConvCriPuntaje"];
+    string pathFormat = AppSettings.Get<string>("Path.Criterio");
+    string pathDirectoryRelative = string.Format(pathFormat, criterio.ID_CRITERIO);
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/convocatoria_evaluacioncriterio.js")"></script>
+}
+
+
+<div class="container-fluid mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="estilo-05" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index", "Inicio")">Inicio</a></li>
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index", "Convocatoria")">Bandeja</a></li>
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("EvaluacionCriterios", "Convocatoria")">Evaluación Criterios</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Ahorro de energía eléctrica total</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bg-sres-claro p-3">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-12 text-left text-lg-center">
+                            <div class="estilo-07 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">16</div>
+                            <div class="estilo-03 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">Jun</div>
+                            <div class="estilo-02 estilo-02-force text-sres-claro d-inline-block d-lg-block">2020</div>
+                        </div>
+                        <div class="col-lg-11 col-md-12 barra-oscura">
+                            <h2 class="estilo-03 text-sres-oscuro text-limit-1">Cumbre Peruana de Ahorro Energético</h2>
+                            <p class="estilo-01 text-justify text-sres-gris m-0 text-limit-3" data-limit="1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                            <div class="text-right d-none d-lg-block"><a class="estilo-01 text-sres-verde leer-mas" href="#">Leer más</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mb-3">
+    <div class="container">
+        <div class="rayado wow fadeIn"></div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                <div class="d-block bg-sres-claro border-linea rounded p-3">
+                    <img class="img-fluid" src="@Url.Content($"~/{pathDirectoryRelative}/{criterio.ARCHIVO_BASE}")">
+                    <div class="estilo-01 text-sres-azul pt-3">@criterio.NOMBRE</div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-md-12 col-sm-12 text-center my-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text bg-sres-azul text-white"><i class="fas fa-list"></i></span></div>
+                                @if (listaCaso != null)
+                                {
+                                    <select class="form-control" id="cbo-caso">
+
+                                        @foreach (var caso in listaCaso)
+                                        {
+                                            <option value="@caso.ID_CASO">@caso.NOMBRE</option>
+                                        }
+
+                                    </select>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="table-add"></div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bg-sres-claro py-5 px-3">
+                            <div class="row">
+                                <div class="col-12" id="doc-add">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-5">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="estilo-02 text-sres-azul text-left w-100 mb-2">EVALUACIÓN</label>
+                                    <div class="input-group">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="rad-evaluacion-criterios-01" id="rad-eva-cri-01" value="1">
+                                            <label class="form-check-label estilo-01" for="rad-eva-cri-01">Aprobado</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="rad-evaluacion-criterios-01" id="rad-eva-cri-02" value="0">
+                                            <label class="form-check-label estilo-01" for="rad-eva-cri-02">Desaprobado</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="estilo-02 text-sres-azul text-left w-100 mb-2">PUNTAJE</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-list"></i></span></div>
+                                        <select class="form-control" id="cbo-puntaje">
+                                            <option value="0">-Seleccione puntaje-</option>
+                                            @if (listaConCriPuntaje != null)
+                                            {
+                                                foreach (var obj in listaConCriPuntaje)
+                                                {
+                                                    <option value="@obj.ID_DETALLE">@obj.DESCRIPCION = @obj.PUNTAJE</option>
+                                                }
+                                            }
+                                            @*<option>5% - 10% = 5</option>
+                                                <option>11% - 15% = 10</option>
+                                                <option>Más de 15%</option>*@
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <div class="alert-wrap">
+                                <div class="form-group">
+                                    <div class="text-left" for="txa-observaciones">Observaciones:</div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend bg-warning"><span class="input-group-text"><i class="fas fa-comment"></i></span></div>
+                                        <!--.form-control-plaintext-->
+                                        <textarea class="form-control estilo-01" id="txa-observaciones" cols="30" rows="5" maxlenght="400" placeholder="Ingrese la descripción de sus observaciones"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="offset-lg-3 col-lg-9 col-md-12 col-sm-12 mb-3">
+                <div class="row">
+                    <div class="col-lg-6"><a class="btn btn-secondary text-white w-100" href="@Url.Action("EvaluacionCriterios","Convocatoria")">Regresar</a></div>
+                    <div class="col-lg-6">
+                        <div class="btn btn-primary text-white w-100" type="button" id="btnGuardar">Guardar</div>
+                    </div>
+                </div>
+            </div>
+            <div class="offset-lg-3 col-lg-9 col-md-12 col-sm-12 my-3">
+                <div class="row">
+                    <div class="col-12 alert-add">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const idCriterio = @criterio.ID_CRITERIO;
+    const idInscripcion = @inscripcion.ID_INSCRIPCION;
+    const idConvocatoria = @convocatoria.ID_CONVOCATORIA;
+    const maxBytes = @(AppSettings.Get<long>("File.MaxBytes"));
+</script>

@@ -16,6 +16,8 @@ namespace sres.be
         public List<InscripcionRequerimientoBE> LISTA_INSCRIPCION_REQUERIMIENTO { get; set; }
         public bool FLAG_ANULAR { get; set; }
         public string NRO_INFORME_PRELIMINAR { get; set; }
+        public int ID_TIPO_EVALUACION { get; set; }
+        public string OBSERVACION { get; set; }
         public string FLAG_ESTADO { get; set; }
         public int? UPD_USUARIO { get; set; }
     }

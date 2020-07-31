@@ -21,6 +21,7 @@ namespace sres.ln
         ParametroDetalleDA paramdetalleDA = new ParametroDetalleDA();
         DocumentoDA documentoDA = new DocumentoDA();
         InscripcionDocumentoDA inscripcionDocDA = new InscripcionDocumentoDA();
+        ConvocatoriaCriterioPuntajeDA convcripuntDA = new ConvocatoriaCriterioPuntajeDA();
 
         //public CriterioBE RegistroCriterio(CriterioBE entidad)
         //{
@@ -124,6 +125,7 @@ namespace sres.ln
                     {
                         cri.LISTA_CASO = casoDA.ObtenerCriterioCaso(cri, cn);
                         cri.LISTA_DOCUMENTO = documentoDA.ObtenerCriterioDocumento(cri, cn);
+                        cri.LISTA_CONVCRIPUNT = convcripuntDA.ObtenerCriterioPuntaje(cri.ID_CRITERIO, cn);
                     }
                 }
             }
@@ -330,6 +332,43 @@ namespace sres.ln
             catch (Exception ex) { Log.Error(ex); }
 
             return item;
+        }
+
+        public ConvocatoriaCriterioPuntajeInscripBE ObtenerConvCriPuntInscrip(int idConvocatoria, int idCriterio, int idInscripcion)
+        {
+            return criterioDA.ObtenerConvCriPuntajeInsc(idConvocatoria, idCriterio, idInscripcion, cn);
+        }
+
+        public bool GuardarEvaluacionCriterio(ConvocatoriaCriterioPuntajeInscripBE entidad)
+        {
+            return criterioDA.GuardarEvaluacionCriterio(entidad, cn).OK;
+        }
+
+        public bool GuardarEvaluacionCriterioInscripcion(ConvocatoriaCriterioPuntajeInscripBE entidad)
+        {
+            return criterioDA.GuardarEvaluacionCriterioInscripcion(entidad, cn).OK;
+        }
+
+        public string ObtenerRutaDocumento(int idConvocatoria, int idCriterio, int idCaso, int idInscripcion, int idDocumento)
+        {
+            InscripcionDocumentoBE item = null;
+            try
+            {
+                cn.Open();
+                item = inscripcionDocDA.ObtenerInscripcionDocumento(new DocumentoBE { ID_CONVOCATORIA = idConvocatoria, ID_CRITERIO = idCriterio, ID_CASO = idCaso, ID_INSCRIPCION = idInscripcion, ID_DOCUMENTO = idDocumento }, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            if (item == null) return null;
+
+            string pathFormat = AppSettings.Get<string>("Path.Inscripcion.Documento");
+            string pathDirectoryRelative = string.Format(pathFormat, idInscripcion, idCriterio, idCaso, idDocumento);
+            string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+            string pathFile = Path.Combine(pathDirectory, item.ARCHIVO_BASE);
+            if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+            pathFile = !File.Exists(pathFile) ? null : pathFile;
+            return pathFile;
         }
     }
 }
