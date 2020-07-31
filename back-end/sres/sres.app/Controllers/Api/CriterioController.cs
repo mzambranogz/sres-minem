@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.IO;
+using System.Web;
 
 namespace sres.app.Controllers.Api
 {
@@ -83,6 +85,49 @@ namespace sres.app.Controllers.Api
         public ComponenteBE FilaCriterioCaso(int id_criterio, int id_caso, int id_componente)
         {
             return criterioLN.FilaCriterioCaso(id_criterio, id_caso, id_componente);
+        }
+
+        [Route("obtenerconvcriteriopuntajeinscripcion")]
+        [HttpGet]
+        public ConvocatoriaCriterioPuntajeInscripBE ObtenerConvCriPuntajeInsc(int idCriterio, int idInscripcion, int idConvocatoria)
+        {
+            return criterioLN.ObtenerConvCriPuntInscrip(idConvocatoria, idCriterio, idInscripcion);
+        }
+
+        [Route("obtenerdocumento/{idConvocatoria}/{idCriterio}/{idCaso}/{idInscripcion}/{idDocumento}")]
+        [HttpGet]
+        public HttpResponseMessage ObtnerDocumento(int idConvocatoria, int idCriterio, int idCaso, int idInscripcion, int idDocumento)
+        {
+            string pathFile = criterioLN.ObtenerRutaDocumento(idConvocatoria, idCriterio, idCaso, idInscripcion, idDocumento);
+
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.NotFound);
+
+            if (string.IsNullOrEmpty(pathFile)) return response;
+
+            byte[] byteFile = File.ReadAllBytes(pathFile);
+            string contentTypeFile = MimeMapping.GetMimeMapping(pathFile);
+
+            response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StreamContent(new MemoryStream(byteFile));
+            response.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = Path.GetFileName(pathFile);
+            response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(contentTypeFile);
+
+            return response;
+        }
+
+        [Route("guardarevaluacioncriterio")]
+        [HttpPost]
+        public bool GuardarEvaluacionCriterios(ConvocatoriaCriterioPuntajeInscripBE entidad)
+        {
+            return criterioLN.GuardarEvaluacionCriterio(entidad);
+        }
+
+        [Route("guardarevaluacioncriterios")]
+        [HttpPost]
+        public bool GuardarEvaluacionCriteriosInscripcion(ConvocatoriaCriterioPuntajeInscripBE entidad)
+        {
+            return criterioLN.GuardarEvaluacionCriterioInscripcion(entidad);
         }
 
         //[Route("listarcriterioporconvocatoria")]

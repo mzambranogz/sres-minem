@@ -65,7 +65,7 @@ var mostrarDocumentos = (data) => {
             let contenidoFileDoc = `<div class="alert alert-secondary p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div></div>`;
             if (x.OBJ_INSCDOC != null) {
                 let nombreFileDoc = `<i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">${x.OBJ_INSCDOC.ARCHIVO_BASE}</span>`;
-                let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/inscripcionrequerimiento/obtenerarchivo/${idConvocatoria}/${idCriterio}/${$(`#cbo-caso`).val()}/${x.ID_DOCUMENTO}"><i class="fas fa-download px-2 py-1"></i></a>`;
+                let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/criterio/obtenerdocumento/${idConvocatoria}/${idCriterio}/${$(`#cbo-caso`).val()}/${idInscripcion}/${x.ID_DOCUMENTO}"><i class="fas fa-download px-2 py-1"></i></a>`;
                 let btnEliminarFileDoc = `<a class="text-sres-verde btnEliminarFile" href="#" data-id="${x.ID_DOCUMENTO}"><i class="fas fa-trash px-2 py-1"></i></a>`;
                 contenidoFileDoc = `<div class="alert alert-success p-1 d-flex"><div class="mr-auto">${nombreFileDoc}</div><div class="ml-auto">${btnDescargaFileDoc}${btnEliminarFileDoc}</div></div>`;
             }

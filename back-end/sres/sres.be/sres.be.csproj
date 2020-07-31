@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="AnnoBE.cs" />
     <Compile Include="BaseBE.cs" />
+    <Compile Include="ConvocatoriaCriterioPuntajeBE.cs" />
+    <Compile Include="ConvocatoriaCriterioPuntajeInscripBE.cs" />
     <Compile Include="CriterioAuxBE.cs" />
     <Compile Include="DataPaginateBE.cs" />
     <Compile Include="CasoAuxBE.cs" />

@@ -80,7 +80,9 @@ var consultarConvocatoria = (element) => {
                             $('#chk-c-'+a.ID_CRITERIO+'-s-'+a.ID_CASO+'-d-'+a.ID_DOCUMENTO).prop('checked', true);
                         });
                     });
-                    
+                    x.LISTA_CONVCRIPUNT.map((w,z) => {
+                        $('#puntaje-'+w.ID_CRITERIO+'-'+w.ID_DETALLE).val(w.PUNTAJE);
+                    });
                 });
             }
 
@@ -97,7 +99,6 @@ var cargarDatos = (data) => {
     $('#cbo-etapa').val(data.ID_ETAPA);
     $('#frm').data('id', data.ID_CONVOCATORIA);
     $('#txtConvocatoria').val(data.NOMBRE);
-    $('#txtDescripcion').val(data.DESCRIPCION);
     data.TXT_FECHA_INICIO == '0001-01-01' ? null : $('#fchFechaInicio').val(data.TXT_FECHA_INICIO);
     data.TXT_FECHA_FIN == '0001-01-01' ? null : $('#fchFechaFin').val(data.TXT_FECHA_FIN);
     $('#txtLimite').val(data.LIMITE_POSTULANTE);
@@ -111,14 +112,13 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
         contenido = data.map((x, i) => {
             let colNro = `<td>${(pagina - 1) * registros + (i + 1)}</td>`;
             let colNombre = `<td>${x.NOMBRE}</td>`;
-            let colDescripcion = `<td>${x.DESCRIPCION}</td>`;
             let colFechaInicio = `<td>${x.TXT_FECHA_INICIO == '01/01/0001' ? '' : x.TXT_FECHA_INICIO}</td>`;
             let colFechaFin = `<td>${x.TXT_FECHA_FIN == '01/01/0001' ? '' : x.TXT_FECHA_FIN}</td>`;
             let colLimite = `<td>${x.LIMITE_POSTULANTE}</td>`;
             let btnCambiarEstado = `${[0, 1].includes(x.FLAG_ESTADO) ? "" : `<a href="#" data-id="${x.ID_CONVOCATORIA}" data-estado="${x.FLAG_ESTADO}" class="btnCambiarEstado">ELIMINAR</a> `}`;
             let btnEditar = `<a href="#" data-id="${x.ID_CONVOCATORIA}" class="btnEditar">EDITAR</a>`;
             let colOpciones = `<td>${btnCambiarEstado}${btnEditar}</td>`;
-            let fila = `<tr>${colNro}${colNombre}${colDescripcion}${colFechaInicio}${colFechaFin}${colLimite}${colOpciones}</tr>`;
+            let fila = `<tr>${colNro}${colNombre}${colFechaInicio}${colFechaFin}${colLimite}${colOpciones}</tr>`;
             return fila;
         }).join('');
     };
@@ -214,10 +214,20 @@ var cargarCheckCriterio = (selector, data) => {
 
     let contenido = data.map((x, i) => {
         let caso = armarcaso(x.LISTA_CASO, x.LISTA_DOCUMENTO);
-        let criterio = `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="criterio" id="chk-c-${x.ID_CRITERIO}"><label for="chk-c-${x.ID_CRITERIO}">${x.NOMBRE}&nbsp;</label>${caso}</li></ul></div></div>`;
+        let puntaje = armarpuntaje(x.LISTA_CONVCRIPUNT);
+        let criterio = `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="criterio" id="chk-c-${x.ID_CRITERIO}"><label for="chk-c-${x.ID_CRITERIO}">${x.NOMBRE}&nbsp;</label>${caso}</li></ul>${puntaje}</div></div>`;
         return criterio;
     }).join('');
     $(selector).html(contenido);
+}
+
+var armarpuntaje = (datapuntaje) => {
+    let puntaje = ``;
+    datapuntaje.map((x, i) => {
+        puntaje += `<tr><td class="get-detalle" id="${x.ID_DETALLE}">${x.ID_DETALLE}</td><td>${x.DESCRIPCION}</td><td><input id="puntaje-${x.ID_CRITERIO}-${x.ID_DETALLE}" class="get-puntaje" type="text" value="${x.PUNTAJE}" /></td></tr>`;    
+    });
+    puntaje = `<div class="ml-5"><table id="puntaje-${datapuntaje[0].ID_CRITERIO}" class="get-tabla-puntaje"><thead><th>N°</th><th>Descripción</th><th>Puntaje</th></thead><tbody>${puntaje}</tbody></table></div>`;  
+    return puntaje;
 }
 
 var armarcaso = (datacaso, datadoc) => {
@@ -277,7 +287,6 @@ var limpiarFormulario = () => {
 var guardar = () => {
     let id = $('#frm').data('id');
     let nombre = $('#txtConvocatoria').val();
-    let descripcion = $('#txtDescripcion').val();
     let fechaInicio = $('#fchFechaInicio').val();
     let fechaFin = $('#fchFechaFin').val();
     let limite = $('#txtLimite').val();
@@ -298,6 +307,7 @@ var guardar = () => {
     $('#list-criterio').find('.criterio').each((x, y) => {
         let idcriterio = $(y).attr("id").substring(6, $(y).attr("id").length);
         let arr_caso = [];
+        let arr_puntaje = [];
         
         $(y).parent().find('.caso').each((w,z) => {
             let idcaso = $(z).attr('id').substring($(z).attr('id').indexOf("s")+2,$(z).attr('id').length);
@@ -323,9 +333,24 @@ var guardar = () => {
             arr_caso.push(c);
         });
 
+        $(y).parent().parent().parent().find('.get-tabla-puntaje').each((w,z) => {            
+            $(z).parent().find('tbody').find('tr').each((a,b) => {
+                var d = {
+                    ID_CRITERIO: idcriterio,
+                    ID_DETALLE: $(b).find('.get-detalle').attr('id'),
+                    //PUNTAJE: $(b).find('.get-puntaje').val(),
+                    PUNTAJE: $(b).find('#puntaje-'+idcriterio+'-'+$(b).find('.get-detalle').attr('id')).val(),
+                    USUARIO_GUARDAR: idUsuarioLogin
+                }
+                arr_puntaje.push(d);
+            });
+
+        });
+
         var r = {
             ID_CRITERIO: $(y).attr("id").substring(6, $(y).attr("id").length),
             LISTA_CASO: arr_caso,
+            LISTA_CONVCRIPUNT: arr_puntaje,
             FLAG_ESTADO: $(y).prop('checked') ? '1' : '0',
             USUARIO_GUARDAR: idUsuarioLogin
         }
@@ -359,7 +384,7 @@ var guardar = () => {
 
     let url = `/api/convocatoria/guardarconvocatoria`;
 
-    let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, DESCRIPCION: descripcion, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, USUARIO_GUARDAR: idUsuarioLogin };
     //debugger;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
