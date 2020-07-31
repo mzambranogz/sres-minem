@@ -1,4 +1,6 @@
-﻿@using sres.be
+﻿@using System.ComponentModel
+@using sres.app.Models
+@using sres.be
 @using sres.ut
 @{
     ViewBag.Titulo = "Inscribirme";
@@ -19,113 +21,121 @@
     <script src="@Url.Content("~/Assets/js/pages/convocatoria_inscribirme.js")"></script>
 }
 
-
-<div class="container-fluid mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="estilo-05" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-sres-gris" href="./index.html">Inicio</a></li>
-                        <li class="breadcrumb-item"><a class="text-sres-gris" href="./bandeja-postulante.html">Bandeja</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Requisitos</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid my-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="bg-sres-claro p-3">
-                    <div class="row">
-                        <div class="col-lg-1 col-md-12 text-left text-lg-center">
-                            <div class="estilo-07 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("dd")</div>
-                            <div class="estilo-03 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("MMM").Replace(".", "").ToUpper()</div>
-                            <div class="estilo-02 estilo-02-force text-sres-claro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("yyyy")</div>
-                        </div>
-                        <div class="col-lg-11 col-md-12 barra-oscura">
-                            <h2 class="estilo-03 text-sres-oscuro text-limit-1">@convocatoria.NOMBRE</h2>
-                            <p class="estilo-01 text-justify text-sres-gris m-0 text-limit-3" data-limit="1">@convocatoria.DESCRIPCION</p>
-                            <div class="text-right d-none d-lg-block"><a class="estilo-01 text-sres-verde leer-mas" href="#">Leer más</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid mb-3">
-    <div class="container">
-        <div class="rayado wow fadeIn"></div>
-    </div>
-</div>
-<div class="container-fluid mb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <p class="estilo-01 text-justify text-sres-gris m-0">Con la finalidad de que la entidad postulante demuestre las condiciones legales para realizar sus actividades económicas, se sugiere que éstas puedan cumplir con los siguientes criterios:</p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid my-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="bg-sres-claro py-5 px-3" id="viewInscripcionRequerimiento">
-                    <div class="row">
-                        <div class="col-12" id="lstInscripcionRequerimiento"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="chk-norma-01">
-                                            <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-01">Acepto cumplir con la normativa vigente que corresponda, pudiendo ser excluidas del premio en caso de verificarse incumplimiento de ésta, incluso una vez entregado el mismo</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="chk-norma-02">
-                                            <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-02">Acepto permitir la visita a las instalaciones, facilitar información complementaria y/o presentar el proyecto al Comité Organizador y Evaluador, en caso que éste lo solicite.</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Action("Index", "Convocatoria")">Regresar</a></div>
-                                        <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-primary text-white w-100 mb-3" href="./criterios.html" id="btnInscribirme">@(inscripcion == null ? "Participar" : "Actualizar")</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-@*<h2>DATOS DE LA CONVOCATORIA @convocatoria.NOMBRE</h2>
-
-<div>
-    <label>FECHA INICIO: </label> @convocatoria.FECHA_INICIO.ToString("dd/MM/yyyy")
-</div>
-<div>
-    <label>FECHA FIN: </label> @convocatoria.FECHA_FIN.ToString("dd/MM/yyyy")
-</div>
-
-<div id="lstInscripcionRequerimiento"></div>
-
-<button id="btnInscribirme" type="button">@(inscripcion == null ? "INSCRIBIRME" : "ACTUALIZAR DOCUMENTOS")</button>
 @if (inscripcion != null)
 {
-    <a href="@Url.Content($"~/Convocatoria/{inscripcion.ID_CONVOCATORIA}/Criterios")">COMPLETAR CRITERIOS</a>
-}*@
+    <div class="container-fluid mt-5">
+        <div class="container">
+            <div class="row">
+                <h1>¡GRACIAS POR INSCRIBIRTE EN LA CONVOCATORIA!</h1>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    if (convocatoria.ID_ETAPA == (int)EnumsCustom.Etapas.PUBLICACIONYDIFUSION)
+    {
+        <div class="container-fluid mt-5">
+            <div class="container">
+                <div class="row">
+                    <h1>¡Actualmente la convocatoria se encuentra en la etapa de @(((EnumsCustom.Etapas)convocatoria.ID_ETAPA).GetAttributeOfType<DescriptionAttribute>())!</h1>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="container-fluid mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="estilo-05" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a class="text-sres-gris" href="./index.html">Inicio</a></li>
+                                <li class="breadcrumb-item"><a class="text-sres-gris" href="./bandeja-postulante.html">Bandeja</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Requisitos</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid my-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bg-sres-claro p-3">
+                            <div class="row">
+                                <div class="col-lg-1 col-md-12 text-left text-lg-center">
+                                    <div class="estilo-07 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("dd")</div>
+                                    <div class="estilo-03 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("MMM").Replace(".", "").ToUpper()</div>
+                                    <div class="estilo-02 estilo-02-force text-sres-claro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("yyyy")</div>
+                                </div>
+                                <div class="col-lg-11 col-md-12 barra-oscura">
+                                    <h2 class="estilo-03 text-sres-oscuro text-limit-1">@convocatoria.NOMBRE</h2>
+                                    <p class="estilo-01 text-justify text-sres-gris m-0 text-limit-3" data-limit="1">@convocatoria.DESCRIPCION</p>
+                                    <div class="text-right d-none d-lg-block"><a class="estilo-01 text-sres-verde leer-mas" href="#">Leer más</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mb-3">
+            <div class="container">
+                <div class="rayado wow fadeIn"></div>
+            </div>
+        </div>
+        <div class="container-fluid mb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="estilo-01 text-justify text-sres-gris m-0">Con la finalidad de que la entidad postulante demuestre las condiciones legales para realizar sus actividades económicas, se sugiere que éstas puedan cumplir con los siguientes criterios:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid my-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bg-sres-claro py-5 px-3" id="viewInscripcionRequerimiento">
+                            <div class="row">
+                                <div class="col-12" id="lstInscripcionRequerimiento"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox" id="chk-norma-01">
+                                                    <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-01">Acepto cumplir con la normativa vigente que corresponda, pudiendo ser excluidas del premio en caso de verificarse incumplimiento de ésta, incluso una vez entregado el mismo</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox" id="chk-norma-02">
+                                                    <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-02">Acepto permitir la visita a las instalaciones, facilitar información complementaria y/o presentar el proyecto al Comité Organizador y Evaluador, en caso que éste lo solicite.</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Action("Index", "Convocatoria")">Regresar</a></div>
+                                                <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-primary text-white w-100 mb-3" href="./criterios.html" id="btnInscribirme">@(inscripcion == null ? "Participar" : "Actualizar")</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

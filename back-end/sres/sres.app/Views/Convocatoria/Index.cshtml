@@ -5,7 +5,7 @@
     ViewBag.Titulo = "Bandeja";
     ViewBag.SRESDescription = false;
     UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
-    ViewBag.convocatoria = !ViewData.ContainsKey("convocatoria") ? null : ViewData["convocatoria"] == null ? null : (ConvocatoriaBE)ViewData["convocatoria"];
+    //ViewBag.convocatoria = !ViewData.ContainsKey("convocatoria") ? null : ViewData["convocatoria"] == null ? null : (ConvocatoriaBE)ViewData["convocatoria"];
 }
 @section scripts_footer{
     <script>
