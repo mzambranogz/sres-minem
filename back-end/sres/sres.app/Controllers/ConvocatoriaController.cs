@@ -1,4 +1,5 @@
 ﻿using sres.app.Controllers._Base;
+using sres.app.Models;
 using sres.be;
 using sres.ln;
 using sres.ut;
@@ -22,6 +23,11 @@ namespace sres.app.Controllers
         [SesionOut]
         public ActionResult Index()
         {
+            UsuarioBE usuario = ObtenerUsuarioLogin();
+            if (usuario.ID_ROL != (int)EnumsCustom.Roles.POSTULANTE)
+            {
+                ViewData["convocatoria"] = convocatoriaLN.ObtenerUltimaConvocatoria();
+            }
             return View();
         }
 

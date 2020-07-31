@@ -247,6 +247,8 @@
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Participante\Index.cshtml" />
     <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
+    <Content Include="Views\Convocatoria\IndexPostulante.cshtml" />
+    <Content Include="Views\Convocatoria\IndexEvaluador.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

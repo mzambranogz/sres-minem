@@ -52,6 +52,22 @@ namespace sres.ln
             return item;
         }
 
+        public ConvocatoriaBE ObtenerUltimaConvocatoria()
+        {
+            ConvocatoriaBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = convocatoriaDA.ObtenerUltimaConvocatoria(cn);
+                //item.LISTA_REQ = requerimientoDA.ListarRequerimientoPorConvocatoria(idConvocatoria, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
         public ConvocatoriaBE RegistroConvocatoria(ConvocatoriaBE entidad)
         {
             ConvocatoriaBE item = new ConvocatoriaBE();

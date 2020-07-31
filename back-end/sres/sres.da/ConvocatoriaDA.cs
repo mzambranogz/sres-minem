@@ -71,6 +71,22 @@ namespace sres.da
             return item;
         }
 
+        public ConvocatoriaBE ObtenerUltimaConvocatoria(OracleConnection db)
+        {
+            ConvocatoriaBE item = null;
+
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_OBTIENE_ULT_CONV";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.QueryFirstOrDefault<ConvocatoriaBE>(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return item;
+        }
+
         public ConvocatoriaBE RegistroConvocatoria(ConvocatoriaBE entidad, out int idConvocatoria, OracleConnection db, OracleTransaction ot = null)
         {
             idConvocatoria = -1;
