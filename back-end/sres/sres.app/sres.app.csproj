@@ -249,6 +249,8 @@
     <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
     <Content Include="Views\Convocatoria\IndexPostulante.cshtml" />
     <Content Include="Views\Convocatoria\IndexEvaluador.cshtml" />
+    <Content Include="Views\Convocatoria\EvaluacionCriterio.cshtml" />
+    <Content Include="Views\Convocatoria\EvaluacionCriterios.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -99,6 +99,7 @@ var cargarDatos = (data) => {
     $('#cbo-etapa').val(data.ID_ETAPA);
     $('#frm').data('id', data.ID_CONVOCATORIA);
     $('#txtConvocatoria').val(data.NOMBRE);
+    $('#txtDescripcion').val(data.DESCRIPCION);
     data.TXT_FECHA_INICIO == '0001-01-01' ? null : $('#fchFechaInicio').val(data.TXT_FECHA_INICIO);
     data.TXT_FECHA_FIN == '0001-01-01' ? null : $('#fchFechaFin').val(data.TXT_FECHA_FIN);
     $('#txtLimite').val(data.LIMITE_POSTULANTE);
@@ -112,13 +113,14 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
         contenido = data.map((x, i) => {
             let colNro = `<td>${(pagina - 1) * registros + (i + 1)}</td>`;
             let colNombre = `<td>${x.NOMBRE}</td>`;
+            let colDescripcion = `<td>${x.DESCRIPCION}</td>`;
             let colFechaInicio = `<td>${x.TXT_FECHA_INICIO == '01/01/0001' ? '' : x.TXT_FECHA_INICIO}</td>`;
             let colFechaFin = `<td>${x.TXT_FECHA_FIN == '01/01/0001' ? '' : x.TXT_FECHA_FIN}</td>`;
             let colLimite = `<td>${x.LIMITE_POSTULANTE}</td>`;
             let btnCambiarEstado = `${[0, 1].includes(x.FLAG_ESTADO) ? "" : `<a href="#" data-id="${x.ID_CONVOCATORIA}" data-estado="${x.FLAG_ESTADO}" class="btnCambiarEstado">ELIMINAR</a> `}`;
             let btnEditar = `<a href="#" data-id="${x.ID_CONVOCATORIA}" class="btnEditar">EDITAR</a>`;
             let colOpciones = `<td>${btnCambiarEstado}${btnEditar}</td>`;
-            let fila = `<tr>${colNro}${colNombre}${colFechaInicio}${colFechaFin}${colLimite}${colOpciones}</tr>`;
+            let fila = `<tr>${colNro}${colNombre}${colDescripcion}${colFechaInicio}${colFechaFin}${colLimite}${colOpciones}</tr>`;
             return fila;
         }).join('');
     };
@@ -287,6 +289,7 @@ var limpiarFormulario = () => {
 var guardar = () => {
     let id = $('#frm').data('id');
     let nombre = $('#txtConvocatoria').val();
+    let descripcion = $('#txtDescripcion').val();
     let fechaInicio = $('#fchFechaInicio').val();
     let fechaFin = $('#fchFechaFin').val();
     let limite = $('#txtLimite').val();
@@ -384,7 +387,7 @@ var guardar = () => {
 
     let url = `/api/convocatoria/guardarconvocatoria`;
 
-    let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, DESCRIPCION: descripcion, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, USUARIO_GUARDAR: idUsuarioLogin };
     //debugger;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
