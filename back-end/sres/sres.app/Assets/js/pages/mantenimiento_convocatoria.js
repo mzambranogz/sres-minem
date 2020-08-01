@@ -4,6 +4,9 @@
     $('#btnNuevo').on('click', (e) => nuevo());
     $('#btnCerrar').on('click', (e) => cerrarFormulario());
     $('#btnGuardar').on('click', (e) => guardar());
+    $('.mostrar-relacion').on('click', (e) => relacionar());
+    $('#btnCerrarRelacion').on('click', (e) => cerrarRelacion());
+    $('#btnGuardarRelacion').on('click', (e) => guardarRelacion());
     consultarListas();
     //consultarRequerimiento('#list-req');
     //consultarCriterio('#list-criterio');
@@ -61,16 +64,27 @@ var consultarConvocatoria = (element) => {
         let urlConvocatoriaCri = `/api/convocatoria/listarconvocatoriacri?id=${id}`;
         let urlConvocatoriaEva = `/api/convocatoria/listarconvocatoriaeva?id=${id}`;
         let urlConvocatoriaEta = `/api/convocatoria/listarconvocatoriaeta?id=${id}`;
+        let urlConvocatoriaPos = `/api/convocatoria/listarconvocatoriapos?id=${id}`;
         Promise.all([
             fetch(urlConvocatoriaReq),
             fetch(urlConvocatoriaCri),
             fetch(urlConvocatoriaEva),
-            fetch(urlConvocatoriaEta)
+            fetch(urlConvocatoriaEta),
+            fetch(urlConvocatoriaPos)
         ])
         .then(r => Promise.all(r.map(v => v.json())))
-        .then(([jReq, jCri, jEva, jEta]) => {
+        .then(([jReq, jCri, jEva, jEta, jPos]) => {
             cargarDatos(j);
             //jCri.length == 0 ? '' : jReq.map(x => $('#chk-r-'+x.ID_REQUERIMIENTO).prop('checked', true));
+
+            if (jPos.length > 0){
+                let postulante = jPos.map((x,y) => {
+                    let evaluadores = armarEvaluadores(jEva, x.ID_INSTITUCION);
+                    return `<div class="get-valor"><label class="get-institucion mr-3" id="${x.ID_INSTITUCION}">${x.RAZON_SOCIAL}</label>${evaluadores}</div>`;
+                }).join('');    
+                $('.postulante-evaluador').html(postulante);
+            }
+
             if (jCri.length > 0){
                 jCri.map((x,y) => {
                     $('#chk-c-'+x.ID_CRITERIO).prop('checked', true);
@@ -92,6 +106,17 @@ var consultarConvocatoria = (element) => {
             jEta.length == 0 ? '' : jEta.map(x => $('#txt-e-'+x.ID_ETAPA).val(x.DIAS));
         });
     });
+}
+
+var armarEvaluadores = (data, idInstitucion) => {
+    let select = ``;
+    if (data.length > 0){
+        select = data.map((x,y) => {
+            return `<option value="${x.ID_USUARIO}">${x.NOMBRE}</option>`;
+        }).join('');
+        select = `<select class="get-evaluador" id="eva-${idInstitucion}">${select}</select>`
+    }
+    return select;
 }
 
 var cargarDatos = (data) => {
@@ -168,52 +193,12 @@ var cargarCheckListas = ([listaCriterio, listaRequerimiento, listaEvaluador, lis
     cargarComboEtapa('#cbo-etapa', listaEtapa);
 }
 
-//var consultarRequerimiento = (selector) => {
-
-//    let url = `/api/requerimiento/obtenerallrequerimiento`;
-
-//    fetch(url)
-//    .then(r => r.json())
-//    .then(j => cargarCheckRequerimiento(selector, j));
-//}
-
-//var consultarCriterio = (selector) => {
-
-//    let url = `/api/criterio/obtenerallcriterio`;
-
-//    fetch(url)
-//    .then(r => r.json())
-//    .then(j => cargarCheckCriterio(selector, j));
-//}
-
-//var consultarEvaluador = (selector) => {
-
-//    let url = `/api/usuario/obtenerallevaluador`;
-
-//    fetch(url)
-//    .then(r => r.json())
-//    .then(j => cargarCheckEvaluador(selector, j));
-//}
-
-//var consultarEtapa = (selector) => {
-
-//    let url = `/api/etapa/obteneralletapa`;
-
-//    fetch(url)
-//    .then(r => r.json())
-//    .then(j => cargarCheckEtapa(selector, j));
-//}
-
 var cargarCheckRequerimiento = (selector, data) => {
     let items = data.length == 0 ? '' : data.map(x => `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="requerimiento" id="chk-r-${x.ID_REQUERIMIENTO}"><label for="chk-r-${x.ID_REQUERIMIENTO}">${x.NOMBRE}&nbsp;</label></li></ul></div></div>`).join('');
     $(selector).html(items);
 }
 
 var cargarCheckCriterio = (selector, data) => {
-    //let items = data.length == 0 ? '' : data.map(x => `<div><div><ul style="list-style: none;"><li><input type="checkbox" class="criterio" id="chk-c-${x.ID_CRITERIO}"><label for="chk-c-${x.ID_CRITERIO}">${x.NOMBRE}&nbsp;</label><div id="listaRequerimientoCriterio_${x.ID_CRITERIO}"></div></li></ul></div></div>`).join('');
-    //$(selector).html(items);
-    //cargarCheckRequerimiento('div[id*="listaRequerimientoCriterio_"]', dataRequerimiento);
-
     let contenido = data.map((x, i) => {
         let caso = armarcaso(x.LISTA_CASO, x.LISTA_DOCUMENTO);
         let puntaje = armarpuntaje(x.LISTA_CONVCRIPUNT);
@@ -272,6 +257,11 @@ var nuevo = () => {
 
 var cerrarFormulario = () => {
     $('#frm').hide();
+}
+
+var cerrarRelacion = () => {
+    $('.postulante-evaluador').addClass('d-none');
+    $('.postulante-evaluador-btn').addClass('d-none');
 }
 
 var limpiarFormulario = () => {
@@ -386,9 +376,7 @@ var guardar = () => {
     });
 
     let url = `/api/convocatoria/guardarconvocatoria`;
-
     let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, DESCRIPCION: descripcion, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, USUARIO_GUARDAR: idUsuarioLogin };
-    //debugger;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
@@ -400,4 +388,43 @@ var guardar = () => {
             $('#btnConsultar')[0].click();
         }
     });
+}
+
+var guardarRelacion = () => {
+    debugger;
+    if ($('.postulante-evaluador').find('.get-valor').length == 0){
+        alert('No hay participantes en esta convocatoria'); return;
+    }
+
+    if ($('.postulante-evaluador').find('.get-valor').find('.get-evaluador').length == 0){
+        alert('Debe selecionar los evaluadores que participarán en la convocatoria'); return;
+    }
+
+    let relacion = [];
+    $('.postulante-evaluador').find('.get-valor').each((x, y) => {
+        var r = {
+            ID_CONVOCATORIA: $('#frm').data('id'),
+            ID_INSTITUCION: $(y).find('.get-institucion').attr('id'),
+            ID_USUARIO: $(`#eva-${$(y).find('.get-institucion').attr('id')}`).val()
+        }
+        relacion.push(r);        
+    });
+
+    let url = `/api/convocatoria/guardarevaluadorpostulante`;
+    let data = { LIST_INSTITUCION: relacion, USUARIO_GUARDAR: idUsuarioLogin };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+    fetch(url, init)
+    .then(r => r.json())
+    .then(j => {
+        if (j) {
+            alert('Se guardó correctamente la relación');
+            cerrarRelacion();
+        }
+    });
+}
+
+var relacionar = () => {
+    $('.postulante-evaluador').removeClass('d-none');
+    $('.postulante-evaluador-btn').removeClass('d-none');
 }

@@ -263,5 +263,38 @@ namespace sres.ln
             return lista;
         }
 
+        public List<InstitucionBE> listarConvocatoriaPos(ConvocatoriaBE entidad)
+        {
+            List<InstitucionBE> lista = new List<InstitucionBE>();
+
+            try
+            {
+                cn.Open();
+                lista = convocatoriaDA.listarConvocatoriaPos(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public bool GuardarEvaluadorPostulante(ConvocatoriaBE entidad)
+        {
+            bool seGuardoConvocatoria = false;
+            try
+            {
+                cn.Open();
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {   
+                    foreach (InstitucionBE i in entidad.LIST_INSTITUCION)
+                        if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEvaluadorPostulante(i, cn))) break;
+
+                    if (seGuardoConvocatoria) ot.Commit();
+                    else ot.Rollback();
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return seGuardoConvocatoria;
+        }
+
     }
 }

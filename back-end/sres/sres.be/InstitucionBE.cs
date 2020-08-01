@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sres.be
 {
-    public partial class InstitucionBE
+    public partial class InstitucionBE : BaseBE
     {
         public int ID_INSTITUCION { get; set; }
         public string RUC { get; set; }

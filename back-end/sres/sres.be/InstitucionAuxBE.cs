@@ -11,5 +11,6 @@ namespace sres.be
         public int? ID_RECONOCIMIENTO { get; set; }
         public int? ID_INSCRIPCION { get; set; }
         public int? ID_CONVOCATORIA { get; set; }
+        public int? ID_USUARIO { get; set; }
     }
 }
