@@ -266,14 +266,15 @@ namespace sres.ln
         public List<InstitucionBE> listarConvocatoriaPos(ConvocatoriaBE entidad)
         {
             List<InstitucionBE> lista = new List<InstitucionBE>();
-
             try
             {
                 cn.Open();
                 lista = convocatoriaDA.listarConvocatoriaPos(entidad, cn);
+                if (lista.Count > 0) 
+                    foreach (InstitucionBE ins in lista) 
+                        ins.CONV_EVA_POS = convocatoriaDA.ObtenerConvEvaluadorPostulante(ins, cn);   
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
-
             return lista;
         }
 
@@ -286,7 +287,8 @@ namespace sres.ln
                 using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
                 {   
                     foreach (InstitucionBE i in entidad.LIST_INSTITUCION)
-                        if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEvaluadorPostulante(i, cn))) break;
+                        if (i.ID_USUARIO > 0)
+                            if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEvaluadorPostulante(i, cn))) break;
 
                     if (seGuardoConvocatoria) ot.Commit();
                     else ot.Rollback();

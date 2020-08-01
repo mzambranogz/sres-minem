@@ -51,6 +51,7 @@ var consultar = () => {
 
 var consultarConvocatoria = (element) => {
     $('#frm').show();
+    $('.relacion-evaluador').removeClass('d-none');
     $('#etapa-convocatoria').show();
     limpiarFormulario();
     let id = $(element).attr('data-id');
@@ -83,6 +84,7 @@ var consultarConvocatoria = (element) => {
                     return `<div class="get-valor"><label class="get-institucion mr-3" id="${x.ID_INSTITUCION}">${x.RAZON_SOCIAL}</label>${evaluadores}</div>`;
                 }).join('');    
                 $('.postulante-evaluador').html(postulante);
+                asignarEvaluador(jPos);
             }
 
             if (jCri.length > 0){
@@ -114,9 +116,18 @@ var armarEvaluadores = (data, idInstitucion) => {
         select = data.map((x,y) => {
             return `<option value="${x.ID_USUARIO}">${x.NOMBRE}</option>`;
         }).join('');
-        select = `<select class="get-evaluador" id="eva-${idInstitucion}">${select}</select>`
+        select = `<select class="get-evaluador" id="eva-${idInstitucion}"><option value="0">-Seleccione-</option>${select}</select>`
     }
     return select;
+}
+
+var asignarEvaluador = (data) => {
+    data.map((x,y) => {
+        if (x.CONV_EVA_POS != null){
+            $(`#eva-${x.ID_INSTITUCION}`).val(x.CONV_EVA_POS.ID_USUARIO);
+            $(`#eva-${x.ID_INSTITUCION}`).find(`option[value='0']`).remove();
+        }
+    });
 }
 
 var cargarDatos = (data) => {
@@ -253,6 +264,9 @@ var nuevo = () => {
     limpiarFormulario();
     $('#frm').show();
     $('#etapa-convocatoria').hide();
+    $('.relacion-evaluador').addClass('d-none');
+    $('.postulante-evaluador-btn').addClass('d-none');
+    $('.postulante-evaluador').addClass('d-none');
 }
 
 var cerrarFormulario = () => {
@@ -274,6 +288,7 @@ var limpiarFormulario = () => {
     $('#list-criterio').find('.criterio').each((x, y) => { $(y).prop('checked', false); });
     $('#list-evaluador').find('.evaluador').each((x, y) => { $(y).prop('checked', false); });
     $('#tbl-etapa').find('.etapa').each((x, y) => { $(y).val('') });
+    $('.postulante-evaluador').html('');
 }
 
 var guardar = () => {
@@ -391,7 +406,6 @@ var guardar = () => {
 }
 
 var guardarRelacion = () => {
-    debugger;
     if ($('.postulante-evaluador').find('.get-valor').length == 0){
         alert('No hay participantes en esta convocatoria'); return;
     }

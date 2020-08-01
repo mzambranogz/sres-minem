@@ -414,5 +414,25 @@ namespace sres.da
             return seGuardo;
         }
 
+        public ConvocatoriaEvaluadorPostulanteBE ObtenerConvEvaluadorPostulante(InstitucionBE entidad, OracleConnection db)
+        {
+            ConvocatoriaEvaluadorPostulanteBE item = new ConvocatoriaEvaluadorPostulanteBE();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_GET_CONV_EVA_POS";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
+                p.Add("PI_ID_INSTITUCION", entidad.ID_INSTITUCION);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.QueryFirstOrDefault<ConvocatoriaEvaluadorPostulanteBE>(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return item;
+        }
+
     }
 }
