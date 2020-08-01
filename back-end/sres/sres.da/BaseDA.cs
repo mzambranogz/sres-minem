@@ -18,10 +18,10 @@ namespace sres.da
             {
                 return new
                 {
-                    Admin = $"{User}.PKG_SRES_ADMIN.",
-                    Mantenimiento = $"{User}.PKG_SRES_MANTENIMIENTO.",
-                    Criterio = $"{User}.PKG_SRES_CRITERIO.",
-                    Verificacion = $"{User}.PKG_SRES_VERIFICACION."
+                    Admin = $"{User}.PKG_SiSSELLO_ADMIN.",
+                    Mantenimiento = $"{User}.PKG_SISSELLO_MANTENIMIENTO.",
+                    Criterio = $"{User}.PKG_SISSELLO_CRITERIO.",
+                    Verificacion = $"{User}.PKG_SISSELLO_VERIFICACION."
                 };
             }
         }

@@ -1,7 +1,16 @@
 ﻿@using sres.be
 @{
     //ViewBag.Title = "IndexEvaluador";
+    string dia="31", mes="JUL", anio="2020", titulo = "No se encontraron convocatorias", descripcion = "";
     ConvocatoriaBE convocatoria = ViewData["convocatoria"] == null ? null : (ConvocatoriaBE)ViewData["convocatoria"];
+    if (convocatoria != null) {
+        dia = convocatoria.FECHA_INICIO.ToString("dd");
+        mes = convocatoria.FECHA_INICIO.ToString("MMM").Replace(".", "").ToUpper();
+        anio = convocatoria.FECHA_INICIO.ToString("yyyy");
+        titulo = convocatoria.NOMBRE;
+        descripcion = convocatoria.DESCRIPCION;
+    }
+
 }
 
 <div class="container-fluid my-5">
@@ -11,14 +20,20 @@
                 <div class="bg-sres-claro p-3">
                     <div class="row">
                         <div class="col-lg-2 col-md-12 text-left text-lg-center">
-                            <div class="estilo-07 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("dd")</div>
+                            @*<div class="estilo-07 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("dd")</div>
                             <div class="estilo-03 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("MMM").Replace(".", "").ToUpper()</div>
-                            <div class="estilo-02 estilo-02-force text-sres-claro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("yyyy")</div>
+                            <div class="estilo-02 estilo-02-force text-sres-claro d-inline-block d-lg-block">@convocatoria.FECHA_INICIO.ToString("yyyy")</div>*@
+                            <div class="estilo-07 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@dia</div>
+                            <div class="estilo-03 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@mes</div>
+                            <div class="estilo-02 estilo-02-force text-sres-claro d-inline-block d-lg-block">@anio</div>
                         </div>
                         <div class="col-lg-10 col-md-12 barra-oscura">
-                            <h2 class="estilo-03 text-sres-oscuro text-limit-1">@convocatoria.NOMBRE</h2>
-                            <p class="estilo-01 text-justify text-sres-gris m-0 text-limit-3" data-limit="1">@convocatoria.DESCRIPCION</p>
-                            <div class="text-right d-none d-lg-block"><a class="estilo-01 text-sres-verde leer-mas" href="#">Leer más</a></div>
+                            @*<h2 class="estilo-03 text-sres-oscuro text-limit-1">@convocatoria.NOMBRE</h2>
+                            <p class="estilo-01 text-justify text-sres-gris m-0 text-limit-3" data-limit="1">@convocatoria.DESCRIPCION</p>*@
+                            <h2 class="estilo-03 text-sres-oscuro text-limit-1">@titulo</h2>
+                            <p class="estilo-01 text-justify text-sres-gris m-0 text-limit-3" data-limit="1">@descripcion</p>
+                            @if (convocatoria != null)
+                            { <div class="text-right d-none d-lg-block"><a class="estilo-01 text-sres-verde leer-mas" href="#">Leer más</a></div>}
                         </div>
                     </div>
                 </div>
