@@ -80,14 +80,15 @@ var renderizar = (data, cantidadCeldas) => {
             let btnIngresar = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
             let btnGestionar = `<a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>`;
             let btnEditarRequisitos = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme"><i class="fas fa-edit mr-1"></i>Editar requisitos</a>`
-            let btnEditarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Criterios"><i class="fas fa-edit mr-1"></i>Editar criterios</a>`
-            let btnSeguimiento = `<a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a>`;
-            let btnVerReconocimiento = `<a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a>`;
+            let btnEditarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Criterios"><i class="fas fa-edit mr-1"></i>${x.ID_ETAPA == 3 ? `Ingresar` : `Editar`} criterios</a>`
+            let btnSeguimiento = `<a class="dropdown-item estilo-01" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a>`;
+            let btnVerReconocimiento = `<a class="dropdown-item estilo-01" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a>`;
             let btnEvaluarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/EvaluacionCriterios"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a>`;
 
-            let OpcionesRegistrar = `<div class="dropdown-menu">${btnEditarRequisitos}${btnEditarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div>`;
+            let OpcionesEtapa3 = `<div class="dropdown-menu">${btnEditarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div>`;
             let OpcionesEvaluacion = `<div class="dropdown-menu">${btnEvaluarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div>`;
-            let colOpciones = `<td class="text-center" data-encabezado="Gestión">${x.ID_ETAPA == 1 ? btnDetalles : ''}${x.ID_ETAPA == 2 ? btnIngresar : ''}${x.ID_ETAPA == 3 ? `${btnGestionar}${OpcionesRegistrar}` : ''}${x.ID_ETAPA == 5 ? `${btnGestionar}${OpcionesEvaluacion}` : ``}</td>`;
+            let OpcionesEtapa7 = `<div class="dropdown-menu">${btnEditarRequisitos}${btnEditarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div>`;
+            let colOpciones = `<td class="text-center" data-encabezado="Gestión">${x.ID_ETAPA == 1 ? btnDetalles : ''}${x.ID_ETAPA == 2 ? btnIngresar : ''}${x.ID_ETAPA == 3 ? `${btnGestionar}${OpcionesEtapa3}` : ''}${x.ID_ETAPA == 5 ? `${btnGestionar}${OpcionesEvaluacion}` : ``}${x.ID_ETAPA == 7 ? `${btnGestionar}${OpcionesEtapa7}` : ''}</td>`;
             //let colOpciones = `<td class="text-center" data-encabezado="Gestión">${x.ID_ETAPA == 1 ? btnDetalles : ''}${x.ID_ETAPA == 2 ? btnIngresar : ''}${x.ID_ETAPA == 3 ? btnGestionar : ''}<div class="dropdown-menu">${btnEditarRequisitos}${btnEditarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div></div></td>`;
             //let colOpciones = `<td class="text-center" data-encabezado="Gestión">${x.FLAG_ESTADO == '1' ? btnIngresar : btnGestionar}<div class="dropdown-menu">${btnEditarRequisitos}${btnEditarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div></div></td>`;
             let fila = `<tr>${colNro}${colNroInforme}${colPeriodo}${colNombre}${colFechaInicio}${colFechaFin}${colVencimiento}${colEstado}${colOpciones}</tr>`;
