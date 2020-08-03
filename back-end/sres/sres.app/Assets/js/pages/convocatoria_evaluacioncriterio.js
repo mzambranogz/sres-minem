@@ -64,29 +64,23 @@ var mostrarDocumentos = (data) => {
     if (data.length > 0) {
         let tituloDoc = '<div class="col-lg-6 col-md-12 col-sm-12"><h3 class="estilo-02 text-sres-azul mb-5 text-left">DOCUMENTOS</h3></div>';
         let tituloArchivosAdjuntos = '<div class="col-lg-6 col-md-12 col-sm-12 d-none d-lg-block"><h3 class="estilo-02 text-sres-azul mb-5 text-left"></h3></div>';
-        let cabecera = `<div class="row">${tituloDoc}${tituloArchivosAdjuntos}</div>`;
-
+        let cabecera = `<div class="row">${tituloDoc}${tituloArchivosAdjuntos}</div>`;        
         let contenido = data.map(x => {
             let fileDoc = `<div class="form-group"><label class="estilo-01 text-limit-1 text-left" for="fle-requisito-${x.ID_DOCUMENTO}">${x.NOMBRE}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span></label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div><input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-${x.ID_DOCUMENTO}" value="${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ARCHIVO_BASE}" disabled><div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/criterio/obtenerdocumento/${idConvocatoria}/${idCriterio}/${$(`#cbo-caso`).val()}/${idInscripcion}/${x.ID_DOCUMENTO}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div></div></div>`
             let colLeft = `<div class="col-lg-6 col-md-12 col-sm-12">${fileDoc}</div>`;
-            let contenidoFileDoc = ``;
-            //let contenidoFileDoc = `<div class="alert alert-secondary p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div></div>`;
-            //if (x.OBJ_INSCDOC != null) {
-            //    let nombreFileDoc = `<i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">${x.OBJ_INSCDOC.ARCHIVO_BASE}</span>`;
-            //    let btnDescargaFileDoc = `<a class="text-sres-verde" href="${baseUrl}api/inscripcionrequerimiento/obtenerarchivo/${idConvocatoria}/${idCriterio}/${$(`#cbo-caso`).val()}/${x.ID_DOCUMENTO}"><i class="fas fa-download px-2 py-1"></i></a>`;
-            //    let btnEliminarFileDoc = `<a class="text-sres-verde btnEliminarFile" href="#" data-id="${x.ID_DOCUMENTO}"><i class="fas fa-trash px-2 py-1"></i></a>`;
-            //    contenidoFileDoc = `<div class="alert alert-success p-1 d-flex"><div class="mr-auto">${nombreFileDoc}</div><div class="ml-auto">${btnDescargaFileDoc}${btnEliminarFileDoc}</div></div>`;
-            //}
-
-
-            let colRight = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="form-group" id="viewContentFile-${x.ID_DOCUMENTO}"><label class="estilo-01">&nbsp;</label>${contenidoFileDoc}</div></div>`;
+            let radioAprobado = `<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="rad-evaluacion-${x.ID_DOCUMENTO}" id="rad-eva-${x.ID_DOCUMENTO}-1" onchange="verificarEvaluacion(this)" value="1"><label class="form-check-label" for="rad-eva-${x.ID_DOCUMENTO}-1">Aprobado</label></div>`;
+            let radioDesaprobado = `<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="rad-evaluacion-${x.ID_DOCUMENTO}" id="rad-eva-${x.ID_DOCUMENTO}-2" onchange="verificarEvaluacion(this)" value="0"><label class="form-check-label" for="rad-eva-${x.ID_DOCUMENTO}-2">Desaprobado</label></div>`;
+            let contenidoFileDoc = `<div class="alert alert-secondary p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha evaluado el documento</span></div></div>`;
+            if (x.OBJ_INSCDOC.ID_TIPOeVALUACION != null) {
+                let labelAprobado = x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 1 ? `<div class="alert alert-success p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">El documento es correcto</span></div></div>` : ``;
+                let labelDesaprobado = x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 2 ? `<div class="alert alert-danger p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div></div>` : ``;
+                contenidoFileDoc = `${labelAprobado}${labelDesaprobado}`;
+            }
+            let colRight = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="form-group" id="viewContentFile-${x.ID_DOCUMENTO}"><label class="estilo-01 text-left w-100">${radioAprobado}${radioDesaprobado}</label><div id="evaluacion-${x.ID_DOCUMENTO}">${contenidoFileDoc}</div></div></div>`;
             let contenidoFinal = `<div class="row">${colLeft}${colRight}</div>`;
             return contenidoFinal;
         }).join('')
         $('#doc-add').html(`${cabecera}${contenido}`);
-        //data.forEach(x => {
-        //    x.OBJ_INSCDOC == null ? '' : $(`input[type="file"][id*="fle-requisito-${x.ID_DOCUMENTO}"]`).data('file', x.OBJ_INSCDOC.ARCHIVO_CONTENIDO);
-        //})
     }
 }
 
@@ -117,22 +111,15 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
                 filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} readonly /></div></div></td>`;
         } else {
             let v = 0;
-            //filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><select class="form-control form-control-sm multi-opciones ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["FILTRO"] == null ? `` : lista[i]["FILTRO"] == '' ? `` : `data-filtro="${lista[i]["FILTRO"]}" onchange="filtrar(this)"`}  ${lista[i]["VERIFICABLE"] == '1' ? `onchange="verificarValor(this)"` : ``}><option value="0">Seleccione</option>`;
             for (var j = 0; j < lista[i]["LIST_PARAMDET"].length; j++) {
-                //filas += `<option value="${lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"]}" ${validarNull(lista[i]["VALOR"]) == lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"] ? `selected` : ``}>${lista[i]["LIST_PARAMDET"][j]["NOMBRE"]}</option>`;
                 if (validarNull(lista[i]["VALOR"]) == lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"]) {
-                    //debugger;
                     filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${lista[i]["LIST_PARAMDET"][j]["NOMBRE"]}" readonly /></div></div></td>`;
                     v++;
                 }
             }
             if (v == 0) filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="" readonly /></div></div></td>`;
-            //filas += `</select></div></td>`;
-            //$(`#${id_criterio}-${id_caso}-${id_componente}-${incremental == '1' ? row : id_indicador}-${lista[i]["ID_PARAMETRO"]}`).val(validarNull(lista[i]["VALOR"]));
         }
-
     }
-    //filas += incremental == '1' ? `<td><div class="btn btn-info btn-sm estilo-01" type="button" onclick="eliminarFila(this);"><i class="fas fa-minus-circle mr-1"></i>Quitar</div></td>` : ``;
     return `${filas}</tr>`;
 }
 
@@ -162,6 +149,15 @@ var armarFilaEstatico = (lista, id_criterio, id_caso, id_componente, id_indicado
 var validarNull = (valor) => {
     if (valor == null) valor = '';
     return valor;
+}
+
+var verificarEvaluacion = (e) => {
+    debugger;
+    if ($(e).is(':checked')) {
+        let arr = $(e).attr('id').replace('rad-eva-', '').split('-');
+        let evaluacion = arr[1] == 1 ? `<div class="alert alert-success p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">El documento es correcto</span></div></div>` : `<div class="alert alert-danger p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div></div>`;
+        $(`#evaluacion-${arr[0]}`).html(evaluacion);
+    }
 }
 
 var guardar = () => {

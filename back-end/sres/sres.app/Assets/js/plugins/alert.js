@@ -50,6 +50,28 @@
         //return this;
     }
 
+    $.fn.alertWarning = function (options) {
+        this.defaults = {
+            type: 'success',
+            title: 'Titulo',
+            message: 'Mensaje',
+            close: null
+        };
+
+        var settings = $.extend($.fn.alertWarning.defaults, options);
+        let element = $(`<div class="alert alert-${settings.type} d-flex align-items-stretch" role="alert"></div>`);
+        let optionsContent = `<div class="alert-wrap mr-3"><div class="sa"><div class="sa-${settings.type}"><div class="sa-${settings.type}-body"></div><div class="sa-${settings.type}-dot"></div></div></div></div>`;
+        let titleContent = `<h6>${settings.title}</h6>`;
+        let messageContent = `<small class="mb-0 estilo-01">${settings.message}</small>`;
+        let content = `${optionsContent}<div class="alert-wrap">${titleContent}<hr class="my-1">${messageContent}</div>`;
+        element.html(content);
+        let nextElement = this.next();
+        if (nextElement.hasClass('alert')) nextElement.remove();
+        this.after(element);
+        if (settings.close != null) setTimeout(() => { element.remove(); }, settings.close.time);
+        //return this;
+    }
+
     $.fn.alertError = function (options) {
         this.defaults = {
             type: 'success',

@@ -13,6 +13,7 @@ namespace sres.be
         public int ID_CASO { get; set; }
         public int ID_DOCUMENTO { get; set; }
         public int ID_INSCRIPCION { get; set; }
+        public int ID_TIPO_EVALUACION { get; set; }
         public string ARCHIVO_BASE { get; set; }
         public string ARCHIVO_CIFRADO { get; set; }
         public byte[] ARCHIVO_CONTENIDO { get; set; }

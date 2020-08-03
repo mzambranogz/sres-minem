@@ -90,10 +90,10 @@ var fileDocChange = (e) => {
 
     switch (fileContent.name.substring(fileContent.name.lastIndexOf('.') + 1).toLowerCase()) {
         case 'pdf': case 'jpg': case 'jpeg': case 'png': case 'doc': case 'docx': case 'xls': case 'xlsx': case 'xlsm': break;
-        default: $(elFile).parent().parent().parent().parent().alert({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo tiene una extensión no permitida` }); return false; break;
+        default: $(elFile).parent().parent().parent().parent().alertWarning({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo tiene una extensión no permitida` }); return false; break;
     }
 
-    if (fileContent.size > maxBytes) { $(elFile).parent().parent().parent().parent().alert({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo debe tener un peso máximo de 4MB` }); return false; }
+    if (fileContent.size > maxBytes) { $(elFile).parent().parent().parent().parent().alertWarning({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo debe tener un peso máximo de 4MB` }); return false; }
     else
         $(elFile).parent().parent().parent().parent().alert('remove');
 
