@@ -60,7 +60,7 @@ var mostrarDocumentos = (data) => {
         let cabecera = `<div class="row">${tituloDoc}${tituloArchivosAdjuntos}</div>`;
 
         let contenido = data.map(x => {
-            let fileDoc = `<div class="form-group"><label class="estilo-01 text-limit-1 text-left" for="fle-requisito-${x.ID_DOCUMENTO}">${x.NOMBRE}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div><input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-${x.ID_DOCUMENTO}" placeholder="Subir documentos" value="${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ARCHIVO_BASE}" required><input class="d-none fil-file-control" type="file" id="fle-requisito-${x.ID_DOCUMENTO}" data-id="${x.ID_DOCUMENTO}" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*"><div class="input-group-append"><label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-${x.ID_DOCUMENTO}"><i class="fas fa-upload mr-1"></i>Subir archivo</label></div></div></div>`
+            let fileDoc = `<div class="form-group"><label class="estilo-01 text-limit-1 text-left" for="fle-requisito-${x.ID_DOCUMENTO}">${x.NOMBRE}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div><input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-${x.ID_DOCUMENTO}" placeholder="Subir documentos" value="${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ARCHIVO_BASE}" required><input class="d-none fil-file-control" type="file" id="fle-requisito-${x.ID_DOCUMENTO}" data-id="${x.ID_DOCUMENTO}" accept="application/msword, application/vnd.ms-excel, text/plain, application/pdf, image/*"><div class="input-group-append"><label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-${x.ID_DOCUMENTO}"><i class="fas fa-upload mr-1"></i>Subir archivo</label></div></div></div>`
             let colLeft = `<div class="col-lg-6 col-md-12 col-sm-12">${fileDoc}</div>`;
             let contenidoFileDoc = `<div class="alert alert-secondary p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div></div>`;
             if (x.OBJ_INSCDOC != null) {
@@ -85,6 +85,19 @@ var mostrarDocumentos = (data) => {
 
 var fileDocChange = (e) => {
     let elFile = $(e.currentTarget);
+    var fileContent = e.currentTarget.files[0];
+    let verificar;
+
+    switch (fileContent.name.substring(fileContent.name.lastIndexOf('.') + 1).toLowerCase()) {
+        case 'pdf': case 'jpg': case 'jpeg': case 'png': case 'doc': case 'docx': case 'xls': case 'xlsx': case 'xlsm': break;
+        default: $(elFile).parent().parent().parent().parent().alert({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo tiene una extensión no permitida` }); return false; break;
+    }
+
+    if (fileContent.size > maxBytes) { $(elFile).parent().parent().parent().parent().alert({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo debe tener un peso máximo de 4MB` }); return false; }
+    else
+        $(elFile).parent().parent().parent().parent().alert('remove');
+
+    //if (!verificar) return false;
 
     if (e.currentTarget.files.length == 0) {
         $(e.currentTarget).removeData('file');
@@ -93,11 +106,16 @@ var fileDocChange = (e) => {
         return;
     }
 
-    var fileContent = e.currentTarget.files[0];
+    //var fileContent = e.currentTarget.files[0];
 
-    if (fileContent.size > maxBytes) $(elFile).parent().parent().parent().parent().alert({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo debe tener un peso máximo de 4MB` });
-    else
-        $(elFile).parent().parent().parent().parent().alert('remove');
+    //switch (f.name.substring(fileContent.name.lastIndexOf('.') + 1).toLowerCase()) {
+    //    case 'pdf': case 'jpg': case 'jpeg': case 'png': case 'doc': case 'docx': case 'xls': case 'xlsx': case 'xlsm': break;
+    //    default: $(elFile).parent().parent().parent().parent().alert({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo debe tener las extensiones indicadas` }); return false; break;
+    //}
+
+    //if (fileContent.size > maxBytes) { $(elFile).parent().parent().parent().parent().alert({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo debe tener un peso máximo de 4MB` }); return;}
+    //else
+    //    $(elFile).parent().parent().parent().parent().alert('remove');
 
 
     var idElement = $(e.currentTarget).attr("data-id");

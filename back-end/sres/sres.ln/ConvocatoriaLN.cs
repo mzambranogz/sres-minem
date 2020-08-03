@@ -298,5 +298,17 @@ namespace sres.ln
             return seGuardoConvocatoria;
         }
 
+        public bool GuardarConvocatoriaEtapaInscripcion(ConvocatoriaEtapaInscripcionBE entidad)
+        {
+            bool seGuardoConvocatoria = false;
+            try
+            {
+                cn.Open();
+                seGuardoConvocatoria = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return seGuardoConvocatoria;
+        }
+
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="BaseLN.cs" />
     <Compile Include="CasoLN.cs" />
     <Compile Include="ConvocatoriaCriterioPuntajeLN.cs" />
+    <Compile Include="ConvocatoriaEtapaInscripcionLN.cs" />
     <Compile Include="ConvocatoriaLN.cs" />
     <Compile Include="CriterioLN.cs" />
     <Compile Include="EtapaLN.cs" />

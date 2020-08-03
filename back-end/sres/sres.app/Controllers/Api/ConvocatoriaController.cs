@@ -206,5 +206,21 @@ namespace sres.app.Controllers.Api
             return verificar;
         }
 
+        [Route("guardarconvocatoriaetapainscripcion")]
+        [HttpPost]
+        public bool GuardarConvocatoriaEtapaInscripcion(ConvocatoriaEtapaInscripcionBE obj)
+        {
+            bool verificar = false;
+            try
+            {
+                verificar = convocatoriaLN.GuardarConvocatoriaEtapaInscripcion(obj);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return verificar;
+        }
+
     }
 }

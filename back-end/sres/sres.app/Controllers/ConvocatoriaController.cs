@@ -20,6 +20,7 @@ namespace sres.app.Controllers
         CriterioLN criterioLN = new CriterioLN();
         CasoLN casoLN = new CasoLN();
         ConvocatoriaCriterioPuntajeLN convcripuntajeLN = new ConvocatoriaCriterioPuntajeLN();
+        ConvocatoriaEtapaInscripcionLN convetainscLN = new ConvocatoriaEtapaInscripcionLN();
 
         [SesionOut]
         public ActionResult Index()
@@ -71,9 +72,12 @@ namespace sres.app.Controllers
 
             List<CriterioBE> listaCriterio = criterioLN.ListarCriterioPorConvocatoria(idConvocatoria, inscripcion.ID_INSCRIPCION);
 
+            ConvocatoriaEtapaInscripcionBE convetainsc = convetainscLN.ObtenerConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = convocatoria.ID_CONVOCATORIA, ID_ETAPA = convocatoria.ID_ETAPA, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION});
+
             ViewData["convocatoria"] = convocatoria;
             ViewData["inscripcion"] = inscripcion;
             ViewData["listaCriterio"] = listaCriterio;
+            ViewData["convetainsc"] = convetainsc;
 
             return View();
         }
@@ -124,9 +128,12 @@ namespace sres.app.Controllers
 
             List<CriterioBE> listaCriterio = criterioLN.ListarCriterioPorConvocatoria(idConvocatoria, inscripcion.ID_INSCRIPCION);
 
+            ConvocatoriaEtapaInscripcionBE convetainsc = convetainscLN.ObtenerConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = convocatoria.ID_CONVOCATORIA, ID_ETAPA = convocatoria.ID_ETAPA, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION });
+
             ViewData["convocatoria"] = convocatoria;
             ViewData["inscripcion"] = inscripcion;
             ViewData["listaCriterio"] = listaCriterio;
+            ViewData["convetainsc"] = convetainsc;
 
             return View();
         }

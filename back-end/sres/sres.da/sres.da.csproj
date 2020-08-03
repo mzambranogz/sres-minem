@@ -62,6 +62,7 @@
     <Compile Include="ConvocatoriaCriterioPuntajeDA.cs" />
     <Compile Include="ConvocatoriaCriterioRequerimientoDA.cs" />
     <Compile Include="ConvocatoriaDA.cs" />
+    <Compile Include="ConvocatoriaEtapaInscripcionDA.cs" />
     <Compile Include="ConvocatoriaTrazabilidadDA.cs" />
     <Compile Include="CriterioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />

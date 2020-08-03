@@ -6,6 +6,7 @@
     ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
     InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
     List<CriterioBE> listaCriterio = (List<CriterioBE>)ViewData["listaCriterio"];
+    ConvocatoriaEtapaInscripcionBE convetainsc = (ConvocatoriaEtapaInscripcionBE)ViewData["convetainsc"];
     decimal total_criterio = listaCriterio.Count();
     decimal ingresados = 0;
     foreach (var cri in listaCriterio) { if (cri.INGRESO_DATOS > 0) { ingresados++; } }
@@ -13,6 +14,10 @@
     string pathFormat = AppSettings.Get<string>("Path.Criterio");
 }
 
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/convocatoria_criterioS.js")"></script>
+}
 
 <div class="container-fluid mt-5">
     <div class="container">
@@ -52,99 +57,184 @@
         </div>
     </div>
 </div>
-<div class="container-fluid mb-3">
-    <div class="container">
-        <div class="rayado wow fadeIn"></div>
-    </div>
-</div>
-<div class="container-fluid mb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <p class="estilo-02 text-justify text-sres-azul m-0">Ingrese y complete todos los criterios de evaluación</p>
+@if (convetainsc != null)
+{
+    if (convetainsc.REALIZADO == "1")
+    {
+        <div class="container-fluid mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-1 col-12">
+                        <h1>¡LOS CRITERIOS SE ENVIARON A REVISIÓN!</h1>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="rayado my-5 wow fadeIn"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-lg-9 col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Action("Index","Convocatoria")">Regresar</a></div>
+                </div>
             </div>
         </div>
+    }
+    else
+    {
+        <div class="container-fluid mb-3">
+        <div class="container">
+            <div class="rayado wow fadeIn"></div>
+        </div>
     </div>
-</div>
-<div class="container-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="progress" style="height: 25px;">
-                    <div class="progress-bar estilo-01 bg-degradado" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: @porcentaje_avance%">Criterios registrados @ingresados/@total_criterio</div>
+    <div class="container-fluid mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="estilo-02 text-justify text-sres-azul m-0">Ingrese y complete todos los criterios de evaluación</p>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="container-fluid my-5">
-    <div class="container">
-        <div class="row">
-            @if (listaCriterio != null)
-            {
-                if (listaCriterio.Count > 0)
-                {
-                    int index = 0;
-                    string bg = "";
-                    string linea = "";
-                    string icono = "";
-                    string pathDirectoryRelative = "";
-                    foreach (CriterioBE item in listaCriterio)
-                    {
-                        index++;
-                        <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                            @{bg = item.INGRESO_DATOS == 0 ? "bg-sres-claro" : "bg-sres-verde-claro";
-                                linea = item.INGRESO_DATOS == 0 ? "border-linea" : "border-linea-verde";
-                                icono = item.INGRESO_DATOS == 0 ? "" : "<i class='fas fa-copy text-sres-verde indicador'></i>";
-                                pathDirectoryRelative = string.Format(pathFormat, item.ID_CRITERIO);
-                                }
-                                
-                            @Html.Raw(icono)  
-                            <a class="d-block @bg @linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">
-                                <img class="img-fluid" src="@Url.Content($"~/{pathDirectoryRelative}/{item.ARCHIVO_BASE}")">
-                                <div class="estilo-01 text-sres-azul pt-3">@item.NOMBRE</div>
-                            </a>
-                        </div>
-                    }
-                }
-            }
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="rayado my-5 wow fadeIn"></div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar estilo-01 bg-degradado" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: @porcentaje_avance%">Criterios registrados @ingresados/@total_criterio</div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="offset-lg-6 col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Action("Index","Convocatoria")">Regresar</a></div>
-            <div class="col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-primary text-white w-100 mb-3" href="@Url.Action("Index","Convocatoria")">Finalizar</a></div>
+    </div>
+    <div class="container-fluid my-5">
+        <div class="container">
+            <div class="row">
+                @if (listaCriterio != null)
+                {
+                    if (listaCriterio.Count > 0)
+                    {
+                        int index = 0;
+                        string bg = "";
+                        string linea = "";
+                        string icono = "";
+                        string pathDirectoryRelative = "";
+                        foreach (CriterioBE item in listaCriterio)
+                        {
+                            index++;
+                            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                                @{bg = item.INGRESO_DATOS == 0 ? "bg-sres-claro" : "bg-sres-verde-claro";
+                                    linea = item.INGRESO_DATOS == 0 ? "border-linea" : "border-linea-verde";
+                                    icono = item.INGRESO_DATOS == 0 ? "" : "<i class='fas fa-copy text-sres-verde indicador'></i>";
+                                    pathDirectoryRelative = string.Format(pathFormat, item.ID_CRITERIO);
+                                }
+
+                                @Html.Raw(icono)
+                                <a class="d-block @bg @linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">
+                                    <img class="img-fluid" src="@Url.Content($"~/{pathDirectoryRelative}/{item.ARCHIVO_BASE}")">
+                                    <div class="estilo-01 text-sres-azul pt-3">@item.NOMBRE</div>
+                                </a>
+                            </div>
+                        }
+                     }
+                 }
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="rayado my-5 wow fadeIn"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-lg-6 col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Action("Index","Convocatoria")">Regresar</a></div>
+                <div class="col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-primary text-white w-100 mb-3" href="javascript:void(0)" id="btnGuardar">Finalizar</a></div>
+            </div>
+            <div class="row">
+                <div class="col-12 alert-add">
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-
-
-
-@*<h2>Criterios</h2>
-
-    @if (listaCriterio != null)
-    {
-        if (listaCriterio.Count > 0)
-        {
-            foreach (CriterioBE item in listaCriterio)
-            {
-                <ul>
-                    <li>
-                    @item.NOMBRE <a href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">Ingresar Criterio</a>
-                    </li>
-                </ul>
-            }
-        }
-        else
-        {
-            <div>No existen criterios</div>
-        }
     }
-    else
-    {
-        <div>No existen criterios</div>
-    }*@
+
+}
+else
+{
+    <div class="container-fluid mb-3">
+        <div class="container">
+            <div class="rayado wow fadeIn"></div>
+        </div>
+    </div>
+    <div class="container-fluid mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="estilo-02 text-justify text-sres-azul m-0">Ingrese y complete todos los criterios de evaluación</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar estilo-01 bg-degradado" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: @porcentaje_avance%">Criterios registrados @ingresados/@total_criterio</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid my-5">
+        <div class="container">
+            <div class="row">
+                @if (listaCriterio != null)
+                {
+                    if (listaCriterio.Count > 0)
+                    {
+                        int index = 0;
+                        string bg = "";
+                        string linea = "";
+                        string icono = "";
+                        string pathDirectoryRelative = "";
+                        foreach (CriterioBE item in listaCriterio)
+                        {
+                            index++;
+                            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                                @{bg = item.INGRESO_DATOS == 0 ? "bg-sres-claro" : "bg-sres-verde-claro";
+                                    linea = item.INGRESO_DATOS == 0 ? "border-linea" : "border-linea-verde";
+                                    icono = item.INGRESO_DATOS == 0 ? "" : "<i class='fas fa-copy text-sres-verde indicador'></i>";
+                                    pathDirectoryRelative = string.Format(pathFormat, item.ID_CRITERIO);
+                                }
+
+                                @Html.Raw(icono)
+                                <a class="d-block @bg @linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">
+                                    <img class="img-fluid" src="@Url.Content($"~/{pathDirectoryRelative}/{item.ARCHIVO_BASE}")">
+                                    <div class="estilo-01 text-sres-azul pt-3">@item.NOMBRE</div>
+                                </a>
+                            </div>
+                        }
+                     }
+                 }
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="rayado my-5 wow fadeIn"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-lg-6 col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Action("Index","Convocatoria")">Regresar</a></div>
+                <div class="col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-primary text-white w-100 mb-3" href="javascript:void(0)" id="btnGuardar">Finalizar</a></div>
+            </div>
+            <div class="row">
+                <div class="col-12 alert-add">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script>
+    const idConvocatoria = @convocatoria.ID_CONVOCATORIA;
+    const idEtapa = @convocatoria.ID_ETAPA;
+    const idInscripcion = @inscripcion.ID_INSCRIPCION;
+</script>

@@ -434,5 +434,28 @@ namespace sres.da
             return item;
         }
 
+        public bool GuardarConvocatoriaEtapaInscripcion(ConvocatoriaEtapaInscripcionBE entidad, OracleConnection db)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_PRC_CONV_ETA_INSC";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
+                p.Add("PI_ID_ETAPA", entidad.ID_ETAPA);
+                p.Add("PI_ID_INSCRIPCION", entidad.ID_INSCRIPCION);
+                p.Add("PI_ID_TIPO_EVALUACION", entidad.ID_TIPO_EVALUACION);
+                p.Add("PI_OBSERVACION", entidad.OBSERVACION);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seGuardo = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seGuardo;
+        }
+
     }
 }
