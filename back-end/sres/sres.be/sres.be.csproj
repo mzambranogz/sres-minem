@@ -48,6 +48,7 @@
     <Compile Include="ConvocatoriaCriterioPuntajeInscripBE.cs" />
     <Compile Include="ConvocatoriaEtapaInscripcionBE.cs" />
     <Compile Include="ConvocatoriaEvaluadorPostulanteBE.cs" />
+    <Compile Include="ConvocatoriaInsigniaBE.cs" />
     <Compile Include="CriterioAuxBE.cs" />
     <Compile Include="DataPaginateBE.cs" />
     <Compile Include="CasoAuxBE.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="InscripcionDocumentoBE.cs" />
     <Compile Include="InscripcionRequerimientoBE.cs" />
     <Compile Include="InscripcionTrazabilidadBE.cs" />
+    <Compile Include="InsigniaBE.cs" />
     <Compile Include="InstitucionAuxBE.cs" />
     <Compile Include="InstitucionBE.cs" />
     <Compile Include="DocumentoBE.cs" />

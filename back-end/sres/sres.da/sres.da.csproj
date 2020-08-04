@@ -75,6 +75,7 @@
     <Compile Include="InscripcionDocumentoDA.cs" />
     <Compile Include="InscripcionRequerimientoDA.cs" />
     <Compile Include="InscripcionTrazabilidadDA.cs" />
+    <Compile Include="InsigniaDA.cs" />
     <Compile Include="InstitucionDA.cs" />
     <Compile Include="MRV\BaseDA.cs" />
     <Compile Include="MRV\InstitucionDA.cs" />

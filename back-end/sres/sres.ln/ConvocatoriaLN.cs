@@ -139,6 +139,13 @@ namespace sres.ln
                             if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEtapa(new EtapaBE { ID_ETAPA = it.ID_ETAPA, DIAS = it.DIAS, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, idConvocatoria, cn, ot).OK)) break;
                         }
                     }
+                    if (seGuardoConvocatoria)
+                    {
+                        foreach (var it in entidad.LISTA_INSIG)
+                        {
+                            if (!(seGuardoConvocatoria = convocatoriaDA.GuardarInsignia(it, idConvocatoria, cn, ot).OK)) break;
+                        }
+                    }
 
                     if (seGuardoConvocatoria) ot.Commit();
                     else ot.Rollback();

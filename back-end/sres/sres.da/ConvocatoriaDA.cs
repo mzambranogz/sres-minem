@@ -457,5 +457,29 @@ namespace sres.da
             return seGuardo;
         }
 
+        public InsigniaBE GuardarInsignia(InsigniaBE entidad, int idConvocatoria, OracleConnection db, OracleTransaction ot = null)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_PRC_CONVOCATORIA_INSIG";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_INSIGNIA", entidad.ID_INSIGNIA);
+                p.Add("PI_PUNTAJE_MIN", entidad.PUNTAJE_MIN);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, ot, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0 && idConvocatoria != -1;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
+
     }
 }

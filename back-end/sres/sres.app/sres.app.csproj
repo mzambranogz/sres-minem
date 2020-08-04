@@ -189,6 +189,7 @@
     <Compile Include="Controllers\Api\IndicadorDataController.cs" />
     <Compile Include="Controllers\Api\InscripcionController.cs" />
     <Compile Include="Controllers\Api\InscripcionRequerimientoController.cs" />
+    <Compile Include="Controllers\Api\InsigniaController.cs" />
     <Compile Include="Controllers\Api\InstitucionController.cs" />
     <Compile Include="Controllers\Api\ConvocatoriaController.cs" />
     <Compile Include="Controllers\Api\MRV\InstitucionMRVController.cs" />

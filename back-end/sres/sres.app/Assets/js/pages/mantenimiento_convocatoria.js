@@ -186,22 +186,25 @@ var consultarListas = () => {
     let urlConsultarListaRequerimiento = `/api/requerimiento/obtenerallrequerimiento`;
     let urlConsultarListaEvaluador = `/api/usuario/obtenerallevaluador`;
     let urlConsultarListaEtapa = `/api/etapa/obteneralletapa`;
+    let urlConsultarListaInsignia = `/api/insignia/obtenerallinsignia`;
     Promise.all([
         fetch(urlConsultarListaCriterio),
         fetch(urlConsultarListaRequerimiento),
         fetch(urlConsultarListaEvaluador),
-        fetch(urlConsultarListaEtapa)
+        fetch(urlConsultarListaEtapa),
+        fetch(urlConsultarListaInsignia)
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarCheckListas);
 }
 
-var cargarCheckListas = ([listaCriterio, listaRequerimiento, listaEvaluador, listaEtapa]) => {
+var cargarCheckListas = ([listaCriterio, listaRequerimiento, listaEvaluador, listaEtapa, listaInsignia]) => {
     cargarCheckCriterio('#list-criterio', listaCriterio);
     cargarCheckRequerimiento('#list-req', listaRequerimiento);
     cargarCheckEvaluador('#list-evaluador', listaEvaluador);
     cargarCheckEtapa('#tbl-etapa', listaEtapa);
     cargarComboEtapa('#cbo-etapa', listaEtapa);
+    cargarTablaInsignia('#tbl-insignia', listaInsignia);
 }
 
 var cargarCheckRequerimiento = (selector, data) => {
@@ -260,6 +263,11 @@ var cargarComboEtapa = (selector, data) => {
     $(selector).html(items);
 }
 
+var cargarTablaInsignia = (selector, data) => {
+    let items = data.length == 0 ? '' : data.map(x => `<tr><td>${x.NOMBRE}</td><td><input class="insignia" type="text" id="txt-i-${x.ID_INSIGNIA}" value="${x.PUNTAJE_MIN}" /></tr></td>`).join('');
+    $(selector).find('tbody').html(items);
+}
+
 var nuevo = () => {
     limpiarFormulario();
     $('#frm').show();
@@ -302,6 +310,7 @@ var guardar = () => {
     criterio = [];
     evaluador = [];
     etapa = [];
+    insignia = [];
     criterioRequerimiento = [];
 
     $('#list-req').find('.requerimiento').each((x, y) => {
@@ -381,6 +390,14 @@ var guardar = () => {
         etapa.push(r);
     });
 
+    $('#tbl-insignia').find('.insignia').each((x, y) => {
+        var r = {
+            ID_INSIGNIA: $(y).attr("id").replace('txt-i-',''),
+            PUNTAJE_MIN: $(y).val()
+        }
+        insignia.push(r);
+    });
+
     Array.from($('div[id*="listaRequerimientoCriterio"]')).forEach(x => {
         let idCriterio = $(x).parent().find('input[type="checkbox"]').attr('id').replace('chk-c-', '');
         Array.from($(x).find('.requerimiento')).forEach(y => {
@@ -391,7 +408,7 @@ var guardar = () => {
     });
 
     let url = `/api/convocatoria/guardarconvocatoria`;
-    let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, DESCRIPCION: descripcion, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, DESCRIPCION: descripcion, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, LISTA_INSIG: insignia, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
