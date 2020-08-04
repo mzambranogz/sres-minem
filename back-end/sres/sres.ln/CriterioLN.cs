@@ -341,7 +341,23 @@ namespace sres.ln
 
         public bool GuardarEvaluacionCriterio(ConvocatoriaCriterioPuntajeInscripBE entidad)
         {
-            return criterioDA.GuardarEvaluacionCriterio(entidad, cn).OK;
+            bool seGuardoConvocatoria = false;
+            try
+            {
+                cn.Open();
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {
+                    seGuardoConvocatoria = criterioDA.GuardarEvaluacionCriterio(entidad, cn).OK;
+                    if (seGuardoConvocatoria)
+                        foreach (InscripcionDocumentoBE i in entidad.LIST_INSCDOC)
+                            if (!(seGuardoConvocatoria = inscripcionDocDA.GuardarCriterioEvaluacion(i, cn))) break;
+
+                    if (seGuardoConvocatoria) ot.Commit();
+                    else ot.Rollback();
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return seGuardoConvocatoria;
         }
 
         public bool GuardarEvaluacionCriterioInscripcion(ConvocatoriaCriterioPuntajeInscripBE entidad)

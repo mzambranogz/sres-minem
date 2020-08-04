@@ -57,5 +57,32 @@ namespace sres.da
             return inscdoc;
         }
 
+        public bool GuardarCriterioEvaluacion(InscripcionDocumentoBE entidad, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Criterio}USP_UPD_EVA_CRI_INSC";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_CASO", entidad.ID_CASO);
+                p.Add("PI_ID_DOCUMENTO", entidad.ID_DOCUMENTO);
+                p.Add("PI_ID_INSCRIPCION", entidad.ID_INSCRIPCION);
+                p.Add("PI_ID_TIPO_EVALUACION", entidad.ID_TIPO_EVALUACION);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad.OK;
+        }
+
     }
 }

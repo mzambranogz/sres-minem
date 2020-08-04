@@ -118,7 +118,7 @@ namespace sres.app.Controllers.Api
 
         [Route("guardarevaluacioncriterio")]
         [HttpPost]
-        public bool GuardarEvaluacionCriterios(ConvocatoriaCriterioPuntajeInscripBE entidad)
+        public bool GuardarEvaluacionCriterio(ConvocatoriaCriterioPuntajeInscripBE entidad)
         {
             return criterioLN.GuardarEvaluacionCriterio(entidad);
         }

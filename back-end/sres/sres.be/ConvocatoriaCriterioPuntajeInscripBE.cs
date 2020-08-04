@@ -14,6 +14,7 @@ namespace sres.be
         public int ID_INSCRIPCION { get; set; }
         public int ID_TIPO_EVALUACION { get; set; }
         public string OBSERVACION { get; set; }
+        public List<InscripcionDocumentoBE> LIST_INSCDOC { get; set; }
         public string FLAG_ESTADO { get; set; }
     }
 }
