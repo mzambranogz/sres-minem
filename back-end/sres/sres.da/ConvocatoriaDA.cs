@@ -508,13 +508,14 @@ namespace sres.da
             bool seGuardo = false;
             try
             {
-                string sp = $"{Package.Criterio}USP_PRC_CONV_ETA_INSC";
+                string sp = $"{Package.Criterio}USP_PRC_RECONOCIMIENTO";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_INSCRIPCION", entidad.ID_INSCRIPCION);
                 p.Add("PI_ID_INSIGNIA", entidad.ID_INSIGNIA);
                 p.Add("PI_PUNTAJE", entidad.PUNTAJE);
                 p.Add("PI_ID_ESTRELLA", entidad.ID_ESTRELLA);
                 p.Add("PI_EMISIONES", entidad.EMISIONES);
+                p.Add("PI_FLAG_MEJORACONTINUA", '0');
                 p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);

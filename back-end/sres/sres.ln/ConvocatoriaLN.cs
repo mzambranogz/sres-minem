@@ -21,6 +21,7 @@ namespace sres.ln
         CasoDA casoDA = new CasoDA();
         DocumentoDA documentoDA = new DocumentoDA();
         ConvocatoriaCriterioPuntajeDA convcripuntDA = new ConvocatoriaCriterioPuntajeDA();
+        ReconocimientoDA reconocimientoDA = new ReconocimientoDA();
 
         public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden)
         {
@@ -308,7 +309,8 @@ namespace sres.ln
         public bool GuardarConvocatoriaEtapaInscripcion(ConvocatoriaEtapaInscripcionBE entidad)
         {
             bool seGuardoConvocatoria = false;
-            int categoria = 0;      
+            int categoria = 0;
+            string mejora = "0";      
             try
             {
                 cn.Open();
@@ -320,8 +322,11 @@ namespace sres.ln
                             if (entidad.PUNTAJE >= ci.PUNTAJE_MIN)
                                 categoria = ci.ID_INSIGNIA;
 
+                    ReconocimientoBE rec = reconocimientoDA.ObtenerReconocimientoUltimo(entidad.ID_INSCRIPCION, cn);
+                    if (rec != null) mejora = "1";
+
                     seGuardoConvocatoria = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(entidad, cn);
-                    if (seGuardoConvocatoria) seGuardoConvocatoria = convocatoriaDA.GuardarResultadoReconocimiento(new ReconocimientoBE { ID_INSCRIPCION = entidad.ID_INSCRIPCION, ID_INSIGNIA = categoria, PUNTAJE = entidad.PUNTAJE}, cn);
+                    if (seGuardoConvocatoria) seGuardoConvocatoria = convocatoriaDA.GuardarResultadoReconocimiento(new ReconocimientoBE { ID_INSCRIPCION = entidad.ID_INSCRIPCION, ID_INSIGNIA = categoria, PUNTAJE = entidad.PUNTAJE, FLAG_MEJORACONTINUA = mejora}, cn);
 
                     if (seGuardoConvocatoria) ot.Commit();
                     else ot.Rollback();
