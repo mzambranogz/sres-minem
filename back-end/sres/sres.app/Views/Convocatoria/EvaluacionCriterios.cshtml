@@ -7,6 +7,7 @@
     InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
     List<CriterioBE> listaCriterio = (List<CriterioBE>)ViewData["listaCriterio"];
     ConvocatoriaEtapaInscripcionBE convetainsc = (ConvocatoriaEtapaInscripcionBE)ViewData["convetainsc"];
+    ConvocatoriaCriterioPuntajeBE convcripuntaje = (ConvocatoriaCriterioPuntajeBE)ViewData["convcripuntaje"];
     decimal total_criterio = listaCriterio.Count();
     decimal ingresados = 0;
     foreach (var cri in listaCriterio) { if (cri.INGRESO_DATOS > 0) { ingresados++; } }
@@ -307,4 +308,5 @@ else
     const idEtapa = @convocatoria.ID_ETAPA;
     const idInscripcion = @inscripcion.ID_INSCRIPCION;
     const eva = @inscripcion.ID_TIPO_EVALUACION;
+    const puntaje = @convcripuntaje.PUNTAJE;
 </script>

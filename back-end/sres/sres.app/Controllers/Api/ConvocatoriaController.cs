@@ -190,6 +190,22 @@ namespace sres.app.Controllers.Api
             return lista;
         }
 
+        [Route("listarconvocatoriainsig")]
+        [HttpGet]
+        public List<ConvocatoriaInsigniaBE> listarConvocatoriaInsig(int id)
+        {
+            List<ConvocatoriaInsigniaBE> lista = new List<ConvocatoriaInsigniaBE>();
+            try
+            {
+                lista = convocatoriaLN.listarConvocatoriaInsig(new ConvocatoriaBE() { ID_CONVOCATORIA = id });
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
+
         [Route("guardarevaluadorpostulante")]
         [HttpPost]
         public bool GuardarEvaluadorPostulante(ConvocatoriaBE obj)

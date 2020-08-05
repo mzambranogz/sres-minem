@@ -28,5 +28,19 @@ namespace sres.ln
 
             return lista;
         }
+
+        public ConvocatoriaCriterioPuntajeBE ObtenerPuntajeInscripcion(int idConvocatoria, int idInscripcion)
+        {
+            ConvocatoriaCriterioPuntajeBE item = new ConvocatoriaCriterioPuntajeBE();
+            try
+            {
+                cn.Open();
+                item = convcripuntajeDA.ObtenerPuntajeInscripcion(idConvocatoria, idInscripcion, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
     }
 }

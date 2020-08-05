@@ -130,10 +130,13 @@ namespace sres.app.Controllers
 
             ConvocatoriaEtapaInscripcionBE convetainsc = convetainscLN.ObtenerConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = convocatoria.ID_CONVOCATORIA, ID_ETAPA = convocatoria.ID_ETAPA, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION });
 
+            ConvocatoriaCriterioPuntajeBE convcripunt = convcripuntajeLN.ObtenerPuntajeInscripcion(idConvocatoria, inscripcion.ID_INSCRIPCION);
+
             ViewData["convocatoria"] = convocatoria;
             ViewData["inscripcion"] = inscripcion;
             ViewData["listaCriterio"] = listaCriterio;
             ViewData["convetainsc"] = convetainsc;
+            ViewData["convcripuntaje"] = convcripunt;
 
             return View();
         }

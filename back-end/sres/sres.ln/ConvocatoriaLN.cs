@@ -308,13 +308,41 @@ namespace sres.ln
         public bool GuardarConvocatoriaEtapaInscripcion(ConvocatoriaEtapaInscripcionBE entidad)
         {
             bool seGuardoConvocatoria = false;
+            int categoria = 0;      
             try
             {
                 cn.Open();
-                seGuardoConvocatoria = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(entidad, cn);
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {
+                    List<ConvocatoriaInsigniaBE> lista = convocatoriaDA.listarConvocatoriaInsig(new ConvocatoriaBE { ID_CONVOCATORIA = entidad.ID_CONVOCATORIA }, cn);
+                    if (lista.Count > 0)
+                        foreach (ConvocatoriaInsigniaBE ci in lista)
+                            if (entidad.PUNTAJE >= ci.PUNTAJE_MIN)
+                                categoria = ci.ID_INSIGNIA;
+
+                    seGuardoConvocatoria = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(entidad, cn);
+                    if (seGuardoConvocatoria) seGuardoConvocatoria = convocatoriaDA.GuardarResultadoReconocimiento(new ReconocimientoBE { ID_INSCRIPCION = entidad.ID_INSCRIPCION, ID_INSIGNIA = categoria, PUNTAJE = entidad.PUNTAJE}, cn);
+
+                    if (seGuardoConvocatoria) ot.Commit();
+                    else ot.Rollback();
+                }
+                
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return seGuardoConvocatoria;
+        }
+
+        public List<ConvocatoriaInsigniaBE> listarConvocatoriaInsig(ConvocatoriaBE entidad)
+        {
+            List<ConvocatoriaInsigniaBE> lista = new List<ConvocatoriaInsigniaBE>();
+            try
+            {
+                cn.Open();
+                lista = convocatoriaDA.listarConvocatoriaInsig(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
 
     }

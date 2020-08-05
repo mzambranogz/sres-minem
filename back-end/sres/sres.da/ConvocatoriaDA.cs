@@ -481,5 +481,50 @@ namespace sres.da
             return entidad;
         }
 
+        public List<ConvocatoriaInsigniaBE> listarConvocatoriaInsig(ConvocatoriaBE entidad, OracleConnection db)
+        {
+            List<ConvocatoriaInsigniaBE> lista = new List<ConvocatoriaInsigniaBE>();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_CONVOCAT_INSIG";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ConvocatoriaInsigniaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                entidad.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return lista;
+        }
+
+        public bool GuardarResultadoReconocimiento(ReconocimientoBE entidad, OracleConnection db)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_PRC_CONV_ETA_INSC";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", entidad.ID_INSCRIPCION);
+                p.Add("PI_ID_INSIGNIA", entidad.ID_INSIGNIA);
+                p.Add("PI_PUNTAJE", entidad.PUNTAJE);
+                p.Add("PI_ID_ESTRELLA", entidad.ID_ESTRELLA);
+                p.Add("PI_EMISIONES", entidad.EMISIONES);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seGuardo = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seGuardo;
+        }
+
     }
 }

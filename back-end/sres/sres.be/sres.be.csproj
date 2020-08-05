@@ -89,6 +89,7 @@
     <Compile Include="ParametroDetalleRelacionBE.cs" />
     <Compile Include="ProcesoBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReconocimientoBE.cs" />
     <Compile Include="RolBE.cs" />
     <Compile Include="RequerimientoBE.cs" />
     <Compile Include="SectorBE.cs" />
