@@ -12,25 +12,25 @@ using sres.ut;
 
 namespace sres.da
 {
-    public class ReconocimientoDA : BaseDA
+    public class SubsectorTipoempresaDA : BaseDA
     {
-        public ReconocimientoBE ObtenerReconocimientoUltimo(int idInscripcion ,OracleConnection db)
+        public List<SubsectorTipoempresaBE> listaSubsectorTipoempresa(int idSector, OracleConnection db)
         {
-            ReconocimientoBE item = new ReconocimientoBE();
+            List<SubsectorTipoempresaBE> lista = new List<SubsectorTipoempresaBE>();
             try
             {
-                string sp = $"{Package.Verificacion}USP_SEL_RECONOCIMIENTO_MEJORA";
+                string sp = $"{Package.Mantenimiento}USP_SEL_ALL_SUBSECTOR_TIPOEMP";
                 var p = new OracleDynamicParameters();
-                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                p.Add("PI_ID_SECTOR", idSector);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-                item = db.QueryFirstOrDefault<ReconocimientoBE>(sp, p, commandType: CommandType.StoredProcedure);
+                lista = db.Query<SubsectorTipoempresaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
             }
 
-            return item;
+            return lista;
         }
     }
 }

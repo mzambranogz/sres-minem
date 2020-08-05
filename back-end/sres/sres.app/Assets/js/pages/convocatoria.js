@@ -9,6 +9,7 @@
     $('#btnPreviousPagination').on('click', btnPreviousPaginationClick);
     $('#btnNextPagination').on('click', btnNextPaginationClick);
     $('#btnLastPagination').on('click', btnLastPaginationClick);
+    listaSubsector();
 });
 
 var consultar = () => {
@@ -232,4 +233,19 @@ var responseActualizarDatosInstitucion = (data) => {
     } else {
         $('#modal-edit-descripcion .modal-body >*:last').alert({ type: 'danger', title: 'ERROR', message: `No se pudo actualizar los datos de la institución` });
     }
+}
+
+var listaSubsector = () => {
+    if (idRol != 3) return false;
+    let url = `/api/subsectortipoempresa/listasubsetortipoempresa?idSector=${idSector}`;
+    fetch(url)
+    .then(r => r.json())
+    .then(armarCombosubsectortipoempresa);
+}
+
+var armarCombosubsectortipoempresa = (data) => {
+    let combo = data.map((x, y) => {
+        return `<option value="${x.ID_SUBSECTOR_TIPOEMPRESA}">${x.NOMBRE}</option>`
+    }).join('');
+    $(`#cbo-subsector-tipoemp`).html(`<option value="0">${idSector == 1 ? "-seleccione subsector-" : "-seleccione tipo empresa-"}</option>${combo}`);
 }

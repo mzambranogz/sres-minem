@@ -89,6 +89,7 @@
     <Compile Include="RequerimientoDA.cs" />
     <Compile Include="RolDA.cs" />
     <Compile Include="SectorDA.cs" />
+    <Compile Include="SubsectorTipoempresaDA.cs" />
     <Compile Include="UsuarioDA.cs" />
   </ItemGroup>
   <ItemGroup>

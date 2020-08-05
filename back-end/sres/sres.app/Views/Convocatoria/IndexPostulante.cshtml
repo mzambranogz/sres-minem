@@ -223,6 +223,17 @@
                                 <textarea class="form-control estilo-01 text-sres-gris" id="txa-descripcion" cols="30" rows="5" placeholder="Descripción">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</textarea>
                             </div>
                         </div>
+                        <div class="form-group mt-2">
+                            <label class="cbo-subsector-tipoemp" for="cbo-sector">@(usuario.INSTITUCION.ID_SECTOR == 1 ? "Subsector:" : "Tipo empresa:")</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-landmark"></i></span></div>
+                                <select class="form-control estilo-01" id="cbo-subsector-tipoemp" aria-describedby="inputGroup9" required>
+                                    <option>@(usuario.INSTITUCION.ID_SECTOR == 1 ? "-seleccione subsector-" : "-seleccione tipo empresa-")</option>
+                                    @*<option>Sector Público</option>
+                                    <option>Sector Privado</option>*@
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

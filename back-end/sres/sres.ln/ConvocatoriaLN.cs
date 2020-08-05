@@ -310,6 +310,7 @@ namespace sres.ln
         {
             bool seGuardoConvocatoria = false;
             int categoria = 0;
+            int estrella = 0;
             string mejora = "0";      
             try
             {
@@ -323,7 +324,8 @@ namespace sres.ln
                                 categoria = ci.ID_INSIGNIA;
 
                     ReconocimientoBE rec = reconocimientoDA.ObtenerReconocimientoUltimo(entidad.ID_INSCRIPCION, cn);
-                    if (rec != null) mejora = "1";
+                    if (rec != null)
+                        mejora = categoria > rec.ID_INSIGNIA && estrella > rec.ID_ESTRELLA ? "0" : "1";
 
                     seGuardoConvocatoria = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(entidad, cn);
                     if (seGuardoConvocatoria) seGuardoConvocatoria = convocatoriaDA.GuardarResultadoReconocimiento(new ReconocimientoBE { ID_INSCRIPCION = entidad.ID_INSCRIPCION, ID_INSIGNIA = categoria, PUNTAJE = entidad.PUNTAJE, FLAG_MEJORACONTINUA = mejora}, cn);

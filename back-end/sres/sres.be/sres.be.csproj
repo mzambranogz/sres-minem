@@ -93,6 +93,7 @@
     <Compile Include="RolBE.cs" />
     <Compile Include="RequerimientoBE.cs" />
     <Compile Include="SectorBE.cs" />
+    <Compile Include="SubsectorTipoempresaBE.cs" />
     <Compile Include="UsuarioAuxBE.cs" />
     <Compile Include="UsuarioBE.cs" />
   </ItemGroup>
