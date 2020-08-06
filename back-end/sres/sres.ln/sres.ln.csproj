@@ -68,6 +68,7 @@
     <Compile Include="RolLN.cs" />
     <Compile Include="SectorLN.cs" />
     <Compile Include="SubsectorTipoempresaLN.cs" />
+    <Compile Include="TrabajadorCamaLN.cs" />
     <Compile Include="UsuarioLN.cs" />
   </ItemGroup>
   <ItemGroup>

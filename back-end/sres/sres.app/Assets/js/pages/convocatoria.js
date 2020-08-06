@@ -9,6 +9,9 @@
     $('#btnPreviousPagination').on('click', btnPreviousPaginationClick);
     $('#btnNextPagination').on('click', btnNextPaginationClick);
     $('#btnLastPagination').on('click', btnLastPaginationClick);
+    $('#cbo-subsector-tipoemp').on('change', subsectortipoempresaChange);
+    $(`#cbo-trabajador-cama`).on('change', trabajadorcamaChange);
+    $(`#txt-numero`).on('blur', cantidadChange);
     listaSubsector();
 });
 
@@ -203,15 +206,36 @@ var responseMostrarDatosInstitucion = (data) => {
     $('#txt-nombre-corto').val(data.NOMBRE_COMERCIAL);
     $('#txa-descripcion').val(data.DESCRIPCION);
     $('#modal-edit-descripcion').modal('show');
+    vidTrabajadorCama = idTrabajadorCama;
+    vcantidad = cantidad;
+    listaSubsector();
 }
 
 var btnActualizarDatosInstitucionClick = (e) => {
     e.preventDefault();
+    let arr = [];   
+
+    if ($('#txt-nombre-corto').val().trim() === "") arr.push("Ingrese el nombre corto");
+    if ($('#txa-descripcion').val().trim() === "") arr.push("Ingrese la descripción");
+    if ($(`#cbo-subsector-tipoemp`).val() == 0) arr.push(`${idSector == 1 ? "Seleccione el subsector" : "Seleccione el tipo de empresa"}`);
+    if ($(`#cbo-trabajador-cama`).val() == 0) arr.push(`${idSector == 1 ? "Seleccione el número de trabajadores/camas:" : "Seleccione el número de trabajadores:"}`);
+    if ($(`#txt-numero`).val() == "") arr.push("Ingrese la cantidad");
+
+    if (arr.length > 0) {
+        let error = '';
+        $.each(arr, function (ind, elem) { error += '<li><small class="mb-0">' + elem + '</li></small>'; });
+        error = `<ul>${error}</ul>`;
+        $('.alert-add').html('').alertError({ type: 'danger', title: 'ERROR', message: error });
+        return;
+    }
 
     let nombreComercial = $('#txt-nombre-corto').val();
     let descripcion = $('#txa-descripcion').val();
+    let subsectortipoempresa = $(`#cbo-subsector-tipoemp`).val();
+    let trabajadorcama = $(`#cbo-trabajador-cama`).val();
+    let cantidad = $(`#txt-numero`).val();
 
-    let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, UPD_USUARIO: idUsuarioLogin };
+    let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, ID_SUBSECTOR_TIPOEMPRESA: subsectortipoempresa, ID_TRABAJADORES_CAMA: trabajadorcama, CANTIDAD: cantidad, UPD_USUARIO: idUsuarioLogin };
 
     let url = `/api/institucion/modificardatosinstitucion`;
     let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
@@ -222,7 +246,11 @@ var btnActualizarDatosInstitucionClick = (e) => {
 }
 
 var responseActualizarDatosInstitucion = (data) => {
+    $('.alert-add').html('');
     if (data == true) {
+        idSubsectortipoemp = $(`#cbo-subsector-tipoemp`).val();
+        idTrabajadorCama = $(`#cbo-trabajador-cama`).val();
+        cantidad = $(`#txt-numero`).val();
         $('#lblDescripcionInstitucion').text($('#txa-descripcion').val());
         $('#txt-nombre-corto').val('');
         $('#txa-descripcion').val('');
@@ -248,4 +276,41 @@ var armarCombosubsectortipoempresa = (data) => {
         return `<option value="${x.ID_SUBSECTOR_TIPOEMPRESA}">${x.NOMBRE}</option>`
     }).join('');
     $(`#cbo-subsector-tipoemp`).html(`<option value="0">${idSector == 1 ? "-seleccione subsector-" : "-seleccione tipo empresa-"}</option>${combo}`);
+    if (idSubsectortipoemp > 0) { $(`#cbo-subsector-tipoemp`).val(idSubsectortipoemp); subsectortipoempresaChange(); }
+}
+
+var subsectortipoempresaChange = () => {
+    $(`#txt-numero`).val('');
+    if ($(`#cbo-subsector-tipoemp`).val() == 0) { $(`#cbo-trabajador-cama`).html(`<option value="0">-Seleccione-</option>`); return };
+    let url = `/api/trabajadorcama/listatrabajadorcama?idSubsectorTipoempresa=${$(`#cbo-subsector-tipoemp`).val()}`;
+    fetch(url)
+    .then(r => r.json())
+    .then(armarCombotrabajadorcama);
+}
+
+var armarCombotrabajadorcama = (data) => {
+    let combo = data.map((x, y) => {
+        return `<option value="${x.ID_TRABAJADORES_CAMA}" ${x.MAYOR_SIGNO == '1' ? `data-max="${x.MAYOR_VALOR}"` : ``} ${x.MENOR_SIGNO == '1' ? `data-min="${x.MENOR_VALOR}"` : ``}>${x.NOMBRE}</option>`
+    }).join('');
+    $(`#cbo-trabajador-cama`).html(`<option value="0">-Seleccione-</option>${combo}`);
+    if (vidTrabajadorCama > 0) { $(`#cbo-trabajador-cama`).val(vidTrabajadorCama); vidTrabajadorCama = 0; trabajadorcamaChange(); vcantidad == 0 ? $(`#txt-numero`).val('') : $(`#txt-numero`).val(vcantidad); vcantidad = 0; }
+}
+
+var trabajadorcamaChange = () => {
+    if ($(`#cbo-trabajador-cama`).val() == 0) { $(`#txt-numero`).val(''); return };
+    let option = $(`#cbo-trabajador-cama`).find(`option[value='${$(`#cbo-trabajador-cama`).val()}']`);
+    let mayor = option.data('max');
+    let menor = option.data('min');
+    mayor != undefined ? $(`#txt-numero`).removeAttr('max').attr('max', mayor) : $(`#txt-numero`).removeAttr('max');
+    menor != undefined ? $(`#txt-numero`).removeAttr('min').attr('min', menor) : $(`#txt-numero`).removeAttr('min');
+}
+
+var cantidadChange = () => {
+    debugger;
+    let mayor = parseFloat($(`#txt-numero`).attr('max'));
+    let menor = parseFloat($(`#txt-numero`).attr('min'));
+    let num = parseFloat($(`#txt-numero`).val());
+    if (mayor != undefined && menor != undefined) { if (num < menor || num > mayor) $(`#txt-numero`).val(menor); }
+    else if (mayor != undefined){ if (num > mayor) $(`#txt-numero`).val(mayor);}
+    else if (menor != undefined) { if (num < menor) $(`#txt-numero`).val(menor); }
 }

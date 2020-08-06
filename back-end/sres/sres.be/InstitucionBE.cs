@@ -19,6 +19,9 @@ namespace sres.be
         public string LOGO { get; set; }
         public byte[] LOGO_CONTENIDO { get; set; }
         public string LOGO_TIPO { get; set; }
+        public int ID_SUBSECTOR_TIPOEMPRESA { get; set; }
+        public int ID_TRABAJADORES_CAMA { get; set; }
+        public int CANTIDAD { get; set; }
         public string FLAG_ESTADO { get; set; }
         public int? UPD_USUARIO { get; set; }
     }

@@ -147,6 +147,9 @@ namespace sres.da
                 p.Add("PI_ID_INSTITUCION", institucion.ID_INSTITUCION);
                 p.Add("PI_NOMBRE_COMERCIAL", institucion.NOMBRE_COMERCIAL);
                 p.Add("PI_DESCRIPCION", institucion.DESCRIPCION);
+                p.Add("PI_ID_SUBSECTOR_TIPOEMPRESA", institucion.ID_SUBSECTOR_TIPOEMPRESA);
+                p.Add("PI_ID_TRABAJADORES_CAMA", institucion.ID_TRABAJADORES_CAMA);
+                p.Add("PI_CANTIDAD", institucion.CANTIDAD);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
 

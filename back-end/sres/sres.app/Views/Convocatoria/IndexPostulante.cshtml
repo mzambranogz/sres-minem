@@ -224,7 +224,7 @@
                             </div>
                         </div>
                         <div class="form-group mt-2">
-                            <label class="cbo-subsector-tipoemp" for="cbo-sector">@(usuario.INSTITUCION.ID_SECTOR == 1 ? "Subsector:" : "Tipo empresa:")</label>
+                            <label for="cbo-subsector-tipoemp">@(usuario.INSTITUCION.ID_SECTOR == 1 ? "Subsector:" : "Tipo empresa:")</label>
                             <div class="input-group">
                                 <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-landmark"></i></span></div>
                                 <select class="form-control estilo-01" id="cbo-subsector-tipoemp" aria-describedby="inputGroup9" required>
@@ -232,6 +232,28 @@
                                     @*<option>Sector Público</option>
                                     <option>Sector Privado</option>*@
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="cbo-trabajador-cama">@(usuario.INSTITUCION.ID_SECTOR == 1 ? "Número de trabajadores/camas:" : "Número de trabajadores:")</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-landmark"></i></span></div>
+                                <select class="form-control estilo-01" id="cbo-trabajador-cama" aria-describedby="inputGroup9" required>
+                                    <option>-Seleccione-</option>
+                                    @*<option>Sector Público</option>
+                                    <option>Sector Privado</option>*@
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="txt-numero">Cantidad:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
+                                <input class="form-control estilo-01" type="number" id="txt-numero" placeholder="Ingrese cantidad" maxlength="12" required>
+                            </div>
+                        </div>
+                        <div class="form-group mt-2">
+                            <div class="alert-add">
                             </div>
                         </div>
                     </div>
