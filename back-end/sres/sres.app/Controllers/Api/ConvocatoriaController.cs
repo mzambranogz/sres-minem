@@ -206,6 +206,22 @@ namespace sres.app.Controllers.Api
             return lista;
         }
 
+        [Route("listarconvocatoriaesttrab")]
+        [HttpGet]
+        public List<EstrellaTrabajadorCamaBE> listarConvocatoriaEstrellaTrab(int id)
+        {
+            List<EstrellaTrabajadorCamaBE> lista = new List<EstrellaTrabajadorCamaBE>();
+            try
+            {
+                lista = convocatoriaLN.listarConvocatoriaEstrellaTrab(new ConvocatoriaBE() { ID_CONVOCATORIA = id });
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
+
         [Route("guardarevaluadorpostulante")]
         [HttpPost]
         public bool GuardarEvaluadorPostulante(ConvocatoriaBE obj)

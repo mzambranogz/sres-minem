@@ -19,6 +19,8 @@ namespace sres.be
         public string FILTRO { get; set; }
         public string UNIDAD { get; set; }
         public string RESULTADO { get; set; }
+        public string EMISIONES { get; set; }
+        public string AHORRO { get; set; }
         public int TAMANO { get; set; }
         public string DESCRIPCION { get; set; }
         public List<ParametroDetalleBE> LIST_PARAMDET { get; set; }

@@ -13,6 +13,7 @@ namespace sres.be
         public int ID_DETALLE { get; set; }
         public string DESCRIPCION { get; set; }
         public int PUNTAJE { get; set; }
+        public decimal EMISIONES_REDUCIDAS { get; set; }
         public string FLAG_ESTADO { get; set; }
     }
 }

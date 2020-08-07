@@ -67,16 +67,18 @@ var consultarConvocatoria = (element) => {
         let urlConvocatoriaEta = `/api/convocatoria/listarconvocatoriaeta?id=${id}`;
         let urlConvocatoriaPos = `/api/convocatoria/listarconvocatoriapos?id=${id}`;
         let urlConvocatoriaInsig = `/api/convocatoria/listarconvocatoriainsig?id=${id}`;
+        let urlConvocatoriaEstTrab = `/api/convocatoria/listarconvocatoriaesttrab?id=${id}`;
         Promise.all([
             fetch(urlConvocatoriaReq),
             fetch(urlConvocatoriaCri),
             fetch(urlConvocatoriaEva),
             fetch(urlConvocatoriaEta),
             fetch(urlConvocatoriaPos),
-            fetch(urlConvocatoriaInsig)
+            fetch(urlConvocatoriaInsig),
+            fetch(urlConvocatoriaEstTrab)
         ])
         .then(r => Promise.all(r.map(v => v.json())))
-        .then(([jReq, jCri, jEva, jEta, jPos, jInsig]) => {
+        .then(([jReq, jCri, jEva, jEta, jPos, jInsig, jEsttrab]) => {
             cargarDatos(j);
             //jCri.length == 0 ? '' : jReq.map(x => $('#chk-r-'+x.ID_REQUERIMIENTO).prop('checked', true));
 
@@ -109,6 +111,7 @@ var consultarConvocatoria = (element) => {
             jEva.length == 0 ? '' : jEva.map(x => $('#chk-e-'+x.ID_USUARIO).prop('checked', true));
             jEta.length == 0 ? '' : jEta.map(x => $('#txt-e-'+x.ID_ETAPA).val(x.DIAS));
             jInsig.length == 0 ? '' : jInsig.map(x => $('#txt-i-'+x.ID_INSIGNIA).val(x.PUNTAJE_MIN));
+            jEsttrab.length == 0 ? '' : jEsttrab.map(x => $(`#estrella-${x.ID_ESTRELLA}-${x.ID_TRABAJADORES_CAMA}`).val(x.EMISIONES_MIN))
         });
     });
 }

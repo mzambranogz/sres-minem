@@ -42,6 +42,11 @@ var consultar = () => {
                 armarBodyEstatico(x.LIST_INDICADOR_BODY);
         });
         $("[data-toggle='tooltip']").tooltip();
+        let emisiones = 0.0
+        $(document).find('.get-emisiones').each((x, y) => {
+            emisiones += $(y).val() == '' ? 0.0 : parseFloat($(y).val());
+        });
+        $(`#txt-emisiones`).val(formatoMiles(emisiones / 1000));
     });
 };
 
@@ -108,7 +113,7 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
             if (lista[i]["ESTATICO"] == '1')
                 filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="text-center estilo-01">${validarNull(lista[i]["VALOR"])}</div><input class="get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" type="hidden" /></td>`;
             else
-                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} readonly /></div></div></td>`;
+                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``}  get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} readonly /></div></div></td>`;
         } else {
             let v = 0;
             for (var j = 0; j < lista[i]["LIST_PARAMDET"].length; j++) {
@@ -163,6 +168,7 @@ var guardar = () => {
     var arr = [];
     let listaEvaluacion = [];
     let idEvaluacion = 0;
+    let emisiones = $(`#txt-emisiones`).val();
     $('input[type="radio"][id*="rad-eva-cri-0"]').each((x, y) => {
         if ($(y).prop('checked')) {
             idEvaluacion = $(y).attr('id').replace('rad-eva-cri-0', '');
@@ -207,7 +213,7 @@ var guardar = () => {
     let puntaje = $(`#cbo-puntaje`).val();
     let observacion = $(`#txa-observaciones`).val();
     let url = `/api/criterio/guardarevaluacioncriterio`;
-    let data = { ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio, ID_DETALLE: puntaje, ID_INSCRIPCION: idInscripcion, ID_TIPO_EVALUACION: idEvaluacion, OBSERVACION: observacion, LIST_INSCDOC: listaEvaluacion, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio, ID_DETALLE: puntaje, ID_INSCRIPCION: idInscripcion, ID_TIPO_EVALUACION: idEvaluacion, EMISIONES_REDUCIDAS: emisiones, OBSERVACION: observacion, LIST_INSCDOC: listaEvaluacion, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
@@ -216,4 +222,9 @@ var guardar = () => {
         j ? $('#btnGuardar').parent().parent().hide() : '';
         j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'La evaluación de este criterio fue guardado correctamente.', close: { time: 4000 }, url: `${baseUrl}Convocatoria/${idConvocatoria}/EvaluacionCriterios` }) : $('.alert-add').html('').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
     });
+}
+
+var formatoMiles = (n) => {
+    var m = n * 1;
+    return m.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 }

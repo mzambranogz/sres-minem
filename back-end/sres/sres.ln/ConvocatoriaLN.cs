@@ -330,6 +330,8 @@ namespace sres.ln
                             if (entidad.PUNTAJE >= ci.PUNTAJE_MIN)
                                 categoria = ci.ID_INSIGNIA;
 
+                    
+
                     ReconocimientoBE rec = reconocimientoDA.ObtenerReconocimientoUltimo(entidad.ID_INSCRIPCION, cn);
                     if (rec != null)
                         mejora = categoria > rec.ID_INSIGNIA && estrella > rec.ID_ESTRELLA ? "0" : "1";
@@ -358,6 +360,19 @@ namespace sres.ln
 
             return lista;
         }
+        public List<EstrellaTrabajadorCamaBE> listarConvocatoriaEstrellaTrab(ConvocatoriaBE entidad)
+        {
+            List<EstrellaTrabajadorCamaBE> lista = new List<EstrellaTrabajadorCamaBE>();
+            try
+            {
+                cn.Open();
+                lista = convocatoriaDA.listarConvocatoriaEstrellaTrab(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
 
     }
 }

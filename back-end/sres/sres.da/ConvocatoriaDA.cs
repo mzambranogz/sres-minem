@@ -552,5 +552,27 @@ namespace sres.da
             return entidad;
         }
 
+        public List<EstrellaTrabajadorCamaBE> listarConvocatoriaEstrellaTrab(ConvocatoriaBE entidad, OracleConnection db)
+        {
+            List<EstrellaTrabajadorCamaBE> lista = new List<EstrellaTrabajadorCamaBE>();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_CONV_EST_TRAB";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<EstrellaTrabajadorCamaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                entidad.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return lista;
+        }
+
     }
 }
