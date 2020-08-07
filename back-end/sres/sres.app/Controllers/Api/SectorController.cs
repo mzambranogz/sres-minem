@@ -103,5 +103,22 @@ namespace sres.app.Controllers.Api
 
             return lista;
         }
+
+        [Route("obtenerallsector")]
+        [HttpGet]
+        public List<SectorBE> ListarSectorConvocatoria()
+        {
+            List<SectorBE> lista = new List<SectorBE>();
+            try
+            {
+                lista = sectorLN.ListarSectorConvocatoria();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
     }
 }

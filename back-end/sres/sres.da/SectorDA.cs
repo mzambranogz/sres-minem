@@ -140,5 +140,20 @@ namespace sres.da
 
             return item;
         }
+
+        public List<SectorBE> ListarSectorConvocatoria(OracleConnection db)
+        {
+            List<SectorBE> lista = new List<SectorBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_ALL_SECTOR";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<SectorBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
     }
 }

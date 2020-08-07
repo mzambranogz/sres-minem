@@ -185,6 +185,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\AnnoController.cs" />
     <Compile Include="Controllers\Api\CriterioController.cs" />
+    <Compile Include="Controllers\Api\EstrellaController.cs" />
     <Compile Include="Controllers\Api\EtapaController.cs" />
     <Compile Include="Controllers\Api\IndicadorDataController.cs" />
     <Compile Include="Controllers\Api\InscripcionController.cs" />

@@ -190,24 +190,29 @@ var consultarListas = () => {
     let urlConsultarListaEvaluador = `/api/usuario/obtenerallevaluador`;
     let urlConsultarListaEtapa = `/api/etapa/obteneralletapa`;
     let urlConsultarListaInsignia = `/api/insignia/obtenerallinsignia`;
+    let urlConsultarListaEstrella = `/api/estrella/obtenerallestrella`;
+    let urlConsultarListaSector = `/api/sector/obtenerallsector`;
     Promise.all([
         fetch(urlConsultarListaCriterio),
         fetch(urlConsultarListaRequerimiento),
         fetch(urlConsultarListaEvaluador),
         fetch(urlConsultarListaEtapa),
-        fetch(urlConsultarListaInsignia)
+        fetch(urlConsultarListaInsignia),
+        fetch(urlConsultarListaEstrella),
+        fetch(urlConsultarListaSector)
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarCheckListas);
 }
 
-var cargarCheckListas = ([listaCriterio, listaRequerimiento, listaEvaluador, listaEtapa, listaInsignia]) => {
+var cargarCheckListas = ([listaCriterio, listaRequerimiento, listaEvaluador, listaEtapa, listaInsignia, listaEstrella, listaSector]) => {
     cargarCheckCriterio('#list-criterio', listaCriterio);
     cargarCheckRequerimiento('#list-req', listaRequerimiento);
     cargarCheckEvaluador('#list-evaluador', listaEvaluador);
     cargarCheckEtapa('#tbl-etapa', listaEtapa);
     cargarComboEtapa('#cbo-etapa', listaEtapa);
     cargarTablaInsignia('#tbl-insignia', listaInsignia);
+    cargarTablaEstrellaSector("#tbl-estrellas", listaEstrella, listaSector);
 }
 
 var cargarCheckRequerimiento = (selector, data) => {
@@ -271,6 +276,31 @@ var cargarTablaInsignia = (selector, data) => {
     $(selector).find('tbody').html(items);
 }
 
+var cargarTablaEstrellaSector = (selector, dataE, dataS) => {
+    let head = dataE.length == 0 ? '' : dataE.map(x => `<th>${x.NOMBRE} tCo2</th>`).join('');
+    $(selector).find('thead').html(`<tr><th>Sector</th><th><Tipo empresa/Subsector</th><th>Trabajadores/Camas</th>${head}</tr>`);
+
+    let items = dataS.length == 0 ? '' : dataS.map((x,y) => {
+        return armarSubsector(x.NOMBRE, x.LISTA_SUBSEC_TIPOEMP, dataE);
+    }).join('');
+    $(selector).find('tbody').html(items);
+}
+
+var armarSubsector = (sector, data, dataE) => {
+    let sub = data.length == 0 ? `<tr><td>${sector}</td></tr>` : data.map((x,y) => {
+        return armarTrabajadorCama(sector, x.NOMBRE, x.LISTA_TRAB_CAMA, dataE);
+    }).join('');
+    return sub;
+}
+
+var armarTrabajadorCama = (sector, sub, data, dataE) => {
+    let tc = data.length == 0 ? `<tr><td>${sector}</td><td>${sub}</td></tr>` : data.map((x,y) => {
+        let contenido = dataE.length == 0 ? `` : dataE.map(z => `<td><input class="get-estrella" id="estrella-${z.ID_ESTRELLA}-${x.ID_TRABAJADORES_CAMA}" value="0" /></td>`).join('');
+        return `<tr class="get-fila-estrella"><td>${sector}</td><td>${sub}</td><td>${x.NOMBRE}</td>${contenido}</tr>`;
+    }).join('');
+    return tc;
+}
+
 var nuevo = () => {
     limpiarFormulario();
     $('#frm').show();
@@ -315,6 +345,7 @@ var guardar = () => {
     evaluador = [];
     etapa = [];
     insignia = [];
+    estrella = [];
     criterioRequerimiento = [];
 
     $('#list-req').find('.requerimiento').each((x, y) => {
@@ -402,6 +433,17 @@ var guardar = () => {
         insignia.push(r);
     });
 
+    $('#tbl-estrellas').find('tbody').find('.get-fila-estrella').each((x, y) => {
+        $(y).find(`.get-estrella`).each((z,w) => {
+            var r = {
+                ID_ESTRELLA: $(w).attr("id").replace('estrella-','').split('-')[0],
+                ID_TRABAJADORES_CAMA: $(w).attr("id").replace('estrella-','').split('-')[1],
+                EMISIONES_MIN: $(w).val()
+            }
+            estrella.push(r);
+        });
+    });
+
     Array.from($('div[id*="listaRequerimientoCriterio"]')).forEach(x => {
         let idCriterio = $(x).parent().find('input[type="checkbox"]').attr('id').replace('chk-c-', '');
         Array.from($(x).find('.requerimiento')).forEach(y => {
@@ -412,7 +454,7 @@ var guardar = () => {
     });
 
     let url = `/api/convocatoria/guardarconvocatoria`;
-    let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, DESCRIPCION: descripcion, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, LISTA_INSIG: insignia, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, DESCRIPCION: descripcion, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, LISTA_INSIG: insignia, LISTA_ESTRELLA_TRAB: estrella, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)

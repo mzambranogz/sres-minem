@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace sres.be
 {
-    public class SectorBE : BaseBE
+    public class EstrellaBE : BaseBE
     {
-        public int ID_SECTOR { get; set; }
+        public int ID_ESTRELLA { get; set; }
         public string NOMBRE { get; set; }
         public string FLAG_ESTADO { get; set; }
-        public int UPD_USUARIO { get; set; }
-        public List<SubsectorTipoempresaBE> LISTA_SUBSEC_TIPOEMP { get; set; }
     }
 }

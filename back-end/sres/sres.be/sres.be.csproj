@@ -61,6 +61,8 @@
     <Compile Include="ConvocatoriaTrazabilidadBE.cs" />
     <Compile Include="CriterioBE.cs" />
     <Compile Include="DocumentoAuxBE.cs" />
+    <Compile Include="EstrellaBE.cs" />
+    <Compile Include="EstrellaTrabajadorCamaBE.cs" />
     <Compile Include="EtapaAuxBE.cs" />
     <Compile Include="EtapaBE.cs" />
     <Compile Include="FactorBE.cs" />

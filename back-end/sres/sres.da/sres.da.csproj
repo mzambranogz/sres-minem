@@ -67,6 +67,7 @@
     <Compile Include="CriterioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
     <Compile Include="DocumentoDA.cs" />
+    <Compile Include="EstrellaDA.cs" />
     <Compile Include="EtapaDA.cs" />
     <Compile Include="FactorDA.cs" />
     <Compile Include="FormulaParametroDA.cs" />

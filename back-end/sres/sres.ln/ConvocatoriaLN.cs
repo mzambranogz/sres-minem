@@ -147,6 +147,13 @@ namespace sres.ln
                             if (!(seGuardoConvocatoria = convocatoriaDA.GuardarInsignia(it, idConvocatoria, cn, ot).OK)) break;
                         }
                     }
+                    if (seGuardoConvocatoria)
+                    {
+                        foreach (var it in entidad.LISTA_ESTRELLA_TRAB)
+                        {
+                            if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEstrellaTrabajadorCama(it, idConvocatoria, cn, ot).OK)) break;
+                        }
+                    }
 
                     if (seGuardoConvocatoria) ot.Commit();
                     else ot.Rollback();

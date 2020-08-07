@@ -527,5 +527,30 @@ namespace sres.da
             return seGuardo;
         }
 
+        public EstrellaTrabajadorCamaBE GuardarEstrellaTrabajadorCama(EstrellaTrabajadorCamaBE entidad, int idConvocatoria, OracleConnection db, OracleTransaction ot = null)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_PRC_CONV_ESTREL_TRAB";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_ESTRELLA", entidad.ID_ESTRELLA);
+                p.Add("PI_ID_TRABAJADORES_CAMA", entidad.ID_TRABAJADORES_CAMA);
+                p.Add("PI_EMISIONES_MIN", entidad.EMISIONES_MIN);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, ot, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0 && idConvocatoria != -1;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
+
     }
 }

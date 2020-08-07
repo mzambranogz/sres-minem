@@ -12,5 +12,6 @@ namespace sres.be
         public int ID_SECTOR { get; set; }
         public string NOMBRE { get; set; }
         public string FLAG_ESTADO { get; set; }
+        public List<TrabajadorCamaBE> LISTA_TRAB_CAMA { get; set; }
     }
 }

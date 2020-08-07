@@ -14,6 +14,7 @@ namespace sres.be
         public List<EtapaBE> LISTA_ETA { get; set; }
         public List<InstitucionBE> LIST_INSTITUCION { get; set; }
         public List<InsigniaBE> LISTA_INSIG { get; set; }
+        public List<EstrellaTrabajadorCamaBE> LISTA_ESTRELLA_TRAB { get; set; }
         public List<ConvocatoriaCriterioRequerimientoBE> LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO { get; set; }
         public string TXT_FECHA_INICIO { get; set; }
         public string TXT_FECHA_FIN { get; set; }
