@@ -21,15 +21,23 @@ namespace sres.app.Controllers
         CasoLN casoLN = new CasoLN();
         ConvocatoriaCriterioPuntajeLN convcripuntajeLN = new ConvocatoriaCriterioPuntajeLN();
         ConvocatoriaEtapaInscripcionLN convetainscLN = new ConvocatoriaEtapaInscripcionLN();
+        ReconocimientoLN reconocimientoLN = new ReconocimientoLN();
 
         [SesionOut]
         public ActionResult Index()
         {
             UsuarioBE usuario = ObtenerUsuarioLogin();
+
             if (usuario.ID_ROL != (int)EnumsCustom.Roles.POSTULANTE)
             {
                 ViewData["convocatoria"] = convocatoriaLN.ObtenerUltimaConvocatoria();
             }
+            else if(usuario.ID_ROL == (int)EnumsCustom.Roles.POSTULANTE)
+            {
+                int cantidadUltimosReconocimientos = AppSettings.Get<int>("Bandeja.Postulante.CantidadUltimosReconocimientos");
+                ViewData["ultimos_reconocimientos"] = reconocimientoLN.ListarUltimosReconocimientos(usuario.ID_INSTITUCION.Value, cantidadUltimosReconocimientos).ToList();
+            }
+
             return View();
         }
 
@@ -144,10 +152,13 @@ namespace sres.app.Controllers
 
             ConvocatoriaEtapaInscripcionBE convetainsc = convetainscLN.ObtenerConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = convocatoria.ID_CONVOCATORIA, ID_ETAPA = convocatoria.ID_ETAPA, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION });
 
+            ConvocatoriaCriterioPuntajeBE convcripunt = convcripuntajeLN.ObtenerPuntajeInscripcion(idConvocatoria, inscripcion.ID_INSCRIPCION);
+
             ViewData["convocatoria"] = convocatoria;
             ViewData["inscripcion"] = inscripcion;
             ViewData["listaCriterio"] = listaCriterio;
             ViewData["convetainsc"] = convetainsc;
+            ViewData["convcripuntaje"] = convcripunt;
 
             return View();
         }

@@ -420,6 +420,7 @@ namespace sres.da
                 p.Add("PI_ID_DETALLE", entidad.ID_DETALLE);
                 p.Add("PI_ID_INSCRIPCION", entidad.ID_INSCRIPCION);
                 p.Add("PI_ID_TIPO_EVALUACION", entidad.ID_TIPO_EVALUACION);
+                p.Add("PI_EMISIONES_REDUCIDAS", entidad.EMISIONES_REDUCIDAS);
                 p.Add("PI_OBSERVACION", entidad.OBSERVACION);
                 p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);

@@ -52,10 +52,12 @@
     <Compile Include="ConvocatoriaEtapaInscripcionLN.cs" />
     <Compile Include="ConvocatoriaLN.cs" />
     <Compile Include="CriterioLN.cs" />
+    <Compile Include="EstrellaLN.cs" />
     <Compile Include="EtapaLN.cs" />
     <Compile Include="IndicadorDataLN.cs" />
     <Compile Include="InscripcionLN.cs" />
     <Compile Include="InscripcionRequerimientoLN.cs" />
+    <Compile Include="InsigniaLN.cs" />
     <Compile Include="InstitucionLN.cs" />
     <Compile Include="MRV\BaseLN.cs" />
     <Compile Include="MRV\InstitucionLN.cs" />
@@ -63,9 +65,12 @@
     <Compile Include="ParametroDetalleRelacionLN.cs" />
     <Compile Include="ProcesoLN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReconocimientoLN.cs" />
     <Compile Include="RequerimientoLN.cs" />
     <Compile Include="RolLN.cs" />
     <Compile Include="SectorLN.cs" />
+    <Compile Include="SubsectorTipoempresaLN.cs" />
+    <Compile Include="TrabajadorCamaLN.cs" />
     <Compile Include="UsuarioLN.cs" />
   </ItemGroup>
   <ItemGroup>

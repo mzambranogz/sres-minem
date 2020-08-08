@@ -185,10 +185,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\AnnoController.cs" />
     <Compile Include="Controllers\Api\CriterioController.cs" />
+    <Compile Include="Controllers\Api\EstrellaController.cs" />
     <Compile Include="Controllers\Api\EtapaController.cs" />
     <Compile Include="Controllers\Api\IndicadorDataController.cs" />
     <Compile Include="Controllers\Api\InscripcionController.cs" />
     <Compile Include="Controllers\Api\InscripcionRequerimientoController.cs" />
+    <Compile Include="Controllers\Api\InsigniaController.cs" />
     <Compile Include="Controllers\Api\InstitucionController.cs" />
     <Compile Include="Controllers\Api\ConvocatoriaController.cs" />
     <Compile Include="Controllers\Api\MRV\InstitucionMRVController.cs" />
@@ -198,6 +200,8 @@
     <Compile Include="Controllers\Api\RequerimientoController.cs" />
     <Compile Include="Controllers\Api\RolController.cs" />
     <Compile Include="Controllers\Api\SectorController.cs" />
+    <Compile Include="Controllers\Api\SubsectorTipoempresaController.cs" />
+    <Compile Include="Controllers\Api\TrabajadorCamaController.cs" />
     <Compile Include="Controllers\Api\UsuarioController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ConvocatoriaController.cs" />

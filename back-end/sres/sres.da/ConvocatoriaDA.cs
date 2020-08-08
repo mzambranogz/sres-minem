@@ -457,5 +457,122 @@ namespace sres.da
             return seGuardo;
         }
 
+        public InsigniaBE GuardarInsignia(InsigniaBE entidad, int idConvocatoria, OracleConnection db, OracleTransaction ot = null)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_PRC_CONVOCATORIA_INSIG";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_INSIGNIA", entidad.ID_INSIGNIA);
+                p.Add("PI_PUNTAJE_MIN", entidad.PUNTAJE_MIN);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, ot, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0 && idConvocatoria != -1;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
+
+        public List<ConvocatoriaInsigniaBE> listarConvocatoriaInsig(ConvocatoriaBE entidad, OracleConnection db)
+        {
+            List<ConvocatoriaInsigniaBE> lista = new List<ConvocatoriaInsigniaBE>();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_CONVOCAT_INSIG";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ConvocatoriaInsigniaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                entidad.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return lista;
+        }
+
+        public bool GuardarResultadoReconocimiento(ReconocimientoBE entidad, OracleConnection db)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_PRC_RECONOCIMIENTO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", entidad.ID_INSCRIPCION);
+                p.Add("PI_ID_INSIGNIA", entidad.ID_INSIGNIA);
+                p.Add("PI_PUNTAJE", entidad.PUNTAJE);
+                p.Add("PI_ID_ESTRELLA", entidad.ID_ESTRELLA);
+                p.Add("PI_EMISIONES", entidad.EMISIONES);
+                p.Add("PI_FLAG_MEJORACONTINUA", entidad.FLAG_MEJORACONTINUA);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seGuardo = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seGuardo;
+        }
+
+        public EstrellaTrabajadorCamaBE GuardarEstrellaTrabajadorCama(EstrellaTrabajadorCamaBE entidad, int idConvocatoria, OracleConnection db, OracleTransaction ot = null)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_PRC_CONV_ESTREL_TRAB";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_ESTRELLA", entidad.ID_ESTRELLA);
+                p.Add("PI_ID_TRABAJADORES_CAMA", entidad.ID_TRABAJADORES_CAMA);
+                p.Add("PI_EMISIONES_MIN", entidad.EMISIONES_MIN);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, ot, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0 && idConvocatoria != -1;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
+
+        public List<EstrellaTrabajadorCamaBE> listarConvocatoriaEstrellaTrab(ConvocatoriaBE entidad, OracleConnection db)
+        {
+            List<EstrellaTrabajadorCamaBE> lista = new List<EstrellaTrabajadorCamaBE>();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_CONV_EST_TRAB";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<EstrellaTrabajadorCamaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                entidad.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return lista;
+        }
+
     }
 }

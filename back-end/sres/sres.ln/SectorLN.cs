@@ -12,6 +12,8 @@ namespace sres.ln
     public class SectorLN : BaseLN
     {
         SectorDA sectorDA = new SectorDA();
+        SubsectorTipoempresaDA subsectipoempDA = new SubsectorTipoempresaDA();
+        TrabajadorCamaDA trabcamaDA = new TrabajadorCamaDA();
 
         public SectorBE GuardarSector(SectorBE entidad)
         {
@@ -95,6 +97,27 @@ namespace sres.ln
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return item;
+        }
+
+        public List<SectorBE> ListarSectorConvocatoria()
+        {
+            List<SectorBE> lista = new List<SectorBE>();
+            try
+            {
+                cn.Open();
+                lista = sectorDA.ListarSectorConvocatoria(cn);
+                if (lista.Count > 0)
+                    foreach (SectorBE s in lista)
+                    {
+                        s.LISTA_SUBSEC_TIPOEMP = subsectipoempDA.listaSubsectorTipoempresa(s.ID_SECTOR, cn);
+                        if (s.LISTA_SUBSEC_TIPOEMP.Count > 0)
+                            foreach (SubsectorTipoempresaBE sb in s.LISTA_SUBSEC_TIPOEMP)
+                                sb.LISTA_TRAB_CAMA = trabcamaDA.listaSubsectorTipoempresa(sb.ID_SUBSECTOR_TIPOEMPRESA, cn);
+                    }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
     }
 }

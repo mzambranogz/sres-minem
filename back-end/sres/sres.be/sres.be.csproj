@@ -48,6 +48,7 @@
     <Compile Include="ConvocatoriaCriterioPuntajeInscripBE.cs" />
     <Compile Include="ConvocatoriaEtapaInscripcionBE.cs" />
     <Compile Include="ConvocatoriaEvaluadorPostulanteBE.cs" />
+    <Compile Include="ConvocatoriaInsigniaBE.cs" />
     <Compile Include="CriterioAuxBE.cs" />
     <Compile Include="DataPaginateBE.cs" />
     <Compile Include="CasoAuxBE.cs" />
@@ -60,6 +61,8 @@
     <Compile Include="ConvocatoriaTrazabilidadBE.cs" />
     <Compile Include="CriterioBE.cs" />
     <Compile Include="DocumentoAuxBE.cs" />
+    <Compile Include="EstrellaBE.cs" />
+    <Compile Include="EstrellaTrabajadorCamaBE.cs" />
     <Compile Include="EtapaAuxBE.cs" />
     <Compile Include="EtapaBE.cs" />
     <Compile Include="FactorBE.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="InscripcionDocumentoBE.cs" />
     <Compile Include="InscripcionRequerimientoBE.cs" />
     <Compile Include="InscripcionTrazabilidadBE.cs" />
+    <Compile Include="InsigniaBE.cs" />
     <Compile Include="InstitucionAuxBE.cs" />
     <Compile Include="InstitucionBE.cs" />
     <Compile Include="DocumentoBE.cs" />
@@ -87,9 +91,12 @@
     <Compile Include="ParametroDetalleRelacionBE.cs" />
     <Compile Include="ProcesoBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReconocimientoBE.cs" />
     <Compile Include="RolBE.cs" />
     <Compile Include="RequerimientoBE.cs" />
     <Compile Include="SectorBE.cs" />
+    <Compile Include="SubsectorTipoempresaBE.cs" />
+    <Compile Include="TrabajadorCamaBE.cs" />
     <Compile Include="UsuarioAuxBE.cs" />
     <Compile Include="UsuarioBE.cs" />
   </ItemGroup>

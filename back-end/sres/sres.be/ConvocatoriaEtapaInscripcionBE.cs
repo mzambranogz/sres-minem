@@ -14,6 +14,8 @@ namespace sres.be
         public string REALIZADO { get; set; }
         public int ID_TIPO_EVALUACION { get; set; }
         public string OBSERVACION { get; set; }
+        public int PUNTAJE { get; set; }
+        public decimal EMISIONES_REDUCIDAS { get; set; }
         public string FLAG_ESTADO { get; set; }
     }
 }

@@ -12,5 +12,6 @@ namespace sres.be
         public string NOMBRE { get; set; }
         public string FLAG_ESTADO { get; set; }
         public int UPD_USUARIO { get; set; }
+        public List<SubsectorTipoempresaBE> LISTA_SUBSEC_TIPOEMP { get; set; }
     }
 }

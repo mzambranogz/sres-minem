@@ -67,6 +67,7 @@
     <Compile Include="CriterioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleHelper.cs" />
     <Compile Include="DocumentoDA.cs" />
+    <Compile Include="EstrellaDA.cs" />
     <Compile Include="EtapaDA.cs" />
     <Compile Include="FactorDA.cs" />
     <Compile Include="FormulaParametroDA.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="InscripcionDocumentoDA.cs" />
     <Compile Include="InscripcionRequerimientoDA.cs" />
     <Compile Include="InscripcionTrazabilidadDA.cs" />
+    <Compile Include="InsigniaDA.cs" />
     <Compile Include="InstitucionDA.cs" />
     <Compile Include="MRV\BaseDA.cs" />
     <Compile Include="MRV\InstitucionDA.cs" />
@@ -84,9 +86,12 @@
     <Compile Include="ParametroDetalleRelacionDA.cs" />
     <Compile Include="ProcesoDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReconocimientoDA.cs" />
     <Compile Include="RequerimientoDA.cs" />
     <Compile Include="RolDA.cs" />
     <Compile Include="SectorDA.cs" />
+    <Compile Include="SubsectorTipoempresaDA.cs" />
+    <Compile Include="TrabajadorCamaDA.cs" />
     <Compile Include="UsuarioDA.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -21,6 +21,7 @@ namespace sres.ln
         CasoDA casoDA = new CasoDA();
         DocumentoDA documentoDA = new DocumentoDA();
         ConvocatoriaCriterioPuntajeDA convcripuntDA = new ConvocatoriaCriterioPuntajeDA();
+        ReconocimientoDA reconocimientoDA = new ReconocimientoDA();
 
         public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden)
         {
@@ -137,6 +138,20 @@ namespace sres.ln
                         foreach (var it in entidad.LISTA_ETA)
                         {
                             if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEtapa(new EtapaBE { ID_ETAPA = it.ID_ETAPA, DIAS = it.DIAS, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, idConvocatoria, cn, ot).OK)) break;
+                        }
+                    }
+                    if (seGuardoConvocatoria)
+                    {
+                        foreach (var it in entidad.LISTA_INSIG)
+                        {
+                            if (!(seGuardoConvocatoria = convocatoriaDA.GuardarInsignia(it, idConvocatoria, cn, ot).OK)) break;
+                        }
+                    }
+                    if (seGuardoConvocatoria)
+                    {
+                        foreach (var it in entidad.LISTA_ESTRELLA_TRAB)
+                        {
+                            if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEstrellaTrabajadorCama(it, idConvocatoria, cn, ot).OK)) break;
                         }
                     }
 
@@ -301,14 +316,63 @@ namespace sres.ln
         public bool GuardarConvocatoriaEtapaInscripcion(ConvocatoriaEtapaInscripcionBE entidad)
         {
             bool seGuardoConvocatoria = false;
+            int categoria = 0;
+            int estrella = 0;
+            string mejora = "0";      
             try
             {
                 cn.Open();
-                seGuardoConvocatoria = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(entidad, cn);
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {
+                    List<ConvocatoriaInsigniaBE> lista = convocatoriaDA.listarConvocatoriaInsig(new ConvocatoriaBE { ID_CONVOCATORIA = entidad.ID_CONVOCATORIA }, cn);
+                    if (lista.Count > 0)
+                        foreach (ConvocatoriaInsigniaBE ci in lista)
+                            if (entidad.PUNTAJE >= ci.PUNTAJE_MIN)
+                                categoria = ci.ID_INSIGNIA;
+
+                    
+
+                    ReconocimientoBE rec = reconocimientoDA.ObtenerReconocimientoUltimo(entidad.ID_INSCRIPCION, cn);
+                    if (rec != null)
+                        mejora = categoria > rec.ID_INSIGNIA && estrella > rec.ID_ESTRELLA ? "0" : "1";
+
+                    seGuardoConvocatoria = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(entidad, cn);
+                    if (seGuardoConvocatoria) seGuardoConvocatoria = convocatoriaDA.GuardarResultadoReconocimiento(new ReconocimientoBE { ID_INSCRIPCION = entidad.ID_INSCRIPCION, ID_INSIGNIA = categoria, PUNTAJE = entidad.PUNTAJE, FLAG_MEJORACONTINUA = mejora}, cn);
+
+                    if (seGuardoConvocatoria) ot.Commit();
+                    else ot.Rollback();
+                }
+                
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return seGuardoConvocatoria;
         }
+
+        public List<ConvocatoriaInsigniaBE> listarConvocatoriaInsig(ConvocatoriaBE entidad)
+        {
+            List<ConvocatoriaInsigniaBE> lista = new List<ConvocatoriaInsigniaBE>();
+            try
+            {
+                cn.Open();
+                lista = convocatoriaDA.listarConvocatoriaInsig(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+        public List<EstrellaTrabajadorCamaBE> listarConvocatoriaEstrellaTrab(ConvocatoriaBE entidad)
+        {
+            List<EstrellaTrabajadorCamaBE> lista = new List<EstrellaTrabajadorCamaBE>();
+            try
+            {
+                cn.Open();
+                lista = convocatoriaDA.listarConvocatoriaEstrellaTrab(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
 
     }
 }
