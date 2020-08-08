@@ -30,16 +30,19 @@ namespace sres.ln
 
             if (item != null)
             {
-                string pathFormat = AppSettings.Get<string>("Path.Institucion");
-                string pathDirectoryRelative = string.Format(pathFormat, item.ID_INSTITUCION);
-                string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
-                string pathFile = Path.Combine(pathDirectory, item.LOGO);
-                if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
-                pathFile = !File.Exists(pathFile) ? null : pathFile;
-                if (!string.IsNullOrEmpty(pathFile))
+                if (!string.IsNullOrEmpty(item.LOGO))
                 {
-                    item.LOGO_CONTENIDO = File.ReadAllBytes(pathFile);
-                    item.LOGO_TIPO = MimeMapping.GetMimeMapping(pathFile);
+                    string pathFormat = AppSettings.Get<string>("Path.Institucion");
+                    string pathDirectoryRelative = string.Format(pathFormat, item.ID_INSTITUCION);
+                    string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                    string pathFile = Path.Combine(pathDirectory, item.LOGO);
+                    if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                    pathFile = !File.Exists(pathFile) ? null : pathFile;
+                    if (!string.IsNullOrEmpty(pathFile))
+                    {
+                        item.LOGO_CONTENIDO = File.ReadAllBytes(pathFile);
+                        item.LOGO_TIPO = MimeMapping.GetMimeMapping(pathFile);
+                    }
                 }
             }
 

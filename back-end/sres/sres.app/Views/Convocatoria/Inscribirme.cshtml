@@ -33,12 +33,12 @@
 }
 else
 {
-    if (convocatoria.ID_ETAPA == (int)EnumsCustom.Etapas.PUBLICACIONYDIFUSION)
+    if (convocatoria.ID_ETAPA != (int)EnumsCustom.Etapas.PUBLICACIONYDIFUSION)
     {
         <div class="container-fluid mt-5">
             <div class="container">
                 <div class="row">
-                    <h1>¡Actualmente la convocatoria se encuentra en la etapa de @(((EnumsCustom.Etapas)convocatoria.ID_ETAPA).GetAttributeOfType<DescriptionAttribute>())!</h1>
+                    <h1>¡Actualmente la convocatoria se encuentra en la etapa de @(((EnumsCustom.Etapas)convocatoria.ID_ETAPA).GetAttributeOfType<DescriptionAttribute>().Description)!</h1>
                 </div>
             </div>
         </div>

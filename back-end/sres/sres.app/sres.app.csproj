@@ -254,6 +254,8 @@
     <Content Include="Views\Convocatoria\IndexEvaluador.cshtml" />
     <Content Include="Views\Convocatoria\EvaluacionCriterio.cshtml" />
     <Content Include="Views\Convocatoria\EvaluacionCriterios.cshtml" />
+    <Content Include="Views\Convocatoria\BandejaParticipantes.cshtml" />
+    <Content Include="Views\Convocatoria\EvaluarInscripcion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

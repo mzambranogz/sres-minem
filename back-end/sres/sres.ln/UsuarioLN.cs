@@ -140,7 +140,7 @@ namespace sres.ln
 
                     if (seGuardoInstitucion)
                     {
-                        usuario.ID_INSTITUCION = usuario.INSTITUCION == null ? null : (int?)idInstitucion;
+                        usuario.ID_INSTITUCION = idInstitucion <= 0 ? usuario.ID_INSTITUCION.HasValue ? (usuario.ID_INSTITUCION <= 0 ? null : usuario.ID_INSTITUCION) : null : idInstitucion;
                         usuario.CONTRASENA = string.IsNullOrEmpty(usuario.CONTRASENA) ? null : Seguridad.hashSal(usuario.CONTRASENA);
                         seGuardo = usuarioDA.GuardarUsuario(usuario, cn);
                     }

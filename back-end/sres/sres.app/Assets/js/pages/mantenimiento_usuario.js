@@ -51,8 +51,8 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
             let colNombres = `<td>${x.NOMBRES}</td>`;
             let colApellidos = `<td>${x.APELLIDOS}</td>`;
             let colCorreo = `<td>${x.CORREO}</td>`;
-            let colTelefono = `<td>${x.TELEFONO}</td>`;
-            let colAnexo = `<td>${x.ANEXO}</td>`;
+            let colTelefono = `<td>${x.TELEFONO || ''}</td>`;
+            let colAnexo = `<td>${x.ANEXO || ''}</td>`;
             let colCelular = `<td>${x.CELULAR}</td>`;
             let colRucInstitucion = `<td>${x.INSTITUCION == null ? '' : x.INSTITUCION.RUC}</td>`;
             let colRazonSocialInstitucion = `<td>${x.INSTITUCION == null ? '' : x.INSTITUCION.RAZON_SOCIAL}</td>`;

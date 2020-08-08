@@ -113,6 +113,20 @@ namespace sres.app.Controllers
         }
 
         [SesionOut]
+        [Route("{idConvocatoria}/BandejaParticipantes")]
+        public ActionResult BandejaParticipantes(int idConvocatoria)
+        {
+            return View();
+        }
+
+        [SesionOut]
+        [Route("{idConvocatoria}/Inscripcion/{idInscripcion}/Evaluar")]
+        public ActionResult EvaluarInscripcion(int idConvocatoria, int idInscripcion)
+        {
+            return View();
+        }
+
+        [SesionOut]
         [Route("{idConvocatoria}/EvaluacionCriterios")]
         public ActionResult EvaluacionCriterios(int idConvocatoria)
         {

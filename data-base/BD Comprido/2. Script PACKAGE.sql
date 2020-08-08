@@ -1787,6 +1787,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_USUARIO U
+                    INNER JOIN T_GENM_INSTITUCION I ON U.ID_INSTITUCION = I.ID_INSTITUCION
                     WHERE (
                     LOWER(TRANSLATE(U.NOMBRES,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
                     LOWER(TRANSLATE(U.APELLIDOS,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
@@ -1815,6 +1816,9 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                                 U.TELEFONO,
                                 U.ANEXO,
                                 U.CELULAR,
+                                U.ID_INSTITUCION,
+                                I.RUC AS "RUC_INSTITUCION",
+                                I.RAZON_SOCIAL AS "RAZON_SOCIAL_INSTITUCION",
                                 U.FLAG_ESTADO,
                                 ROW_NUMBER() OVER (ORDER BY ' || vCOLUMNA || ' ' || PI_ORDEN ||') AS ROWNUMBER,'
                                 || vPAGINA_TOTAL || ' AS TOTAL_PAGINAS,'
@@ -1822,6 +1826,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_USUARIO U
+                        INNER JOIN T_GENM_INSTITUCION I ON U.ID_INSTITUCION = I.ID_INSTITUCION
                         WHERE (
                         LOWER(TRANSLATE(U.NOMBRES,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
                         LOWER(TRANSLATE(U.APELLIDOS,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
