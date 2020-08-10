@@ -22,6 +22,7 @@ namespace sres.ln
         DocumentoDA documentoDA = new DocumentoDA();
         ConvocatoriaCriterioPuntajeDA convcripuntDA = new ConvocatoriaCriterioPuntajeDA();
         ReconocimientoDA reconocimientoDA = new ReconocimientoDA();
+        InscripcionTrazabilidadDA inscripcionTrazabilidadDA = new InscripcionTrazabilidadDA();
 
         public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden)
         {
@@ -324,20 +325,43 @@ namespace sres.ln
                 cn.Open();
                 using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
                 {
-                    List<ConvocatoriaInsigniaBE> lista = convocatoriaDA.listarConvocatoriaInsig(new ConvocatoriaBE { ID_CONVOCATORIA = entidad.ID_CONVOCATORIA }, cn);
-                    if (lista.Count > 0)
-                        foreach (ConvocatoriaInsigniaBE ci in lista)
-                            if (entidad.PUNTAJE >= ci.PUNTAJE_MIN)
-                                categoria = ci.ID_INSIGNIA;
-
-                    
-
-                    ReconocimientoBE rec = reconocimientoDA.ObtenerReconocimientoUltimo(entidad.ID_INSCRIPCION, cn);
-                    if (rec != null)
-                        mejora = categoria > rec.ID_INSIGNIA && estrella > rec.ID_ESTRELLA ? "0" : "1";
-
                     seGuardoConvocatoria = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(entidad, cn);
-                    if (seGuardoConvocatoria) seGuardoConvocatoria = convocatoriaDA.GuardarResultadoReconocimiento(new ReconocimientoBE { ID_INSCRIPCION = entidad.ID_INSCRIPCION, ID_INSIGNIA = categoria, PUNTAJE = entidad.PUNTAJE, FLAG_MEJORACONTINUA = mejora}, cn);
+                    if (entidad.ID_ETAPA == 5 && entidad.ID_ETAPA == 8)
+                    {
+                        List<ConvocatoriaInsigniaBE> lista = convocatoriaDA.listarConvocatoriaInsig(new ConvocatoriaBE { ID_CONVOCATORIA = entidad.ID_CONVOCATORIA }, cn);
+                        if (lista.Count > 0)
+                            foreach (ConvocatoriaInsigniaBE ci in lista)
+                                if (entidad.PUNTAJE >= ci.PUNTAJE_MIN)
+                                    categoria = ci.ID_INSIGNIA;
+
+                        ReconocimientoBE rec = reconocimientoDA.ObtenerReconocimientoUltimo(entidad.ID_INSCRIPCION, cn);
+                        if (rec != null)
+                            mejora = categoria > rec.ID_INSIGNIA && estrella > rec.ID_ESTRELLA ? "0" : "1";
+
+                        if (seGuardoConvocatoria) seGuardoConvocatoria = convocatoriaDA.GuardarResultadoReconocimiento(new ReconocimientoBE { ID_INSCRIPCION = entidad.ID_INSCRIPCION, ID_INSIGNIA = categoria, PUNTAJE = entidad.PUNTAJE, FLAG_MEJORACONTINUA = mejora }, cn);
+                    }                    
+                    
+                    if (seGuardoConvocatoria)
+                    {
+                        string descripcion = "";
+                        if (entidad.ID_ETAPA == 3 || entidad.ID_ETAPA == 7)
+                        {
+                            descripcion = AppSettings.Get<string>("Trazabilidad.Convocatoria.RegistrarCriterios");
+                            descripcion = descripcion.Replace("{INGRESADOS}", Convert.ToString(entidad.INGRESADOS));
+                            descripcion = descripcion.Replace("{TOTAL}", Convert.ToString(entidad.TOTAL));
+                        } else if (entidad.ID_ETAPA == 5 || entidad.ID_ETAPA == 8) {
+                            descripcion = AppSettings.Get<string>("Trazabilidad.Convocatoria.EvaluarCriterios");
+                        }
+                        
+                        InscripcionTrazabilidadBE inscripcionTrazabilidad = new InscripcionTrazabilidadBE
+                        {
+                            ID_INSCRIPCION = entidad.ID_INSCRIPCION,
+                            DESCRIPCION = descripcion,
+                            UPD_USUARIO = entidad.USUARIO_GUARDAR
+                        };
+
+                        seGuardoConvocatoria = inscripcionTrazabilidadDA.RegistrarInscripcionTrazabilidad(inscripcionTrazabilidad, cn);
+                    }
 
                     if (seGuardoConvocatoria) ot.Commit();
                     else ot.Rollback();

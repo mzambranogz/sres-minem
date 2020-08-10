@@ -13,5 +13,6 @@ namespace sres.be
         public List<DocumentoBE> LIST_DOC { get; set; }
         public int ID_INSCRIPCION { get; set; }
         public int ID_CONVOCATORIA { get; set; }
+        public string NOMBRE_CRI { get; set; }
     }
 }

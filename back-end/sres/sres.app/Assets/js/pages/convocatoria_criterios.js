@@ -4,7 +4,7 @@
 
 var guardar = () => {
     let url = `/api/convocatoria/guardarconvocatoriaetapainscripcion`;
-    let data = { ID_CONVOCATORIA: idConvocatoria, ID_ETAPA: idEtapa, ID_INSCRIPCION: idInscripcion, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: idConvocatoria, ID_ETAPA: idEtapa, ID_INSCRIPCION: idInscripcion, INGRESADOS: ingresadosCri, TOTAL: totalCri, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
     fetch(url, init)
     .then(r => r.json())

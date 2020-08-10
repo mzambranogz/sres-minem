@@ -16,6 +16,8 @@ namespace sres.be
         public string OBSERVACION { get; set; }
         public int PUNTAJE { get; set; }
         public decimal EMISIONES_REDUCIDAS { get; set; }
+        public int INGRESADOS { get; set; }
+        public int TOTAL { get; set; }
         public string FLAG_ESTADO { get; set; }
     }
 }
