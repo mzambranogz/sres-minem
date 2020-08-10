@@ -22,6 +22,7 @@ namespace sres.ln
         DocumentoDA documentoDA = new DocumentoDA();
         InscripcionDocumentoDA inscripcionDocDA = new InscripcionDocumentoDA();
         ConvocatoriaCriterioPuntajeDA convcripuntDA = new ConvocatoriaCriterioPuntajeDA();
+        InscripcionTrazabilidadDA inscripcionTrazabilidadDA = new InscripcionTrazabilidadDA();
 
         //public CriterioBE RegistroCriterio(CriterioBE entidad)
         //{
@@ -276,6 +277,19 @@ namespace sres.ln
                         //=======================================================================
                     }
 
+                    if (seGuardoConvocatoria) {
+                        string registrocriteriodescripcion = AppSettings.Get<string>("Trazabilidad.Convocatoria.RegistrarCriterio");
+                        registrocriteriodescripcion = registrocriteriodescripcion.Replace("{CRITERIO.NOMBRE}", item.NOMBRE_CRI);
+                        InscripcionTrazabilidadBE inscripcionTrazabilidad = new InscripcionTrazabilidadBE
+                        {
+                            ID_INSCRIPCION = item.ID_INSCRIPCION,
+                            DESCRIPCION = registrocriteriodescripcion,
+                            UPD_USUARIO = item.USUARIO_GUARDAR
+                        };
+
+                        seGuardoConvocatoria = inscripcionTrazabilidadDA.RegistrarInscripcionTrazabilidad(inscripcionTrazabilidad, cn);
+                    }
+
                     if (seGuardoConvocatoria) ot.Commit();
                     else ot.Rollback();
                     item.OK = seGuardoConvocatoria;
@@ -351,6 +365,20 @@ namespace sres.ln
                     if (seGuardoConvocatoria)
                         foreach (InscripcionDocumentoBE i in entidad.LIST_INSCDOC)
                             if (!(seGuardoConvocatoria = inscripcionDocDA.GuardarCriterioEvaluacion(i, cn))) break;
+
+                    if (seGuardoConvocatoria)
+                    {
+                        string evaluacioncriteriodescripcion = AppSettings.Get<string>("Trazabilidad.Convocatoria.EvaluarCriterio");
+                        evaluacioncriteriodescripcion = evaluacioncriteriodescripcion.Replace("{CRITERIO.NOMBRE}", entidad.NOMBRE_CRI);
+                        InscripcionTrazabilidadBE inscripcionTrazabilidad = new InscripcionTrazabilidadBE
+                        {
+                            ID_INSCRIPCION = entidad.ID_INSCRIPCION,
+                            DESCRIPCION = evaluacioncriteriodescripcion,
+                            UPD_USUARIO = entidad.USUARIO_GUARDAR
+                        };
+
+                        seGuardoConvocatoria = inscripcionTrazabilidadDA.RegistrarInscripcionTrazabilidad(inscripcionTrazabilidad, cn);
+                    }
 
                     if (seGuardoConvocatoria) ot.Commit();
                     else ot.Rollback();

@@ -87,7 +87,8 @@ var renderizar = (data, cantidadCeldas) => {
             let btnEditarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Criterios"><i class="fas fa-edit mr-1"></i>${x.ID_ETAPA == 3 ? `Ingresar` : `Editar`} criterios</a>`
             let btnSeguimiento = `<a class="dropdown-item estilo-01" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a>`;
             let btnVerReconocimiento = `<a class="dropdown-item estilo-01" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a>`;
-            let btnEvaluarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/EvaluacionCriterios/${x}"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a>`;
+            //let btnEvaluarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/EvaluacionCriterios/${x}"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a>`;
+            let btnEvaluarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/EvaluacionCriterios"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a>`;
 
             let OpcionesEtapa3 = `<div class="dropdown-menu">${btnEditarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div>`;
             let OpcionesEvaluacion = `<div class="dropdown-menu">${btnEvaluarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div>`;

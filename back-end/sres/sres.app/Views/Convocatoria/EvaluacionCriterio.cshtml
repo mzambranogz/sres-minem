@@ -17,7 +17,6 @@
     <script src="@Url.Content("~/Assets/js/pages/convocatoria_evaluacioncriterio.js")"></script>
 }
 
-
 <div class="container-fluid mt-5">
     <div class="container">
         <div class="row">
@@ -27,7 +26,7 @@
                         <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index", "Inicio")">Inicio</a></li>
                         <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index", "Convocatoria")">Bandeja</a></li>
                         <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("EvaluacionCriterios", "Convocatoria")">Evaluación Criterios</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Ahorro de energía eléctrica total</li>
+                        <li class="breadcrumb-item active" aria-current="page">@criterio.NOMBRE</li>
                     </ol>
                 </nav>
             </div>
@@ -190,6 +189,7 @@
         </div>
     </div>
 </div>
+<input class="nom-cri" type="hidden" value="@criterio.NOMBRE" />
 
 <script>
     const idCriterio = @criterio.ID_CRITERIO;

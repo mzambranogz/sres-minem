@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sres.be
 {
-    public class InscripcionTrazabilidadBE
+    public class InscripcionTrazabilidadBE : BaseBE
     {
         public int ID_INSCRIPCION { get; set; }
         public int ID_TRAZABILIDAD { get; set; }
