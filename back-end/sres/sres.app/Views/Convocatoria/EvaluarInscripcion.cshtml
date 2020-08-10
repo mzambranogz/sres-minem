@@ -1,35 +1,22 @@
-﻿
+﻿@using sres.be
 @{
     ViewBag.Titulo = "Evaluar Inscripción";
+    ViewBag.SRESDescription = false;
+    ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
+    InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
+    ViewBag.Full = true;
+    ViewBag.HasOptions = false;
+}
+@section scripts_footer{
+    <script>
+        const idConvocatoria = @(convocatoria.ID_CONVOCATORIA);
+        const idInscripcion = @(inscripcion.ID_INSCRIPCION);
+    </script>
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/convocatoria_evaluarinscripcion.js")"></script>
 }
 
-<div class="container-fluid my-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="bg-sres-claro p-3">
-                    <div class="row">
-                        <div class="col-lg-1 col-md-12 text-left text-lg-center">
-                            <div class="estilo-07 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">16</div>
-                            <div class="estilo-03 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">Jun</div>
-                            <div class="estilo-02 estilo-02-force text-sres-claro d-inline-block d-lg-block">2020</div>
-                        </div>
-                        <div class="col-lg-11 col-md-12 barra-oscura">
-                            <h2 class="estilo-03 text-sres-oscuro text-limit-1">Cumbre Peruana de Ahorro Energético</h2>
-                            <p class="estilo-01 text-justify text-sres-gris m-0 text-limit-3" data-limit="1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                            <div class="text-right d-none d-lg-block"><a class="estilo-01 text-sres-verde leer-mas" href="#">Leer más</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid mb-3">
-    <div class="container">
-        <div class="rayado wow fadeIn"></div>
-    </div>
-</div>
+@Html.Partial("_ConvocatoriaActual")
 <div class="container-fluid mb-5">
     <div class="container">
         <div class="row">
@@ -43,305 +30,53 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="bg-sres-claro py-5 px-3">
+                <div class="bg-sres-claro py-5 px-3" id="viewInscripcionRequerimiento">
                     <div class="row">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <h3 class="estilo-02 text-sres-azul mb-5">CRITERIOS GENERALES</h3>
-                                </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12 d-none d-lg-block">
-                                    <h3 class="estilo-02 text-sres-azul mb-5">EVALUACIÓN DE REQUISITOS</h3>
+                        <div class="col-12" id="lstInscripcionRequerimiento">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="chk-norma-01" checked disabled>
+                                    <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-01">Acepto cumplir con la normativa vigente que corresponda, pudiendo ser excluidas del premio en caso de verificarse incumplimiento de ésta, incluso una vez entregado el mismo</label>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="chk-norma-02" checked disabled>
+                                    <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-02">Acepto permitir la visita a las instalaciones, facilitar información complementaria y/o presentar el proyecto al Comité Organizador y Evaluador, en caso que éste lo solicite.</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="chk-norma-03" checked disabled>
+                                    <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-03">Acepto permitir la visita a las instalaciones, facilitar información complementaria y/o presentar el proyecto al Comité Organizador y Evaluador, en caso que éste lo solicite.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
+                            <div class="alert alert-warning" role="alert">
+                                <div class="alert-wrap">
                                     <div class="form-group">
-                                        <label class="estilo-01 text-limit-1">Reporte de INFOCORP</label>
+                                        <label for="txa-observaciones">Observaciones:</label>
                                         <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text">&nbsp;<i class="fas fa-file"></i></span></div>
-                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-01" value="nombre-de-archivo.pdf" readonly>
-                                            <div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="#" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-01" id="rad-eva-01" value="1">
-                                                <label class="form-check-label" for="rad-eva-01">Aprobado</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-01" id="rad-eva-02" value="0">
-                                                <label class="form-check-label" for="rad-eva-02">Desaprobado</label>
-                                            </div>
-                                        </label>
-                                        <div class="alert alert-success p-1 d-flex">
-                                            <div class="mr-lg-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">El documento es correcto</span></div>
+                                            <div class="input-group-prepend bg-warning"><span class="input-group-text"><i class="fas fa-comment"></i></span></div>
+                                            <textarea class="form-control estilo-01" id="txa-observaciones" cols="30" rows="5" maxlenght="400" placeholder="Ingrese la descripción de sus observaciones">@inscripcion.OBSERVACION</textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
                             <div class="row">
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01 text-limit-1">Saneamiento legal</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
-                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-02" value="nombre-de-archivo.pdf" readonly>
-                                            <div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="#" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01">
-                                            &nbsp;
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-02" id="rad-eva-03" value="1">
-                                                <label class="form-check-label" for="rad-eva-03">Aprobado</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-02" id="rad-eva-04" value="0">
-                                                <label class="form-check-label" for="rad-eva-04">Desaprobado</label>
-                                            </div>
-                                        </label>
-                                        <div class="alert alert-danger p-1 d-flex">
-                                            <div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01 text-limit-1">Ficha RUC de la SUNAT</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
-                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-03" value="nombre-de-archivo.pdf" readonly>
-                                            <div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="#" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01">
-                                            &nbsp;
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-03" id="rad-eva-05" value="1">
-                                                <label class="form-check-label" for="rad-eva-05">Aprobado</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-03" id="rad-eva-06" value="0">
-                                                <label class="form-check-label" for="rad-eva-06">Desaprobado</label>
-                                            </div>
-                                        </label>
-                                        <div class="alert alert-danger p-1 d-flex">
-                                            <div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01 text-limit-1">Compromiso de acceso a la información y confidencialidad</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
-                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-04" value="nombre-de-archivo.pdf" readonly>
-                                            <div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="#" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01">
-                                            &nbsp;
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-04" id="rad-eva-07" value="1">
-                                                <label class="form-check-label" for="rad-eva-07">Aprobado</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-04" id="rad-eva-08" value="0">
-                                                <label class="form-check-label" for="rad-eva-08">Desaprobado</label>
-                                            </div>
-                                        </label>
-                                        <div class="alert alert-danger p-1 d-flex">
-                                            <div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01 text-limit-1">Postulación firmada por el titular o representante</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
-                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-05" value="nombre-de-archivo.pdf" readonly>
-                                            <div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="#" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01">
-                                            &nbsp;
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-05" id="rad-eva-09" value="1">
-                                                <label class="form-check-label" for="rad-eva-09">Aprobado</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-05" id="rad-eva-10" value="0">
-                                                <label class="form-check-label" for="rad-eva-10">Desaprobado</label>
-                                            </div>
-                                        </label>
-                                        <div class="alert alert-success p-1 d-flex">
-                                            <div class="mr-lg-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">El documento es correcto</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01 text-limit-1">Documento de constitución de la empresa en registro públicos</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
-                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-06" value="nombre-de-archivo.pdf" readonly>
-                                            <div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="#" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01">
-                                            &nbsp;
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-06" id="rad-eva-11" value="1">
-                                                <label class="form-check-label" for="rad-eva-11">Aprobado</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-06" id="rad-eva-12" value="0">
-                                                <label class="form-check-label" for="rad-eva-12">Desaprobado</label>
-                                            </div>
-                                        </label>
-                                        <div class="alert alert-secondary p-1 d-flex">
-                                            <div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha evaluado el documento</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01 text-limit-1">Declaración jurada de veracidad de la información suministrada</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
-                                            <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-07" value="nombre-de-archivo.pdf" readonly>
-                                            <div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="#" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="estilo-01">
-                                            &nbsp;
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-07" id="rad-eva-13" value="1">
-                                                <label class="form-check-label" for="rad-eva-13">Aprobado</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="rad-evaluacion-07" id="rad-eva-14" value="0">
-                                                <label class="form-check-label" for="rad-eva-14">Desaprobado</label>
-                                            </div>
-                                        </label>
-                                        <div class="alert alert-secondary p-1 d-flex">
-                                            <div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha evaluado el documento</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="chk-norma-01" checked disabled>
-                                            <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-01">Acepto cumplir con la normativa vigente que corresponda, pudiendo ser excluidas del premio en caso de verificarse incumplimiento de ésta, incluso una vez entregado el mismo</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="chk-norma-02" checked disabled>
-                                            <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-02">Acepto permitir la visita a las instalaciones, facilitar información complementaria y/o presentar el proyecto al Comité Organizador y Evaluador, en caso que éste lo solicite.</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="chk-norma-03" checked disabled>
-                                            <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-03">Acepto permitir la visita a las instalaciones, facilitar información complementaria y/o presentar el proyecto al Comité Organizador y Evaluador, en caso que éste lo solicite.</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
-                                    <div class="alert alert-warning" role="alert">
-                                        <div class="alert-wrap">
-                                            <div class="form-group">
-                                                <label for="txa-descripcion">Observaciones:</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend bg-warning"><span class="input-group-text"><i class="fas fa-comment"></i></span></div>
-                                                    <!--.form-control-plaintext-->
-                                                    <textarea class="form-control estilo-01" id="txa-observaciones" cols="30" rows="5" maxlenght="400" placeholder="Ingrese la descripción de sus observaciones"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-secondary text-white w-100 mb-3" href="./bandeja-participantes.html">Regresar</a></div>
-                                        <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-primary text-white w-100 mb-3" href="./bandeja-participantes.html">Evaluar</a></div>
-                                    </div>
-                                    <div class="alert alert-danger d-flex align-items-stretch" role="alert">
-                                        <div class="alert-wrap mr-3">
-                                            <div class="sa">
-                                                <div class="sa-error">
-                                                    <div class="sa-error-x">
-                                                        <div class="sa-error-left"></div>
-                                                        <div class="sa-error-right"></div>
-                                                    </div>
-                                                    <div class="sa-error-placeholder"></div>
-                                                    <div class="sa-error-fix"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="alert-wrap">
-                                            <h6 class="estilo-02">Ocurrió un Error inesperado</h6>
-                                            <hr class="my-1"><small class="mb-0 estilo-01">Inténtelo nuevamente por favor.</small>
-                                        </div>
-                                    </div>
-                                    <div class="alert alert-success d-flex align-items-stretch" role="alert">
-                                        <div class="alert-wrap mr-3">
-                                            <div class="sa">
-                                                <div class="sa-success">
-                                                    <div class="sa-success-tip"></div>
-                                                    <div class="sa-success-long"></div>
-                                                    <div class="sa-success-placeholder"></div>
-                                                    <div class="sa-success-fix"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="alert-wrap">
-                                            <h6 class="estilo-02">Bien hecho</h6>
-                                            <hr class="my-1"><small class="mb-0 estilo-01">La evaluación fue registrada correctamente</small>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/BandejaParticipantes")">Regresar</a></div>
+                                <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-primary text-white w-100 mb-3" href="#" id="btnEvaluar">Evaluar</a></div>
                             </div>
                         </div>
                     </div>

@@ -55,5 +55,46 @@ namespace sres.app.Controllers.Api
 
             return response;
         }
+
+        [Route("evaluarinscripcion")]
+        [HttpPost]
+        public bool EvaluarInscripcion(InscripcionBE inscripcion)
+        {
+            bool seGuardo = inscripcionLN.GuardarEvaluacionInscripcion(inscripcion);
+
+            if (seGuardo)
+            {
+                ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(!inscripcion.ID_CONVOCATORIA.HasValue ? 0 : inscripcion.ID_CONVOCATORIA.Value);
+                //UsuarioBE usuario = usuarioLN.ObtenerUsuario(!inscripcion.UPD_USUARIO.HasValue ? 0 : inscripcion.UPD_USUARIO.Value);
+                //string fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldConvocatoria = "[CONVOCATORIA]";
+                //string[] fields = new string[] { fieldNombres, fieldApellidos, fieldConvocatoria };
+                //string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldConvocatoria };
+                //Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS, [fieldConvocatoria] = convocatoria.NOMBRE };
+                //string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Su inscripción fue satisfactoria";
+                //MailAddressCollection mailTo = new MailAddressCollection();
+                //mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
+                //Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.InscripcionConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
+            }
+
+            return seGuardo;
+        }
+
+        [Route("buscarinscripcion")]
+        [HttpGet]
+        public DataPaginateBE BuscarInscripcion(int idConvocatoria, int? idInscripcion, string razonSocialInstitucion, string nombresCompletosUsuario, int registros, int pagina, string columna, string orden)
+        {
+            List<InscripcionBE> inscripcion = inscripcionLN.BuscarInscripcion(idConvocatoria, idInscripcion, razonSocialInstitucion, nombresCompletosUsuario, registros, pagina, columna, orden);
+
+            DataPaginateBE data = new DataPaginateBE
+            {
+                DATA = inscripcion,
+                PAGINA = inscripcion.Count == 0 ? 0 : inscripcion[0].PAGINA,
+                CANTIDAD_REGISTROS = inscripcion.Count == 0 ? 0 : inscripcion[0].CANTIDAD_REGISTROS,
+                TOTAL_PAGINAS = inscripcion.Count == 0 ? 0 : inscripcion[0].TOTAL_PAGINAS,
+                TOTAL_REGISTROS = inscripcion.Count == 0 ? 0 : inscripcion[0].TOTAL_REGISTROS
+            };
+
+            return data;
+        }
     }
 }

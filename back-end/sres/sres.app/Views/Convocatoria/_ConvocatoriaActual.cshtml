@@ -1,0 +1,53 @@
+﻿@using sres.be
+@{
+    ConvocatoriaBE convocatoria = ViewData["convocatoria"] == null ? null : (ConvocatoriaBE)ViewData["convocatoria"];
+    ViewBag.IrBandejaParticipantes = ViewBag.IrBandejaParticipantes == null ? true : ViewBag.IrBandejaParticipantes;
+    ViewBag.IrBandejaConvocatorias = ViewBag.IrBandejaConvocatorias == null ? false : ViewBag.IrBandejaConvocatorias;
+    ViewBag.Full = ViewBag.Full == null ? false : ViewBag.Full;
+    ViewBag.HasOptions = ViewBag.HasOptions == null ? true : ViewBag.HasOptions;
+}
+
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="@(ViewBag.Full == false ? "col-lg-9" : "col-lg-12") col-md-12 col-sm-12">
+                <div class="bg-sres-claro p-3">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-12 text-left text-lg-center">
+                            <div class="estilo-07 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@((convocatoria == null ? DateTime.Now : convocatoria.FECHA_INICIO).ToString("dd"))</div>
+                            <div class="estilo-03 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">@((convocatoria == null ? DateTime.Now : convocatoria.FECHA_INICIO).ToString("MMMM").Replace(".", "").ToUpper())</div>
+                            <div class="estilo-02 estilo-02-force text-sres-claro d-inline-block d-lg-block">@((convocatoria == null ? DateTime.Now : convocatoria.FECHA_INICIO).ToString("yyyy"))</div>
+                        </div>
+                        <div class="col-lg-10 col-md-12 barra-oscura">
+                            <h2 class="estilo-03 text-sres-oscuro text-limit-1">@(convocatoria == null ? "No se encontraron convocatorias" : convocatoria.NOMBRE)</h2>
+                            <p class="estilo-01 text-justify text-sres-gris m-0 text-limit-3" data-limit="1">@(convocatoria == null ? "" : convocatoria.DESCRIPCION)</p>
+                            @if (!string.IsNullOrEmpty(convocatoria == null ? "" : convocatoria.DESCRIPCION)) {
+                                <div class="text-right d-none d-lg-block"><a class="estilo-01 text-sres-verde leer-mas" href="#">Leer más</a></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (ViewBag.HasOptions == true) {
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    @if (convocatoria != null && ViewBag.IrBandejaParticipantes)
+                    {
+                        <a class="btn btn-sres-verde btn-lg w-100 mb-2" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/BandejaParticipantes")" data-toggle="tooltip" data-placement="top" title="Evaluación de todos los participantes de la convocatoria">Evaluar convocatoria</a>
+                    }
+                    @if (ViewBag.IrBandejaConvocatorias)
+                    {
+                        <a class="btn btn-secondary btn-lg w-100 mb-2" href="@Url.Content($"~/Convocatoria")" data-toggle="tooltip" data-placement="top" title="Evaluación de todos los participantes de la convocatoria">Regresar a la bandeja</a>
+                    }
+                    <a class="btn btn-sres-mix btn-lg w-100 mb-2" href="#" data-toggle="tooltip" data-placement="top" title="Emisión el informe preliminar de la convocatoria">Informe preliminar</a>
+                    <a class="btn btn-sres-azul btn-lg w-100" href="#" data-toggle="tooltip" data-placement="top" title="Emisión el informe final de la convocatoria">Informe final</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mb-3">
+    <div class="container">
+        <div class="rayado wow fadeIn"></div>
+    </div>
+</div>

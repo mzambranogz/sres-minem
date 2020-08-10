@@ -124,6 +124,7 @@ namespace sres.app.Controllers
         [Route("{idConvocatoria}/BandejaParticipantes")]
         public ActionResult BandejaParticipantes(int idConvocatoria)
         {
+            ViewData["convocatoria"] = convocatoriaLN.ObtenerUltimaConvocatoria();
             return View();
         }
 
@@ -131,6 +132,18 @@ namespace sres.app.Controllers
         [Route("{idConvocatoria}/Inscripcion/{idInscripcion}/Evaluar")]
         public ActionResult EvaluarInscripcion(int idConvocatoria, int idInscripcion)
         {
+            ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerUltimaConvocatoria();
+
+            if (convocatoria == null) return HttpNotFound();
+
+            ViewData["convocatoria"] = convocatoria;
+
+            InscripcionBE inscripcion = inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, idInscripcion);
+
+            if (inscripcion == null) return HttpNotFound();
+
+            ViewData["inscripcion"] = inscripcion;
+
             return View();
         }
 

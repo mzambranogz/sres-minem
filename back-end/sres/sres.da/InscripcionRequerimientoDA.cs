@@ -82,5 +82,29 @@ namespace sres.da
 
             return seGuardo;
         }
+
+        public bool ActualizarEvaluacionInscripcionRequerimiento(InscripcionRequerimientoBE inscripcionRequerimiento, OracleConnection db)
+        {
+            bool seActualizo = false;
+
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_UPD_EVAL_INSC_REQ";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", inscripcionRequerimiento.ID_CONVOCATORIA);
+                p.Add("PI_ID_INSCRIPCION", inscripcionRequerimiento.ID_INSCRIPCION);
+                p.Add("PI_ID_REQUERIMIENTO", inscripcionRequerimiento.ID_REQUERIMIENTO);
+                p.Add("PI_VALIDO", !inscripcionRequerimiento.VALIDO.HasValue ? null : inscripcionRequerimiento.VALIDO.Value ? (int?)1 : 0);
+                p.Add("PI_OBSERVACION", inscripcionRequerimiento.OBSERVACION);
+                p.Add("PI_UPD_USUARIO", inscripcionRequerimiento.UPD_USUARIO);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seActualizo = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seActualizo;
+        }
     }
 }

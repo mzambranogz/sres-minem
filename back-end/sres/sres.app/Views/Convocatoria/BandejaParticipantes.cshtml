@@ -1,33 +1,21 @@
-﻿
+﻿@using sres.be
 @{
     ViewBag.Titulo = "Bandeja de Participantes";
+    ViewBag.SRESDescription = false;
+    ConvocatoriaBE convocatoria = ViewData["convocatoria"] == null ? null : (ConvocatoriaBE)ViewData["convocatoria"];
+    ViewBag.IrBandejaParticipantes = false;
+    ViewBag.IrBandejaConvocatorias = true;
+}
+@section scripts_footer{
+    <script>
+        const idConvocatoria = @(convocatoria == null ? "null" : convocatoria.ID_CONVOCATORIA.ToString());
+    </script>
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/convocatoria_bandejaparticipantes.js")"></script>
 }
 
-<div class="container-fluid my-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-9 col-md-12 col-sm-12">
-                <div class="bg-sres-claro p-3">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-12 text-left text-lg-center">
-                            <div class="estilo-07 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">16</div>
-                            <div class="estilo-03 estilo-02-force text-sres-oscuro d-inline-block d-lg-block">Jun</div>
-                            <div class="estilo-02 estilo-02-force text-sres-claro d-inline-block d-lg-block">2020</div>
-                        </div>
-                        <div class="col-lg-10 col-md-12 barra-oscura">
-                            <h2 class="estilo-03 text-sres-oscuro text-limit-1">Cumbre Peruana de Ahorro Energético</h2>
-                            <p class="estilo-01 text-justify text-sres-gris m-0 text-limit-3" data-limit="1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                            <div class="text-right d-none d-lg-block"><a class="estilo-01 text-sres-verde leer-mas" href="#">Leer más</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-12 col-sm-12"><a class="btn btn-secondary btn-lg w-100 mb-2" href="./bandeja-evaluador.html" data-toggle="tooltip" data-placement="top" title="Evaluación de todos los participantes de la convocatoria">Regresar a la bandeja</a><a class="btn btn-sres-mix btn-lg w-100 mb-2" href="#" data-toggle="tooltip" data-placement="top" title="Emisión el informe preliminar de la convocatoria">Informe preliminar</a><a class="btn btn-sres-azul btn-lg w-100" href="#" data-toggle="tooltip" data-placement="top" title="Emisión el informe final de la convocatoria">Informe final</a></div>
-        </div>
-        <div class="rayado pt-5 wow fadeIn"></div>
-    </div>
-</div>
-<div class="container-fluid">
+@Html.Partial("_ConvocatoriaActual")
+<div class="container-fluid" id="sectionSearch">
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
@@ -58,7 +46,7 @@
                 <div class="form-group">
                     <label class="estilo-01 text-sres-oscuro">&nbsp;</label>
                     <div class="input-group">
-                        <button class="btn btn-primary w-100">Consultar</button>
+                        <button id="btnConsultar" class="btn btn-primary w-100">Consultar</button>
                     </div>
                 </div>
             </div>
@@ -70,7 +58,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive tabla-principal">
-                    <table class="table table-sm table-hover">
+                    <table id="tblBandejaParticipantes" class="table table-sm table-hover">
                         <thead class="estilo-06">
                             <tr>
                                 <th scope="col" width="3%">
@@ -115,238 +103,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="estilo-01">
-                            <tr>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row" data-count="0">1</td>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row">
-                                    <span class="text-sres-gris">#######</span>
-                                </td>
-                                <td data-encabezado="Empresa participante">
-                                    <div class="text-limit-1">Nombre comercial o razón social</div><span class="text-sres-gris estilo-06">RUC: 20105678910</span>
-                                </td>
-                                <td data-encabezado="Responsable">
-                                    <div class="text-limit-1">Nombre y Apellidos de contacto</div><span class="text-sres-gris estilo-06">correo@email.com.pe</span>
-                                </td>
-                                <td class="text-center" data-encabezado="Criterios">4 criterios</td>
-                                <td class="text-center" data-encabezado="Puntuación">180 puntos</td>
-                                <td class="text-center" data-encabezado="Aspiraciones">
-                                    <img class="img-fluid medal-sres" src="./images/oro.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group w-100">
-                                        <a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="./evaluar-requisitos.html"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a><a class="dropdown-item estilo-01" href="./evaluar-criterios.html"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row" data-count="1">2</td>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row">
-                                    <span>0000002</span>
-                                </td>
-                                <td data-encabezado="Empresa participante">
-                                    <div class="text-limit-1">Nombre comercial o razón social</div><span class="text-sres-gris estilo-06">RUC: 20105678910</span>
-                                </td>
-                                <td data-encabezado="Responsable">
-                                    <div class="text-limit-1">Nombre y Apellidos de contacto</div><span class="text-sres-gris estilo-06">correo@email.com.pe</span>
-                                </td>
-                                <td class="text-center" data-encabezado="Criterios">4 criterios</td>
-                                <td class="text-center" data-encabezado="Puntuación">180 puntos</td>
-                                <td class="text-center" data-encabezado="Aspiraciones">
-                                    <img class="img-fluid medal-sres" src="./images/plata.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group w-100">
-                                        <a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="./evaluar-requisitos.html"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a><a class="dropdown-item estilo-01" href="./evaluar-criterios.html"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row" data-count="2">3</td>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row">
-                                    <span>0000003</span>
-                                </td>
-                                <td data-encabezado="Empresa participante">
-                                    <div class="text-limit-1">Nombre comercial o razón social</div><span class="text-sres-gris estilo-06">RUC: 20105678910</span>
-                                </td>
-                                <td data-encabezado="Responsable">
-                                    <div class="text-limit-1">Nombre y Apellidos de contacto</div><span class="text-sres-gris estilo-06">correo@email.com.pe</span>
-                                </td>
-                                <td class="text-center" data-encabezado="Criterios">4 criterios</td>
-                                <td class="text-center" data-encabezado="Puntuación">180 puntos</td>
-                                <td class="text-center" data-encabezado="Aspiraciones">
-                                    <img class="img-fluid medal-sres" src="./images/bronce.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group w-100">
-                                        <a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="./evaluar-requisitos.html"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a><a class="dropdown-item estilo-01" href="./evaluar-criterios.html"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row" data-count="3">4</td>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row">
-                                    <span>0000004</span>
-                                </td>
-                                <td data-encabezado="Empresa participante">
-                                    <div class="text-limit-1">Nombre comercial o razón social</div><span class="text-sres-gris estilo-06">RUC: 20105678910</span>
-                                </td>
-                                <td data-encabezado="Responsable">
-                                    <div class="text-limit-1">Nombre y Apellidos de contacto</div><span class="text-sres-gris estilo-06">correo@email.com.pe</span>
-                                </td>
-                                <td class="text-center" data-encabezado="Criterios">4 criterios</td>
-                                <td class="text-center" data-encabezado="Puntuación">180 puntos</td>
-                                <td class="text-center" data-encabezado="Aspiraciones">
-                                    <img class="img-fluid medal-sres" src="./images/una_estrella.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group w-100">
-                                        <a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="./evaluar-requisitos.html"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a><a class="dropdown-item estilo-01" href="./evaluar-criterios.html"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row" data-count="4">5</td>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row">
-                                    <span>0000005</span>
-                                </td>
-                                <td data-encabezado="Empresa participante">
-                                    <div class="text-limit-1">Nombre comercial o razón social</div><span class="text-sres-gris estilo-06">RUC: 20105678910</span>
-                                </td>
-                                <td data-encabezado="Responsable">
-                                    <div class="text-limit-1">Nombre y Apellidos de contacto</div><span class="text-sres-gris estilo-06">correo@email.com.pe</span>
-                                </td>
-                                <td class="text-center" data-encabezado="Criterios">4 criterios</td>
-                                <td class="text-center" data-encabezado="Puntuación">180 puntos</td>
-                                <td class="text-center" data-encabezado="Aspiraciones">
-                                    <img class="img-fluid medal-sres" src="./images/oro.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group w-100">
-                                        <a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="./evaluar-requisitos.html"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a><a class="dropdown-item estilo-01" href="./evaluar-criterios.html"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row" data-count="5">6</td>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row">
-                                    <span>0000006</span>
-                                </td>
-                                <td data-encabezado="Empresa participante">
-                                    <div class="text-limit-1">Nombre comercial o razón social</div><span class="text-sres-gris estilo-06">RUC: 20105678910</span>
-                                </td>
-                                <td data-encabezado="Responsable">
-                                    <div class="text-limit-1">Nombre y Apellidos de contacto</div><span class="text-sres-gris estilo-06">correo@email.com.pe</span>
-                                </td>
-                                <td class="text-center" data-encabezado="Criterios">4 criterios</td>
-                                <td class="text-center" data-encabezado="Puntuación">180 puntos</td>
-                                <td class="text-center" data-encabezado="Aspiraciones">
-                                    <img class="img-fluid medal-sres" src="./images/plata.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group w-100">
-                                        <a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="./evaluar-requisitos.html"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a><a class="dropdown-item estilo-01" href="./evaluar-criterios.html"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row" data-count="6">7</td>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row">
-                                    <span>0000007</span>
-                                </td>
-                                <td data-encabezado="Empresa participante">
-                                    <div class="text-limit-1">Nombre comercial o razón social</div><span class="text-sres-gris estilo-06">RUC: 20105678910</span>
-                                </td>
-                                <td data-encabezado="Responsable">
-                                    <div class="text-limit-1">Nombre y Apellidos de contacto</div><span class="text-sres-gris estilo-06">correo@email.com.pe</span>
-                                </td>
-                                <td class="text-center" data-encabezado="Criterios">4 criterios</td>
-                                <td class="text-center" data-encabezado="Puntuación">180 puntos</td>
-                                <td class="text-center" data-encabezado="Aspiraciones">
-                                    <img class="img-fluid medal-sres" src="./images/bronce.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group w-100">
-                                        <a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="./evaluar-requisitos.html"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a><a class="dropdown-item estilo-01" href="./evaluar-criterios.html"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row" data-count="7">8</td>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row">
-                                    <span>0000008</span>
-                                </td>
-                                <td data-encabezado="Empresa participante">
-                                    <div class="text-limit-1">Nombre comercial o razón social</div><span class="text-sres-gris estilo-06">RUC: 20105678910</span>
-                                </td>
-                                <td data-encabezado="Responsable">
-                                    <div class="text-limit-1">Nombre y Apellidos de contacto</div><span class="text-sres-gris estilo-06">correo@email.com.pe</span>
-                                </td>
-                                <td class="text-center" data-encabezado="Criterios">4 criterios</td>
-                                <td class="text-center" data-encabezado="Puntuación">180 puntos</td>
-                                <td class="text-center" data-encabezado="Aspiraciones">
-                                    <img class="img-fluid medal-sres" src="./images/una_estrella.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group w-100">
-                                        <a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="./evaluar-requisitos.html"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a><a class="dropdown-item estilo-01" href="./evaluar-criterios.html"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row" data-count="8">9</td>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row">
-                                    <span>0000009</span>
-                                </td>
-                                <td data-encabezado="Empresa participante">
-                                    <div class="text-limit-1">Nombre comercial o razón social</div><span class="text-sres-gris estilo-06">RUC: 20105678910</span>
-                                </td>
-                                <td data-encabezado="Responsable">
-                                    <div class="text-limit-1">Nombre y Apellidos de contacto</div><span class="text-sres-gris estilo-06">correo@email.com.pe</span>
-                                </td>
-                                <td class="text-center" data-encabezado="Criterios">4 criterios</td>
-                                <td class="text-center" data-encabezado="Puntuación">180 puntos</td>
-                                <td class="text-center" data-encabezado="Aspiraciones">
-                                    <img class="img-fluid medal-sres" src="./images/sin-sres.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group w-100">
-                                        <a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="./evaluar-requisitos.html"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a><a class="dropdown-item estilo-01" href="./evaluar-criterios.html"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row" data-count="9">10</td>
-                                <td class="text-center" data-encabezado="Número expediente" scope="row">
-                                    <span>00000010</span>
-                                </td>
-                                <td data-encabezado="Empresa participante">
-                                    <div class="text-limit-1">Nombre comercial o razón social</div><span class="text-sres-gris estilo-06">RUC: 20105678910</span>
-                                </td>
-                                <td data-encabezado="Responsable">
-                                    <div class="text-limit-1">Nombre y Apellidos de contacto</div><span class="text-sres-gris estilo-06">correo@email.com.pe</span>
-                                </td>
-                                <td class="text-center" data-encabezado="Criterios">4 criterios</td>
-                                <td class="text-center" data-encabezado="Puntuación">180 puntos</td>
-                                <td class="text-center" data-encabezado="Aspiraciones">
-                                    <img class="img-fluid medal-sres" src="./images/sin-sres.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
-                                </td>
-                                <td class="text-center" data-encabezado="Gestión">
-                                    <div class="btn-group w-100">
-                                        <a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>
-                                        <div class="dropdown-menu"><a class="dropdown-item estilo-01" href="./evaluar-requisitos.html"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a><a class="dropdown-item estilo-01" href="./evaluar-criterios.html"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a><a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a><a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a><a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tbody class="estilo-01"></tbody>
                     </table>
                 </div>
             </div>
@@ -354,10 +111,10 @@
         <div class="row">
             <div class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-start align-items-center">
                 <div class="row">
-                    <div class="col-12"><strong>Resultado:&nbsp;</strong>1-10 de 750 registros</div>
+                    <div class="col-12"><strong>Resultado:&nbsp;</strong><span class="inicio-registros">1</span><span id="view-page-result">-<span class="fin-registros">1</span> de <span class="total-registros">1</span> registros</span></div>
                 </div>
             </div>
-            <div class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-end align-items-center">
+            <div id="viewPagination" class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-end align-items-center">
                 <div class="row">
                     <div class="col-12">
                         <strong>Registros por página&nbsp;</strong>
@@ -367,85 +124,16 @@
                             <option value="50">50</option>
                             <option value="100">100</option>
                         </select>&nbsp;
-                        1 de 75 páginas&nbsp;
+                        <span class="pagina">1</span> de <span class="total-paginas">75</span> páginas&nbsp;
                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-double-left"></i></button>
-                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-left"></i></button>
-                            <input class="ir-pagina" type="number" value="1" min="1">
-                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-right"></i></button>
-                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-double-right"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" id="btnFirstPagination"><i class="fas fa-angle-double-left"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" id="btnPreviousPagination"><i class="fas fa-angle-left"></i></button>
+                            <input id="ir-pagina" class="ir-pagina" type="number" value="1" min="1">
+                            <button class="btn btn-sm btn-primary" type="button" id="btnNextPagination"><i class="fas fa-angle-right"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" id="btnLastPagination"><i class="fas fa-angle-double-right"></i></button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="modal-edit-descripcion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-sres-azul text-white">
-                <h5 class="modal-title estilo-01" id="exampleModalLabel">Editar descripción de la empresa</h5>
-                <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <h2 class="estilo-04 text-sres-oscuro">Representaciones Eléctricas Comerciales del Perú SAC</h2><small class="estilo-04 text-sres-gris">20102030405</small>
-                        <div class="form-group mt-2">
-                            <label for="txt-nombre-corto">Nombre corto:</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
-                                <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-nombre-corto" value="Nombre corto empresa">
-                            </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <label for="txa-descripcion">Descripción:</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
-                                <textarea class="form-control estilo-01 text-sres-gris" id="txa-descripcion" cols="30" rows="5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</textarea>
-                            </div>
-                        </div>
-                        <div class="alert alert-danger d-flex align-items-stretch" role="alert">
-                            <div class="alert-wrap mr-3">
-                                <div class="sa">
-                                    <div class="sa-error">
-                                        <div class="sa-error-x">
-                                            <div class="sa-error-left"></div>
-                                            <div class="sa-error-right"></div>
-                                        </div>
-                                        <div class="sa-error-placeholder"></div>
-                                        <div class="sa-error-fix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="alert-wrap">
-                                <h6 class="estilo-02">Ocurrió un Error</h6>
-                                <hr class="my-1"><small class="mb-0 estilo-01">Intente editar la información nuevamente.</small>
-                            </div>
-                        </div>
-                        <div class="alert alert-success d-flex align-items-stretch" role="alert">
-                            <div class="alert-wrap mr-3">
-                                <div class="sa">
-                                    <div class="sa-success">
-                                        <div class="sa-success-tip"></div>
-                                        <div class="sa-success-long"></div>
-                                        <div class="sa-success-placeholder"></div>
-                                        <div class="sa-success-fix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="alert-wrap">
-                                <h6 class="estilo-02">Bien hecho</h6>
-                                <hr class="my-1"><small class="mb-0 estilo-01">La información fue editada correctamente.</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-sm btn-info" type="button">Si, grabar</button>
-                <button class="btn btn-sm btn-dark" type="button" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>

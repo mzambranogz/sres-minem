@@ -69,9 +69,8 @@ var enviarInscripcion = () => {
         return;
     }
 
-
     let listaInputFile = $('input[type="file"][id*="fle-requisito-"]');
-    debugger;
+    //debugger;
     let listaInscripcionRequerimiento = Array.from(listaInputFile).filter(x => $(x).data('file') != null)
 
     if (listaInscripcionRequerimiento.length < listaInputFile.length) {

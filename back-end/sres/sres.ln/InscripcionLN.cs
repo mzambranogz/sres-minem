@@ -111,5 +111,56 @@ namespace sres.ln
 
             return seGuardo;
         }
+
+        public bool GuardarEvaluacionInscripcion(InscripcionBE inscripcion)
+        {
+            bool seGuardo = false;
+
+            try
+            {
+                cn.Open();
+                using (OracleTransaction ot = cn.BeginTransaction())
+                {
+                    seGuardo = inscripcionDA.GuardarEvaluacionInscripcion(inscripcion, cn);
+
+                    if (seGuardo)
+                    {
+                        if (inscripcion.LISTA_INSCRIPCION_REQUERIMIENTO != null)
+                        {
+                            foreach (InscripcionRequerimientoBE iInscripcionRequerimiento in inscripcion.LISTA_INSCRIPCION_REQUERIMIENTO)
+                            {
+                                if (seGuardo)
+                                {
+                                    seGuardo = inscripcionRequerimientoDA.ActualizarEvaluacionInscripcionRequerimiento(iInscripcionRequerimiento, cn);
+                                }
+                                else break;
+                            }
+                        }
+                    }
+
+                    if (seGuardo) ot.Commit();
+                    else ot.Rollback();
+                }
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return seGuardo;
+        }
+
+        public List<InscripcionBE> BuscarInscripcion(int idConvocatoria, int? idInscripcion, string razonSocialInstitucion, string nombresCompletosUsuario, int registros, int pagina, string columna, string orden)
+        {
+            List<InscripcionBE> lista = new List<InscripcionBE>();
+
+            try
+            {
+                cn.Open();
+                lista = inscripcionDA.BuscarInscripcion(idConvocatoria, idInscripcion, razonSocialInstitucion, nombresCompletosUsuario, registros, pagina, columna, orden, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }

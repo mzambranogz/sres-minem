@@ -134,11 +134,13 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Assets\js\pages\convocatoria.js" />
+    <Content Include="Assets\js\pages\convocatoria_bandejaparticipantes.js" />
     <Content Include="Assets\js\pages\convocatoria_criterio.js" />
     <Content Include="Assets\js\pages\convocatoria_criterioingresar.js" />
     <Content Include="Assets\js\pages\convocatoria_criterios.js" />
     <Content Include="Assets\js\pages\convocatoria_evaluacioncriterio.js" />
     <Content Include="Assets\js\pages\convocatoria_evaluacioncriterios.js" />
+    <Content Include="Assets\js\pages\convocatoria_evaluarinscripcion.js" />
     <Content Include="Assets\js\pages\convocatoria_inscribirme.js" />
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\login_registrarme.js" />
@@ -156,17 +158,6 @@
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
-    <Content Include="Files\Criterios\1\Imagen\criterio-01.png" />
-    <Content Include="Files\Criterios\2\Imagen\criterio-02.png" />
-    <Content Include="Files\Criterios\3\Imagen\criterio-03.png" />
-    <Content Include="Files\Criterios\4\Imagen\criterio-04.png" />
-    <Content Include="Files\Criterios\5\Imagen\criterio-05.png" />
-    <Content Include="Files\Criterios\6\Imagen\criterio-06.png" />
-    <Content Include="Files\Criterios\7\Imagen\criterio-07.png" />
-    <Content Include="Files\Criterios\8\Imagen\criterio-08.png" />
-    <Content Include="Files\Criterios\LEER.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Mailing\CreacionConvocatoria.html" />
     <Content Include="Mailing\InscripcionConvocatoria.html" />
@@ -260,6 +251,7 @@
     <Content Include="Views\Convocatoria\EvaluacionCriterios.cshtml" />
     <Content Include="Views\Convocatoria\BandejaParticipantes.cshtml" />
     <Content Include="Views\Convocatoria\EvaluarInscripcion.cshtml" />
+    <Content Include="Views\Convocatoria\_ConvocatoriaActual.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
