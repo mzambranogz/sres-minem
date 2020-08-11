@@ -148,14 +148,14 @@ namespace sres.ln
             return seGuardo;
         }
 
-        public List<InscripcionBE> BuscarInscripcion(int idConvocatoria, int? idInscripcion, string razonSocialInstitucion, string nombresCompletosUsuario, int registros, int pagina, string columna, string orden)
+        public List<InscripcionBE> BuscarInscripcion(int idConvocatoria, int? idInscripcion, string razonSocialInstitucion, string nombresCompletosUsuario, int idUsuario, int registros, int pagina, string columna, string orden)
         {
             List<InscripcionBE> lista = new List<InscripcionBE>();
 
             try
             {
                 cn.Open();
-                lista = inscripcionDA.BuscarInscripcion(idConvocatoria, idInscripcion, razonSocialInstitucion, nombresCompletosUsuario, registros, pagina, columna, orden, cn);
+                lista = inscripcionDA.BuscarInscripcion(idConvocatoria, idInscripcion, razonSocialInstitucion, nombresCompletosUsuario, idUsuario, registros, pagina, columna, orden, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }

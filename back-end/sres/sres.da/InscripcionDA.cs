@@ -77,7 +77,7 @@ namespace sres.da
             return seGuardo;
         }
 
-        public List<InscripcionBE> BuscarInscripcion(int idConvocatoria, int? idInscripcion, string razonSocialInstitucion, string nombresCompletosUsuario, int registros, int pagina, string columna, string orden, OracleConnection db)
+        public List<InscripcionBE> BuscarInscripcion(int idConvocatoria, int? idInscripcion, string razonSocialInstitucion, string nombresCompletosUsuario, int idUsuario, int registros, int pagina, string columna, string orden, OracleConnection db)
         {
             List<InscripcionBE> lista = new List<InscripcionBE>();
 
@@ -89,6 +89,7 @@ namespace sres.da
                 p.Add("PI_ID_INSCRIPCION", idInscripcion);
                 p.Add("PI_RAZON_SOCIAL_INSTITUCION", razonSocialInstitucion);
                 p.Add("PI_NOMBRES_APELLIDOS_USUARIO", nombresCompletosUsuario);
+                p.Add("PI_ID_USUARIO", idUsuario);
                 p.Add("PI_REGISTROS", registros);
                 p.Add("PI_PAGINA", pagina);
                 p.Add("PI_COLUMNA", columna);
