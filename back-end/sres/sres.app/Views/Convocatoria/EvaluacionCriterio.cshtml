@@ -4,7 +4,8 @@
     ViewBag.Titulo = "Criterio";
     ViewBag.SRESDescription = false;
     ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
-    InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
+    //InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
+    int idInscripcion = (int)ViewData["idinscripcion"];
     CriterioBE criterio = (CriterioBE)ViewData["criterio"];
     List<CasoBE> listaCaso = (List<CasoBE>)ViewData["listaCaso"];
     List<ConvocatoriaCriterioPuntajeBE> listaConCriPuntaje = (List<ConvocatoriaCriterioPuntajeBE>)ViewData["listaConvCriPuntaje"];
@@ -193,7 +194,7 @@
 
 <script>
     const idCriterio = @criterio.ID_CRITERIO;
-    const idInscripcion = @inscripcion.ID_INSCRIPCION;
+    const idInscripcion = @idInscripcion;
     const idConvocatoria = @convocatoria.ID_CONVOCATORIA;
     const maxBytes = @(AppSettings.Get<long>("File.MaxBytes"));
 </script>

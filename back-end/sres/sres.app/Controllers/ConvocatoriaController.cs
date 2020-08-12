@@ -148,37 +148,28 @@ namespace sres.app.Controllers
         }
 
         [SesionOut]
-        [Route("{idConvocatoria}/EvaluacionCriterios")]
-        public ActionResult EvaluacionCriterios(int idConvocatoria)
+        [Route("{idConvocatoria}/Inscripcion/{idInscripcion}/EvaluacionCriterios")]
+        public ActionResult EvaluacionCriterios(int idConvocatoria, int idInscripcion)
         {
             ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(idConvocatoria);
-
-            if (convocatoria == null) return HttpNotFound();
-
+            //if (convocatoria == null) return HttpNotFound();
             UsuarioBE usuario = ObtenerUsuarioLogin();
-
-            InscripcionBE inscripcion = inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, usuario.ID_INSTITUCION.Value);
-
-            if (inscripcion == null) return HttpNotFound();
-
-            List<CriterioBE> listaCriterio = criterioLN.ListarCriterioPorConvocatoria(idConvocatoria, inscripcion.ID_INSCRIPCION);
-
-            ConvocatoriaEtapaInscripcionBE convetainsc = convetainscLN.ObtenerConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = convocatoria.ID_CONVOCATORIA, ID_ETAPA = convocatoria.ID_ETAPA, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION });
-
-            ConvocatoriaCriterioPuntajeBE convcripunt = convcripuntajeLN.ObtenerPuntajeInscripcion(idConvocatoria, inscripcion.ID_INSCRIPCION);
+            List<CriterioBE> listaCriterio = criterioLN.ListarCriterioPorConvocatoria(idConvocatoria, idInscripcion);
+            ConvocatoriaEtapaInscripcionBE convetainsc = convetainscLN.ObtenerConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = convocatoria.ID_CONVOCATORIA, ID_ETAPA = convocatoria.ID_ETAPA, ID_INSCRIPCION = idInscripcion });
+            ConvocatoriaCriterioPuntajeBE convcripunt = convcripuntajeLN.ObtenerPuntajeInscripcion(idConvocatoria, idInscripcion);
 
             ViewData["convocatoria"] = convocatoria;
-            ViewData["inscripcion"] = inscripcion;
             ViewData["listaCriterio"] = listaCriterio;
             ViewData["convetainsc"] = convetainsc;
             ViewData["convcripuntaje"] = convcripunt;
+            ViewData["idinscripcion"] = idInscripcion;
 
             return View();
         }
 
         [SesionOut]
-        [Route("{idConvocatoria}/EvaluacionCriterio/{idCriterio}")]
-        public ActionResult EvaluacionCriterio(int idConvocatoria, int idCriterio)
+        [Route("{idConvocatoria}/Inscripcion/{idInscripcion}/EvaluacionCriterio/{idCriterio}")]
+        public ActionResult EvaluacionCriterio(int idConvocatoria, int idCriterio, int idInscripcion)
         {
             ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(idConvocatoria);
 
@@ -186,22 +177,22 @@ namespace sres.app.Controllers
 
             UsuarioBE usuario = ObtenerUsuarioLogin();
 
-            InscripcionBE inscripcion = inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, usuario.ID_INSTITUCION.Value);
+            //InscripcionBE inscripcion = inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, usuario.ID_INSTITUCION.Value);
 
-            if (inscripcion == null) return HttpNotFound();
+            //if (inscripcion == null) return HttpNotFound();
 
             CriterioBE criterio = criterioLN.ObtenerCriterioPorConvocatoria(idConvocatoria, idCriterio);
 
             if (criterio == null) return HttpNotFound();
 
-            List<CasoBE> listaCaso = casoLN.ObtenerListaCasoCriterioPorConvocatoria(new CasoBE { ID_CONVOCATORIA = idConvocatoria, ID_CRITERIO = idCriterio, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION });
+            List<CasoBE> listaCaso = casoLN.ObtenerListaCasoCriterioPorConvocatoria(new CasoBE { ID_CONVOCATORIA = idConvocatoria, ID_CRITERIO = idCriterio, ID_INSCRIPCION = idInscripcion });
 
             if (listaCaso == null) return HttpNotFound();
 
             List<ConvocatoriaCriterioPuntajeBE> listaConvCriPuntaje = convcripuntajeLN.ListaConvocatoriaCriterioPuntaje(idConvocatoria, idCriterio);
 
             ViewData["convocatoria"] = convocatoria;
-            ViewData["inscripcion"] = inscripcion;
+            ViewData["idinscripcion"] = idInscripcion;
             ViewData["criterio"] = criterio;
             ViewData["listaCaso"] = listaCaso;
             ViewData["listaConvCriPuntaje"] = listaConvCriPuntaje;
