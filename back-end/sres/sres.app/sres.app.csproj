@@ -250,7 +250,7 @@
     <Content Include="Views\Convocatoria\EvaluacionCriterio.cshtml" />
     <Content Include="Views\Convocatoria\EvaluacionCriterios.cshtml" />
     <Content Include="Views\Convocatoria\BandejaParticipantes.cshtml" />
-    <Content Include="Views\Convocatoria\EvaluarInscripcion.cshtml" />
+    <Content Include="Views\Convocatoria\EvaluarInstitucion.cshtml" />
     <Content Include="Views\Convocatoria\_ConvocatoriaActual.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

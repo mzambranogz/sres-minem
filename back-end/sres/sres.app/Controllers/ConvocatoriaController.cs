@@ -129,8 +129,8 @@ namespace sres.app.Controllers
         }
 
         [SesionOut]
-        [Route("{idConvocatoria}/Inscripcion/{idInscripcion}/Evaluar")]
-        public ActionResult EvaluarInscripcion(int idConvocatoria, int idInscripcion)
+        [Route("{idConvocatoria}/Institucion/{idInstitucion}/Evaluar")]
+        public ActionResult EvaluarInstitucion(int idConvocatoria, int idInstitucion)
         {
             ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerUltimaConvocatoria();
 
@@ -138,7 +138,7 @@ namespace sres.app.Controllers
 
             ViewData["convocatoria"] = convocatoria;
 
-            InscripcionBE inscripcion = inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, idInscripcion);
+            InscripcionBE inscripcion = inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, idInstitucion);
 
             if (inscripcion == null) return HttpNotFound();
 

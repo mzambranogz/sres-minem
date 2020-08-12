@@ -69,7 +69,7 @@ var renderizar = (data, cantidadCeldas) => {
             let btnDetalles = `<a class="btn btn-sm btn-success w-100" href="javascript:void(0)">Detalles</a>`;
             let btnIngresar = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
             let btnGestionar = `<a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>`;
-            let btnEvaluarRequisitos = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${idConvocatoria}/Inscripcion/${x.ID_INSCRIPCION}/Evaluar"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a>`;
+            let btnEvaluarRequisitos = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${idConvocatoria}/Institucion/${x.ID_INSTITUCION}/Evaluar"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a>`;
             let btnEvaluarCriterios = `<a class="dropdown-item estilo-01" href="./evaluar-criterios.html"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a>`;
             let btnVerPerfil = `<a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a>`;
             let btnSeguimiento = `<a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a>`;
