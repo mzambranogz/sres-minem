@@ -223,6 +223,24 @@ namespace sres.da
 
             return lista;
         }
+
+        public UsuarioBE getAdministrador(OracleConnection db)
+        {
+            UsuarioBE usuario = new UsuarioBE();
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_GET_ADMIN";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                usuario = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return usuario;
+        }
         #endregion
     }
 }

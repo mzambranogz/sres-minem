@@ -88,7 +88,7 @@ var renderizar = (data, cantidadCeldas) => {
             //POSTULANTE
             let btnGestionar = `<a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>`;
             let btnEditarReq = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
-            let btnIngresarEditarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Criterios"><i class="fas fa-edit mr-1"></i>${x.ID_ETAPA == 3 ? `Ingresar` : `Editar`} criterios</a>`
+            let btnIngresarEditarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Criterios"><i class="fas fa-edit mr-1"></i>${x.ID_ETAPA == 6 ? `Ingresar` : `Editar`} criterios</a>`
 
             let btnSeguimiento = `<a class="dropdown-item estilo-01" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a>`;
             let btnVerReconocimiento = `<a class="dropdown-item estilo-01" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a>`;

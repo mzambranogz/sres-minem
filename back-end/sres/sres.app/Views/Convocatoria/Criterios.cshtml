@@ -12,6 +12,7 @@
     foreach (var cri in listaCriterio) { if (cri.INGRESO_DATOS > 0) { ingresados++; } }
     decimal porcentaje_avance = Decimal.Round(ingresados * 100 / total_criterio);
     string pathFormat = AppSettings.Get<string>("Path.Criterio");
+    string criteriosdescripcion = AppSettings.Get<string>("Criterios.Descripcion");
 }
 
 @section scripts_footer{
@@ -91,6 +92,7 @@
             <div class="row">
                 <div class="col-12">
                     <p class="estilo-02 text-justify text-sres-azul m-0">Ingrese y complete todos los criterios de evaluación</p>
+                    <p class="estilo-01 text-justify text-sres-gris m-0">@criteriosdescripcion</p>
                 </div>
             </div>
         </div>
@@ -168,6 +170,7 @@ else
             <div class="row">
                 <div class="col-12">
                     <p class="estilo-02 text-justify text-sres-azul m-0">Ingrese y complete todos los criterios de evaluación</p>
+                    <p class="estilo-01 text-justify text-sres-gris m-0">@criteriosdescripcion</p>                    
                 </div>
             </div>
         </div>

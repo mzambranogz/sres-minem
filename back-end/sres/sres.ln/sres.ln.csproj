@@ -55,6 +55,7 @@
     <Compile Include="EstrellaLN.cs" />
     <Compile Include="EtapaLN.cs" />
     <Compile Include="IndicadorDataLN.cs" />
+    <Compile Include="InformePreliminarLN.cs" />
     <Compile Include="InscripcionLN.cs" />
     <Compile Include="InscripcionRequerimientoLN.cs" />
     <Compile Include="InsigniaLN.cs" />

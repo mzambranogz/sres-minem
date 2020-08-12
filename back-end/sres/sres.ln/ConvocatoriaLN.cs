@@ -23,6 +23,8 @@ namespace sres.ln
         ConvocatoriaCriterioPuntajeDA convcripuntDA = new ConvocatoriaCriterioPuntajeDA();
         ReconocimientoDA reconocimientoDA = new ReconocimientoDA();
         InscripcionTrazabilidadDA inscripcionTrazabilidadDA = new InscripcionTrazabilidadDA();
+        InstitucionDA institucionDA = new InstitucionDA();
+        EstrellaTrabajadorCamaDA estrellaTrabCamaDA = new EstrellaTrabajadorCamaDA();
 
         public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden)
         {
@@ -326,7 +328,7 @@ namespace sres.ln
                 using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
                 {
                     seGuardoConvocatoria = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(entidad, cn);
-                    if (entidad.ID_ETAPA == 5 && entidad.ID_ETAPA == 8)
+                    if (entidad.ID_ETAPA == 8 || entidad.ID_ETAPA == 11)
                     {
                         List<ConvocatoriaInsigniaBE> lista = convocatoriaDA.listarConvocatoriaInsig(new ConvocatoriaBE { ID_CONVOCATORIA = entidad.ID_CONVOCATORIA }, cn);
                         if (lista.Count > 0)
@@ -334,11 +336,20 @@ namespace sres.ln
                                 if (entidad.PUNTAJE >= ci.PUNTAJE_MIN)
                                     categoria = ci.ID_INSIGNIA;
 
+                        InstitucionBE institucion = institucionDA.ObtenerInstitucionInscripcion(entidad.ID_INSCRIPCION, cn);
+                        if (institucion != null) {
+                            List<EstrellaTrabajadorCamaBE> listaEstrellaTrabCama = estrellaTrabCamaDA.listarEstrellaTrabCama(entidad.ID_CONVOCATORIA, institucion.ID_TRABAJADORES_CAMA, cn);
+                            if (listaEstrellaTrabCama.Count > 0)
+                                foreach (EstrellaTrabajadorCamaBE es in listaEstrellaTrabCama)
+                                    if (entidad.EMISIONES_REDUCIDAS >= es.EMISIONES_MIN)
+                                        estrella = es.ID_ESTRELLA;
+                        }
+
                         ReconocimientoBE rec = reconocimientoDA.ObtenerReconocimientoUltimo(entidad.ID_INSCRIPCION, cn);
                         if (rec != null)
                             mejora = categoria > rec.ID_INSIGNIA && estrella > rec.ID_ESTRELLA ? "0" : "1";
 
-                        if (seGuardoConvocatoria) seGuardoConvocatoria = convocatoriaDA.GuardarResultadoReconocimiento(new ReconocimientoBE { ID_INSCRIPCION = entidad.ID_INSCRIPCION, ID_INSIGNIA = categoria, PUNTAJE = entidad.PUNTAJE, FLAG_MEJORACONTINUA = mejora }, cn);
+                        if (seGuardoConvocatoria) seGuardoConvocatoria = convocatoriaDA.GuardarResultadoReconocimiento(new ReconocimientoBE { ID_INSCRIPCION = entidad.ID_INSCRIPCION, ID_INSIGNIA = categoria, PUNTAJE = entidad.PUNTAJE, ID_ESTRELLA = estrella, EMISIONES = entidad.EMISIONES_REDUCIDAS, FLAG_MEJORACONTINUA = mejora, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, cn);
                     }                    
                     
                     if (seGuardoConvocatoria)

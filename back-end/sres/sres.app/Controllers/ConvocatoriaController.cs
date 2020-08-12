@@ -133,17 +133,11 @@ namespace sres.app.Controllers
         public ActionResult EvaluarInstitucion(int idConvocatoria, int idInstitucion)
         {
             ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerUltimaConvocatoria();
-
-            if (convocatoria == null) return HttpNotFound();
-
+            //if (convocatoria == null) return HttpNotFound();
             ViewData["convocatoria"] = convocatoria;
-
             InscripcionBE inscripcion = inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, idInstitucion);
-
-            if (inscripcion == null) return HttpNotFound();
-
+            //if (inscripcion == null) return HttpNotFound();
             ViewData["inscripcion"] = inscripcion;
-
             return View();
         }
 
