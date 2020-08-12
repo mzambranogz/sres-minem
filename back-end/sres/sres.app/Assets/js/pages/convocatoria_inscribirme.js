@@ -116,11 +116,11 @@ var enviarInscripcion = () => {
 var mostrarMensaje = (data) => {
     if (data.success == true) {
         idInscripcion = data.id;
-        $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: `¡Se guardó correctamente!`, close: { time: 3000 } });
-
-        //alert('¡Se guardó correctamente!');
-        limpiarFiles();
-        cargarListaInscripcionRequerimiento();
+        $('#btnInscribirme').parent().parent().hide(); //add
+        $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: `¡Se guardó correctamente!`, close: { time: 4000 } });
+        setTimeout(() => { location.href = `${baseUrl}Convocatoria/`; }, 4000);
+        //limpiarFiles(); //retirado
+        //cargarListaInscripcionRequerimiento(); //retirado
     }
 }
 
