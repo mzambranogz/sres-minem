@@ -20,9 +20,9 @@ namespace sres.ln.MRV
             try
             {
                 cn.Open();
-                InstitucionBE inst = institucionDA.ObtenerInstitucionPorRuc("20131368829", cn);
+                InstitucionBE inst = institucionDA.ObtenerInstitucionPorRuc(ruc, cn);
                 migrar.VALIDACION = inst == null ? 1 : 2;
-                migrar.LISTA_MIGRAR = migrar.VALIDACION == 1 ? lista : migrarDA.ObtenerEmisiones("20131368829", idIniciativas, cn);
+                migrar.LISTA_MIGRAR = migrar.VALIDACION == 1 ? lista : migrarDA.ObtenerEmisiones(ruc, idIniciativas, cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 

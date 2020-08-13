@@ -7,6 +7,7 @@
     InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
     List<CriterioBE> listaCriterio = (List<CriterioBE>)ViewData["listaCriterio"];
     ConvocatoriaEtapaInscripcionBE convetainsc = (ConvocatoriaEtapaInscripcionBE)ViewData["convetainsc"];
+    MigrarEmisionesBE migrar = (MigrarEmisionesBE)ViewData["migrar"];
     decimal total_criterio = listaCriterio.Count();
     decimal ingresados = 0;
     foreach (var cri in listaCriterio) { if (cri.INGRESO_DATOS > 0) { ingresados++; } }
@@ -257,7 +258,7 @@ else
             <div class="modal-body medidas-modal">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <h3 class="text-center">Seleccione la(s) iniciativa(s)</h3>
-                    <p class="text-center">con la que participará por el reconocimiento para las medidas de mitigación NDC</p>
+                    <p class="text-center">con la que participará para el reconocimiento de las medidas de mitigación NDC</p>
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -294,5 +295,5 @@ else
     const idInscripcion = @inscripcion.ID_INSCRIPCION;
     const ingresadosCri = @ingresados;
     const totalCri = @total_criterio;
-    const idIniciativas = "0";
+    const idIniciativas = '@migrar.INICIATIVAS';
 </script>

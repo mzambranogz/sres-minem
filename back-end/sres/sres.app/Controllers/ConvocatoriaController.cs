@@ -22,6 +22,7 @@ namespace sres.app.Controllers
         ConvocatoriaCriterioPuntajeLN convcripuntajeLN = new ConvocatoriaCriterioPuntajeLN();
         ConvocatoriaEtapaInscripcionLN convetainscLN = new ConvocatoriaEtapaInscripcionLN();
         ReconocimientoLN reconocimientoLN = new ReconocimientoLN();
+        MigrarEmisionesLN migrarLN = new MigrarEmisionesLN();
 
         [SesionOut]
         public ActionResult Index()
@@ -69,23 +70,19 @@ namespace sres.app.Controllers
         public ActionResult Criterios(int idConvocatoria)
         {
             ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(idConvocatoria);
-
-            if (convocatoria == null) return HttpNotFound();
-
+            //if (convocatoria == null) return HttpNotFound();
             UsuarioBE usuario = ObtenerUsuarioLogin();
-
             InscripcionBE inscripcion = inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, usuario.ID_INSTITUCION.Value);
-
-            if (inscripcion == null) return HttpNotFound();
-
+            //if (inscripcion == null) return HttpNotFound();
             List<CriterioBE> listaCriterio = criterioLN.ListarCriterioPorConvocatoria(idConvocatoria, inscripcion.ID_INSCRIPCION);
-
             ConvocatoriaEtapaInscripcionBE convetainsc = convetainscLN.ObtenerConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = convocatoria.ID_CONVOCATORIA, ID_ETAPA = convocatoria.ID_ETAPA, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION});
+            MigrarEmisionesBE migrar = migrarLN.obtenerIdIniciativasEmisiones(inscripcion.ID_INSCRIPCION);
 
             ViewData["convocatoria"] = convocatoria;
             ViewData["inscripcion"] = inscripcion;
             ViewData["listaCriterio"] = listaCriterio;
             ViewData["convetainsc"] = convetainsc;
+            ViewData["migrar"] = migrar;
 
             return View();
         }
@@ -95,21 +92,13 @@ namespace sres.app.Controllers
         public ActionResult Criterio(int idConvocatoria, int idCriterio)
         {
             ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(idConvocatoria);
-
             if (convocatoria == null) return HttpNotFound();
-
             UsuarioBE usuario = ObtenerUsuarioLogin();
-
             InscripcionBE inscripcion = inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, usuario.ID_INSTITUCION.Value);
-
             if (inscripcion == null) return HttpNotFound();
-
             CriterioBE criterio = criterioLN.ObtenerCriterioPorConvocatoria(idConvocatoria, idCriterio);
-
             if (criterio == null) return HttpNotFound();
-
             List<CasoBE> listaCaso = casoLN.ObtenerListaCasoCriterioPorConvocatoria(new CasoBE { ID_CONVOCATORIA = idConvocatoria, ID_CRITERIO = idCriterio, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION });
-
             if (listaCaso == null) return HttpNotFound();
 
             ViewData["convocatoria"] = convocatoria;

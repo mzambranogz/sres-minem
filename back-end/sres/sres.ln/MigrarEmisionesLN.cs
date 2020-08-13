@@ -24,8 +24,11 @@ namespace sres.ln
                 {
                     if (entidad.LISTA_MIGRAR != null)
                     {
-                        foreach (MigrarEmisionesBE m in entidad.LISTA_MIGRAR)
-                            if (!(seguardo = migrarDA.migrarEmisiones(m, cn))) break;
+                        if (entidad.LISTA_MIGRAR.Count > 0) {
+                            if (migrarDA.reestablecerEmisiones(entidad.ID_INSCRIPCION, cn))
+                                foreach (MigrarEmisionesBE m in entidad.LISTA_MIGRAR)
+                                    if (!(seguardo = migrarDA.migrarEmisiones(m, cn))) break;
+                        }                        
                     }
                     if (seguardo) ot.Commit();
                     else ot.Rollback();
@@ -33,6 +36,39 @@ namespace sres.ln
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return seguardo;
+        }
+
+        public List<MigrarEmisionesBE> mostrarSeleccionados(int idInscripcion)
+        {
+            List<MigrarEmisionesBE> lista = new List<MigrarEmisionesBE>();
+            try
+            {
+                cn.Open();
+                lista = migrarDA.mostrarSeleccionados(idInscripcion, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return lista;
+        }
+
+        public MigrarEmisionesBE obtenerIdIniciativasEmisiones(int idInscripcion)
+        {
+            MigrarEmisionesBE item = new MigrarEmisionesBE();
+            List<MigrarEmisionesBE> lista = new List<MigrarEmisionesBE>();
+            try
+            {
+                cn.Open();
+                lista = migrarDA.obtenerIdIniciativasEmisiones(idInscripcion, cn);
+                if (lista.Count > 0)
+                {
+                    foreach (MigrarEmisionesBE m in lista)
+                        item.INICIATIVAS += m.ID_INICIATIVA + ",";
+                    item.INICIATIVAS = item.INICIATIVAS.Substring(0, item.INICIATIVAS.Length - 1);
+                }
+                else
+                    item.INICIATIVAS = "0";
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return item;
         }
     }
 }

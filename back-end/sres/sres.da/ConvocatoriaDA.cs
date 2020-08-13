@@ -574,5 +574,61 @@ namespace sres.da
             return lista;
         }
 
+        public bool GuardarReconocimientoMedida(int idInscripcion, int usuario, OracleConnection db)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_PRC_RECONOCIMIENTO_MEDIDA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                p.Add("PI_USUARIO_GUARDAR", usuario);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seGuardo = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seGuardo;
+        }
+
+        public bool GuardarReconocimientoEmisionesMedida(int idInscripcion, int usuario, OracleConnection db)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_PRC_RECON_MEDIDA_RESULT";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                p.Add("PI_USUARIO_GUARDAR", usuario);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seGuardo = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seGuardo;
+        }
+
+        public bool validarResultadoMedida(int idConvocatoria, int idInscripcion, int usuario, OracleConnection db)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_PRC_MEDIDA_RESULTADO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                p.Add("PI_USUARIO_GUARDAR", usuario);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                seGuardo = true;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seGuardo;
+        }
+
     }
 }

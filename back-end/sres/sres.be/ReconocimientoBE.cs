@@ -20,6 +20,9 @@ namespace sres.be
         public string FLAG_ESTRELLA { get; set; }
         public string FLAG_MEJORACONTINUA { get; set; }
         public string FLAG_EMISIONESMAX { get; set; }
+        public string CATEGORIA { get; set; }
+        public string ESTRELLA { get; set; }
+        public string RAZON_SOCIAL { get; set; }
         public string FLAG_ESTADO { get; set; }
     }
 }

@@ -3528,9 +3528,12 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
                     T_GENM_CONVOCATORIA C ON INSC.ID_CONVOCATORIA = C.ID_CONVOCATORIA INNER JOIN
                     T_GENM_USUARIO U ON INSC.REG_USUARIO = U.ID_USUARIO INNER JOIN
                     T_GENM_INSTITUCION INST ON INSC.ID_INSTITUCION = INST.ID_INSTITUCION
-                    WHERE
-                    CI.ID_USUARIO = ' || PI_ID_USUARIO || ' AND
-                    INSC.ID_CONVOCATORIA = ' || PI_ID_CONVOCATORIA || ' AND ' ||
+                    WHERE ' ||
+                    CASE
+                      WHEN PI_ID_USUARIO IS NOT NULL THEN
+                        'CI.ID_USUARIO = ' || PI_ID_USUARIO || ' AND '
+                    END ||
+                    'INSC.ID_CONVOCATORIA = ' || PI_ID_CONVOCATORIA || ' AND ' ||
                     CASE
                       WHEN PI_ID_INSCRIPCION IS NOT NULL THEN
                       'INSC.ID_INSCRIPCION = ' || PI_ID_INSCRIPCION || ' AND '
@@ -3578,9 +3581,12 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
                           T_GENM_CONVOCATORIA C ON INSC.ID_CONVOCATORIA = C.ID_CONVOCATORIA INNER JOIN
                           T_GENM_USUARIO U ON INSC.REG_USUARIO = U.ID_USUARIO INNER JOIN
                           T_GENM_INSTITUCION INST ON INSC.ID_INSTITUCION = INST.ID_INSTITUCION
-                          WHERE
-                          CI.ID_USUARIO = ' || PI_ID_USUARIO || ' AND
-                          INSC.ID_CONVOCATORIA = ' || PI_ID_CONVOCATORIA || ' AND ' ||
+                          WHERE ' ||
+                          CASE
+                            WHEN PI_ID_USUARIO IS NOT NULL THEN
+                              'CI.ID_USUARIO = ' || PI_ID_USUARIO || ' AND '
+                          END ||
+                          'INSC.ID_CONVOCATORIA = ' || PI_ID_CONVOCATORIA || ' AND ' ||
                           CASE
                             WHEN PI_ID_INSCRIPCION IS NOT NULL THEN
                             'INSC.ID_INSCRIPCION = ' || PI_ID_INSCRIPCION || ' AND '

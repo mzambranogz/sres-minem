@@ -22,5 +22,12 @@ namespace sres.app.Controllers.Api
         {
             return migrarLN.migrarEmisiones(entidad);
         }
+
+        [Route("mostrarseleccionados")]
+        [HttpGet]
+        public List<MigrarEmisionesBE> mostrarSeleccionados(int id)
+        {
+            return migrarLN.mostrarSeleccionados(id);
+        }
     }
 }

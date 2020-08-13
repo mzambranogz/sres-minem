@@ -28,7 +28,9 @@ namespace sres.ut
             [Description("LevantamientoObservacion.html")]
             LevantamientoObservacion,
             [Description("InformePreliminar.html")]
-            InformePreliminar
+            InformePreliminar,
+            [Description("InformeFinal.html")]
+            InformeFinal
         }
 
         static string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);

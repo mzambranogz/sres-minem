@@ -17,6 +17,7 @@ var consultar = () => {
     let razonSocialInstitucion = $('#txt-empresa').val();
     let nombresCompletosUsuario = $('#txt-responsable').val();
     let idUsuario = (idEtapa < 15) ? idUsuarioLogin : null;
+    //let idUsuario = idUsuarioLogin;
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();;
     let columna = 'id_inscripcion';
@@ -32,7 +33,6 @@ var consultar = () => {
 var cargarDataBusqueda = (data) => {
     let tabla = $('#tblBandejaParticipantes');
     let cantidadCeldasCabecera = tabla.find('thead tr th').length;
-    //debugger;
     $('#viewPagination').attr('style', 'display: none !important');
     console.log(data.TOTAL_REGISTROS, data.CANTIDAD_REGISTROS);
     if (data.TOTAL_REGISTROS > data.CANTIDAD_REGISTROS) $('#viewPagination').show();

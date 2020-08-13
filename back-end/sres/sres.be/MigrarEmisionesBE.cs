@@ -17,6 +17,7 @@ namespace sres.be
         public int ID_MEDMIT { get; set; }
         public string NOMBRE_MEDMIT { get; set; }
         public int VALIDACION { get; set; }
+        public string INICIATIVAS { get; set; }
         public List<MigrarEmisionesBE> LISTA_MIGRAR { get; set; }
     }
 }

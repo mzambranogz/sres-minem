@@ -19,7 +19,7 @@ namespace sres.da
             bool seguardo = false;
             try
             {
-                string sp = $"{Package.Criterio}USP_PRC_MAN_CONVOCATORIA";
+                string sp = $"{Package.Criterio}USP_PRC_MIGRAR_EMISIONES";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_INSCRIPCION", entidad.ID_INSCRIPCION);
                 p.Add("PI_ID_INICIATIVA", entidad.ID_INICIATIVA);
@@ -37,6 +37,54 @@ namespace sres.da
             }
 
             return seguardo;
+        }
+
+        public bool reestablecerEmisiones(int idInscripcion, OracleConnection db)
+        {
+            bool seguardo = false;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_UDP_REESTABLECER_EMISIONES";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                seguardo = true;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seguardo;
+        }
+
+        public List<MigrarEmisionesBE> mostrarSeleccionados(int idInscripcion, OracleConnection db)
+        {
+            List<MigrarEmisionesBE> lista = new List<MigrarEmisionesBE>();
+            try
+            {
+                string sp = $"{Package.Criterio}USP_SEL_INSCRIPCION_EMISIONES";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<MigrarEmisionesBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
+
+        public List<MigrarEmisionesBE> obtenerIdIniciativasEmisiones(int idInscripcion, OracleConnection db)
+        {
+            List<MigrarEmisionesBE> lista = new List<MigrarEmisionesBE>();
+            try
+            {
+                string sp = $"{Package.Criterio}USP_SEL_GET_ID_INICIATIVA_EMI";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<MigrarEmisionesBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
         }
     }
 }

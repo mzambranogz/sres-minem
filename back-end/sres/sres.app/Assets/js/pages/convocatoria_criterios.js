@@ -32,7 +32,19 @@ var filtrarEmisiones = () => {
                     return `<tr class="get-fila-iniciativas"><td><div class="custom-control custom-checkbox-new custom-checkbox d-inline-block pl-3"><input class="custom-control-input get-chk-ini" type="checkbox" id="chk-send-im-${z.ID_INICIATIVA}-${z.ID_MEDMIT}"><label class="custom-control-label" for="chk-send-im-${z.ID_INICIATIVA}-${z.ID_MEDMIT}">&nbsp;</label></div></td><td><span>${z.ID_INICIATIVA}</span></td><td><span>${z.DESC_INICIATIVA}</span></td><td><span>${z.NOMBRE_MEDMIT}</span></td><td><span>${formatoMiles(z.REDUCIDO)}<input class="get-reducido" value="${z.REDUCIDO}" type="hidden" /></span></td></tr>`;
                 });
                 $('#tabla-migrar').find('tbody').html(filas);
+                mostrarSeleccionado();
             }
+    });
+}
+
+var mostrarSeleccionado = () => {
+    let url = `/api/migraremisiones/mostrarseleccionados?id=${idInscripcion}`;
+    fetch(url).then(r => r.json()).then(j => {
+        if (j.length > 0) {
+            j.map(x => {
+                $(`#chk-send-im-${x.ID_INICIATIVA}-${x.ID_MEDMIT}`).prop('checked', true);
+            });
+        }
     });
 }
 

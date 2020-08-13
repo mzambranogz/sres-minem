@@ -160,6 +160,7 @@
     <Content Include="Assets\js\script.js" />
     <Content Include="Global.asax" />
     <Content Include="Mailing\CreacionConvocatoria.html" />
+    <Content Include="Mailing\InformeFinal.html" />
     <Content Include="Mailing\InformePreliminar.html" />
     <Content Include="Mailing\InscripcionConvocatoria.html" />
     <Content Include="Mailing\DeshabilitarUsuario.html" />
