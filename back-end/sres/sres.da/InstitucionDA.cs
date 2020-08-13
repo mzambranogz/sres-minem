@@ -161,5 +161,22 @@ namespace sres.da
 
             return seModifico;
         }
+
+        public InstitucionBE ObtenerInstitucionInscripcion(int idInscripcion, OracleConnection db)
+        {
+            InstitucionBE item = new InstitucionBE();
+
+            try
+            {
+                string sp = $"{Package.Criterio}USP_SEL_INSTITUCION_INSC";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.Query<InstitucionBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return item;
+        }
     }
 }

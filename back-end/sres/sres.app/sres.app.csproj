@@ -160,10 +160,12 @@
     <Content Include="Assets\js\script.js" />
     <Content Include="Global.asax" />
     <Content Include="Mailing\CreacionConvocatoria.html" />
+    <Content Include="Mailing\InformePreliminar.html" />
     <Content Include="Mailing\InscripcionConvocatoria.html" />
     <Content Include="Mailing\DeshabilitarUsuario.html" />
     <Content Include="Mailing\AprobacionUsuario.html" />
     <Content Include="Mailing\CreacionUsuario.html" />
+    <Content Include="Mailing\LevantamientoObservacion.html" />
     <Content Include="Mailing\RecuperarClave.html" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -179,6 +181,7 @@
     <Compile Include="Controllers\Api\EstrellaController.cs" />
     <Compile Include="Controllers\Api\EtapaController.cs" />
     <Compile Include="Controllers\Api\IndicadorDataController.cs" />
+    <Compile Include="Controllers\Api\InformePreliminarController.cs" />
     <Compile Include="Controllers\Api\InscripcionController.cs" />
     <Compile Include="Controllers\Api\InscripcionRequerimientoController.cs" />
     <Compile Include="Controllers\Api\InsigniaController.cs" />

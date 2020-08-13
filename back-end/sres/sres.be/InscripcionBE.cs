@@ -24,6 +24,10 @@ namespace sres.be
         public UsuarioBE USUARIO { get; set; }
         public int CANTIDADCRITERIOSINGRESADOS { get; set; }
         public int PUNTOSACUMULADOS { get; set; }
+        public string NOMBRE_CONV { get; set; }
+        public string CORREO { get; set; }
+        public string NOMBRES_USU { get; set; }
+        public string RAZON_SOCIAL { get; set; }
         public List<InsigniaBE> ASPIRACIONES { get; set; }
     }
 }

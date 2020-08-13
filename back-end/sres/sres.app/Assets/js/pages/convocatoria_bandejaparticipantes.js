@@ -5,6 +5,9 @@
     $('#btnPreviousPagination').on('click', btnPreviousPaginationClick);
     $('#btnNextPagination').on('click', btnNextPaginationClick);
     $('#btnLastPagination').on('click', btnLastPaginationClick);
+    $('#btn-informe').on('click', btnGenerarInforme);
+    btnInformePreliminarvalidar();
+    btnInformeFinalvalidar();
 });
 
 var consultar = () => {
@@ -125,4 +128,26 @@ var btnLastPaginationClick = (e) => {
     let valor = $('#ir-pagina').attr('max');
     $('#ir-pagina').val(valor);
     consultar();
+}
+
+var btnInformePreliminarvalidar = () => {
+    let idetapa = $('#convocatoria_ID_ETAPA').val();
+    idetapa == 9 ? $('#btn-informe').removeClass('d-none') : $('#btn-informe').addClass('d-none');
+}
+
+var btnInformeFinalvalidar = () => {
+    let idetapa = $('#convocatoria_ID_ETAPA').val();
+    idetapa == 12 ? $('#btn-informefinal').removeClass('d-none') : $('#btn-informefinal').addClass('d-none');
+}
+
+var btnGenerarInforme = () => {
+    debugger;
+    let data = { ID_CONVOCATORIA: idConvocatoria, ID_USUARIO: idUsuarioLogin, USUARIO_GUARDAR: idUsuarioLogin };
+
+    let url = `/api/informepreliminar/generarinformepreliminar`;
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+    fetch(url, init)
+    .then(r => r.json())
+    .then(alert('Informe generado'));
 }

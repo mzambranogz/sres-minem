@@ -16,6 +16,7 @@ namespace sres.be
         public decimal EMISIONES_REDUCIDAS { get; set; }
         public string OBSERVACION { get; set; }
         public string NOMBRE_CRI { get; set; }
+        public string NOMBRE_CONV { get; set; }
         public List<InscripcionDocumentoBE> LIST_INSCDOC { get; set; }
         public string FLAG_ESTADO { get; set; }
     }

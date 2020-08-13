@@ -13,7 +13,8 @@
     foreach (var cri in listaCriterio) { if (cri.INGRESO_DATOS > 0) { ingresados++; } }
     decimal porcentaje_avance = Decimal.Round(ingresados * 100 / total_criterio);
     string pathFormat = AppSettings.Get<string>("Path.Criterio");
-    string obs = convetainsc.OBSERVACION == null ? "" : convetainsc.OBSERVACION;
+    string obs = convetainsc == null ? "" : convetainsc.OBSERVACION == null ? "" : convetainsc.OBSERVACION;
+    int evaluacion = convetainsc == null ? 0 : convetainsc.OBSERVACION == null ? 0 : convetainsc.ID_TIPO_EVALUACION;
 }
 
 @section scripts_footer{
@@ -242,7 +243,7 @@ else
                             }
 
                             @Html.Raw(icono)
-                            <a class="d-block @bg @linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/EvaluacionCriterio/{item.ID_CRITERIO}")">
+                            <a class="d-block @bg @linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Inscripcion/{idInscripcion}/EvaluacionCriterio/{item.ID_CRITERIO}")">
                                 <img class="img-fluid" src="@Url.Content($"~/{pathDirectoryRelative}/{item.ARCHIVO_BASE}")">
                                 <div class="estilo-01 text-sres-azul pt-3">@item.NOMBRE</div>
                             </a>
@@ -307,7 +308,7 @@ else
     const idConvocatoria = @convocatoria.ID_CONVOCATORIA;
     const idEtapa = @convocatoria.ID_ETAPA;
     const idInscripcion = @idInscripcion;
-    const eva = @convetainsc.ID_TIPO_EVALUACION;
+    const eva = @evaluacion;
     const puntaje = @convcripuntaje.PUNTAJE;
     const emisiones = @convcripuntaje.EMISIONES_REDUCIDAS;
 </script>

@@ -5,6 +5,7 @@
     ConvocatoriaBE convocatoria = ViewData["convocatoria"] == null ? null : (ConvocatoriaBE)ViewData["convocatoria"];
     ViewBag.IrBandejaParticipantes = false;
     ViewBag.IrBandejaConvocatorias = true;
+    @Html.HiddenFor(x => convocatoria.ID_ETAPA);
 }
 @section scripts_footer{
     <script>
