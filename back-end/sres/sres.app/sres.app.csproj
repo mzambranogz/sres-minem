@@ -187,7 +187,9 @@
     <Compile Include="Controllers\Api\InsigniaController.cs" />
     <Compile Include="Controllers\Api\InstitucionController.cs" />
     <Compile Include="Controllers\Api\ConvocatoriaController.cs" />
+    <Compile Include="Controllers\Api\MigrarEmisionesController.cs" />
     <Compile Include="Controllers\Api\MRV\InstitucionMRVController.cs" />
+    <Compile Include="Controllers\Api\MRV\MigrarEmisionesMRVController.cs" />
     <Compile Include="Controllers\Api\MRV\UsuarioMRVController.cs" />
     <Compile Include="Controllers\Api\ParametroDetalleRelacionController.cs" />
     <Compile Include="Controllers\Api\ProcesoController.cs" />

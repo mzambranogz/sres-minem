@@ -6,6 +6,7 @@
     $('#btnNextPagination').on('click', btnNextPaginationClick);
     $('#btnLastPagination').on('click', btnLastPaginationClick);
     $('#btn-informe').on('click', btnGenerarInforme);
+    $('#btn-informefinal').on('click', btnGenerarInformeFinal);
     btnInformePreliminarvalidar();
     btnInformeFinalvalidar();
 });
@@ -145,6 +146,18 @@ var btnGenerarInforme = () => {
     let data = { ID_CONVOCATORIA: idConvocatoria, ID_USUARIO: idUsuarioLogin, USUARIO_GUARDAR: idUsuarioLogin };
 
     let url = `/api/informepreliminar/generarinformepreliminar`;
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+    fetch(url, init)
+    .then(r => r.json())
+    .then(alert('Informe generado'));
+}
+
+var btnGenerarInformeFinal = () => {
+    debugger;
+    let data = { ID_CONVOCATORIA: idConvocatoria, ID_USUARIO: idUsuarioLogin, USUARIO_GUARDAR: idUsuarioLogin };
+
+    let url = `/api/informepreliminar/generarinformefinal`;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)

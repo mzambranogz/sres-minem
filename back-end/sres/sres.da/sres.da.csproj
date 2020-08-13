@@ -80,8 +80,10 @@
     <Compile Include="InscripcionTrazabilidadDA.cs" />
     <Compile Include="InsigniaDA.cs" />
     <Compile Include="InstitucionDA.cs" />
+    <Compile Include="MigrarEmisionesDA.cs" />
     <Compile Include="MRV\BaseDA.cs" />
     <Compile Include="MRV\InstitucionDA.cs" />
+    <Compile Include="MRV\MigrarEmisionesDA.cs" />
     <Compile Include="MRV\UsuarioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleDynamicParameters.cs" />
     <Compile Include="ParametroDetalleDA.cs" />

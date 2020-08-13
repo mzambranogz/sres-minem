@@ -60,8 +60,10 @@
     <Compile Include="InscripcionRequerimientoLN.cs" />
     <Compile Include="InsigniaLN.cs" />
     <Compile Include="InstitucionLN.cs" />
+    <Compile Include="MigrarEmisionesLN.cs" />
     <Compile Include="MRV\BaseLN.cs" />
     <Compile Include="MRV\InstitucionLN.cs" />
+    <Compile Include="MRV\MigrarEmisionesLN.cs" />
     <Compile Include="MRV\UsuarioLN.cs" />
     <Compile Include="ParametroDetalleRelacionLN.cs" />
     <Compile Include="ProcesoLN.cs" />

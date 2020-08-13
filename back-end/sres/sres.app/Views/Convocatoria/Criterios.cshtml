@@ -140,6 +140,12 @@
                      }
                  }
             </div>
+            @if (convocatoria.ID_ETAPA == 6)
+            {
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12"><span data-toggle="modal" data-target="#iniciativa-medida-ndc"><a class="btn btn-warning text-white w-100 mb-3" href="javascript:void(0)" id="migrar-emisiones">Migrar Emisiones tCO<sub>2</sub></a></span></div>
+                </div>
+            }   
             <div class="row">
                 <div class="col-12">
                     <div class="rayado my-5 wow fadeIn"></div>
@@ -218,6 +224,12 @@ else
                      }
                  }
             </div>
+            @if (convocatoria.ID_ETAPA == 6)
+            {
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12"><span data-toggle="modal" data-target="#iniciativa-medida-ndc"><a class="btn btn-warning text-white w-100 mb-3" href="javascript:void(0)" id="migrar-emisiones">Migrar Emisiones tCO<sub>2</sub></a></span></div>
+                </div>
+            }            
             <div class="row">
                 <div class="col-12">
                     <div class="rayado my-5 wow fadeIn"></div>
@@ -235,6 +247,46 @@ else
     </div>
 }
 
+<div class="modal fade" id="iniciativa-medida-ndc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Seleccione la iniciativa <br><small class="text-muted">con la que participará por el reconocimiento para las medidas mitigación NDC</small></h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>*@
+            <div class="modal-body medidas-modal">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="text-center">Seleccione la(s) iniciativa(s)</h3>
+                    <p class="text-center">con la que participará por el reconocimiento para las medidas de mitigación NDC</p>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table" id="tabla-migrar">
+                            <thead>
+                                <tr>
+                                    <th>Seleccionar</th>
+                                    <th>Cod. Iniciativa</th>
+                                    <th>Iniciativa</th>
+                                    <th>Medida mitigación</th>
+                                    <th>Emisiones Reducidas (tCO<sub>2</sub>)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center" id="pieRecordatorio">
+                    <a class="btn btn-primary" href="#" id="btn-migrar">Si, migrar</a>
+                    <button class="btn btn-dark" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
+                <div class="alert-emisones-add"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script>
     const idConvocatoria = @convocatoria.ID_CONVOCATORIA;
@@ -242,4 +294,5 @@ else
     const idInscripcion = @inscripcion.ID_INSCRIPCION;
     const ingresadosCri = @ingresados;
     const totalCri = @total_criterio;
+    const idIniciativas = "0";
 </script>

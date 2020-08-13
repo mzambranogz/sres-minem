@@ -5,7 +5,7 @@
     //$('#btnCerrar').on('click', (e) => cerrarFormulario());
     consultar();
     consultarDoc();
-    $('#btnGuardar').on('click', (e) => guardar());
+    $('#btnGuardar').on('click', (e) => guardar());    
 });
 
 $(document).on("change", "#cbo-caso", () => {
@@ -470,8 +470,4 @@ var verificarFiltro = (filtro, obj) => {
         arrFiltros.push(detalles.substring(0, detalles.length - 1));
     }
     return arrFiltros;
-}
-
-var armarFiltro = () => {
-
 }

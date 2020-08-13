@@ -18,9 +18,16 @@ namespace sres.app.Controllers.Api
 
         [Route("generarinformepreliminar")]
         [HttpPost]
-        public List<InscripcionBE> listaInscripcionConvocatoriaEvaluador(ConvocatoriaBE entidad)
+        public List<InscripcionBE> generarInformePreliminar(ConvocatoriaBE entidad)
         {
-            return informeLN.listaInscripcionConvocatoriaEvaluador(entidad);
+            return informeLN.generarInformePreliminar(entidad);
+        }
+
+        [Route("generarinformefinal")]
+        [HttpPost]
+        public List<InscripcionBE> generarInformeFinal(ConvocatoriaBE entidad)
+        {
+            return informeLN.generarInformeFinal(entidad);
         }
     }
 }

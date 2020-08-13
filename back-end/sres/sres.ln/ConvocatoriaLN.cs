@@ -333,16 +333,15 @@ namespace sres.ln
                         List<ConvocatoriaInsigniaBE> lista = convocatoriaDA.listarConvocatoriaInsig(new ConvocatoriaBE { ID_CONVOCATORIA = entidad.ID_CONVOCATORIA }, cn);
                         if (lista.Count > 0)
                             foreach (ConvocatoriaInsigniaBE ci in lista)
-                                if (entidad.PUNTAJE >= ci.PUNTAJE_MIN)
-                                    categoria = ci.ID_INSIGNIA;
+                                if (entidad.PUNTAJE >= ci.PUNTAJE_MIN) { categoria = ci.ID_INSIGNIA; break; }                                    
 
                         InstitucionBE institucion = institucionDA.ObtenerInstitucionInscripcion(entidad.ID_INSCRIPCION, cn);
                         if (institucion != null) {
                             List<EstrellaTrabajadorCamaBE> listaEstrellaTrabCama = estrellaTrabCamaDA.listarEstrellaTrabCama(entidad.ID_CONVOCATORIA, institucion.ID_TRABAJADORES_CAMA, cn);
                             if (listaEstrellaTrabCama.Count > 0)
                                 foreach (EstrellaTrabajadorCamaBE es in listaEstrellaTrabCama)
-                                    if (entidad.EMISIONES_REDUCIDAS >= es.EMISIONES_MIN)
-                                        estrella = es.ID_ESTRELLA;
+                                    if (entidad.EMISIONES_REDUCIDAS >= es.EMISIONES_MIN) { estrella = es.ID_ESTRELLA; break; }
+                                        
                         }
 
                         ReconocimientoBE rec = reconocimientoDA.ObtenerReconocimientoUltimo(entidad.ID_INSCRIPCION, cn);
