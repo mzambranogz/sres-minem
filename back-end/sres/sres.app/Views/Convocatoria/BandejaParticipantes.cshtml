@@ -9,6 +9,7 @@
 @section scripts_footer{
     <script>
         const idConvocatoria = @(convocatoria == null ? "null" : convocatoria.ID_CONVOCATORIA.ToString());
+        const idEtapa = @(convocatoria == null ? "null" : convocatoria.ID_ETAPA.ToString());
     </script>
     <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
     <script src="@Url.Content("~/Assets/js/pages/convocatoria_bandejaparticipantes.js")"></script>

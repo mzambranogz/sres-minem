@@ -12,7 +12,7 @@ var consultar = () => {
     idInscripcion = isNaN(idInscripcion) == true ? -1 : (idInscripcion.trim() == "" ? null : parseInt(idInscripcion));
     let razonSocialInstitucion = $('#txt-empresa').val();
     let nombresCompletosUsuario = $('#txt-responsable').val();
-    let idUsuario = idUsuarioLogin;
+    let idUsuario = (idEtapa < 15) ? idUsuarioLogin : null;
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();;
     let columna = 'id_inscripcion';

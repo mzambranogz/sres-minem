@@ -148,7 +148,7 @@ namespace sres.ln
             return seGuardo;
         }
 
-        public List<InscripcionBE> BuscarInscripcion(int idConvocatoria, int? idInscripcion, string razonSocialInstitucion, string nombresCompletosUsuario, int idUsuario, int registros, int pagina, string columna, string orden)
+        public List<InscripcionBE> BuscarInscripcion(int idConvocatoria, int? idInscripcion, string razonSocialInstitucion, string nombresCompletosUsuario, int? idUsuario, int registros, int pagina, string columna, string orden)
         {
             List<InscripcionBE> lista = new List<InscripcionBE>();
 

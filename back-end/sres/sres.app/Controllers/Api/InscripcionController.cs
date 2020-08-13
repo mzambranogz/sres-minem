@@ -81,7 +81,7 @@ namespace sres.app.Controllers.Api
 
         [Route("buscarinscripcion")]
         [HttpGet]
-        public DataPaginateBE BuscarInscripcion(int idConvocatoria, int? idInscripcion, string razonSocialInstitucion, string nombresCompletosUsuario, int idUsuario, int registros, int pagina, string columna, string orden)
+        public DataPaginateBE BuscarInscripcion(int idConvocatoria, int? idInscripcion, string razonSocialInstitucion, string nombresCompletosUsuario, int? idUsuario, int registros, int pagina, string columna, string orden)
         {
             List<InscripcionBE> inscripcion = inscripcionLN.BuscarInscripcion(idConvocatoria, idInscripcion, razonSocialInstitucion, nombresCompletosUsuario, idUsuario, registros, pagina, columna, orden);
 

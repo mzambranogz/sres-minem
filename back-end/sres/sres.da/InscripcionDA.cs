@@ -77,7 +77,7 @@ namespace sres.da
             return seGuardo;
         }
 
-        public List<InscripcionBE> BuscarInscripcion(int idConvocatoria, int? idInscripcion, string razonSocialInstitucion, string nombresCompletosUsuario, int idUsuario, int registros, int pagina, string columna, string orden, OracleConnection db)
+        public List<InscripcionBE> BuscarInscripcion(int idConvocatoria, int? idInscripcion, string razonSocialInstitucion, string nombresCompletosUsuario, int? idUsuario, int registros, int pagina, string columna, string orden, OracleConnection db)
         {
             List<InscripcionBE> lista = new List<InscripcionBE>();
 
