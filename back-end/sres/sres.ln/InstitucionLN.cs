@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Oracle.DataAccess.Client;
 
 namespace sres.ln
 {
@@ -87,6 +88,7 @@ namespace sres.ln
             {
                 cn.Open();
                 item = institucionDA.ObtenerInstitucion(idInstitucion, cn);
+                item.LISTA_CONTACTO = institucionDA.ObtenerListaContacto(idInstitucion, cn);
             }
             catch(Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
@@ -144,12 +146,77 @@ namespace sres.ln
             try
             {
                 cn.Open();
-                seModifico = institucionDA.ModificarDatosInstitucion(institucion, cn);
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {
+                    seModifico = institucionDA.ModificarDatosInstitucion(institucion, cn);
+                    if (seModifico)
+                        foreach (InstitucionContactoBE contacto in institucion.LISTA_CONTACTO)
+                            if (!(seModifico = institucionDA.GuardarContacto(contacto, cn))) break;
+
+                    if (seModifico) ot.Commit();
+                    else ot.Rollback();
+                }                    
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return seModifico;
         }
+        public bool cambiarPrimerInicio(int idInstitucion)
+        {
+            bool seModifico = false;
+            try
+            {
+                cn.Open();
+                seModifico = institucionDA.cambiarPrimerInicio(idInstitucion, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return seModifico;
+        }
+
+        public List<DepartamentoBE> listarDepartamento()
+        {
+            List<DepartamentoBE> lista = new List<DepartamentoBE>();
+            try
+            {
+                cn.Open();
+                lista = institucionDA.listarDepartamento(cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<ProvinciaBE> listarProvincia(string idDepartamento)
+        {
+            List<ProvinciaBE> lista = new List<ProvinciaBE>();
+            try
+            {
+                cn.Open();
+                lista = institucionDA.listarProvincia(idDepartamento ,cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<DistritoBE> listarDistrito(string idProvincia)
+        {
+            List<DistritoBE> lista = new List<DistritoBE>();
+            try
+            {
+                cn.Open();
+                lista = institucionDA.listarDistrito(idProvincia, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
     }
 }

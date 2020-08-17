@@ -12,6 +12,8 @@ namespace sres.be
         public int? ID_INSCRIPCION { get; set; }
         public int? ID_CONVOCATORIA { get; set; }
         public int? ID_USUARIO { get; set; }
+        public string PRIMER_INICIO { get; set; }
+        public List<InstitucionContactoBE> LISTA_CONTACTO { get; set; }
         public ConvocatoriaEvaluadorPostulanteBE CONV_EVA_POS { get; set; }
     }
 }

@@ -1,13 +1,991 @@
 ﻿
 @{
     ViewBag.Titulo = "Mantenimiento Convocatoria";
+    ViewBag.SRESDescription = false;
 }
 
 @section scripts_footer{
     <script src="@Url.Content("~/Assets/js/pages/mantenimiento_convocatoria.js")"></script>
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
 }
 
-<div>
+
+<div class="container-fluid mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="estilo-05" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="./index.html">Inicio</a></li>
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="./mantenimientos.html">Mantenimiento de Tablas</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Mantenimiento de Convocatorias</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <h2 class="estilo-03 text-sres-azul">Mantenimiento de Convocatorias</h2>
+            </div>
+            <div class="col-lg-3">
+                <span data-toggle="modal" data-target="#modal-mantenimiento">
+                    <div class="btn btn-sres-verde btn-lg w-100 mb-2" id="btnNuevo" data-toggle="tooltip" data-placement="top" title="Agregaremos la configuración de la convocatoria">Agregar convocatoria</div>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="rayado wow fadeIn"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label class="estilo-01" for="txt-codigo">CÓDIGO</label>
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="text" id="txt-codigo" placeholder="#######">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="estilo-01 text-sres-oscuro" for="txt-descripcion">DESCRIPCIÓN DE CONVOCATORIA</label>
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="text" id="txt-descripcion" placeholder="Ingrese la descripción de su búsqueda">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label class="estilo-01 text-sres-oscuro" for="dat-desde">FECHA DESDE</label>
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="date" id="dat-desde">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label class="estilo-01 text-sres-oscuro" for="dat-hasta">FECHA HASTA</label>
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="date" id="dat-hasta">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label class="estilo-01 text-sres-oscuro">&nbsp;</label>
+                    <div class="input-group">
+                        <button class="btn btn-primary w-100" id="btnConsultar">Consultar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive tabla-principal">
+                    <table class="table table-sm table-hover" id="tblPrincipal">
+                        <thead class="estilo-06">
+                            <tr>
+                                <th scope="col" width="3%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">N°&nbsp;<i class="fas fa-sort"></i></div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Número de orden"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="8%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">CÓDIGO&nbsp;</div><i class="fas fa-sort"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Número de expediente"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="5%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">TÍTULO&nbsp;</div><i class="fas fa-sort"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Título de la convocatoria"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="29%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">DESCRIPCIÓN DE LA CONVOCATORIA&nbsp;</div><i class="fas fa-sort"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre o descripción de la convocatoria"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="12%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">FECHA INICIO&nbsp;</div><i class="fas fa-sort"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Fecha de inicialización de la convocatoria"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="10%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">FECHA FIN&nbsp;</div><i class="fas fa-sort"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Fecha de finalización de la convocatoria"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="10%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">PROGRESO&nbsp;</div><i class="fas fa-sort"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Progreso del vencimiento"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="13%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">ESTADO&nbsp;</div><i class="fas fa-sort"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Estado de la convocatoria"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="10%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">GESTIÓN&nbsp;</div><i class="fas fa-sort"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Herramientas y opciones"></i></div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="estilo-01">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-start align-items-center">
+                <div class="row">
+                    <div class="col-12"><strong>Resultado:&nbsp;</strong>1-10 de 750 registros</div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-end align-items-center">
+                <div class="row">
+                    <div class="col-12">
+                        <strong>Registros por página&nbsp;</strong>
+                        <select id="catidad-rgistros">
+                            <option value="10" selected>10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>&nbsp;
+                        1 de 75 páginas&nbsp;
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-double-left"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-left"></i></button>
+                            <input class="ir-pagina" type="number" value="1" min="1">
+                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-right"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-double-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-mantenimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="" id="frm">
+                <div class="modal-header bg-sres-azul text-white">
+                    <h5 class="modal-title estilo-01" id="exampleModalLabel">REGISTRAR CONVOCATORIA</h5>
+                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-6">
+                            <h2 class="estilo-04 text-sres-oscuro mb-3">DATOS PRINCIPALES</h2>
+                            <div class="form-group mt-2">
+                                <label class="estilo-01" for="txt-titulo">Título de la convocatoria:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-titulo" placeholder="Título de la convocatoria">
+                                </div>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label class="estilo-01" for="txa-descripcion">Descripción de la convocatoria:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
+                                    <textarea class="form-control estilo-01 text-sres-gris" id="txa-descripcion" cols="30" rows="3" placeholder="Ingrese la descripción de su convocatoria"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                    <div class="form-group mt-2">
+                                        <label class="estilo-01" for="dat-inicio">Fecha de inicio:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                            <input class="form-control estilo-01 text-sres-gris" type="date" id="dat-inicio">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                    <div class="form-group mt-2">
+                                        <label class="estilo-01" for="dat-fin">Fecha de finalización:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                            <input class="form-control estilo-01 text-sres-gris" type="date" id="dat-fin">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                    <div class="form-group mt-2">
+                                        <label class="estilo-01" for="txt-capacidad">Capacidad de postulantes:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div>
+                                            <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-capacidad" placeholder="Capacidad de postulantes">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                    <div class="form-group mt-2" id="etapa-convocatoria">
+                                        <label class="estilo-01" for="cbo-etapa">Etapa de la convocatoria:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-stopwatch"></i></span></div>
+                                            <select class="form-control estilo-01" id="cbo-etapa">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <label class="estilo-01" for="mls-requisitos">Requisitos<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione uno o varios requisitos (Documentos)"></i></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-file-alt"></i></span></div>
+                                            <div class="form-control" style="height:196px; overflow-y: auto;">
+                                                <div class="col-auto my-1 list-req">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-6">
+                            <h2 class="estilo-04 text-sres-oscuro mb-3">ASIGNACIÓN</h2>
+                            <div class="form-group mt-2">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item"><a class="nav-link estilo-01 active" id="tab-head-00" data-toggle="tab" href="#tab-00" role="tab" aria-controls="tab-00" aria-selected="true">Evaluadores</a></li>
+                                    <li class="nav-item relacion-evaluador"><a class="nav-link estilo-01" id="tab-head-01" data-toggle="tab" href="#tab-01" role="tab" aria-controls="tab-01" aria-selected="false">Asignación</a></li>
+                                    <li class="nav-item d-none"><a class="nav-link estilo-01" id="tab-head-02" data-toggle="tab" href="#tab-02" role="tab" aria-controls="tab-02" aria-selected="false">Reasignación</a></li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="tab-00" role="tabpanel" aria-labelledby="tab-head-00">
+                                        <div class="form-group">
+                                            <label class="estilo-01" for="mls-postulantes">Seleccionar Evaluadores Participantes<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione una o varios evaluadores que participarán en la convocatoria"></i></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-user-check"></i></span></div>
+                                                <div class="form-control list-evaluador" style="height:500px; overflow-y: auto;">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*<div class="row">
+                                            <div class="col-sm-12 col-md-12 col-lg-6">&nbsp;</div>
+                                            <div class="col-sm-12 col-md-12 col-lg-6">&nbsp;</div>
+                                        </div>*@
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-01" role="tabpanel" aria-labelledby="tab-head-01">
+                                        <div class="form-group">
+                                            <label class="estilo-01" for="mls-postulantes">Seleccionar Postulantes<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione una o varios postulantes"></i></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-users"></i></span></div>
+                                                <div class="form-control" style="height:382px; overflow-y: auto;">
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-1">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-1">
+                                                                Postulante&nbsp;1
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-2">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-2">
+                                                                Postulante&nbsp;2
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-3">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-3">
+                                                                Postulante&nbsp;3
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-4">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-4">
+                                                                Postulante&nbsp;4
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-5">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-5">
+                                                                Postulante&nbsp;5
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-6">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-6">
+                                                                Postulante&nbsp;6
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-7">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-7">
+                                                                Postulante&nbsp;7
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-8">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-8">
+                                                                Postulante&nbsp;8
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-9">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-9">
+                                                                Postulante&nbsp;9
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-10">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-10">
+                                                                Postulante&nbsp;10
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-11">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-11">
+                                                                Postulante&nbsp;11
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-12">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-12">
+                                                                Postulante&nbsp;12
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-13">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-13">
+                                                                Postulante&nbsp;13
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-14">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-14">
+                                                                Postulante&nbsp;14
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-15">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-15">
+                                                                Postulante&nbsp;15
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-16">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-16">
+                                                                Postulante&nbsp;16
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-17">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-17">
+                                                                Postulante&nbsp;17
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-18">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-18">
+                                                                Postulante&nbsp;18
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-19">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-19">
+                                                                Postulante&nbsp;19
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-20">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-20">
+                                                                Postulante&nbsp;20
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-21">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-21">
+                                                                Postulante&nbsp;21
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-22">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-22">
+                                                                Postulante&nbsp;22
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-23">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-23">
+                                                                Postulante&nbsp;23
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-24">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-24">
+                                                                Postulante&nbsp;24
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-25">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-25">
+                                                                Postulante&nbsp;25
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-26">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-26">
+                                                                Postulante&nbsp;26
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-27">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-27">
+                                                                Postulante&nbsp;27
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-28">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-28">
+                                                                Postulante&nbsp;28
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-29">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-29">
+                                                                Postulante&nbsp;29
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-30">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-30">
+                                                                Postulante&nbsp;30
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-31">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-31">
+                                                                Postulante&nbsp;31
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-32">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-32">
+                                                                Postulante&nbsp;32
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-33">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-33">
+                                                                Postulante&nbsp;33
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-34">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-34">
+                                                                Postulante&nbsp;34
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-35">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-35">
+                                                                Postulante&nbsp;35
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-36">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-36">
+                                                                Postulante&nbsp;36
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-37">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-37">
+                                                                Postulante&nbsp;37
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-38">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-38">
+                                                                Postulante&nbsp;38
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-39">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-39">
+                                                                Postulante&nbsp;39
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-40">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-40">
+                                                                Postulante&nbsp;40
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-41">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-41">
+                                                                Postulante&nbsp;41
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-42">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-42">
+                                                                Postulante&nbsp;42
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-43">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-43">
+                                                                Postulante&nbsp;43
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-44">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-44">
+                                                                Postulante&nbsp;44
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-45">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-45">
+                                                                Postulante&nbsp;45
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-46">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-46">
+                                                                Postulante&nbsp;46
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-47">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-47">
+                                                                Postulante&nbsp;47
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-48">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-48">
+                                                                Postulante&nbsp;48
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-49">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-49">
+                                                                Postulante&nbsp;49
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-add-50">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-add-50">
+                                                                Postulante&nbsp;50
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="estilo-01" for="cbo-evaluadores-01">Asignar Evaluador:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user-check"></i></span></div>
+                                                <select class="form-control estilo-01" id="cbo-evaluadores-01">
+                                                    <option>-Seleccionar-</option>
+                                                    <option>Evaluador 01</option>
+                                                    <option>Evaluador 02</option>
+                                                    <option>Evaluador 03</option>
+                                                    <option>Evaluador 04</option>
+                                                    <option>Evaluador 05</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-lg-6">&nbsp;</div>
+                                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                                <button class="btn btn-sm btn-info btn-block" type="button">Asignar evaluador</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-02" role="tabpanel" aria-labelledby="tab-head-02">
+                                        <div class="form-group">
+                                            <label class="estilo-01" for="cbo-evaluadores-02">Seleccionar Evaluador:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user-check"></i></span></div>
+                                                <select class="form-control estilo-01" id="cbo-evaluadores-02">
+                                                    <option>-Seleccionar-</option>
+                                                    <option>Evaluador 01</option>
+                                                    <option>Evaluador 02</option>
+                                                    <option>Evaluador 03</option>
+                                                    <option>Evaluador 04</option>
+                                                    <option>Evaluador 05</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="estilo-01" for="mls-ubicaciones">Deseleccionar Postulantes<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione una o varios postulantes"></i></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-users"></i></span></div>
+                                                <div class="form-control" style="height:382px; overflow-y: auto;">
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-remove-1">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-remove-1">
+                                                                Postulante&nbsp;1
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-remove-2">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-remove-2">
+                                                                Postulante&nbsp;2
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-remove-3">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-remove-3">
+                                                                Postulante&nbsp;3
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-remove-4">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-remove-4">
+                                                                Postulante&nbsp;4
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-remove-5">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-remove-5">
+                                                                Postulante&nbsp;5
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-remove-6">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-remove-6">
+                                                                Postulante&nbsp;6
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-remove-7">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-remove-7">
+                                                                Postulante&nbsp;7
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-remove-8">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-remove-8">
+                                                                Postulante&nbsp;8
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-remove-9">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-remove-9">
+                                                                Postulante&nbsp;9
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto my-1">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input class="custom-control-input" type="checkbox" id="chk-postulante-remove-10">
+                                                            <label class="custom-control-label estilo-01" for="chk-postulante-remove-10">
+                                                                Postulante&nbsp;10
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-lg-6">&nbsp;</div>
+                                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                                <button class="btn btn-sm btn-dark btn-block" type="button">Quitar postulante(s)</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h2 class="estilo-04 text-sres-oscuro mb-3">CONFIGURACIÓN DE CRITERIOS</h2>
+                            <div class="form-group mt-2">
+                                <ul class="nav nav-tabs tab-criterio" id="myTab" role="tablist">
+                                    @*<li class="nav-item" data-toggle="tooltip" data-placement="top" title="Ahorro de energía eléctrica total"><a class="nav-link estilo-01 active" id="tab-head-cri-01" data-toggle="tab" href="#tab-body-cri-01" role="tab" aria-controls="tab-body-cri-01" aria-selected="true"><i class="fas fa-check-circle text-sres-verde mr-1"></i>Criterio 01</a></li>
+                                    <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Ahorro de consumo de combustible"><a class="nav-link estilo-01" id="tab-head-cri-02" data-toggle="tab" href="#tab-body-cri-02" role="tab" aria-controls="tab-body-cri-02" aria-selected="false"><i class="fas fa-check-circle text-sres-verde mr-1"></i>Criterio 02</a></li>
+                                    <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Personal dedicados a Gestión de la Energía"><a class="nav-link estilo-01" id="tab-head-cri-03" data-toggle="tab" href="#tab-body-cri-03" role="tab" aria-controls="tab-body-cri-03" aria-selected="false"><i class="fas fa-check-circle text-sres-verde mr-1"></i>Criterio 03</a></li>
+                                    <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Implementación de SGEn"><a class="nav-link estilo-01" id="tab-head-cri-04" data-toggle="tab" href="#tab-body-cri-04" role="tab" aria-controls="tab-body-cri-04" aria-selected="false"><i class="fas fa-check-circle text-primary mr-1"></i>Criterio 04</a></li>
+                                    <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Desarrollo de Auditoría Energética"><a class="nav-link estilo-01" id="tab-head-cri-05" data-toggle="tab" href="#tab-body-cri-05" role="tab" aria-controls="tab-body-cri-05" aria-selected="false"><i class="fas fa-check-circle text-primary mr-1"></i>Criterio 05</a></li>
+                                    <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Huella de carbono"><a class="nav-link estilo-01" id="tab-head-cri-06" data-toggle="tab" href="#tab-body-cri-06" role="tab" aria-controls="tab-body-cri-06" aria-selected="false"><i class="fas fa-check-circle text-primary mr-1"></i>Criterio 06</a></li>
+                                    <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Fortalecimiento de capacidades"><a class="nav-link estilo-01" id="tab-head-cri-07" data-toggle="tab" href="#tab-body-cri-07" role="tab" aria-controls="tab-body-cri-07" aria-selected="false"><i class="fas fa-check-circle text-primary mr-1"></i>Criterio 07</a></li>
+                                    <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Igualdad de género"><a class="nav-link estilo-01" id="tab-head-cri-08" data-toggle="tab" href="#tab-body-cri-08" role="tab" aria-controls="tab-body-cri-08" aria-selected="false"><i class="fas fa-check-circle text-primary mr-1"></i>Criterio 08</a></li>*@
+                                </ul>
+                                <div class="tab-content tab-criterio-content" id="myTabContent">
+                                    
+                                    <div class="tab-pane fade" id="tab-body-cri-03" role="tabpanel" aria-labelledby="tab-head-cri-03">3</div>
+                                    <div class="tab-pane fade" id="tab-body-cri-04" role="tabpanel" aria-labelledby="tab-head-cri-04">4</div>
+                                    <div class="tab-pane fade" id="tab-body-cri-05" role="tabpanel" aria-labelledby="tab-head-cri-05">5</div>
+                                    <div class="tab-pane fade" id="tab-body-cri-06" role="tabpanel" aria-labelledby="tab-head-cri-06">6</div>
+                                    <div class="tab-pane fade" id="tab-body-cri-07" role="tabpanel" aria-labelledby="tab-head-cri-07">7</div>
+                                    <div class="tab-pane fade" id="tab-body-cri-08" role="tabpanel" aria-labelledby="tab-head-cri-08">8</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h2 class="estilo-04 text-sres-oscuro mb-3">ETAPAS Y CATEGORÍAS</h2>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-8">
+                            <div class="form-group">
+                                <label class="estilo-01" for="mls-puntuación">ETAPAS<span class="text-danger font-weight-bold">&nbsp;(*)</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-hourglass-half"></i></span></div>
+                                    <div class="form-control" style="height:auto; overflow-y: auto;">
+                                        <div class="col-auto my-1 tbl-etapa">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <div class="form-group">
+                                <label class="estilo-01" for="mls-categoria">Categoría de SRES<span class="text-danger font-weight-bold">&nbsp;(*)</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="far fa-list-alt"></i></span></div>
+                                    <div class="form-control" style="height:auto; overflow-y: auto;">
+                                        <div class="col-auto my-1 tbl-insignia">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h2 class="estilo-04 text-sres-oscuro mb-3">ESTRELLAS POR EMISIONES</h2>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label class="estilo-01" for="mls-puntuación">Nivel de estrellas<span class="text-danger font-weight-bold">&nbsp;(*)</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-hourglass-half"></i></span></div>
+                                    <div class="form-control" style="height:auto; overflow-y: auto;">
+                                        <div class="col-auto my-1 tbl-estrellas">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="alert-add"></div>
+                        </div>                        
+                        @*<div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="alert alert-danger d-flex align-items-stretch" role="alert">
+                                <div class="alert-wrap mr-3">
+                                    <div class="sa">
+                                        <div class="sa-error">
+                                            <div class="sa-error-x">
+                                                <div class="sa-error-left"></div>
+                                                <div class="sa-error-right"></div>
+                                            </div>
+                                            <div class="sa-error-placeholder"></div>
+                                            <div class="sa-error-fix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="alert-wrap">
+                                    <h6 class="estilo-02">Ocurrió un Error</h6>
+                                    <hr class="my-1"><small class="mb-0 estilo-01">Intente editar la información nuevamente.</small>
+                                </div>
+                            </div>
+                            <div class="alert alert-success d-flex align-items-stretch" role="alert">
+                                <div class="alert-wrap mr-3">
+                                    <div class="sa">
+                                        <div class="sa-success">
+                                            <div class="sa-success-tip"></div>
+                                            <div class="sa-success-long"></div>
+                                            <div class="sa-success-placeholder"></div>
+                                            <div class="sa-success-fix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="alert-wrap">
+                                    <h6 class="estilo-02">Bien hecho</h6>
+                                    <hr class="my-1"><small class="mb-0 estilo-01">La información fue editada correctamente.</small>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-sm btn-info" type="button" id="btnGuardar">Si, grabar</button>
+                    <button class="btn btn-sm btn-dark" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div>
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12 px-0">
@@ -42,7 +1020,6 @@
     <div class="relacion-evaluador">
         <a class="btn mostrar-relacion" href="javascript:void(0)" >Relacion</a>
         <div class="postulante-evaluador d-none">
-            @*<div><label class="get-postulante mr-3" id="1-1">Personal 1</label><select id="1"><option>-seleccione-</option></select></div>*@
         </div>
         <div class="postulante-evaluador-btn d-none">
             <button type="button" id="btnGuardarRelacion">GUARDAR</button>
@@ -68,12 +1045,6 @@
             <input type="text" name="txtDescripcion" id="txtDescripcion" placeholder="Ingrese Descripción" />
         </label>
     </div>
-    @*<div>
-        <label>
-            Año:
-            <select name="selIdAnno" id="selIdAnno"></select>
-        </label>
-    </div>*@
     <div>
         <label>
             Fecha inicio:
@@ -96,16 +1067,6 @@
         <label for="mlt-energetico">Requerimiento</label>
         <div>
             <div id="list-req">
-                @*<div>
-                        <div>
-                            <ul style="list-style: none;">
-                                <li>
-                                    <input type="checkbox" id="chk-energetico-02">
-                                    <label for="chk-energetico-02">Electricidad&nbsp;</label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>*@
             </div>
         </div>
     </div>
@@ -163,11 +1124,6 @@
         <div>
             <table id="tbl-estrellas">
                 <thead>
-                    @*<tr>
-                        <th>Sector</th>
-                        <th>Tipo empresa/Subsector</th>
-                        <th>Trabajadores/Camas</th>
-                    </tr>*@
                 </thead>
                 <tbody></tbody>
             </table>
@@ -177,6 +1133,6 @@
         <button type="button" id="btnGuardar">GUARDAR</button>
         <button type="button" id="btnCerrar">CERRAR</button>
     </div>
-</form>
+</form>*@
 
 

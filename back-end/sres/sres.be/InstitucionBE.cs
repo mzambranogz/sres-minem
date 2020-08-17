@@ -20,8 +20,14 @@ namespace sres.be
         public byte[] LOGO_CONTENIDO { get; set; }
         public string LOGO_TIPO { get; set; }
         public int ID_SUBSECTOR_TIPOEMPRESA { get; set; }
-        public int ID_TRABAJADORES_CAMA { get; set; }
+        public int ID_TRABAJADORES_CAMA { get; set; }        
+        public int ID_DEPARTAMENTO { get; set; }
+        public int ID_PROVINCIA { get; set; }
+        public int ID_DISTRITO { get; set; }
+        public string CONTRIBUYENTE { get; set; }
+        public int ID_ACTIVIDAD { get; set; }
         public int CANTIDAD { get; set; }
+        public int CANTIDAD_MUJERES { get; set; }
         public string FLAG_ESTADO { get; set; }
         public int? UPD_USUARIO { get; set; }
     }

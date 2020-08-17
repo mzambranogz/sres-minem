@@ -12,7 +12,11 @@
     $('#cbo-subsector-tipoemp').on('change', subsectortipoempresaChange);
     $(`#cbo-trabajador-cama`).on('change', trabajadorcamaChange);
     $(`#txt-numero`).on('blur', cantidadChange);
+    $('#cbo-departamento').on('change', departamentoChange);
+    $('#cbo-provincia').on('change', provinciaChange);
     listaSubsector();
+    listaDepartamento();
+    cambiarPrimerInicio();    
 });
 
 var consultar = () => {
@@ -82,7 +86,8 @@ var renderizar = (data, cantidadCeldas) => {
             let colVencimiento = `<td class="text-center" data-encabezado="Vencimiento"><div class="progress" style="height: 21px; ${porcentajeAvance > 0 ? "background-color: #E2DBDA;" : ""}" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance"><div class="progress-bar ${porcentajeAvance > 0 ? "vigente" : "preparado"} estilo-01" role="progressbar" style="width: ${porcentajeAvance}%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">${porcentajeAvance}%</div></div></td>`;
             let colEstado = `<td data-encabezado="Estado"><b class="text-sres-verde">${x.ETAPA.NOMBRE}</b></td>`;
             let btnDetalles = `<a class="btn btn-sm btn-success w-100" href="javascript:void(0)">Detalles</a>`;
-            let btnPostulacion = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
+            let btnPostulacion = `<a class="btn btn-sm btn-success w-100" href="javascript:void(0)" onclick="verificarDatosInternos(${x.ID_CONVOCATORIA})" >Ingresar</a>`;
+            //let btnPostulacion = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
             //EVALUADOR-ADMIN
             let btnVerEvaluar = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/BandejaParticipantes">${x.ID_ETAPA >= 15 ? `Ver` : `Evaluar`}</a>`;
             //POSTULANTE
@@ -119,6 +124,13 @@ var renderizar = (data, cantidadCeldas) => {
 
     return contenido;
 };
+
+var verificarDatosInternos = (idConvocatoria) => {
+    if (idSubsectortipoemp > 0)
+        location.href = `${baseUrl}Convocatoria/${idConvocatoria}/Inscribirme`;
+    else
+        $("#modal-edit-descripcion").modal("show");
+}
 
 var btnFirstPaginationClick = (e) => {
     let valor = $('#ir-pagina').attr('min');
@@ -222,21 +234,45 @@ var btnMostrarDatosInstitucionClick = (e) => {
 var responseMostrarDatosInstitucion = (data) => {
     $('#txt-nombre-corto').val(data.NOMBRE_COMERCIAL);
     $('#txa-descripcion').val(data.DESCRIPCION);
-    $('#modal-edit-descripcion').modal('show');
+    vidProvincia = idProvincia;
+    vidDistrito = idDistrito;
+    $('#txt-tipo-contribuyente').val(data.CONTRIBUYENTE);
+    $('#cbo-ciiu').val(data.ID_ACTIVIDAD);
     vidTrabajadorCama = idTrabajadorCama;
     vcantidad = cantidad;
+    $('#txt-total-mujeres').val(data.CANTIDAD_MUJERES);
     listaSubsector();
+    listaDepartamento();
+    debugger;
+    if (data.LISTA_CONTACTO.length > 0) { let i = 0;
+        data.LISTA_CONTACTO.map(x => { i++;
+            $(`#txt-nombre-0${i}`).val(x.NOMBRE);
+            $(`#txt-cargo-0${i}`).val(x.CARGO);
+            $(`#txt-telefono-0${i}`).val(x.TELEFONO);
+            $(`#txt-email-0${i}`).val(x.CORREO);
+        });
+    }
+    $('#modal-edit-descripcion').modal('show');
 }
 
 var btnActualizarDatosInstitucionClick = (e) => {
     e.preventDefault();
+    let contacto = [];
     let arr = [];   
 
     if ($('#txt-nombre-corto').val().trim() === "") arr.push("Ingrese el nombre corto");
     if ($('#txa-descripcion').val().trim() === "") arr.push("Ingrese la descripción");
+    if ($('#cbo-departamento').val() == 0) arr.push("Seleccione un departamento");
+    if ($('#cbo-provincia').val() == 0) arr.push("Seleccione una provincia");
+    if ($('#cbo-distrito').val() == 0) arr.push("Seleccione un distrito");
+    if ($('#txt-tipo-contribuyente').val().trim() === "") arr.push("Ingrese el tipo de contribuyente");
+    if ($('#cbo-ciiu').val() == 0) arr.push("Seleccione la actividad económica");
     if ($(`#cbo-subsector-tipoemp`).val() == 0) arr.push(`${idSector == 1 ? "Seleccione el subsector" : "Seleccione el tipo de empresa"}`);
-    if ($(`#cbo-trabajador-cama`).val() == 0) arr.push(`${idSector == 1 ? "Seleccione el número de trabajadores/camas:" : "Seleccione el número de trabajadores:"}`);
-    if ($(`#txt-numero`).val() == "") arr.push("Ingrese la cantidad");
+    if ($(`#cbo-trabajador-cama`).val() == 0) arr.push(`${idSector == 1 ? "Seleccione el número de empleados/camas:" : "Seleccione el número de empleados:"}`);
+    if ($(`#txt-numero`).val() == "") arr.push("Ingrese la cantidad de empleados/camas");
+    if ($(`#txt-total-mujeres`).val() == "") arr.push("Ingrese la cantidad de mujeres");
+    if ($(`#txt-nombre-01`).val() == "" || $(`#txt-cargo-01`).val() == "" || $(`#txt-telefono-01`).val() == "" || $(`#txt-email-01`).val() == "") arr.push("Ingrese los datos del directivo o representante legal");
+    if ($(`#txt-nombre-02`).val() == "" || $(`#txt-cargo-02`).val() == "" || $(`#txt-telefono-02`).val() == "" || $(`#txt-email-02`).val() == "") arr.push("Ingrese los datos del responsable técnico");
 
     if (arr.length > 0) {
         let error = '';
@@ -246,13 +282,32 @@ var btnActualizarDatosInstitucionClick = (e) => {
         return;
     }
 
+    let departamento = $('#cbo-departamento').val();
+    let provincia = $('#cbo-provincia').val();
+    let distrito = $('#cbo-distrito').val();
+    let contribuyente = $('#txt-tipo-contribuyente').val();
+    let ciiu = $('#cbo-ciiu').val();
     let nombreComercial = $('#txt-nombre-corto').val();
     let descripcion = $('#txa-descripcion').val();
     let subsectortipoempresa = $(`#cbo-subsector-tipoemp`).val();
     let trabajadorcama = $(`#cbo-trabajador-cama`).val();
     let cantidad = $(`#txt-numero`).val();
+    let cantidadmujeres = $(`#txt-total-mujeres`).val();
 
-    let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, ID_SUBSECTOR_TIPOEMPRESA: subsectortipoempresa, ID_TRABAJADORES_CAMA: trabajadorcama, CANTIDAD: cantidad, UPD_USUARIO: idUsuarioLogin };
+    for (var i = 0; i < 4 ; i++) {
+        var r = {
+            ID_INSTITUCION: idInstitucionLogin,
+            ID_CONTACTO: (i+1),
+            NOMBRE: $(`#txt-nombre-0${i+1}`).val(),
+            CARGO: $(`#txt-cargo-0${i+1}`).val(),
+            TELEFONO: $(`#txt-telefono-0${i+1}`).val(),
+            CORREO: $(`#txt-email-0${i + 1}`).val(),
+            USUARIO_GUARDAR: idUsuarioLogin
+        }
+        contacto.push(r);
+    }
+
+    let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, ID_DEPARTAMENTO: departamento, ID_PROVINCIA: provincia, ID_DISTRITO: distrito, CONTRIBUYENTE:  contribuyente, ID_ACTIVIDAD: ciiu, ID_SUBSECTOR_TIPOEMPRESA: subsectortipoempresa, ID_TRABAJADORES_CAMA: trabajadorcama, CANTIDAD: cantidad, CANTIDAD_MUJERES: cantidadmujeres, LISTA_CONTACTO: contacto, UPD_USUARIO: idUsuarioLogin };
 
     let url = `/api/institucion/modificardatosinstitucion`;
     let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
@@ -265,6 +320,9 @@ var btnActualizarDatosInstitucionClick = (e) => {
 var responseActualizarDatosInstitucion = (data) => {
     $('.alert-add').html('');
     if (data == true) {
+        idDepartamento = $(`#cbo-departamento`).val().toString();
+        idProvincia = $(`#cbo-provincia`).val().toString();
+        idDistrito = $(`#cbo-distrito`).val().toString();
         idSubsectortipoemp = $(`#cbo-subsector-tipoemp`).val();
         idTrabajadorCama = $(`#cbo-trabajador-cama`).val();
         cantidad = $(`#txt-numero`).val();
@@ -276,6 +334,7 @@ var responseActualizarDatosInstitucion = (data) => {
         let url = `${baseUrl}Login/RefrescarDatosSession`;
         fetch(url).then(r => r.json()).then(j => console.log(j));
     } else {
+        if ($('#modal-edit-descripcion .modal-body >*:last').next().hasClass('alert')) $('#modal-edit-descripcion .modal-body >*:last').next().remove();
         $('#modal-edit-descripcion .modal-body >*:last').alert({ type: 'danger', title: 'ERROR', message: `No se pudo actualizar los datos de la institución` });
     }
 }
@@ -330,4 +389,69 @@ var cantidadChange = () => {
     if (mayor != undefined && menor != undefined) { if (num < menor || num > mayor) $(`#txt-numero`).val(menor); }
     else if (mayor != undefined){ if (num > mayor) $(`#txt-numero`).val(mayor);}
     else if (menor != undefined) { if (num < menor) $(`#txt-numero`).val(menor); }
+}
+
+var cambiarPrimerInicio = () => {
+    debugger;
+    if (idRol != 3) return;
+    if (primerinicio != 0) return;
+    let url = `/api/institucion/cambiarprimerinicio?idInstitucion=${idInstitucionLogin}`;
+    fetch(url)
+    .then(r => r.json())
+    .then(x => {
+        debugger;
+        if (x) {
+            console.log('cambiado');
+            let url = `${baseUrl}Login/RefrescarDatosSession`;
+            fetch(url).then(r => r.json()).then(j => console.log(j));
+        }
+    });
+}
+
+var listaDepartamento = () => {
+    if (idRol != 3) return false;
+    let url = `/api/institucion/listadepartamento`;
+    fetch(url)
+    .then(r => r.json())
+    .then(armarDepartamento);
+}
+
+var armarDepartamento = (data) => {
+    let combo = data.map((x, y) => {
+        return `<option value="${x.ID_DEPARTAMENTO}">${x.NOMBRE}</option>`
+    }).join('');
+    $(`#cbo-departamento`).html(`<option value="0">-Seleccionar-</option>${combo}`);
+    if (idDepartamento > 0) { $(`#cbo-departamento`).val(idDepartamento); departamentoChange(); }
+}
+
+var departamentoChange = () => {
+    if ($(`#cbo-departamento`).val() == 0) { $(`#cbo-provincia`).html(`<option value="0">-Seleccione-</option>`); return };
+    let url = `/api/institucion/listaprovincia?idDepartamento=${$(`#cbo-departamento`).val()}`;
+    fetch(url)
+    .then(r => r.json())
+    .then(armarProvincia);
+}
+
+var armarProvincia = (data) => {
+    let combo = data.map((x, y) => {
+        return `<option value="${x.ID_PROVINCIA}">${x.NOMBRE}</option>`
+    }).join('');
+    $(`#cbo-provincia`).html(`<option value="0">-Seleccionar-</option>${combo}`);
+    if (vidProvincia > 0) { $(`#cbo-provincia`).val(vidProvincia); provinciaChange(); vidProvincia = 0;}
+}
+
+var provinciaChange = () => {
+    if ($(`#cbo-provincia`).val() == 0) { $(`#cbo-distrito`).html(`<option value="0">-Seleccione-</option>`); return };
+    let url = `/api/institucion/listadistrito?idProvincia=${$(`#cbo-provincia`).val()}`;
+    fetch(url)
+    .then(r => r.json())
+    .then(armarDistrito);
+}
+
+var armarDistrito = (data) => {
+    let combo = data.map((x, y) => {
+        return `<option value="${x.ID_DISTRITO}">${x.NOMBRE}</option>`
+    }).join('');
+    $(`#cbo-distrito`).html(`<option value="0">-Seleccionar-</option>${combo}`);
+    if (vidDistrito > 0) { $(`#cbo-distrito`).val(vidDistrito); vidDistrito = 0;}
 }

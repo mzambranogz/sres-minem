@@ -60,6 +60,8 @@
     <Compile Include="ConvocatoriaCriterioRequerimientoBE.cs" />
     <Compile Include="ConvocatoriaTrazabilidadBE.cs" />
     <Compile Include="CriterioBE.cs" />
+    <Compile Include="DepartamentoBE.cs" />
+    <Compile Include="DistritoBE.cs" />
     <Compile Include="DocumentoAuxBE.cs" />
     <Compile Include="EstrellaBE.cs" />
     <Compile Include="EstrellaTrabajadorCamaBE.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="InstitucionAuxBE.cs" />
     <Compile Include="InstitucionBE.cs" />
     <Compile Include="DocumentoBE.cs" />
+    <Compile Include="InstitucionContactoBE.cs" />
     <Compile Include="MigrarEmisionesBE.cs" />
     <Compile Include="MRV\InstitucionBE.cs" />
     <Compile Include="MRV\MigrarEmisionesBE.cs" />
@@ -93,6 +96,7 @@
     <Compile Include="ParametroDetalleRelacionBE.cs" />
     <Compile Include="ProcesoBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinciaBE.cs" />
     <Compile Include="ReconocimientoBE.cs" />
     <Compile Include="ReconocimientoMedidaBE.cs" />
     <Compile Include="RolBE.cs" />

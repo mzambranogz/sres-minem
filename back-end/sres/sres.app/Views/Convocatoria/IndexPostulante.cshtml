@@ -7,6 +7,21 @@
 
 <div class="container-fluid my-5">
     <div class="container">
+        @if (usuario.INSTITUCION.PRIMER_INICIO == "0")
+        {
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label class="estilo-01">&nbsp;</label>
+                    <div class="alert alert-success p-1 d-flex">
+                        <span class="estilo-01">
+                            Bienvenido <b>@usuario.NOMBRES @usuario.APELLIDOS</b>, ya se encuentra registrado en la plataforma del <b>Sello de Reconocimiento de Energía Sostenible</b>, para permitir su participación en las convocatorias por favor complete sus datos haciendo click en el siguiente botón<span data-toggle="modal" data-target="#modal-edit-descripcion">
+                                <label class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Completar sus datos"><i class="fas fa-edit fa-lg px-2 py-1"></i></label>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        }        
         <div class="row">
             <div class="col-lg-2 col-md-12 col-sm-12">
                 <div class="resaltar">
@@ -201,71 +216,795 @@
 </div>
 
 <div class="modal fade" id="modal-edit-descripcion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-sres-azul text-white">
-                <h5 class="modal-title estilo-01" id="exampleModalLabel">Editar descripción de la empresa</h5>
-                <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <h2 class="estilo-04 text-sres-oscuro">@usuario.INSTITUCION.RAZON_SOCIAL</h2>
-                        <small class="estilo-04 text-sres-gris">@usuario.INSTITUCION.RUC</small>
-                        <div class="form-group mt-2">
-                            <label for="txt-nombre-corto">Nombre corto:</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
-                                <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-nombre-corto" value="Nombre corto empresa" placeholder="Nombre Comercial">
+            <form action="">
+                <div class="modal-header bg-sres-azul text-white">
+                    <h5 class="modal-title estilo-01" id="exampleModalLabel">Completar información de la empresa</h5>
+                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    @if (usuario.INSTITUCION.ID_SUBSECTOR_TIPOEMPRESA == 0)
+                    {
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="alert alert-success p-1 d-flex">
+                                    <span class="estilo-01">
+                                        Completar la información de los campos obligatorios para participar en el <b>Sello de Reconocimiento de Energía Sostenible</b>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group mt-2">
-                            <label for="txa-descripcion">Descripción:</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
-                                <textarea class="form-control estilo-01 text-sres-gris" id="txa-descripcion" cols="30" rows="5" placeholder="Descripción">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</textarea>
+                    }                    
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h2 class="estilo-04 text-sres-oscuro">@usuario.INSTITUCION.RAZON_SOCIAL<small class="estilo-04 text-sres-gris"> - @usuario.INSTITUCION.RUC</small></h2>
+                            <div class="form-group mt-2">
+                                <label for="txt-nombre-corto">Nombre corto:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-nombre-corto" placeholder="Nombre corto para la empresa" maxlength="19">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <label for="cbo-subsector-tipoemp">@(usuario.INSTITUCION.ID_SECTOR == 1 ? "Subsector:" : "Tipo empresa:")</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-landmark"></i></span></div>
-                                <select class="form-control estilo-01" id="cbo-subsector-tipoemp" aria-describedby="inputGroup9" required>
-                                    <option>@(usuario.INSTITUCION.ID_SECTOR == 1 ? "-seleccione subsector-" : "-seleccione tipo empresa-")</option>
-                                    @*<option>Sector Público</option>
-                                    <option>Sector Privado</option>*@
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <label for="cbo-trabajador-cama">@(usuario.INSTITUCION.ID_SECTOR == 1 ? "Número de trabajadores/camas:" : "Número de trabajadores:")</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-landmark"></i></span></div>
-                                <select class="form-control estilo-01" id="cbo-trabajador-cama" aria-describedby="inputGroup9" required>
-                                    <option>-Seleccione-</option>
-                                    @*<option>Sector Público</option>
-                                    <option>Sector Privado</option>*@
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <label for="txt-numero">Cantidad:</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
-                                <input class="form-control estilo-01" type="number" id="txt-numero" placeholder="Ingrese cantidad" maxlength="12" required>
-                            </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <div class="alert-add">
+                            <div class="form-group mt-2">
+                                <label for="txa-descripcion">Descripción:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
+                                    <textarea class="form-control estilo-01 text-sres-gris" id="txa-descripcion" cols="30" rows="3" placeholder="Ingrese la descripción de su empresa" maxlength="800"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <div class="form-group">
+                                <label class="estilo-01" for="cbo-departamento">Departamento:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-list-alt"></i></span></div>
+                                    <select class="form-control estilo-01" id="cbo-departamento">
+                                        <option value="0">-Seleccionar-</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <div class="form-group">
+                                <label class="estilo-01" for="cbo-provincia">Provincia:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-list-alt"></i></span></div>
+                                    <select class="form-control estilo-01" id="cbo-provincia">
+                                        <option value="0">-Seleccionar-</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <div class="form-group">
+                                <label class="estilo-01" for="cbo-distrito">Distrito:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-list-alt"></i></span></div>
+                                    <select class="form-control estilo-01" id="cbo-distrito">
+                                        <option value="0">-Seleccionar-</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-tipo-contribuyente">Tipo de contribuyente:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user-check"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-tipo-contribuyente" placeholder="Ingrese Tipo contribuyente" maxlength="60">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <div class="form-group">
+                                <label class="estilo-01" for="cbo-sector-complementario">Sector</label>@*<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>*@
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-list-alt"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-sector" placeholder="Ingresar sector" value="@usuario.INSTITUCION.SECTOR.NOMBRE" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4">&nbsp;</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label class="estilo-01" for="cbo-ciiu">Actividad económica (CIIU)</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-list-alt"></i></span></div>
+                                    <select class="form-control estilo-01" id="cbo-ciiu">
+                                        <option value="0">-Seleccionar-</option>
+                                        <option value="1">CIUU-0111-CULTIVO DE CEREALES (EXCEPTO ARROZ), LEGUMBRES Y SEMILLAS OLEAGINOSAS</option>
+                                        <option value="2">CIUU-0112-CULTIVO DE ARROZ</option>
+                                        <option value="3">CIUU-0113-CULTIVO DE HORTALIZAS Y MELONES, RAÍCES Y TUBÉRCULOS.</option>
+                                        <option value="4">CIUU-0114-CULTIVO DE CAÑA DE AZÚCAR</option>
+                                        <option value="5">CIUU-0115-CULTIVO DE TABACO</option>
+                                        <option value="6">CIUU-0116-CULTIVO DE PLANTAS DE FIBRA</option>
+                                        <option value="7">CIUU-0119-CULTIVO DE OTRAS PLANTAS NO PERENNES</option>
+                                        <option value="8">CIUU-0121-CULTIVO DE UVA</option>
+                                        <option value="9">CIUU-0122-CULTIVO DE FRUTAS TROPICALES Y SUBTROPICALES</option>
+                                        <option value="10">CIUU-0123-CULTIVO DE  CÍTRICOS</option>
+                                        <option value="11">CIUU-0124-CULTIVO DE FRUTAS DE PEPITA Y DE HUESO</option>
+                                        <option value="12">CIUU-0125-CULTIVO DE OTROS FRUTOS Y NUECES DE ÁRBOLES Y ARBUSTOS</option>
+                                        <option value="13">CIUU-0126-CULTIVO DE FRUTOS OLEAGINOSOS</option>
+                                        <option value="14">CIUU-0127-CULTIVO DE PLANTAS CON LAS QUE SE PREPARAN BEBIDAS</option>
+                                        <option value="15">CIUU-0128-CULTIVO DE ESPECIAS Y DE PLANTAS AROMÁTICAS, MEDICINALES Y FARMACEUTICAS</option>
+                                        <option value="16">CIUU-0129-CULTIVO DE OTRAS PLANTAS NO PERENNES</option>
+                                        <option value="17">CIUU-0130-PROPAGACIÓN DE PLANTAS</option>
+                                        <option value="18">CIUU-0141-CRÍA DE GANADO BOVINO Y BÚFALOS</option>
+                                        <option value="19">CIUU-0142-CRÍA DE CABALLOS Y OTROS EQUINOS</option>
+                                        <option value="20">CIUU-0143-CRÍA DE CAMELLOS Y OTROS CAMÉLIDOS</option>
+                                        <option value="21">CIUU-0144-CRÍA DE OVEJAS Y CABRAS</option>
+                                        <option value="22">CIUU-0145-CRÍA DE CERDOS</option>
+                                        <option value="23">CIUU-0146-CRÍA DE AVES DE CORRAL</option>
+                                        <option value="24">CIUU-0149-CRÍA DE OTROS ANIMALES</option>
+                                        <option value="25">CIUU-0150-CULTIVO DE PRODUCTOS AGRÌCOLAS EN COMBINACIÒN CON LA CRÌA DE ANIMALES</option>
+                                        <option value="26">CIUU-0161-ACTIVIDADES DE APOYO A LA AGRICULTURA</option>
+                                        <option value="27">CIUU-0162-ACTIVIDADES DE APOYO A LA GANADERÍA</option>
+                                        <option value="28">CIUU-0163-ACTIVIDADES POSCOSECHA</option>
+                                        <option value="29">CIUU-0164-TRATAMIENTO DE SEMILLAS PARA PROPAGACIÓN</option>
+                                        <option value="30">CIUU-0170-CAZA ORDINARIA Y MEDIANTE TRAMPAS Y ACTIVIDADES DE SERVICIOS CONEXAS</option>
+                                        <option value="31">CIUU-0210-SILVICULTURA Y OTRAS ACTIVIDADES FORESTALES</option>
+                                        <option value="32">CIUU-0220-EXTRACCIÓN DE MADERA</option>
+                                        <option value="33">CIUU-0230-RECOLECCIÓN DE PRODUCTOS FORESTALES DISTINTOS DE LA MADERA</option>
+                                        <option value="34">CIUU-0240-SERVICIOS DE APOYO A LA SILVICULTURA</option>
+                                        <option value="35">CIUU-0311-PESCA MARÍTIMA</option>
+                                        <option value="36">CIUU-0312-PESCA DE AGUA DULCE</option>
+                                        <option value="37">CIUU-0321-ACUICULTURA MARÍTIMA</option>
+                                        <option value="38">CIUU-0322-ACUICULTURA DE AGUA DULCE</option>
+                                        <option value="39">CIUU-0510-EXTRACCIÓN DE CARBÓN DE PIEDRA</option>
+                                        <option value="40">CIUU-0520-EXTRACCIÓN DE LIGNITO</option>
+                                        <option value="41">CIUU-0610-EXTRACCIÓN DE PETRÓLEO CRUDO</option>
+                                        <option value="42">CIUU-0620-EXTRACCIÓN DE GAS NATURAL</option>
+                                        <option value="43">CIUU-0710-EXTRACCIÓN DE MINERALES DE HIERRO</option>
+                                        <option value="44">CIUU-0721-EXTRACCIÓN DE MINERALES DE URANIO Y TORIO</option>
+                                        <option value="45">CIUU-0729-EXTRACCIÓN DE OTROS MINERALES METALÍFEROS NO FERROSOS</option>
+                                        <option value="46">CIUU-0810-EXTRACCIÓN DE PIEDRA, ARENA Y ARCILLA</option>
+                                        <option value="47">CIUU-0891-EXTRACCIÓN DE MINERALES PARA LA FABRICACIÓN DE ABONOS Y PRODUCTOS QUÍMICOS</option>
+                                        <option value="48">CIUU-0892-EXTRACCIÓN DE TURBA</option>
+                                        <option value="49">CIUU-0893-EXTRACCIÓN DE SAL</option>
+                                        <option value="50">CIUU-0899-EXPLOTACIÓN DE OTRAS MINAS Y CANTERAS N.C.P.</option>
+                                        <option value="51">CIUU-0910-ACTIVIDADES DE APOYO PARA LA EXTRACCIÓN DE PETRÓLEO Y GAS NATURAL</option>
+                                        <option value="52">CIUU-0990-ACTIVIDADES DE APOYO PARA OTRAS ACTIVIDADES DE EXPLOTACIÓN DE MINAS Y CANTERAS</option>
+                                        <option value="53">CIUU-1010-ELABORACIÒN Y CONSERVACIÓN DE CARNE</option>
+                                        <option value="54">CIUU-1020-ELABORACIÒN Y CONSERVACIÓN DE PESCADOS, CRUSTÁCEOS Y MOLUSCOS</option>
+                                        <option value="55">CIUU-1030-ELABORACIÒN Y CONSERVACIÓN DE FRUTAS,LEGUMBRES Y HORTALIZAS</option>
+                                        <option value="56">CIUU-1040-ELABORACIÓN DE ACEITES Y GRASAS DE ORIGEN VEGETAL Y ANIMAL</option>
+                                        <option value="57">CIUU-1050-ELABORACIÓN DE PRODUCTOS LÁCTEOS</option>
+                                        <option value="58">CIUU-1061-ELABORACIÓN DE PRODUCTOS DE MOLINERÍA.</option>
+                                        <option value="59">CIUU-1062-ELABORACIÓN DE ALMIDONES Y PRODUCTOS DERIVADOS DEL ALMIDÓN.</option>
+                                        <option value="60">CIUU-1071-ELABORACIÓN DE PRODUCTOS DE PANADERÍA</option>
+                                        <option value="61">CIUU-1072-ELABORACIÓN DE AZÚCAR</option>
+                                        <option value="62">CIUU-1073-ELABORACIÓN DE CACAO Y CHOCOLATE Y DE PRODUCTOS DE CONFITERÍA</option>
+                                        <option value="63">CIUU-1074-ELABORACIÓN DE MACARRONES, FIDEOS, ALCUZCUS Y PRODUCTOS FARINÁCEOS SIMILARES</option>
+                                        <option value="64">CIUU-1075-ELABORACIÓN DE COMIDAS Y PLATOS PREPARADOS</option>
+                                        <option value="65">CIUU-1079-ELABORACIÓN DE OTROS PRODUCTOS ALIMENTICIOS N.C.P.</option>
+                                        <option value="66">CIUU-1080-ELABORACIÓN DE PIENSOS PREPARADOS PARA ANIMALES</option>
+                                        <option value="67">CIUU-1101-DESTILACIÓN, RECTIFICACIÓN Y MEZCLA DE BEBIDAS ALCOHÓLICAS</option>
+                                        <option value="68">CIUU-1102-ELABORACIÓN DE VINOS</option>
+                                        <option value="69">CIUU-1103-ELABORACIÓN DE BEBIDAS MALTEADAS Y DE MALTA</option>
+                                        <option value="70">CIUU-1104-ELABORACIÓN DE BEBIDAS NO ALCOHÓLICAS; PRODUCCIÓN DE AGUAS MINERALES Y OTRAS AGUAS EMBOTELLADAS</option>
+                                        <option value="71">CIUU-1200-ELABORACIÓN DE PRODUCTOS DE TABACO</option>
+                                        <option value="72">CIUU-1311-PREPARACIÓN E HILATURA DE FIBRAS TEXTILES</option>
+                                        <option value="73">CIUU-1312-TEJEDURA DE PRODUCTOS TEXTILES</option>
+                                        <option value="74">CIUU-1313-ACABADO DE PRODUCTOS TEXTILES</option>
+                                        <option value="75">CIUU-1391-FABRICACIÓN DE TEJIDOS DE PUNTO Y GANCHILLO</option>
+                                        <option value="76">CIUU-1392-FABRICACIÓN DE ARTÍCULOS CONFECCIONADOS DE MATERIALES TEXTILES, EXCEPTO PRENDAS DE VESTIR</option>
+                                        <option value="77">CIUU-1393-FABRICACIÓN DE TAPICES Y ALFOMBRAS</option>
+                                        <option value="78">CIUU-1394-FABRICACIÓN DE CUERDAS, CORDELES, BRAMANTES Y REDES</option>
+                                        <option value="79">CIUU-1399-FABRICACIÓN DE OTROS PRODUCTOS TEXTILES N.C.P.</option>
+                                        <option value="80">CIUU-1410-FABRICACIÓN DE PRENDAS DE VESTIR, EXCEPTO PRENDAS DE PIEL</option>
+                                        <option value="81">CIUU-1420-FABRICACIÓN DE ARTÍCULOS DE PIEL</option>
+                                        <option value="82">CIUU-1430-FABRICACIÓN DE ARTICULOS DE PUNTO Y GANCHILLO</option>
+                                        <option value="83">CIUU-1511-CURTIDO Y ADOBO DE CUEROS; ADOBO Y TEÑIDO DE PIELES</option>
+                                        <option value="84">CIUU-1512-FABRICACIÓN DE MALETAS, BOLSOS DE MANO, Y ARTÍCULOS SIMILARES,Y DE ARTICULOS DE TALABARTERÍA Y GUARNICIONERÍA</option>
+                                        <option value="85">CIUU-1520-FABRICACIÓN DE CALZADO</option>
+                                        <option value="86">CIUU-1610-ASERRADOS Y ACEPILLADURA DE MADERA</option>
+                                        <option value="87">CIUU-1621-FABRICACIÓN DE HOJAS DE MADERA PARA ENCHAPADO Y TABLEROS A BASE DE MADERA</option>
+                                        <option value="88">CIUU-1622-FABRICACIÓN DE PARTES Y PIEZAS DE CARPINTERÍA PARA EDIFICIOS Y CONSTRUCCIONES</option>
+                                        <option value="89">CIUU-1623-FABRICACIÓN DE RECIPIENTES DE MADERA</option>
+                                        <option value="90">CIUU-1629-FABRICACIÓN DE OTROS PRODUCTOS DE MADERA; FABRICACIÓN DE ARTÍCULOS DE CORCHO, PAJA Y MATERIALES TRENZABLES.</option>
+                                        <option value="91">CIUU-1701-FABRICACIÓN DE PASTA DE MADERA, PAPEL Y CARTÓN</option>
+                                        <option value="92">CIUU-1702-FABRICACIÓN DEL PAPEL Y CARTÓN ONDULADO Y DE ENVASES DE PAPEL Y CARTÓN</option>
+                                        <option value="93">CIUU-1709-FABRICACIÓN DE OTROS ARTÍCULOS DEL PAPEL Y CARTÓN</option>
+                                        <option value="94">CIUU-1811-IMPRESIÓN</option>
+                                        <option value="95">CIUU-1812-ACTIVIDADES DE SERVICIOS RELACIONADAS CON LA IMPRESIÓN</option>
+                                        <option value="96">CIUU-1820-REPRODUCCIÓN DE GRABACIONES</option>
+                                        <option value="97">CIUU-1910-FABRICACIÓN DE PRODUCTOS DE HORNOS DE COQUE</option>
+                                        <option value="98">CIUU-1920-FABRICACIÓN DE PRODUCTOS DE LA REFINACIÓN DEL PETRÓLEO</option>
+                                        <option value="99">CIUU-2011-FABRICACIÓN DE SUSTANCIAS QUÍMICAS BÁSICAS</option>
+                                        <option value="100">CIUU-2012-FABRICACIÓN ABONOS Y COMPUESTOS DE NITRÓGENO</option>
+                                        <option value="101">CIUU-2013-FABRICACIÓN DE PLÁSTICOS Y DE CAUCHO SINTÉTICO EN FORMAS PRIMARIAS</option>
+                                        <option value="102">CIUU-2021-FABRICACIÓN DE PLAGUICIDAS Y OTROS PRODUCTOS QUÍMICOS DE USO AGROPECUARIO</option>
+                                        <option value="103">CIUU-2022-FABRICACIÓN DE PINTURAS, BARNICES Y PRODUCTOS DE REVESTIMIENTO SIMILARES, TINTAS DE IMPRENTA Y MASILLAS</option>
+                                        <option value="104">CIUU-2023-FABRICACIÓN DE JABONES Y DETERGENTES, PREPARADOS PARA LIMPIAR Y PULIR, PERFUMES Y PREPARADOS DE TOCADOR.</option>
+                                        <option value="105">CIUU-2029-FABRICACIÓN DE OTROS PRODUCTOS QUÍMICOS N.C.P.</option>
+                                        <option value="106">CIUU-2030-FABRICACIÓN DE FIBRAS ARTIFICIALES</option>
+                                        <option value="107">CIUU-2100-FABRICACIÓN DE PRODUCTOS FARMACÉUTICOS, SUSTANCIAS QUÍMICAS MEDICINALES Y PRODUCTOS BOTÁNICOS DE USO FARMACÉUTICO</option>
+                                        <option value="108">CIUU-2211-FABRICACIÓN DE CUBIERTAS Y CÁMARAS DE CAUCHO; RECAUCHUTADO Y RENOVACIÓN DE CUBIERTAS DE CAUCHO</option>
+                                        <option value="109">CIUU-2219-FABRICACIÓN DE OTROS PRODUCTOS DE CAUCHO</option>
+                                        <option value="110">CIUU-2220-FABRICACIÓN DE PRODUCTOS DE PLÁSTICO</option>
+                                        <option value="111">CIUU-2310-FABRICACIÓN DE VIDRIO Y DE PRODUCTOS DE VIDRIO</option>
+                                        <option value="112">CIUU-2391-FABRICACIÓN DE PRODUCTOS REFRACTARIOS</option>
+                                        <option value="113">CIUU-2392-FABRICACIÓN DE MATERIALES DE CONSTRUCCIÓN DE ARCILLA</option>
+                                        <option value="114">CIUU-2393-FABRICACIÓN DE OTROS PRODUCTOS DE PORCELANA Y DE CERÁMICA</option>
+                                        <option value="115">CIUU-2394-FABRICACIÓN DE CEMENTO, CAL Y YESO</option>
+                                        <option value="116">CIUU-2395-FABRICACIÓN DE ARTÍCULOS DE HORMIGÓN, DE CEMENTO Y DE YESO</option>
+                                        <option value="117">CIUU-2396-CORTE, TALLA Y ACABADO DE LA PIEDRA</option>
+                                        <option value="118">CIUU-2399-FABRICACIÓN DE OTROS PRODUCTOS MINERALES NO METÁLICOS N.C.P.</option>
+                                        <option value="119">CIUU-2410-INDUSTRIAS BÁSICAS DE HIERRO Y ACERO</option>
+                                        <option value="120">CIUU-2420-FABRICACIÓN DE PRODUCTOS PRIMARIOS DE METALES PRECIOSOS Y OTROS METALES NO FERROSOS</option>
+                                        <option value="121">CIUU-2431-FUNDICIÓN DE HIERRO Y ACERO</option>
+                                        <option value="122">CIUU-2432-FUNDICIÓN DE METALES NO FERROSOS</option>
+                                        <option value="123">CIUU-2511-FABRICACIÓN DE PRODUCTOS METÁLICOS PARA USO ESTRUCTURAL</option>
+                                        <option value="124">CIUU-2512-FABRICACIÓN DE TANQUES, DEPÓSITOS Y RECIPIENTES DE METAL</option>
+                                        <option value="125">CIUU-2513-FABRICACIÓN DE LOS GENERADORES DEL VAPOR, EXCEPTO CALDERAS DE AGUA CALIENTE PARA CALEFACCIÓN CENTRAL</option>
+                                        <option value="126">CIUU-2520-FABRICACIÓN DE ARMAS Y MUNICIONES</option>
+                                        <option value="127">CIUU-2591-FORJA, PRENSADO, ESTAMPADO Y LAMINADO DE METALES; PULVIMETALURGIA</option>
+                                        <option value="128">CIUU-2592-TRATAMIENTO Y REVESTIMIENTO DE METALES; MAQUINADO</option>
+                                        <option value="129">CIUU-2593-FABRICACIÓN DE ARTÍCULOS DE CUCHILLERÍA, HERRAMIENTAS DE MANO Y ARTÍCULOS DE FERRETERÍA</option>
+                                        <option value="130">CIUU-2599-FABRICACIÓN DE OTROS PRODUCTOS ELABORADOS DE METAL N.C.P.</option>
+                                        <option value="131">CIUU-2610-FABRICACIÓN DE COMPONENTES Y TABLEROS ELECTRÓNICOS</option>
+                                        <option value="132">CIUU-2620-FABRICACIÓN DE ORDENADORES Y EQUIPO PERIFÉRICO</option>
+                                        <option value="133">CIUU-2630-FABRICACIÓN DE EQUIPOS DE COMUNICACIONES</option>
+                                        <option value="134">CIUU-2640-FABRICACIÓN DE APARATOS ELECTRÓNICOS DE CONSUMO</option>
+                                        <option value="135">CIUU-2651-FABRICACIÓN DE EQUIPO DE MEDICIÓN, PRUEBA, NAVEGACIÓN Y CONTROL</option>
+                                        <option value="136">CIUU-2652-FABRICACIÓN DE RELOJES</option>
+                                        <option value="137">CIUU-2660-FABRICACIÓN DE EQUIPO DE IRRADIACIÓN Y EQUIPO ELECTRÓNICO DE USO MÉDICO Y TERAPÉUTICO</option>
+                                        <option value="138">CIUU-2670-FABRICACIÓN DE INSTRUMENTOS ÓPTICOS Y EQUIPO FOTOGRÁFICO</option>
+                                        <option value="139">CIUU-2680-FABRICACIÓN DE SOPORTES MAGNÉTICOS Y ÓPTICOS</option>
+                                        <option value="140">CIUU-2710-FABRICACIÓN DE MOTORES, GENERADORES Y TRANSFORMADORES ELÉCTRICOS Y APARATOS DE DISTRIBUCIÓN Y CONTROL DE LA ENERGÍA ELÉCTRICA</option>
+                                        <option value="141">CIUU-2720-FABRICACIÓN DE PILAS, BATERÍAS Y ACUMULADORES</option>
+                                        <option value="142">CIUU-2731-FABRICACIÓN DE CABLES DE FIBRA ÓPTICA</option>
+                                        <option value="143">CIUU-2732-FABRICACIÓN DE OTROS HILOS Y CABLES ELÉCTRICOS</option>
+                                        <option value="144">CIUU-2733-FABRICACIÓN DE DISPOSITIVOS DE CABLEADO</option>
+                                        <option value="145">CIUU-2740-FABRICACIÓN DE EQUIPO ELÉCTRICO DE ILUMINACIÓN</option>
+                                        <option value="146">CIUU-2750-FABRICACIÓN DE APARATOS DE USO DOMÉSTICO</option>
+                                        <option value="147">CIUU-2790-FABRICACIÓN DE OTROS TIPOS DE EQUIPO ELÉCTRICO</option>
+                                        <option value="148">CIUU-2811-FABRICACIÓN DE MOTORES Y TURBINAS, EXCEPTO MOTORES PARA AERONAVES, VEHÍCULOS AUTOMOTORES Y MOTOCICLETAS</option>
+                                        <option value="149">CIUU-2812-FABRICACIÓN DE EQUIPO DE PROPULSIÓN DE FLUIDOS</option>
+                                        <option value="150">CIUU-2813-FABRICACIÓN DE BOMBAS, COMPRESORES, GRIFOS Y VÁLVULAS</option>
+                                        <option value="151">CIUU-2814-FABRICACIÓN DE COJINETES, ENGRANAJES, TRENES DE ENGRANAJES Y PIEZAS DE TRANSMISIÓN</option>
+                                        <option value="152">CIUU-2815-FABRICACIÓN DE HORNOS, HOGARES Y QUEMADORES</option>
+                                        <option value="153">CIUU-2816-FABRICACIÓN DE EQUIPO DE ELEVACIÓN Y MANIPULACIÓN</option>
+                                        <option value="154">CIUU-2817-FABRICACIÓN DE MAQUINARIA Y EQUIPO DE OFICINA (EXCEPTO ORDENADORES Y EQUIPO PERIFÉRICO)</option>
+                                        <option value="155">CIUU-2818-FABRICACIÓN DE HERRAMIENTAS DE MANO MOTORIZADAS</option>
+                                        <option value="156">CIUU-2819-FABRICACIÓN DE OTROS TIPOS DE MAQUINARIA DE USO GENERAL</option>
+                                        <option value="157">CIUU-2821-FABRICACIÓN DE MAQUINARIA AGROPECUARIA Y FORESTAL</option>
+                                        <option value="158">CIUU-2822-FABRICACIÓN DE MAQUINARIA PARA LA CONFORMACIÓN DE METALES Y DE MÁQUINAS HERRAMIENTA</option>
+                                        <option value="159">CIUU-2823-FABRICACIÓN DE MAQUINARIA METALÚRGICA</option>
+                                        <option value="160">CIUU-2824-FABRICACIÓN DE MAQUINARIA PARA EXPLOTACIÓN DE MINAS Y CANTERAS Y PARA OBRAS DE CONSTRUCCIÓN</option>
+                                        <option value="161">CIUU-2825-FABRICACIÓN DE MAQUINARIA PARA LA ELABORACIÓN DE ALIMENTOS, BEBIDAS Y TABACO</option>
+                                        <option value="162">CIUU-2826-FABRICACIÓN DE MAQUINARIA PARA LA ELABORACIÓN DE PRODUCTOS TEXTILES, PRENDAS DE VESTIR Y CUEROS</option>
+                                        <option value="163">CIUU-2829-FABRICACIÓN DE OTROS TIPOS DE MAQUINARIA DE USO ESPECIAL</option>
+                                        <option value="164">CIUU-2910-FABRICACIÓN DE VEHÍCULOS AUTOMOTORES</option>
+                                        <option value="165">CIUU-2920-FABRICACIÓN DE CARROCERÍAS PARA VEHÍCULOS AUTOMOTORES; FABRICACIÓN DE REMOLQUES Y SEMIRREMOLQUES</option>
+                                        <option value="166">CIUU-2930-FABRICACIÓN DE PARTES, PIEZAS Y ACCESORIOS PARA VEHÍCULOS DE AUTOMOTORES</option>
+                                        <option value="167">CIUU-3011-CONSTRUCCIÓN DE BUQUES Y ESTRUCTURAS FLOTANTES</option>
+                                        <option value="168">CIUU-3012-CONSTRUCCIÓN DE EMBARCACIONES DE RECREO Y DEPORTE</option>
+                                        <option value="169">CIUU-3020-FABRICACIÓN DE LOCOMOTORAS Y DE MATERIAL RODANTE</option>
+                                        <option value="170">CIUU-3030-FABRICACIÓN DE AERONAVES Y  NAVES ESPACIALES Y MAQUINARIA CONEXA</option>
+                                        <option value="171">CIUU-3040-FABRICACIÓN DE VEHÍCULOS MILITARES DE COMBATE</option>
+                                        <option value="172">CIUU-3091-FABRICACIÓN DE MOTOCICLETAS</option>
+                                        <option value="173">CIUU-3092-FABRICACIÓN DE BICICLETAS Y DE SILLONES DE RUEDAS PARA INVÁLIDOS</option>
+                                        <option value="174">CIUU-3099-FABRICACIÓN DE OTROS TIPOS DE EQUIPO DE TRANSPORTE N.C.P.</option>
+                                        <option value="175">CIUU-3100-FABRICACIÓN DE MUEBLES</option>
+                                        <option value="176">CIUU-3211-FABRICACIÓN DE JOYAS Y ARTÍCULOS CONEXOS</option>
+                                        <option value="177">CIUU-3212-FABRICACIÓN DE BISUTERÍA Y ARTÍCULOS CONEXOS</option>
+                                        <option value="178">CIUU-3220-FABRICACIÓN DE INSTRUMENTOS DE MÚSICA</option>
+                                        <option value="179">CIUU-3230-FABRICACIÓN DE ARTÍCULOS DE DEPORTE</option>
+                                        <option value="180">CIUU-3240-FABRICACIÓN DE JUEGOS Y JUGUETES</option>
+                                        <option value="181">CIUU-3250-FABRICACIÓN DE INSTRUMENTOS Y MATERIALES MÉDICOS Y ODONTOLÓGICOS</option>
+                                        <option value="182">CIUU-3290-OTRAS INDUSTRIAS MANUFACTURERAS N.C.P.</option>
+                                        <option value="183">CIUU-3311-REPARACIÓN DE PRODUCTOS ELABORADOS DE METAL</option>
+                                        <option value="184">CIUU-3312-REPARACIÓN DE MAQUINARIA</option>
+                                        <option value="185">CIUU-3313-REPARACIÓN DE EQUIPO ELECTRÓNICO Y ÓPTICO</option>
+                                        <option value="186">CIUU-3314-REPARACIÓN DE EQUIPO ELÉCTRICO</option>
+                                        <option value="187">CIUU-3315-REPARACIÓN DE EQUIPO DE TRANSPORTE, EXCEPTO VEHÍCULOS AUTOMOTORES</option>
+                                        <option value="188">CIUU-3319-REPARACIÓN DE OTROS TIPOS DE EQUIPO</option>
+                                        <option value="189">CIUU-3320-INSTALACIÓN DE MAQUINARIA Y EQUIPO INDUSTRIALES</option>
+                                        <option value="190">CIUU-3510-GENERACIÓN, TRANSMISIÓN Y DISTRIBUCIÓN DE ENERGÍA ELÉCTRICA</option>
+                                        <option value="191">CIUU-3520-FABRICACIÓN DEL GAS; DISTRIBUCIÓN DE COMBUSTIBLES GASEOSOS POR TUBERÍAS</option>
+                                        <option value="192">CIUU-3530-SUMINISTRO DE VAPOR Y AIRE ACONDICIONADO</option>
+                                        <option value="193">CIUU-3600-CAPTACIÓN, TRATAMIENTO Y DISTRIBUCIÓN DE AGUA</option>
+                                        <option value="194">CIUU-3700-EVACUACIÓN DE AGUAS RESIDUALES</option>
+                                        <option value="195">CIUU-3811-RECOGIDA DE DESECHOS NO PELIGROSOS</option>
+                                        <option value="196">CIUU-3812-RECOGIDA DE DESECHOS PELIGROSOS</option>
+                                        <option value="197">CIUU-3821-TRATAMIENTO Y ELIMINACIÓN DE DESECHOS NO PELIGROSOS</option>
+                                        <option value="198">CIUU-3822-TRATAMIENTO Y ELIMINACIÓN DE DESECHOS PELIGROSOS</option>
+                                        <option value="199">CIUU-3830-RECUPERACIÓN DE MATERIALES</option>
+                                        <option value="200">CIUU-3900-ACTIVIDADES DE DESCONTAMINACIÓN Y OTROS SERVICIOS DE GESTIÓN DE DESECHOS</option>
+                                        <option value="201">CIUU-4100-CONSTRUCCIÓN DE EDIFICIOS</option>
+                                        <option value="202">CIUU-4210-CONSTRUCCIÓN DE CARRETERAS Y LÍNEAS DE FERROCARRIL</option>
+                                        <option value="203">CIUU-4220-CONSTRUCCIÓN DE PROYECTOS DE SERVICIO PÚBLICO</option>
+                                        <option value="204">CIUU-4290-CONSTRUCCIÓN DE OTRAS OBRAS DE INGENIERÍA CIVIL</option>
+                                        <option value="205">CIUU-4311-DEMOLICIÓN</option>
+                                        <option value="206">CIUU-4312-PREPARACIÓN DEL TERRENO</option>
+                                        <option value="207">CIUU-4321-INSTALACIONES ELÉCTRICAS</option>
+                                        <option value="208">CIUU-4322-INSTALACIONES DE FONTANERÍA, CALEFACCIÓN Y AIRE ACONDICIONADO</option>
+                                        <option value="209">CIUU-4329-OTRAS INSTALACIONES PARA OBRAS DE CONSTRUCCIÓN</option>
+                                        <option value="210">CIUU-4330-TERMINACIÓN Y ACABADO DE EDIFICIOS</option>
+                                        <option value="211">CIUU-4390-OTRAS ACTIVIDADES ESPECIALIZADAS DE LA CONSTRUCCIÓN</option>
+                                        <option value="212">CIUU-4510-VENTA DE VEHÍCULOS AUTOMOTORES</option>
+                                        <option value="213">CIUU-4520-MANTENIMIENTO Y REPARACIÓN DE VEHÍCULOS AUTOMOTORES</option>
+                                        <option value="214">CIUU-4530-VENTAS DE PARTES, PIEZAS Y ACCESORIOS PARA VEHÍCULOS AUTOMOTORES</option>
+                                        <option value="215">CIUU-4540-VENTA, MANTENIMIENTO Y REPARACIÓN DE MOTOCICLETAS Y DE SUS PARTES, PIEZAS Y ACCESORIOS.</option>
+                                        <option value="216">CIUU-4610-VENTA AL POR MAYOR A CAMBIO DE UNA RETRIBUCIÓN O POR CONTRATA</option>
+                                        <option value="217">CIUU-4620-VENTA AL POR MAYOR DE MATERIAS PRIMAS AGROPECUARIAS Y ANIMALES VIVOS.</option>
+                                        <option value="218">CIUU-4630-VENTA AL POR MAYOR DE ALIMENTOS, BEBIDAS Y TABACO.</option>
+                                        <option value="219">CIUU-4641-VENTA AL POR MAYOR DE PRODUCTOS TEXTILES, PRENDAS DE VESTIR Y CALZADO</option>
+                                        <option value="220">CIUU-4649-VENTA AL POR MAYOR DE OTROS ENSERES DOMÉSTICOS</option>
+                                        <option value="221">CIUU-4651-VENTA AL POR MAYOR DE ORDENADORES, EQUIPO PERIFÉRICO Y PROGRAMAS DE INFORMÁTICA</option>
+                                        <option value="222">CIUU-4652-VENTA AL POR MAYOR DE EQUIPO, PARTES Y PIEZAS ELECTRÓNICOS Y DE TELECOMUNICACIONES</option>
+                                        <option value="223">CIUU-4653-VENTA AL POR MAYOR DE MAQUINARIA, EQUIPO Y MATERIALES AGROPECUARIOS</option>
+                                        <option value="224">CIUU-4659-VENTA AL POR MAYOR DE OTROS TIPOS DE MAQUINARIA Y EQUIPO</option>
+                                        <option value="225">CIUU-4661-VENTA AL POR MAYOR DE COMBUSTIBLES SÓLIDOS, LÍQUIDOS Y GASEOSOS Y  PRODUCTOS CONEXOS</option>
+                                        <option value="226">CIUU-4662-VENTA AL POR MAYOR DE METALES Y MINERALES METALÍFEROS</option>
+                                        <option value="227">CIUU-4663-VENTA AL POR MAYOR DE MATERIALES DE CONSTRUCCIÓN, ARTÍCULOS DE FERRETERÍA Y EQUIPO Y MATERIALES DE FONTANERÍA Y CALEFACCIÓN.</option>
+                                        <option value="228">CIUU-4669-VENTA AL POR MAYOR DE DESPERDICIOS, DESECHOS, CHATARRA Y OTROS PRODUCTOS N.C.P</option>
+                                        <option value="229">CIUU-4690-VENTA AL POR MAYOR NO ESPECIALIZADA</option>
+                                        <option value="230">CIUU-4711-VENTA AL POR MENOR EN COMERCIOS NO ESPECIALIZADOS CON PREDOMINIO DE LA VENTA DE ALIMENTOS, BEBIDAS O TABACO</option>
+                                        <option value="231">CIUU-4719-OTRAS ACTIVIDADES DE VENTA AL POR MENOR EN COMERCIOS NO ESPECIALIZADOS</option>
+                                        <option value="232">CIUU-4721-VENTA AL POR MENOR DE ALIMENTOS EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="233">CIUU-4722-VENTA AL POR MENOR DE BEBIDAS EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="234">CIUU-4723-VENTA AL POR MENOR DE PRODUCTOS DE TABACO EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="235">CIUU-4730-VENTA AL POR MENOR DE COMBUSTIBLES PARA VEHÍCULOS AUTOMOTORES EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="236">CIUU-4741-VENTA AL POR MENOR DE ORDENADORES, EQUIPO PERIFÉRICO, PROGRAMAS INFORMÁTICOS Y EQUIPO DE TELECOMUNICACIONES EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="237">CIUU-4742-VENTA AL POR MENOR DE EQUIPO DE SONIDO Y DE VÍDEO EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="238">CIUU-4751-VENTA AL POR MENOR DE PRODUCTOS TEXTILES EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="239">CIUU-4752-VENTA AL POR MENOR DE ARTÍCULOS DE FERRETERÍA, PINTURAS Y PRODUCTOS DE VIDRIO EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="240">CIUU-4753-VENTA AL POR MENOR DE TAPICES, ALFOMBRAS Y CUBRIMIENTOS PARA PAREDES Y PISOS EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="241">CIUU-4759-VENTA AL POR MENOR DE APARATOS ELÉCTRICOS DE USO DOMÉSTICO,  MUEBLES, EQUIPO DE ILUMINACIÓN Y OTROS ENSERES DOMÉSTICOS EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="242">CIUU-4761-VENTA AL POR MENOR DE LIBROS, PERIÓDICOS Y ARTÍCULOS DE PAPELERÍA EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="243">CIUU-4762-VENTA AL POR MENOR DE GRABACIONES DE MÚSICA Y DE VÍDEO EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="244">CIUU-4763-VENTA AL POR MENOR DE EQUIPO DE DEPORTE EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="245">CIUU-4764-VENTA AL POR MENOR DE JUEGOS Y  JUGUETES EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="246">CIUU-4771-VENTA AL POR MENOR DE PRENDAS DE VESTIR, CALZADO Y ARTÍCULOS DE CUERO EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="247">CIUU-4772-VENTA AL POR MENOR DE PRODUCTOS FARMACÉUTICOS Y MEDICINALES, COSMÉTICOS Y ARTÍCULOS DE TOCADOR EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="248">CIUU-4773-VENTA AL POR MENOR DE OTROS PRODUCTOS NUEVOS EN COMERCIOS ESPECIALIZADOS</option>
+                                        <option value="249">CIUU-4774-VENTA AL POR MENOR DE ARTÍCULOS DE SEGUNDA MANO</option>
+                                        <option value="250">CIUU-4781-VENTA AL POR MENOR DE ALIMENTOS, BEBIDAS Y TABACO EN PUESTOS DE VENTA Y MERCADOS</option>
+                                        <option value="251">CIUU-4782-VENTA AL POR MENOR DE PRODUCTOS TEXTILES, PRENDAS DE VESTIR Y CALZADO EN PUESTOS DE VENTA Y MERCADOS</option>
+                                        <option value="252">CIUU-4789-VENTA AL POR MENOR DE OTROS PRODUCTOS EN PUESTOS DE VENTA Y MERCADOS</option>
+                                        <option value="253">CIUU-4791-VENTA AL POR MENOR POR CORREO Y POR INTERNET</option>
+                                        <option value="254">CIUU-4799-OTRAS ACTIVIDADES DE VENTA AL POR MENOR NO REALIZADAS EN COMERCIOS, PUESTOS DE VENTA O MERCADOS</option>
+                                        <option value="255">CIUU-4911-TRANSPORTE INTERURBANO DE PASAJEROS POR FERROCARRIL</option>
+                                        <option value="256">CIUU-4912-TRANSPORTE DE CARGA POR FERROCARRIL</option>
+                                        <option value="257">CIUU-4921-TRANSPORTE URBANO Y SUBURBANO DE PASAJEROS POR VÍA TERRESTRE</option>
+                                        <option value="258">CIUU-4922-OTRAS ACTIVIDADES DE TRANSPORTE POR VÍA TERRESTRE</option>
+                                        <option value="259">CIUU-4923-TRANSPORTE DE CARGA POR CARRETERA</option>
+                                        <option value="260">CIUU-4930-TRANSPORTE POR TUBERÍAS</option>
+                                        <option value="261">CIUU-5011-TRANSPORTE DE PASAJEROS MARÍTIMO Y DE CABOTAJE</option>
+                                        <option value="262">CIUU-5012-TRANSPORTE DE CARGA MARÍTIMO Y DE CABOTAJE</option>
+                                        <option value="263">CIUU-5021-TRANSPORTE DE PASAJEROS POR VÍAS DE NAVEGACIÓN INTERIORES</option>
+                                        <option value="264">CIUU-5022-TRANSPORTE DE CARGA, POR VÍAS DE NAVEGACIÓN INTERIORES</option>
+                                        <option value="265">CIUU-5110-TRANSPORTE DE PASAJEROS POR VÍA AÉREA</option>
+                                        <option value="266">CIUU-5120-TRANSPORTE DE CARGA POR VÍA AÉREA</option>
+                                        <option value="267">CIUU-5210-ALMACENAMIENTO Y DEPÓSITO</option>
+                                        <option value="268">CIUU-5221-ACTIVIDADES DE SERVICIOS VINCULADAS AL TRANSPORTE TERRESTRE</option>
+                                        <option value="269">CIUU-5222-ACTIVIDADES DE SERVICIOS VINCULADAS AL TRANSPORTE ACUÁTICO</option>
+                                        <option value="270">CIUU-5223-ACTIVIDADES DE SERVICIOS VINCULADAS AL TRANSPORTE AÉREO</option>
+                                        <option value="271">CIUU-5224-MANIPULACIÓN DE CARGA</option>
+                                        <option value="272">CIUU-5229-OTRAS ACTIVIDADES DE APOYO AL TRANSPORTE</option>
+                                        <option value="273">CIUU-5310-ACTIVIDADES POSTALES</option>
+                                        <option value="274">CIUU-5320-ACTIVIDADES DE MENSAJERÍA</option>
+                                        <option value="275">CIUU-5510-ACTIVIDADES DE ALOJAMIENTO PARA ESTANCIAS CORTAS</option>
+                                        <option value="276">CIUU-5520-ACTIVIDADES DE CAMPAMENTOS, PARQUES DE VEHÍCULOS RECREATIVOS Y PARQUES DE CARAVANAS</option>
+                                        <option value="277">CIUU-5590-OTRAS ACTIVIDADES DE ALOJAMIENTO</option>
+                                        <option value="278">CIUU-5610-ACTIVIDADES DE RESTAURANTES Y DE SERVICIO MÓVIL DE COMIDAS</option>
+                                        <option value="279">CIUU-5621-SUMINISTRO DE COMIDAS POR ENCARGO</option>
+                                        <option value="280">CIUU-5629-OTRAS ACTIVIDADES DE SERVICIO DE COMIDAS</option>
+                                        <option value="281">CIUU-5630-ACTIVIDADES DE SERVICIO DE BEBIDAS</option>
+                                        <option value="282">CIUU-5811-EDICIÓN DE LIBROS</option>
+                                        <option value="283">CIUU-5812-EDICIÓN DE DIRECTORIOS Y LISTAS DE CORREO</option>
+                                        <option value="284">CIUU-5813-EDICIÓN DE PERIÓDICOS, REVISTAS Y OTRAS PUBLICACIONES PERIÓDICAS</option>
+                                        <option value="285">CIUU-5819-OTRAS ACTIVIDADES DE EDICIÓN</option>
+                                        <option value="286">CIUU-5820-EDICIÓN DE PROGRAMAS DE INFORMÁTICOS</option>
+                                        <option value="287">CIUU-5911-ACTIVIDADES DE PRODUCCIÓN DE PELÍCULAS CINEMATOGRÁFICAS, VÍDEOS Y PROGRAMAS DE TELEVISIÓN</option>
+                                        <option value="288">CIUU-5912-ACTIVIDADES DE POSTPRODUCCIÓN DE PELÍCULAS CINEMATOGRÁFICAS, VÍDEOS Y PROGRAMAS DE TELEVISIÓN</option>
+                                        <option value="289">CIUU-5913-ACTIVIDADES DE DISTRIBUCIÓN DE PELÍCULAS CINEMATOGRÁFICAS, VÍDEOS Y PROGRAMAS DE TELEVISIÓN</option>
+                                        <option value="290">CIUU-5914-ACTIVIDADES DE EXHIBICIÓN DE PELÍCULAS CINEMATOGRÁFICAS Y CINTAS DE VÍDEO</option>
+                                        <option value="291">CIUU-5920-ACTIVIDADES DE GRABACIÓN DE SONIDO Y EDICIÓN DE MÚSICA</option>
+                                        <option value="292">CIUU-6010-TRANSMISIONES DE RADIO</option>
+                                        <option value="293">CIUU-6020-PROGRAMACIÓN Y TRANSMISIONES DE TELEVISIÓN</option>
+                                        <option value="294">CIUU-6110-ACTIVIDADES DE TELECOMUNICACIONES ALÁMBRICAS</option>
+                                        <option value="295">CIUU-6120-ACTIVIDADES DE TELECOMUNICACIONES INALÁMBRICAS</option>
+                                        <option value="296">CIUU-6130-ACTIVIDADES DE TELECOMUNICACIONES POR SATÉLITE.</option>
+                                        <option value="297">CIUU-6190-OTRAS ACTIVIDADES DE TELECOMUNICACIÓN.</option>
+                                        <option value="298">CIUU-6201-PROGRAMACIÓN INFORMÁTICA</option>
+                                        <option value="299">CIUU-6202-CONSULTORÍA DE INFORMÁTICA Y DE GESTIÓN DE INSTALACIONES INFORMÁTICAS</option>
+                                        <option value="300">CIUU-6209-OTRAS ACTIVIDADES DE TECNOLOGÍA DE LA INFORMACIÓN Y DE SERVICIOS INFORMÁTICOS</option>
+                                        <option value="301">CIUU-6311-PROCESAMIENTO DE DATOS, HOSPEDAJE Y ACTIVIDADES CONEXAS</option>
+                                        <option value="302">CIUU-6312-PORTALES WEB</option>
+                                        <option value="303">CIUU-6391-ACTIVIDADES DE AGENCIAS DE NOTICIAS</option>
+                                        <option value="304">CIUU-6399-OTRAS ACTIVIDADES DE SERVICIOS DE INFORMACIÓN N.C.P.</option>
+                                        <option value="305">CIUU-6411-BANCA CENTRAL</option>
+                                        <option value="306">CIUU-6419-OTROS TIPOS DE INTERMEDIACIÓN MONETARIA.</option>
+                                        <option value="307">CIUU-6420-ACTIVIDADES DE SOCIEDADES DE CARTERA</option>
+                                        <option value="308">CIUU-6430-FONDOS Y SOCIEDADES DE INVERSIÓN Y ENTIDADES FINANCIERAS SIMILARES</option>
+                                        <option value="309">CIUU-6491-ARRENDAMIENTO FINANCIERO</option>
+                                        <option value="310">CIUU-6492-OTRAS ACTIVIDADES DE CONCESIÓN DE CRÉDITO</option>
+                                        <option value="311">CIUU-6499-OTRAS ACTIVIDADES DE SERVICIOS FINANCIEROS, EXCEPTO LAS DE SEGUROS Y FONDOS DE PENSIONES, N.C.P.</option>
+                                        <option value="312">CIUU-6511-SEGUROS DE VIDA</option>
+                                        <option value="313">CIUU-6512-SEGUROS GENERALES</option>
+                                        <option value="314">CIUU-6520-REASEGUROS</option>
+                                        <option value="315">CIUU-6530-FONDOS DE PENSIONES</option>
+                                        <option value="316">CIUU-6611-ADMINISTRACIÓN DE MERCADOS FINANCIEROS</option>
+                                        <option value="317">CIUU-6612-CORRETAJE DE VALORES Y DE CONTRATOS DE PRODUCTOS BÁSICOS</option>
+                                        <option value="318">CIUU-6619-OTRAS ACTIVIDADES AUXILIARES DE LAS ACTIVIDADES DE SERVICIOS FINANCIEROS</option>
+                                        <option value="319">CIUU-6621-EVALUACIÓN DE RIESGOS Y DAÑOS</option>
+                                        <option value="320">CIUU-6622-ACTIVIDADES DE AGENTES Y CORREDORES DE SEGUROS</option>
+                                        <option value="321">CIUU-6629-OTRAS ACTIVIDADES AUXILIARES DE LAS ACTIVIDADES DE SEGUROS Y FONDOS DE PENSIONES</option>
+                                        <option value="322">CIUU-6630-ACTIVIDADES DE GESTIÓN DE FONDOS</option>
+                                        <option value="323">CIUU-6810-ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS</option>
+                                        <option value="324">CIUU-6820-ACTIVIDADES INMOBILIARIAS REALIZADAS A CAMBIO DE UNA RETRIBUCIÓN O POR CONTRATA</option>
+                                        <option value="325">CIUU-6910-ACTIVIDADES JURÍDICAS</option>
+                                        <option value="326">CIUU-6920-ACTIVIDADES DE CONTABILIDAD, TENEDURÍA DE LIBROS Y AUDITORÍA; CONSULTORÍA FISCAL</option>
+                                        <option value="327">CIUU-7010-ACTIVIDADES DE OFICINAS CENTRALES</option>
+                                        <option value="328">CIUU-7020-ACTIVIDADES DE CONSULTORÍA DE GESTIÓN</option>
+                                        <option value="329">CIUU-7110-ACTIVIDADES DE ARQUITECTURA E INGENIERÍA Y ACTIVIDADES CONEXAS DE CONSULTORÍA TÉCNICA</option>
+                                        <option value="330">CIUU-7120-ENSAYOS Y ANÁLISIS TÉCNICOS</option>
+                                        <option value="331">CIUU-7210-INVESTIGACIÓN Y DESARROLLO EXPERIMENTAL EN EL CAMPO DE LAS CIENCIAS NATURALES Y LA INGENIERÍA</option>
+                                        <option value="332">CIUU-7220-INVESTIGACIÓN Y DESARROLLO EXPERIMENTAL EN EL CAMPO DE LAS CIENCIAS SOCIALES Y LAS HUMANIDADES</option>
+                                        <option value="333">CIUU-7310-PUBLICIDAD</option>
+                                        <option value="334">CIUU-7320-ESTUDIOS DE MERCADO Y ENCUESTAS DE OPINIÓN PÚBLICA</option>
+                                        <option value="335">CIUU-7410-ACTIVIDADES ESPECIALIZADAS DE DISEÑO</option>
+                                        <option value="336">CIUU-7420-ACTIVIDADES DE FOTOGRAFÍA</option>
+                                        <option value="337">CIUU-7490-OTRAS ACTIVIDADES PROFESIONALES, CIENTÍFICAS Y TÉCNICAS N.C.P.</option>
+                                        <option value="338">CIUU-7500-ACTIVIDADES VETERINARIAS</option>
+                                        <option value="338">CIUU-7710-ALQUILER Y ARRENDAMIENTO DE VEHÍCULOS AUTOMOTORES</option>
+                                        <option value="339">CIUU-7721-ALQUILER Y ARRENDAMIENTO DE EQUIPO RECREATIVO Y DEPORTIVO</option>
+                                        <option value="340">CIUU-7722-ALQUILER DE CINTAS DE VÍDEO Y DISCOS</option>
+                                        <option value="341">CIUU-7729-ALQUILER Y ARRENDAMIENTO DE OTROS EFECTOS PERSONALES Y ENSERES DOMÉSTICOS</option>
+                                        <option value="342">CIUU-7730-ALQUILER Y ARRENDAMIENTO DE OTROS TIPOS DE MAQUINARIA, EQUIPO Y BIENES TANGIBLES</option>
+                                        <option value="343">CIUU-7740-ARRENDAMIENTO DE PROPIEDAD INTELECTUAL Y PRODUCTOS SIMILARES, EXCEPTO OBRAS PROTEGIDAS  POR DERECHOS DE AUTOR</option>
+                                        <option value="344">CIUU-7810-ACTIVIDADES DE AGENCIAS DE EMPLEO</option>
+                                        <option value="345">CIUU-7820-ACTIVIDADES DE AGENCIAS DE EMPLEO TEMPORAL</option>
+                                        <option value="346">CIUU-7830-OTRAS ACTIVIDADES DE DOTACIÓN DE RECURSOS HUMANOS</option>
+                                        <option value="347">CIUU-7911-ACTIVIDADES DE AGENCIAS DE VIAJES</option>
+                                        <option value="348">CIUU-7912-ACTIVIDADES DE OPERADORES TURÍSTICOS</option>
+                                        <option value="349">CIUU-7990-OTROS SERVICIOS DE RESERVAS Y ACTIVIDADES CONEXAS</option>
+                                        <option value="350">CIUU-8010-ACTIVIDADES DE SEGURIDAD PRIVADA</option>
+                                        <option value="351">CIUU-8020-ACTIVIDADES DE SERVICIO DE SISTEMAS DE SEGURIDAD</option>
+                                        <option value="352">CIUU-8030-ACTIVIDADES DE INVESTIGACIÓN</option>
+                                        <option value="353">CIUU-8110-ACTIVIDADES COMBINADAS DE APOYO A INSTALACIONES</option>
+                                        <option value="354">CIUU-8121-LIMPIEZA GENERAL DE EDIFICIOS</option>
+                                        <option value="355">CIUU-8129-OTRAS ACTIVIDADES DE LIMPIEZA DE EDIFICIOS E INSTALACIONES INDUSTRIALES</option>
+                                        <option value="356">CIUU-8130-ACTIVIDADES DE PAISAJISMO Y SERVICIOS DE MANTENIMIENTO CONEXOS</option>
+                                        <option value="357">CIUU-8211-ACTIVIDADES COMBINADAS DE SERVICIOS ADMINISTRATIVOS DE OFICINA</option>
+                                        <option value="358">CIUU-8219-FOTOCOPIADO, PREPARACIÓN DE DOCUMENTOS Y OTRAS ACTIVIDADES ESPECIALIZADAS DE APOYO DE OFICINA</option>
+                                        <option value="359">CIUU-8220-ACTIVIDADES DE CENTROS DE LLAMADAS</option>
+                                        <option value="360">CIUU-8230-ORGANIZACIÓN DE CONVENCIONES Y EXPOSICIONES COMERCIALES</option>
+                                        <option value="361">CIUU-8291-ACTIVIDADES DE AGENCIAS DE COBRO Y AGENCIAS DE CALIFICACIÓN CREDITICIA</option>
+                                        <option value="362">CIUU-8292-ACTIVIDADES DE ENVASADO Y EMPAQUETADO</option>
+                                        <option value="363">CIUU-8299-OTRAS ACTIVIDADES DE SERVICIOS DE APOYO A LAS EMPRESAS N.C.P</option>
+                                        <option value="364">CIUU-8411-ACTIVIDADES DE LA ADMINISTRACIÓN PÚBLICA EN GENERAL</option>
+                                        <option value="365">CIUU-8412-REGULACIÓN DE LAS ACTIVIDADES DE ORGANISMOS QUE PRESTAN SERVICIOS SANITARIOS, EDUCATIVOS, CULTURALES Y OTROS SERVICIOS SOCIALES, EXCEPTO SERVICIOS DE SEGURIDAD SOCIAL</option>
+                                        <option value="366">CIUU-8413-REGULACIÓN Y FACILITACIÓN DE LA ACTIVIDAD ECONÓMICA</option>
+                                        <option value="367">CIUU-8421-RELACIONES EXTERIORES</option>
+                                        <option value="368">CIUU-8422-ACTIVIDADES DE DEFENSA</option>
+                                        <option value="369">CIUU-8423-ACTIVIDADES DE MANTENIMIENTO DEL ORDEN PÚBLICO Y DE SEGURIDAD</option>
+                                        <option value="370">CIUU-8430-ACTIVIDADES DE PLANES DE SEGURIDAD SOCIAL DE AFILIACIÓN OBLIGATORIA</option>
+                                        <option value="371">CIUU-8510-ENSEÑANZA PREESCOLAR Y PRIMARIA</option>
+                                        <option value="372">CIUU-8521-ENSEÑANZA SECUNDARIA DE FORMACIÓN GENERAL</option>
+                                        <option value="373">CIUU-8522-ENSEÑANZA SECUNDARIA DE FORMACIÓN TÉCNICA Y PROFESIONAL</option>
+                                        <option value="374">CIUU-8530-ENSEÑANZA SUPERIOR</option>
+                                        <option value="375">CIUU-8541-EDUCACIÓN DEPORTIVA Y RECREATIVA</option>
+                                        <option value="376">CIUU-8542-ENSEÑANZA CULTURAL</option>
+                                        <option value="377">CIUU-8549-OTROS TIPOS DE ENSEÑANZA N.C.P.</option>
+                                        <option value="378">CIUU-8550-ACTIVIDADES DE APOYO A LA ENSEÑANZA</option>
+                                        <option value="379">CIUU-8610-ACTIVIDADES DE HOSPITALES</option>
+                                        <option value="380">CIUU-8620-ACTIVIDADES DE MÉDICOS Y ODONTÓLOGOS</option>
+                                        <option value="381">CIUU-8690-OTRAS ACTIVIDADES DE ATENCIÓN DE LA SALUD HUMANA</option>
+                                        <option value="382">CIUU-8710-ACTIVIDADES DE ATENCIÓN DE ENFERMERÍA EN INSTITUCIONES</option>
+                                        <option value="383">CIUU-8720-ACTIVIDADES DE ATENCIÓN EN INSTITUCIONES PARA PERSONAS CON RETRASO MENTAL, ENFERMOS MENTALES Y TOXICÓMANOS</option>
+                                        <option value="384">CIUU-8730-ACTIVIDADES DE ATENCIÓN EN INSTITUCIONES PARA PERSONAS DE EDAD PERSONAS CON DISCAPACIDAD</option>
+                                        <option value="385">CIUU-8790-OTRAS ACTIVIDADES DE ATENCIÓN EN INSTITUCIONES</option>
+                                        <option value="386">CIUU-8810-ACTIVIDADES DE ASISTENCIA SOCIAL SIN ALOJAMIENTO PARA PERSONAS DE EDAD Y PERSONAS CON DISCAPACIDAD</option>
+                                        <option value="387">CIUU-8890-OTRAS ACTIVIDADES DE ASISTENCIA SOCIAL SIN ALOJAMIENTO</option>
+                                        <option value="388">CIUU-9000-ACTIVIDADES CREATIVAS, ARTÍSTICAS Y DE ENTRETENIMIENTO</option>
+                                        <option value="389">CIUU-9101-ACTIVIDADES DE BIBLIOTECAS Y ARCHIVOS</option>
+                                        <option value="390">CIUU-9102-ACTIVIDADES DE MUSEOS Y GESTIÓN DE LUGARES Y EDIFICIOS HISTÓRICOS</option>
+                                        <option value="391">CIUU-9103-ACTIVIDADES DE JARDINES BOTÁNICOS Y ZOOLÓGICOS Y RESERVAS NATURALES</option>
+                                        <option value="392">CIUU-9200-ACTIVIDADES DE JUEGOS DE AZAR Y APUESTAS</option>
+                                        <option value="393">CIUU-9311-GESTIÓN DE INSTALACIONES DEPORTIVAS</option>
+                                        <option value="394">CIUU-9312-ACTIVIDADES DE CLUBES DEPORTIVOS</option>
+                                        <option value="395">CIUU-9319-OTRAS ACTIVIDADES DEPORTIVAS</option>
+                                        <option value="396">CIUU-9321-ACTIVIDADES DE PARQUES DE ATRACCIONES Y PARQUES TEMÁTICOS</option>
+                                        <option value="397">CIUU-9329-OTRAS ACTIVIDADES DE ESPARCIMIENTO Y RECREATIVAS N.C.P.</option>
+                                        <option value="398">CIUU-9411-ACTIVIDADES DE ASOCIACIONES EMPRESARIALES Y DE EMPLEADORES</option>
+                                        <option value="399">CIUU-9412-ACTIVIDADES DE ASOCIACIONES PROFESIONALES</option>
+                                        <option value="400">CIUU-9420-ACTIVIDADES DE SINDICATOS</option>
+                                        <option value="401">CIUU-9491-ACTIVIDADES DE ORGANIZACIONES RELIGIOSAS</option>
+                                        <option value="402">CIUU-9492-ACTIVIDADES DE ORGANIZACIONES POLÍTICAS</option>
+                                        <option value="403">CIUU-9499-ACTIVIDADES DE OTRAS ASOCIACIONES N.C.P.</option>
+                                        <option value="404">CIUU-9511-REPARACIÓN DE ORDENADORES Y EQUIPO PERIFÉRICO</option>
+                                        <option value="405">CIUU-9512-REPARACIÓN DE EQUIPOS COMUNICACIONALES</option>
+                                        <option value="406">CIUU-9521-REPARACIÓN DE APARATOS ELECTRÓNICOS DE CONSUMO</option>
+                                        <option value="407">CIUU-9522-REPARACIÓN DE APARATOS DE USO DOMÉSTICO Y EQUIPO DOMÉSTICO Y DE JARDINERÍA</option>
+                                        <option value="408">CIUU-9523-REPARACIÓN DE CALZADO Y ARTÍCULOS DE CUERO</option>
+                                        <option value="409">CIUU-9524-REPARACIÓN DE MUEBLES Y ACCESORIOS DOMÉSTICOS</option>
+                                        <option value="410">CIUU-9529-REPARACIÓN DE OTROS EFECTOS PERSONALES Y ENSERES DOMÉSTICOS</option>
+                                        <option value="411">CIUU-9601-LAVADO Y LIMPIEZA, INCLUIDA LA LIMPIEZA EN SECO, DE PRODUCTOS TEXTILES Y DE PIEL</option>
+                                        <option value="412">CIUU-9602-PELUQUERÍA Y OTROS TRATAMIENTOS DE BELLEZA</option>
+                                        <option value="413">CIUU-9603-POMPAS FÚNEBRES Y ACTIVIDADES CONEXAS</option>
+                                        <option value="414">CIUU-9609-OTRAS ACTIVIDADES DE SERVICIOS PERSONALES N.C.P.</option>
+                                        <option value="415">CIUU-9700-ACTIVIDADES DE LOS HOGARES COMO EMPLEADORES DE PERSONAL DOMÉSTICO</option>
+                                        <option value="416">CIUU-9900-ACTIVIDADES DE ORGANIZACIONES Y ÓRGANOS EXTRATERRITORIALES</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <hr class="my-1">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h2 class="estilo-04 text-sres-oscuro">Tamaño de empresa/institución</h2>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-group mt-2">
+                                    <label class="estilo-01" for="cbo-subsector-tipoemp">@(usuario.INSTITUCION.ID_SECTOR == 1 ? "Subsector:" : "Tipo empresa:")</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-landmark"></i></span></div>
+                                        <select class="form-control estilo-01" id="cbo-subsector-tipoemp" aria-describedby="inputGroup9" required>
+                                            <option value="0">@(usuario.INSTITUCION.ID_SECTOR == 1 ? "-seleccione subsector-" : "-seleccione tipo empresa-")</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-group mt-2">
+                                    <label class="estilo-01" for="cbo-trabajador-cama">@(usuario.INSTITUCION.ID_SECTOR == 1 ? "Número de empleados/camas:" : "Número de empleados:")</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-list-alt"></i></span></div>
+                                        <select class="form-control estilo-01" id="cbo-trabajador-cama" aria-describedby="inputGroup9" required>
+                                            <option value="0">-Seleccione-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-group mt-2">
+                                    <label class="estilo-01" for="txt-numero">Cantidad de empleados/camas (Cantidad total):</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div>
+                                        <input class="form-control estilo-01" type="number" id="txt-numero" placeholder="Ingrese cantidad" maxlength="12" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            @*<div class="col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-group">
+                                    <label class="estilo-01" for="txt-total-empleados">Personal empleado <br> (Cantidad total):</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div>
+                                        <input class="form-control estilo-01 text-sres-gris" type="number" id="txt-total-empleados" placeholder="Cantidad total de empleados">
+                                    </div>
+                                </div>
+                            </div>*@
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-group">
+                                    <label class="estilo-01" for="txt-total-mujeres">Personal empleado (Cantidad mujeres):</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-female"></i></span></div>
+                                        <input class="form-control estilo-01 text-sres-gris" type="number" id="txt-total-mujeres" min="0" placeholder="Cantidad total de mujeres" maxlength="7">
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-group">
+                                    <label class="estilo-01" for="cbo-clasificacion">Clasificación <br> (Si corresponde)</label>                                    
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-list-alt"></i></span></div>
+                                        <select class="form-control estilo-01" id="cbo-provincia-clasificacion">
+                                            <option>-Seleccionar-</option>
+                                            <option>Micro empresa</option>
+                                            <option>Pequeña empresa</option>
+                                            <option>Mediana empresa</option>
+                                            <option>Gran empresa</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>*@
+                        </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <hr class="my-1">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h2 class="estilo-04 text-sres-oscuro">Datos de contacto</h2>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="estilo-01">Directivo o representante legal de la empresa/institución</div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-nombre-01">Nombre</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-id-card"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-nombre-01" maxlength="60" placeholder="Nombre">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-cargo-01">Cargo</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user-circle"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-cargo-01" maxlength="40" placeholder="Cargo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-telefono-01">Teléfono</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-phone-alt"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-telefono-01" maxlength="12" placeholder="Teléfono">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-email-01">Correo electrónico</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-at"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="email" id="txt-email-01" maxlength="65" placeholder="Correo electrónico">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="estilo-01">Responsable Técnico de la empresa/institución</div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-nombre-02">Nombre</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-id-card"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-nombre-02" maxlength="60" placeholder="Nombre">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-cargo-02">Cargo</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user-circle"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-cargo-02" maxlength="40" placeholder="Cargo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-telefono-02">Teléfono</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-phone-alt"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-telefono-02" maxlength="12" placeholder="Teléfono">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-email-02">Correo electrónico</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-at"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="email" id="txt-email-02" maxlength="65" placeholder="Correo electrónico">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="estilo-01">Entidad financiera involucrada en el proyecto de mejora (si corresponde)</div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-nombre-03">Nombre</label>
+                                <!--span.text-danger.font-weight-bold &nbsp;(*)&nbsp;-->
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-id-card"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-nombre-03" maxlength="60" placeholder="Nombre">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-cargo-03">Cargo</label>
+                                <!--span.text-danger.font-weight-bold &nbsp;(*)&nbsp;-->
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user-circle"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-cargo-03" maxlength="40" placeholder="Cargo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-telefono-03">Teléfono</label>
+                                <!--span.text-danger.font-weight-bold &nbsp;(*)&nbsp;-->
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-phone-alt"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-telefono-03" maxlength="12" placeholder="Teléfono">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-email-03">Correo electrónico</label>
+                                <!--span.text-danger.font-weight-bold &nbsp;(*)&nbsp;-->
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-at"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="email" id="txt-email-03" maxlength="65" placeholder="Correo electrónico">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="estilo-01">Empresa de servicio energético o Auditor energético que brindo el servicio (si corresponde)</div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-nombre-04">Nombre</label>
+                                <!--span.text-danger.font-weight-bold &nbsp;(*)&nbsp;-->
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-id-card"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-nombre-04" maxlength="60" placeholder="Nombre">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-cargo-04">Cargo</label>
+                                <!--span.text-danger.font-weight-bold &nbsp;(*)&nbsp;-->
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user-circle"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-cargo-04" maxlength="12" placeholder="Cargo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-telefono-04">Teléfono</label>
+                                <!--span.text-danger.font-weight-bold &nbsp;(*)&nbsp;-->
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-phone-alt"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-telefono-04" maxlength="12" placeholder="Teléfono">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-email-04">Correo electrónico</label>
+                                <!--span.text-danger.font-weight-bold &nbsp;(*)&nbsp;-->
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-at"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="email" id="txt-email-04" maxlength="65" placeholder="Correo electrónico">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-2">
+                        <div class="alert-add">
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-sm btn-info" type="button" id="btnActualizarDatosInstitucion">Si, grabar</button>
-                <button class="btn btn-sm btn-dark" type="button" data-dismiss="modal">Cancelar</button>
-            </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-sm btn-info" type="button" id="btnActualizarDatosInstitucion">Si, grabar</button>
+                    <button class="btn btn-sm btn-dark" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

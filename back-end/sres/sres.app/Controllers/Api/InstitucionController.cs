@@ -42,6 +42,34 @@ namespace sres.app.Controllers.Api
             return institucionLN.ModificarDatosInstitucion(institucion);
         }
 
+        [Route("cambiarprimerinicio")]
+        [HttpGet]
+        public bool cambiarPrimerInicio(int idInstitucion)
+        {
+            return institucionLN.cambiarPrimerInicio(idInstitucion);
+        }
+
+        [Route("listadepartamento")]
+        [HttpGet]
+        public List<DepartamentoBE> listarDepartamento()
+        {
+            return institucionLN.listarDepartamento();
+        }
+
+        [Route("listaprovincia")]
+        [HttpGet]
+        public List<ProvinciaBE> listarProvincia(string idDepartamento)
+        {
+            return institucionLN.listarProvincia(idDepartamento);
+        }
+
+        [Route("listadistrito")]
+        [HttpGet]
+        public List<DistritoBE> listarDistrito(string idProvincia)
+        {
+            return institucionLN.listarDistrito(idProvincia);
+        }
+
         //[Route("buscarparticipantes")]
         //[HttpGet]
         //public DataPaginateBE BuscarParticipantes(string busqueda, int registros, int pagina, string columna, string orden)
