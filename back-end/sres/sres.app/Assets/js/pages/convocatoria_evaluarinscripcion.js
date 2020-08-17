@@ -121,7 +121,9 @@ var evaluarInscripcion = () => {
     });
 
     let data = {
+        ID_CONVOCATORIA: idConvocatoria,
         ID_INSCRIPCION: idInscripcion,
+        ID_ETAPA: idEtapa,
         LISTA_INSCRIPCION_REQUERIMIENTO: listaInscripcionRequerimiento,
         ID_TIPO_EVALUACION: $('.alert-secondary').length > 0 ? null : $('.alert-danger').length == 0 ? 1 : 2,
         OBSERVACION: observacion,

@@ -126,7 +126,10 @@ namespace sres.app.Controllers
             //if (convocatoria == null) return HttpNotFound();
             ViewData["convocatoria"] = convocatoria;
             InscripcionBE inscripcion = inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, idInstitucion);
+            ConvocatoriaEtapaInscripcionBE convetainsc = convetainscLN.ObtenerConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = convocatoria.ID_CONVOCATORIA, ID_ETAPA = convocatoria.ID_ETAPA, ID_INSCRIPCION = inscripcion == null ? 0 : inscripcion.ID_INSCRIPCION });
+
             //if (inscripcion == null) return HttpNotFound();
+            ViewData["convetainsc"] = convetainsc;
             ViewData["inscripcion"] = inscripcion;
             return View();
         }

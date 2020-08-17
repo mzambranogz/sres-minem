@@ -125,6 +125,8 @@ namespace sres.ln
                 using (OracleTransaction ot = cn.BeginTransaction())
                 {
                     seGuardo = inscripcionDA.GuardarEvaluacionInscripcion(inscripcion, cn);
+                    if (seGuardo)
+                        seGuardo = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = Convert.ToInt16(inscripcion.ID_CONVOCATORIA), ID_ETAPA = inscripcion.ID_ETAPA, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION, OBSERVACION = inscripcion.OBSERVACION, ID_TIPO_EVALUACION = Convert.ToInt16(inscripcion.ID_TIPO_EVALUACION) }, cn);
 
                     if (seGuardo)
                     {
