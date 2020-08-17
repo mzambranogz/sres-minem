@@ -28,6 +28,7 @@ namespace sres.be
         public string CORREO { get; set; }
         public string NOMBRES_USU { get; set; }
         public string RAZON_SOCIAL { get; set; }
+        public int ID_ETAPA { get; set; }
         public List<InsigniaBE> ASPIRACIONES { get; set; }
     }
 }

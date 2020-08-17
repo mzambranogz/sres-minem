@@ -97,6 +97,7 @@ var enviarInscripcion = () => {
     let data = {
         ID_INSCRIPCION: idInscripcion == null ? -1 : idInscripcion,
         ID_CONVOCATORIA: idConvocatoria,
+        ID_ETAPA: idEtapa,
         ID_INSTITUCION: idInstitucionLogin,
         LISTA_INSCRIPCION_REQUERIMIENTO: listaInscripcionRequerimiento,
         UPD_USUARIO: idUsuarioLogin

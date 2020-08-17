@@ -67,11 +67,14 @@
             <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
                 <div class="d-block bg-sres-claro border-linea rounded p-3">
                     <img class="img-fluid" src="@Url.Content($"~/{pathDirectoryRelative}/{criterio.ARCHIVO_BASE}")">
-                    <div class="estilo-01 text-sres-azul pt-3">@criterio.NOMBRE</div>
+                    @*<div class="estilo-01 text-sres-azul pt-3">@criterio.NOMBRE</div>*@
                 </div>
             </div>
-
-            <div class="col-lg-9 col-md-12 col-sm-12 text-center my-3">
+            <div class="col-lg-9 col-md-12 col-sm-12 my-3">
+                <div class="estilo-02 text-sres-azul text-left">@criterio.NOMBRE</div>
+                <p class="estilo-01 text-sres-gris pt-3 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam est, excepturi earum sint odio totam? Repellendus quos, vero eveniet porro, laboriosam consequatur explicabo corrupti dignissimos, asperiores at nisi? Totam, hic. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam est, excepturi earum sint odio totam? Repellendus quos, vero eveniet porro, laboriosam consequatur explicabo corrupti dignissimos, asperiores at nisi? Totam, hic.</p>
+            </div>
+            @*<div class="col-lg-9 col-md-12 col-sm-12 text-center my-3">
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
@@ -103,8 +106,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="offset-lg-3 col-lg-9 col-md-12 col-sm-12 mb-3">
+            </div>*@
+            @*<div class="offset-lg-3 col-lg-9 col-md-12 col-sm-12 mb-3">
                 <div class="row">
                     <div class="col-lg-6"><a class="btn btn-secondary text-white w-100" href="@Url.Action("Criterios","Convocatoria")">Regresar</a></div>
                     <div class="col-lg-6">
@@ -117,29 +120,93 @@
                     <div class="col-12 alert-add">
                     </div>
                 </div>
+            </div>*@
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-right my-3">
+                <button class="btn btn-outline-info" type="button" data-container="body" data-toggle="popover" data-placement="left" title="Ayuda:" data-content="&lt;p class=&quot;estilo-01 text-sres-gris text-justify p-1&quot;&gt;Todos estos &lt;span class=&quot;alert alert-warning py-1 px-2&quot;&gt;campos&lt;/span&gt; deberán ser completados, ingresando la información correcta de acuerdo a la columna que correspondan.&lt;/p&gt; &lt;p class=&quot;estilo-01 text-sres-gris p-1 text-justify&quot;&gt;Todos estos &lt;span class=&quot;alert alert-secondary py-1 px-2&quot;&gt;campos&lt;/span&gt; son autocalculables y no se requiere ingreso de información, son campos de solo lectura.&lt;/p&gt;"><i class="fas fa-question-circle mr-1"></i>Ayuda</button>
             </div>
         </div>
     </div>
 </div>
-<input class="nom-cri" type="hidden" value="@criterio.NOMBRE"/>
+
+<div class="container-fluid my-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 text-center my-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text bg-sres-azul text-white"><i class="fas fa-list"></i></span></div>
+                                @if (listaCaso != null)
+                                {
+                                    <select class="form-control" id="cbo-caso">
+
+                                        @foreach (var caso in listaCaso)
+                                        {
+                                            <option value="@caso.ID_CASO">@caso.NOMBRE</option>
+                                        }
+
+                                    </select>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="table-add"></div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bg-sres-claro py-5 px-3">
+                            <div class="row">
+                                <div class="col-12" id="doc-add">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="offset-lg-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                <div class="row">
+                    <div class="col-lg-6"><a class="btn btn-secondary text-white w-100" href="@Url.Action("Criterios","Convocatoria")">Regresar</a></div>
+                    <div class="col-lg-6">
+                        <div class="btn btn-primary text-white w-100" type="button" id="btnGuardar">Guardar</div>
+                    </div>
+                </div>
+            </div>
+            <div class="offset-lg-12 col-lg-12 col-md-12 col-sm-12 my-3">
+                <div class="row">
+                    <div class="col-12 alert-add">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-@*<h2>Criterio</h2>
+    <input class="nom-cri" type="hidden" value="@criterio.NOMBRE" />
 
-    @criterio.NOMBRE*@
 
-@*<div>
-        <button id="btnConsultar">CONSULTAR</button>
-    </div>*@
-@*<div id="cabecera"></div>
-    <div>
-        <button id="btnGuardar">Guardar</button>
-    </div>*@
-<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    @*<h2>Criterio</h2>
 
-<script>
-    const idCriterio = @criterio.ID_CRITERIO;
-    const idInscripcion = @inscripcion.ID_INSCRIPCION;
-    const idConvocatoria = @convocatoria.ID_CONVOCATORIA;
-    const maxBytes = @(AppSettings.Get<long>("File.MaxBytes"));
-</script>
+        @criterio.NOMBRE*@
+
+    @*<div>
+            <button id="btnConsultar">CONSULTAR</button>
+        </div>*@
+    @*<div id="cabecera"></div>
+        <div>
+            <button id="btnGuardar">Guardar</button>
+        </div>*@
+    <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+    <script>
+        const idCriterio = @criterio.ID_CRITERIO;
+        const idInscripcion = @inscripcion.ID_INSCRIPCION;
+        const idConvocatoria = @convocatoria.ID_CONVOCATORIA;
+        const maxBytes = @(AppSettings.Get<long>("File.MaxBytes"));
+    </script>

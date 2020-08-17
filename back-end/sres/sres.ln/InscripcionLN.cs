@@ -18,6 +18,7 @@ namespace sres.ln
         InscripcionRequerimientoDA inscripcionRequerimientoDA = new InscripcionRequerimientoDA();
         InstitucionDA institucionDA = new InstitucionDA();
         InscripcionTrazabilidadDA inscripcionTrazabilidadDA = new InscripcionTrazabilidadDA();
+        ConvocatoriaDA convocatoriaDA = new ConvocatoriaDA();
 
         public InscripcionBE ObtenerInscripcionPorConvocatoriaInstitucion(int idConvocatoria, int idInstitucion)
         {
@@ -75,6 +76,8 @@ namespace sres.ln
                             };
 
                             seGuardo = inscripcionTrazabilidadDA.RegistrarInscripcionTrazabilidad(inscripcionTrazabilidad, cn);
+                            if (seGuardo)
+                                seGuardo = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = Convert.ToInt16(inscripcion.ID_CONVOCATORIA), ID_ETAPA = inscripcion.ID_ETAPA, ID_INSCRIPCION = outIdInscripcion }, cn);
                         }
 
                         if (inscripcion.LISTA_INSCRIPCION_REQUERIMIENTO != null)
@@ -99,7 +102,7 @@ namespace sres.ln
                                 }
                                 else break;
                             }
-                        }
+                        }                        
                     }
 
                     if (seGuardo) ot.Commit();

@@ -53,13 +53,14 @@ namespace sres.app.Controllers
             UsuarioBE usuario = ObtenerUsuarioLogin();
 
             InscripcionBE inscripcion = usuario == null ? null : inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, usuario.ID_INSTITUCION.Value);
-            
+            ConvocatoriaEtapaInscripcionBE convetainsc = convetainscLN.ObtenerConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = convocatoria.ID_CONVOCATORIA, ID_ETAPA = convocatoria.ID_ETAPA, ID_INSCRIPCION = inscripcion == null ? 0 : inscripcion.ID_INSCRIPCION });
             //int? idInscripcion = inscripcion == null ? null : (int?)inscripcion.ID_INSCRIPCION;
 
             //List<InscripcionRequerimientoBE> inscripcionRequerimiento = inscripcionRequerimientoLN.ListarInscripcionRequerimientoPorConvocatoriaInscripcion(idConvocatoria, idInscripcion);
 
             ViewData["convocatoria"] = convocatoria;
             ViewData["inscripcion"] = inscripcion;
+            ViewData["convetainsc"] = convetainsc;
             //ViewData["inscripcionRequerimiento"] = inscripcionRequerimiento;
 
             return View();

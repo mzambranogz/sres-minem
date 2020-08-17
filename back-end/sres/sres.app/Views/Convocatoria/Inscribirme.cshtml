@@ -8,6 +8,7 @@
 
     ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
     InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
+    ConvocatoriaEtapaInscripcionBE convetainsc = (ConvocatoriaEtapaInscripcionBE)ViewData["convetainsc"];
 }
 
 @section scripts_footer{
@@ -21,12 +22,30 @@
     <script src="@Url.Content("~/Assets/js/pages/convocatoria_inscribirme.js")"></script>
 }
 
-@if (inscripcion != null)
+@*@if (inscripcion != null)
 {
     <div class="container-fluid mt-5">
         <div class="container">
             <div class="row">
                 <h1>¡GRACIAS POR INSCRIBIRTE EN LA CONVOCATORIA!</h1>
+            </div>
+        </div>
+    </div>
+}*@
+@if (convetainsc != null)
+{
+    <div class="container-fluid mt-5">
+        <div class="container">
+            <div class="row">
+                <h1>@(convocatoria.ID_ETAPA == 2 ? "¡GRACIAS POR INSCRIBIRTE EN LA CONVOCATORIA!" : "¡LOS REQUISITOS FUERON ENVIADOS A REVISIÓN!")</h1>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="rayado my-5 wow fadeIn"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-lg-9 col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Action("Index","Convocatoria")">Regresar</a></div>
             </div>
         </div>
     </div>
@@ -42,6 +61,7 @@ else
                 </div>
             </div>
         </div>
+
     }
     else
     {
@@ -139,3 +159,7 @@ else
         </div>
     }
 }
+
+<script>
+    const idEtapa = @convocatoria.ID_ETAPA;
+</script>

@@ -54,7 +54,10 @@ var consultar = () => {
 
 var consultarConvocatoria = (element) => {
     $('#frm').show();
-    $('.relacion-evaluador').removeClass('d-none');
+    $('.alert-add').html('');
+    $('#btnGuardar').show(); 
+    $('#btnGuardar').next().html('Cancelar');
+    //$('.relacion-evaluador').removeClass('d-none');
     $('#etapa-convocatoria').show();
     limpiarFormulario();
     let id = $(element).attr('data-id');
@@ -565,7 +568,7 @@ var guardar = () => {
         j.OK ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardaron correctamente los datos de la convocatoria.', close: { time: 4000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });            
         //alert('Se registró correctamente');
         //cerrarFormulario();
-        //$('#btnConsultar')[0].click();
+        $('#btnConsultar')[0].click();
     });
 }
 

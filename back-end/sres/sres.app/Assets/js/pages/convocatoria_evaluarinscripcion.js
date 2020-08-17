@@ -141,9 +141,10 @@ var evaluarInscripcion = () => {
 
 var mostrarMensaje = (data) => {
     if (data == true) {
-        $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: `¡Se guardó correctamente!`, close: { time: 3000 } });
-
-        cargarListaInscripcionRequerimiento();
+        $('#btnEvaluar').parent().parent().hide();
+        $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: `¡Se guardó correctamente!`, close: { time: 4000 } });
+        setTimeout(() => { location.href = `${baseUrl}Convocatoria/${idConvocatoria}/BandejaParticipantes/`; }, 4000);
+        //cargarListaInscripcionRequerimiento();
     }
 }
 
