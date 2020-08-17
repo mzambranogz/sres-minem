@@ -7,6 +7,9 @@
     $('.mostrar-relacion').on('click', (e) => relacionar());
     $('#btnCerrarRelacion').on('click', (e) => cerrarRelacion());
     $('#btnGuardarRelacion').on('click', (e) => guardarRelacion());
+    $('#btnGuardarNoRelacion').on('click', (e) => guardarNoRelacion());
+    $('#tab-head-01').on('click', (e) => limpiarSeccion());
+    $('#tab-head-02').on('click', (e) => limpiarSeccionPos());
     consultarListas();
     //consultarRequerimiento('#list-req');
     //consultarCriterio('#list-criterio');
@@ -82,13 +85,32 @@ var consultarConvocatoria = (element) => {
             cargarDatos(j);
             //jCri.length == 0 ? '' : jReq.map(x => $('#chk-r-'+x.ID_REQUERIMIENTO).prop('checked', true));
 
+            //if (jPos.length > 0){
+            //    let postulante = jPos.map((x,y) => {
+            //        let evaluadores = armarEvaluadores(jEva, x.ID_INSTITUCION);
+            //        return `<div class="get-valor"><label class="get-institucion mr-3" id="${x.ID_INSTITUCION}">${x.RAZON_SOCIAL}</label>${evaluadores}</div>`;
+            //    }).join('');    
+            //    $('.postulante-evaluador').html(postulante);
+            //    asignarEvaluador(jPos);
+            //}
+
             if (jPos.length > 0){
                 let postulante = jPos.map((x,y) => {
-                    let evaluadores = armarEvaluadores(jEva, x.ID_INSTITUCION);
-                    return `<div class="get-valor"><label class="get-institucion mr-3" id="${x.ID_INSTITUCION}">${x.RAZON_SOCIAL}</label>${evaluadores}</div>`;
+                    //return `<div class="get-valor"><label class="get-institucion mr-3" id="${x.ID_INSTITUCION}">${x.RAZON_SOCIAL}</label>${evaluadores}</div>`;
+                    return `<div class="col-auto my-1"><div class="custom-control custom-checkbox mr-sm-2"><input class="custom-control-input get-institucion" type="checkbox" id="chk-postulante-${x.ID_INSTITUCION}"><label class="custom-control-label estilo-01" for="chk-postulante-${x.ID_INSTITUCION}">${x.RAZON_SOCIAL}</label></div></div>`;
                 }).join('');    
                 $('.postulante-evaluador').html(postulante);
-                asignarEvaluador(jPos);
+                removerPostulante(jPos);
+                //let a = `<div class="col-auto my-1"><div class="custom-control custom-checkbox mr-sm-2"><input class="custom-control-input" type="checkbox" id="chk-postulante-add-1"><label class="custom-control-label estilo-01" for="chk-postulante-add-1">Postulante&nbsp;1</label></div></div>`;
+                //asignarEvaluador(jPos);
+            }
+
+            if (jEva.length > 0){
+                let evaluador = jEva.map((x,y) => {
+                    return `<option value="${x.ID_USUARIO}">${x.NOMBRE}</option>`;
+                }).join('');
+                $('#cbo-evaluadores-01').html(`<option value="0">-Seleccionar-</option>${evaluador}`);
+                $('#cbo-evaluadores-02').html(`<option value="0">-Seleccionar-</option>${evaluador}`);
             }
 
             if (jCri.length > 0){
@@ -136,6 +158,17 @@ var asignarEvaluador = (data) => {
     });
 }
 
+var removerPostulante = (data) => {
+    data.map((x,y) => {
+        debugger;
+        if (x.CONV_EVA_POS != null){
+            if (x.CONV_EVA_POS.FLAG_ESTADO == '1'){
+                $(`#chk-postulante-${x.ID_INSTITUCION}`).parent().parent().remove();
+            }            
+        }
+    });
+}
+
 var cargarDatos = (data) => {
     //debugger;
     $('#cbo-etapa').val(data.ID_ETAPA);
@@ -153,7 +186,6 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
 
     if (deboRenderizar) {
         contenido = data.map((x, i) => {
-            debugger;
             let formatoCodigo = '00000000';
             let porcentajeAvance = x.ID_ETAPA > 15 ? 100 : Math.round((x.ID_ETAPA - 1) / 14 * 100);
             let colNro = `<td class="text-center" data-encabezado="Número de orden" scope="row" data-count="0">${(pagina - 1) * registros + (i + 1)}</td>`;
@@ -538,22 +570,35 @@ var guardar = () => {
 }
 
 var guardarRelacion = () => {
-    if ($('.postulante-evaluador').find('.get-valor').length == 0){
+    if ($('.postulante-evaluador').find('.get-institucion').length == 0){
         alert('No hay participantes en esta convocatoria'); return;
     }
 
-    if ($('.postulante-evaluador').find('.get-valor').find('.get-evaluador').length == 0){
-        alert('Debe selecionar los evaluadores que participarán en la convocatoria'); return;
+    if ($('#cbo-evaluadores-01').val() == 0){
+        alert('Debe selecionar a un evaluador para asignar el/los participante(s)'); return;
     }
 
     let relacion = [];
-    $('.postulante-evaluador').find('.get-valor').each((x, y) => {
-        var r = {
-            ID_CONVOCATORIA: $('#frm').data('id'),
-            ID_INSTITUCION: $(y).find('.get-institucion').attr('id'),
-            ID_USUARIO: $(`#eva-${$(y).find('.get-institucion').attr('id')}`).val()
-        }
-        relacion.push(r);        
+    //$('.postulante-evaluador').find('.get-valor').each((x, y) => {
+    //    var r = {
+    //        ID_CONVOCATORIA: $('#frm').data('id'),
+    //        ID_INSTITUCION: $(y).find('.get-institucion').attr('id'),
+    //        ID_USUARIO: $(`#eva-${$(y).find('.get-institucion').attr('id')}`).val()
+    //    }
+    //    relacion.push(r);        
+    //});
+
+    $('.postulante-evaluador').find('.get-institucion').each((x, y) => {
+        debugger;
+        if ($(y).prop('checked')){
+            var r = {
+                ID_CONVOCATORIA: $('#frm').data('id'),
+                ID_INSTITUCION: $(y).attr('id').replace('chk-postulante-',''),
+                ID_USUARIO: $('#cbo-evaluadores-01').val(),
+                USUARIO_GUARDAR: idUsuarioLogin
+            }
+            relacion.push(r); 
+        }               
     });
 
     let url = `/api/convocatoria/guardarevaluadorpostulante`;
@@ -564,8 +609,11 @@ var guardarRelacion = () => {
     .then(r => r.json())
     .then(j => {
         if (j) {
+            $('#cbo-evaluadores-01').val(0);
+            $('.postulante-evaluador').html('');
             alert('Se guardó correctamente la relación');
-            cerrarRelacion();
+            //cerrarRelacion();
+            mostrarNuevaListaPostulantes();
         }
     });
 }
@@ -578,3 +626,90 @@ var relacionar = () => {
 var cambiarColorEstado = (e) => {
     $(e).prop('checked') == true ? $(`#tab-head-cri-0${$(e).attr('id').replace('chk-c-','')} i`).removeClass('text-primary').addClass('text-sres-verde') : $(`#tab-head-cri-0${$(e).attr('id').replace('chk-c-','')} i`).removeClass('text-sres-verde').addClass('text-primary');
 }
+
+var mostrarNuevaListaPostulantes = () => {
+    let id = $('#frm').data('id');
+    let urlConvocatoriaPos = `/api/convocatoria/listarconvocatoriapos?id=${id}`;
+    fetch(urlConvocatoriaPos)
+    .then(r => r.json())
+    .then(r => {
+        if (r.length > 0){
+            let postulante = r.map((x,y) => {
+                return `<div class="col-auto my-1"><div class="custom-control custom-checkbox mr-sm-2"><input class="custom-control-input get-institucion" type="checkbox" id="chk-postulante-${x.ID_INSTITUCION}"><label class="custom-control-label estilo-01" for="chk-postulante-${x.ID_INSTITUCION}">${x.RAZON_SOCIAL}</label></div></div>`;
+            }).join('');    
+            $('.postulante-evaluador').html(postulante);
+            removerPostulante(r);
+        }
+    });
+}
+
+$(document).on('change', '#cbo-evaluadores-02', function (){
+    let idEva = $('#cbo-evaluadores-02').val();
+    let id = $('#frm').data('id');
+    if ($('#cbo-evaluadores-02').val() > 0){
+        $('.postulante-evaluador-relacion').html('');
+        let url = `/api/convocatoria/listarpostulanteevaluador?idConvocatoria=${id}&idEvaluador=${idEva}`;
+        fetch(url)
+        .then(r => r.json())
+        .then(r => {
+            if (r.length > 0){
+                let postulante = r.map((x,y) => {
+                    return `<div class="col-auto my-1"><div class="custom-control custom-checkbox mr-sm-2"><input class="custom-control-input get-institucion" type="checkbox" id="chk-postulante-${x.ID_INSTITUCION}"><label class="custom-control-label estilo-01" for="chk-postulante-${x.ID_INSTITUCION}">${x.RAZON_SOCIAL}</label></div></div>`;
+                }).join('');
+                $('.postulante-evaluador-relacion').html(postulante);
+                removerPostulante(r);
+            }
+        });
+    }
+});
+
+var limpiarSeccion = () => {
+    $('#cbo-evaluadores-02').val(0);
+    $('.postulante-evaluador-relacion').html('');
+}
+
+var limpiarSeccionPos = () => {
+    //mostrarNuevaListaPostulantes();
+}
+
+var guardarNoRelacion = () => {
+    if ($('.postulante-evaluador-relacion').find('.get-institucion').length == 0){
+        alert('No hay participantes en esta convocatoria'); return;
+    }
+
+    if ($('#cbo-evaluadores-02').val() == 0){
+        alert('Debe selecionar a un evaluador para desasignar el/los participante(s)'); return;
+    }
+
+    let relacion = [];
+    $('.postulante-evaluador-relacion').find('.get-institucion').each((x, y) => {
+        debugger;
+        if ($(y).prop('checked')){
+            var r = {
+                ID_CONVOCATORIA: $('#frm').data('id'),
+                ID_INSTITUCION: $(y).attr('id').replace('chk-postulante-',''),
+                ID_USUARIO: $('#cbo-evaluadores-02').val(),
+                USUARIO_GUARDAR: idUsuarioLogin
+            }
+            relacion.push(r); 
+        }               
+    });
+
+    let url = `/api/convocatoria/deseleccionarpostulante`;
+    let data = { LIST_INSTITUCION: relacion, USUARIO_GUARDAR: idUsuarioLogin };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+    fetch(url, init)
+    .then(r => r.json())
+    .then(j => {
+        if (j) {
+            $('#cbo-evaluadores-02').val(0);
+            $('#cbo-evaluadores-01').val(0);
+            $('.postulante-evaluador-relacion').html('');
+            alert('Se guardó correctamente la relación');
+            //cerrarRelacion();
+            mostrarNuevaListaPostulantes();
+        }
+    });
+}
+

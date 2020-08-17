@@ -415,6 +415,36 @@ namespace sres.ln
             return lista;
         }
 
+        public List<InstitucionBE> listarPostulanteEvaluador(int idConvocatoria, int idEvaluador)
+        {
+            List<InstitucionBE> lista = new List<InstitucionBE>();
+            try
+            {
+                cn.Open();
+                lista = convocatoriaDA.listarPostulanteEvaluador(idConvocatoria, idEvaluador, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return lista;
+        }
 
+        public bool DeseleccionarPostulante(ConvocatoriaBE entidad)
+        {
+            bool seGuardoConvocatoria = false;
+            try
+            {
+                cn.Open();
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {
+                    foreach (InstitucionBE i in entidad.LIST_INSTITUCION)
+                        if (i.ID_USUARIO > 0)
+                            if (!(seGuardoConvocatoria = convocatoriaDA.DeseleccionarPostulante(i, cn))) break;
+
+                    if (seGuardoConvocatoria) ot.Commit();
+                    else ot.Rollback();
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return seGuardoConvocatoria;
+        }
     }
 }

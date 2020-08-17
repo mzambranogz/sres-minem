@@ -630,5 +630,46 @@ namespace sres.da
             return seGuardo;
         }
 
+        public List<InstitucionBE> listarPostulanteEvaluador(int idConvocatoria, int idEvaluador, OracleConnection db)
+        {
+            List<InstitucionBE> item = new List<InstitucionBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_GET_POS_EVA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_USUARIO", idEvaluador);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.Query<InstitucionBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return item;
+        }
+
+        public bool DeseleccionarPostulante(InstitucionBE entidad, OracleConnection db)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_UPD_CONV_EVA_POS";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
+                p.Add("PI_ID_USUARIO", entidad.ID_USUARIO);
+                p.Add("PI_ID_INSTITUCION", entidad.ID_INSTITUCION);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seGuardo = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seGuardo;
+        }
+
     }
 }

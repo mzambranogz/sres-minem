@@ -254,5 +254,37 @@ namespace sres.app.Controllers.Api
             return verificar;
         }
 
+        [Route("listarpostulanteevaluador")]
+        [HttpGet]
+        public List<InstitucionBE> listarPostulanteEvaluador(int idConvocatoria, int idEvaluador)
+        {
+            List<InstitucionBE> lista = new List<InstitucionBE>();
+            try
+            {
+                lista = convocatoriaLN.listarPostulanteEvaluador(idConvocatoria, idEvaluador);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
+
+        [Route("deseleccionarpostulante")]
+        [HttpPost]
+        public bool DeseleccionarPostulante(ConvocatoriaBE obj)
+        {
+            bool verificar = false;
+            try
+            {
+                verificar = convocatoriaLN.DeseleccionarPostulante(obj);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return verificar;
+        }
+
     }
 }
