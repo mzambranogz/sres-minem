@@ -77,8 +77,8 @@ var renderizar = (data, cantidadCeldas) => {
             let porcentajeAvance = x.ID_ETAPA > 15 ? 100 : Math.round((x.ID_ETAPA - 1) / 14 * 100);
             let formatoCodigo = '00000000';
 
-            let colNro = `<td class="text-center text-sm-left" data-encabezado="Número" scope="row">${x.ROWNUMBER}</td>`
-            let colNroInforme = `<td class="text-center text-sm-left" data-encabezado="Número expediente" scope="row">${(`${formatoCodigo}${x.ID_CONVOCATORIA}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</td>`;
+            let colNro = `<td class="text-center" data-encabezado="Número" scope="row">${x.ROWNUMBER}</td>`
+            let colNroInforme = `<td class="text-center" data-encabezado="Número expediente" scope="row">${(`${formatoCodigo}${x.ID_CONVOCATORIA}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</td>`;
             let colPeriodo = `<td class="text-center" data-encabezado="Período">${fechaInicio.getFullYear()}</td>`;
             let colNombre = `<td data-encabezado="Progreso"><div class="text-limi-1">${x.NOMBRE}</div></td>`;
             let colFechaInicio = `<td class="text-center" data-encabezado="Fecha Inicio">${fechaInicio.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;
@@ -91,7 +91,7 @@ var renderizar = (data, cantidadCeldas) => {
             //EVALUADOR-ADMIN
             let btnVerEvaluar = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/BandejaParticipantes">${x.ID_ETAPA >= 15 ? `Ver` : `Evaluar`}</a>`;
             //POSTULANTE
-            let btnGestionar = `<a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>`;
+            let btnGestionar = `<a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>`;
             let btnEditarReq = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
             let btnIngresarEditarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Criterios"><i class="fas fa-edit mr-1"></i>${x.ID_ETAPA == 6 ? `Ingresar` : `Editar`} criterios</a>`
 
