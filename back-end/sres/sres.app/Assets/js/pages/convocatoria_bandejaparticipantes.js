@@ -72,7 +72,7 @@ var renderizar = (data, cantidadCeldas) => {
             let colAspiraciones = x.ASPIRACIONES == null ? "<td></td>" : `<td class="text-center" data-encabezado="Fecha Fin">${x.ASPIRACIONES.map(y => `<img class="img-fluid medal-sres" src="./images/${y.NOMBRE}.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">`)}</td>`;
 
             //let btnDetalles = `<a class="btn btn-sm btn-success w-100" href="javascript:void(0)">Detalles</a>`;
-            let btnGestionar = `<a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>`;
+            let btnGestionar = `<a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>`;
             let btnEvaluarRequisitos = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${idConvocatoria}/Institucion/${x.ID_INSTITUCION}/Evaluar"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a>`;
             let btnEvaluarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${idConvocatoria}/Inscripcion/${x.ID_INSCRIPCION}/EvaluacionCriterios"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a>`;
             let btnVerPerfil = `<a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a>`;

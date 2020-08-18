@@ -90,7 +90,7 @@ namespace sres.app.Controllers.Api
         [HttpPost]
         public bool GuardarUsuario(UsuarioBE usuario)
         {
-            bool esRegistroNuevo = usuario.ID_USUARIO > 1;
+            bool esRegistroNuevo = usuario.ID_USUARIO < 1;
             bool seGuardo = usuarioLN.GuardarUsuario(usuario);
 
             if (seGuardo && esRegistroNuevo)
