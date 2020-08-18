@@ -35,6 +35,7 @@ CREATE OR REPLACE PACKAGE SISSELLO."PKG_SISSELLO_CRITERIO" AS
     PI_PAGINA NUMBER,
     PI_COLUMNA VARCHAR2,
     PI_ORDEN VARCHAR2,
+    PI_ID_INSTITUCION NUMBER,
     PO_REF OUT SYS_REFCURSOR
   );
   
@@ -1036,6 +1037,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
     PI_PAGINA NUMBER,
     PI_COLUMNA VARCHAR2,
     PI_ORDEN VARCHAR2,
+    PI_ID_INSTITUCION NUMBER,
     PO_REF OUT SYS_REFCURSOR
   ) AS    
     vTOTAL_REG INTEGER;
@@ -1049,6 +1051,12 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_CONVOCATORIA C INNER JOIN
                     T_MAE_ETAPA E ON C.ID_ETAPA = E.ID_ETAPA
+                    ' ||
+                          CASE 
+                            WHEN PI_ID_INSTITUCION > 0 THEN
+                              ' INNER JOIN T_GENM_INSCRIPCION INSC ON C.ID_CONVOCATORIA = INSC.ID_CONVOCATORIA '
+                          END 
+                    || '
                     WHERE ' ||
                     CASE
                       WHEN PI_NRO_INFORME IS NOT NULL THEN
@@ -1066,7 +1074,12 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                       WHEN PI_FECHA_INICIO IS NULL AND PI_FECHA_FIN IS NOT NULL THEN
                       '(TO_DATE(C.FECHA_INICIO) <= TO_DATE(''' || TO_CHAR(PI_FECHA_FIN, 'DD/MM/YYYY') || ''') OR TO_DATE(C.FECHA_FIN) <= TO_DATE(''' || TO_CHAR(PI_FECHA_FIN, 'DD/MM/YYYY') || ''')) AND '
                     END ||
-                    'C.FLAG_ESTADO = ''1''';
+                    ''  ||
+                          CASE
+                            WHEN PI_ID_INSTITUCION > 0 THEN
+                              ' INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' AND '
+                          END || '
+                    C.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
     vPAGINA_TOTAL := CEIL(TO_NUMBER(vTOTAL_REG) / TO_NUMBER(PI_REGISTROS));
@@ -1093,6 +1106,12 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                                   C.ID_ETAPA,
                                   E.NOMBRE AS "NOMBRE_ETAPA",
                                   C.FLAG_ESTADO,
+                                  ' ||
+                                        CASE 
+                                          WHEN PI_ID_INSTITUCION > 0 THEN
+                                            ' NVL(INSC.FLAG_ANULAR, 0) FLAG_ANULAR, '
+                                        END 
+                                  || '
                                   ROW_NUMBER() OVER (ORDER BY ' || vCOLUMNA || ' ' || PI_ORDEN ||') AS ROWNUMBER,'
                                   || vPAGINA_TOTAL || ' AS TOTAL_PAGINAS,'
                                   || vPAGINA_ACTUAL || ' AS PAGINA,'
@@ -1100,6 +1119,11 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                                   || vTOTAL_REG || ' AS TOTAL_REGISTROS
                           FROM T_GENM_CONVOCATORIA C INNER JOIN
                           T_MAE_ETAPA E ON C.ID_ETAPA = E.ID_ETAPA
+                          ' ||
+                          CASE
+                            WHEN PI_ID_INSTITUCION > 0 THEN
+                              ' LEFT JOIN T_GENM_INSCRIPCION INSC ON C.ID_CONVOCATORIA = INSC.ID_CONVOCATORIA '
+                          END || '
                           WHERE ' ||
                           CASE
                             WHEN PI_NRO_INFORME IS NOT NULL THEN
@@ -1117,7 +1141,12 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                             WHEN PI_FECHA_INICIO IS NULL AND PI_FECHA_FIN IS NOT NULL THEN
                             '(TO_DATE(C.FECHA_INICIO) <= TO_DATE(''' || TO_CHAR(PI_FECHA_FIN, 'DD/MM/YYYY') || ''') OR TO_DATE(C.FECHA_FIN) <= TO_DATE(''' || TO_CHAR(PI_FECHA_FIN, 'DD/MM/YYYY') || ''')) AND '
                           END ||
-                          'C.FLAG_ESTADO = ''1''
+                          ''  ||
+                          CASE
+                            WHEN PI_ID_INSTITUCION > 0 THEN
+                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR C.ID_ETAPA < 3) AND '
+                          END || '
+                          C.FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
     
@@ -3989,6 +4018,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
                                   INST.RAZON_SOCIAL AS "RAZON_SOCIAL_INSTITUCION",
                                   INSC.REG_USUARIO,
                                   INSC.REG_FECHA,
+			          INSC.FLAG_ANULAR,
                                   C.ID_ETAPA AS "ID_ETAPA_CONVOCATORIA",
                                   U.NOMBRES AS "NOMBRES_USUARIO",
                                   U.APELLIDOS AS "APELLIDOS_USUARIO",

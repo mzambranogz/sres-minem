@@ -130,12 +130,16 @@ var evaluarInscripcion = () => {
         LISTA_INSCRIPCION_REQUERIMIENTO: listaInscripcionRequerimiento,
         ID_TIPO_EVALUACION: $('.alert-secondary').length > 0 ? null : $('.alert-danger').length == 0 ? 1 : 2,
         OBSERVACION: observacion,
-        UPD_USUARIO: idUsuarioLogin
+        UPD_USUARIO: idUsuarioLogin,
+        USUARIO_GUARDAR: idUsuarioLogin
     }
 
     //console.log(formData);
+    //let url = `/api/inscripcion/evaluarinscripcion`;
+    let url = ``;
+    if ($('.alert-danger').length == 0) url = `/api/inscripcion/evaluarinscripcion`;
+    else url = `/api/inscripcion/anularinscripcion`;
 
-    let url = `/api/inscripcion/evaluarinscripcion`;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
     //let init = { method: 'POST', body: formData };
 
@@ -147,9 +151,12 @@ var evaluarInscripcion = () => {
 var mostrarMensaje = (data) => {
     if (data == true) {
         $('#btnEvaluar').parent().parent().hide();
-        $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: `¡Se guardó correctamente!`, close: { time: 4000 } });
-        setTimeout(() => { location.href = `${baseUrl}Convocatoria/${idConvocatoria}/BandejaParticipantes/`; }, 4000);
+        if ($('.alert-danger').length == 0) $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: `¡Se guardó correctamente!`, close: { time: 5000 } });
+        else $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'CORRECTO', message: `¡Se realizó correctamente el proceso de anulación y se notificó al usuario responsable!`, close: { time: 5000 } });
+        setTimeout(() => { location.href = `${baseUrl}Convocatoria/${idConvocatoria}/BandejaParticipantes/`; }, 5000);
         //cargarListaInscripcionRequerimiento();
+    } else {
+        $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'danger', title: 'OCURRIÓ UN ERROR INESPERADO', message: `Inténtelo nuevamente por favor.`, close: { time: 5000 } });
     }
 }
 

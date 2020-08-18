@@ -14,7 +14,7 @@ namespace sres.be
         public int? ID_INSTITUCION { get; set; }
         public InstitucionBE INSTITUCION { get; set; }
         public List<InscripcionRequerimientoBE> LISTA_INSCRIPCION_REQUERIMIENTO { get; set; }
-        public bool FLAG_ANULAR { get; set; }
+        public int FLAG_ANULAR { get; set; }
         public string NRO_INFORME_PRELIMINAR { get; set; }
         public int? ID_TIPO_EVALUACION { get; set; }
         public string OBSERVACION { get; set; }

@@ -123,6 +123,8 @@ var mostrarMensaje = (data) => {
         setTimeout(() => { location.href = `${baseUrl}Convocatoria/`; }, 4000);
         //limpiarFiles(); //retirado
         //cargarListaInscripcionRequerimiento(); //retirado
+    } else {
+        $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'danger', title: 'OCURRIÓ UN ERROR INESPERADO', message: `Inténtelo nuevamente por favor.`, close: { time: 4000 } });
     }
 }
 

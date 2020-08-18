@@ -14,7 +14,7 @@ namespace sres.da
 {
     public class ConvocatoriaDA : BaseDA
     {
-        public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, OracleConnection db)
+        public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, int idInstitucion, OracleConnection db)
         {
             List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
 
@@ -30,6 +30,7 @@ namespace sres.da
                 p.Add("PI_PAGINA", pagina);
                 p.Add("PI_COLUMNA", columna);
                 p.Add("PI_ORDEN", orden);
+                p.Add("PI_ID_INSTITUCION", idInstitucion);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<dynamic>(sp, p, commandType: CommandType.StoredProcedure).Select(x => new ConvocatoriaBE
                 {
@@ -46,7 +47,8 @@ namespace sres.da
                     TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
                     PAGINA = (int)x.PAGINA,
                     CANTIDAD_REGISTROS = (int)x.CANTIDAD_REGISTROS,
-                    TOTAL_REGISTROS = (int)x.TOTAL_REGISTROS
+                    TOTAL_REGISTROS = (int)x.TOTAL_REGISTROS,
+                    FLAG_ANULAR = idInstitucion == 0 ? 0 : (int)x.FLAG_ANULAR
                 }).ToList();
             }
             catch (Exception ex) { Log.Error(ex); }
