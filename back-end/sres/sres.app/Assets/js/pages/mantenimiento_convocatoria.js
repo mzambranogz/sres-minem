@@ -57,7 +57,7 @@ var consultarConvocatoria = (element) => {
     $('.alert-add').html('');
     $('#btnGuardar').show(); 
     $('#btnGuardar').next().html('Cancelar');
-    //$('.relacion-evaluador').removeClass('d-none');
+    $('.relacion-evaluador').removeClass('d-none');
     $('#etapa-convocatoria').show();
     limpiarFormulario();
     let id = $(element).attr('data-id');
