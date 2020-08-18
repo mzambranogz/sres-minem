@@ -583,10 +583,11 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_INSCRIPCION", idInscripcion);
                 p.Add("PI_USUARIO_GUARDAR", usuario);
-                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                //p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
-                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
-                seGuardo = filasAfectadas > 0;
+                //int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                //seGuardo = filasAfectadas > 0;
+                seGuardo = true;
             }
             catch (Exception ex) { Log.Error(ex); }
 
@@ -602,10 +603,11 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_INSCRIPCION", idInscripcion);
                 p.Add("PI_USUARIO_GUARDAR", usuario);
-                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                //p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
-                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
-                seGuardo = filasAfectadas > 0;
+                //int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                //seGuardo = filasAfectadas > 0;
+                seGuardo = true;
             }
             catch (Exception ex) { Log.Error(ex); }
 

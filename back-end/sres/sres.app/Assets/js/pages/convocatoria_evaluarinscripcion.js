@@ -1,6 +1,6 @@
 ﻿var pageLoad = () => {
     cargarListaInscripcionRequerimiento();
-    $('#btnEvaluar').on('click', btnEvaluarClick);
+    $('#btnEvaluar').on('click', btnEvaluarClick);    
 }
 
 var cargarListaInscripcionRequerimiento = () => {
@@ -51,6 +51,7 @@ var mostrarListaInscripcionRequerimiento = (data) => {
         //$('input[type="file"].fil-file-control').on('change', fileRequerimientoChange);
         //$('input[type="file"][id*="fle-requisito-"]').on('change', fileRequerimientoChange);
         //$(`[id*="viewContentFile-"] .btnEliminarFile`).on('click', btnEliminarFileClick);
+        if (idEtapa == 5) validarAnular();
     }
 }
 
@@ -58,12 +59,14 @@ var chkAprobadoChange = (e) => {
     let id = $(e.currentTarget).attr('data-id');
     $(`#msg-${id}`).removeClass('alert-secondary').removeClass('alert-success').removeClass('alert-danger').addClass('alert-success');
     $(`#msg-${id}`).html(`<div class="mr-lg-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">El documento es correcto</span></div>`);
+    if (idEtapa == 5) validarAnular();
 }
 
 var chkDesaprobadoChange = (e) => {
     let id = $(e.currentTarget).attr('data-id');
     $(`#msg-${id}`).removeClass('alert-secondary').removeClass('alert-success').removeClass('alert-danger').addClass('alert-danger');
     $(`#msg-${id}`).html(`<div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div>`);
+    if (idEtapa == 5) validarAnular();
 }
 
 var btnEvaluarClick = (e) => {
@@ -147,6 +150,16 @@ var mostrarMensaje = (data) => {
         $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: `¡Se guardó correctamente!`, close: { time: 4000 } });
         setTimeout(() => { location.href = `${baseUrl}Convocatoria/${idConvocatoria}/BandejaParticipantes/`; }, 4000);
         //cargarListaInscripcionRequerimiento();
+    }
+}
+
+var validarAnular = () => {
+    if ($('.alert-danger').length == 0) {
+        $('#btnEvaluar').html('Evaluar');
+        $('#btnEvaluar').removeClass('btn-danger').addClass('btn-primary');
+    } else if ($('.alert-danger').length > 0) {
+        $('#btnEvaluar').html('Anular');
+        $('#btnEvaluar').removeClass('btn-primary').addClass('btn-danger');
     }
 }
 
