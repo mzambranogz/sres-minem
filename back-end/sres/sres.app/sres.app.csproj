@@ -159,7 +159,11 @@
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
     <Content Include="Global.asax" />
+    <Content Include="Mailing\CoordinacionConvocatoria.html" />
     <Content Include="Mailing\CreacionConvocatoria.html" />
+    <Content Include="Mailing\DocSolicitadosConvocatoria.html" />
+    <Content Include="Mailing\FiltradoConvocatoria.html" />
+    <Content Include="Mailing\FinalizacionConvocatoria.html" />
     <Content Include="Mailing\InformeFinal.html" />
     <Content Include="Mailing\InformePreliminar.html" />
     <Content Include="Mailing\InscripcionAnulacion.html" />
@@ -167,9 +171,14 @@
     <Content Include="Mailing\DeshabilitarUsuario.html" />
     <Content Include="Mailing\AprobacionUsuario.html" />
     <Content Include="Mailing\CreacionUsuario.html" />
+    <Content Include="Mailing\LevantamientoObsConvocatoria.html" />
     <Content Include="Mailing\LevantamientoObservacion.html" />
     <Content Include="Mailing\PostulacionConvocatoria.html" />
+    <Content Include="Mailing\RecopilacionInfConvocatoria.html" />
     <Content Include="Mailing\RecuperarClave.html" />
+    <Content Include="Mailing\ResultadosConvocatoria.html" />
+    <Content Include="Mailing\RevisionN1Convocatoria.html" />
+    <Content Include="Mailing\RevisionN2Convocatoria.html" />
     <Content Include="Mailing\RevisionReqConvocatoria.html" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />

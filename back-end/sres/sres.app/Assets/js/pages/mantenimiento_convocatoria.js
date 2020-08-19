@@ -190,7 +190,7 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
     if (deboRenderizar) {
         contenido = data.map((x, i) => {
             let formatoCodigo = '00000000';
-            let porcentajeAvance = x.ID_ETAPA > 15 ? 100 : Math.round((x.ID_ETAPA - 1) / 14 * 100);
+            let porcentajeAvance = x.ID_ETAPA > 14 ? 100 : Math.round((x.ID_ETAPA - 1) / 13 * 100);
             let colNro = `<td class="text-center" data-encabezado="Número de orden" scope="row" data-count="0">${(pagina - 1) * registros + (i + 1)}</td>`;
             let colExp = `<td class="text-center" data-encabezado="Número expediente" scope="row"><span>${(`${formatoCodigo}${x.ID_CONVOCATORIA}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</span></td>`;
             let colNombre = `<td class="text-center" data-encabezado="Título">${x.NOMBRE}</td>`;

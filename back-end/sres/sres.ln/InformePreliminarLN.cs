@@ -169,5 +169,43 @@ namespace sres.ln
 
             return lista;
         }
+
+        public List<InscripcionBE> listaResultadosParticipantes(int idConvocatoria) {
+            List<InscripcionBE> lista = new List<InscripcionBE>();
+            try
+            {
+                cn.Open();
+                lista = informeDA.listaResultadosParticipantes(idConvocatoria, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public ReconocimientoBE obtenerReconocimientoInscripcion(InscripcionBE entidad)
+        {
+            ReconocimientoBE item = new ReconocimientoBE();
+            try
+            {
+                cn.Open();
+                item = informeDA.obtenerReconocimientoInscripcion(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
+        public List<ReconocimientoMedidaBE> obtenerReconocimientoInscripcionMedida(int idReconocimiento)
+        {
+            List<ReconocimientoMedidaBE> lista = new List<ReconocimientoMedidaBE>();
+            try
+            {
+                cn.Open();
+                lista = informeDA.obtenerReconocimientoInscripcionMedida(idReconocimiento, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }

@@ -75,7 +75,7 @@ var renderizar = (data, cantidadCeldas) => {
             let diasPlazo = Math.floor((fechaFin - fechaInicio) / (1000 * 60 * 60 * 24));
             let diasTranscurridos = Math.floor((fechaActual - fechaInicio) / (1000 * 60 * 60 * 24));
             //let porcentajeAvance = Math.floor(fechaInicio > fechaActual ? 0.00 : fechaActual > fechaFin ? 100 : (diasTranscurridos / diasPlazo * 100))
-            let porcentajeAvance = x.ID_ETAPA > 15 ? 100 : Math.round((x.ID_ETAPA - 1) / 14 * 100);
+            let porcentajeAvance = x.ID_ETAPA > 14 ? 100 : Math.round((x.ID_ETAPA - 1) / 13 * 100);
             let formatoCodigo = '00000000';
 
             let colNro = `<td class="text-center" data-encabezado="Número" scope="row">${x.ROWNUMBER}</td>`
@@ -90,7 +90,7 @@ var renderizar = (data, cantidadCeldas) => {
             let btnPostulacion = `<a class="btn btn-sm btn-success w-100" href="javascript:void(0)" onclick="verificarDatosInternos(${x.ID_CONVOCATORIA})" >Ingresar</a>`;
             //let btnPostulacion = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
             //EVALUADOR-ADMIN
-            let btnVerEvaluar = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/BandejaParticipantes">${x.ID_ETAPA >= 15 ? `Ver` : `Evaluar`}</a>`;
+            let btnVerEvaluar = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/BandejaParticipantes">${x.ID_ETAPA >= 14 ? `Ver` : `Evaluar`}</a>`;
             //POSTULANTE
             let btnGestionar = `<a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>`;
             let btnEditarReq = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme"><i class="fas fa-edit mr-1"></i>Editar requisitos</a>`;

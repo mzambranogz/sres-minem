@@ -36,7 +36,25 @@ namespace sres.ut
             [Description("PostulacionConvocatoria.html")]
             PostulacionConvocatoria,
             [Description("RevisionReqConvocatoria.html")]
-            RevisionReqConvocatoria
+            RevisionReqConvocatoria,
+            [Description("DocSolicitadosConvocatoria.html")]
+            DocSolicitadosConvocatoria,
+            [Description("FiltradoConvocatoria.html")]
+            FiltradoConvocatoria,
+            [Description("RecopilacionInfConvocatoria.html")]
+            RecopilacionInfConvocatoria,
+            [Description("CoordinacionConvocatoria.html")]
+            CoordinacionConvocatoria,
+            [Description("RevisionN1Convocatoria.html")]
+            RevisionN1Convocatoria,
+            [Description("LevantamientoObsConvocatoria.html")]
+            LevantamientoObsConvocatoria,
+            [Description("RevisionN2Convocatoria.html")]
+            RevisionN2Convocatoria,
+            [Description("ResultadosConvocatoria.html")]
+            ResultadosConvocatoria,
+            [Description("FinalizacionConvocatoria.html")]
+            FinalizacionConvocatoria
         }
 
         static string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);

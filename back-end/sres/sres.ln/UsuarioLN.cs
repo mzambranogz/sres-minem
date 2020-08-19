@@ -273,5 +273,35 @@ namespace sres.ln
             return seMigro;
         }
 
+        public List<UsuarioBE> ListarUsuarioResponsable(int idConvocatoria)
+        {
+            List<UsuarioBE> lista = new List<UsuarioBE>();
+
+            try
+            {
+                cn.Open();
+                lista = usuarioDA.ListarUsuarioResponsable(idConvocatoria, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<UsuarioBE> ListarUsuarioResponsableAll(int idConvocatoria)
+        {
+            List<UsuarioBE> lista = new List<UsuarioBE>();
+
+            try
+            {
+                cn.Open();
+                lista = usuarioDA.ListarUsuarioResponsableAll(idConvocatoria, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
     }
 }
