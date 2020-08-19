@@ -168,7 +168,9 @@
     <Content Include="Mailing\AprobacionUsuario.html" />
     <Content Include="Mailing\CreacionUsuario.html" />
     <Content Include="Mailing\LevantamientoObservacion.html" />
+    <Content Include="Mailing\PostulacionConvocatoria.html" />
     <Content Include="Mailing\RecuperarClave.html" />
+    <Content Include="Mailing\RevisionReqConvocatoria.html" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config">

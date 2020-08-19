@@ -23,6 +23,7 @@ namespace sres.be
         public int ID_USUARIO { get; set; }
         public string NOMBRE_ETAPA { get; set; }
         public int DIAS { get; set; }
+        public string CORREO { get; set; }
         public int FLAG_ANULAR { get; set; }
     }
 }
