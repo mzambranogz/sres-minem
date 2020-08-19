@@ -54,7 +54,11 @@ namespace sres.ut
             [Description("ResultadosConvocatoria.html")]
             ResultadosConvocatoria,
             [Description("FinalizacionConvocatoria.html")]
-            FinalizacionConvocatoria
+            FinalizacionConvocatoria,
+            [Description("ObservacionRequisitos.html")]
+            ObservacionRequisitos,
+            [Description("AprobacionRequesitos.html")]
+            AprobacionRequesitos
         }
 
         static string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);

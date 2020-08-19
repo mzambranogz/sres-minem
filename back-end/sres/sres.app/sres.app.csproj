@@ -159,6 +159,7 @@
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
     <Content Include="Global.asax" />
+    <Content Include="Mailing\AprobacionRequesitos.html" />
     <Content Include="Mailing\CoordinacionConvocatoria.html" />
     <Content Include="Mailing\CreacionConvocatoria.html" />
     <Content Include="Mailing\DocSolicitadosConvocatoria.html" />
@@ -173,6 +174,7 @@
     <Content Include="Mailing\CreacionUsuario.html" />
     <Content Include="Mailing\LevantamientoObsConvocatoria.html" />
     <Content Include="Mailing\LevantamientoObservacion.html" />
+    <Content Include="Mailing\ObservacionRequisitos.html" />
     <Content Include="Mailing\PostulacionConvocatoria.html" />
     <Content Include="Mailing\RecopilacionInfConvocatoria.html" />
     <Content Include="Mailing\RecuperarClave.html" />

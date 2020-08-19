@@ -181,7 +181,6 @@ namespace sres.app.Controllers.Api
                             };
 
                             listaEnvios.Add(envio);
-
                         }
 
                         Task.Factory.StartNew(() =>
@@ -191,21 +190,8 @@ namespace sres.app.Controllers.Api
                                 mailing.SendMail(item.Template, item.Databody, item.Fields, item.FieldsRequire, item.Subject, item.MailTo);
                             }                            
                         });
-
                     }
-                    
-
-                    //foreach (ConvocatoriaBE usuario in lista)
-                    //{
-                    //    mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRE}"));
-                    //}
-
-                    //if (lista.Count > 0)
-                    //{
-                    //    if (obj.ID_ETAPA == 3) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.RevisionReqConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
-                    //}
                 }
-
             }
             catch (Exception ex)
             {
