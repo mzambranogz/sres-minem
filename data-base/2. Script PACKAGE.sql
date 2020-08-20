@@ -965,6 +965,15 @@ CREATE OR REPLACE PACKAGE SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     PI_ID_CONVOCATORIA NUMBER,
     PO_REF OUT SYS_REFCURSOR
   );
+
+  PROCEDURE USP_SEL_LISTA_BUSQ_CASO(
+    PI_BUSCAR VARCHAR2,
+    PI_REGISTROS NUMBER,
+    PI_PAGINA NUMBER,
+    PI_COLUMNA VARCHAR2,
+    PI_ORDEN VARCHAR2,
+    PO_REF OUT SYS_REFCURSOR
+  );
 END PKG_SISSELLO_MANTENIMIENTO;
 
 /
@@ -4204,6 +4213,74 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     INNER JOIN T_GENM_USUARIO USU ON I.REG_USUARIO = USU.ID_USUARIO
     WHERE I.ID_CONVOCATORIA = PI_ID_CONVOCATORIA AND I.FLAG_ESTADO = '1'; 
   END USP_SEL_LISTA_USUARIO_RESP_ALL;
+
+  PROCEDURE USP_SEL_LISTA_BUSQ_CASO(
+    PI_BUSCAR VARCHAR2,
+    PI_REGISTROS NUMBER,
+    PI_PAGINA NUMBER,
+    PI_COLUMNA VARCHAR2,
+    PI_ORDEN VARCHAR2,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS    
+    vTOTAL_REG INTEGER;
+    vPAGINA_TOTAL INTEGER;
+    vPAGINA_ACTUAL INTEGER := PI_PAGINA;
+    vPAGINA_INICIAL INTEGER := 0;
+    vQUERY_CONT VARCHAR2(10000) := '';
+    vQUERY_SELECT VARCHAR2(10000) := '';
+    vCOLUMNA VARCHAR2(200);
+  BEGIN
+    vQUERY_CONT := 'SELECT  COUNT(1)
+                    FROM T_GENM_CASO C
+                    INNER JOIN T_GENM_CRITERIO CR ON C.ID_CRITERIO = CR.ID_CRITERIO
+                    WHERE 
+                    (LOWER(TRANSLATE(C.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(CR.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'') AND
+                    C.FLAG_ESTADO = ''1''';
+    EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
+    
+    vPAGINA_TOTAL := CEIL(TO_NUMBER(vTOTAL_REG) / TO_NUMBER(PI_REGISTROS));
+    IF vPAGINA_ACTUAL = 0 THEN
+      vPAGINA_ACTUAL := 1;
+    END IF;
+    IF vPAGINA_ACTUAL > vPAGINA_TOTAL THEN
+      vPAGINA_ACTUAL := vPAGINA_TOTAL;
+    END IF;
+
+    vPAGINA_INICIAL := vPAGINA_ACTUAL - 1;
+    
+    IF PI_COLUMNA = 'ID_CASO' THEN
+      vCOLUMNA := 'C.ID_CRITERIO';
+    ELSIF PI_COLUMNA = 'CASO' THEN
+      vCOLUMNA := 'C.NOMBRE';
+    ELSIF PI_COLUMNA = 'CRITERIO' THEN
+      vCOLUMNA := 'CR.NOMBRE';
+    ELSE
+      vCOLUMNA := PI_COLUMNA;
+    END IF;
+    
+    vQUERY_SELECT := 'SELECT * FROM 
+                        (
+                        SELECT  C.ID_CASO,
+                                C.ID_CRITERIO,
+                                C.NOMBRE NOMBRE,
+                                CR.NOMBRE NOMBRE_CRI,
+                                ROW_NUMBER() OVER (ORDER BY ' || vCOLUMNA || ' ' || PI_ORDEN ||') AS ROWNUMBER,'
+                                || vPAGINA_TOTAL || ' AS TOTAL_PAGINAS,'
+                                || vPAGINA_ACTUAL || ' AS PAGINA,'
+                                || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
+                                || vTOTAL_REG || ' AS TOTAL_REGISTROS
+                        FROM T_GENM_CASO C
+                        INNER JOIN T_GENM_CRITERIO CR ON C.ID_CRITERIO = CR.ID_CRITERIO
+                        WHERE
+                        (LOWER(TRANSLATE(C.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(CR.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'') AND
+                        C.FLAG_ESTADO = ''1''
+                        )
+                    WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
+    
+    OPEN PO_REF FOR vQUERY_SELECT;
+  END USP_SEL_LISTA_BUSQ_CASO;
 END PKG_SISSELLO_MANTENIMIENTO;
 
 /

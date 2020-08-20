@@ -28,5 +28,19 @@ namespace sres.ln
 
             return lista;
         }
+
+        public List<CasoBE> ListaBusquedaCaso(CasoBE entidad)
+        {
+            List<CasoBE> lista = new List<CasoBE>();
+
+            try
+            {
+                cn.Open();
+                lista = casoDA.ListarBusquedaCaso(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }

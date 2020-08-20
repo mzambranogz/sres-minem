@@ -146,6 +146,7 @@
     <Content Include="Assets\js\pages\login_registrarme.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />
     <Content Include="Assets\js\pages\mantenimiento_anno.js" />
+    <Content Include="Assets\js\pages\mantenimiento_caso.js" />
     <Content Include="Assets\js\pages\mantenimiento_convocatoria.js" />
     <Content Include="Assets\js\pages\mantenimiento_criterio.js" />
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
@@ -192,6 +193,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\AnnoController.cs" />
+    <Compile Include="Controllers\Api\CasoController.cs" />
     <Compile Include="Controllers\Api\CriterioController.cs" />
     <Compile Include="Controllers\Api\EstrellaController.cs" />
     <Compile Include="Controllers\Api\EtapaController.cs" />
@@ -272,6 +274,7 @@
     <Content Include="Views\Convocatoria\BandejaParticipantes.cshtml" />
     <Content Include="Views\Convocatoria\EvaluarInstitucion.cshtml" />
     <Content Include="Views\Convocatoria\_ConvocatoriaActual.cshtml" />
+    <Content Include="Views\Mantenimiento\Caso.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
