@@ -10,6 +10,8 @@
     $('#btnGuardarNoRelacion').on('click', (e) => guardarNoRelacion());
     $('#tab-head-01').on('click', (e) => limpiarSeccion());
     $('#tab-head-02').on('click', (e) => limpiarSeccionPos());
+    $('#ir-pagina').on('change', (e) => cambiarPagina());
+    $('#catidad-rgistros').on('change', (e) => cambiarPagina());
     consultarListas();
     //consultarRequerimiento('#list-req');
     //consultarCriterio('#list-criterio');
@@ -19,36 +21,64 @@
 
 
 var consultar = () => {
-    let busqueda = $('#textoBusqueda').val();
-    let registros = 10;
-    let pagina = 1;
-    let columna = 'ID_CONVOCATORIA';
-    let orden = 'ASC'
-    let params = { busqueda, registros, pagina, columna, orden };
+    //let busqueda = $('#textoBusqueda').val();
+    //let registros = 10;
+    //let pagina = 1;
+    //let columna = 'ID_CONVOCATORIA';
+    //let orden = 'ASC'
+    //let params = { busqueda, registros, pagina, columna, orden };
+    let codigo = $('#txt-codigo').val();
+    let nombre = $('#txt-descripcion').val();
+    let fechaDesde = $('#dat-desde').val();
+    let fechaHasta = $('#dat-hasta').val();
+    let registros = $('#catidad-rgistros').val();
+    let pagina = $('#ir-pagina').val();
+    let columna = $("#columna").val();
+    let orden = $("#orden").val();
+    let params = { codigo, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
     let url = `/api/convocatoria/buscarconvocatoria?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
-        let cantidadCeldasCabecera = tabla.find('thead tr th').length;
-        let contenido = renderizar(j, cantidadCeldasCabecera, pagina, registros);
-        tabla.find('tbody').html(contenido);
-        tabla.find('.btnCambiarEstado').each(x => {
-            let elementButton = tabla.find('.btnCambiarEstado')[x];
-            $(elementButton).on('click', (e) => {
-                e.preventDefault();
-                cambiarEstado(e.currentTarget);
+        tabla.find('tbody').html('');
+        $('#viewPagination').attr('style', 'display: none !important');
+        if (j.length > 0){            
+            //console.log(data.TOTAL_REGISTROS, data.CANTIDAD_REGISTROS);
+            //if (j[0].TOTAL_REGISTROS > j[0].CANTIDAD_REGISTROS) $('#viewPagination').show();
+            if (j[0].CANTIDAD_REGISTROS == 0) {$('#viewPagination').hide(); $('#view-page-result').hide();} 
+            else {$('#view-page-result').show(); $('#viewPagination').show();} 
+            $('.inicio-registros').text(j[0].CANTIDAD_REGISTROS == 0 ? 'No se encontraron resultados' : (j[0].PAGINA - 1) * j[0].CANTIDAD_REGISTROS + 1);
+            $('.fin-registros').text(j[0].TOTAL_REGISTROS < j[0].PAGINA * j[0].CANTIDAD_REGISTROS ? j[0].TOTAL_REGISTROS : j[0].PAGINA * j[0].CANTIDAD_REGISTROS);
+            $('.total-registros').text(j[0].TOTAL_REGISTROS);
+            $('.pagina').text(j[0].PAGINA);
+            $('#ir-pagina').val(j[0].PAGINA);
+            $('#ir-pagina').attr('max', j[0].TOTAL_PAGINAS);
+            $('.total-paginas').text(j[0].TOTAL_PAGINAS);
+            
+            let cantidadCeldasCabecera = tabla.find('thead tr th').length;
+            let contenido = renderizar(j, cantidadCeldasCabecera, pagina, registros);
+            tabla.find('tbody').html(contenido);
+            tabla.find('.btnCambiarEstado').each(x => {
+                let elementButton = tabla.find('.btnCambiarEstado')[x];
+                $(elementButton).on('click', (e) => {
+                    e.preventDefault();
+                    cambiarEstado(e.currentTarget);
+                });
             });
-        });
 
-        tabla.find('.btnEditar').each(x => {
-            let elementButton = tabla.find('.btnEditar')[x];
-            $(elementButton).on('click', (e) => {
-                e.preventDefault();
-                consultarConvocatoria(e.currentTarget);
+            tabla.find('.btnEditar').each(x => {
+                let elementButton = tabla.find('.btnEditar')[x];
+                $(elementButton).on('click', (e) => {
+                    e.preventDefault();
+                    consultarConvocatoria(e.currentTarget);
+                });
             });
-        });
+        }else{
+            $('#viewPagination').hide(); $('#view-page-result').hide();
+            $('.inicio-registros').text('No se encontraron resultados');
+        }        
     });
 };
 
@@ -290,7 +320,7 @@ var armarpuntaje = (datapuntaje) => {
     let puntaje = ``;
     datapuntaje.map((x, i) => {
         //puntaje += `<tr><td class="get-detalle" id="${x.ID_DETALLE}">${x.ID_DETALLE}</td><td>${x.DESCRIPCION}</td><td><input id="puntaje-${x.ID_CRITERIO}-${x.ID_DETALLE}" class="get-puntaje" type="text" value="${x.PUNTAJE}" /></td></tr>`;    
-        puntaje += `<div class="form-group row mb-0"><label class="col-sm-8 col-form-label" for="puntaje-${x.ID_CRITERIO}-${x.ID_DETALLE}">${x.DESCRIPCION}</label><div class="col-sm-4"><input class="form-control estilo-01 get-puntaje" type="text" id="puntaje-${x.ID_CRITERIO}-${x.ID_DETALLE}" placeholder="" value="${x.PUNTAJE}"></div></div>`;
+        puntaje += `<div class="form-group row mb-0"><label class="col-sm-8 col-form-label" for="puntaje-${x.ID_CRITERIO}-${x.ID_DETALLE}">${x.DESCRIPCION}</label><div class="col-sm-4"><input class="form-control estilo-01 get-puntaje solo-numero" type="text" id="puntaje-${x.ID_CRITERIO}-${x.ID_DETALLE}" placeholder="" value="${x.PUNTAJE}" maxlength="3"></div></div>`;
     });
     //puntaje = `<div class="ml-5"><table id="puntaje-${datapuntaje[0].ID_CRITERIO}" class="get-tabla-puntaje"><thead><th>N°</th><th>Descripción</th><th>Puntaje</th></thead><tbody>${puntaje}</tbody></table></div>`;  
     //return puntaje;
@@ -335,7 +365,7 @@ var cargarCheckEtapa = (selector, data) => {
     let items = data.length == 0 ? '' : data.map(x => {
         let c1 = `<div class="col-sm-12 col-md-12 col-lg-5"><div class="form-group mb-1"><label class="estilo-01">${x.ETAPA}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span></label></div></div>`;
         let c2 = `<div class="col-sm-12 col-md-12 col-lg-5"><div class="form-group mb-1"><label class="estilo-01">${x.PROCESO}</label></div></div>`;
-        let c3 = `<div class="col-sm-12 col-md-12 col-lg-2"><div class="form-group mb-1"><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div><input class="form-control estilo-01 text-sres-gris etapa" type="text" id="txt-e-${x.ID_ETAPA}" value=""></div></div></div>`;
+        let c3 = `<div class="col-sm-12 col-md-12 col-lg-2"><div class="form-group mb-1"><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div><input class="form-control estilo-01 text-sres-gris etapa solo-numero" type="text" id="txt-e-${x.ID_ETAPA}" value="0" maxlength="3"></div></div></div>`;
         return `<div class="row">${c1}${c2}${c3}</div>`;
     }).join('');
     $(selector).html(`${cabecera}${items}`);
@@ -348,7 +378,7 @@ var cargarComboEtapa = (selector, data) => {
 
 var cargarTablaInsignia = (selector, data) => {
     //let items = data.length == 0 ? '' : data.map(x => `<tr><td>${x.NOMBRE}</td><td><input class="insignia" type="text" id="txt-i-${x.ID_INSIGNIA}" value="${x.PUNTAJE_MIN}" /></tr></td>`).join('');
-    let items = data.length == 0 ? '' : data.map(x => `<div class="form-group row mb-0"><label class="col-sm-8 col-form-label" for="txt-i-${x.ID_INSIGNIA}">${x.NOMBRE}</label><div class="col-sm-4"><input class="form-control estilo-01 insignia" type="text" id="txt-i-${x.ID_INSIGNIA}" placeholder="" value="${x.PUNTAJE_MIN}"></div></div>`).join('');
+    let items = data.length == 0 ? '' : data.map(x => `<div class="form-group row mb-0"><label class="col-sm-8 col-form-label" for="txt-i-${x.ID_INSIGNIA}">${x.NOMBRE}</label><div class="col-sm-4"><input class="form-control estilo-01 insignia solo-numero" type="text" id="txt-i-${x.ID_INSIGNIA}" placeholder="" value="${x.PUNTAJE_MIN}" maxlength="3"></div></div>`).join('');
     //$(selector).find('tbody').html(items);
     $(selector).html(items);
     //let a = `<div class="form-group row mb-0"><label class="col-sm-8 col-form-label" for="txt-i-${x.ID_INSIGNIA}">${x.NOMBRE}</label><div class="col-sm-4"><input class="form-control estilo-01" type="text" id="txt-i-${x.ID_INSIGNIA}" placeholder="" value="${x.PUNTAJE_MIN}></div></div>`;
@@ -381,7 +411,7 @@ var armarTrabajadorCama = (sector, sub, data, dataE) => {
     //let tc = data.length == 0 ? `<tr><td>${sector}</td><td>${sub}</td></tr>` : data.map((x,y) => {
     let tc = data.length == 0 ? `` : data.map((x,y) => {
         //let contenido = dataE.length == 0 ? `` : dataE.map(z => `<td><input class="get-estrella" id="estrella-${z.ID_ESTRELLA}-${x.ID_TRABAJADORES_CAMA}" value="0" /></td>`).join('');
-        let contenido = dataE.length == 0 ? `` : dataE.map(z => `<div class="col-sm-12 col-md-12 col-lg-2"><div class="form-group mb-1"><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div><input class="form-control estilo-01 text-sres-gris get-estrella" type="text" id="estrella-${z.ID_ESTRELLA}-${x.ID_TRABAJADORES_CAMA}" value="0"></div></div></div>`).join('');
+        let contenido = dataE.length == 0 ? `` : dataE.map(z => `<div class="col-sm-12 col-md-12 col-lg-2"><div class="form-group mb-1"><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div><input class="form-control estilo-01 text-sres-gris get-estrella formato-decimal" type="text" id="estrella-${z.ID_ESTRELLA}-${x.ID_TRABAJADORES_CAMA}" value="0" maxlength="6"></div></div></div>`).join('');
         //return `<tr class="get-fila-estrella"><td>${sector}</td><td>${sub}</td><td>${x.NOMBRE}</td>${contenido}</tr>`;
         let c1 = `<div class="col-sm-12 col-md-12 col-lg-2"><div class="form-group mb-1"><label class="estilo-01">${sector} - ${sub}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span></label></div></div>`;
         let c2 = `<div class="col-sm-12 col-md-12 col-lg-2"><div class="form-group mb-1"><label class="estilo-01">${x.NOMBRE}</label></div></div>`;
@@ -726,4 +756,81 @@ var guardarNoRelacion = () => {
         }
     });
 }
+
+$(document).on("keydown", ".solo-numero", function (e) {
+    var key = window.e ? e.which : e.keyCode;
+    //var id = $("#" + e.target.id)[0].type;
+    if ((key < 48 || key > 57) && (event.keyCode < 96 || event.keyCode > 105) && key !== 8 && key !== 9 && key !== 37 && key !== 39 && key !== 46) return false;
+});
+
+$(document).on("keyup", ".formato-decimal", function (e) {
+    $(e.target).val(function (index, value) {
+        return value.replace(/\D/g, "")
+                    .replace(/([0-9])([0-9]{2})$/, '$1.$2')
+                    .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+    });
+});
+
+function fn_avance_grilla(boton) {
+    var total = 0;
+    var miPag = 0;
+    miPag = Number($("#ir-pagina").val());
+    total = Number($(".total-paginas").html());
+
+    if (boton == 1) {
+        miPag = 1;
+    }
+    if (boton == 2) {
+        if (miPag > 1) {
+            miPag--;
+        }
+    }
+    if (boton == 3) {
+        if (miPag < total) {
+            miPag++;
+        }
+    }
+    if (boton == 4) {
+        miPag = total;
+    }
+    $("#ir-pagina").val(miPag);
+    $('#btnConsultar')[0].click();
+}
+
+var cambiarPagina = () => {
+    $('#btnConsultar')[0].click();
+}
+
+$(".columna-filtro").click(function (e) {
+    debugger;
+    var id = e.target.id;
+
+    $(".columna-filtro").removeClass("fa-sort-up");
+    $(".columna-filtro").removeClass("fa-sort-down");
+    $(".columna-filtro").addClass("fa-sort");
+
+    if ($("#columna").val() == id) {
+        if ($("#orden").val() == "ASC") {
+            $("#orden").val("DESC")
+            $(`#${id}`).removeClass("fa-sort");
+            $(`#${id}`).removeClass("fa-sort-up");
+            $(`#${id}`).addClass("fa-sort-down");
+        }
+        else {
+            $("#orden").val("ASC")
+            $(`#${id}`).removeClass("fa-sort");
+            $(`#${id}`).removeClass("fa-sort-down");
+            $(`#${id}`).addClass("fa-sort-up");
+        }
+    }
+    else {
+        $("#columna").val(id);
+        $("#orden").val("ASC")
+        $(`#${id}`).removeClass("fa-sort");
+        $(`#${id}`).removeClass("fa-sort");
+        $(`#${id}`).addClass("fa-sort-up");
+    }
+
+    $('#btnConsultar')[0].click();
+});
 

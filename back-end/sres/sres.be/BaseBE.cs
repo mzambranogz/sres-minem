@@ -18,5 +18,7 @@ namespace sres.be
         public int TOTAL_REGISTROS { get; set; }
         public bool OK { get; set; }
         public int USUARIO_GUARDAR { get; set; }
+        public DateTime? FECHA_DESDE { get; set; }
+        public DateTime? FECHA_HASTA { get; set; }
     }
 }

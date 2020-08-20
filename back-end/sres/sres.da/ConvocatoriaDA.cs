@@ -128,7 +128,15 @@ namespace sres.da
             {
                 string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_CONVOCAT";
                 var p = new OracleDynamicParameters();
-                p.Add("PI_BUSCAR", entidad.BUSCAR);
+                //p.Add("PI_BUSCAR", entidad.BUSCAR);
+                //p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
+                //p.Add("PI_PAGINA", entidad.PAGINA);
+                //p.Add("PI_COLUMNA", entidad.ORDER_BY);
+                //p.Add("PI_ORDEN", entidad.ORDER_ORDEN);
+                p.Add("PI_CODIGO", entidad.CODIGO);
+                p.Add("PI_NOMBRE", entidad.NOMBRE);
+                p.Add("PI_FECHA_INICIO", entidad.FECHA_DESDE);
+                p.Add("PI_FECHA_FIN", entidad.FECHA_HASTA);
                 p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
                 p.Add("PI_PAGINA", entidad.PAGINA);
                 p.Add("PI_COLUMNA", entidad.ORDER_BY);

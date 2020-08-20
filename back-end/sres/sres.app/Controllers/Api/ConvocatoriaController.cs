@@ -207,12 +207,12 @@ namespace sres.app.Controllers.Api
 
         [Route("buscarconvocatoria")]
         [HttpGet]
-        public List<ConvocatoriaBE> BuscarConvocatoria(string busqueda, int registros, int pagina, string columna, string orden)
+        public List<ConvocatoriaBE> BuscarConvocatoria(string codigo, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden)
         {
             List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
             try
             {
-                lista = convocatoriaLN.ListarBusquedaConvocatoria(new ConvocatoriaBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
+                lista = convocatoriaLN.ListarBusquedaConvocatoria(new ConvocatoriaBE() { CODIGO = codigo == "" ? 0 : Convert.ToInt32(codigo), NOMBRE = nombre, FECHA_DESDE = fechaDesde, FECHA_HASTA = fechaHasta, CANTIDAD_REGISTROS = registros, PAGINA = pagina, ORDER_BY = columna, ORDER_ORDEN = orden});
             }
             catch (Exception ex)
             {

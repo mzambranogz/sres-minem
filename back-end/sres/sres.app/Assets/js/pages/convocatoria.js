@@ -26,9 +26,9 @@ var consultar = () => {
     let fechaHasta = $('#dat-hasta').val();
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();;
-    let columna = 'id_convocatoria';
-    let idInstitucion = idRolLogin == 3 ? idInstitucionLogin : 0;
+    let columna = 'id_convocatoria';    
     let orden = 'asc'
+    let idInstitucion = idRolLogin == 3 ? idInstitucionLogin : 0;
     let params = { nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden, idInstitucion };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 

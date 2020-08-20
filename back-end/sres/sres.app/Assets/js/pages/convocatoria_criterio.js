@@ -341,7 +341,6 @@ $(document).on("keyup", ".formato-decimal", function (e) {
                     .replace(/([0-9])([0-9]{2})$/, '$1.$2')
                     .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
     });
-
 });
 
 var verificarValor = (e) => {
