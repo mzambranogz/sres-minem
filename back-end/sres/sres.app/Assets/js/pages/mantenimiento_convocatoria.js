@@ -163,7 +163,6 @@ var asignarEvaluador = (data) => {
 
 var removerPostulante = (data) => {
     data.map((x,y) => {
-        debugger;
         if (x.CONV_EVA_POS != null){
             if (x.CONV_EVA_POS.FLAG_ESTADO == '1'){
                 $(`#chk-postulante-${x.ID_INSTITUCION}`).parent().parent().remove();
@@ -173,7 +172,7 @@ var removerPostulante = (data) => {
 }
 
 var cargarDatos = (data) => {
-    //debugger;
+    idEtapa_actual = data.ID_ETAPA;
     $('#cbo-etapa').val(data.ID_ETAPA);
     $('#frm').data('id', data.ID_CONVOCATORIA);
     $('#txt-titulo').val(data.NOMBRE);
@@ -419,9 +418,21 @@ var limpiarFormulario = () => {
     $('#dat-fin').val('');
     $('#txt-capacidad').val('');
     $('.list-req').find('.requerimiento').each((x, y) => { $(y).prop('checked', false); });
-    $('.list-criterio').find('.criterio').each((x, y) => { $(y).prop('checked', false); });
+    //$('.list-criterio').find('.criterio').each((x, y) => { $(y).prop('checked', false); });
+    $('.tab-criterio-content').find('.criterio').each((x, y) => {
+        $(y).prop('checked', false);
+        $(y).parent().parent().parent().find('.caso').each((w,z) => {
+            $(z).prop('checked', false);
+            $(z).parent().parent().find('.documento').each((a,b) => {
+                $(b).prop('checked', false);
+            });
+        });
+    });
     $('.list-evaluador').find('.evaluador').each((x, y) => { $(y).prop('checked', false); });
     $('.tbl-etapa').find('.etapa').each((x, y) => { $(y).val('') });
+    $('.tbl-estrellas').find(`.get-estrella`).each((z,w) => {
+        $(w).val(0);
+    });
     //$('#tbl-insignia').find('.').each((x, y) => { $(y).val('') });
     //$('.postulante-evaluador').html('');
 }
@@ -557,7 +568,7 @@ var guardar = () => {
 
     let url = `/api/convocatoria/guardarconvocatoria`;
     //let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, DESCRIPCION: descripcion, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, LISTA_INSIG: insignia, LISTA_ESTRELLA_TRAB: estrella, USUARIO_GUARDAR: idUsuarioLogin };
-    let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, DESCRIPCION: descripcion, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_INSIG: insignia, LISTA_ESTRELLA_TRAB: estrella, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), VALIDAR_ETAPA: id == null ? 1 : $('#cbo-etapa').val() == idEtapa_actual ? 0 : 1, NOMBRE: nombre, DESCRIPCION: descripcion, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_INSIG: insignia, LISTA_ESTRELLA_TRAB: estrella, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
