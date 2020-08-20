@@ -65,7 +65,6 @@ var consultar = () => {
     //let columna = 'ID_ROL';
     //let orden = 'ASC'
     //let params = { busqueda, registros, pagina, columna, orden };
-    debugger;
     let busqueda = $('#txt-descripcion').val() == null ? '' : $('#txt-descripcion').val();
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();
