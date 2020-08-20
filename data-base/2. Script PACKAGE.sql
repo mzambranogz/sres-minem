@@ -632,7 +632,11 @@ CREATE OR REPLACE PACKAGE SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
   );
   
   PROCEDURE USP_SEL_LISTA_BUSQ_CONVOCAT(
-    PI_BUSCAR VARCHAR2,
+    --PI_BUSCAR VARCHAR2,
+    PI_CODIGO NUMBER,
+    PI_NOMBRE VARCHAR2,
+    PI_FECHA_INICIO DATE,
+    PI_FECHA_FIN DATE,
     PI_REGISTROS NUMBER,
     PI_PAGINA NUMBER,
     PI_COLUMNA VARCHAR2,
@@ -3066,7 +3070,11 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
   END USP_PRC_MAN_CONVOCATORIA;
   
   PROCEDURE USP_SEL_LISTA_BUSQ_CONVOCAT(
-    PI_BUSCAR VARCHAR2,
+    --PI_BUSCAR VARCHAR2,
+    PI_CODIGO NUMBER,
+    PI_NOMBRE VARCHAR2,
+    PI_FECHA_INICIO DATE,
+    PI_FECHA_FIN DATE,
     PI_REGISTROS NUMBER,
     PI_PAGINA NUMBER,
     PI_COLUMNA VARCHAR2,
@@ -3084,8 +3092,23 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_CONVOCATORIA C INNER JOIN
                     T_MAE_ETAPA E ON C.ID_ETAPA = E.ID_ETAPA
-                    WHERE LOWER(TRANSLATE(C.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND
-                    C.FLAG_ESTADO = ''1''';
+                    WHERE ' ||
+                    CASE
+                      WHEN PI_CODIGO > 0 THEN
+                      'C.ID_CONVOCATORIA ='|| PI_CODIGO ||' AND '
+                    END ||
+                    ' LOWER(TRANSLATE(C.DESCRIPCION,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND ' ||
+                    CASE
+                      WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NOT NULL THEN
+                      '(
+                      TO_DATE(C.FECHA_INICIO) BETWEEN TO_DATE(''' || TO_CHAR(PI_FECHA_INICIO, 'DD/MM/YYYY') || ''') AND TO_DATE(''' || TO_CHAR(PI_FECHA_FIN, 'DD/MM/YYYY') || ''') OR
+                      TO_DATE(C.FECHA_FIN) BETWEEN TO_DATE(''' || TO_CHAR(PI_FECHA_INICIO, 'DD/MM/YYYY') || ''') AND TO_DATE(''' || TO_CHAR(PI_FECHA_FIN, 'DD/MM/YYYY') || ''')
+                      ) AND '
+                      WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NULL THEN
+                      '(TO_DATE(C.FECHA_INICIO) >= TO_DATE(''' || TO_CHAR(PI_FECHA_INICIO, 'DD/MM/YYYY') || ''') OR TO_DATE(C.FECHA_FIN) >= TO_DATE(''' || TO_CHAR(PI_FECHA_INICIO, 'DD/MM/YYYY') || ''')) AND '
+                      WHEN PI_FECHA_INICIO IS NULL AND PI_FECHA_FIN IS NOT NULL THEN
+                      '(TO_DATE(C.FECHA_INICIO) <= TO_DATE(''' || TO_CHAR(PI_FECHA_FIN, 'DD/MM/YYYY') || ''') OR TO_DATE(C.FECHA_FIN) <= TO_DATE(''' || TO_CHAR(PI_FECHA_FIN, 'DD/MM/YYYY') || ''')) AND '
+                    END || 'C.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
     
     vPAGINA_TOTAL := CEIL(TO_NUMBER(vTOTAL_REG) / TO_NUMBER(PI_REGISTROS));
@@ -3097,7 +3120,24 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     END IF;
 
     vPAGINA_INICIAL := vPAGINA_ACTUAL - 1;
-    vCOLUMNA := PI_COLUMNA;
+    --
+    IF PI_COLUMNA = 'ID_CONVOCATORIA' THEN
+      vCOLUMNA := 'C.ID_CONVOCATORIA';
+    ELSIF PI_COLUMNA = 'NOMBRE' THEN
+      vCOLUMNA := 'C.NOMBRE';
+    ELSIF PI_COLUMNA = 'DESCRIPCION' THEN
+      vCOLUMNA := 'C.DESCRIPCION';
+    ELSIF PI_COLUMNA = 'FECHA_INICIO' THEN
+      vCOLUMNA := 'C.FECHA_INICIO';
+    ELSIF PI_COLUMNA = 'FECHA_FIN' THEN
+      vCOLUMNA := 'C.FECHA_FIN';
+    ELSIF PI_COLUMNA = 'NOMBRE_ETAPA' THEN
+      vCOLUMNA := 'E.NOMBRE';
+    ELSIF PI_COLUMNA = 'ID_ETAPA' THEN
+      vCOLUMNA := 'C.ID_ETAPA';
+    ELSE
+      vCOLUMNA := PI_COLUMNA;
+    END IF;    
     
     vQUERY_SELECT := 'SELECT * FROM 
                         (
@@ -3116,8 +3156,23 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_CONVOCATORIA C INNER JOIN
                         T_MAE_ETAPA E ON C.ID_ETAPA = E.ID_ETAPA
-                        WHERE LOWER(TRANSLATE(C.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND
-                        C.FLAG_ESTADO = ''1''
+                        WHERE ' ||
+                    CASE
+                      WHEN PI_CODIGO > 0 THEN
+                      ' C.ID_CONVOCATORIA ='|| PI_CODIGO ||' AND '
+                    END ||
+                    ' LOWER(TRANSLATE(C.DESCRIPCION,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND ' ||
+                    CASE
+                      WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NOT NULL THEN
+                      '(
+                      TO_DATE(C.FECHA_INICIO) BETWEEN TO_DATE(''' || TO_CHAR(PI_FECHA_INICIO, 'DD/MM/YYYY') || ''') AND TO_DATE(''' || TO_CHAR(PI_FECHA_FIN, 'DD/MM/YYYY') || ''') OR
+                      TO_DATE(C.FECHA_FIN) BETWEEN TO_DATE(''' || TO_CHAR(PI_FECHA_INICIO, 'DD/MM/YYYY') || ''') AND TO_DATE(''' || TO_CHAR(PI_FECHA_FIN, 'DD/MM/YYYY') || ''')
+                      ) AND '
+                      WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NULL THEN
+                      '(TO_DATE(C.FECHA_INICIO) >= TO_DATE(''' || TO_CHAR(PI_FECHA_INICIO, 'DD/MM/YYYY') || ''') OR TO_DATE(C.FECHA_FIN) >= TO_DATE(''' || TO_CHAR(PI_FECHA_INICIO, 'DD/MM/YYYY') || ''')) AND '
+                      WHEN PI_FECHA_INICIO IS NULL AND PI_FECHA_FIN IS NOT NULL THEN
+                      '(TO_DATE(C.FECHA_INICIO) <= TO_DATE(''' || TO_CHAR(PI_FECHA_FIN, 'DD/MM/YYYY') || ''') OR TO_DATE(C.FECHA_FIN) <= TO_DATE(''' || TO_CHAR(PI_FECHA_FIN, 'DD/MM/YYYY') || ''')) AND '
+                    END || 'C.FLAG_ESTADO = ''1''
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
     
