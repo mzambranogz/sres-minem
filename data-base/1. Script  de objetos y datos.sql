@@ -85,6 +85,7 @@ CONSTRAINT ROL_FK FOREIGN KEY (ID_ROL) REFERENCES T_MAE_ROL (ID_ROL)
 CREATE TABLE T_GENM_CRITERIO(
 ID_CRITERIO NUMBER,
 NOMBRE VARCHAR2(300),
+DESCRIPCION VARCHAR2(4000),
 ARCHIVO_BASE VARCHAR2(4000),
 ARCHIVO_TIPO VARCHAR2(4000),
 FLAG_ESTADO VARCHAR2(1) DEFAULT '1',
@@ -897,14 +898,14 @@ INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, 
 VALUES (7, 'María', 'Lima', 'maria@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 4, 3, 1);
 
 --T_GENM_CRITERIO
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, ARCHIVO_BASE) VALUES (1, 'Ahorro de energía eléctrica total', 'criterio-01.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, ARCHIVO_BASE) VALUES (2, 'Ahorro de consumo de combustible', 'criterio-02.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, ARCHIVO_BASE) VALUES (3, 'Generación de puestos de trabajo relacionado a la gestión de la energía', 'criterio-03.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, ARCHIVO_BASE) VALUES (4, 'Implementación de un sistema de gestión de la energía', 'criterio-04.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, ARCHIVO_BASE) VALUES (5, 'Diagnóstico energético', 'criterio-05.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, ARCHIVO_BASE) VALUES (6, 'Cálculo de la huella de carbono', 'criterio-06.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, ARCHIVO_BASE) VALUES (7, 'Fortalecimiento de capacidades para el buen uso de la energía', 'criterio-07.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, ARCHIVO_BASE) VALUES (8, 'Enfoque transversal de género', 'criterio-08.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (1, 'Ahorro de energía eléctrica total', '', 'criterio-01.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (2, 'Ahorro de consumo de combustible', '', 'criterio-02.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (3, 'Generación de puestos de trabajo relacionado a la gestión de la energía', '', 'criterio-03.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (4, 'Implementación de un sistema de gestión de la energía', '', 'criterio-04.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (5, 'Diagnóstico energético', '', 'criterio-05.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (6, 'Cálculo de la huella de carbono', '', 'criterio-06.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (7, 'Fortalecimiento de capacidades para el buen uso de la energía', '', 'criterio-07.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (8, 'Enfoque transversal de género', '', 'criterio-08.png');
 
 --T_GENM_REQUERIMIENTO
 INSERT INTO T_GENM_REQUERIMIENTO (ID_REQUERIMIENTO, NOMBRE) VALUES (1, 'Documento de saneamiento legal físico.');
