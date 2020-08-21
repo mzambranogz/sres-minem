@@ -1153,7 +1153,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                     ' ||
                           CASE 
                             WHEN PI_ID_INSTITUCION > 0 THEN
-                              ' INNER JOIN T_GENM_INSCRIPCION INSC ON C.ID_CONVOCATORIA = INSC.ID_CONVOCATORIA '
+                              ' LEFT JOIN T_GENM_INSCRIPCION INSC ON C.ID_CONVOCATORIA = INSC.ID_CONVOCATORIA '
                           END 
                     || '
                     WHERE ' ||
@@ -1176,7 +1176,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                     ''  ||
                           CASE
                             WHEN PI_ID_INSTITUCION > 0 THEN
-                              ' INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' AND '
+                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR C.ID_ETAPA < 3) AND '
                           END || '
                     C.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
