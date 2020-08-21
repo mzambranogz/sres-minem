@@ -145,7 +145,7 @@ var btnEliminarFileClick = (e) => {
         $(x).removeData('type');
         console.log(x);
     });
-    $(e.currentTarget).closest('.form-group').html(`<label class="estilo-01">&nbsp;</label><div class="alert alert-secondary p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div></div>`);
+    $(e.currentTarget).closest('.align-items-end').html(`<label class="estilo-01">&nbsp;</label><div class="alert alert-secondary p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div></div>`);
 }
 
 var armarHead = (lista, incremental, id, componente) => {
