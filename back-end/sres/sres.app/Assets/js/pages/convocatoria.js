@@ -370,8 +370,9 @@ var armarCombotrabajadorcama = (data) => {
     let combo = data.map((x, y) => {
         return `<option value="${x.ID_TRABAJADORES_CAMA}" ${x.MAYOR_SIGNO == '1' ? `data-max="${x.MAYOR_VALOR}"` : ``} ${x.MENOR_SIGNO == '1' ? `data-min="${x.MENOR_VALOR}"` : ``}>${x.NOMBRE}</option>`
     }).join('');
-    $(`#cbo-trabajador-cama`).html(`<option value="0">-Seleccione-</option>${combo}`);
+    $(`#cbo-trabajador-cama`).html(data.length == 1 ? combo : `<option value="0">-Seleccione-</option>${combo}`);
     if (vidTrabajadorCama > 0) { $(`#cbo-trabajador-cama`).val(vidTrabajadorCama); vidTrabajadorCama = 0; trabajadorcamaChange(); vcantidad == 0 ? $(`#txt-numero`).val('') : $(`#txt-numero`).val(vcantidad); vcantidad = 0; }
+    else { trabajadorcamaChange(); }
 }
 
 var trabajadorcamaChange = () => {
