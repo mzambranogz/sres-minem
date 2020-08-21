@@ -114,7 +114,10 @@ namespace sres.app.Controllers
         [Route("{idConvocatoria}/BandejaParticipantes")]
         public ActionResult BandejaParticipantes(int idConvocatoria)
         {
-            ViewData["convocatoria"] = convocatoriaLN.ObtenerUltimaConvocatoria();
+            ViewData["convocatoria"] = convocatoriaLN.ObtenerConvocatoria(idConvocatoria); ;
+            //ConvocatoriaBE conv = convocatoriaLN.ObtenerUltimaConvocatoria();
+            //ViewData["convocatoria"] = idConvocatoria == conv.ID_CONVOCATORIA ? conv : convocatoriaLN.ObtenerConvocatoria(idConvocatoria); ;
+            //ViewData["convocatoria"] = convocatoriaLN.ObtenerUltimaConvocatoria();
             return View();
         }
 
