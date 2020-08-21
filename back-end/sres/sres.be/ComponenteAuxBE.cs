@@ -13,5 +13,7 @@ namespace sres.be
         public List<IndicadorBE> LIST_INDICADOR { get; set; }
         public string ELIMINAR_INDICADOR { get; set; }
         public int ID_INSCRIPCION { get; set; }
+        public string CASO { get; set; }
+        public string CRITERIO { get; set; }
     }
 }
