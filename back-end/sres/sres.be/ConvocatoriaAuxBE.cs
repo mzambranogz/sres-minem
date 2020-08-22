@@ -25,6 +25,7 @@ namespace sres.be
         public int DIAS { get; set; }
         public string CORREO { get; set; }
         public int VALIDAR_ETAPA { get; set; }
+        public int VALIDAR_EVALUADOR { get; set; }
         public int CODIGO { get; set; }
         public int FLAG_ANULAR { get; set; }
     }

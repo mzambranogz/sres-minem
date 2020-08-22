@@ -24,9 +24,9 @@ namespace sres.app.Controllers.Api
 
         [Route("buscarconvocatoria")]
         [HttpGet]
-        public DataPaginateBE BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, int idInstitucion)
+        public DataPaginateBE BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, int idInstitucion, int idUsuario)
         {
-            List<ConvocatoriaBE> convocatoria = convocatoriaLN.BuscarConvocatoria(nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden, idInstitucion);
+            List<ConvocatoriaBE> convocatoria = convocatoriaLN.BuscarConvocatoria(nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden, idInstitucion, idUsuario);
 
             DataPaginateBE data = new DataPaginateBE
             {

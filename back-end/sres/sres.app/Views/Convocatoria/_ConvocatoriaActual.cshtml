@@ -3,8 +3,10 @@
     ConvocatoriaBE convocatoria = ViewData["convocatoria"] == null ? null : (ConvocatoriaBE)ViewData["convocatoria"];
     ViewBag.IrBandejaParticipantes = ViewBag.IrBandejaParticipantes == null ? true : ViewBag.IrBandejaParticipantes;
     ViewBag.IrBandejaConvocatorias = ViewBag.IrBandejaConvocatorias == null ? false : ViewBag.IrBandejaConvocatorias;
-    ViewBag.Full = ViewBag.Full == null ? false : ViewBag.Full;
-    ViewBag.HasOptions = ViewBag.HasOptions == null ? true : ViewBag.HasOptions;
+    //ViewBag.Full = ViewBag.Full == null ? false : ViewBag.Full;
+    ViewBag.Full = ViewBag.Full == null ? true : ViewBag.Full;
+    //ViewBag.HasOptions = ViewBag.HasOptions == null ? true : ViewBag.HasOptions;
+    ViewBag.HasOptions = ViewBag.HasOptions == null ? false : ViewBag.HasOptions;
 }
 
 <div class="container-fluid my-5">
@@ -21,8 +23,12 @@
                         <div class="col-lg-10 col-md-12 barra-oscura">
                             <h2 class="estilo-03 text-sres-oscuro text-limit-1">@(convocatoria == null ? "No se encontraron convocatorias" : convocatoria.NOMBRE)</h2>
                             <p class="estilo-01 text-justify text-sres-gris m-0 text-limit-3" data-limit="1">@(convocatoria == null ? "" : convocatoria.DESCRIPCION)</p>
-                            @if (!string.IsNullOrEmpty(convocatoria == null ? "" : convocatoria.DESCRIPCION)) {
-                                <div class="text-right d-none d-lg-block"><a class="estilo-01 text-sres-verde leer-mas" href="#">Leer más</a></div>
+                            @if (!string.IsNullOrEmpty(convocatoria == null ? "" : convocatoria.DESCRIPCION))
+                            {
+                                if (convocatoria.DESCRIPCION.Length > 353)
+                                {
+                                    <div class="text-right d-none d-lg-block"><a class="estilo-01 text-sres-verde leer-mas" href="#">Leer más</a></div>
+                                }
                             }
                         </div>
                     </div>

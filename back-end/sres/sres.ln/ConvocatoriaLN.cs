@@ -26,14 +26,14 @@ namespace sres.ln
         InstitucionDA institucionDA = new InstitucionDA();
         EstrellaTrabajadorCamaDA estrellaTrabCamaDA = new EstrellaTrabajadorCamaDA();
 
-        public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, int idInstitucion)
+        public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, int idInstitucion, int idUsuario)
         {
             List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
 
             try
             {
                 cn.Open();
-                lista = convocatoriaDA.BuscarConvocatoria(nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden, idInstitucion, cn);
+                lista = convocatoriaDA.BuscarConvocatoria(nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden, idInstitucion, idUsuario, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
