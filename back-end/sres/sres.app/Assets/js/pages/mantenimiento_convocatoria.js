@@ -249,7 +249,7 @@ var cambiarEstado = (element) => {
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
-    let url = '${baseUrl}api/convocatoria/cambiarestadoconvocatoria';
+    let url = `${baseUrl}api/convocatoria/cambiarestadoconvocatoria`;
 
     fetch(url, init)
         .then(r => r.json())

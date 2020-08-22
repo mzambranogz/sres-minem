@@ -102,5 +102,53 @@ namespace sres.da
 
             return lista;
         }
+
+        public List<DocumentoBE> ListarBusquedaDocumento(DocumentoBE entidad, OracleConnection db)
+        {
+            List<DocumentoBE> lista = new List<DocumentoBE>();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_DOC";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_BUSCAR", entidad.BUSCAR);
+                p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
+                p.Add("PI_PAGINA", entidad.PAGINA);
+                p.Add("PI_COLUMNA", entidad.ORDER_BY);
+                p.Add("PI_ORDEN", entidad.ORDER_ORDEN);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<DocumentoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                entidad.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return lista;
+        }
+
+        public DocumentoBE EliminarDocumento(DocumentoBE entidad, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_DEL_DOCUMENTO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_DOCUMENTO", entidad.ID_DOCUMENTO);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                entidad.OK = true;
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
     }
 }

@@ -72,5 +72,10 @@ namespace sres.app.Controllers
         {
             return View();
         }
+
+        public ActionResult Documento()
+        {
+            return View();
+        }
     }
 }

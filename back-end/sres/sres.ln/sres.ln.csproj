@@ -53,6 +53,7 @@
     <Compile Include="ConvocatoriaEtapaInscripcionLN.cs" />
     <Compile Include="ConvocatoriaLN.cs" />
     <Compile Include="CriterioLN.cs" />
+    <Compile Include="DocumentoLN.cs" />
     <Compile Include="EstrellaLN.cs" />
     <Compile Include="EtapaLN.cs" />
     <Compile Include="IndicadorDataLN.cs" />

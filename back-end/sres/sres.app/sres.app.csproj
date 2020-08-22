@@ -291,6 +291,7 @@
     <Content Include="Assets\js\pages\mantenimiento_componente.js" />
     <Content Include="Assets\js\pages\mantenimiento_convocatoria.js" />
     <Content Include="Assets\js\pages\mantenimiento_criterio.js" />
+    <Content Include="Assets\js\pages\mantenimiento_documento.js" />
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
     <Content Include="Assets\js\pages\mantenimiento_proceso.js" />
     <Content Include="Assets\js\pages\mantenimiento_requerimiento.js" />
@@ -351,6 +352,7 @@
     <Compile Include="Controllers\Api\CasoController.cs" />
     <Compile Include="Controllers\Api\ComponenteController.cs" />
     <Compile Include="Controllers\Api\CriterioController.cs" />
+    <Compile Include="Controllers\Api\DocumentoController.cs" />
     <Compile Include="Controllers\Api\EstrellaController.cs" />
     <Compile Include="Controllers\Api\EtapaController.cs" />
     <Compile Include="Controllers\Api\IndicadorDataController.cs" />
@@ -476,6 +478,7 @@
     <Content Include="Views\Convocatoria\_ConvocatoriaActual.cshtml" />
     <Content Include="Views\Mantenimiento\Caso.cshtml" />
     <Content Include="Views\Mantenimiento\Componente.cshtml" />
+    <Content Include="Views\Mantenimiento\Documento.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
