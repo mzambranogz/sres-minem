@@ -125,6 +125,8 @@ namespace sres.ln
                 using (OracleTransaction ot = cn.BeginTransaction())
                 {
                     seGuardo = inscripcionDA.GuardarEvaluacionInscripcion(inscripcion, cn);
+                    if (seGuardo)
+                        seGuardo = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = Convert.ToInt16(inscripcion.ID_CONVOCATORIA), ID_ETAPA = inscripcion.ID_ETAPA, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION, OBSERVACION = inscripcion.OBSERVACION, ID_TIPO_EVALUACION = Convert.ToInt16(inscripcion.ID_TIPO_EVALUACION) }, cn);
 
                     if (seGuardo)
                     {
@@ -164,6 +166,41 @@ namespace sres.ln
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return lista;
+        }
+
+        public bool AnularInscripcion(InscripcionBE inscripcion)
+        {
+            bool seGuardo = false;
+
+            try
+            {
+                cn.Open();
+                using (OracleTransaction ot = cn.BeginTransaction())
+                {
+                    seGuardo = inscripcionDA.AnularInscripcion(inscripcion, cn);
+                    if (seGuardo)
+                        seGuardo = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = Convert.ToInt16(inscripcion.ID_CONVOCATORIA), ID_ETAPA = inscripcion.ID_ETAPA, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION, OBSERVACION = inscripcion.OBSERVACION, ID_TIPO_EVALUACION = Convert.ToInt16(inscripcion.ID_TIPO_EVALUACION) }, cn);
+
+                    if (seGuardo) ot.Commit();
+                    else ot.Rollback();
+                }
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return seGuardo;
+        }
+
+        public InscripcionBE ObtenerInscripcionPorId(int idInscripcion) {
+            InscripcionBE ins = new InscripcionBE();
+            try
+            {
+                cn.Open();
+                ins = inscripcionDA.ObtenerInscripcionPorId(idInscripcion, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return ins;
         }
     }
 }

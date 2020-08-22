@@ -26,9 +26,11 @@ var consultar = () => {
     let fechaHasta = $('#dat-hasta').val();
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();;
-    let columna = 'id_convocatoria';
-    let orden = 'asc'
-    let params = { nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden };
+    let columna = 'id_convocatoria';    
+    let orden = 'asc';    
+    let idInstitucion = idRolLogin == 3 ? idInstitucionLogin : 0;
+    let idUsuario = idRolLogin == 2 ? idUsuarioLogin : 0;
+    let params = { nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden, idInstitucion, idUsuario };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
     let url = `/api/convocatoria/buscarconvocatoria?${queryParams}`;
@@ -74,7 +76,7 @@ var renderizar = (data, cantidadCeldas) => {
             let diasPlazo = Math.floor((fechaFin - fechaInicio) / (1000 * 60 * 60 * 24));
             let diasTranscurridos = Math.floor((fechaActual - fechaInicio) / (1000 * 60 * 60 * 24));
             //let porcentajeAvance = Math.floor(fechaInicio > fechaActual ? 0.00 : fechaActual > fechaFin ? 100 : (diasTranscurridos / diasPlazo * 100))
-            let porcentajeAvance = x.ID_ETAPA > 15 ? 100 : Math.round((x.ID_ETAPA - 1) / 14 * 100);
+            let porcentajeAvance = x.ID_ETAPA > 14 ? 100 : Math.round((x.ID_ETAPA - 1) / 13 * 100);
             let formatoCodigo = '00000000';
 
             let colNro = `<td class="text-center" data-encabezado="Número" scope="row">${x.ROWNUMBER}</td>`
@@ -89,10 +91,10 @@ var renderizar = (data, cantidadCeldas) => {
             let btnPostulacion = `<a class="btn btn-sm btn-success w-100" href="javascript:void(0)" onclick="verificarDatosInternos(${x.ID_CONVOCATORIA})" >Ingresar</a>`;
             //let btnPostulacion = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
             //EVALUADOR-ADMIN
-            let btnVerEvaluar = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/BandejaParticipantes">${x.ID_ETAPA >= 15 ? `Ver` : `Evaluar`}</a>`;
+            let btnVerEvaluar = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/BandejaParticipantes">${x.ID_ETAPA >= 14 ? `Ver` : idRolLogin == 1 ? `Ver` : `Evaluar`}</a>`;
             //POSTULANTE
             let btnGestionar = `<a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a>`;
-            let btnEditarReq = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
+            let btnEditarReq = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme"><i class="fas fa-edit mr-1"></i>Editar requisitos</a>`;
             let btnIngresarEditarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Criterios"><i class="fas fa-edit mr-1"></i>${x.ID_ETAPA == 6 ? `Ingresar` : `Editar`} criterios</a>`
 
             let btnSeguimiento = `<a class="dropdown-item estilo-01" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a>`;
@@ -115,9 +117,10 @@ var renderizar = (data, cantidadCeldas) => {
             let OpcioneEta15 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}</div>`;
             let OpcioneEta16 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}</div>`;
             
-            let colOpcionesEvaAdmin = `<td class="text-center" data-encabezado="Gestión">${x.ID_ETAPA == 1 || x.ID_ETAPA == 2 ? OpcioneEta1 : btnVerEvaluar}</td>`;
+            let colOpcionesEvaAdmin = `<td class="text-center" data-encabezado="Gestión">${x.ID_ETAPA == 1 || x.ID_ETAPA == 2 ? OpcioneEta1 : x.ID_ETAPA < 14 ? idRolLogin == 2 ? x.VALIDAR_EVALUADOR == 0 ? OpcioneEta1 : btnVerEvaluar : btnVerEvaluar : btnVerEvaluar}</td>`;
             let colOpciones = `<td class="text-center" data-encabezado="Gestión">${x.ID_ETAPA == 1 ? OpcioneEta1 : ''}${x.ID_ETAPA == 2 ? OpcioneEta2 : ''}<div class="btn-group w-100 ${x.ID_ETAPA > 2 ? '' : 'd-none'}">${btnGestionar}${x.ID_ETAPA == 3 ? OpcioneEta3 : ''}${x.ID_ETAPA == 4 ? OpcioneEta4 : ''}${x.ID_ETAPA == 5 ? OpcioneEta5 : ''}${x.ID_ETAPA == 6 ? OpcioneEta6 : ''}${x.ID_ETAPA == 7 ? OpcioneEta7 : ''}${x.ID_ETAPA == 8 ? OpcioneEta8 : ''}${x.ID_ETAPA == 9 ? OpcioneEta9 : ''}${x.ID_ETAPA == 10 ? OpcioneEta10 : ''}${x.ID_ETAPA == 11 ? OpcioneEta11 : ''}${x.ID_ETAPA == 12 ? OpcioneEta12 : ''}${x.ID_ETAPA == 13 ? OpcioneEta13 : ''}${x.ID_ETAPA == 14 ? OpcioneEta14 : ''}${x.ID_ETAPA == 15 ? OpcioneEta15 : ''}${x.ID_ETAPA == 16 ? OpcioneEta16 : ''}</div></td>`;
-            let fila = `<tr>${colNro}${colNroInforme}${colPeriodo}${colNombre}${colFechaInicio}${colFechaFin}${colVencimiento}${colEstado}${idRol == 3 ? colOpciones : colOpcionesEvaAdmin}</tr>`;
+            let colAnulado = `<td class="text-center" data-encabezado="Gestión"><div class="btn-group w-100">${btnGestionar}${OpcioneEta12}</div></td>`
+            let fila = `<tr ${x.FLAG_ANULAR == 1 ? 'style="background-color: #FED0C6";' : ''}>${colNro}${colNroInforme}${colPeriodo}${colNombre}${colFechaInicio}${colFechaFin}${colVencimiento}${colEstado}${idRol == 3 ? x.FLAG_ANULAR == 1 ? colAnulado : colOpciones : colOpcionesEvaAdmin}</tr>`;
             return fila;
         }).join('');
     };
@@ -368,8 +371,9 @@ var armarCombotrabajadorcama = (data) => {
     let combo = data.map((x, y) => {
         return `<option value="${x.ID_TRABAJADORES_CAMA}" ${x.MAYOR_SIGNO == '1' ? `data-max="${x.MAYOR_VALOR}"` : ``} ${x.MENOR_SIGNO == '1' ? `data-min="${x.MENOR_VALOR}"` : ``}>${x.NOMBRE}</option>`
     }).join('');
-    $(`#cbo-trabajador-cama`).html(`<option value="0">-Seleccione-</option>${combo}`);
+    $(`#cbo-trabajador-cama`).html(data.length == 1 ? combo : `<option value="0">-Seleccione-</option>${combo}`);
     if (vidTrabajadorCama > 0) { $(`#cbo-trabajador-cama`).val(vidTrabajadorCama); vidTrabajadorCama = 0; trabajadorcamaChange(); vcantidad == 0 ? $(`#txt-numero`).val('') : $(`#txt-numero`).val(vcantidad); vcantidad = 0; }
+    else { trabajadorcamaChange(); }
 }
 
 var trabajadorcamaChange = () => {

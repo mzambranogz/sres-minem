@@ -14,7 +14,7 @@ namespace sres.da
 {
     public class ConvocatoriaDA : BaseDA
     {
-        public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, OracleConnection db)
+        public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, int idInstitucion, int idUsuario, OracleConnection db)
         {
             List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
 
@@ -30,6 +30,8 @@ namespace sres.da
                 p.Add("PI_PAGINA", pagina);
                 p.Add("PI_COLUMNA", columna);
                 p.Add("PI_ORDEN", orden);
+                p.Add("PI_ID_INSTITUCION", idInstitucion);
+                p.Add("PI_ID_USUARIO", idUsuario);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<dynamic>(sp, p, commandType: CommandType.StoredProcedure).Select(x => new ConvocatoriaBE
                 {
@@ -46,7 +48,9 @@ namespace sres.da
                     TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
                     PAGINA = (int)x.PAGINA,
                     CANTIDAD_REGISTROS = (int)x.CANTIDAD_REGISTROS,
-                    TOTAL_REGISTROS = (int)x.TOTAL_REGISTROS
+                    TOTAL_REGISTROS = (int)x.TOTAL_REGISTROS,
+                    VALIDAR_EVALUADOR = (int)x.VALIDAR_EVALUADOR,
+                    FLAG_ANULAR = idInstitucion == 0 ? 0 : (int)x.FLAG_ANULAR
                 }).ToList();
             }
             catch (Exception ex) { Log.Error(ex); }
@@ -126,7 +130,15 @@ namespace sres.da
             {
                 string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_CONVOCAT";
                 var p = new OracleDynamicParameters();
-                p.Add("PI_BUSCAR", entidad.BUSCAR);
+                //p.Add("PI_BUSCAR", entidad.BUSCAR);
+                //p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
+                //p.Add("PI_PAGINA", entidad.PAGINA);
+                //p.Add("PI_COLUMNA", entidad.ORDER_BY);
+                //p.Add("PI_ORDEN", entidad.ORDER_ORDEN);
+                p.Add("PI_CODIGO", entidad.CODIGO);
+                p.Add("PI_NOMBRE", entidad.NOMBRE);
+                p.Add("PI_FECHA_INICIO", entidad.FECHA_DESDE);
+                p.Add("PI_FECHA_FIN", entidad.FECHA_HASTA);
                 p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
                 p.Add("PI_PAGINA", entidad.PAGINA);
                 p.Add("PI_COLUMNA", entidad.ORDER_BY);
@@ -583,10 +595,11 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_INSCRIPCION", idInscripcion);
                 p.Add("PI_USUARIO_GUARDAR", usuario);
-                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                //p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
-                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
-                seGuardo = filasAfectadas > 0;
+                //int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                //seGuardo = filasAfectadas > 0;
+                seGuardo = true;
             }
             catch (Exception ex) { Log.Error(ex); }
 
@@ -602,10 +615,11 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_INSCRIPCION", idInscripcion);
                 p.Add("PI_USUARIO_GUARDAR", usuario);
-                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                //p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
-                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
-                seGuardo = filasAfectadas > 0;
+                //int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                //seGuardo = filasAfectadas > 0;
+                seGuardo = true;
             }
             catch (Exception ex) { Log.Error(ex); }
 

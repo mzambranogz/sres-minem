@@ -241,6 +241,40 @@ namespace sres.da
 
             return usuario;
         }
+
+        public List<UsuarioBE> ListarUsuarioResponsable(int idConvocatoria, OracleConnection db)
+        {
+            List<UsuarioBE> lista = null;
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_USUARIO_RESP";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
+
+        public List<UsuarioBE> ListarUsuarioResponsableAll(int idConvocatoria, OracleConnection db)
+        {
+            List<UsuarioBE> lista = null;
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_USUARIO_RESP_ALL";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
         #endregion
     }
 }

@@ -16,7 +16,7 @@ var consultar = () => {
     idInscripcion = isNaN(idInscripcion) == true ? -1 : (idInscripcion.trim() == "" ? null : parseInt(idInscripcion));
     let razonSocialInstitucion = $('#txt-empresa').val();
     let nombresCompletosUsuario = $('#txt-responsable').val();
-    let idUsuario = (idEtapa < 15) ? idUsuarioLogin : null;
+    let idUsuario = (idEtapa < 14) ? idRolLogin == 1 ? null : idUsuarioLogin : null;
     //let idUsuario = idUsuarioLogin;
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();;
@@ -72,7 +72,7 @@ var renderizar = (data, cantidadCeldas) => {
             let colAspiraciones = x.ASPIRACIONES == null ? "<td></td>" : `<td class="text-center" data-encabezado="Fecha Fin">${x.ASPIRACIONES.map(y => `<img class="img-fluid medal-sres" src="./images/${y.NOMBRE}.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">`)}</td>`;
 
             //let btnDetalles = `<a class="btn btn-sm btn-success w-100" href="javascript:void(0)">Detalles</a>`;
-            let btnGestionar = `<a class="btn btn-sm bg-success text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>`;
+            let btnGestionar = `<a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestión</a>`;
             let btnEvaluarRequisitos = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${idConvocatoria}/Institucion/${x.ID_INSTITUCION}/Evaluar"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a>`;
             let btnEvaluarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${idConvocatoria}/Inscripcion/${x.ID_INSCRIPCION}/EvaluacionCriterios"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a>`;
             let btnVerPerfil = `<a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a>`;
@@ -99,7 +99,8 @@ var renderizar = (data, cantidadCeldas) => {
             //let OpcionesEtapa5y8 = `<div class="dropdown-menu">${btnEvaluarRequisitos}${btnEvaluarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div>`;
             //let colOpciones = `<td class="text-center" data-encabezado="Gestión">${x.CONVOCATORIA.ID_ETAPA == 5 || x.CONVOCATORIA.ID_ETAPA == 8 ? `${btnGestionar}${OpcionesEtapa5y8}` : btnDetalles}</td>`;
             let colOpciones = `<td class="text-center" data-encabezado="Gestión"><div class="btn-group w-100">${btnGestionar}${x.CONVOCATORIA.ID_ETAPA == 1 ? OpcioneEta1 : ''}${x.CONVOCATORIA.ID_ETAPA == 2 ? OpcioneEta2 : ''}${x.CONVOCATORIA.ID_ETAPA == 3 ? OpcioneEta3 : ''}${x.CONVOCATORIA.ID_ETAPA == 4 ? OpcioneEta4 : ''}${x.CONVOCATORIA.ID_ETAPA == 5 ? OpcioneEta5 : ''}${x.CONVOCATORIA.ID_ETAPA == 6 ? OpcioneEta6 : ''}${x.CONVOCATORIA.ID_ETAPA == 7 ? OpcioneEta7 : ''}${x.CONVOCATORIA.ID_ETAPA == 8 ? OpcioneEta8 : ''}${x.CONVOCATORIA.ID_ETAPA == 9 ? OpcioneEta9 : ''}${x.CONVOCATORIA.ID_ETAPA == 10 ? OpcioneEta10 : ''}${x.CONVOCATORIA.ID_ETAPA == 11 ? OpcioneEta11 : ''}${x.CONVOCATORIA.ID_ETAPA == 12 ? OpcioneEta12 : ''}${x.CONVOCATORIA.ID_ETAPA == 13 ? OpcioneEta13 : ''}${x.CONVOCATORIA.ID_ETAPA == 14 ? OpcioneEta14 : ''}${x.CONVOCATORIA.ID_ETAPA == 15 ? OpcioneEta15 : ''}${x.CONVOCATORIA.ID_ETAPA == 16 ? OpcioneEta16 : ''}</div></td>`;
-            let fila = `<tr>${colNro}${colCodigo}${colEmpresaParticipante}${colResponsable}${colCriterios}${colPuntuacion}${colAspiraciones}${colOpciones}</tr>`;
+            let colAnulado = `<td class="text-center" data-encabezado="Gestión"><div class="btn-group w-100">${btnGestionar}${OpcioneEta12}</div></td>`;
+            let fila = `<tr ${x.FLAG_ANULAR == 1 ? 'style="background-color: #FED0C6";' : ''}>${colNro}${colCodigo}${colEmpresaParticipante}${colResponsable}${colCriterios}${colPuntuacion}${colAspiraciones}${x.FLAG_ANULAR == 1 ? colAnulado : colOpciones}</tr>`;
             return fila;
         }).join('');
     };

@@ -1,6 +1,6 @@
 ﻿var pageLoad = () => {
     cargarListaInscripcionRequerimiento();
-    $('#btnEvaluar').on('click', btnEvaluarClick);
+    $('#btnEvaluar').on('click', btnEvaluarClick);    
 }
 
 var cargarListaInscripcionRequerimiento = () => {
@@ -51,6 +51,7 @@ var mostrarListaInscripcionRequerimiento = (data) => {
         //$('input[type="file"].fil-file-control').on('change', fileRequerimientoChange);
         //$('input[type="file"][id*="fle-requisito-"]').on('change', fileRequerimientoChange);
         //$(`[id*="viewContentFile-"] .btnEliminarFile`).on('click', btnEliminarFileClick);
+        if (idEtapa == 5) validarAnular();
     }
 }
 
@@ -58,12 +59,14 @@ var chkAprobadoChange = (e) => {
     let id = $(e.currentTarget).attr('data-id');
     $(`#msg-${id}`).removeClass('alert-secondary').removeClass('alert-success').removeClass('alert-danger').addClass('alert-success');
     $(`#msg-${id}`).html(`<div class="mr-lg-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">El documento es correcto</span></div>`);
+    if (idEtapa == 5) validarAnular();
 }
 
 var chkDesaprobadoChange = (e) => {
     let id = $(e.currentTarget).attr('data-id');
     $(`#msg-${id}`).removeClass('alert-secondary').removeClass('alert-success').removeClass('alert-danger').addClass('alert-danger');
     $(`#msg-${id}`).html(`<div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div>`);
+    if (idEtapa == 5) validarAnular();
 }
 
 var btnEvaluarClick = (e) => {
@@ -121,16 +124,23 @@ var evaluarInscripcion = () => {
     });
 
     let data = {
+        ID_CONVOCATORIA: idConvocatoria,
         ID_INSCRIPCION: idInscripcion,
+        ID_ETAPA: idEtapa,
         LISTA_INSCRIPCION_REQUERIMIENTO: listaInscripcionRequerimiento,
         ID_TIPO_EVALUACION: $('.alert-secondary').length > 0 ? null : $('.alert-danger').length == 0 ? 1 : 2,
         OBSERVACION: observacion,
-        UPD_USUARIO: idUsuarioLogin
+        UPD_USUARIO: idUsuarioLogin,
+        USUARIO_GUARDAR: idUsuarioLogin
     }
 
     //console.log(formData);
+    //let url = `/api/inscripcion/evaluarinscripcion`;
+    let url = ``;
 
-    let url = `/api/inscripcion/evaluarinscripcion`;
+    if ($('.alert-danger').length == 0 || idEtapa != 5) url = `/api/inscripcion/evaluarinscripcion`;
+    else url = `/api/inscripcion/anularinscripcion`;
+
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
     //let init = { method: 'POST', body: formData };
 
@@ -142,9 +152,22 @@ var evaluarInscripcion = () => {
 var mostrarMensaje = (data) => {
     if (data == true) {
         $('#btnEvaluar').parent().parent().hide();
-        $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: `¡Se guardó correctamente!`, close: { time: 4000 } });
-        setTimeout(() => { location.href = `${baseUrl}Convocatoria/${idConvocatoria}/BandejaParticipantes/`; }, 4000);
+        if ($('.alert-danger').length == 0 || idEtapa != 5) $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: `¡Se guardó correctamente!`, close: { time: 5000 } });
+        else $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'CORRECTO', message: `¡Se realizó correctamente el proceso de anulación y se notificó al usuario responsable!`, close: { time: 5000 } });
+        setTimeout(() => { location.href = `${baseUrl}Convocatoria/${idConvocatoria}/BandejaParticipantes/`; }, 5000);
         //cargarListaInscripcionRequerimiento();
+    } else {
+        $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'danger', title: 'OCURRIÓ UN ERROR INESPERADO', message: `Inténtelo nuevamente por favor.`, close: { time: 5000 } });
+    }
+}
+
+var validarAnular = () => {
+    if ($('.alert-danger').length == 0) {
+        $('#btnEvaluar').html('Evaluar');
+        $('#btnEvaluar').removeClass('btn-danger').addClass('btn-primary');
+    } else if ($('.alert-danger').length > 0) {
+        $('#btnEvaluar').html('Anular');
+        $('#btnEvaluar').removeClass('btn-primary').addClass('btn-danger');
     }
 }
 

@@ -67,11 +67,15 @@
             <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
                 <div class="d-block bg-sres-claro border-linea rounded p-3">
                     <img class="img-fluid" src="@Url.Content($"~/{pathDirectoryRelative}/{criterio.ARCHIVO_BASE}")">
-                    <div class="estilo-01 text-sres-azul pt-3">@criterio.NOMBRE</div>
+                    @*<div class="estilo-01 text-sres-azul pt-3">@criterio.NOMBRE</div>*@
                 </div>
             </div>
+            <div class="col-lg-9 col-md-12 col-sm-12 my-3">
+                <div class="estilo-02 text-sres-azul text-left">@criterio.NOMBRE</div>
+                <p class="estilo-01 text-sres-gris pt-3 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam est, excepturi earum sint odio totam? Repellendus quos, vero eveniet porro, laboriosam consequatur explicabo corrupti dignissimos, asperiores at nisi? Totam, hic. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam est, excepturi earum sint odio totam? Repellendus quos, vero eveniet porro, laboriosam consequatur explicabo corrupti dignissimos, asperiores at nisi? Totam, hic.</p>
+            </div>
 
-            <div class="col-lg-9 col-md-12 col-sm-12 text-center my-3">
+            @*<div class="col-lg-9 col-md-12 col-sm-12 text-center my-3">
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
@@ -148,9 +152,6 @@
                                                     <option value="@obj.ID_DETALLE">@obj.DESCRIPCION = @obj.PUNTAJE</option>
                                                 }
                                             }
-                                            @*<option>5% - 10% = 5</option>
-                                                <option>11% - 15% = 10</option>
-                                                <option>Más de 15%</option>*@
                                         </select>
                                     </div>
                                 </div>
@@ -164,7 +165,6 @@
                                     <div class="text-left" for="txa-observaciones">Observaciones:</div>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-warning"><span class="input-group-text"><i class="fas fa-comment"></i></span></div>
-                                        <!--.form-control-plaintext-->
                                         <textarea class="form-control estilo-01" id="txa-observaciones" cols="30" rows="5" maxlenght="400" placeholder="Ingrese la descripción de sus observaciones"></textarea>
                                     </div>
                                 </div>
@@ -186,10 +186,131 @@
                     <div class="col-12 alert-add">
                     </div>
                 </div>
+            </div>*@
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 text-center my-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text bg-sres-azul text-white"><i class="fas fa-list"></i></span></div>
+                                @if (listaCaso != null)
+                                {
+                                    <select class="form-control" id="cbo-caso">
+
+                                        @foreach (var caso in listaCaso)
+                                        {
+                                            <option value="@caso.ID_CASO">@caso.NOMBRE</option>
+                                        }
+
+                                    </select>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="table-add"></div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bg-sres-claro py-5 px-3">
+                            <div class="row">
+                                <div class="col-12" id="doc-add">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group text-left">
+                            <label class="" for="txt-emisiones">Total de emisiones reducidas tCO<sub>2</sub></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
+                                <input class="form-control estilo-01" type="text" id="txt-emisiones" maxlength="30" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-5">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="estilo-02 text-sres-azul text-left w-100 mb-2">EVALUACIÓN</label>
+                                    <div class="input-group">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="rad-evaluacion-criterios-01" id="rad-eva-cri-01" value="1">
+                                            <label class="form-check-label estilo-01" for="rad-eva-cri-01">Aprobado</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="rad-evaluacion-criterios-01" id="rad-eva-cri-02" value="0">
+                                            <label class="form-check-label estilo-01" for="rad-eva-cri-02">Desaprobado</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="estilo-02 text-sres-azul text-left w-100 mb-2">PUNTAJE</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-list"></i></span></div>
+                                        <select class="form-control" id="cbo-puntaje">
+                                            <option value="0">-Seleccione puntaje-</option>
+                                            @if (listaConCriPuntaje != null)
+                                            {
+                                                foreach (var obj in listaConCriPuntaje)
+                                                {
+                                                    <option value="@obj.ID_DETALLE">@obj.DESCRIPCION = @obj.PUNTAJE</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <div class="alert-wrap">
+                                <div class="form-group">
+                                    <div class="text-left" for="txa-observaciones">Observaciones:</div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend bg-warning"><span class="input-group-text"><i class="fas fa-comment"></i></span></div>
+                                        <textarea class="form-control estilo-01" id="txa-observaciones" cols="30" rows="5" maxlenght="400" placeholder="Ingrese la descripción de sus observaciones"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="offset-lg-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                <div class="row">
+                    <div class="col-lg-6"><a class="btn btn-secondary text-white w-100" href="@Url.Action("EvaluacionCriterios","Convocatoria")">Regresar</a></div>
+                    <div class="col-lg-6">
+                        <div class="btn btn-primary text-white w-100" type="button" id="btnGuardar">Guardar</div>
+                    </div>
+                </div>
+            </div>
+            <div class="offset-lg-12 col-lg-12 col-md-12 col-sm-12 my-3">
+                <div class="row">
+                    <div class="col-12 alert-add">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <input class="nom-cri" type="hidden" value="@criterio.NOMBRE" />
 
 <script>

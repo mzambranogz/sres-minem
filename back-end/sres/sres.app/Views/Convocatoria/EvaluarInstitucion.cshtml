@@ -4,6 +4,7 @@
     ViewBag.SRESDescription = false;
     ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
     InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
+    ConvocatoriaEtapaInscripcionBE convetainsc = (ConvocatoriaEtapaInscripcionBE)ViewData["convetainsc"];
     ViewBag.Full = true;
     ViewBag.HasOptions = false;
 }
@@ -16,67 +17,88 @@
     <script src="@Url.Content("~/Assets/js/pages/convocatoria_evaluarinscripcion.js")"></script>
 }
 
-@Html.Partial("_ConvocatoriaActual")
-<div class="container-fluid mb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <p class="estilo-01 text-justify text-sres-gris m-0">Con la finalidad de que la entidad postulante demuestre las condiciones legales para realizar sus actividades económicas, se sugiere que éstas puedan cumplir con los siguientes criterios:</p>
+@if (convetainsc != null)
+{
+    <div class="container-fluid mt-5">
+        <div class="container">
+            <div class="row">
+                <h1>¡LA REVISIÓN DE LOS REQUISITOS FUE REALIZADA!</h1>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="rayado my-5 wow fadeIn"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-lg-9 col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Action("Index", "Convocatoria")">Regresar</a></div>
             </div>
         </div>
     </div>
-</div>
-<div class="container-fluid my-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="bg-sres-claro py-5 px-3" id="viewInscripcionRequerimiento">
-                    <div class="row">
-                        <div class="col-12" id="lstInscripcionRequerimiento">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" id="chk-norma-01" checked disabled>
-                                    <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-01">Acepto cumplir con la normativa vigente que corresponda, pudiendo ser excluidas del premio en caso de verificarse incumplimiento de ésta, incluso una vez entregado el mismo</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" id="chk-norma-02" checked disabled>
-                                    <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-02">Acepto permitir la visita a las instalaciones, facilitar información complementaria y/o presentar el proyecto al Comité Organizador y Evaluador, en caso que éste lo solicite.</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" id="chk-norma-03" checked disabled>
-                                    <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-03">Acepto permitir la visita a las instalaciones, facilitar información complementaria y/o presentar el proyecto al Comité Organizador y Evaluador, en caso que éste lo solicite.</label>
-                                </div>
+}
+else
+{
+    @Html.Partial("_ConvocatoriaActual")
+    <div class="container-fluid mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="estilo-01 text-justify text-sres-gris m-0">Con la finalidad de que la entidad postulante demuestre las condiciones legales para realizar sus actividades económicas, se sugiere que éstas puedan cumplir con los siguientes criterios:</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bg-sres-claro py-5 px-3" id="viewInscripcionRequerimiento">
+                        <div class="row">
+                            <div class="col-12" id="lstInscripcionRequerimiento">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
-                            <div class="alert alert-warning" role="alert">
-                                <div class="alert-wrap">
-                                    <div class="form-group">
-                                        <label for="txa-observaciones">Observaciones:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend bg-warning"><span class="input-group-text"><i class="fas fa-comment"></i></span></div>
-                                            <textarea class="form-control estilo-01" id="txa-observaciones" cols="30" rows="5" maxlenght="400" placeholder="Ingrese la descripción de sus observaciones">@inscripcion.OBSERVACION</textarea>
+                        <div class="row">
+                            <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input class="custom-control-input" type="checkbox" id="chk-norma-01" checked disabled>
+                                        <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-01">Acepto cumplir con la normativa vigente que corresponda, pudiendo ser excluidas del premio en caso de verificarse incumplimiento de ésta, incluso una vez entregado el mismo</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input class="custom-control-input" type="checkbox" id="chk-norma-02" checked disabled>
+                                        <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-02">Acepto permitir la visita a las instalaciones, facilitar información complementaria y/o presentar el proyecto al Comité Organizador y Evaluador, en caso que éste lo solicite.</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input class="custom-control-input" type="checkbox" id="chk-norma-03" checked disabled>
+                                        <label class="custom-control-label text-justify estilo-01 text-sres-gris" for="chk-norma-03">Acepto permitir la visita a las instalaciones, facilitar información complementaria y/o presentar el proyecto al Comité Organizador y Evaluador, en caso que éste lo solicite.</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
+                                <div class="alert alert-warning" role="alert">
+                                    <div class="alert-wrap">
+                                        <div class="form-group">
+                                            <label for="txa-observaciones">Observaciones:</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend bg-warning"><span class="input-group-text"><i class="fas fa-comment"></i></span></div>
+                                                <textarea class="form-control estilo-01" id="txa-observaciones" cols="30" rows="5" maxlenght="400" placeholder="Ingrese la descripción de sus observaciones">@inscripcion.OBSERVACION</textarea>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
-                            <div class="row">
-                                <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/BandejaParticipantes")">Regresar</a></div>
-                                <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-primary text-white w-100 mb-3" href="#" id="btnEvaluar">Evaluar</a></div>
+                        <div class="row">
+                            <div class="col-lg-6 offset-lg-6 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/BandejaParticipantes")">Regresar</a></div>
+                                    <div class="col-lg-6 col-sm-12 col-sm-12"><a class="btn btn-primary text-white w-100 mb-3" href="#" id="btnEvaluar">Evaluar</a></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -84,4 +106,8 @@
             </div>
         </div>
     </div>
-</div>
+}
+
+<script>
+    const idEtapa = @convocatoria.ID_ETAPA;
+</script>

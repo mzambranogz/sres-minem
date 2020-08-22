@@ -52,7 +52,7 @@
 }
 else
 {
-    if (convocatoria.ID_ETAPA != (int)EnumsCustom.Etapas.POSTULACION)
+    if (convocatoria.ID_ETAPA != (int)EnumsCustom.Etapas.POSTULACION && convocatoria.ID_ETAPA != (int)EnumsCustom.Etapas.DOCUMENTOSOLICITADO)
     {
         <div class="container-fluid mt-5">
             <div class="container">
@@ -61,7 +61,6 @@ else
                 </div>
             </div>
         </div>
-
     }
     else
     {

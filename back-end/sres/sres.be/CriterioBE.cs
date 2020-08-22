@@ -10,6 +10,7 @@ namespace sres.be
     {
         public int ID_CRITERIO { get; set; }
         public string NOMBRE { get; set; }
+        public string DESCRIPCION { get; set; }
         public string ARCHIVO_BASE { get; set; }
         public string ARCHIVO_CIFRADO { get; set; }
         public byte[] ARCHIVO_CONTENIDO { get; set; }

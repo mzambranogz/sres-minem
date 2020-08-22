@@ -16,8 +16,8 @@
             <div class="col-12">
                 <nav class="estilo-05" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-sres-gris" href="./index.html">Inicio</a></li>
-                        <li class="breadcrumb-item"><a class="text-sres-gris" href="./mantenimientos.html">Mantenimiento de Tablas</a></li>
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index","Inicio")">Inicio</a></li>
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("TablaMantenimiento","Mantenimiento")">Mantenimiento de Tablas</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Mantenimiento de Convocatorias</li>
                     </ol>
                 </nav>
@@ -51,7 +51,7 @@
                 <div class="form-group">
                     <label class="estilo-01" for="txt-codigo">CÓDIGO</label>
                     <div class="input-group">
-                        <input class="form-control form-control-sm" type="text" id="txt-codigo" placeholder="#######">
+                        <input class="form-control form-control-sm solo-numero" type="text" id="txt-codigo" maxlength="10" placeholder="#######">
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 <div class="form-group">
                     <label class="estilo-01 text-sres-oscuro" for="txt-descripcion">DESCRIPCIÓN DE CONVOCATORIA</label>
                     <div class="input-group">
-                        <input class="form-control form-control-sm" type="text" id="txt-descripcion" placeholder="Ingrese la descripción de su búsqueda">
+                        <input class="form-control form-control-sm" type="text" id="txt-descripcion" placeholder="Ingrese la descripción de su búsqueda" maxlength="50">
                     </div>
                 </div>
             </div>
@@ -100,22 +100,22 @@
                             <tr>
                                 <th scope="col" width="3%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
-                                        <div class="d-flex justify-content-between align-items-center w-100">N°&nbsp;<i class="fas fa-sort"></i></div>
+                                        <div class="d-flex justify-content-between align-items-center w-100">N°&nbsp;@*<i class="fas fa-sort"></i>*@</div>
                                         <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Número de orden"></i></div>
                                     </div>
                                 </th>
                                 <th scope="col" width="8%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
                                         <div class="d-flex justify-content-between align-items-center w-100">
-                                            <div class="pl-1">CÓDIGO&nbsp;</div><i class="fas fa-sort"></i>
+                                            <div class="pl-1">CÓDIGO&nbsp;</div><i class="fas fa-sort columna-filtro" id="ID_CONVOCATORIA"></i>
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Número de expediente"></i></div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="código de la convocatoria"></i></div>
                                     </div>
                                 </th>
                                 <th scope="col" width="5%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
                                         <div class="d-flex justify-content-between align-items-center w-100">
-                                            <div class="pl-1">TÍTULO&nbsp;</div><i class="fas fa-sort"></i>
+                                            <div class="pl-1">TÍTULO&nbsp;</div><i class="fas fa-sort columna-filtro" id="NOMBRE"></i>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Título de la convocatoria"></i></div>
                                     </div>
@@ -123,7 +123,7 @@
                                 <th scope="col" width="29%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
                                         <div class="d-flex justify-content-between align-items-center w-100">
-                                            <div class="pl-1">DESCRIPCIÓN DE LA CONVOCATORIA&nbsp;</div><i class="fas fa-sort"></i>
+                                            <div class="pl-1">DESCRIPCIÓN DE LA CONVOCATORIA&nbsp;</div><i class="fas fa-sort columna-filtro" id="DESCRIPCION"></i>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre o descripción de la convocatoria"></i></div>
                                     </div>
@@ -131,7 +131,7 @@
                                 <th scope="col" width="12%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
                                         <div class="d-flex justify-content-between align-items-center w-100">
-                                            <div class="pl-1">FECHA INICIO&nbsp;</div><i class="fas fa-sort"></i>
+                                            <div class="pl-1">FECHA INICIO&nbsp;</div><i class="fas fa-sort columna-filtro" id="FECHA_INICIO"></i>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Fecha de inicialización de la convocatoria"></i></div>
                                     </div>
@@ -139,7 +139,7 @@
                                 <th scope="col" width="10%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
                                         <div class="d-flex justify-content-between align-items-center w-100">
-                                            <div class="pl-1">FECHA FIN&nbsp;</div><i class="fas fa-sort"></i>
+                                            <div class="pl-1">FECHA FIN&nbsp;</div><i class="fas fa-sort columna-filtro" id="FECHA_FIN"></i>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Fecha de finalización de la convocatoria"></i></div>
                                     </div>
@@ -147,7 +147,7 @@
                                 <th scope="col" width="10%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
                                         <div class="d-flex justify-content-between align-items-center w-100">
-                                            <div class="pl-1">PROGRESO&nbsp;</div><i class="fas fa-sort"></i>
+                                            <div class="pl-1">PROGRESO&nbsp;</div><i class="fas fa-sort columna-filtro" id="ID_ETAPA"></i>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Progreso del vencimiento"></i></div>
                                     </div>
@@ -155,7 +155,7 @@
                                 <th scope="col" width="13%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
                                         <div class="d-flex justify-content-between align-items-center w-100">
-                                            <div class="pl-1">ESTADO&nbsp;</div><i class="fas fa-sort"></i>
+                                            <div class="pl-1">ESTADO&nbsp;</div><i class="fas fa-sort columna-filtro" id="NOMBRE_ETAPA"></i>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Estado de la convocatoria"></i></div>
                                     </div>
@@ -163,7 +163,7 @@
                                 <th scope="col" width="10%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
                                         <div class="d-flex justify-content-between align-items-center w-100">
-                                            <div class="pl-1">GESTIÓN&nbsp;</div><i class="fas fa-sort"></i>
+                                            <div class="pl-1">GESTIÓN&nbsp;</div>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Herramientas y opciones"></i></div>
                                     </div>
@@ -180,10 +180,10 @@
         <div class="row">
             <div class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-start align-items-center">
                 <div class="row">
-                    <div class="col-12"><strong>Resultado:&nbsp;</strong>1-10 de 750 registros</div>
+                    <div class="col-12"><strong>Resultado:&nbsp;</strong><span class="inicio-registros">1</span><span id="view-page-result">-<span class="fin-registros">1</span> de <span class="total-registros">1</span> registros</span></div>
                 </div>
             </div>
-            <div class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-end align-items-center">
+            <div id="viewPagination" class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-end align-items-center" style="display: none">
                 <div class="row">
                     <div class="col-12">
                         <strong>Registros por página&nbsp;</strong>
@@ -193,13 +193,13 @@
                             <option value="50">50</option>
                             <option value="100">100</option>
                         </select>&nbsp;
-                        1 de 75 páginas&nbsp;
+                        <span class="pagina">1</span> de <span class="total-paginas">75</span> páginas&nbsp;
                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-double-left"></i></button>
-                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-left"></i></button>
-                            <input class="ir-pagina" type="number" value="1" min="1">
-                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-right"></i></button>
-                            <button class="btn btn-sm btn-primary" type="button"><i class="fas fa-angle-double-right"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(1)"><i class="fas fa-angle-double-left"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(2)"><i class="fas fa-angle-left"></i></button>
+                            <input id="ir-pagina" class="ir-pagina" type="number" value="1" min="1">
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(3)"><i class="fas fa-angle-right"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(4)"><i class="fas fa-angle-double-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -222,7 +222,7 @@
                             <div class="form-group mt-2">
                                 <label class="estilo-01" for="txt-titulo">Título de la convocatoria:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                                 <div class="input-group">
-                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt" maxlength="150"></i></span></div>
                                     <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-titulo" placeholder="Título de la convocatoria">
                                 </div>
                             </div>
@@ -230,7 +230,7 @@
                                 <label class="estilo-01" for="txa-descripcion">Descripción de la convocatoria:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
-                                    <textarea class="form-control estilo-01 text-sres-gris" id="txa-descripcion" cols="30" rows="3" placeholder="Ingrese la descripción de su convocatoria"></textarea>
+                                    <textarea class="form-control estilo-01 text-sres-gris" id="txa-descripcion" cols="30" rows="3" placeholder="Ingrese la descripción de su convocatoria" maxlength="600"></textarea>
                                 </div>
                             </div>
                             <div class="row">
@@ -257,7 +257,7 @@
                                         <label class="estilo-01" for="txt-capacidad">Capacidad de postulantes:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div>
-                                            <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-capacidad" placeholder="Capacidad de postulantes">
+                                            <input class="form-control estilo-01 text-sres-gris solo-numero" type="text" id="txt-capacidad" placeholder="Capacidad de postulantes" maxlength="10">
                                         </div>
                                     </div>
                                 </div>
@@ -509,156 +509,11 @@
     </div>
 </div>
 
+@Html.Hidden("columna", "ID_CONVOCATORIA")
+@Html.Hidden("orden", "ASC")
 
-
-@*<div>
-    <div class="container-fluid py-4">
-        <div class="row">
-            <div class="col-12 px-0">
-                <input type="text" class="form-control" id="textoBusqueda" name="textoBusqueda" />
-                <button id="btnConsultar">CONSULTAR</button>
-                <button id="btnNuevo">NUEVO</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 px-0">
-                <div class="table-responsive tabla-principal">
-                    <table id="tblPrincipal" class="table table-hover">
-                        <thead>
-                            <tr class="bg-primary text-white">
-                                <th class="text-center" scope="col"><span class="miColumna">N°&nbsp;<i class="fas fa-sort" id="ID_CONVOCATORIA"></i></span></th>
-                                <th scope="col"><span class="miColumna">Convocatoria&nbsp;<i class="fas fa-sort-up" id="CONVOCATORIA"></i></span></th>
-                                <th scope="col"><span class="miColumna">Descripción&nbsp;<i class="fas fa-sort-up" id="DESCRIPCION"></i></span></th>
-                                <th scope="col"><span class="miColumna">Fecha inicio&nbsp;<i class="fas fa-sort-up" id="FECHA_INICIO"></i></span></th>
-                                <th scope="col"><span class="miColumna">Fecha fin&nbsp;<i class="fas fa-sort-up" id="FECHA_FIN"></i></span></th>
-                                <th scope="col"><span class="miColumna">Capacidad de postulantes&nbsp;<i class="fas fa-sort-up" id="LIMITE_POSTULANTE"></i></span></th>
-                                <th class="text-center" scope="col" width="10%">Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<form id="frm" autocomplete="off" style="display: none;">
-    <div class="relacion-evaluador">
-        <a class="btn mostrar-relacion" href="javascript:void(0)" >Relacion</a>
-        <div class="postulante-evaluador d-none">
-        </div>
-        <div class="postulante-evaluador-btn d-none">
-            <button type="button" id="btnGuardarRelacion">GUARDAR</button>
-            <button type="button" id="btnCerrarRelacion">CERRAR</button>
-        </div>
-    </div>
-    <hr/>
-    <div id="etapa-convocatoria">
-        <label>
-            Etapa actual de la convocatoria:
-            <select id="cbo-etapa"></select>
-        </label>        
-    </div>
-    <div>
-        <label>
-            Convocatoria:
-            <input type="text" name="txtConvocatoria" id="txtConvocatoria" placeholder="Ingrese Convocatoria" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Descripción:
-            <input type="text" name="txtDescripcion" id="txtDescripcion" placeholder="Ingrese Descripción" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Fecha inicio:
-            <input type="date" name="fchFechaInicio" id="fchFechaInicio" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Fecha fin:
-            <input type="date" name="fchFechaFin" id="fchFechaFin" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Capacidad de postlantes:
-            <input type="text" name="txtLimite" id="txtLimite" placeholder="Ingrese Convocatoria" />
-        </label>
-    </div>
-    <div>
-        <label for="mlt-energetico">Requerimiento</label>
-        <div>
-            <div id="list-req">
-            </div>
-        </div>
-    </div>
-    <div>
-        <label for="mlt-energetico">Criterio</label>
-        <div>
-            <div id="list-criterio">
-            </div>
-        </div>
-    </div>
-    <div>
-        <label for="mlt-energetico">Evaluador</label>
-        <div>
-            <div id="list-evaluador">
-            </div>
-        </div>
-    </div>
-    <div>
-        <label for="mlt-energetico">Etapas Convocatoria </label>
-        <div>
-            <div >
-                <div>
-                    <div>
-                        <table id="tbl-etapa">
-                            <thead>
-                                <tr>
-                                    <th>Etapa</th>
-                                    <th>Proceso</th>
-                                    <th>Días</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <label>Categoría de SRES</label>
-        <div>
-            <table id="tbl-insignia">
-                <thead>
-                    <tr>
-                        <th>Categoría</th>
-                        <th>Puntaje mínimo</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
-    <div>
-        <label>Estrellas por emisiones</label>
-        <div>
-            <table id="tbl-estrellas">
-                <thead>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
-    <div>
-        <button type="button" id="btnGuardar">GUARDAR</button>
-        <button type="button" id="btnCerrar">CERRAR</button>
-    </div>
-</form>*@
+<script>
+    var idEtapa_actual = 0;
+</script>
 
 

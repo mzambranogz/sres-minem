@@ -20,7 +20,7 @@ namespace sres.app.Controllers.Api
         [HttpGet]
         public List<CriterioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden)
         {
-            return criterioLN.ListaBusquedaCriterio(new CriterioBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda });
+            return criterioLN.ListaBusquedaCriterio(new CriterioBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda == null ? "" : busqueda });
         }
 
         [Route("obtenercriterio")]

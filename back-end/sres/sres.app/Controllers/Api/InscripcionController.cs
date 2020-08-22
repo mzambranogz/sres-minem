@@ -64,16 +64,22 @@ namespace sres.app.Controllers.Api
 
             if (seGuardo)
             {
-                ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(!inscripcion.ID_CONVOCATORIA.HasValue ? 0 : inscripcion.ID_CONVOCATORIA.Value);
-                //UsuarioBE usuario = usuarioLN.ObtenerUsuario(!inscripcion.UPD_USUARIO.HasValue ? 0 : inscripcion.UPD_USUARIO.Value);
-                //string fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldConvocatoria = "[CONVOCATORIA]";
-                //string[] fields = new string[] { fieldNombres, fieldApellidos, fieldConvocatoria };
-                //string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldConvocatoria };
-                //Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS, [fieldConvocatoria] = convocatoria.NOMBRE };
-                //string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Su inscripción fue satisfactoria";
-                //MailAddressCollection mailTo = new MailAddressCollection();
-                //mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
-                //Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.InscripcionConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
+                //ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(!inscripcion.ID_CONVOCATORIA.HasValue ? 0 : inscripcion.ID_CONVOCATORIA.Value);
+                InscripcionBE insc = inscripcionLN.ObtenerInscripcionPorId(inscripcion.ID_INSCRIPCION);
+                if (insc != null)
+                {
+                    string fieldNombres = "[NOMBRES]", fieldConvocatoria = "[CONVOCATORIA]", fieldObservacion = "[OBSERVACION]";
+                    string[] fields = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion };
+                    string[] fieldsRequire = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion };
+                    Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldNombres] = insc.NOMBRES_USU,[fieldConvocatoria] = insc.NOMBRE_CONV,[fieldObservacion] = inscripcion.OBSERVACION };
+                    string subject = "";
+                    if (inscripcion.ID_ETAPA == 3) subject = $"Observación de los requisitos de la convocatoria {insc.NOMBRE_CONV}";
+                    else if (inscripcion.ID_ETAPA == 5) subject = $"Aprobación de los requisitos de la convocatoria {insc.NOMBRE_CONV}";
+                    MailAddressCollection mailTo = new MailAddressCollection();
+                    mailTo.Add(new MailAddress(insc.CORREO));
+                    if (inscripcion.ID_ETAPA == 3) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.ObservacionRequisitos, dataBody, fields, fieldsRequire, subject, mailTo));
+                    else if (inscripcion.ID_ETAPA == 5) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.AprobacionRequesitos, dataBody, fields, fieldsRequire, subject, mailTo));
+                }
             }
 
             return seGuardo;
@@ -95,6 +101,30 @@ namespace sres.app.Controllers.Api
             };
 
             return data;
+        }
+
+        [Route("anularinscripcion")]
+        [HttpPost]
+        public bool AnularInscripcion(InscripcionBE inscripcion)
+        {
+            bool seGuardo = inscripcionLN.AnularInscripcion(inscripcion);
+
+            if (seGuardo)
+            {
+                InscripcionBE insc = inscripcionLN.ObtenerInscripcionPorId(inscripcion.ID_INSCRIPCION);
+                if (insc != null) {
+                    string fieldNombres = "[NOMBRES]", fieldConvocatoria = "[CONVOCATORIA]", fieldObservacion = "[OBSERVACION]";
+                    string[] fields = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion };
+                    string[] fieldsRequire = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion };
+                    Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldNombres] = insc.NOMBRES_USU,[fieldConvocatoria] = insc.NOMBRE_CONV,[fieldObservacion] = inscripcion.OBSERVACION };
+                    string subject = $"{insc.NOMBRES_USU}, su inscripción fue anulada";
+                    MailAddressCollection mailTo = new MailAddressCollection();
+                    mailTo.Add(new MailAddress(insc.CORREO));
+                    Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.InscripcionAnulacion, dataBody, fields, fieldsRequire, subject, mailTo));
+                }                
+            }
+
+            return seGuardo;
         }
     }
 }

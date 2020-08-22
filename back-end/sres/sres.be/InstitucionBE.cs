@@ -21,9 +21,9 @@ namespace sres.be
         public string LOGO_TIPO { get; set; }
         public int ID_SUBSECTOR_TIPOEMPRESA { get; set; }
         public int ID_TRABAJADORES_CAMA { get; set; }        
-        public int ID_DEPARTAMENTO { get; set; }
-        public int ID_PROVINCIA { get; set; }
-        public int ID_DISTRITO { get; set; }
+        public string ID_DEPARTAMENTO { get; set; }
+        public string ID_PROVINCIA { get; set; }
+        public string ID_DISTRITO { get; set; }
         public string CONTRIBUYENTE { get; set; }
         public int ID_ACTIVIDAD { get; set; }
         public int CANTIDAD { get; set; }

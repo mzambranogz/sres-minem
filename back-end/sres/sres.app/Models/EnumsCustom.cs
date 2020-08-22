@@ -21,20 +21,26 @@ namespace sres.app.Models
             PUBLICACIONYDIFUSION = 1,
             [Description("Postulación")]
             POSTULACION = 2,
+            [Description("Revisión requisitos")]
+            REVISIONREQUISITO = 3,
+            [Description("Documentos solicitados")]
+            DOCUMENTOSOLICITADO = 4,
+            [Description("Filtrado de participantes")]
+            FILTRADOPARTICIPANTE = 5,
             [Description("Recopilación de Información")]
-            RECOPILACIONDEINFORMACION = 3,
+            RECOPILACIONDEINFORMACION = 6,
             [Description("Coordinación")]
-            COORDINACION = 4,
+            COORDINACION = 7,
             [Description("Revisión N1")]
-            REVISIONN1 = 5,
+            REVISIONN1 = 8,
             [Description("Informe preliminar")]
-            INFORMEPRELIMINAR = 6,
+            INFORMEPRELIMINAR = 9,
             [Description("Levantamiento de observaciones")]
-            LEVANTAMIENTOOBSERVACIONES = 7,
+            LEVANTAMIENTOOBSERVACIONES = 10,
             [Description("Revisión N2")]
-            REVISIONN2 = 8,
+            REVISIONN2 = 11,
             [Description("Informe final")]
-            INFORMEFINAL = 9
+            INFORMEFINAL = 12
         }
     }
 }

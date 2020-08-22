@@ -143,10 +143,17 @@ namespace sres.ln
                                 resultado += $"<span><strong>Reconocimiento por cada medida que aportan a las NDC: </strong>NO</span><br>";
                             }
                             resultado += $"<span><strong>Reconocimiento destacado por reducción de emisiones GEI (tCO<sub>2</sub>): </strong>{emisiones}</span><br>";
-                            resultado += $"<span><strong>Reconocimiento destacado a la mejora continua de energía sostenible: </strong>{mejora}</span><br>";
-
-                            contenidoInforme += $"<tr><td style='padding:5px;'><span><strong>Empresa:</strong> {recon.RAZON_SOCIAL}</span><br>{resultado}</td></tr>";
-                        }                        
+                            resultado += $"<span><strong>Reconocimiento destacado a la mejora continua de energía sostenible: </strong>{mejora}</span><br>";                            
+                        }
+                        else
+                        {
+                            resultado += $"<span><strong>Categorización del sello de reconocimiento: </strong>NO</span><br>";
+                            resultado += $"<span><strong>Reconocimiento por reducción de emisiones GEI (tCO<sub>2</sub>): </strong>NO</span><br>";
+                            resultado += $"<span><strong>Reconocimiento por cada medida que aportan a las NDC: </strong>NO</span><br>";
+                            resultado += $"<span><strong>Reconocimiento destacado por reducción de emisiones GEI (tCO<sub>2</sub>): </strong>NO</span><br>";
+                            resultado += $"<span><strong>Reconocimiento destacado a la mejora continua de energía sostenible: </strong>NO</span><br>";
+                        }
+                        contenidoInforme += $"<tr><td style='padding:5px;'><span><strong>Empresa:</strong> {recon.RAZON_SOCIAL}</span><br>{resultado}</td></tr>";
                     }
 
                     UsuarioBE usuario = usuarioDA.getAdministrador(cn);
@@ -165,6 +172,44 @@ namespace sres.ln
                 }
             }
             catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<InscripcionBE> listaResultadosParticipantes(int idConvocatoria) {
+            List<InscripcionBE> lista = new List<InscripcionBE>();
+            try
+            {
+                cn.Open();
+                lista = informeDA.listaResultadosParticipantes(idConvocatoria, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public ReconocimientoBE obtenerReconocimientoInscripcion(InscripcionBE entidad)
+        {
+            ReconocimientoBE item = new ReconocimientoBE();
+            try
+            {
+                cn.Open();
+                item = informeDA.obtenerReconocimientoInscripcion(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
+        public List<ReconocimientoMedidaBE> obtenerReconocimientoInscripcionMedida(int idReconocimiento)
+        {
+            List<ReconocimientoMedidaBE> lista = new List<ReconocimientoMedidaBE>();
+            try
+            {
+                cn.Open();
+                lista = informeDA.obtenerReconocimientoInscripcionMedida(idReconocimiento, cn);
+            }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return lista;

@@ -81,5 +81,22 @@ namespace sres.da
             catch (Exception ex) { Log.Error(ex); }
             return lista;
         }
+
+        public List<InscripcionBE> listaResultadosParticipantes(int idConvocatoria, OracleConnection db)
+        {
+            List<InscripcionBE> lista = new List<InscripcionBE>();
+
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_LISTA_RESULT_CONV";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<InscripcionBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
     }
 }

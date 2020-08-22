@@ -44,7 +44,8 @@ var consultar = () => {
         $("[data-toggle='tooltip']").tooltip();
         let emisiones = 0.0
         $(document).find('.get-emisiones').each((x, y) => {
-            emisiones += $(y).val() == '' ? 0.0 : parseFloat($(y).val());
+            //emisiones += $(y).val() == '' ? 0.0 : parseFloat($(y).val());
+            emisiones += $(y).html() == '' ? 0.0 : parseFloat($(y).html());
         });
         $(`#txt-emisiones`).val(formatoMiles(emisiones / 1000));
     });
@@ -71,19 +72,20 @@ var mostrarDocumentos = (data) => {
         let tituloArchivosAdjuntos = '<div class="col-lg-6 col-md-12 col-sm-12 d-none d-lg-block"><h3 class="estilo-02 text-sres-azul mb-5 text-left"></h3></div>';
         let cabecera = `<div class="row">${tituloDoc}${tituloArchivosAdjuntos}</div>`;        
         let contenido = data.map(x => {
-            let fileDoc = `<div class="form-group"><label class="estilo-01 text-limit-1 text-left" for="fle-requisito-${x.ID_DOCUMENTO}">${x.NOMBRE}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span></label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div><input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-${x.ID_DOCUMENTO}" value="${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ARCHIVO_BASE}" disabled><div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/criterio/obtenerdocumento/${idConvocatoria}/${idCriterio}/${$(`#cbo-caso`).val()}/${idInscripcion}/${x.ID_DOCUMENTO}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div></div></div>`
+            let fileDoc = `<div class="form-group text-left"><label class="estilo-01" for="fle-requisito-${x.ID_DOCUMENTO}">${x.NOMBRE}</label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div><input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-${x.ID_DOCUMENTO}" value="${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ARCHIVO_BASE}" readonly><div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/criterio/obtenerdocumento/${idConvocatoria}/${idCriterio}/${$(`#cbo-caso`).val()}/${idInscripcion}/${x.ID_DOCUMENTO}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div></div></div>`
             let colLeft = `<div class="col-lg-6 col-md-12 col-sm-12">${fileDoc}</div>`;
             let radioAprobado = `<div class="form-check form-check-inline"><input class="form-check-input get-evaluacion" type="radio" name="rad-evaluacion-${x.ID_DOCUMENTO}" id="rad-eva-${x.ID_DOCUMENTO}-1" onchange="verificarEvaluacion(this)" value="1" ${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ID_TIPO_EVALUACION == null ? `` : x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 1 ? `checked`:``}><label class="form-check-label" for="rad-eva-${x.ID_DOCUMENTO}-1">Aprobado</label></div>`;
             let radioDesaprobado = `<div class="form-check form-check-inline"><input class="form-check-input get-evaluacion" type="radio" name="rad-evaluacion-${x.ID_DOCUMENTO}" id="rad-eva-${x.ID_DOCUMENTO}-2" onchange="verificarEvaluacion(this)" value="0" ${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ID_TIPO_EVALUACION == null ? `` : x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 2 ? `checked` : ``}><label class="form-check-label" for="rad-eva-${x.ID_DOCUMENTO}-2">Desaprobado</label></div>`;
-            let contenidoFileDoc = `<div class="alert alert-secondary p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha evaluado el documento</span></div></div>`;
+            let contenidoFileDoc = `<div class="alert alert-secondary p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha evaluado el documento</span></div></div>`;
             if (x.OBJ_INSCDOC != null) {
                 if (x.OBJ_INSCDOC.ID_TIPO_EVALUACION > 0) {
-                    let labelAprobado = x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 1 ? `<div class="alert alert-success p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">El documento es correcto</span></div></div>` : ``;
-                    let labelDesaprobado = x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 2 ? `<div class="alert alert-danger p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div></div>` : ``;
+                    let labelAprobado = x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 1 ? `<div class="alert alert-success p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">El documento es correcto</span></div></div>` : ``;
+                    let labelDesaprobado = x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 2 ? `<div class="alert alert-danger p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div></div>` : ``;
                     contenidoFileDoc = `${labelAprobado}${labelDesaprobado}`;
                 }                
             }
-            let colRight = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="form-group" id="viewContentFile-${x.ID_DOCUMENTO}"><label class="estilo-01 text-left w-100">${radioAprobado}${radioDesaprobado}</label><div id="evaluacion-${x.ID_DOCUMENTO}">${contenidoFileDoc}</div></div></div>`;
+            //let colRight = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="form-group" id="viewContentFile-${x.ID_DOCUMENTO}"><label class="estilo-01 text-left w-100">${radioAprobado}${radioDesaprobado}</label><div id="evaluacion-${x.ID_DOCUMENTO}">${contenidoFileDoc}</div></div></div>`;
+            let colRight = `<div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-end"><div class="w-100 text-left" id="viewContentFile-${x.ID_DOCUMENTO}"><label class="estilo-01">${radioAprobado}${radioDesaprobado}</label><div id="evaluacion-${x.ID_DOCUMENTO}">${contenidoFileDoc}</div></div></div>`;
             let contenidoFinal = `<div class="row">${colLeft}${colRight}</div>`;
             return contenidoFinal;
         }).join('')
@@ -115,16 +117,21 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
             if (lista[i]["ESTATICO"] == '1')
                 filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="text-center estilo-01">${validarNull(lista[i]["VALOR"])}</div><input class="get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" type="hidden" /></td>`;
             else
-                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``}  get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} readonly /></div></div></td>`;
-        } else {
+                //filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``}  get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} readonly /></div></div></td>`;
+                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal' : ''} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``}  get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}">${validarNull(lista[i]["VALOR"])}</span></div></div></td>`;
+        } else if (lista[i]["ID_TIPO_CONTROL"] == 1) {
             let v = 0;
             for (var j = 0; j < lista[i]["LIST_PARAMDET"].length; j++) {
                 if (validarNull(lista[i]["VALOR"]) == lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"]) {
-                    filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${lista[i]["LIST_PARAMDET"][j]["NOMBRE"]}" readonly /></div></div></td>`;
+                    //filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${lista[i]["LIST_PARAMDET"][j]["NOMBRE"]}" readonly /></div></div></td>`;
+                    filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}">${lista[i]["LIST_PARAMDET"][j]["NOMBRE"]}</span></div></div></td>`;
                     v++;
                 }
             }
-            if (v == 0) filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="" readonly /></div></div></td>`;
+            //if (v == 0) filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="" readonly /></div></div></td>`;
+            if (v == 0) filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}"><span></div></div></td>`;
+        } else if (lista[i]["ID_TIPO_CONTROL"] == 3) {
+            filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}">${validarNull(lista[i]["VALOR"])}</span></div></div></td>`;
         }
     }
     return `${filas}</tr>`;
@@ -138,16 +145,17 @@ var armarBodyEstatico = (lista) => {
 
 var armarFilaEstatico = (lista, id_criterio, id_caso, id_componente, id_indicador) => {
     $('#' + id_criterio + '-' + id_caso + '-' + id_componente + '-' + id_indicador).data('ind', id_indicador)
-
     for (var i = 0; i < lista.length; i++) {
         if (lista[i]["ID_TIPO_CONTROL"] == 1) {
             for (var j = 0; j < lista[i]["LIST_PARAMDET"].length; j++) {
                 if (validarNull(lista[i]["VALOR"]) == lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"]) {
-                    $('#' + id_criterio + '-' + id_caso + '-' + id_componente + '-' + id_indicador + '-' + lista[i]["ID_PARAMETRO"]).val(validarNull(lista[i]["LIST_PARAMDET"][j]["NOMBRE"]));
+                    //$('#' + id_criterio + '-' + id_caso + '-' + id_componente + '-' + id_indicador + '-' + lista[i]["ID_PARAMETRO"]).val(validarNull(lista[i]["LIST_PARAMDET"][j]["NOMBRE"]));
+                    $('#' + id_criterio + '-' + id_caso + '-' + id_componente + '-' + id_indicador + '-' + lista[i]["ID_PARAMETRO"]).html(validarNull(lista[i]["LIST_PARAMDET"][j]["NOMBRE"]));
                 }
             }
         } else {
-            lista[i]["ESTATICO"] == '1' ? '' : $('#' + id_criterio + '-' + id_caso + '-' + id_componente + '-' + id_indicador + '-' + lista[i]["ID_PARAMETRO"]).val(validarNull(lista[i]["VALOR"]));
+            //lista[i]["ESTATICO"] == '1' ? '' : $('#' + id_criterio + '-' + id_caso + '-' + id_componente + '-' + id_indicador + '-' + lista[i]["ID_PARAMETRO"]).val(validarNull(lista[i]["VALOR"]));
+            lista[i]["ESTATICO"] == '1' ? '' : $('#' + id_criterio + '-' + id_caso + '-' + id_componente + '-' + id_indicador + '-' + lista[i]["ID_PARAMETRO"]).html(validarNull(lista[i]["VALOR"]));
         }
 
     }

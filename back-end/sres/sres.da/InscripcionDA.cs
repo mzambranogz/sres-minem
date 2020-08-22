@@ -100,6 +100,7 @@ namespace sres.da
                 {
                     ID_INSCRIPCION = (int)x.ID_INSCRIPCION,
                     ID_INSTITUCION = (int)x.ID_INSTITUCION,
+                    FLAG_ANULAR = (int)x.FLAG_ANULAR,
                     INSTITUCION = new InstitucionBE { RUC = (string)x.RUC_INSTITUCION, RAZON_SOCIAL = (string)x.RAZON_SOCIAL_INSTITUCION },
                     UPD_USUARIO = (int)x.REG_USUARIO,
                     UPD_FECHA = (DateTime)x.REG_FECHA,
@@ -117,6 +118,42 @@ namespace sres.da
             catch (Exception ex) { Log.Error(ex); }
 
             return lista;
+        }
+
+        public bool AnularInscripcion(InscripcionBE inscripcion, OracleConnection db)
+        {
+            bool seGuardo = false;
+
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_UPD_ANULAR_INSCRIPCION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", inscripcion.ID_INSCRIPCION);
+                p.Add("PI_USUARIO_GUARDAR", inscripcion.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seGuardo = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seGuardo;
+        }
+
+        public InscripcionBE ObtenerInscripcionPorId(int idInscripcion, OracleConnection db)
+        {
+            InscripcionBE ins = new InscripcionBE();
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_GET_ID_INSCRIPCION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                ins = db.QueryFirstOrDefault<InscripcionBE>(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return ins;
         }
     }
 }
