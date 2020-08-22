@@ -20,7 +20,7 @@ var consultar = () => {
     let params = { id_criterio, id_inscripcion, id_caso };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/criterio/buscarcriteriocaso?${queryParams}`;
+    let url = `${baseUrl}api/criterio/buscarcriteriocaso?${queryParams}`;
     let contenido = '';
     fetch(url).then(r => r.json()).then(j => {
         contenido = j.map((x, i) => {
@@ -46,7 +46,7 @@ var consultarDoc = () => {
     let params = { id_criterio, id_caso, id_convocatoria, id_inscripcion };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/criterio/buscarcriteriocasodocumento?${queryParams}`;
+    let url = `${baseUrl}api/criterio/buscarcriteriocasodocumento?${queryParams}`;
     let contenido = '';
     fetch(url).then(r => r.json()).then(j => {
         mostrarDocumentos(j);
@@ -240,7 +240,7 @@ var agregarFila = (id, componente) => {
     let params = { id_criterio, id_caso, id_componente };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/criterio/filacriteriocaso?${queryParams}`;
+    let url = `${baseUrl}api/criterio/filacriteriocaso?${queryParams}`;
     let contenido = '';
     fetch(url).then(r => r.json()).then(j => {
         contenido = armarNuevaFila(j.LIST_INDICADOR_BODY, $("#" + id).find('tbody').find('tr').length + 1);
@@ -266,7 +266,7 @@ var guardar = () => {
     let idInscripcion_ = idInscripcion;
     componente_ind = [];
 
-    let url = `/api/criterio/guardarcriteriocaso`;
+    let url = `${baseUrl}api/criterio/guardarcriteriocaso`;
 
     $(".get").each((x, y) => {
         indicador_ind = [];
@@ -372,7 +372,7 @@ var calcular = (obj, id_componente, fila) => {
 }
 
 var enviarValores = (lista, fila) => {
-    let url = `/api/indicadordata/calcular`;
+    let url = `${baseUrl}api/indicadordata/calcular`;
     let data = { LIST_INDICADORDATA: lista, USUARIO_GUARDAR: idUsuarioLogin };
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
@@ -428,7 +428,7 @@ var filtrar = (e) => {
                     PARAMETROS: arrFiltro[0],
                     DETALLES: arrFiltro[1]
                 }
-                let url = `/api/parametrodetallerelacion/filtrar`;
+                let url = `${baseUrl}api/parametrodetallerelacion/filtrar`;
                 let data = { PARAMDETREL: lista, USUARIO_GUARDAR: idUsuarioLogin };
 
                 let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };

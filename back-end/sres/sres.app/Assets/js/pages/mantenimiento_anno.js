@@ -15,7 +15,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/anno/buscaranno?${queryParams}`;
+    let url = `${baseUrl}api/anno/buscaranno?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblCriterio');
@@ -69,7 +69,7 @@ var cambiarEstado = (element) => {
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
-    let url = '/api/anno/cambiarestadoanno';
+    let url = `${baseUrl}api/anno/cambiarestadoanno`;
 
     fetch(url, init)
         .then(r => r.json())
@@ -95,7 +95,7 @@ var consultarCriterio = (element) => {
     limpiarFormulario();
     let id = $(element).attr('data-id');
 
-    let url = `/api/anno/obteneranno?id=${id}`;
+    let url = `${baseUrl}api/anno/obteneranno?id=${id}`;
 
     fetch(url)
     .then(r => r.json())
@@ -113,7 +113,7 @@ var guardar = () => {
     let id = $('#frm').data('id');
     let nombre = $('#txtAnno').val();
 
-    let url = `/api/anno/guardaranno`;
+    let url = `${baseUrl}api/anno/guardaranno`;
 
     let data = { ID_ANNO: id == null ? -1 : id, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };
 

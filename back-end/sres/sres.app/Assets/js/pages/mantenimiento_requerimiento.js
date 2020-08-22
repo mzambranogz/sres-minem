@@ -74,7 +74,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/requerimiento/buscarobjeto?${queryParams}`;
+    let url = `${baseUrl}api/requerimiento/buscarobjeto?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblRequerimiento');
@@ -148,7 +148,7 @@ var cambiarEstado = (element) => {
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
-    let url = '/api/requerimiento/cambiarestadoobjeto';
+    let url = `${baseUrl}api/requerimiento/cambiarestadoobjeto`;
 
     fetch(url, init)
         .then(r => r.json())
@@ -174,7 +174,7 @@ var consultarObjeto = (element) => {
     limpiarFormulario();
     let id = $(element).attr('data-id');
 
-    let url = `/api/requerimiento/obtenerobjeto?id=${id}`;
+    let url = `${baseUrl}api/requerimiento/obtenerobjeto?id=${id}`;
 
     fetch(url)
     .then(r => r.json())
@@ -192,7 +192,7 @@ var guardar = () => {
     let idRequerimiento = $('#frm').data('id_requerimiento');
     let nombre = $('#txtRequerimiento').val();
 
-    let url = `/api/requerimiento/guardarobjeto`;
+    let url = `${baseUrl}api/requerimiento/guardarobjeto`;
 
     let data = { ID_REQUERIMIENTO: idRequerimiento == null ? -1 : idRequerimiento, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };
 

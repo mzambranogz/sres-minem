@@ -13,7 +13,7 @@ var consultar = () => {
     let params = { id_criterio, id_caso, id_inscripcion };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/criterio/buscarcriteriocaso?${queryParams}`;
+    let url = `${baseUrl}api/criterio/buscarcriteriocaso?${queryParams}`;
     let contenido = '';
     fetch(url).then(r => r.json()).then(j => {
         contenido = j.map((x, i) => {
@@ -81,7 +81,7 @@ var guardar = () => {
     let idInscripcion = 1;
     componente_ind = [];
 
-    let url = `/api/criterio/guardarcriteriocaso`;
+    let url = `${baseUrl}api/criterio/guardarcriteriocaso`;
 
     $(".get").each((x, y) => {
         indicador_ind = [];

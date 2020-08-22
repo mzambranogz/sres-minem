@@ -4,7 +4,7 @@
 }
 
 var cargarListaInscripcionRequerimiento = () => {
-    let url = `/api/inscripcionrequerimiento/listarinscripcionrequerimientoporconvocatoriainscripcion/${idConvocatoria}${idInscripcion == null ? `` : `/${idInscripcion}`}`
+    let url = `${baseUrl}api/inscripcionrequerimiento/listarinscripcionrequerimientoporconvocatoriainscripcion/${idConvocatoria}${idInscripcion == null ? `` : `/${idInscripcion}`}`
 
     fetch(url)
     .then(r => r.json())
@@ -106,7 +106,7 @@ var enviarInscripcion = () => {
 
     //console.log(formData);
     
-    let url = `/api/inscripcion/guardarinscripcion`;
+    let url = `${baseUrl}api/inscripcion/guardarinscripcion`;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
     //let init = { method: 'POST', body: formData };
 

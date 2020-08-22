@@ -68,7 +68,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/etapa/buscarobjeto?${queryParams}`;
+    let url = `${baseUrl}api/etapa/buscarobjeto?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
@@ -142,7 +142,7 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
 
 //    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
-//    let url = `/api/proceso/cambiarestadoobjeto`;
+//    let url = `${baseUrl}api/proceso/cambiarestadoobjeto`;
 
 //    fetch(url, init)
 //        .then(r => r.json())
@@ -169,7 +169,7 @@ var consultarObjeto = (element) => {
     limpiarFormulario();
     let id = $(element).attr('data-id');
 
-    let url = `/api/etapa/obtenerobjeto?id=${id}`;
+    let url = `${baseUrl}api/etapa/obtenerobjeto?id=${id}`;
 
     fetch(url)
     .then(r => r.json())
@@ -189,7 +189,7 @@ var guardar = () => {
     let etapa = $('#txtEtapa').val();
     let proceso = $('#txtProceso').val();
 
-    let url = `/api/etapa/guardarobjeto`;
+    let url = `${baseUrl}api/etapa/guardarobjeto`;
 
     let data = { ID_ETAPA: id == null ? -1 : id, ETAPA: etapa, PROCESO: proceso, USUARIO_GUARDAR: idUsuarioLogin };
 

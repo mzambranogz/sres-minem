@@ -75,7 +75,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/criterio/buscarcriterio?${queryParams}`;
+    let url = `${baseUrl}api/criterio/buscarcriterio?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblCriterio');
@@ -145,7 +145,7 @@ var cambiarEstado = (element) => {
     if (!confirm(`¿Está seguro que desea eliminar este registro?`)) return;
     let data = { ID_CRITERIO: id, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-    let url = '/api/criterio/cambiarestadocriterio';
+    let url = `${baseUrl}api/criterio/cambiarestadocriterio`;
     fetch(url, init)
         .then(r => r.json())
         .then(j => { if (j) $('#btnConsultar')[0].click(); });
@@ -172,7 +172,7 @@ var consultarCriterio = (element) => {
     limpiarFormulario();
     let id = $(element).attr('data-id');
 
-    let url = `/api/criterio/obtenercriterio?idCriterio=${id}`;
+    let url = `${baseUrl}api/criterio/obtenercriterio?idCriterio=${id}`;
 
     fetch(url)
     .then(r => r.json())
@@ -200,7 +200,7 @@ var guardar = () => {
     let nombrefile = $(`#txt-criterio`).val();
     let archivo = $('#fle-criterio').data('file');
     
-    let url = `/api/criterio/guardarcriterio`;
+    let url = `${baseUrl}api/criterio/guardarcriterio`;
     let data = { ID_CRITERIO: idCriterio == null ? -1 : idCriterio, NOMBRE: nombre, ARCHIVO_BASE: nombrefile, ARCHIVO_CONTENIDO: archivo, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 

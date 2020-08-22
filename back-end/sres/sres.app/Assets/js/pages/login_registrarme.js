@@ -3,7 +3,7 @@
 });
 
 var cargarInformacionInicial = (fn) => {
-    let urlListarSectorPorEstado = `/api/sector/listarsectorporestado?flagEstado=1`;
+    let urlListarSectorPorEstado = `${baseUrl}api/sector/listarsectorporestado?flagEstado=1`;
 
     Promise.all([
         fetch(urlListarSectorPorEstado)
@@ -27,7 +27,7 @@ var consultarInstitucion = () => {
 
     if (rucInstitucion == "") return;
 
-    let urlObtenerInstitucionRuc = `/api/institucion/obtenerinstitucionporruc?ruc=${rucInstitucion}`;
+    let urlObtenerInstitucionRuc = `${baseUrl}api/institucion/obtenerinstitucionporruc?ruc=${rucInstitucion}`;
 
     fetch(urlObtenerInstitucionRuc)
     .then(r => r.json())
@@ -45,7 +45,7 @@ var cargarDatosInstitucion = (data) => {
 
     if (!existeInformacion) {
         let ruc = $('#txt-ruc').val();
-        let urlObtenerInstitucionMRVPorRuc = `/api/mrv/institucion/obtenerinstitucionporruc?ruc=${ruc}`;
+        let urlObtenerInstitucionMRVPorRuc = `${baseUrl}api/mrv/institucion/obtenerinstitucionporruc?ruc=${ruc}`;
 
         fetch(urlObtenerInstitucionMRVPorRuc)
         .then(r => r.json())
@@ -99,7 +99,7 @@ var consultarUsuario = () => {
 
     if(correo == '' || idInstitucion == '') return;
 
-    let urlObtenerUsuarioPorinstitucionCorreo = `/api/usuario/obtenerusuarioporinstitucioncorreo?idInstitucion=${idInstitucion}&correo=${correo}`;
+    let urlObtenerUsuarioPorinstitucionCorreo = `${baseUrl}api/usuario/obtenerusuarioporinstitucioncorreo?idInstitucion=${idInstitucion}&correo=${correo}`;
 
     fetch(urlObtenerUsuarioPorinstitucionCorreo)
     .then(r => r.json())
@@ -113,7 +113,7 @@ var cargarDatosUsuario = (data) => {
     if(!data.EXISTE) {
         let correo = $('#txt-user').val().trim();
 
-        let urlVerificarCorreo = `/api/mrv/usuario/verificarcorreo?correo=${correo}`;
+        let urlVerificarCorreo = `${baseUrl}api/mrv/usuario/verificarcorreo?correo=${correo}`;
 
         fetch(urlVerificarCorreo)
         .then(r => r.json())
@@ -161,7 +161,7 @@ var validarUsuarioLogin = () => {
     let init = { method: 'POST' };
     let params = { correo, contraseña };
     let paramsString = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
-    let urlObtenerUsuarioRucCorreo = `/api/mrv/usuario/validarloginusuario?${paramsString}`;
+    let urlObtenerUsuarioRucCorreo = `${baseUrl}api/mrv/usuario/validarloginusuario?${paramsString}`;
 
     fetch(urlObtenerUsuarioRucCorreo, init)
     .then(r => r.json())
@@ -275,7 +275,7 @@ var registrarUsuario = () => {
     let idSectorInstitucion = $('#cbo-sector').val();
     let flagEstado = usuarioMRV ? '1' : '0';
 
-    let url = `/api/usuario/guardarusuario`;
+    let url = `${baseUrl}api/usuario/guardarusuario`;
 
     let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, NOMBRES: nombres, APELLIDOS: apellidos, CORREO: correo, CONTRASENA: contraseña, TELEFONO: telefono, ANEXO: anexo, CELULAR: celular, ID_INSTITUCION: idInstitucion, INSTITUCION: idInstitucion != null ? null : { idInstitucion: idInstitucion == null ? -1 : idInstitucion, RUC: rucInstitucion, RAZON_SOCIAL: razonSocialInstitucion,  DOMICILIO_LEGAL: domicilioLegalInstitucion, ID_SECTOR: idSectorInstitucion, UPD_USUARIO: idUsuarioLogin }, ID_ROL: 3, FLAG_ESTADO: flagEstado, UPD_USUARIO: idUsuarioLogin };
 

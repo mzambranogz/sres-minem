@@ -74,7 +74,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/sector/buscarsector?${queryParams}`;
+    let url = `${baseUrl}api/sector/buscarsector?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
@@ -147,7 +147,7 @@ var cambiarEstado = (element) => {
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
-    let url = '/api/sector/cambiarestadosector';
+    let url = `${baseUrl}api/sector/cambiarestadosector`;
 
     fetch(url, init)
         .then(r => r.json())
@@ -173,7 +173,7 @@ var consultarCriterio = (element) => {
     limpiarFormulario();
     let id = $(element).attr('data-id');
 
-    let url = `/api/sector/obtenersector?id=${id}`;
+    let url = `${baseUrl}api/sector/obtenersector?id=${id}`;
 
     fetch(url)
     .then(r => r.json())
@@ -191,7 +191,7 @@ var guardar = () => {
     let id = $('#frm').data('id');
     let nombre = $('#txtSector').val();
 
-    let url = `/api/sector/guardarsector`;
+    let url = `${baseUrl}api/sector/guardarsector`;
 
     let data = { ID_SECTOR: id == null ? -1 : id, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };
 

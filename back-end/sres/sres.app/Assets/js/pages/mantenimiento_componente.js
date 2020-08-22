@@ -68,7 +68,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/componente/buscarcomponente?${queryParams}`;
+    let url = `${baseUrl}api/componente/buscarcomponente?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');

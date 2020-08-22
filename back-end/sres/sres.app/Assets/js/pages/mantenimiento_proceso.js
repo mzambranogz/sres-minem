@@ -73,7 +73,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/proceso/buscarobjeto?${queryParams}`;
+    let url = `${baseUrl}api/proceso/buscarobjeto?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
@@ -146,7 +146,7 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
 
 //    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
-//    let url = `/api/proceso/cambiarestadoobjeto`;
+//    let url = `${baseUrl}api/proceso/cambiarestadoobjeto`;
 
 //    fetch(url, init)
 //        .then(r => r.json())
@@ -172,7 +172,7 @@ var consultarObjeto = (element) => {
     limpiarFormulario();
     let id = $(element).attr('data-id');
 
-    let url = `/api/proceso/obtenerobjeto?id=${id}`;
+    let url = `${baseUrl}api/proceso/obtenerobjeto?id=${id}`;
 
     fetch(url)
     .then(r => r.json())
@@ -190,7 +190,7 @@ var guardar = () => {
     let id = $('#frm').data('id');
     let nombre = $('#txtProceso').val();
 
-    let url = `/api/proceso/guardarobjeto`;
+    let url = `${baseUrl}api/proceso/guardarobjeto`;
 
     let data = { ID_PROCESO: id == null ? -1 : id, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };
 

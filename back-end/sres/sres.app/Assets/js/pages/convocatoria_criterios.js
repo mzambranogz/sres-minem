@@ -5,7 +5,7 @@
 });
 
 var guardar = () => {
-    let url = `/api/convocatoria/guardarconvocatoriaetapainscripcion`;
+    let url = `${baseUrl}api/convocatoria/guardarconvocatoriaetapainscripcion`;
     let data = { ID_CONVOCATORIA: idConvocatoria, ID_ETAPA: idEtapa, ID_INSCRIPCION: idInscripcion, INGRESADOS: ingresadosCri, TOTAL: totalCri, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
     fetch(url, init)
@@ -23,7 +23,7 @@ var filtrarEmisiones = () => {
     let params = { idIniciativas, rucLogin, idUsuarioLogin };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/mrv/migraremisiones/obtenermigraremisiones?${queryParams}`;
+    let url = `${baseUrl}api/mrv/migraremisiones/obtenermigraremisiones?${queryParams}`;
     fetch(url).then(r => r.json()).then(j => {
             if (j.VALIDACION == 1) {
 
@@ -38,7 +38,7 @@ var filtrarEmisiones = () => {
 }
 
 var mostrarSeleccionado = () => {
-    let url = `/api/migraremisiones/mostrarseleccionados?id=${idInscripcion}`;
+    let url = `${baseUrl}api/migraremisiones/mostrarseleccionados?id=${idInscripcion}`;
     fetch(url).then(r => r.json()).then(j => {
         if (j.length > 0) {
             j.map(x => {
@@ -63,7 +63,7 @@ var migrarEmisiones = () => {
         }
     });
 
-    let url = `/api/migraremisiones/grabarmigraremisiones`;
+    let url = `${baseUrl}api/migraremisiones/grabarmigraremisiones`;
     let data = { ID_INSCRIPCION: idInscripcion, LISTA_MIGRAR: emisiones, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
     fetch(url, init)

@@ -73,7 +73,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/rol/buscarobjeto?${queryParams}`;
+    let url = `${baseUrl}api/rol/buscarobjeto?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
@@ -149,7 +149,7 @@ var consultarObjeto = (element) => {
     limpiarFormulario();
     let id = $(element).attr('data-id');
 
-    let url = `/api/rol/obtenerobjeto?id=${id}`;
+    let url = `${baseUrl}api/rol/obtenerobjeto?id=${id}`;
 
     fetch(url)
     .then(r => r.json())
@@ -167,7 +167,7 @@ var guardar = () => {
     let id = $('#frm').data('id');
     let nombre = $('#txtRol').val();
 
-    let url = `/api/rol/guardarobjeto`;
+    let url = `${baseUrl}api/rol/guardarobjeto`;
 
     let data = { ID_ROL: id == null ? -1 : id, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };
 

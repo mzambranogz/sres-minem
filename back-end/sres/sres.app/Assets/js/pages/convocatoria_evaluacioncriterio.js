@@ -9,7 +9,7 @@ var cargarEvaluacion = () => {
     let params = { idCriterio, idInscripcion, idConvocatoria };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/criterio/obtenerconvcriteriopuntajeinscripcion?${queryParams}`;
+    let url = `${baseUrl}api/criterio/obtenerconvcriteriopuntajeinscripcion?${queryParams}`;
     let contenido = '';
     fetch(url).then(r => r.json()).then(j => {
         if (j != null) {
@@ -27,7 +27,7 @@ var consultar = () => {
     let params = { id_criterio, id_inscripcion, id_caso };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/criterio/buscarcriteriocaso?${queryParams}`;
+    let url = `${baseUrl}api/criterio/buscarcriteriocaso?${queryParams}`;
     let contenido = '';
     fetch(url).then(r => r.json()).then(j => {
         contenido = j.map((x, i) => {
@@ -59,7 +59,7 @@ var consultarDoc = () => {
     let params = { id_criterio, id_caso, id_convocatoria, id_inscripcion };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/criterio/buscarcriteriocasodocumento?${queryParams}`;
+    let url = `${baseUrl}api/criterio/buscarcriteriocasodocumento?${queryParams}`;
     let contenido = '';
     fetch(url).then(r => r.json()).then(j => {
         mostrarDocumentos(j);
@@ -222,7 +222,7 @@ var guardar = () => {
 
     let puntaje = $(`#cbo-puntaje`).val();
     let observacion = $(`#txa-observaciones`).val();
-    let url = `/api/criterio/guardarevaluacioncriterio`;
+    let url = `${baseUrl}api/criterio/guardarevaluacioncriterio`;
     let data = { ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio, ID_DETALLE: puntaje, ID_INSCRIPCION: idInscripcion, ID_TIPO_EVALUACION: idEvaluacion, EMISIONES_REDUCIDAS: emisiones, OBSERVACION: observacion, NOMBRE_CRI: $(`.nom-cri`).val(), LIST_INSCDOC: listaEvaluacion, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 

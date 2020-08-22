@@ -19,3 +19,24 @@ D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app.test\obj\Debu
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app.test\obj\Debug\sres.app.test.dll
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app.test\obj\Debug\sres.app.test.pdb
 D:\GRUPO ZUÑIGA\PROYECTOS\SRES\SOURCE CODE\back-end\sres\sres.app.test\bin\Debug\sres.app.test.dll.config
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\sres.app.test.dll.config
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\sres.app.test.dll
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\sres.app.test.pdb
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\sres.be.dll
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\sres.ln.dll
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\sres.ut.dll
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\sres.da.dll
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\Oracle.DataAccess.dll
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\Dapper.dll
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\sres.be.pdb
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\sres.ln.pdb
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\sres.ut.pdb
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\sres.da.pdb
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\Dapper.xml
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\bin\Debug\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\obj\Debug\sres.app.test.csprojResolveAssemblyReference.cache
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\obj\Debug\sres.app.test.dll
+C:\Users\Pc\Desktop\GIT_SRES_ORIGINAL\back-end\sres\sres.app.test\obj\Debug\sres.app.test.pdb

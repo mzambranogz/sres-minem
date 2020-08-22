@@ -33,7 +33,7 @@ var consultar = () => {
     let params = { nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden, idInstitucion, idUsuario };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/convocatoria/buscarconvocatoria?${queryParams}`;
+    let url = `${baseUrl}api/convocatoria/buscarconvocatoria?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(cargarDataBusqueda);
 };
@@ -168,7 +168,7 @@ var btnGuardarLogoClick = (e) => {
 
     let data = { ID_INSTITUCION: idInstitucionLogin, LOGO_CONTENIDO: $('#fle-logo').data('file'), LOGO: $('#fle-logo').data('fileName'), LOGO_TIPO: $('#fle-logo').data('type'), UPD_USUARIO: idUsuarioLogin };
 
-    let url = `/api/institucion/modificarlogoinstitucion`;
+    let url = `${baseUrl}api/institucion/modificarlogoinstitucion`;
     let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }
 
     fetch(url, init)
@@ -227,7 +227,7 @@ var logoChange = (e) => {
 var btnMostrarDatosInstitucionClick = (e) => {
     e.preventDefault();
 
-    let url = `/api/institucion/obtenerinstitucion?idInstitucion=${idInstitucionLogin}`;
+    let url = `${baseUrl}api/institucion/obtenerinstitucion?idInstitucion=${idInstitucionLogin}`;
 
     fetch(url)
     .then(r => r.json())
@@ -312,7 +312,7 @@ var btnActualizarDatosInstitucionClick = (e) => {
 
     let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, ID_DEPARTAMENTO: departamento, ID_PROVINCIA: provincia, ID_DISTRITO: distrito, CONTRIBUYENTE:  contribuyente, ID_ACTIVIDAD: ciiu, ID_SUBSECTOR_TIPOEMPRESA: subsectortipoempresa, ID_TRABAJADORES_CAMA: trabajadorcama, CANTIDAD: cantidad, CANTIDAD_MUJERES: cantidadmujeres, LISTA_CONTACTO: contacto, UPD_USUARIO: idUsuarioLogin };
 
-    let url = `/api/institucion/modificardatosinstitucion`;
+    let url = `${baseUrl}api/institucion/modificardatosinstitucion`;
     let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
@@ -344,7 +344,7 @@ var responseActualizarDatosInstitucion = (data) => {
 
 var listaSubsector = () => {
     if (idRol != 3) return false;
-    let url = `/api/subsectortipoempresa/listasubsetortipoempresa?idSector=${idSector}`;
+    let url = `${baseUrl}api/subsectortipoempresa/listasubsetortipoempresa?idSector=${idSector}`;
     fetch(url)
     .then(r => r.json())
     .then(armarCombosubsectortipoempresa);
@@ -361,7 +361,7 @@ var armarCombosubsectortipoempresa = (data) => {
 var subsectortipoempresaChange = () => {
     $(`#txt-numero`).val('');
     if ($(`#cbo-subsector-tipoemp`).val() == 0) { $(`#cbo-trabajador-cama`).html(`<option value="0">-Seleccione-</option>`); return };
-    let url = `/api/trabajadorcama/listatrabajadorcama?idSubsectorTipoempresa=${$(`#cbo-subsector-tipoemp`).val()}`;
+    let url = `${baseUrl}api/trabajadorcama/listatrabajadorcama?idSubsectorTipoempresa=${$(`#cbo-subsector-tipoemp`).val()}`;
     fetch(url)
     .then(r => r.json())
     .then(armarCombotrabajadorcama);
@@ -399,7 +399,7 @@ var cambiarPrimerInicio = () => {
     debugger;
     if (idRol != 3) return;
     if (primerinicio != 0) return;
-    let url = `/api/institucion/cambiarprimerinicio?idInstitucion=${idInstitucionLogin}`;
+    let url = `${baseUrl}api/institucion/cambiarprimerinicio?idInstitucion=${idInstitucionLogin}`;
     fetch(url)
     .then(r => r.json())
     .then(x => {
@@ -414,7 +414,7 @@ var cambiarPrimerInicio = () => {
 
 var listaDepartamento = () => {
     if (idRol != 3) return false;
-    let url = `/api/institucion/listadepartamento`;
+    let url = `${baseUrl}api/institucion/listadepartamento`;
     fetch(url)
     .then(r => r.json())
     .then(armarDepartamento);
@@ -430,7 +430,7 @@ var armarDepartamento = (data) => {
 
 var departamentoChange = () => {
     if ($(`#cbo-departamento`).val() == 0) { $(`#cbo-provincia`).html(`<option value="0">-Seleccione-</option>`); return };
-    let url = `/api/institucion/listaprovincia?idDepartamento=${$(`#cbo-departamento`).val()}`;
+    let url = `${baseUrl}api/institucion/listaprovincia?idDepartamento=${$(`#cbo-departamento`).val()}`;
     fetch(url)
     .then(r => r.json())
     .then(armarProvincia);
@@ -446,7 +446,7 @@ var armarProvincia = (data) => {
 
 var provinciaChange = () => {
     if ($(`#cbo-provincia`).val() == 0) { $(`#cbo-distrito`).html(`<option value="0">-Seleccione-</option>`); return };
-    let url = `/api/institucion/listadistrito?idProvincia=${$(`#cbo-provincia`).val()}`;
+    let url = `${baseUrl}api/institucion/listadistrito?idProvincia=${$(`#cbo-provincia`).val()}`;
     fetch(url)
     .then(r => r.json())
     .then(armarDistrito);

@@ -28,8 +28,8 @@ var guardar = () => {
     }
 
     let observacion = $(`#txa-observaciones`).val();
-    //let url = `/api/criterio/guardarevaluacioncriterios`;
-    url = `/api/convocatoria/guardarconvocatoriaetapainscripcion`;
+    //let url = `${baseUrl}api/criterio/guardarevaluacioncriterios`;
+    url = `${baseUrl}api/convocatoria/guardarconvocatoriaetapainscripcion`;
     let data = { ID_CONVOCATORIA: idConvocatoria, ID_ETAPA: idEtapa, ID_INSCRIPCION: idInscripcion, ID_TIPO_EVALUACION: idEvaluacion, OBSERVACION: observacion, PUNTAJE: puntaje, EMISIONES_REDUCIDAS: emisiones, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 

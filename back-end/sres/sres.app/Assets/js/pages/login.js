@@ -46,7 +46,7 @@ var validarInicioSesion = (data) => {
     else {
         let correo = $('#txt-user').val().trim();
 
-        let urlVerificarCorreo = `/api/mrv/usuario/verificarcorreo?correo=${correo}`;
+        let urlVerificarCorreo = `${baseUrl}api/mrv/usuario/verificarcorreo?correo=${correo}`;
 
         fetch(urlVerificarCorreo)
         .then(r => r.json())
@@ -70,7 +70,7 @@ var sendLoginWithMRV = (e) => {
 
     let correo = $('#txt-user').val().trim();
 
-    let urlVerificarCorreo = `/api/mrv/usuario/verificarcorreo?correo=${correo}`;
+    let urlVerificarCorreo = `${baseUrl}api/mrv/usuario/verificarcorreo?correo=${correo}`;
 
     fetch(urlVerificarCorreo)
     .then(r => r.json())
