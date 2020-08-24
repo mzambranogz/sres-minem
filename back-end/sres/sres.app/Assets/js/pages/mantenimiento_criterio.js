@@ -171,6 +171,7 @@ var nuevo = () => {
     $('.alert-add').html('');
     $('#btnGuardar').show();
     $('#btnGuardar').next().html('Cancelar');
+    $('#exampleModalLabel').html('REGISTRAR CRITERIO');
 }
 
 var limpiarFormulario = () => {
@@ -187,6 +188,7 @@ var consultarCriterio = (element) => {
     $('.alert-add').html('');
     $('#btnGuardar').show();
     $('#btnGuardar').next().html('Cancelar');
+    $('#exampleModalLabel').html('ACTUALIZAR CRITERIO');
     let id = $(element).attr('data-id');
 
     let url = `${baseUrl}api/criterio/obtenercriterio?idCriterio=${id}`;

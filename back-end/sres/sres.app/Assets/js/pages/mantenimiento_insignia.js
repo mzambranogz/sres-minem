@@ -189,6 +189,7 @@ var consultarDatos = (element) => {
     $('.alert-add').html('');
     $('#btnGuardar').show();
     $('#btnGuardar').next().html('Cancelar');
+    $('#exampleModalLabel').html('ACTUALIZAR INSIGNIA');
     let id = $(element).attr('data-id');
 
     let url = `${baseUrl}api/insignia/obtenerinsignia?id=${id}`;
@@ -253,6 +254,7 @@ var nuevo = () => {
     $('.alert-add').html('');
     $('#btnGuardar').show();
     $('#btnGuardar').next().html('Cancelar');
+    $('#exampleModalLabel').html('REGISTRAR INSIGNIA');
 }
 
 var limpiarFormulario = () => {

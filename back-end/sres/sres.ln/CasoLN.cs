@@ -42,5 +42,44 @@ namespace sres.ln
 
             return lista;
         }
+
+        public bool GuardarInsignia(CasoBE entidad)
+        {
+            bool seGuardo = false;
+            try
+            {
+                cn.Open();
+                seGuardo = casoDA.GuardarCaso(entidad, cn).OK;
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return seGuardo;
+        }
+
+        public CasoBE getCaso(CasoBE entidad)
+        {
+            CasoBE item = null;
+            try
+            {
+                cn.Open();
+                item = casoDA.getCaso(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
+        public CasoBE EliminarCaso(CasoBE entidad)
+        {
+            CasoBE item = null;
+            try
+            {
+                cn.Open();
+                item = casoDA.EliminarCaso(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
     }
 }
