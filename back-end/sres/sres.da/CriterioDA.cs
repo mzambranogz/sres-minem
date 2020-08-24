@@ -33,18 +33,24 @@ namespace sres.da
         //    return entidad;
         //}
 
-        public CriterioBE GuardarCriterio(CriterioBE entidad, OracleConnection db)
+        public CriterioBE GuardarCriterio(CriterioBE entidad, out int id, OracleConnection db)
         {
+            id = -1;
             try
             {
                 string sp = $"{Package.Mantenimiento}USP_PRC_MAN_CRITERIO";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
                 p.Add("PI_NOMBRE", entidad.NOMBRE);
+                p.Add("PI_DESCRIPCION", entidad.DESCRIPCION);
                 p.Add("PI_ARCHIVO_BASE", entidad.ARCHIVO_BASE);
                 p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PI_ID_GET", 0, OracleDbType.Int32, ParameterDirection.Output);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
-                entidad.OK = true;
+                id = (int)p.Get<dynamic>("PI_ID_GET").Value;
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0 && id != -1;
             }
             catch (Exception ex)
             {

@@ -4,9 +4,9 @@
     $('#btnConsultar').on('click', (e) => consultar());
     $('#btnConsultar')[0].click();
     $('#btnNuevo').on('click', (e) => nuevo());
-    $('#btnCerrar').on('click', (e) => cerrarFormulario());
+    $('#btnConfirmar').on('click', (e) => eliminar());
     $('#btnGuardar').on('click', (e) => guardar());
-    $('input[type="file"][id="fle-criterio"]').on('change', fileChange);
+    $('input[type="file"][id="fle-imagen"]').on('change', fileChange);
 });
 
 var fn_avance_grilla = (boton) => {
@@ -129,10 +129,11 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
             let colCodigo = `<td class="text-center" data-encabezado="Código" scope="row"><span>${(`${formatoCodigo}${x.ID_CRITERIO}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</span></td>`;
             let colNombres = `<td class="text-left" data-encabezado="Nombre">${x.NOMBRE}</td>`;
             let colDescripcion = `<td data-encabezado="Descripción"><div class="text-limit-1">${x.DESCRIPCION}</div></td>`;
+            let colImagen = `<td class="text-center" data-encabezado="Imagen"><img src="${baseUrl}${$('#ruta').val().replace('{0}', x.ID_CRITERIO)}/${x.ARCHIVO_BASE == null ? '' : x.ARCHIVO_BASE}" width="50%" height="auto"></td>`;
             let btnCambiarEstado = `${[0, 1].includes(x.FLAG_ESTADO) ? "" : `<a class="dropdown-item estilo-01 btnCambiarEstado" href="#" data-id="${x.ID_CRITERIO}" data-estado="${x.FLAG_ESTADO}"><i class="fas fa-edit mr-1"></i>Eliminar</a>`}`;
             let btnEditar = `<a class="dropdown-item estilo-01 btnEditar" href="#" data-id="${x.ID_CRITERIO}" data-toggle="modal" data-target="#modal-mantenimiento"><i class="fas fa-edit mr-1"></i>Editar</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Gestión"><div class="btn-group w-100"><a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a><div class="dropdown-menu">${btnCambiarEstado}${btnEditar}</div></div></td>`;
-            let fila = `<tr>${colNro}${colCodigo}${colNombres}${colDescripcion}${colOpciones}</tr>`;
+            let fila = `<tr>${colNro}${colCodigo}${colNombres}${colDescripcion}${colImagen}${colOpciones}</tr>`;
             return fila;
         }).join('');
     };
@@ -141,35 +142,51 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
 };
 
 var cambiarEstado = (element) => {
-    let id = $(element).attr('data-id');
-    if (!confirm(`¿Está seguro que desea eliminar este registro?`)) return;
-    let data = { ID_CRITERIO: id, USUARIO_GUARDAR: idUsuarioLogin };
+    idEliminar = $(element).attr('data-id');
+    $("#modal-confirmacion").modal('show');
+    //let id = $(element).attr('data-id');
+    //if (!confirm(`¿Está seguro que desea eliminar este registro?`)) return;
+    //let data = { ID_CRITERIO: id, USUARIO_GUARDAR: idUsuarioLogin };
+    //let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    //let url = `${baseUrl}api/criterio/cambiarestadocriterio`;
+    //fetch(url, init)
+    //    .then(r => r.json())
+    //    .then(j => { if (j) $('#btnConsultar')[0].click(); });
+};
+
+var eliminar = () => {
+    if (idEliminar == 0) return;
+    let data = { ID_CRITERIO: idEliminar, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
     let url = `${baseUrl}api/criterio/cambiarestadocriterio`;
     fetch(url, init)
         .then(r => r.json())
-        .then(j => { if (j) $('#btnConsultar')[0].click(); });
-};
-
-var nuevo = () => {
-    $('#frm').show();
-    limpiarFormulario();
+        .then(j => {
+            if (j) { $('#btnConsultar')[0].click(); $("#modal-confirmacion").modal('hide'); }
+        });
 }
 
-var cerrarFormulario = () => {
-    $('#frm').hide();
+var nuevo = () => {
+    limpiarFormulario();
+    $('.alert-add').html('');
+    $('#btnGuardar').show();
+    $('#btnGuardar').next().html('Cancelar');
 }
 
 var limpiarFormulario = () => {
     $('#frm').removeData();
-    $('#txtCriterio').val('');
-    $('#txt-criterio').val('');
-    $('#fle-criterio').removeData('file');
+    $('#txt-nombre').val('');
+    $('#txa-descripcion').val('');
+    $('#txt-imagen').val('');
+    $('#fle-imagen').val('');
+    $('#fle-imagen').removeData('file')
 }
 
 var consultarCriterio = (element) => {
-    $('#frm').show();
     limpiarFormulario();
+    $('.alert-add').html('');
+    $('#btnGuardar').show();
+    $('#btnGuardar').next().html('Cancelar');
     let id = $(element).attr('data-id');
 
     let url = `${baseUrl}api/criterio/obtenercriterio?idCriterio=${id}`;
@@ -182,41 +199,53 @@ var consultarCriterio = (element) => {
 }
 
 var cargarDatos = (data) => {
-    $('#frm').data('id_criterio', data.ID_CRITERIO);
-    $('#txtCriterio').val(data.NOMBRE);
-    $('#txt-criterio').val(data.ARCHIVO_BASE);
-    data.ARCHIVO_CONTENIDO == null ? '' : $(`#`).data('file', data.ARCHIVO_CONTENIDO);
+    $('#frm').data('id', data.ID_CRITERIO);
+    $('#txt-nombre').val(data.NOMBRE);
+    $('#txa-descripcion').val(data.DESCRIPCION);
+    $('#txt-imagen').val(data.ARCHIVO_BASE);
+    data.ARCHIVO_CONTENIDO == null ? '' : $(`#fle-imagen`).data('file', data.ARCHIVO_CONTENIDO);
 }
 
 var guardar = () => {
-    let verif = $('#fle-criterio').data('file') != null ? true : false;
-    debugger;
+    $('.alert-add').html('');
+    let verif = $('#fle-imagen').data('file') != null ? true : false;
     if (!verif) {
         $('.alert-add').html('').alertError({ type: 'danger', title: 'ERROR', message: 'Necesita ingresar una imagen' });
         return;
     }
-    let idCriterio = $('#frm').data('id_criterio');
-    let nombre = $('#txtCriterio').val();
-    let nombrefile = $(`#txt-criterio`).val();
-    let archivo = $('#fle-criterio').data('file');
+    let idCriterio = $('#frm').data('id');
+    let nombre = $('#txt-nombre').val();
+    let descripcion = $('#txa-descripcion').val();
+    let nombrefile = $(`#txt-imagen`).val();
+    let archivo = $('#fle-imagen').data('file');
     
     let url = `${baseUrl}api/criterio/guardarcriterio`;
-    let data = { ID_CRITERIO: idCriterio == null ? -1 : idCriterio, NOMBRE: nombre, ARCHIVO_BASE: nombrefile, ARCHIVO_CONTENIDO: archivo, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CRITERIO: idCriterio == null ? -1 : idCriterio, NOMBRE: nombre, DESCRIPCION: descripcion, ARCHIVO_BASE: nombrefile, ARCHIVO_CONTENIDO: archivo, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
-        if (j) {
-            alert('Se registró correctamente');
-            $('#frm').hide();
-            $('#btnConsultar')[0].click();
-        }
+        $('.alert-add').html('');
+        if (j) { $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
+        j ? $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+        if (j) $('#btnConsultar')[0].click();
     });
 }
 
 var fileChange = (e) => {
+    $('.alert-add').html('');
     let elFile = $(e.currentTarget);
+    var fileContent = e.currentTarget.files[0];
+
+    switch (fileContent.name.substring(fileContent.name.lastIndexOf('.') + 1).toLowerCase()) {
+        case 'jpg': case 'jpeg': case 'png': break;
+        default: $('.alert-add').alertWarning({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo tiene una extensión no permitida` }); $('#txt-imagen').val(''); return false; break;
+    }
+
+    if (fileContent.size > maxBytes) { $('.alert-add').alertWarning({ type: 'warning', title: 'ADVERTENCIA', message: `La imagen debe tener un peso máximo de 4MB` }); $('#txt-imagen').val(''); return false; }
+    else
+        $('.alert-add').html('');
 
     if (e.currentTarget.files.length == 0) {
         $(e.currentTarget).removeData('file');
@@ -225,13 +254,7 @@ var fileChange = (e) => {
         return;
     }
 
-    var fileContent = e.currentTarget.files[0];
-
-    if (fileContent.size > maxBytes) $(elFile).parent().parent().parent().parent().alert({ type: 'danger', title: 'ADVERTENCIA', message: `La imagen debe tener un peso máximo de 4MB` });
-    else
-        $(elFile).parent().parent().parent().parent().alert('remove');
-
-    $(`#txt-criterio`).val(fileContent.name);
+    $(`#txt-imagen`).val(fileContent.name);
     let reader = new FileReader();
     reader.onload = function (e) {
         debugger;
@@ -239,9 +262,6 @@ var fileChange = (e) => {
         elFile.data('file', base64);
         elFile.data('fileContent', e.currentTarget.result);
         elFile.data('type', fileContent.type);
-        //let content = `<label class="estilo-01">&nbsp;</label><div class ="alert alert-success p-1 d-flex"><div class ="mr-auto"><i class ="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">${fileContent.name}</span></div><div class ="ml-auto"><a class ="text-sres-verde" href="${e.currentTarget.result}" download="${fileContent.name}"><i class ="fas fa-download px-2 py-1"></i></a><a class ="text-sres-verde btnEliminarFile" data-id="${idElement}" href="#"><i class ="fas fa-trash px-2 py-1"></i></a></div></div>`
-        //$(`#viewContentFile-${idElement}`).html(content);
-        //$(`#viewContentFile-${idElement} .btnEliminarFile`).on('click', btnEliminarFileClick);
     }
     reader.readAsDataURL(e.currentTarget.files[0]);
 }
