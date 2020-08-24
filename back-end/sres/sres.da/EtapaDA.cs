@@ -19,13 +19,14 @@ namespace sres.da
         {
             try
             {
-                    string sp = $"{Package.Mantenimiento}USP_UPD_ETAPA";
-                    var p = new OracleDynamicParameters();
-                    p.Add("PI_ID_ETAPA", entidad.ID_ETAPA);
-                    p.Add("PI_NOMBRE", entidad.ETAPA);
-                    p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
-                    db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
-                    entidad.OK = true;
+                string sp = $"{Package.Mantenimiento}USP_UPD_ETAPA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_ETAPA", entidad.ID_ETAPA);
+                p.Add("PI_NOMBRE", entidad.ETAPA);
+                p.Add("PI_ID_PROCESO", entidad.ID_PROCESO);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                entidad.OK = true;
             }
             catch (Exception ex)
             {

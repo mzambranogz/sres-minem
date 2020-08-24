@@ -54,5 +54,19 @@ namespace sres.ln
 
             return lista;
         }
+
+        public List<ProcesoBE> getAllProceso()
+        {
+            List<ProcesoBE> lista = new List<ProcesoBE>();
+
+            try
+            {
+                cn.Open();
+                lista = ProcesoDA.getAllProceso(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }

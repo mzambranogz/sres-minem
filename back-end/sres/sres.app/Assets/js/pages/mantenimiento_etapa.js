@@ -3,9 +3,8 @@
     $('#catidad-rgistros').on('change', (e) => cambiarPagina());
     $('#btnConsultar').on('click', (e) => consultar());
     $('#btnConsultar')[0].click();
-    //$('#btnNuevo').on('click', (e) => nuevo());
-    $('#btnCerrar').on('click', (e) => cerrarFormulario());
     $('#btnGuardar').on('click', (e) => guardar());
+    consultarListas();
 });
 
 var fn_avance_grilla = (boton) => {
@@ -132,45 +131,21 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
     return contenido;
 };
 
-//var cambiarEstado = (element) => {
-
-//    let id = $(element).attr('data-id');
-
-//    if (!confirm(`¿Está seguro que desea eliminar este registro?`)) return;
-
-//    let data = { ID_PROCESO: id, USUARIO_GUARDAR: idUsuarioLogin };
-
-//    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-
-//    let url = `${baseUrl}api/proceso/cambiarestadoobjeto`;
-
-//    fetch(url, init)
-//        .then(r => r.json())
-//        .then(j => { if (j) $('#btnConsultar')[0].click(); });
-//};
-
-//var nuevo = () => {
-//    $('#frm').show();
-//    limpiarFormulario();
-//}
-
-var cerrarFormulario = () => {
-    $('#frm').hide();
-}
-
 var limpiarFormulario = () => {
     $('#frm').removeData();
-    $('#txtEtapa').val('');
-    $('#txtProceso').val('');
+    $('#txt-nombre').val('');
+    $('#cbo-proceso').val(0);
 }
 
 var consultarObjeto = (element) => {
-    $('#frm').show();
     limpiarFormulario();
+    $('.alert-add').html('');
+    $('#btnGuardar').show();
+    $('#btnGuardar').next().html('Cancelar');
+    $('#exampleModalLabel').html('ACTUALIZAR ETAPA');
+
     let id = $(element).attr('data-id');
-
     let url = `${baseUrl}api/etapa/obtenerobjeto?id=${id}`;
-
     fetch(url)
     .then(r => r.json())
     .then(j => {
@@ -180,28 +155,50 @@ var consultarObjeto = (element) => {
 
 var cargarDatos = (data) => {
     $('#frm').data('id', data.ID_ETAPA);
-    $('#txtEtapa').val(data.ETAPA);
-    $('#txtProceso').val(data.PROCESO);
+    $('#txt-nombre').val(data.ETAPA);
+    $('#cbo-proceso').val(data.ID_PROCESO);
 }
 
 var guardar = () => {
+    $('.alert-add').html('');
+    let arr = [];
+    if ($('#txt-nombre').val().trim() === "") arr.push("Ingrese el nombre de la etapa");
+    if ($('#cbo-proceso').val() == 0) arr.push("Seleccione el proceso");
+
+    if (arr.length > 0) {
+        let error = '';
+        $.each(arr, function (ind, elem) { error += '<li><small class="mb-0">' + elem + '</li></small>'; });
+        error = `<ul>${error}</ul>`;
+        $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: error });
+        return;
+    }
+
     let id = $('#frm').data('id');
-    let etapa = $('#txtEtapa').val();
-    let proceso = $('#txtProceso').val();
-
+    let etapa = $('#txt-nombre').val();
+    let proceso = $('#cbo-proceso').val();
     let url = `${baseUrl}api/etapa/guardarobjeto`;
-
-    let data = { ID_ETAPA: id == null ? -1 : id, ETAPA: etapa, PROCESO: proceso, USUARIO_GUARDAR: idUsuarioLogin };
-
+    let data = { ID_ETAPA: id == null ? -1 : id, ETAPA: etapa, ID_PROCESO: proceso, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
-        if (j) {
-            alert('Se registró correctamente');
-            $('#frm').hide();
-            $('#btnConsultar')[0].click();
+        $('.alert-add').html('');
+        if (j) { $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
+        j ? $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+        if (j) $('#btnConsultar')[0].click();
+    });
+}
+
+var consultarListas = () => {
+    let url = `${baseUrl}api/proceso/obtenerallproceso`;
+    fetch(url).then(r => r.json()).then(j => {
+        let contenido = ``;
+        if (j.length > 0) {
+            contenido = j.map((x, y) => {
+                return `<option value="${x.ID_PROCESO}">${x.NOMBRE}</option>`;
+            }).join('');;
         }
+        $('#cbo-proceso').html(`<option value="0">-Seleccione-</option>${contenido}`)
     });
 }

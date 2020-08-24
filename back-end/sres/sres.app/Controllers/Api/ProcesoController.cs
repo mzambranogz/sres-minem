@@ -35,5 +35,12 @@ namespace sres.app.Controllers.Api
             return c.OK;
         }
 
+        [Route("obtenerallproceso")]
+        [HttpGet]
+        public List<ProcesoBE> ObtenerAllProceso()
+        {
+            return procesoLN.getAllProceso();
+        }
+
     }
 }
