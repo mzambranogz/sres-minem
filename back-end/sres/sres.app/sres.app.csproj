@@ -316,7 +316,9 @@
     <Content Include="Files\Criterios\LEER.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Files\Insignias\1\Imagen\sin-sres.png" />
+    <Content Include="Files\Insignias\1\Imagen\sin-sres.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Files\Insignias\2\Imagen\sres_bronce_0_star.png" />
     <Content Include="Files\Insignias\3\Imagen\sres_plata_0_star.png" />
     <Content Include="Files\Insignias\4\Imagen\sres_oro_0_star.png" />
@@ -324,6 +326,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Log\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Mailing\AprobacionRequesitos.html" />
     <Content Include="Mailing\CoordinacionConvocatoria.html" />
     <Content Include="Mailing\CreacionConvocatoria.html" />
