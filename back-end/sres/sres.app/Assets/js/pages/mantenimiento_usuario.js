@@ -80,7 +80,7 @@ var cambiarEstado = (element) => {
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
-    let url = '${baseUrl}api/usuario/cambiarestadousuario';
+    let url = `${baseUrl}api/usuario/cambiarestadousuario`;
 
     fetch(url, init)
         .then(r => r.json())

@@ -293,6 +293,7 @@
     <Content Include="Assets\js\pages\mantenimiento_criterio.js" />
     <Content Include="Assets\js\pages\mantenimiento_documento.js" />
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
+    <Content Include="Assets\js\pages\mantenimiento_insignia.js" />
     <Content Include="Assets\js\pages\mantenimiento_proceso.js" />
     <Content Include="Assets\js\pages\mantenimiento_requerimiento.js" />
     <Content Include="Assets\js\pages\mantenimiento_rol.js" />
@@ -313,6 +314,13 @@
     <Content Include="Files\Criterios\7\Imagen\criterio-07.png" />
     <Content Include="Files\Criterios\8\Imagen\criterio-08.png" />
     <Content Include="Files\Criterios\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Insignias\1\Imagen\sin-sres.png" />
+    <Content Include="Files\Insignias\2\Imagen\sres_bronce_0_star.png" />
+    <Content Include="Files\Insignias\3\Imagen\sres_plata_0_star.png" />
+    <Content Include="Files\Insignias\4\Imagen\sres_oro_0_star.png" />
+    <Content Include="Files\Insignias\LEER.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Global.asax" />
@@ -479,6 +487,7 @@
     <Content Include="Views\Mantenimiento\Caso.cshtml" />
     <Content Include="Views\Mantenimiento\Componente.cshtml" />
     <Content Include="Views\Mantenimiento\Documento.cshtml" />
+    <Content Include="Views\Mantenimiento\Insignia.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

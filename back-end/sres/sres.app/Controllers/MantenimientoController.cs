@@ -77,5 +77,10 @@ namespace sres.app.Controllers
         {
             return View();
         }
+
+        public ActionResult Insignia()
+        {
+            return View();
+        }
     }
 }
