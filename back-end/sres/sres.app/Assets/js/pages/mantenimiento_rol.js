@@ -59,12 +59,6 @@ $(".columna-filtro").click(function (e) {
 });
 
 var consultar = () => {
-    //let busqueda = $('#textoBusqueda').val();
-    //let registros = 10;
-    //let pagina = 1;
-    //let columna = 'ID_ROL';
-    //let orden = 'ASC'
-    //let params = { busqueda, registros, pagina, columna, orden };
     let busqueda = $('#txt-descripcion').val() == null ? '' : $('#txt-descripcion').val();
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();
