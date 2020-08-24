@@ -216,11 +216,9 @@ var guardar = () => {
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
-        if (j) {
-            $('.alert-add').html('');
-            if (j) { $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
-            j ? $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
-            if (j) $('#btnConsultar')[0].click();
-        }
+        $('.alert-add').html('');
+        if (j) { $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
+        j ? $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+        if (j) $('#btnConsultar')[0].click();
     });
 }

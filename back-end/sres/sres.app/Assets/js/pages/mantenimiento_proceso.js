@@ -3,7 +3,6 @@
     $('#catidad-rgistros').on('change', (e) => cambiarPagina());
     $('#btnConsultar').on('click', (e) => consultar());
     $('#btnConsultar')[0].click();
-    $('#btnCerrar').on('click', (e) => cerrarFormulario());
     $('#btnGuardar').on('click', (e) => guardar());
 });
 
@@ -59,12 +58,6 @@ $(".columna-filtro").click(function (e) {
 });
 
 var consultar = () => {
-    //let busqueda = $('#textoBusqueda').val();
-    //let registros = 10;
-    //let pagina = 1;
-    //let columna = 'ID_PROCESO';
-    //let orden = 'ASC'
-    //let params = { busqueda, registros, pagina, columna, orden };
     let busqueda = $('#txt-descripcion').val() == null ? '' : $('#txt-descripcion').val();
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();
@@ -136,40 +129,17 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
     return contenido;
 };
 
-//var cambiarEstado = (element) => {
-
-//    let id = $(element).attr('data-id');
-
-//    if (!confirm(`¿Está seguro que desea eliminar este registro?`)) return;
-
-//    let data = { ID_PROCESO: id, USUARIO_GUARDAR: idUsuarioLogin };
-
-//    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-
-//    let url = `${baseUrl}api/proceso/cambiarestadoobjeto`;
-
-//    fetch(url, init)
-//        .then(r => r.json())
-//        .then(j => { if (j) $('#btnConsultar')[0].click(); });
-//};
-
-//var nuevo = () => {
-//    $('#frm').show();
-//    limpiarFormulario();
-//}
-
-var cerrarFormulario = () => {
-    $('#frm').hide();
-}
-
 var limpiarFormulario = () => {
     $('#frm').removeData();
-    $('#txtRequerimiento').val('');
+    $('#txt-nombre').val('');
 }
 
 var consultarObjeto = (element) => {
-    $('#frm').show();
     limpiarFormulario();
+    $('.alert-add').html('');
+    $('#btnGuardar').show();
+    $('#btnGuardar').next().html('Cancelar');
+    $('#exampleModalLabel').html('ACTUALIZAR PROCESO');
     let id = $(element).attr('data-id');
 
     let url = `${baseUrl}api/proceso/obtenerobjeto?id=${id}`;
@@ -183,26 +153,34 @@ var consultarObjeto = (element) => {
 
 var cargarDatos = (data) => {
     $('#frm').data('id', data.ID_PROCESO);
-    $('#txtProceso').val(data.NOMBRE);
+    $('#txt-nombre').val(data.NOMBRE);
 }
 
 var guardar = () => {
+    $('.alert-add').html('');
+    let arr = [];
+    if ($('#txt-nombre').val().trim() === "") arr.push("Ingrese el nombre del proceso");
+
+    if (arr.length > 0) {
+        let error = '';
+        $.each(arr, function (ind, elem) { error += '<li><small class="mb-0">' + elem + '</li></small>'; });
+        error = `<ul>${error}</ul>`;
+        $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: error });
+        return;
+    }
+
     let id = $('#frm').data('id');
-    let nombre = $('#txtProceso').val();
-
+    let nombre = $('#txt-nombre').val();
     let url = `${baseUrl}api/proceso/guardarobjeto`;
-
     let data = { ID_PROCESO: id == null ? -1 : id, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };
-
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
-        if (j) {
-            alert('Se registró correctamente');
-            $('#frm').hide();
-            $('#btnConsultar')[0].click();
-        }
+        $('.alert-add').html('');
+        if (j) { $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
+        j ? $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+        if (j) $('#btnConsultar')[0].click();
     });
 }

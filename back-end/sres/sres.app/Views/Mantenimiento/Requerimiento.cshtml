@@ -95,46 +95,6 @@
                                         <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre del requerimiento"></i></div>
                                     </div>
                                 </th>
-                                @*<th scope="col" width="60%">
-                                    <div class="d-flex flex-column justify-content-between align-items-start">
-                                        <div class="d-flex justify-content-between align-items-center w-100">
-                                            <div class="pl-1">DESCRIPCIÓN&nbsp;</div><i class="fas fa-sort columna-filtro" id="DESCRIPCION"></i>
-                                        </div>
-                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Descripción del criterio"></i></div>
-                                    </div>
-                                </th>*@
-                                @*<th scope="col" width="12%">
-                                        <div class="d-flex flex-column justify-content-between align-items-start">
-                                            <div class="d-flex justify-content-between align-items-center w-100">
-                                                <div class="pl-1">FECHA INICIO&nbsp;</div><i class="fas fa-sort columna-filtro" id="FECHA_INICIO"></i>
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Fecha de inicialización de la convocatoria"></i></div>
-                                        </div>
-                                    </th>
-                                    <th scope="col" width="10%">
-                                        <div class="d-flex flex-column justify-content-between align-items-start">
-                                            <div class="d-flex justify-content-between align-items-center w-100">
-                                                <div class="pl-1">FECHA FIN&nbsp;</div><i class="fas fa-sort columna-filtro" id="FECHA_FIN"></i>
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Fecha de finalización de la convocatoria"></i></div>
-                                        </div>
-                                    </th>
-                                    <th scope="col" width="10%">
-                                        <div class="d-flex flex-column justify-content-between align-items-start">
-                                            <div class="d-flex justify-content-between align-items-center w-100">
-                                                <div class="pl-1">PROGRESO&nbsp;</div><i class="fas fa-sort columna-filtro" id="ID_ETAPA"></i>
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Progreso del vencimiento"></i></div>
-                                        </div>
-                                    </th>
-                                    <th scope="col" width="13%">
-                                        <div class="d-flex flex-column justify-content-between align-items-start">
-                                            <div class="d-flex justify-content-between align-items-center w-100">
-                                                <div class="pl-1">ESTADO&nbsp;</div><i class="fas fa-sort columna-filtro" id="NOMBRE_ETAPA"></i>
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Estado de la convocatoria"></i></div>
-                                        </div>
-                                    </th>*@
                                 <th scope="col" width="10%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
                                         <div class="d-flex justify-content-between align-items-center w-100">
@@ -238,45 +198,3 @@
 
 @Html.Hidden("columna", "ID_REQUERIMIENTO")
 @Html.Hidden("orden", "ASC")
-
-@*<div>
-    <div class="container-fluid py-4">
-        <div class="row">
-            <div class="col-12 px-0">
-                <input type="text" class="form-control" id="textoBusqueda" name="textoBusqueda" />
-                <button id="btnConsultar">CONSULTAR</button>
-                <button id="btnNuevo">NUEVO</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 px-0">
-                <div class="table-responsive tabla-principal">
-                    <table id="tblRequerimiento" class="table table-hover">
-                        <thead>
-                            <tr class="bg-primary text-white">
-                                <th class="text-center" scope="col"><span class="miColumna">N°&nbsp;<i class="fas fa-sort" id="ID_REQUERIMIENTO"></i></span></th>
-                                <th scope="col"><span class="miColumna">Requerimiento&nbsp;<i class="fas fa-sort-up" id="NOMBRE"></i></span></th>
-                                <th class="text-center" scope="col" width="10%">Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<form id="frm" autocomplete="off" style="display: none;">
-    <div>
-        <label>
-            Requerimiento:
-            <input type="text" name="txtCriterio" id="txtRequerimiento" placeholder="Ingrese Requerimiento" />
-        </label>
-    </div>
-    <div>
-        <button type="button" id="btnGuardar">GUARDAR</button>
-        <button type="button" id="btnCerrar">CERRAR</button>
-    </div>
-</form>*@
-
-
