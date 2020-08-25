@@ -23,6 +23,19 @@ namespace sres.app.Controllers.Api
             return documentoLN.ListaBusquedaCaso(new DocumentoBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda == null ? "" : busqueda });
         }
 
+        [Route("obtenerdocumento")]
+        [HttpGet]
+        public DocumentoBE ObtenerCaso(int idcriterio, int iddocumento)
+        {
+            return documentoLN.getDocumento(new DocumentoBE() { ID_DOCUMENTO = iddocumento, ID_CRITERIO = idcriterio });
+        }
+
+        [Route("guardardocumento")]
+        public bool GuardarCaso(DocumentoBE entidad)
+        {
+            return documentoLN.GuardarDocumento(entidad);
+        }
+
         [Route("cambiarestadodocumento")]
         [HttpPost]
         public bool EliminarDocumento(DocumentoBE obj)

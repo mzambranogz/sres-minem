@@ -28,6 +28,32 @@ namespace sres.ln
             return lista;
         }
 
+        public bool GuardarDocumento(DocumentoBE entidad)
+        {
+            bool seGuardo = false;
+            try
+            {
+                cn.Open();
+                seGuardo = documentoDA.GuardarDocumento(entidad, cn).OK;
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return seGuardo;
+        }
+
+        public DocumentoBE getDocumento(DocumentoBE entidad)
+        {
+            DocumentoBE item = null;
+            try
+            {
+                cn.Open();
+                item = documentoDA.getDocumento(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
         public DocumentoBE EliminarDocumento(DocumentoBE entidad)
         {
             DocumentoBE item = null;

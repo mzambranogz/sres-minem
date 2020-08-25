@@ -157,10 +157,9 @@ var consultarDatos = (element) => {
     $('#btnGuardar').next().html('Cancelar');
     $('#exampleModalLabel').html('ACTUALIZAR CASO');
     $('#cbo-criterio').parent().parent().hide();
+
     let id = $(element).attr('data-id');
-
     let url = `${baseUrl}api/caso/obtenercaso?idcriterio=${id.split('-')[0]}&idcaso=${id.split('-')[1]}`;
-
     fetch(url)
     .then(r => r.json())
     .then(j => {
@@ -177,7 +176,7 @@ var cargarDatos = (data) => {
 var guardar = () => {
     $('.alert-add').html('');
     let arr = [];
-    if ($('#txt-nombre').val().trim() === "") arr.push("Ingrese el nombre de la insignia");
+    if ($('#txt-nombre').val().trim() === "") arr.push("Ingrese el nombre del caso");
     if ($('#cbo-criterio').val() == 0) arr.push("Seleccione el criterio");
 
     if (arr.length > 0) {
@@ -191,7 +190,6 @@ var guardar = () => {
     let id = $('#frm').data('id');
     let nombre = $('#txt-nombre').val();
     let criterio = $(`#cbo-criterio`).val();
-    let archivo = $('#fle-imagen').data('file');
 
     let url = `${baseUrl}api/caso/guardarcaso`;
     let data = { ID_CRITERIO: criterio, ID_CASO: id == null ? -1 : id, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };

@@ -33,7 +33,7 @@ namespace sres.app.Controllers.Api
         [Route("guardarcaso")]
         public bool GuardarCaso(CasoBE criterio)
         {
-            return casoLN.GuardarInsignia(criterio);
+            return casoLN.GuardarCaso(criterio);
         }
 
         [Route("cambiarestadocaso")]

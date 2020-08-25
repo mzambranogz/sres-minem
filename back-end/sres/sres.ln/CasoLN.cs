@@ -43,7 +43,7 @@ namespace sres.ln
             return lista;
         }
 
-        public bool GuardarInsignia(CasoBE entidad)
+        public bool GuardarCaso(CasoBE entidad)
         {
             bool seGuardo = false;
             try
