@@ -493,6 +493,7 @@
     <Content Include="Views\Mantenimiento\Componente.cshtml" />
     <Content Include="Views\Mantenimiento\Documento.cshtml" />
     <Content Include="Views\Mantenimiento\Insignia.cshtml" />
+    <Content Include="Views\Mantenimiento\Parametro.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
