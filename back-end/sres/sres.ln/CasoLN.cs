@@ -81,5 +81,18 @@ namespace sres.ln
 
             return item;
         }
+
+        public List<CasoBE> getCasoCriterio(CasoBE entidad)
+        {
+            List<CasoBE> item = new List<CasoBE>();
+            try
+            {
+                cn.Open();
+                item = casoDA.getCasoCriterio(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
     }
 }

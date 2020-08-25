@@ -22,5 +22,26 @@ namespace sres.app.Controllers.Api
         {
             return casoLN.ListaBusquedaComponente(new ComponenteBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda == null ? "" : busqueda });
         }
+
+        [Route("obtenercomponente")]
+        [HttpGet]
+        public ComponenteBE ObtenerComponente(int idcriterio, int idcaso, int idComponente)
+        {
+            return casoLN.getComponente(new ComponenteBE() { ID_CASO = idcaso, ID_CRITERIO = idcriterio, ID_COMPONENTE = idComponente });
+        }
+
+        [Route("guardarcomponente")]
+        public bool GuardarCaso(ComponenteBE criterio)
+        {
+            return casoLN.GuardarComponente(criterio);
+        }
+
+        [Route("cambiarestadocomponente")]
+        [HttpPost]
+        public bool EliminarCaso(ComponenteBE obj)
+        {
+            ComponenteBE c = casoLN.EliminarComponente(obj);
+            return c.OK;
+        }
     }
 }

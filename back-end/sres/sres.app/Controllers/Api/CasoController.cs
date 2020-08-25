@@ -43,5 +43,12 @@ namespace sres.app.Controllers.Api
             CasoBE c = casoLN.EliminarCaso(obj);
             return c.OK;
         }
+
+        [Route("obtenercasocriterio")]
+        [HttpGet]
+        public List<CasoBE> ObtenerCasoCriterio(int id)
+        {
+            return casoLN.getCasoCriterio(new CasoBE() { ID_CRITERIO = id });
+        }
     }
 }

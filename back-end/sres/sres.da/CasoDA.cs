@@ -245,5 +245,23 @@ namespace sres.da
 
             return entidad;
         }
+
+        public List<CasoBE> getCasoCriterio(CasoBE entidad, OracleConnection db)
+        {
+            List<CasoBE> item = new List<CasoBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_GET_CASO_CRI";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.Query<CasoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return item;
+        }
     }
 }
