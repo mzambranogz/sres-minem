@@ -4,7 +4,7 @@
     $('#btnConsultar').on('click', (e) => consultar());
     $('#btnConsultar')[0].click();
     $('#btnNuevo').on('click', (e) => nuevo());
-    $('#btnCerrar').on('click', (e) => cerrarFormulario());
+    $('#btnConfirmar').on('click', (e) => eliminar());
     $('#btnGuardar').on('click', (e) => guardar());
 });
 
@@ -60,12 +60,6 @@ $(".columna-filtro").click(function (e) {
 });
 
 var consultar = () => {
-    //let busqueda = $('#textoBusqueda').val();
-    //let registros = 15;
-    //let pagina = 1;
-    //let columna = 'ID_SECTOR';
-    //let orden = 'ASC'
-    //let params = { busqueda, registros, pagina, columna, orden };
     let busqueda = $('#txt-descripcion').val() == null ? '' : $('#txt-descripcion').val();
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();
@@ -74,7 +68,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/sector/buscarsector?${queryParams}`;
+    let url = `${baseUrl}api/sector/buscarsector?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
@@ -138,42 +132,44 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
 };
 
 var cambiarEstado = (element) => {
-
-    let id = $(element).attr('data-id');
-
-    if (!confirm(`¿Está seguro que desea eliminar este registro?`)) return;
-
-    let data = { ID_SECTOR: id, USUARIO_GUARDAR: idUsuarioLogin };
-
-    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-
-    let url = '/api/sector/cambiarestadosector';
-
-    fetch(url, init)
-        .then(r => r.json())
-        .then(j => { if (j) $('#btnConsultar')[0].click(); });
+    idEliminar = $(element).attr('data-id');
+    $("#modal-confirmacion").modal('show');
 };
 
-var nuevo = () => {
-    $('#frm').show();
-    limpiarFormulario();
+var eliminar = () => {
+    if (idEliminar == 0) return;
+    let data = { ID_SECTOR: idEliminar, USUARIO_GUARDAR: idUsuarioLogin };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let url = `${baseUrl}api/sector/cambiarestadosector`;
+    fetch(url, init)
+        .then(r => r.json())
+        .then(j => {
+            if (j) { $('#btnConsultar')[0].click(); $("#modal-confirmacion").modal('hide'); }
+        });
 }
 
-var cerrarFormulario = () => {
-    $('#frm').hide();
+var nuevo = () => {
+    limpiarFormulario();
+    $('.alert-add').html('');
+    $('#btnGuardar').show();
+    $('#btnGuardar').next().html('Cancelar');
+    $('#exampleModalLabel').html('REGISTRAR SECTOR');
 }
 
 var limpiarFormulario = () => {
     $('#frm').removeData();
-    $('#txtSector').val('');
+    $('#txt-nombre').val('');
 }
 
 var consultarCriterio = (element) => {
-    $('#frm').show();
     limpiarFormulario();
-    let id = $(element).attr('data-id');
+    $('.alert-add').html('');
+    $('#btnGuardar').show();
+    $('#btnGuardar').next().html('Cancelar');
+    $('#exampleModalLabel').html('ACTUALIZAR SECTOR');
 
-    let url = `/api/sector/obtenersector?id=${id}`;
+    let id = $(element).attr('data-id');
+    let url = `${baseUrl}api/sector/obtenersector?id=${id}`;
 
     fetch(url)
     .then(r => r.json())
@@ -184,26 +180,33 @@ var consultarCriterio = (element) => {
 
 var cargarDatos = (data) => {
     $('#frm').data('id', data.ID_SECTOR);
-    $('#txtSector').val(data.NOMBRE);
+    $('#txt-nombre').val(data.NOMBRE);
 }
 
 var guardar = () => {
+    $('.alert-add').html('');
+    let arr = [];
+    if ($('#txt-nombre').val().trim() === "") arr.push("Ingrese el nombre del sector");
+
+    if (arr.length > 0) {
+        let error = '';
+        $.each(arr, function (ind, elem) { error += '<li><small class="mb-0">' + elem + '</li></small>'; });
+        error = `<ul>${error}</ul>`;
+        $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: error });
+        return;
+    }
+
     let id = $('#frm').data('id');
-    let nombre = $('#txtSector').val();
-
-    let url = `/api/sector/guardarsector`;
-
+    let nombre = $('#txt-nombre').val();
+    let url = `${baseUrl}api/sector/guardarsector`;
     let data = { ID_SECTOR: id == null ? -1 : id, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };
-
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
-        if (j) {
-            alert('Se registró correctamente');
-            $('#frm').hide();
-            $('#btnConsultar')[0].click();
-        }
+        $('.alert-add').html('');
+        if (j) { $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
+        j ? $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+        if (j) $('#btnConsultar')[0].click();
     });
 }

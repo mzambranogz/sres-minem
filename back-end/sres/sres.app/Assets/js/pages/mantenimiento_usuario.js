@@ -16,7 +16,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/usuario/buscarusuario?${queryParams}`;
+    let url = `${baseUrl}api/usuario/buscarusuario?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblUsuario');
@@ -80,7 +80,7 @@ var cambiarEstado = (element) => {
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
-    let url = '/api/usuario/cambiarestadousuario';
+    let url = `${baseUrl}api/usuario/cambiarestadousuario`;
 
     fetch(url, init)
         .then(r => r.json())
@@ -112,7 +112,7 @@ var limpiarFormularioUsuario = () => {
 }
 
 var cargarFormularioUsuario = () => {
-    let urlRolListarPorEstado = `/api/rol/listarrolporestado?flagEstado=1`;
+    let urlRolListarPorEstado = `${baseUrl}api/rol/listarrolporestado?flagEstado=1`;
     Promise.all([
         fetch(urlRolListarPorEstado)
     ])
@@ -130,7 +130,7 @@ var cargarComboRol = (selector, data) => {
 var consultarInstitucion = () => {
     let ruc = $('#txtRucInstitucion').val();
 
-    let url = `/api/institucion/obtenerinstitucionporruc?ruc=${ruc}`;
+    let url = `${baseUrl}api/institucion/obtenerinstitucionporruc?ruc=${ruc}`;
 
     fetch(url)
     .then(r => r.json())
@@ -148,13 +148,13 @@ var consultarUsuario = (element) => {
     limpiarFormularioUsuario();
     let idUsuario = $(element).attr('data-id');
 
-    let urlUsuario = `/api/usuario/obtenerusuario?idUsuario=${idUsuario}`;
+    let urlUsuario = `${baseUrl}api/usuario/obtenerusuario?idUsuario=${idUsuario}`;
 
     fetch(urlUsuario)
     .then(r => r.json())
     .then (j => {
-        let urlRolListar = `/api/rol/listarrolporestado?flagEstado=1`;
-        let urlInstitucionObtener = `/api/institucion/obtenerinstitucion?idInstitucion=${j.ID_INSTITUCION}`;
+        let urlRolListar = `${baseUrl}api/rol/listarrolporestado?flagEstado=1`;
+        let urlInstitucionObtener = `${baseUrl}api/institucion/obtenerinstitucion?idInstitucion=${j.ID_INSTITUCION}`;
         Promise.all([
             fetch(urlInstitucionObtener),
             fetch(urlRolListar)
@@ -195,7 +195,7 @@ var guardarUsuario = () => {
     let contraseña = $('#txtContraseña').val();
     let flagEstado = '0';
 
-    let url = `/api/usuario/guardarusuario`;
+    let url = `${baseUrl}api/usuario/guardarusuario`;
 
     let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, CONTRASENA: contraseña, NOMBRES: nombres, APELLIDOS: apellidos, CORREO: correo, TELEFONO: telefono, ANEXO: anexo, CELULAR: celular, ID_INSTITUCION: idInstitucion, ID_ROL: idRol, FLAG_ESTADO: flagEstado, UPD_USUARIO: idUsuarioLogin };
 

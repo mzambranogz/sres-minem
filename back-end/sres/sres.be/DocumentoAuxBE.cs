@@ -12,6 +12,7 @@ namespace sres.be
         public int ID_CASO { get; set; }
         public int ID_INSCRIPCION { get; set; }
         public int ID_TIPO_EVALUACION { get; set; }
+        public string CRITERIO { get; set; }
         public InscripcionDocumentoBE OBJ_INSCDOC { get; set; }
     }
 }

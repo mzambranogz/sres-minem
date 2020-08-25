@@ -177,5 +177,91 @@ namespace sres.da
 
             return lista;
         }
+
+        public CasoBE GuardarCaso(CasoBE entidad, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_PRC_MAN_CASO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_CASO", entidad.ID_CASO);
+                p.Add("PI_NOMBRE", entidad.NOMBRE);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
+
+        public CasoBE getCaso(CasoBE entidad, OracleConnection db)
+        {
+            CasoBE item = new CasoBE();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_GET_CASO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_CASO", entidad.ID_CASO);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.Query<CasoBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                item.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                item.OK = false;
+            }
+
+            return item;
+        }
+
+        public CasoBE EliminarCaso(CasoBE entidad, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_DEL_CASO";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_CASO", entidad.ID_CASO);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                entidad.OK = true;
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
+
+        public List<CasoBE> getCasoCriterio(CasoBE entidad, OracleConnection db)
+        {
+            List<CasoBE> item = new List<CasoBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_GET_CASO_CRI";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.Query<CasoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return item;
+        }
     }
 }

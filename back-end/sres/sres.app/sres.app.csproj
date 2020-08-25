@@ -291,7 +291,9 @@
     <Content Include="Assets\js\pages\mantenimiento_componente.js" />
     <Content Include="Assets\js\pages\mantenimiento_convocatoria.js" />
     <Content Include="Assets\js\pages\mantenimiento_criterio.js" />
+    <Content Include="Assets\js\pages\mantenimiento_documento.js" />
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
+    <Content Include="Assets\js\pages\mantenimiento_insignia.js" />
     <Content Include="Assets\js\pages\mantenimiento_proceso.js" />
     <Content Include="Assets\js\pages\mantenimiento_requerimiento.js" />
     <Content Include="Assets\js\pages\mantenimiento_rol.js" />
@@ -301,7 +303,32 @@
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
+    <Content Include="Files\Criterios\1\Imagen\criterio-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Criterios\2\Imagen\criterio-02.png" />
+    <Content Include="Files\Criterios\3\Imagen\criterio-03.png" />
+    <Content Include="Files\Criterios\4\Imagen\criterio-04.png" />
+    <Content Include="Files\Criterios\5\Imagen\criterio-05.png" />
+    <Content Include="Files\Criterios\6\Imagen\criterio-06.png" />
+    <Content Include="Files\Criterios\7\Imagen\criterio-07.png" />
+    <Content Include="Files\Criterios\8\Imagen\criterio-08.png" />
+    <Content Include="Files\Criterios\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Insignias\1\Imagen\sin-sres.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Insignias\2\Imagen\sres_bronce_0_star.png" />
+    <Content Include="Files\Insignias\3\Imagen\sres_plata_0_star.png" />
+    <Content Include="Files\Insignias\4\Imagen\sres_oro_0_star.png" />
+    <Content Include="Files\Insignias\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Global.asax" />
+    <Content Include="Log\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Mailing\AprobacionRequesitos.html" />
     <Content Include="Mailing\CoordinacionConvocatoria.html" />
     <Content Include="Mailing\CreacionConvocatoria.html" />
@@ -338,6 +365,7 @@
     <Compile Include="Controllers\Api\CasoController.cs" />
     <Compile Include="Controllers\Api\ComponenteController.cs" />
     <Compile Include="Controllers\Api\CriterioController.cs" />
+    <Compile Include="Controllers\Api\DocumentoController.cs" />
     <Compile Include="Controllers\Api\EstrellaController.cs" />
     <Compile Include="Controllers\Api\EtapaController.cs" />
     <Compile Include="Controllers\Api\IndicadorDataController.cs" />
@@ -463,6 +491,8 @@
     <Content Include="Views\Convocatoria\_ConvocatoriaActual.cshtml" />
     <Content Include="Views\Mantenimiento\Caso.cshtml" />
     <Content Include="Views\Mantenimiento\Componente.cshtml" />
+    <Content Include="Views\Mantenimiento\Documento.cshtml" />
+    <Content Include="Views\Mantenimiento\Insignia.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

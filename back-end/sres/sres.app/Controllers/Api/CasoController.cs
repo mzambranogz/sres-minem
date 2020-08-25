@@ -22,5 +22,33 @@ namespace sres.app.Controllers.Api
         {
             return casoLN.ListaBusquedaCaso(new CasoBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda == null ? "" : busqueda });
         }
+
+        [Route("obtenercaso")]
+        [HttpGet]
+        public CasoBE ObtenerCaso(int idcriterio, int idcaso)
+        {
+            return casoLN.getCaso(new CasoBE() { ID_CASO = idcaso, ID_CRITERIO = idcriterio });
+        }
+
+        [Route("guardarcaso")]
+        public bool GuardarCaso(CasoBE criterio)
+        {
+            return casoLN.GuardarCaso(criterio);
+        }
+
+        [Route("cambiarestadocaso")]
+        [HttpPost]
+        public bool EliminarCaso(CasoBE obj)
+        {
+            CasoBE c = casoLN.EliminarCaso(obj);
+            return c.OK;
+        }
+
+        [Route("obtenercasocriterio")]
+        [HttpGet]
+        public List<CasoBE> ObtenerCasoCriterio(int id)
+        {
+            return casoLN.getCasoCriterio(new CasoBE() { ID_CRITERIO = id });
+        }
     }
 }

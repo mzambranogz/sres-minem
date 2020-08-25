@@ -4,7 +4,7 @@
     $('#btnConsultar').on('click', (e) => consultar());
     $('#btnConsultar')[0].click();
     $('#btnNuevo').on('click', (e) => nuevo());
-    $('#btnCerrar').on('click', (e) => cerrarFormulario());
+    $('#btnConfirmar').on('click', (e) => eliminar());
     $('#btnGuardar').on('click', (e) => guardar());
 });
 
@@ -60,12 +60,6 @@ $(".columna-filtro").click(function (e) {
 });
 
 var consultar = () => {
-    //let busqueda = $('#textoBusqueda').val();
-    //let registros = 10;
-    //let pagina = 1;
-    //let columna = 'ID_REQUERIMIENTO';
-    //let orden = 'ASC'
-    //let params = { busqueda, registros, pagina, columna, orden };
     let busqueda = $('#txt-descripcion').val();
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();
@@ -74,7 +68,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/requerimiento/buscarobjeto?${queryParams}`;
+    let url = `${baseUrl}api/requerimiento/buscarobjeto?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblRequerimiento');
@@ -91,7 +85,6 @@ var consultar = () => {
             $('#ir-pagina').attr('max', j[0].TOTAL_PAGINAS);
             $('.total-paginas').text(j[0].TOTAL_PAGINAS);
 
-            //let tabla = $('#tblRequerimiento');
             let cantidadCeldasCabecera = tabla.find('thead tr th').length;
             let contenido = renderizar(j, cantidadCeldasCabecera, pagina, registros);
             tabla.find('tbody').html(contenido);
@@ -138,43 +131,56 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
     return contenido;
 };
 
+//var cambiarEstado = (element) => {
+//    let id = $(element).attr('data-id');
+//    if (!confirm(`¿Está seguro que desea eliminar este registro?`)) return;
+//    let data = { ID_REQUERIMIENTO: id, USUARIO_GUARDAR: idUsuarioLogin };
+//    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+//    let url = `${baseUrl}api/requerimiento/cambiarestadoobjeto`;
+//    fetch(url, init)
+//        .then(r => r.json())
+//        .then(j => { if (j) $('#btnConsultar')[0].click(); });
+//};
+
 var cambiarEstado = (element) => {
-
-    let id = $(element).attr('data-id');
-
-    if (!confirm(`¿Está seguro que desea eliminar este registro?`)) return;
-
-    let data = { ID_REQUERIMIENTO: id, USUARIO_GUARDAR: idUsuarioLogin };
-
-    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-
-    let url = '/api/requerimiento/cambiarestadoobjeto';
-
-    fetch(url, init)
-        .then(r => r.json())
-        .then(j => { if (j) $('#btnConsultar')[0].click(); });
+    idEliminar = $(element).attr('data-id');
+    $("#modal-confirmacion").modal('show');
 };
 
-var nuevo = () => {
-    $('#frm').show();
-    limpiarFormulario();
+var eliminar = () => {
+    if (idEliminar == 0) return;
+    let data = { ID_REQUERIMIENTO: idEliminar, USUARIO_GUARDAR: idUsuarioLogin };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let url = `${baseUrl}api/requerimiento/cambiarestadoobjeto`;
+    fetch(url, init)
+        .then(r => r.json())
+        .then(j => {
+            if (j) { $('#btnConsultar')[0].click(); $("#modal-confirmacion").modal('hide'); }
+        });
 }
 
-var cerrarFormulario = () => {
-    $('#frm').hide();
+var nuevo = () => {
+    limpiarFormulario();
+    $('.alert-add').html('');
+    $('#btnGuardar').show();
+    $('#btnGuardar').next().html('Cancelar');
+    $('#exampleModalLabel').html('REGISTRAR REQUERIMIENTO');
 }
 
 var limpiarFormulario = () => {
     $('#frm').removeData();
-    $('#txtRequerimiento').val('');
+    $('#txt-nombre').val('');
 }
 
 var consultarObjeto = (element) => {
-    $('#frm').show();
     limpiarFormulario();
-    let id = $(element).attr('data-id');
+    $('.alert-add').html('');
+    $('#btnGuardar').show();
+    $('#btnGuardar').next().html('Cancelar');
+    $('#exampleModalLabel').html('ACTUALIZAR REQUERIMIENTO');
 
-    let url = `/api/requerimiento/obtenerobjeto?id=${id}`;
+    let id = $(element).attr('data-id');
+    let url = `${baseUrl}api/requerimiento/obtenerobjeto?id=${id}`;
 
     fetch(url)
     .then(r => r.json())
@@ -184,27 +190,35 @@ var consultarObjeto = (element) => {
 }
 
 var cargarDatos = (data) => {
-    $('#frm').data('id_requerimiento', data.ID_REQUERIMIENTO);
-    $('#txtRequerimiento').val(data.NOMBRE);
+    $('#frm').data('id', data.ID_REQUERIMIENTO);
+    $('#txt-nombre').val(data.NOMBRE);
 }
 
 var guardar = () => {
-    let idRequerimiento = $('#frm').data('id_requerimiento');
-    let nombre = $('#txtRequerimiento').val();
+    $('.alert-add').html('');
+    let arr = [];
+    if ($('#txt-nombre').val().trim() === "") arr.push("Ingrese el nombre del requerimiento");
 
-    let url = `/api/requerimiento/guardarobjeto`;
+    if (arr.length > 0) {
+        let error = '';
+        $.each(arr, function (ind, elem) { error += '<li><small class="mb-0">' + elem + '</li></small>'; });
+        error = `<ul>${error}</ul>`;
+        $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: error });
+        return;
+    }
 
+    let idRequerimiento = $('#frm').data('id');
+    let nombre = $('#txt-nombre').val();
+    let url = `${baseUrl}api/requerimiento/guardarobjeto`;
     let data = { ID_REQUERIMIENTO: idRequerimiento == null ? -1 : idRequerimiento, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };
-
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
-        if (j) {
-            alert('Se registró correctamente');
-            $('#frm').hide();
-            $('#btnConsultar')[0].click();
-        }
+        $('.alert-add').html('');
+        if (j) { $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
+        j ? $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+        if (j) $('#btnConsultar')[0].click();
     });
 }

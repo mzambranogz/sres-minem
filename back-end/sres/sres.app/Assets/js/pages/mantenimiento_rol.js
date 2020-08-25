@@ -59,12 +59,6 @@ $(".columna-filtro").click(function (e) {
 });
 
 var consultar = () => {
-    //let busqueda = $('#textoBusqueda').val();
-    //let registros = 10;
-    //let pagina = 1;
-    //let columna = 'ID_ROL';
-    //let orden = 'ASC'
-    //let params = { busqueda, registros, pagina, columna, orden };
     let busqueda = $('#txt-descripcion').val() == null ? '' : $('#txt-descripcion').val();
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();
@@ -73,7 +67,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/rol/buscarobjeto?${queryParams}`;
+    let url = `${baseUrl}api/rol/buscarobjeto?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
@@ -135,22 +129,20 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
     return contenido;
 };
 
-var cerrarFormulario = () => {
-    $('#frm').hide();
-}
-
 var limpiarFormulario = () => {
     $('#frm').removeData();
-    $('#txtRol').val('');
+    $('#txt-nombre').val('');
 }
 
 var consultarObjeto = (element) => {
-    $('#frm').show();
     limpiarFormulario();
+    $('.alert-add').html('');
+    $('#btnGuardar').show();
+    $('#btnGuardar').next().html('Cancelar');
+    $('#exampleModalLabel').html('ACTUALIZAR ROL');
+
     let id = $(element).attr('data-id');
-
-    let url = `/api/rol/obtenerobjeto?id=${id}`;
-
+    let url = `${baseUrl}api/rol/obtenerobjeto?id=${id}`;
     fetch(url)
     .then(r => r.json())
     .then(j => {
@@ -160,26 +152,33 @@ var consultarObjeto = (element) => {
 
 var cargarDatos = (data) => {
     $('#frm').data('id', data.ID_ROL);
-    $('#txtRol').val(data.NOMBRE);
+    $('#txt-nombre').val(data.NOMBRE);
 }
 
 var guardar = () => {
+    $('.alert-add').html('');
+    let arr = [];
+    if ($('#txt-nombre').val().trim() === "") arr.push("Ingrese el nombre del rol");
+
+    if (arr.length > 0) {
+        let error = '';
+        $.each(arr, function (ind, elem) { error += '<li><small class="mb-0">' + elem + '</li></small>'; });
+        error = `<ul>${error}</ul>`;
+        $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: error });
+        return;
+    }
+
     let id = $('#frm').data('id');
-    let nombre = $('#txtRol').val();
-
-    let url = `/api/rol/guardarobjeto`;
-
+    let nombre = $('#txt-nombre').val();
+    let url = `${baseUrl}api/rol/guardarobjeto`;
     let data = { ID_ROL: id == null ? -1 : id, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };
-
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
-
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
-        if (j) {
-            alert('Se registró correctamente');
-            $('#frm').hide();
-            $('#btnConsultar')[0].click();
-        }
+        $('.alert-add').html('');
+        if (j) { $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
+        j ? $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+        if (j) $('#btnConsultar')[0].click();
     });
 }

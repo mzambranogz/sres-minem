@@ -17,7 +17,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/institucion/buscarparticipantes?${queryParams}`;
+    let url = `${baseUrl}api/institucion/buscarparticipantes?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(cargarDataBusqueda);
 };

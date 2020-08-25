@@ -38,7 +38,7 @@ var consultar = () => {
     let params = { codigo, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/convocatoria/buscarconvocatoria?${queryParams}`;
+    let url = `${baseUrl}api/convocatoria/buscarconvocatoria?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
@@ -92,18 +92,18 @@ var consultarConvocatoria = (element) => {
     limpiarFormulario();
     let id = $(element).attr('data-id');
 
-    let url = `/api/convocatoria/obtenerconvocatoria?id=${id}`;
+    let url = `${baseUrl}api/convocatoria/obtenerconvocatoria?id=${id}`;
 
     fetch(url)
     .then(r => r.json())
     .then (j => {
-        let urlConvocatoriaReq = `/api/convocatoria/listarconvocatoriareq?id=${id}`;
-        let urlConvocatoriaCri = `/api/convocatoria/listarconvocatoriacri?id=${id}`;
-        let urlConvocatoriaEva = `/api/convocatoria/listarconvocatoriaeva?id=${id}`;
-        let urlConvocatoriaEta = `/api/convocatoria/listarconvocatoriaeta?id=${id}`;
-        let urlConvocatoriaPos = `/api/convocatoria/listarconvocatoriapos?id=${id}`;
-        let urlConvocatoriaInsig = `/api/convocatoria/listarconvocatoriainsig?id=${id}`;
-        let urlConvocatoriaEstTrab = `/api/convocatoria/listarconvocatoriaesttrab?id=${id}`;
+        let urlConvocatoriaReq = `${baseUrl}api/convocatoria/listarconvocatoriareq?id=${id}`;
+        let urlConvocatoriaCri = `${baseUrl}api/convocatoria/listarconvocatoriacri?id=${id}`;
+        let urlConvocatoriaEva = `${baseUrl}api/convocatoria/listarconvocatoriaeva?id=${id}`;
+        let urlConvocatoriaEta = `${baseUrl}api/convocatoria/listarconvocatoriaeta?id=${id}`;
+        let urlConvocatoriaPos = `${baseUrl}api/convocatoria/listarconvocatoriapos?id=${id}`;
+        let urlConvocatoriaInsig = `${baseUrl}api/convocatoria/listarconvocatoriainsig?id=${id}`;
+        let urlConvocatoriaEstTrab = `${baseUrl}api/convocatoria/listarconvocatoriaesttrab?id=${id}`;
         Promise.all([
             fetch(urlConvocatoriaReq),
             fetch(urlConvocatoriaCri),
@@ -249,7 +249,7 @@ var cambiarEstado = (element) => {
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
-    let url = '/api/convocatoria/cambiarestadoconvocatoria';
+    let url = `${baseUrl}api/convocatoria/cambiarestadoconvocatoria`;
 
     fetch(url, init)
         .then(r => r.json())
@@ -257,13 +257,13 @@ var cambiarEstado = (element) => {
 };
 
 var consultarListas = () => {
-    let urlConsultarListaCriterio = `/api/criterio/obtenerallcriterio`;
-    let urlConsultarListaRequerimiento = `/api/requerimiento/obtenerallrequerimiento`;
-    let urlConsultarListaEvaluador = `/api/usuario/obtenerallevaluador`;
-    let urlConsultarListaEtapa = `/api/etapa/obteneralletapa`;
-    let urlConsultarListaInsignia = `/api/insignia/obtenerallinsignia`;
-    let urlConsultarListaEstrella = `/api/estrella/obtenerallestrella`;
-    let urlConsultarListaSector = `/api/sector/obtenerallsector`;
+    let urlConsultarListaCriterio = `${baseUrl}api/criterio/obtenerallcriterio`;
+    let urlConsultarListaRequerimiento = `${baseUrl}api/requerimiento/obtenerallrequerimiento`;
+    let urlConsultarListaEvaluador = `${baseUrl}api/usuario/obtenerallevaluador`;
+    let urlConsultarListaEtapa = `${baseUrl}api/etapa/obteneralletapa`;
+    let urlConsultarListaInsignia = `${baseUrl}api/insignia/obtenerallinsignia`;
+    let urlConsultarListaEstrella = `${baseUrl}api/estrella/obtenerallestrella`;
+    let urlConsultarListaSector = `${baseUrl}api/sector/obtenerallsector`;
     Promise.all([
         fetch(urlConsultarListaCriterio),
         fetch(urlConsultarListaRequerimiento),
@@ -596,7 +596,7 @@ var guardar = () => {
     //    });
     //});
 
-    let url = `/api/convocatoria/guardarconvocatoria`;
+    let url = `${baseUrl}api/convocatoria/guardarconvocatoria`;
     //let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), NOMBRE: nombre, DESCRIPCION: descripcion, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_CONVOCATORIA_CRITERIO_REQUERIMIENTO: criterioRequerimiento, LISTA_INSIG: insignia, LISTA_ESTRELLA_TRAB: estrella, USUARIO_GUARDAR: idUsuarioLogin };
     let data = { ID_CONVOCATORIA: id == null ? -1 : id, ID_ETAPA: $('#cbo-etapa').val(), VALIDAR_ETAPA: id == null ? 1 : $('#cbo-etapa').val() == idEtapa_actual ? 0 : 1, NOMBRE: nombre, DESCRIPCION: descripcion, FECHA_INICIO: fechaInicio, FECHA_FIN: fechaFin, LIMITE_POSTULANTE: limite, LISTA_REQ: requerimiento, LISTA_CRI: criterio, LISTA_EVA: evaluador, LISTA_ETA: etapa, LISTA_INSIG: insignia, LISTA_ESTRELLA_TRAB: estrella, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
@@ -645,7 +645,7 @@ var guardarRelacion = () => {
         }               
     });
 
-    let url = `/api/convocatoria/guardarevaluadorpostulante`;
+    let url = `${baseUrl}api/convocatoria/guardarevaluadorpostulante`;
     let data = { LIST_INSTITUCION: relacion, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
@@ -673,7 +673,7 @@ var cambiarColorEstado = (e) => {
 
 var mostrarNuevaListaPostulantes = () => {
     let id = $('#frm').data('id');
-    let urlConvocatoriaPos = `/api/convocatoria/listarconvocatoriapos?id=${id}`;
+    let urlConvocatoriaPos = `${baseUrl}api/convocatoria/listarconvocatoriapos?id=${id}`;
     fetch(urlConvocatoriaPos)
     .then(r => r.json())
     .then(r => {
@@ -692,7 +692,7 @@ $(document).on('change', '#cbo-evaluadores-02', function (){
     let id = $('#frm').data('id');
     if ($('#cbo-evaluadores-02').val() > 0){
         $('.postulante-evaluador-relacion').html('');
-        let url = `/api/convocatoria/listarpostulanteevaluador?idConvocatoria=${id}&idEvaluador=${idEva}`;
+        let url = `${baseUrl}api/convocatoria/listarpostulanteevaluador?idConvocatoria=${id}&idEvaluador=${idEva}`;
         fetch(url)
         .then(r => r.json())
         .then(r => {
@@ -739,7 +739,7 @@ var guardarNoRelacion = () => {
         }               
     });
 
-    let url = `/api/convocatoria/deseleccionarpostulante`;
+    let url = `${baseUrl}api/convocatoria/deseleccionarpostulante`;
     let data = { LIST_INSTITUCION: relacion, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 

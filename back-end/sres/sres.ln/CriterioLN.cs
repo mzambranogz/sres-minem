@@ -44,19 +44,27 @@ namespace sres.ln
             bool seGuardoConvocatoria = false;
             try
             {
+                int id = -1;
                 cn.Open();
-                //item = criterioDA.GuardarCriterio(entidad, cn);
-
-                if (entidad.ARCHIVO_CONTENIDO != null && entidad.ARCHIVO_CONTENIDO.Length > 0)
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
                 {
-                    string pathFormat = AppSettings.Get<string>("Path.Criterio");
-                    string pathDirectoryRelative = string.Format(pathFormat, entidad.ID_CRITERIO);
-                    string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
-                    string pathFile = Path.Combine(pathDirectory, entidad.ARCHIVO_BASE);
-                    if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
-                    File.WriteAllBytes(pathFile, entidad.ARCHIVO_CONTENIDO);
-                }
-                seGuardoConvocatoria = criterioDA.GuardarCriterio(entidad, cn).OK; 
+                    seGuardoConvocatoria = criterioDA.GuardarCriterio(entidad, out id, cn).OK;
+                    if (seGuardoConvocatoria) {
+                        if (entidad.ARCHIVO_CONTENIDO != null && entidad.ARCHIVO_CONTENIDO.Length > 0)
+                        {
+                            string pathFormat = AppSettings.Get<string>("Path.Criterio");
+                            string pathDirectoryRelative = string.Format(pathFormat, id);
+                            string pathDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathDirectoryRelative);
+                            string pathFile = Path.Combine(pathDirectory, entidad.ARCHIVO_BASE);
+                            if (!Directory.Exists(pathDirectory)) Directory.CreateDirectory(pathDirectory);
+                            File.WriteAllBytes(pathFile, entidad.ARCHIVO_CONTENIDO);
+                        }
+                        else
+                            seGuardoConvocatoria = false;
+                    }
+                    if (seGuardoConvocatoria) ot.Commit();
+                    else ot.Rollback();
+                }                     
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 

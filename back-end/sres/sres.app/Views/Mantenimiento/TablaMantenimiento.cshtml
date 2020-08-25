@@ -1,12 +1,77 @@
 ﻿@{
     ViewBag.Titulo = "Mantenimiento";
+    ViewBag.SRESDescription = false;
 }
 
 @section scripts_footer{
     <script src="@Url.Content("~/Assets/js/pages/mantenimiento.js")"></script>
 }
 
-<div>
+<div class="container-fluid mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="estilo-05" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index","Inicio")">Inicio</a></li>
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index", "Convocatoria")">Bandeja de convocatorias</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Mantenimiento de Tablas</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="estilo-03 text-sres-azul">Mantenimiento de Tablas</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="rayado wow fadeIn"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="txt-buscar">Buscar&nbsp;</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" id="inputGroup1"><i class="fas fa-table"></i></span></div>
+                        <select class="form-control estilo-01 text-sres-oscuro" id="cbo-tabla-mantenimiento" required>
+                            <option value="0" data-url="">-Seleccione una Tabla de Matenimiento-</option>
+                            <option value="1" data-url="Mantenimiento/Criterio">Criterio</option>
+                            <option value="2" data-url="Mantenimiento/Usuario">Usuario</option>
+                            <option value="3" data-url="Mantenimiento/Requerimiento">Requerimiento</option>
+                            <option value="4" data-url="Mantenimiento/Proceso">Proceso</option>
+                            <option value="5" data-url="Mantenimiento/Etapa">Etapa</option>
+                            <option value="6" data-url="Mantenimiento/Convocatoria">Convocatoria</option>
+                            <option value="7" data-url="Mantenimiento/Anno">Año</option>
+                            <option value="8" data-url="Mantenimiento/Rol">Rol</option>
+                            <option value="9" data-url="Mantenimiento/Sector">Sector</option>
+                            <option value="10" data-url="Mantenimiento/Caso">Caso</option>
+                            <option value="11" data-url="Mantenimiento/Componente">Componente</option>
+                            <option value="12" data-url="Mantenimiento/Documento">Documento</option>
+                            <option value="13" data-url="Mantenimiento/Insignia">Insignia</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">&nbsp;</div>
+                    <div class="col-sm-12 col-md-6 col-lg-6"><a class="btn btn-primary w-100 mb-2" href="#" id="ir-mantenimiento" onclick="fn_irMantenimiento(event);">Ir al mantenimiento</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div>
     <select class="form-control cbo-list" id="cbo-tabla-mantenimiento" required>
         <option value="0" data-url="">-Seleccione una Tabla de Matenimiento-</option>
         <option value="1" data-url="Mantenimiento/Criterio">Criterio</option>
@@ -29,4 +94,4 @@
             </a>
         </div>
     </div>
-</div>
+</div>*@

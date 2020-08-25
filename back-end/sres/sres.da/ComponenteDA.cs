@@ -55,5 +55,77 @@ namespace sres.da
 
             return lista;
         }
+
+        public ComponenteBE GuardarComponente(ComponenteBE entidad, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_PRC_MAN_COMPONENTE";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_CASO", entidad.ID_CASO);
+                p.Add("PI_ID_COMPONENTE", entidad.ID_COMPONENTE);
+                p.Add("PI_NOMBRE", entidad.NOMBRE);
+                p.Add("PI_INCREMENTABLE", entidad.INCREMENTABLE);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
+
+        public ComponenteBE getComponente(ComponenteBE entidad, OracleConnection db)
+        {
+            ComponenteBE item = new ComponenteBE();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_GET_COMPONENTE";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_CASO", entidad.ID_CASO);
+                p.Add("PI_ID_COMPONENTE", entidad.ID_COMPONENTE);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.Query<ComponenteBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                item.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                item.OK = false;
+            }
+
+            return item;
+        }
+
+        public ComponenteBE EliminarComponente(ComponenteBE entidad, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_DEL_COMPONENTE";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_CASO", entidad.ID_CASO);
+                p.Add("PI_ID_COMPONENTE", entidad.ID_COMPONENTE);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                entidad.OK = true;
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
     }
 }

@@ -3,9 +3,10 @@
     $('#catidad-rgistros').on('change', (e) => cambiarPagina());
     $('#btnConsultar').on('click', (e) => consultar());
     $('#btnConsultar')[0].click();
-    //$('#btnNuevo').on('click', (e) => nuevo());
-    //$('#btnCerrar').on('click', (e) => cerrarFormulario());
-    //$('#btnGuardar').on('click', (e) => guardar());
+    $('#btnNuevo').on('click', (e) => nuevo());
+    $('#btnConfirmar').on('click', (e) => eliminar());
+    $('#btnGuardar').on('click', (e) => guardar());
+    consultarListas();
 });
 
 var fn_avance_grilla = (boton) => {
@@ -68,7 +69,7 @@ var consultar = () => {
     let params = { busqueda, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/caso/buscarcaso?${queryParams}`;
+    let url = `${baseUrl}api/caso/buscarcaso?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(j => {
         let tabla = $('#tblPrincipal');
@@ -100,7 +101,7 @@ var consultar = () => {
                 let elementButton = tabla.find('.btnEditar')[x];
                 $(elementButton).on('click', (e) => {
                     e.preventDefault();
-                    consultarCriterio(e.currentTarget);
+                    consultarDatos(e.currentTarget);
                 });
             });
         } else {
@@ -131,3 +132,103 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
 
     return contenido;
 };
+
+var cambiarEstado = (element) => {
+    idEliminar = $(element).attr('data-id');
+    $("#modal-confirmacion").modal('show');
+};
+
+var eliminar = () => {
+    if (idEliminar == 0) return;
+    let data = { ID_CRITERIO: idEliminar.split('-')[0], ID_CASO: idEliminar.split('-')[1], USUARIO_GUARDAR: idUsuarioLogin };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let url = `${baseUrl}api/caso/cambiarestadocaso`;
+    fetch(url, init)
+        .then(r => r.json())
+        .then(j => {
+            if (j) { $('#btnConsultar')[0].click(); $("#modal-confirmacion").modal('hide'); }
+        });
+}
+
+var consultarDatos = (element) => {
+    limpiarFormulario();
+    $('.alert-add').html('');
+    $('#btnGuardar').show();
+    $('#btnGuardar').next().html('Cancelar');
+    $('#exampleModalLabel').html('ACTUALIZAR CASO');
+    $('#cbo-criterio').parent().parent().hide();
+
+    let id = $(element).attr('data-id');
+    let url = `${baseUrl}api/caso/obtenercaso?idcriterio=${id.split('-')[0]}&idcaso=${id.split('-')[1]}`;
+    fetch(url)
+    .then(r => r.json())
+    .then(j => {
+        cargarDatos(j);
+    });
+}
+
+var cargarDatos = (data) => {
+    $('#frm').data('id', data.ID_CASO);
+    $('#txt-nombre').val(data.NOMBRE);
+    $('#cbo-criterio').val(data.ID_CRITERIO);
+}
+
+var guardar = () => {
+    $('.alert-add').html('');
+    let arr = [];
+    if ($('#txt-nombre').val().trim() === "") arr.push("Ingrese el nombre del caso");
+    if ($('#cbo-criterio').val() == 0) arr.push("Seleccione el criterio");
+
+    if (arr.length > 0) {
+        let error = '';
+        $.each(arr, function (ind, elem) { error += '<li><small class="mb-0">' + elem + '</li></small>'; });
+        error = `<ul>${error}</ul>`;
+        $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: error });
+        return;
+    }
+
+    let id = $('#frm').data('id');
+    let nombre = $('#txt-nombre').val();
+    let criterio = $(`#cbo-criterio`).val();
+
+    let url = `${baseUrl}api/caso/guardarcaso`;
+    let data = { ID_CRITERIO: criterio, ID_CASO: id == null ? -1 : id, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+    fetch(url, init)
+    .then(r => r.json())
+    .then(j => {
+        $('.alert-add').html('');
+        if (j) { $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
+        j ? $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+        if (j) $('#btnConsultar')[0].click();
+    });
+}
+
+var nuevo = () => {
+    limpiarFormulario();
+    $('.alert-add').html('');
+    $('#btnGuardar').show();
+    $('#btnGuardar').next().html('Cancelar');
+    $('#cbo-criterio').parent().parent().show();
+    $('#exampleModalLabel').html('REGISTRAR CASO');
+}
+
+var limpiarFormulario = () => {
+    $('#frm').removeData();
+    $('#txt-nombre').val('');
+    $('#cbo-criterio').val(0);
+}
+
+var consultarListas = () => {
+    let url = `${baseUrl}api/criterio/obtenerallcriterio`;
+    fetch(url).then(r => r.json()).then(j => {
+        let contenido = ``;
+        if (j.length > 0) {
+            contenido = j.map((x, y) => {
+                return `<option value="${x.ID_CRITERIO}">${x.NOMBRE}</option>`;
+            }).join('');;
+        }
+        $('#cbo-criterio').html(`<option value="0">-Seleccione-</option>${contenido}`)
+    });
+}

@@ -25,7 +25,7 @@ var consultar = () => {
     let params = { idConvocatoria, idInscripcion, razonSocialInstitucion, nombresCompletosUsuario, idUsuario, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `/api/inscripcion/buscarinscripcion?${queryParams}`;
+    let url = `${baseUrl}api/inscripcion/buscarinscripcion?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(cargarDataBusqueda);
 };
@@ -146,7 +146,7 @@ var btnGenerarInforme = () => {
     debugger;
     let data = { ID_CONVOCATORIA: idConvocatoria, ID_USUARIO: idUsuarioLogin, USUARIO_GUARDAR: idUsuarioLogin };
 
-    let url = `/api/informepreliminar/generarinformepreliminar`;
+    let url = `${baseUrl}api/informepreliminar/generarinformepreliminar`;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
@@ -158,7 +158,7 @@ var btnGenerarInformeFinal = () => {
     debugger;
     let data = { ID_CONVOCATORIA: idConvocatoria, ID_USUARIO: idUsuarioLogin, USUARIO_GUARDAR: idUsuarioLogin };
 
-    let url = `/api/informepreliminar/generarinformefinal`;
+    let url = `${baseUrl}api/informepreliminar/generarinformefinal`;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
