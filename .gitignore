@@ -1,8 +1,10 @@
 back-end/sres/.vs
 back-end/sres/sres.app/bin
 back-end/sres/sres.app/obj
+back-end/sres/sres.app/Properties/PublishProfiles
 back-end/sres/sres.app/Log
 back-end/sres/sres.app/Files
+back-end/sres/sres.app.test
 back-end/sres/sres.be/bin
 back-end/sres/sres.be/obj
 back-end/sres/sres.ln/bin
