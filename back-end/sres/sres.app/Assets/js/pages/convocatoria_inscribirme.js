@@ -139,6 +139,8 @@ var fileRequerimientoChange = (e) => {
     }
 
     var fileContent = e.currentTarget.files[0];
+    
+    if (!["image/jpeg", "image/jpg", "image/png"].includes(fileContent.type.toLowerCase())) $(elFile).parent().parent().parent().parent().alert({ type: 'danger', title: 'ERROR', message: `El archivo debe ser *.jpeg, *.jpg, *.png` });
 
     if (fileContent.size > maxBytes) $(elFile).parent().parent().parent().parent().alert({ type: 'danger', title: 'ERROR', message: `El archivo debe tener un peso máximo de 4MB` });
     else

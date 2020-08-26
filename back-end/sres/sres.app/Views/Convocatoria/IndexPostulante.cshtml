@@ -30,7 +30,7 @@
                             <img class="img-fluid" data-src-default="@(usuario.INSTITUCION.LOGO_CONTENIDO == null ? Url.Content("~/Assets/images/sin-foto.png") : $"data:{usuario.INSTITUCION.LOGO_TIPO};base64,{Convert.ToBase64String(usuario.INSTITUCION.LOGO_CONTENIDO)}")" src="@(usuario.INSTITUCION.LOGO_CONTENIDO == null ? Url.Content("~/Assets/images/sin-foto.png") : $"data:{usuario.INSTITUCION.LOGO_TIPO};base64,{Convert.ToBase64String(usuario.INSTITUCION.LOGO_CONTENIDO)}")" alt="">
                             <label class="cursor-pointer fle-logo" for="fle-logo" data-toggle="tooltip" data-placement="bottom" title="Editar logo">
                                 <i class="fas fa-camera fa-lg"></i>
-                                <input class="d-none" type="file" id="fle-logo" accept="image/jpeg, .jpg, .png">
+                                <input class="d-none" type="file" id="fle-logo" accept=".jpeg, .jpg, .png">
                             </label>
                         </div>
                     </div>
