@@ -68,6 +68,7 @@
     <Compile Include="MRV\MigrarEmisionesLN.cs" />
     <Compile Include="MRV\UsuarioLN.cs" />
     <Compile Include="ParametroDetalleRelacionLN.cs" />
+    <Compile Include="ParametroLN.cs" />
     <Compile Include="ProcesoLN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReconocimientoLN.cs" />
