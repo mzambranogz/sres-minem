@@ -67,6 +67,7 @@
     <Compile Include="EstrellaTrabajadorCamaBE.cs" />
     <Compile Include="EtapaAuxBE.cs" />
     <Compile Include="EtapaBE.cs" />
+    <Compile Include="FactorAuxBE.cs" />
     <Compile Include="FactorBE.cs" />
     <Compile Include="FactorDataBE.cs" />
     <Compile Include="FactorParametroBE.cs" />

@@ -34,5 +34,12 @@ namespace sres.app.Controllers.Api
         {
             return paramLN.GuardarParametro(entidad);
         }
+
+        [Route("obtenerallparametrolista")]
+        [HttpGet]
+        public List<ParametroBE> ObtenerParametroLista()
+        {
+            return paramLN.ObtenerParametroLista();
+        }
     }
 }

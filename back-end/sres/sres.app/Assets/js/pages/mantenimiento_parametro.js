@@ -13,6 +13,8 @@
     $('.unico').on('click', (e) => validarUnico(e));
     $('#add-lista').on('click', (e) => validarParametro());
     $('#edit-lista').on('click', (e) => actualizarParametro());
+    $('#add-lista-param').on('click', (e) => agregarParametroFiltro());
+    consultarListas();
 });
 
 var fn_avance_grilla = (boton) => {
@@ -189,6 +191,19 @@ var cargarDatos = (data) => {
             }).join('');
             $("#filas-valor").html(detalle);
         }
+
+        if (data.LISTA_PARAM != null) {
+            if (data.LISTA_PARAM.length > 0) {
+                let param = data.LISTA_PARAM.map((x, y) => {
+                    let small = `<small><i class="fas fa-list"></i>${x.NOMBRE}</small>`;
+                    let input = `<input type="hidden" class="hidden-control field-ctrol" value="cbo">`;
+                    let icono = `<i class="fas fa-minus-circle cursor-pointer m-2 delete-columna-detalle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar parámetro"></i>`;
+                    let content = `<div class="btn btn-secondary btn-sm w-100 d-flex flex-row align-items-center justify-content-between my-2" id="param-${x.ID_PARAMETRO}">${small}${input}${icono}</div>`;
+                    return content;
+                }).join('');
+                $('#filas-parametro').html(param);
+            }
+        }        
     }
     $("#rad-estatico").prop("checked", data.ESTATICO == '1' ? true : false);
     $("#rad-editable").prop("checked", data.EDITABLE == '1' ? true : false);
@@ -250,6 +265,7 @@ var guardar = () => {
     let tamano = $('#txt-tamano').val();
     let id_delete = "";
     if ($("#parametros-id").data("eliminar") != "") { id_delete = $("#parametros-id").data("eliminar").substring(0, $("#parametros-id").data("eliminar").length - 1); }
+    let filtro = $("[id^=param-]").length == 0 ? '0' : idFiltro();
 
     let url = `${baseUrl}api/parametro/guardarparametro`;
     let data = {
@@ -261,7 +277,7 @@ var guardar = () => {
         ESTATICO: estatico,
         EDITABLE: editable,
         VERIFICABLE: verificable,
-        //FILTRO: filtro,
+        FILTRO: filtro,
         DECIMAL_V: decimal,
         RESULTADO: resultado,
         EMISIONES: emisiones,
@@ -302,6 +318,7 @@ var changeTipoControl = () => {
     }
     else {
         $("#filas-valor").html('');
+        $("#filas-parametro").html('');
         $('.tipo-caja').removeClass('d-none');
         $('.tipo-lista').addClass('d-none');
         //$('#rad-filtro').parent().parent().addClass('d-none');
@@ -347,6 +364,7 @@ var limpiarFormulario = () => {
     changeTipoControl();
     $('#cbo-tipo-dato').val(0);
     $("#filas-valor").html('');
+    $("#filas-parametro").html('');
 }
 
 var limpiarCheck = () => {
@@ -429,21 +447,6 @@ var editarParametro = (id, etiqueta, param) => {
 
 var actualizarParametro = () => {
     $(".esconder").prop("hidden", false);
-    //if ($("#edit-lista").data("evaluar") == 0) {
-    //    $("#filas-valor").find(".factor-div").each((index, value) => {
-    //        if ($(value).find(".nombre").val() == $("#edit-lista").data("detalle")) {
-    //            $(value).find(".nombre").val($("#txt-etiqueta").val());
-    //            $(value).find(".mostrar-valor").html("").html($("#txt-etiqueta").val());
-    //        }
-    //    });
-    //} else {
-    //    $("#filas-valor").find(".factor-div").each((index, value) => {
-    //        if ($(value).find(".nombre").val() == $("#edit-lista").data("detalle")) {
-    //            $(value).find(".nombre").val($("#txt-etiqueta").val());
-    //            $(value).find(".mostrar-valor").html("").html($("#txt-etiqueta").val());
-    //        }
-    //    });
-    //}
     $("#filas-valor").find(".factor-div").each((x,y) => {
         if ($(y).find(".nombre").val() == $("#edit-lista").data("detalle")) {
             $(y).find(".nombre").val($("#txt-etiqueta").val());
@@ -453,5 +456,41 @@ var actualizarParametro = () => {
     $("#add-lista").removeClass("d-none");
     $("#edit-lista").addClass("d-none");
     $("#txt-etiqueta").val("");
+}
+
+var idFiltro = () => {
+    let filtro = "";
+    $("[id^=param-]").each((x, y) => {
+        filtro += $(y).attr('id').split('-')[1] + '|';
+    });
+    return filtro.substring(0, filtro.length - 1);
+}
+
+var agregarParametroFiltro = () => {
+    if ($('#cbo-parametro').val() == 0) return;
+    let verif = true;
+    $("[id^=param-]").each((x, y) => {
+        if ($(y).attr('id').split('-')[1] == $('#cbo-parametro').val()) { verif = false;}
+    });
+    if (!verif) { $('#cbo-parametro').val(0); return; }
+    let small = `<small><i class="fas fa-list"></i>${$("#cbo-parametro option:selected").html()}</small>`;
+    let input = `<input type="hidden" class="hidden-control field-ctrol" value="cbo">`;
+    let icono = `<i class="fas fa-minus-circle cursor-pointer m-2 delete-columna-detalle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar parámetro"></i>`;
+    let content = `<div class="btn btn-secondary btn-sm w-100 d-flex flex-row align-items-center justify-content-between my-2" id="param-${$('#cbo-parametro').val()}">${small}${input}${icono}</div>`;
+    $('#filas-parametro').append(content);
+    $('#cbo-parametro').val(0);
+}
+
+var consultarListas = () => {
+    let url = `${baseUrl}api/parametro/obtenerallparametrolista`;
+    fetch(url).then(r => r.json()).then(j => {
+        let contenido = ``;
+        if (j.length > 0) {
+            contenido = j.map((x, y) => {
+                return `<option value="${x.ID_PARAMETRO}">${x.NOMBRE}</option>`;
+            }).join('');;
+        }
+        $('#cbo-parametro').html(`<option value="0">-Seleccione-</option>${contenido}`)
+    });
 }
 

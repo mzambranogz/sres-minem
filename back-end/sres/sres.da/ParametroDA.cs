@@ -107,7 +107,7 @@ namespace sres.da
                 p.Add("PI_ESTATICO", entidad.ESTATICO);
                 p.Add("PI_EDITABLE", entidad.EDITABLE);
                 p.Add("PI_VERIFICABLE", entidad.VERIFICABLE);
-                //p.Add("PI_FILTRO", entidad.FILTRO);
+                p.Add("PI_FILTRO", entidad.FILTRO);
                 p.Add("PI_DECIMAL_V", entidad.DECIMAL_V);
                 p.Add("PI_RESULTADO", entidad.RESULTADO);
                 p.Add("PI_EMISIONES", entidad.EMISIONES);
@@ -152,6 +152,41 @@ namespace sres.da
                 Log.Error(ex);
             }
             return guardo;
+        }
+
+        public List<ParametroBE> ObtenerParametroLista(OracleConnection db)
+        {
+            List<ParametroBE> lista = new List<ParametroBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_ALL_PARAMETRO_LISTA";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ParametroBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
+
+        public List<ParametroBE> ObtenerParametroFiltro(string filtro, OracleConnection db)
+        {
+            List<ParametroBE> lista = new List<ParametroBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_PARAMETRO_FILTRO_OUT";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_FILTRO", filtro);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ParametroBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
         }
     }
 }

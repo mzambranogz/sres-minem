@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Titulo = "Mantenimiento Caso";
+    ViewBag.Titulo = "Mantenimiento Parámetro";
     ViewBag.SRESDescription = false;
 }
 
@@ -31,7 +31,7 @@
             </div>
             <div class="col-lg-3">
                 <span data-toggle="modal" data-target="#modal-mantenimiento">
-                    <div class="btn btn-sres-verde btn-lg w-100 mb-2" id="btnNuevo" data-toggle="tooltip" data-placement="top" title="Agregar un nuevo componente">Agregar parámetro</div>
+                    <div class="btn btn-sres-verde btn-lg w-100 mb-2" id="btnNuevo" data-toggle="tooltip" data-placement="top" title="Agregar un nuevo parámetro">Agregar parámetro</div>
                 </span>
             </div>
         </div>
@@ -83,7 +83,7 @@
                                         <div class="d-flex justify-content-between align-items-center w-100">
                                             <div class="pl-1">CÓDIGO&nbsp;</div><i class="fas fa-sort columna-filtro" id="ID_PARAMETRO"></i>
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="código del criterio-caso"></i></div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="código del parámetro"></i></div>
                                     </div>
                                 </th>
                                 <th scope="col" width="18%">
@@ -91,7 +91,7 @@
                                         <div class="d-flex justify-content-between align-items-center w-100">
                                             <div class="pl-1">PARÁMETRO&nbsp;</div><i class="fas fa-sort columna-filtro" id="PARAMETRO"></i>
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre del caso"></i></div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre del parámetro"></i></div>
                                     </div>
                                 </th>
                                 <th scope="col" width="18%">
@@ -99,7 +99,7 @@
                                         <div class="d-flex justify-content-between align-items-center w-100">
                                             <div class="pl-1">TIPO DE CONTROL&nbsp;</div><i class="fas fa-sort columna-filtro" id="TIPO_CONTROL"></i>
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Criterio a la que pertenece el caso"></i></div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Tipo de control del parámetro"></i></div>
                                     </div>
                                 </th>
                                 <th scope="col" width="41%">
@@ -107,7 +107,7 @@
                                         <div class="d-flex justify-content-between align-items-center w-100">
                                             <div class="pl-1">VALORES&nbsp;</div>
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Criterio a la que pertenece el caso"></i></div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Detalle del parámetro"></i></div>
                                     </div>
                                 </th>
                                 <th scope="col" width="10%">
@@ -289,6 +289,29 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group tipo-lista">
+                                <label for="cbo-parametros">Parámetros<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione un parámetro para factor"></i></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-list-alt"></i></span></div>
+                                    <select class="form-control" id="cbo-parametro" required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row tipo-lista">
+                                <div class="col-md-12 col-lg-6">&nbsp;</div>
+                                <div class="col-md-12 col-lg-6"><a class="btn btn-success w-100" id="add-lista-param" href="#" data-toggle="tooltip" data-placement="left" title="Agregar parámetro para el filtro de opciones"><i class="fas fa-plus px-1"></i>Agregar parámetro</a></div>
+                            </div>
+                            <div class="form-group mt-2 tipo-lista">
+                                <label for="mlt-gei">Lista de parámetros para el filtro de opciones<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Aquí se mostrará los parámetros asociados al filtro de opciones"></i></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-columns"></i></span></div>
+                                    <div class="form-control">
+                                        <div id="filas-parametro"></div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="txt-descripcion-parametro">Descripción del parámetro<span class="text-danger font-weight-bold">&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Ingrese una combinación de unidades"></i></span></label>
                                 <div class="input-group">
