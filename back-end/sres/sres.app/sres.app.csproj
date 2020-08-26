@@ -294,6 +294,7 @@
     <Content Include="Assets\js\pages\mantenimiento_documento.js" />
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
     <Content Include="Assets\js\pages\mantenimiento_insignia.js" />
+    <Content Include="Assets\js\pages\mantenimiento_parametro.js" />
     <Content Include="Assets\js\pages\mantenimiento_proceso.js" />
     <Content Include="Assets\js\pages\mantenimiento_requerimiento.js" />
     <Content Include="Assets\js\pages\mantenimiento_rol.js" />
@@ -379,6 +380,7 @@
     <Compile Include="Controllers\Api\MRV\InstitucionMRVController.cs" />
     <Compile Include="Controllers\Api\MRV\MigrarEmisionesMRVController.cs" />
     <Compile Include="Controllers\Api\MRV\UsuarioMRVController.cs" />
+    <Compile Include="Controllers\Api\ParametroController.cs" />
     <Compile Include="Controllers\Api\ParametroDetalleRelacionController.cs" />
     <Compile Include="Controllers\Api\ProcesoController.cs" />
     <Compile Include="Controllers\Api\RequerimientoController.cs" />

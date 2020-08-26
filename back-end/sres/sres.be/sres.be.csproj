@@ -90,6 +90,7 @@
     <Compile Include="MRV\InstitucionBE.cs" />
     <Compile Include="MRV\MigrarEmisionesBE.cs" />
     <Compile Include="MRV\UsuarioBE.cs" />
+    <Compile Include="ParametroAuxBE.cs" />
     <Compile Include="ParametroBE.cs" />
     <Compile Include="ParametroDetalleAuxBE.cs" />
     <Compile Include="ParametroDetalleBE.cs" />

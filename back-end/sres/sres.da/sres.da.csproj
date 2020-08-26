@@ -86,6 +86,7 @@
     <Compile Include="MRV\MigrarEmisionesDA.cs" />
     <Compile Include="MRV\UsuarioDA.cs" />
     <Compile Include="DataBaseHelpers\OracleDynamicParameters.cs" />
+    <Compile Include="ParametroDA.cs" />
     <Compile Include="ParametroDetalleDA.cs" />
     <Compile Include="ParametroDetalleRelacionDA.cs" />
     <Compile Include="ProcesoDA.cs" />

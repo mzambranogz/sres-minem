@@ -82,5 +82,10 @@ namespace sres.app.Controllers
         {
             return View();
         }
+
+        public ActionResult Parametro()
+        {
+            return View();
+        }
     }
 }
