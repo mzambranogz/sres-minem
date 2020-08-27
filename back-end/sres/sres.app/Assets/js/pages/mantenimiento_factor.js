@@ -29,7 +29,6 @@ var cambiarPagina = () => {
 }
 
 $(".columna-filtro").click(function (e) {
-    debugger;
     var id = e.target.id;
 
     $(".columna-filtro").removeClass("fa-sort-up");
@@ -123,7 +122,6 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
             let colNro = `<td class="text-center" data-encabezado="Número de orden" scope="row" data-count="0">${(pagina - 1) * registros + (i + 1)}</td>`;
             let colCodigo = `<td class="text-center" data-encabezado="Código" scope="row"><span>${(`${formatoCodigo}${x.ID_FACTOR}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</span></td>`;
             let colNombres = `<td class="text-left" data-encabezado="Nombre">${x.NOMBRE}</td>`;
-            debugger;
             if (x.LISTA_PARAM_FACTOR != null) {
                 if (x.LISTA_PARAM_FACTOR.length > 0) {
                     detalle = x.LISTA_PARAM_FACTOR.map((x, y) => {
@@ -201,7 +199,6 @@ var guardar = () => {
     let tipoControl = $('#cbo-tipo-control').val();
     let parametro = [], i = 1;
     $("[id^=param-]").each((x, y) => {
-        debugger;
         var f = {
             ID_PARAMETRO: $(y).attr('id').split('-')[1],
             ID_DETALLE: $(y).data('detalle') == "" ? 0 : $(y).data('detalle'),
@@ -248,12 +245,12 @@ var agregarParametro = () => {
 }
 
 var consultarListas = () => {
-    let url = `${baseUrl}api/parametro/obtenerallparametrolista`;
+    let url = `${baseUrl}api/parametro/obtenerallparametrolista?idControl=1`;
     fetch(url).then(r => r.json()).then(j => {
         let contenido = ``;
         if (j.length > 0) {
             contenido = j.map((x, y) => {
-                return `<option value="${x.ID_PARAMETRO}">${x.NOMBRE}</option>`;
+                return `<option value="${x.ID_PARAMETRO}">[P${x.ID_PARAMETRO}] ${x.NOMBRE}</option>`;
             }).join('');;
         }
         $('#cbo-parametro').html(`<option value="0">-Seleccione-</option>${contenido}`)

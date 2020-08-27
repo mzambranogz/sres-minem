@@ -12,5 +12,6 @@ namespace sres.be
         public List<ParametroBE> LISTA_PARAM { get; set; }
         public string ID_DELETE_DETALLE { get; set; }
         public string TIPO_CONTROL { get; set; }
+        public string FORMULA { get; set; }
     }
 }

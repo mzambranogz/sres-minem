@@ -58,6 +58,7 @@
     <Compile Include="EtapaLN.cs" />
     <Compile Include="FactorLN.cs" />
     <Compile Include="IndicadorDataLN.cs" />
+    <Compile Include="IndicadorLN.cs" />
     <Compile Include="InformePreliminarLN.cs" />
     <Compile Include="InscripcionLN.cs" />
     <Compile Include="InscripcionRequerimientoLN.cs" />

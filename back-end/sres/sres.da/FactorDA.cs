@@ -180,5 +180,22 @@ namespace sres.da
             }
             return item;
         }
+
+        public List<FactorBE> ObtenerAllFactor(OracleConnection db)
+        {
+            List<FactorBE> lista = new List<FactorBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_ALL_FACTOR";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<FactorBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
     }
 }

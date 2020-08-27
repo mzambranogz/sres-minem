@@ -92,5 +92,10 @@ namespace sres.app.Controllers
         {
             return View();
         }
+
+        public ActionResult Composicion()
+        {
+            return View();
+        }
     }
 }

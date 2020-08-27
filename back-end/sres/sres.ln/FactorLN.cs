@@ -71,5 +71,17 @@ namespace sres.ln
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return item;
         }
+
+        public List<FactorBE> ObtenerAllFactor()
+        {
+            List<FactorBE> lista = new List<FactorBE>();
+            try
+            {
+                cn.Open();
+                lista = factorDA.ObtenerAllFactor(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return lista;
+        }
     }
 }

@@ -65,5 +65,18 @@ namespace sres.ln
 
             return item;
         }
+
+        public List<ComponenteBE> ListaComponenteCasoCriterio(ComponenteBE entidad)
+        {
+            List<ComponenteBE> lista = new List<ComponenteBE>();
+            try
+            {
+                cn.Open();
+                lista = componenteDA.ListaComponenteCasoCriterio(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }

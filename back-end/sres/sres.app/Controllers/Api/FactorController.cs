@@ -34,5 +34,12 @@ namespace sres.app.Controllers.Api
         {
             return factorLN.ObtenerFactor(new FactorBE() { ID_FACTOR = idfactor });
         }
+
+        [Route("obtenerallfactor")]
+        [HttpGet]
+        public List<FactorBE> ObtenerAllFactor()
+        {
+            return factorLN.ObtenerAllFactor();
+        }
     }
 }

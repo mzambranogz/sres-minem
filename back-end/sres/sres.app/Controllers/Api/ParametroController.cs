@@ -37,9 +37,16 @@ namespace sres.app.Controllers.Api
 
         [Route("obtenerallparametrolista")]
         [HttpGet]
-        public List<ParametroBE> ObtenerParametroLista()
+        public List<ParametroBE> ObtenerParametroLista(int idControl)
         {
-            return paramLN.ObtenerParametroLista();
+            return paramLN.ObtenerParametroLista(idControl);
+        }
+
+        [Route("obtenerallparametro")]
+        [HttpGet]
+        public List<ParametroBE> ObtenerAllParametro()
+        {
+            return paramLN.ObtenerAllParametro();
         }
     }
 }

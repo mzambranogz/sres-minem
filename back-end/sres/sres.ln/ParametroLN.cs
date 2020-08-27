@@ -78,13 +78,25 @@ namespace sres.ln
             return item;
         }
 
-        public List<ParametroBE> ObtenerParametroLista()
+        public List<ParametroBE> ObtenerParametroLista(int idControl)
         {
             List<ParametroBE> lista = new List<ParametroBE>();
             try
             {
                 cn.Open();
-                lista = paramDA.ObtenerParametroLista(cn);
+                lista = paramDA.ObtenerParametroLista(idControl, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return lista;
+        }
+
+        public List<ParametroBE> ObtenerAllParametro()
+        {
+            List<ParametroBE> lista = new List<ParametroBE>();
+            try
+            {
+                cn.Open();
+                lista = paramDA.ObtenerAllParametro(cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return lista;

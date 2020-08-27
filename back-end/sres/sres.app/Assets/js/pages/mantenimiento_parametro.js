@@ -482,12 +482,12 @@ var agregarParametroFiltro = () => {
 }
 
 var consultarListas = () => {
-    let url = `${baseUrl}api/parametro/obtenerallparametrolista`;
+    let url = `${baseUrl}api/parametro/obtenerallparametrolista?idControl=1`;
     fetch(url).then(r => r.json()).then(j => {
         let contenido = ``;
         if (j.length > 0) {
             contenido = j.map((x, y) => {
-                return `<option value="${x.ID_PARAMETRO}">${x.NOMBRE}</option>`;
+                return `<option value="${x.ID_PARAMETRO}">[P${x.ID_PARAMETRO}] ${x.NOMBRE}</option>`;
             }).join('');;
         }
         $('#cbo-parametro').html(`<option value="0">-Seleccione-</option>${contenido}`)

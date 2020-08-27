@@ -154,13 +154,14 @@ namespace sres.da
             return guardo;
         }
 
-        public List<ParametroBE> ObtenerParametroLista(OracleConnection db)
+        public List<ParametroBE> ObtenerParametroLista(int idControl, OracleConnection db)
         {
             List<ParametroBE> lista = new List<ParametroBE>();
             try
             {
                 string sp = $"{Package.Mantenimiento}USP_SEL_ALL_PARAMETRO_LISTA";
                 var p = new OracleDynamicParameters();
+                p.Add("PI_ID_TIPO_CONTROL", idControl);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<ParametroBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }
@@ -179,6 +180,23 @@ namespace sres.da
                 string sp = $"{Package.Mantenimiento}USP_SEL_PARAMETRO_FILTRO_OUT";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_FILTRO", filtro);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ParametroBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
+
+        public List<ParametroBE> ObtenerAllParametro(OracleConnection db)
+        {
+            List<ParametroBE> lista = new List<ParametroBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_ALL_PARAMETRO";
+                var p = new OracleDynamicParameters();
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<ParametroBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }

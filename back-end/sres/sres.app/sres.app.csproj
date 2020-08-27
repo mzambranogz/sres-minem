@@ -289,6 +289,7 @@
     <Content Include="Assets\js\pages\mantenimiento_anno.js" />
     <Content Include="Assets\js\pages\mantenimiento_caso.js" />
     <Content Include="Assets\js\pages\mantenimiento_componente.js" />
+    <Content Include="Assets\js\pages\mantenimiento_composicion.js" />
     <Content Include="Assets\js\pages\mantenimiento_convocatoria.js" />
     <Content Include="Assets\js\pages\mantenimiento_criterio.js" />
     <Content Include="Assets\js\pages\mantenimiento_documento.js" />
@@ -371,6 +372,7 @@
     <Compile Include="Controllers\Api\EstrellaController.cs" />
     <Compile Include="Controllers\Api\EtapaController.cs" />
     <Compile Include="Controllers\Api\FactorController.cs" />
+    <Compile Include="Controllers\Api\IndicadorController.cs" />
     <Compile Include="Controllers\Api\IndicadorDataController.cs" />
     <Compile Include="Controllers\Api\InformePreliminarController.cs" />
     <Compile Include="Controllers\Api\InscripcionController.cs" />
@@ -499,6 +501,7 @@
     <Content Include="Views\Mantenimiento\Insignia.cshtml" />
     <Content Include="Views\Mantenimiento\Parametro.cshtml" />
     <Content Include="Views\Mantenimiento\Factor.cshtml" />
+    <Content Include="Views\Mantenimiento\Composicion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
