@@ -14,5 +14,11 @@ namespace sres.app.Controllers
         {
             return View();
         }
+
+        [Route("Categoria")]
+        public ActionResult Categoria()
+        {
+            return View();
+        }
     }
 }

@@ -257,6 +257,7 @@
     <Content Include="Assets\images\paneles.png" />
     <Content Include="Assets\images\password-level-47px.png" />
     <Content Include="Assets\images\plata.png" />
+    <Content Include="Assets\images\reconocimientos.png" />
     <Content Include="Assets\images\reunion_acuerdo_paris.png" />
     <Content Include="Assets\images\sello.svg" />
     <Content Include="Assets\images\sello_new.svg" />
@@ -271,6 +272,18 @@
     <Content Include="Assets\images\sres-logo.png" />
     <Content Include="Assets\images\sres-logo_old.png" />
     <Content Include="Assets\images\sres-menu.png" />
+    <Content Include="Assets\images\sres_bronce_0_star.png" />
+    <Content Include="Assets\images\sres_bronce_1_star.png" />
+    <Content Include="Assets\images\sres_bronce_2_star.png" />
+    <Content Include="Assets\images\sres_bronce_3_star.png" />
+    <Content Include="Assets\images\sres_oro_0_star.png" />
+    <Content Include="Assets\images\sres_oro_1_star.png" />
+    <Content Include="Assets\images\sres_oro_2_star.png" />
+    <Content Include="Assets\images\sres_oro_3_star.png" />
+    <Content Include="Assets\images\sres_plata_0_star.png" />
+    <Content Include="Assets\images\sres_plata_1_star.png" />
+    <Content Include="Assets\images\sres_plata_2_star.png" />
+    <Content Include="Assets\images\sres_plata_3_star.png" />
     <Content Include="Assets\images\tres_estrella.png" />
     <Content Include="Assets\images\tres_estrellas.png" />
     <Content Include="Assets\images\una_estrella.png" />
@@ -502,6 +515,7 @@
     <Content Include="Views\Mantenimiento\Parametro.cshtml" />
     <Content Include="Views\Mantenimiento\Factor.cshtml" />
     <Content Include="Views\Mantenimiento\Composicion.cshtml" />
+    <Content Include="Views\Participante\Categoria.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
