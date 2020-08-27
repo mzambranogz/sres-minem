@@ -22,7 +22,7 @@ var mostrarListaInscripcionRequerimiento = (data) => {
 
             let tituloFileRequerimiento = `<label class="estilo-01 text-limit-1">${x.REQUERIMIENTO.NOMBRE}</label>`;
             let nombreFileRequerimiento = `<input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-${x.ID_REQUERIMIENTO}" value="${x.ARCHIVO_BASE}" readonly>`;
-            let btnDescargaFileRequerimiento = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/inscripcionrequerimiento/obtenerarchivo/${idConvocatoria}/${idInscripcion}/${idInstitucionLogin}/${x.ID_REQUERIMIENTO}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
+            let btnDescargaFileRequerimiento = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/inscripcionrequerimiento/obtenerarchivo/${idConvocatoria}/${idInscripcion}/${idInstitucion}/${x.ID_REQUERIMIENTO}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
             let fileRequerimiento = `<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>${nombreFileRequerimiento}${btnDescargaFileRequerimiento}</div>`;
             let colLeft = `<div class="col-lg-6 col-md-12 col-sm-12">${tituloFileRequerimiento}${fileRequerimiento}</div>`;
 

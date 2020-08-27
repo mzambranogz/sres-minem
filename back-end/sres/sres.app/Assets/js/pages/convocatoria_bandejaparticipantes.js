@@ -19,7 +19,7 @@ var consultar = () => {
     let idUsuario = (idEtapa < 14) ? idRolLogin == 1 ? null : idUsuarioLogin : null;
     //let idUsuario = idUsuarioLogin;
     let registros = $('#catidad-rgistros').val();
-    let pagina = $('#ir-pagina').val();;
+    let pagina = $('#ir-pagina').val();
     let columna = 'id_inscripcion';
     let orden = 'asc'
     let params = { idConvocatoria, idInscripcion, razonSocialInstitucion, nombresCompletosUsuario, idUsuario, registros, pagina, columna, orden };
