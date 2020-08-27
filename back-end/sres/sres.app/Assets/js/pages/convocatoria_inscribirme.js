@@ -18,7 +18,7 @@ var mostrarListaInscripcionRequerimiento = (data) => {
         let cabecera = `<div class="row">${tituloCriterios}${tituloArchivosAdjuntos}</div>`;
 
         let contenido = data.map(x => {
-            let fileRequerimiento = `<div class="form-group text-left"><label class="estilo-01" for="fle-requisito-${x.ID_REQUERIMIENTO}">${x.REQUERIMIENTO.NOMBRE}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div><input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-${x.ID_REQUERIMIENTO}" placeholder="Subir documentos" value="${x.ARCHIVO_BASE || ''}" required><input class="d-none fil-file-control" type="file" id="fle-requisito-${x.ID_REQUERIMIENTO}" data-id="${x.ID_REQUERIMIENTO}" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*"><div class="input-group-append"><label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-${x.ID_REQUERIMIENTO}"><i class="fas fa-upload mr-1"></i>Subir archivo</label></div></div></div>`
+            let fileRequerimiento = `<div class="form-group text-left"><label class="estilo-01" for="fle-requisito-${x.ID_REQUERIMIENTO}">${x.REQUERIMIENTO.NOMBRE}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, JPG, JPEG, PNG, DOC, DOCX, XLS, XLSX, XLSM)"></i></span></label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div><input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-${x.ID_REQUERIMIENTO}" placeholder="Subir documentos" value="${x.ARCHIVO_BASE || ''}" required><input class="d-none fil-file-control" type="file" id="fle-requisito-${x.ID_REQUERIMIENTO}" data-id="${x.ID_REQUERIMIENTO}" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*"><div class="input-group-append"><label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-${x.ID_REQUERIMIENTO}"><i class="fas fa-upload mr-1"></i>Subir archivo</label></div></div></div>`
             let colLeft = `<div class="col-lg-6 col-md-12 col-sm-12">${fileRequerimiento}</div>`;
             let existeFileRequerimientoSubido = x.ARCHIVO_BASE || '' != '';
             let contenidoFileRequerimiento = `<div class="alert alert-secondary p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div></div>`;
@@ -130,6 +130,16 @@ var mostrarMensaje = (data) => {
 
 var fileRequerimientoChange = (e) => {
     let elFile = $(e.currentTarget);
+    var fileContent = e.currentTarget.files[0];
+
+    switch (fileContent.name.substring(fileContent.name.lastIndexOf('.') + 1).toLowerCase()) {
+        case 'pdf': case 'jpg': case 'jpeg': case 'png': case 'doc': case 'docx': case 'xls': case 'xlsx': case 'xlsm': break;
+        default: $(elFile).parent().parent().parent().parent().alert({ type: 'danger', title: 'ERROR', message: `El archivo tiene una extensión no permitida` }); return false; break;
+    }
+
+    if (fileContent.size > maxBytes) { $(elFile).parent().parent().parent().parent().alert({ type: 'danger', title: 'ERROR', message: `El archivo debe tener un peso máximo de 4MB` }); return; }
+    else
+        $(elFile).parent().parent().parent().parent().alert('remove');
 
     if (e.currentTarget.files.length == 0) {
         $(e.currentTarget).removeData('file');
@@ -138,12 +148,7 @@ var fileRequerimientoChange = (e) => {
         return;
     }
 
-    var fileContent = e.currentTarget.files[0];
-
-    if (fileContent.size > maxBytes) $(elFile).parent().parent().parent().parent().alert({ type: 'danger', title: 'ERROR', message: `El archivo debe tener un peso máximo de 4MB` });
-    else
-        $(elFile).parent().parent().parent().parent().alert('remove');
-
+    //var fileContent = e.currentTarget.files[0];
 
     var idElement = $(e.currentTarget).attr("data-id");
     $(`#txt-requisito-${idElement}`).val(fileContent.name);
@@ -174,7 +179,8 @@ var btnEliminarFileClick = (e) => {
         $(x).removeData('type');
         console.log(x);
     });
-    $(e.currentTarget).closest('.form-group').html(`<label class="estilo-01">&nbsp;</label><div class="alert alert-secondary p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div></div>`);
+    //$(e.currentTarget).closest('.form-group').html(`<label class="estilo-01">&nbsp;</label><div class="alert alert-secondary p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div></div>`);
+    $(e.currentTarget).closest('.align-items-end').html(`<label class="estilo-01">&nbsp;</label><div class="alert alert-secondary p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div></div>`);
 }
 
 $(document).ready(pageLoad);
