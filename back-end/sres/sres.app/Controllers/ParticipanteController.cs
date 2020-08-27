@@ -21,8 +21,20 @@ namespace sres.app.Controllers
             return View();
         }
 
-        [Route("PreguntasFrecuentes")]
+        [Route("Preguntas-frecuentes")]
         public ActionResult PreguntasFrecuentes()
+        {
+            return View();
+        }
+
+        [Route("Mapa-del-sitio")]
+        public ActionResult MapaSitio()
+        {
+            return View();
+        }
+
+        [Route("Terminos-y-condiciones")]
+        public ActionResult TerminosCondiciones()
         {
             return View();
         }

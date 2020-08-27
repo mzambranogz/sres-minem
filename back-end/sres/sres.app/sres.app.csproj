@@ -165,6 +165,7 @@
     <Content Include="Assets\images\bg-login.png" />
     <Content Include="Assets\images\bg-participantes.png" />
     <Content Include="Assets\images\bg-registro.png" />
+    <Content Include="Assets\images\bg-terminos.png" />
     <Content Include="Assets\images\bg_footer.png" />
     <Content Include="Assets\images\brillo.png" />
     <Content Include="Assets\images\bronce.png" />
@@ -518,6 +519,8 @@
     <Content Include="Views\Mantenimiento\Composicion.cshtml" />
     <Content Include="Views\Participante\Categoria.cshtml" />
     <Content Include="Views\Participante\PreguntasFrecuentes.cshtml" />
+    <Content Include="Views\Participante\MapaSitio.cshtml" />
+    <Content Include="Views\Participante\TerminosCondiciones.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

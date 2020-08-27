@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Titulo = "Mapa del sitio";
+    ViewBag.SRESDescription = false;
+    ViewBag.Header = new Dictionary<string, object>
+    {
+        ["Imagen"] = "~/Assets/images/bg-terminos.png",
+        ["Titulo"] = "MAPA DEL SITIO"
+    };
+}
+
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="tree">
+            <ul>
+                <li>
+                    <span><a style="color:#000; text-decoration:none;" data-toggle="collapse" href="#Web" aria-expanded="true" aria-controls="Web"><i class="collapsed"><i class="fas fa-folder"></i></i><i class="expanded"><i class="far fa-folder-open"></i></i>&nbsp; Web SRES</a></span>
+                    <div class="collapse show" id="Web">
+                        <ul>
+                            <li><span><i class="far fa-file"></i><a href="@Url.Action("Index", "Inicio")">&nbsp; Inicio</a></span></li>
+                            <li><span><i class="far fa-file"></i><a href="@Url.Action("Index", "Participantes")">&nbsp; Participantes</a></span></li>
+                            <li><span><i class="far fa-file"></i><a href="@Url.Action("Index", "Convocatoria")">&nbsp; Convocatoria</a></span></li>
+                            <li><span><i class="far fa-file"></i><a href="@Url.Action("Categoria", "Participantes")">&nbsp; Categorías</a></span></li>
+                            <li><span><i class="far fa-file"></i><a href="@Url.Action("PreguntasFrecuentes", "Participantes")">&nbsp; Preguntas frecuentes</a></span></li>
+                            @*<li><span><i class="far fa-file"></i><a href="./registro.html">&nbsp; Registrarse</a></span></li>
+                            <li><span><i class="far fa-file"></i><a href="./login.html">&nbsp; Iniciar sesión</a></span></li>*@
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
