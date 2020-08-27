@@ -20,5 +20,11 @@ namespace sres.app.Controllers
         {
             return View();
         }
+
+        [Route("PreguntasFrecuentes")]
+        public ActionResult PreguntasFrecuentes()
+        {
+            return View();
+        }
     }
 }

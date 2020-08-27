@@ -196,6 +196,7 @@
     <Content Include="Assets\images\empresa-04.png" />
     <Content Include="Assets\images\empresa-05.png" />
     <Content Include="Assets\images\empresa-06.png" />
+    <Content Include="Assets\images\faq.png" />
     <Content Include="Assets\images\favicon\android-icon-144x144.png" />
     <Content Include="Assets\images\favicon\android-icon-192x192.png" />
     <Content Include="Assets\images\favicon\android-icon-36x36.png" />
@@ -516,6 +517,7 @@
     <Content Include="Views\Mantenimiento\Factor.cshtml" />
     <Content Include="Views\Mantenimiento\Composicion.cshtml" />
     <Content Include="Views\Participante\Categoria.cshtml" />
+    <Content Include="Views\Participante\PreguntasFrecuentes.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
