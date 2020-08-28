@@ -310,8 +310,7 @@ var consultarUsuario = (element) => {
     limpiarDatosInstitucion();
     limpiarDatosUsuario();
     cambiarPropiedadLecturaInstitucion(false);
-    cambiarPropiedadLecturaUsuario(false);
-    if (idRolLogin == 1) $('.admin-edit').addClass('d-none');
+    cambiarPropiedadLecturaUsuario(false);    
 
     let idUsuario = $(element).attr('data-id');
     let urlUsuario = `${baseUrl}api/usuario/obtenerusuario?idUsuario=${idUsuario}`;
@@ -352,6 +351,8 @@ var cargarDatosUsuario = (data) => {
     $('#rad-01').prop('checked', data.FLAG_ESTADO == 1 ? true : false);
     $('#rad-02').prop('checked', data.FLAG_ESTADO == 2 ? true : false);
     $('#txt-user-correo').prop('readonly', true);
+    if (data.ID_ROL == 1) $('.admin-edit').addClass('d-none');
+    else $('.admin-edit').removeClass('d-none');
 }
 
 var guardarUsuario = () => {
