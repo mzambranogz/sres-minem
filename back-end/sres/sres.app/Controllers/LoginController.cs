@@ -61,30 +61,33 @@ namespace sres.app.Controllers
         public async Task<ActionResult> Validar(string correo, string contraseña, string token = null)
         {
             Dictionary<string, object> response = new Dictionary<string, object> { ["success"] = false, ["message"] = "" };
-
             UsuarioBE usuario = null;
-
-            bool esValido = usuarioLN.ValidarUsuario(correo, contraseña, out usuario);
-            if (esValido)
+            try
             {
-                if(usuario.FLAG_ESTADO == "0" || usuario.FLAG_ESTADO == "2")
+                bool esValido = usuarioLN.ValidarUsuario(correo, contraseña, out usuario);
+                if (esValido)
                 {
-                    response["success"] = false;
-                    response["message"] = "Usuario no se encuentra habilitado";
+                    if (usuario.FLAG_ESTADO == "0" || usuario.FLAG_ESTADO == "2")
+                    {
+                        response["success"] = false;
+                        response["message"] = "Usuario no se encuentra habilitado";
+                        return Json(response);
+                    }
+                    usuario.INSTITUCION = institucionLN.ObtenerInstitucion(usuario.ID_INSTITUCION.Value);
+                    usuario.INSTITUCION.SECTOR = sectorLN.ObtenerSector(usuario.INSTITUCION.ID_SECTOR);
+                    if (usuario.ID_ROL != null) usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
+                    Session["user"] = usuario;
+                    response["success"] = true;
+                    response["message"] = "Validación correcta";
                     return Json(response);
                 }
-                usuario.INSTITUCION = institucionLN.ObtenerInstitucion(usuario.ID_INSTITUCION.Value);
-                usuario.INSTITUCION.SECTOR = sectorLN.ObtenerSector(usuario.INSTITUCION.ID_SECTOR);
-                if (usuario.ID_ROL != null) usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
-                Session["user"] = usuario;
-                response["success"] = true;
-                response["message"] = "Validación correcta";
-                return Json(response);
+                response["success"] = false;
+                response["message"] = "Contraseña incorrecta";
+                if (usuario == null) response["message"] = "Usuario no existe";
             }
-
-            response["success"] = false;
-            response["message"] = "Contraseña incorrecta";
-            if (usuario == null) response["message"] = "Usuario no existe";
+            catch (Exception ex){
+                Log.Error(ex);
+            }            
             return Json(response);
         }
 
@@ -92,38 +95,46 @@ namespace sres.app.Controllers
         public async Task<ActionResult> ValidarMRV(string correo, string contraseña, string token = null)
         {
             Dictionary<string, object> response = new Dictionary<string, object> { ["success"] = false, ["message"] = "" };
-
-            bool esValido = usuarioLNMRV.ValidarUsuario(correo, contraseña);
-
-            if (esValido)
+            try
             {
-                bool seMigro = false, existeUsuario = false, existeUsuarioMRV = false, existeInstitucion = false, seGuardoInstitucion = false;
-
-                seMigro = usuarioLN.MigrarUsuario(correo, out existeUsuario, out existeUsuarioMRV, out existeInstitucion, out seGuardoInstitucion);
-
-                UsuarioBE usuario = usuarioLN.ObtenerUsuarioPorCorreo(correo);
-                usuario.INSTITUCION = institucionLN.ObtenerInstitucion(usuario.ID_INSTITUCION.Value);
-                usuario.INSTITUCION.SECTOR = sectorLN.ObtenerSector(usuario.INSTITUCION.ID_SECTOR);
-                if (usuario.ID_ROL != null) usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
-
-                if (usuario != null)
+                bool esValido = usuarioLNMRV.ValidarUsuario(correo, contraseña);
+                if (esValido)
                 {
-                    Session["user"] = usuario;
-                    response["success"] = true;
-                    response["message"] = $"Validación correcta{(!existeUsuario ? ". Se migró correctamente los datos del usuario MRV" : "")}";
+                    bool seMigro = false, existeUsuario = false, existeUsuarioMRV = false, existeInstitucion = false, seGuardoInstitucion = false;
+                    seMigro = usuarioLN.MigrarUsuario(correo, out existeUsuario, out existeUsuarioMRV, out existeInstitucion, out seGuardoInstitucion);
+                    UsuarioBE usuario = usuarioLN.ObtenerUsuarioPorCorreo(correo);
+                    usuario.INSTITUCION = institucionLN.ObtenerInstitucion(usuario.ID_INSTITUCION.Value);
+                    usuario.INSTITUCION.SECTOR = sectorLN.ObtenerSector(usuario.INSTITUCION.ID_SECTOR);
+                    if (usuario.ID_ROL != null) usuario.ROL = rolLN.ObtenerRol(usuario.ID_ROL.Value);
 
-                    return Json(response);
+                    if (usuario != null)
+                    {
+                        Session["user"] = usuario;
+                        response["success"] = true;
+                        response["message"] = $"Validación correcta{(!existeUsuario ? ". Se migró correctamente los datos del usuario MRV" : "")}";
+
+                        return Json(response);
+                    }
                 }
+                response["success"] = false;
+                response["message"] = "Las credenciales MRV no son válidas";
             }
-
-            response["success"] = false;
-            response["message"] = "Las credenciales MRV no son válidas";
+            catch (Exception ex) {
+                Log.Error(ex);
+            }            
             return Json(response);
         }
 
         public ActionResult Salir()
         {
-            Session.Remove("user");
+            try
+            {
+                Session.Remove("user");
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }            
             return RedirectToAction("Index", "Login");
         }
 
