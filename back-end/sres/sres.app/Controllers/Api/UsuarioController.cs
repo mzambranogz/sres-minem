@@ -25,7 +25,7 @@ namespace sres.app.Controllers.Api
         [HttpGet]
         public List<UsuarioBE> BuscarUsuario(string busqueda, int registros, int pagina, string columna, string orden)
         {
-            return usuarioLN.BuscarUsuario(busqueda, registros, pagina, columna, orden);
+            return usuarioLN.BuscarUsuario(busqueda , registros, pagina, columna, orden);
         }
 
         [Route("obtenerusuario")]
@@ -40,6 +40,18 @@ namespace sres.app.Controllers.Api
         public Dictionary<string, object> ObtenerUsuarioPorInstitucionCorreo(int idInstitucion, string correo)
         {
             UsuarioBE usuario = usuarioLN.ObtenerUsuarioPorInstitucionCorreo(idInstitucion, correo);
+            return new Dictionary<string, object>
+            {
+                ["EXISTE"] = usuario != null,
+                ["USUARIO"] = usuario
+            };
+        }
+
+        [Route("validarusuarioporcorreo")]
+        [HttpGet]
+        public Dictionary<string, object> ObtenerUsuarioPorCorreo(string correo)
+        {
+            UsuarioBE usuario = usuarioLN.ObtenerUsuarioPorCorreo(correo);
             return new Dictionary<string, object>
             {
                 ["EXISTE"] = usuario != null,

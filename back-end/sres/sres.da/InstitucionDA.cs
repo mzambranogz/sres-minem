@@ -113,15 +113,17 @@ namespace sres.da
             {
                 string sp = $"{Package.Mantenimiento}USP_MAN_GUARDA_INSTITUCION";
                 var p = new OracleDynamicParameters();
-                p.Add("PI_ID_INSTITUCION", institucion.ID_INSTITUCION, OracleDbType.Int32, ParameterDirection.Output);
+                //p.Add("PI_ID_INSTITUCION", institucion.ID_INSTITUCION, OracleDbType.Int32, ParameterDirection.Output);
+                p.Add("PI_ID_INSTITUCION", institucion.ID_INSTITUCION);
                 p.Add("PI_RUC", institucion.RUC);
                 p.Add("PI_RAZON_SOCIAL", institucion.RAZON_SOCIAL);
                 p.Add("PI_DOMICILIO_LEGAL", institucion.DOMICILIO_LEGAL);
                 p.Add("PI_ID_SECTOR", institucion.ID_SECTOR);
                 p.Add("PI_UPD_USUARIO", institucion.UPD_USUARIO);
+                p.Add("PI_ID_GET", 0, OracleDbType.Int32, ParameterDirection.Output);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
-                idInstitucion = (int)p.Get<dynamic>("PI_ID_INSTITUCION").Value;
+                idInstitucion = (int)p.Get<dynamic>("PI_ID_GET").Value;
                 int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
                 seGuardo = filasAfectadas > 0 && idInstitucion != -1;
             }

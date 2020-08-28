@@ -764,12 +764,13 @@ CREATE OR REPLACE PACKAGE SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
   );
   
   PROCEDURE USP_MAN_GUARDA_INSTITUCION(
-    PI_ID_INSTITUCION IN OUT NUMBER,
+    PI_ID_INSTITUCION IN NUMBER,
     PI_RUC VARCHAR2,
     PI_RAZON_SOCIAL VARCHAR2,
     PI_DOMICILIO_LEGAL VARCHAR2,
     PI_ID_SECTOR NUMBER,
     PI_UPD_USUARIO NUMBER,
+    PI_ID_GET OUT NUMBER,
     PO_ROWAFFECTED OUT NUMBER
   );
   
@@ -1389,15 +1390,15 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_ADMIN" AS
         pCORREO  IN VARCHAR2,
         pCURSOR  OUT SYS_REFCURSOR
     ) AS
-    BEGIN
+  BEGIN
       OPEN pCURSOR FOR
       SELECT
       ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA,
       TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL,
       FLAG_ESTADO, REG_USUARIO, REG_FECHA, UPD_USUARIO, UPD_FECHA
       FROM T_GENM_USUARIO
-      WHERE CORREO = pCORREO;
-    END USP_SEL_USUARIO_CORREO;
+      WHERE LOWER(TRANSLATE(CORREO,'ÁÉÍÓÚáéíóú','AEIOUaeiou')) = LOWER(TRANSLATE(pCORREO,'ÁÉÍÓÚáéíóú','AEIOUaeiou'));
+  END USP_SEL_USUARIO_CORREO;
 
 END PKG_SISSELLO_ADMIN;
 
@@ -2851,10 +2852,15 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
   BEGIN
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM T_GENM_USUARIO U
+                    INNER JOIN T_GENM_INSTITUCION I ON U.ID_INSTITUCION = I.ID_INSTITUCION
+                    INNER JOIN T_MAE_ROL R ON U.ID_ROL = R.ID_ROL
                     WHERE (
                     LOWER(TRANSLATE(U.NOMBRES,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
                     LOWER(TRANSLATE(U.APELLIDOS,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
                     LOWER(TRANSLATE(U.CORREO,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(U.TELEFONO,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(I.RAZON_SOCIAL,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(R.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
                     LOWER(TRANSLATE(U.CELULAR,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%''
                     )';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
@@ -2868,7 +2874,15 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     END IF;
 
     vPAGINA_INICIAL := vPAGINA_ACTUAL - 1;
-    vCOLUMNA := PI_COLUMNA;
+    IF PI_COLUMNA = 'INSTITUCION' THEN
+      vCOLUMNA := 'I.RAZON_SOCIAL';
+    ELSIF PI_COLUMNA = 'PERFIL' THEN
+      vCOLUMNA := 'R.NOMBRE';
+    ELSIF PI_COLUMNA = 'ESTADO' THEN
+      vCOLUMNA := 'U.FLAG_ESTADO';
+    ELSE
+      vCOLUMNA := PI_COLUMNA;
+    END IF;
 
     vQUERY_SELECT := 'SELECT * FROM
                         (
@@ -2879,6 +2893,11 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                                 U.TELEFONO,
                                 U.ANEXO,
                                 U.CELULAR,
+                                U.ID_INSTITUCION,
+                                I.RUC AS "RUC_INSTITUCION",
+                                I.RAZON_SOCIAL AS "RAZON_SOCIAL_INSTITUCION",
+                                U.ID_ROL,
+                                R.NOMBRE NOMBRE_ROL,
                                 U.FLAG_ESTADO,
                                 ROW_NUMBER() OVER (ORDER BY ' || vCOLUMNA || ' ' || PI_ORDEN ||') AS ROWNUMBER,'
                                 || vPAGINA_TOTAL || ' AS TOTAL_PAGINAS,'
@@ -2886,10 +2905,15 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                                 || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
                                 || vTOTAL_REG || ' AS TOTAL_REGISTROS
                         FROM T_GENM_USUARIO U
+                        INNER JOIN T_GENM_INSTITUCION I ON U.ID_INSTITUCION = I.ID_INSTITUCION
+                        INNER JOIN T_MAE_ROL R ON U.ID_ROL = R.ID_ROL
                         WHERE (
                         LOWER(TRANSLATE(U.NOMBRES,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
                         LOWER(TRANSLATE(U.APELLIDOS,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
                         LOWER(TRANSLATE(U.CORREO,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(U.TELEFONO,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(I.RAZON_SOCIAL,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(R.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
                         LOWER(TRANSLATE(U.CELULAR,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%''
                         )
                         )
@@ -2971,8 +2995,9 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
       U.TELEFONO = PI_TELEFONO,
       U.ANEXO = PI_ANEXO,
       U.CELULAR = PI_CELULAR,
-      U.ID_INSTITUCION = PI_ID_INSTITUCION,
-      U.CONTRASENA = NVL(PI_CONTRASENA, U.CONTRASENA),
+      --U.ID_INSTITUCION = PI_ID_INSTITUCION,
+      --U.CONTRASENA = NVL(PI_CONTRASENA, U.CONTRASENA),
+      U.FLAG_ESTADO = PI_FLAG_ESTADO,
       U.ID_ROL = PI_ID_ROL
       WHERE U.ID_USUARIO = PI_ID_USUARIO;
     END IF;
@@ -2994,7 +3019,8 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     U.ANEXO,
     U.CELULAR,
     U.ID_INSTITUCION,
-    U.ID_ROL
+    U.ID_ROL,
+    U.FLAG_ESTADO --ADD
     FROM T_GENM_USUARIO U
     WHERE U.ID_USUARIO = PI_ID_USUARIO;
   END USP_SEL_OBTIENE_USUARIO;
@@ -3970,12 +3996,13 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
   END USP_SEL_ALL_ETAPA;
   
   PROCEDURE USP_MAN_GUARDA_INSTITUCION(
-    PI_ID_INSTITUCION IN OUT NUMBER,
+    PI_ID_INSTITUCION IN NUMBER,
     PI_RUC VARCHAR2,
     PI_RAZON_SOCIAL VARCHAR2,
     PI_DOMICILIO_LEGAL VARCHAR2,
     PI_ID_SECTOR NUMBER,
     PI_UPD_USUARIO NUMBER,
+    PI_ID_GET OUT NUMBER,
     PO_ROWAFFECTED OUT NUMBER
   ) AS
     vID NUMBER;
@@ -3986,11 +4013,11 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     FROM DUAL;
     
     IF vID IS NULL THEN
-      PI_ID_INSTITUCION := SQ_GENM_INSTITUCION.NEXTVAL();
+      PI_ID_GET := SQ_GENM_INSTITUCION.NEXTVAL();
       INSERT INTO T_GENM_INSTITUCION
       (ID_INSTITUCION, RUC, RAZON_SOCIAL, DOMICILIO_LEGAL, ID_SECTOR, REG_USUARIO)
       VALUES
-      (PI_ID_INSTITUCION, PI_RUC, PI_RAZON_SOCIAL, PI_DOMICILIO_LEGAL, PI_ID_SECTOR, PI_UPD_USUARIO);
+      (PI_ID_GET, PI_RUC, PI_RAZON_SOCIAL, PI_DOMICILIO_LEGAL, PI_ID_SECTOR, PI_UPD_USUARIO);
     ELSE
       UPDATE T_GENM_INSTITUCION I SET
         I.RAZON_SOCIAL = PI_RAZON_SOCIAL,
@@ -3998,7 +4025,8 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
         I.ID_SECTOR = PI_ID_SECTOR,
         I.UPD_USUARIO = PI_UPD_USUARIO,
         I.UPD_FECHA = SYSDATE
-      WHERE I.ID_INSTITUCION = vID;
+      WHERE I.ID_INSTITUCION = PI_ID_INSTITUCION;
+      PI_ID_GET := PI_ID_INSTITUCION;
     END IF;
     PO_ROWAFFECTED := SQL%ROWCOUNT;
   END USP_MAN_GUARDA_INSTITUCION;

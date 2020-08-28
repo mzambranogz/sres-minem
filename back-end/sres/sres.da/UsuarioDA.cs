@@ -86,7 +86,11 @@ namespace sres.da
                             INSTITUCION = x.ID_INSTITUCION == null ? null : new InstitucionBE { ID_INSTITUCION = (int)x.ID_INSTITUCION, RAZON_SOCIAL = (string)x.RAZON_SOCIAL_INSTITUCION, RUC = (string)x.RUC_INSTITUCION },
                             ID_ROL = (int?)x.ID_ROL,
                             ROL = x.ID_ROL == null ? null : new RolBE { ID_ROL = (int)x.ID_ROL, NOMBRE = (string)x.NOMBRE_ROL },
-                            FLAG_ESTADO = (string)x.FLAG_ESTADO
+                            FLAG_ESTADO = (string)x.FLAG_ESTADO,
+                            TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
+                            PAGINA = (int)x.PAGINA,
+                            CANTIDAD_REGISTROS = (int)x.CANTIDAD_REGISTROS,
+                            TOTAL_REGISTROS = (int)x.TOTAL_REGISTROS
                         })
                         .ToList();
             }
