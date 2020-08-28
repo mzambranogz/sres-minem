@@ -164,7 +164,7 @@ var nuevo = () => {
     $('.alert-add').html('');
     $('#btnGuardar').show();
     $('#btnGuardar').next().html('Cancelar');
-    $('#exampleModalLabel').html('REGISTRAR REQUERIMIENTO');
+    $('#exampleModalLabel').html('REGISTRAR REQUISITOS');
 }
 
 var limpiarFormulario = () => {
@@ -177,7 +177,7 @@ var consultarObjeto = (element) => {
     $('.alert-add').html('');
     $('#btnGuardar').show();
     $('#btnGuardar').next().html('Cancelar');
-    $('#exampleModalLabel').html('ACTUALIZAR REQUERIMIENTO');
+    $('#exampleModalLabel').html('ACTUALIZAR REQUISITOS');
 
     let id = $(element).attr('data-id');
     let url = `${baseUrl}api/requerimiento/obtenerobjeto?id=${id}`;
@@ -197,7 +197,7 @@ var cargarDatos = (data) => {
 var guardar = () => {
     $('.alert-add').html('');
     let arr = [];
-    if ($('#txt-nombre').val().trim() === "") arr.push("Ingrese el nombre del requerimiento");
+    if ($('#txt-nombre').val().trim() === "") arr.push("Ingrese el nombre del requisito");
 
     if (arr.length > 0) {
         let error = '';

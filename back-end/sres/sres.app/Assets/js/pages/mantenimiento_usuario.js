@@ -178,6 +178,7 @@ var nuevoUsuario = () => {
     $('#txt-user-correo').prop('readonly', false);
     $('#txt-ruc').prop('readonly', false);
     $('.editar-usuario-sres').removeClass('d-none');
+    $('.admin-edit').removeClass('d-none');
     //$('#frmUsuario').show();
     //limpiarFormularioUsuario();
     //cargarFormularioUsuario();
@@ -310,6 +311,7 @@ var consultarUsuario = (element) => {
     limpiarDatosUsuario();
     cambiarPropiedadLecturaInstitucion(false);
     cambiarPropiedadLecturaUsuario(false);
+    if (idRolLogin == 1) $('.admin-edit').addClass('d-none');
 
     let idUsuario = $(element).attr('data-id');
     let urlUsuario = `${baseUrl}api/usuario/obtenerusuario?idUsuario=${idUsuario}`;

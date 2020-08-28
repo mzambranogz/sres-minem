@@ -67,7 +67,7 @@ namespace sres.app.Controllers
             bool esValido = usuarioLN.ValidarUsuario(correo, contraseña, out usuario);
             if (esValido)
             {
-                if(usuario.FLAG_ESTADO == "0")
+                if(usuario.FLAG_ESTADO == "0" || usuario.FLAG_ESTADO == "2")
                 {
                     response["success"] = false;
                     response["message"] = "Usuario no se encuentra habilitado";
