@@ -249,12 +249,6 @@ var cambiarPropiedadLecturaUsuario = (valor) => {
 }
 
 var registrarUsuario = () => {
-    let aceptarTerminosYCondiciones = $('#chk-terminos-condiciones').prop('checked');
-
-    if(!aceptarTerminosYCondiciones){
-        $('form > .row:last').alert({ type: 'danger', title: 'Error', message: 'Debe aceptar los términos y condiciones' });
-        return;
-    }
 
     //$('#modalValidacionSres').modal('show');
 
@@ -265,6 +259,7 @@ var registrarUsuario = () => {
     let apellidos = $('#txt-apellido').val();
     let correo = $('#txt-user').val();
     let contraseña = $('#txt-pswd').val();
+    let reContraseña = $('#txt-re-pswd').val();
     let telefono = $('#txt-telefono').val();
     let anexo = $('#txt-anexo').val();
     let celular = $('#txt-celular').val();
@@ -274,7 +269,19 @@ var registrarUsuario = () => {
     let domicilioLegalInstitucion = $('#txt-direccion').val();
     let idSectorInstitucion = $('#cbo-sector').val();
     let flagEstado = usuarioMRV ? '1' : '0';
+    let aceptarTerminosYCondiciones = $('#chk-terminos-condiciones').prop('checked');
 
+    let message = [];
+
+    if(!(new RegExp(/[0-9]/).test(rucInstitucion.trim()))) message.push("El Ruc debe tener caracteres numéricos");
+    if(!(rucInstitucion.trim().startsWith("10") || rucInstitucion.trim().startsWith("20"))) message.push("El Ruc debe empezar con 10 o 20");
+    if(contraseña != reContraseña) message.push("Las contraseñas ingresadas no coinciden");
+    if(!aceptarTerminosYCondiciones) message.push("Debe aceptar los términos y condiciones");
+
+    if(message.length > 0){
+        $('form > .row:last').alert({ type: 'danger', title: 'Error', message: message.join("<br>") });
+        return;
+    }
     let url = `${baseUrl}api/usuario/guardarusuario`;
 
     let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, NOMBRES: nombres, APELLIDOS: apellidos, CORREO: correo, CONTRASENA: contraseña, TELEFONO: telefono, ANEXO: anexo, CELULAR: celular, ID_INSTITUCION: idInstitucion, INSTITUCION: idInstitucion != null ? null : { idInstitucion: idInstitucion == null ? -1 : idInstitucion, RUC: rucInstitucion, RAZON_SOCIAL: razonSocialInstitucion,  DOMICILIO_LEGAL: domicilioLegalInstitucion, ID_SECTOR: idSectorInstitucion, UPD_USUARIO: idUsuarioLogin }, ID_ROL: 3, FLAG_ESTADO: flagEstado, UPD_USUARIO: idUsuarioLogin };
