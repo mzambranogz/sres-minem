@@ -180,6 +180,7 @@
     <Content Include="Assets\images\caso_03.png" />
     <Content Include="Assets\images\caso_04.png" />
     <Content Include="Assets\images\caso_05.png" />
+    <Content Include="Assets\images\clave.png" />
     <Content Include="Assets\images\colaboradores.png" />
     <Content Include="Assets\images\criterio-01.png" />
     <Content Include="Assets\images\criterio-02.png" />
@@ -291,6 +292,7 @@
     <Content Include="Assets\images\una_estrella.png" />
     <Content Include="Assets\js\pages\convocatoria.js" />
     <Content Include="Assets\js\pages\convocatoria_bandejaparticipantes.js" />
+    <Content Include="Assets\js\pages\convocatoria_cambiarcontrasena.js" />
     <Content Include="Assets\js\pages\convocatoria_criterio.js" />
     <Content Include="Assets\js\pages\convocatoria_criterioingresar.js" />
     <Content Include="Assets\js\pages\convocatoria_criterios.js" />
@@ -521,6 +523,7 @@
     <Content Include="Views\Participante\PreguntasFrecuentes.cshtml" />
     <Content Include="Views\Participante\MapaSitio.cshtml" />
     <Content Include="Views\Participante\TerminosCondiciones.cshtml" />
+    <Content Include="Views\Convocatoria\CambiarClave.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

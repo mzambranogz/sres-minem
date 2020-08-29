@@ -4,7 +4,6 @@
     $('#btnConsultar').on('click', (e) => consultar());
     $('#btnConsultar')[0].click();
     $('#btnNuevo').on('click', (e) => nuevoUsuario());
-    //$('#btnCerrar').on('click', (e) => cerrarFormularioUsuario());
     $('#btnGuardar').on('click', (e) => guardarUsuario());
     $('#txt-ruc').on('blur', (e) => consultarInstitucion());
     $('#txt-user-correo').on('blur', (e) => consultarUsuarioCorreo());
@@ -179,6 +178,8 @@ var nuevoUsuario = () => {
     $('#txt-ruc').prop('readonly', false);
     $('.editar-usuario-sres').removeClass('d-none');
     $('.admin-edit').removeClass('d-none');
+    $('.spanNivelesColores').removeClass().addClass('spanNivelesColores');
+    $('#nivelseguridad > span').html('');
     //$('#frmUsuario').show();
     //limpiarFormularioUsuario();
     //cargarFormularioUsuario();
@@ -399,7 +400,7 @@ var guardarUsuario = () => {
     let celular = $('#txt-celular').val();
     let idInstitucion = $('#frmUsuario').data('idInstitucion');
     let idRol = $('#cbo-perfil').val();
-    let contraseña = $('#txt-pswd').val();
+    let contraseña = $('#txt-pswd').val().trim();
     let flagEstado = $('#rad-01').prop('checked') ? '1' : $('#rad-02').prop('checked') ? '2' : '0';
 
     let url = `${baseUrl}api/usuario/guardarusuario`;
@@ -446,4 +447,9 @@ $(document).on("keydown", ".solo-numero", function (e) {
     var key = window.e ? e.which : e.keyCode;
     //var id = $("#" + e.target.id)[0].type;
     if ((key < 48 || key > 57) && (event.keyCode < 96 || event.keyCode > 105) && key !== 8 && key !== 9 && key !== 37 && key !== 39 && key !== 46) return false;
+});
+
+$(document).on("keydown", ".sin-espacio", function (e) {
+    var key = window.e ? e.which : e.keyCode;
+    if (key == 32) return false;
 });

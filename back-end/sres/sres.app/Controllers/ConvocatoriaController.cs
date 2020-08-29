@@ -190,6 +190,13 @@ namespace sres.app.Controllers
             return View();
         }
 
+        [SesionOut]
+        [Route("Cambiar-contrasena")]
+        public ActionResult CambiarClave()
+        {
+            return View();
+        }
+
         public ActionResult CriterioIngresar()
         {
             return View();

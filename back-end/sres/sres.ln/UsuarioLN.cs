@@ -303,5 +303,32 @@ namespace sres.ln
             return lista;
         }
 
+        public int CambiarClave(UsuarioBE usuario)
+        {
+            int estado = 0;
+            bool cambio = false;
+            try
+            {
+                cn.Open();
+                UsuarioBE usu = usuarioDA.ObtenerClave(usuario.ID_USUARIO, cn);
+                estado = usu != null ? 0 : 1;
+                if (estado == 0) {
+                    cambio = Seguridad.CompararHashSal(usuario.CONTRASENA, usu.CONTRASENA);
+                    estado = cambio ? 0 : 2;
+                    if (estado == 0) {
+                        usuario.CONTRASENA_NUEVO = string.IsNullOrEmpty(usuario.CONTRASENA_NUEVO) ? null : Seguridad.hashSal(usuario.CONTRASENA_NUEVO);
+                        estado = usuario.CONTRASENA_NUEVO == null ? 1 : 0;
+                        if (estado == 0) {
+                            cambio = usuarioDA.CambiarClave(usuario.ID_USUARIO, usuario.CONTRASENA_NUEVO, cn);
+                            estado = cambio ? 3 : 1;
+                        }
+                    }                    
+                } 
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return estado;
+        }
+
     }
 }

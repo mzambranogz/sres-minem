@@ -43,7 +43,7 @@
                             @if (usuario.ID_ROL != (int)EnumsCustom.Roles.POSTULANTE && usuario.ID_ROL != (int)EnumsCustom.Roles.EVALUADOR) {
                                 <a class="dropdown-item estilo-01" href="@Url.Action("TablaMantenimiento", "Mantenimiento")"><i class="fas fa-cogs mr-1"></i>Mantenimiento de tablas</a>
                             }
-                            <a class="dropdown-item estilo-01" href="#"><i class="fas fa-key mr-1"></i>Cambiar contraseña</a>
+                            <a class="dropdown-item estilo-01" href="@Url.Action("Cambiar-contrasena", "Convocatoria")"><i class="fas fa-key mr-1"></i>Cambiar contraseña</a>
                             <div class="dropdown-divider"></div><a class="dropdown-item estilo-01" href="@Url.Action("Salir", "Login")"><i class="fas fa-sign-out-alt mr-1"></i>Salir del sistema</a>
                         </div>
                     </div>

@@ -152,5 +152,21 @@ namespace sres.app.Controllers.Api
                 throw ex;
             }
         }
+
+        [Route("cambiarclaveusuario")]
+        [HttpPost]
+        public int CambiarClave(UsuarioBE usuario)
+        {
+            int estado = 0;
+            try
+            {
+                estado = usuarioLN.CambiarClave(usuario);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return estado;
+        }
     }
 }
