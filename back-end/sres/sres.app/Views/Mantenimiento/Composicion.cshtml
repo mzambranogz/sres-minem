@@ -1,0 +1,399 @@
+﻿@{
+    ViewBag.Titulo = "Mantenimiento Composicion";
+    ViewBag.SRESDescription = false;
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/mantenimiento_composicion.js")"></script>
+}
+
+<div class="container-fluid mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="estilo-05" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index","Inicio")">Inicio</a></li>
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("TablaMantenimiento","Mantenimiento")">Mantenimiento de Tablas</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Mantenimiento de Composicion Componente</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <h2 class="estilo-03 text-sres-azul">Mantenimiento de Composición Componente</h2>
+            </div>
+            <div class="col-lg-3">
+                <span data-toggle="modal" data-target="#modal-mantenimiento">
+                    <div class="btn btn-sres-verde btn-lg w-100 mb-2" id="btnNuevo" data-toggle="tooltip" data-placement="top" title="Agregar una nueva composición">Agregar composición</div>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="rayado wow fadeIn"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="form-group">
+                    <label class="estilo-01 text-sres-oscuro" for="txt-descripcion">DESCRIPCIÓN</label>
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="text" id="txt-descripcion" placeholder="Ingrese la descripción de su búsqueda" maxlength="60">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label class="estilo-01 text-sres-oscuro">&nbsp;</label>
+                    <div class="input-group">
+                        <button class="btn btn-primary w-100" id="btnConsultar">Consultar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive tabla-principal">
+                    <table class="table table-sm table-hover" id="tblPrincipal">
+                        <thead class="estilo-06">
+                            <tr>
+                                <th scope="col" width="3%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">N°&nbsp;@*<i class="fas fa-sort"></i>*@</div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Número de orden"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="10%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">CÓDIGO&nbsp;</div><i class="fas fa-sort columna-filtro" id="ID_COMPONENTE"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="código del factor"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="13%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">COMPONENTE&nbsp;</div><i class="fas fa-sort columna-filtro" id="COMPONENTE"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre del componente"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="13%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">CASO&nbsp;</div><i class="fas fa-sort columna-filtro" id="CASO"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Caso al que pertenece el componente"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="13%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">CRITERIO&nbsp;</div><i class="fas fa-sort columna-filtro" id="CRITERIO"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Criterio al que pertenece el componente"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="38%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">ESTRUCTURA DE PARÁMETROS&nbsp;</div>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Estructura del componente"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="10%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">GESTIÓN&nbsp;</div>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Herramientas y opciones"></i></div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="estilo-01"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-start align-items-center">
+                <div class="row">
+                    <div class="col-12"><strong>Resultado:&nbsp;</strong><span class="inicio-registros">1</span><span id="view-page-result">-<span class="fin-registros">1</span> de <span class="total-registros">1</span> registros</span></div>
+                </div>
+            </div>
+            <div id="viewPagination" class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-end align-items-center" style="display: none">
+                <div class="row">
+                    <div class="col-12">
+                        <strong>Registros por página&nbsp;</strong>
+                        <select id="catidad-rgistros">
+                            <option value="10" selected>10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>&nbsp;
+                        <span class="pagina">1</span> de <span class="total-paginas">75</span> páginas&nbsp;
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(1)"><i class="fas fa-angle-double-left"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(2)"><i class="fas fa-angle-left"></i></button>
+                            <input id="ir-pagina" class="ir-pagina" type="number" value="1" min="1">
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(3)"><i class="fas fa-angle-right"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(4)"><i class="fas fa-angle-double-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-mantenimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="" id="frm">
+                <div class="modal-header bg-sres-azul text-white">
+                    <h5 class="modal-title estilo-01" id="exampleModalLabel">REGISTRAR COMPOSICION</h5>
+                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body medidas-modal">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-group">
+                                <label for="cbo-criterio">Criterio<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione un criterio"></i></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup10"><i class="fas fa-tachometer-alt"></i></span></div>
+                                    <select class="form-control" id="cbo-criterio" aria-describedby="inputGroup10" required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cbo-caso">Caso<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione un caso"></i></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup10"><i class="fas fa-tachometer-alt"></i></span></div>
+                                    <select class="form-control" id="cbo-caso" aria-describedby="inputGroup10" required>
+                                        <option value="0">-seleccione-</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cbo-componente">Componente<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione un componente"></i></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup10"><i class="fas fa-tachometer-alt"></i></span></div>
+                                    <select class="form-control" id="cbo-componente" aria-describedby="inputGroup10" required>
+                                        <option value="0">-seleccione-</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-group">
+                                <label for="cbo-tipo-control">Controles para los detalles (Columnas)<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione uno de los controles asociados para componer las columnas"></i></label>
+                                @*<div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-wrench"></i></span></div>
+                                    <div class="form-control" style="height:124px; overflow-y: auto;">
+                                        <div class="col-auto my-1">
+                                            <div class="custom-control custom-radio mr-sm-2">
+                                                <input class="custom-control-input" type="radio" name="rad-controles" id="rad-controles-01" value="cbo" checked>
+                                                <label class="custom-control-label badge" for="rad-controles-01">Listas de selección</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto my-1">
+                                            <div class="custom-control custom-radio mr-sm-2">
+                                                <input class="custom-control-input" type="radio" name="rad-controles" id="rad-controles-02" value="txt">
+                                                <label class="custom-control-label badge" for="rad-controles-02">Cajas de texto</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto my-1">
+                                            <div class="custom-control custom-radio mr-sm-2">
+                                                <input class="custom-control-input" type="radio" name="rad-controles" id="rad-controles-03" value="fch">
+                                                <label class="custom-control-label badge" for="rad-controles-03">Cajas de fechas</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup10"><i class="fas fa-list"></i></span></div>
+                                    <select class="form-control" id="cbo-tipo-control" aria-describedby="inputGroup10" required>
+                                        <option value="1">Listas de selección</option>
+                                        <option value="2">Cajas de texto</option>
+                                        <option value="3">Cajas de texto grande</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">                                
+                                @*<div class="col-md-12 col-lg-6">&nbsp;
+                                    <div class="form-group">
+                                        <label for="cbo-grupo">Grupo de indicador<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione o asigne un grupo indicador para identificar la columna en los detalles de indicadores"></i></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text" id="inputGroup10"><i class="fas fa-list"></i></span></div>
+                                            <select class="form-control" id="cbo-grupo" aria-describedby="inputGroup10" required>
+                                                <option class="grupo-columna-01">Grupo iniciativa</option>
+                                                <option class="grupo-columna-02">Grupo línea base</option>
+                                                <option class="grupo-columna-03">Grupo emisiones reducidas</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>*@
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <label for="cbo-campo">Campo asignado<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione un campo según el control seleccionado anterioremente"></i></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend"><span class="input-group-text" id="inputGroup10"><i class="fas fa-list"></i></span></div>
+                                            <select class="form-control" id="cbo-campo" aria-describedby="inputGroup10" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-6">&nbsp;</div>
+                                <div class="col-md-12 col-lg-6"><a class="btn btn-success w-100" id="add-columna-detalle-1" href="#" data-toggle="tooltip" data-placement="left" title="Agregar columna, control y caracteristicas"><i class="fas fa-plus px-1"></i>Agregar columna</a></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label for="mlt-gei">Composición de columnas del componente<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Aquí se mostrará como se componen las columnas de las tablas de los detalles de indicadores, estas pueden ser arrastradas o movidas hasta determinar el orden correcto"></i></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-columns"></i></span></div>
+                                    <div class="form-control" style="height:130px; overflow-x: auto; overflow-y: auto;">
+                                        <div class="list-group col sortable-list" id="columnas-detalle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 composicion d-none">
+                            <div class="jumbotron">
+                                <h5>Composición del componente</h5>
+                                <hr class="my-4">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-2"></div>
+                                    <div class="col-sm-12 col-md-2">
+                                        <div class="form-group">
+                                            <label for="cbo-factores">Factores<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione un factor para utilizarlo en la composición"></i></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text font-weight-bold bg-info text-white">F</span></div>
+                                                <select class="form-control" id="cbo-factores" required>
+                                                    @*<option value="0" selected>[ - Seleccione - ]</option>
+                                                    <option value="F1">Factor 1</option>
+                                                    <option value="F2">Factor 2</option>
+                                                    <option value="F3">Factor 3</option>
+                                                    <option value="F4">Factor 4</option>*@
+                                                </select>
+                                            </div>
+                                        </div><a class="btn btn-success w-100" id="add-factor" href="#" data-value="[0]"><i class="fas fa-plus px-1"></i>Agregar</a>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2">
+                                        <div class="form-group">
+                                            <label for="cbo-parametros">Parámetros<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione un parámetros para utilizarlo en la composición"></i></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text font-weight-bold bg-primary text-white">P</span></div>
+                                                <select class="form-control" id="cbo-parametros" required>
+                                                    @*<option value="0" selected>[ - Seleccione - ]</option>
+                                                    <option value="P1">Parámetro 1</option>
+                                                    <option value="P2">Parámetro 2</option>
+                                                    <option value="P3">Parámetro 3</option>
+                                                    <option value="P4">Parámetro 4</option>*@
+                                                </select>
+                                            </div>
+                                        </div><a class="btn btn-success w-100" id="add-parametro" href="#" data-value="[0]"><i class="fas fa-plus px-1"></i>Agregar</a>
+                                    </div>
+                                    @*<div class="col-sm-12 col-md-2">
+                                        <div class="form-group">
+                                            <label for="cbo-variables">Variables<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione una variable para utilizarlo en la composición de su enfoque"></i></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text font-weight-bold bg-success text-white">V</span></div>
+                                                <select class="form-control" id="cbo-variables" required>
+                                                    <option value="0" selected>[ - Seleccione - ]</option>
+                                                    <option value="V1">Variable 1</option>
+                                                    <option value="V2">Variable 2</option>
+                                                    <option value="V3">Variable 3</option>
+                                                    <option value="V4">Variable 4</option>
+                                                </select>
+                                            </div>
+                                        </div><a class="btn btn-success w-100" id="add-variable" href="#" data-value="[0]"><i class="fas fa-plus px-1"></i>Agregar</a>
+                                    </div>*@
+                                    <div class="col-sm-12 col-md-2">
+                                        <div class="form-group">
+                                            <label for="txt-constante">Constante<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Ingrese un valor constante para utilizarlo en la composición"></i></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text font-weight-bold bg-warning text-dark">C</span></div>
+                                                <input class="form-control" type="number" id="txt-constante" placeholder="Ingrese una constante">
+                                            </div>
+                                        </div><a class="btn btn-success w-100" id="add-constante" href="#" data-value="[C0]"><i class="fas fa-plus px-1"></i>Agregar</a>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2">
+                                        <div class="form-group">
+                                            <label for="cbo-campo">Operadores<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione un operador para utilizarlo en la composición"></i></label>
+                                            <div class="input-group">
+                                                <div class="btn-group mr-2" role="group" aria-label="First group"><a class="gpo-operador btn btn-secondary font-weight-bold" href="#" data-value="+">+</a><a class="gpo-operador btn btn-secondary font-weight-bold" href="#" data-value="-">-</a><a class="gpo-operador btn btn-secondary font-weight-bold" href="#" data-value="*">*</a><a class="gpo-operador btn btn-secondary font-weight-bold" href="#" data-value="/">/</a><a class="gpo-operador btn btn-secondary font-weight-bold" href="#" data-value="(">(</a><a class="gpo-operador btn btn-secondary font-weight-bold" href="#" data-value=")">)</a></div>
+                                            </div>
+                                        </div><a class="btn btn-success w-100" id="add-operador" href="#" data-value="0"><i class="fas fa-plus px-1"></i>Agregar</a>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group mt-3">
+                                            <label for="mlt-gei">Composición del enfoque<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Aquí se mostrará de forma dinámica su enfoque preliminar, el cual podrá arrastar y/o mover hasta determinar el formato correcto"></i></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-square-root-alt"></i></span></div>
+                                                <div class="form-control" style="height:130px; overflow-x: auto; overflow-y: hidden;">
+                                                    <div class="list-group col sortable-list" id="columnas-enfoque"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txa-enfoque">Resultado<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Este es el resultado final de su enfoque en texto plano"></i></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text" id="inputGroup4"><i class="fas fa-square-root-alt"></i></span></div>
+                                                <textarea class="form-control field-enfoque" id="txa-enfoque" aria-describedby="inputGroup4" cols="30" rows="5" required placeholder="Resultado de su enfoque"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-3">&nbsp;</div>
+                                    <div class="col-sm-12 col-md-3">&nbsp;</div>
+                                    <div class="col-sm-12 col-md-3"><a class="btn btn-secondary w-100" id="cancelar-enfoque" href="#"><i class="fas fa-times-circle px-1"></i>Cancelar</a></div>
+                                    <div class="col-sm-12 col-md-3"><a class="btn btn-success w-100" id="guardar-enfoque" href="#" data-toggle="tooltip" data-placement="left" title="Guardar enfoque en el control seleccionado"><i class="fas fa-save px-1"></i>Guardar enfoque</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="alert-add"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-sm btn-info" type="button" id="btnGuardar">Si, grabar</button>
+                    <button class="btn btn-sm btn-dark" type="button" id="btnCerrar" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>    
+    var idCaso = 0;
+    var idComponente = '';
+</script>
+
+@Html.Hidden("columna", "ID_COMPONENTE")
+@Html.Hidden("orden", "ASC")

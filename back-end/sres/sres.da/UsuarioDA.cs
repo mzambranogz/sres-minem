@@ -86,7 +86,11 @@ namespace sres.da
                             INSTITUCION = x.ID_INSTITUCION == null ? null : new InstitucionBE { ID_INSTITUCION = (int)x.ID_INSTITUCION, RAZON_SOCIAL = (string)x.RAZON_SOCIAL_INSTITUCION, RUC = (string)x.RUC_INSTITUCION },
                             ID_ROL = (int?)x.ID_ROL,
                             ROL = x.ID_ROL == null ? null : new RolBE { ID_ROL = (int)x.ID_ROL, NOMBRE = (string)x.NOMBRE_ROL },
-                            FLAG_ESTADO = (string)x.FLAG_ESTADO
+                            FLAG_ESTADO = (string)x.FLAG_ESTADO,
+                            TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
+                            PAGINA = (int)x.PAGINA,
+                            CANTIDAD_REGISTROS = (int)x.CANTIDAD_REGISTROS,
+                            TOTAL_REGISTROS = (int)x.TOTAL_REGISTROS
                         })
                         .ToList();
             }
@@ -274,6 +278,39 @@ namespace sres.da
             catch (Exception ex) { Log.Error(ex); }
 
             return lista;
+        }
+
+        public UsuarioBE ObtenerClave(int idUsuario, OracleConnection db)
+        {
+            UsuarioBE item = null;
+            try
+            {
+                string sp = $"{Package.Admin}USP_SEL_USUARIO_CLAVE";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_USUARIO", idUsuario);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.QueryFirstOrDefault<UsuarioBE>(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            return item;
+        }
+
+        public bool CambiarClave(int idUsuario, string nuevacontrasena, OracleConnection db)
+        {
+            bool seActualizo = false;
+            try
+            {
+                string sp = $"{Package.Admin}USP_UPD_CAMBIAR_CLAVE";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_USUARIO", idUsuario);
+                p.Add("PI_CONTRASENA", nuevacontrasena);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seActualizo = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            return seActualizo;
         }
         #endregion
     }

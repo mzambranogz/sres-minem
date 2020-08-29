@@ -1,0 +1,135 @@
+﻿@{
+    ViewBag.Titulo = "Cambiar contraseña";
+    ViewBag.Header = new Dictionary<string, object>
+    {
+        ["Imagen"] = "~/Assets/images/bg-login.png",
+        ["Titulo"] = "CAMBIAR CONTRASEÑA"
+    };
+
+    ViewBag.SRESDocumentation = new Dictionary<string, Dictionary<string, object>>
+    {
+        ["References"] = new Dictionary<string, object>
+        {
+            ["Show"] = true,
+            ["Titulo"] = "DOCUMENTOS DE REFERENCIA",
+            ["Data"] = new Dictionary<int, object>
+            {
+                [1] = new Dictionary<string, object> { ["Texto"] = "Estudio del Impacto del Etiquetado 2018 a 2019", ["Url"] = "http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" },
+                [2] = new Dictionary<string, object> { ["Texto"] = "Estudio del Impacto del Etiquetado de Eficiencia Energética 2020", ["Url"] = "http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" },
+                [3] = new Dictionary<string, object> { ["Texto"] = "Piloto de Auditorías Energéticas en el Sector Público", ["Url"] = "#" },
+                [4] = new Dictionary<string, object> { ["Texto"] = "Piloto de Auditorías Energéticas en el Sector Privado", ["Url"] = "#" },
+                [5] = new Dictionary<string, object> { ["Texto"] = "Reglamento de Etiquetado de Eficiencia Energética", ["Url"] = "#" },
+                [6] = new Dictionary<string, object> { ["Texto"] = "Guía de Auditorías Energéticas", ["Url"] = "#" },
+                [7] = new Dictionary<string, object> { ["Texto"] = "Manual de uso de la plataforma del Sello de Reconocimiento Energético", ["Url"] = "#" }
+            }
+        }
+    };
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/convocatoria_cambiarcontrasena.js")"></script>
+}
+
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 d-none d-lg-block">
+                <div class="row">
+                    <div class="col-12 wow fadeIn">
+                        <div class="p-5 set-bg" data-setbg="@Url.Content("~/Assets/images/clave.png")">
+                            <p class="estilo-01 text-white text-justify barra-blanca my-5">Para proceder con el cambio de su contraseña, por favor ingrese su contraseña actual, seguida de la nueva y confirmación de cambio. Dicha acción será notificacda por correo electrónico.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 mb-5 mb-lg-0">
+                <div class="row">
+                    <div class="col-12 wow fadeIn">
+                        <div class="h4 estilo-03">Cambiar contraseña <br><small class="text-muted estilo-02">Confirme su nueva contraseña</small></div>
+                        <form class="pt-4" id="frm" action="./bandeja-postulante.html" autocomplete="off">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-act">Contraseña actual</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-key"></i></span></div>
+                                    <input class="form-control estilo-01 sin-espacio" type="password" name="txt-act" id="txt-act" maxlength="20" placeholder="Confirmar su contraseña">
+                                    <div class="input-group-append">
+                                        <label class="input-group-text cursor-pointer ver-clave"><i class="fas fa-eye mr-1"></i>Mostrar</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-pswd">Contraseña nueva</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Su contraseña debe incluir 6 caracteres como mínimo, 1 minúscula, 1 mayúscula, 1 número y 1 caracter especial (!@("@")#$&amp;*)."></i></span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-key"></i></span></div><input class="form-control estilo-01 sin-espacio" type="password" name="txt-pswd" id="txt-pswd" maxlength="20" placeholder="Ingrese su contraseña" autocomplete="new-password">
+                                    <div class="input-group-append">
+                                        <label class="input-group-text cursor-pointer ver-clave"><i class="fas fa-eye mr-1"></i>Mostrar</label>
+                                    </div>
+                                </div>
+                                <div class="nivelSeguridad">
+                                    <small class="text-primary">
+                                        <div class="fas fa-shield-alt"></div>&nbsp; Nivel de seguridad: &nbsp;<span class="text-primary font-weight-bold" id="nivelseguridad">bajo</span>
+                                        <div class="nivelesColores">
+                                            <div class="spanNivelesColores"></div>
+                                        </div>
+                                    </small>
+                                    <div class="NivelesColores"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-con">Confirmar contraseña nueva</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-key"></i></span></div>
+                                    <input class="form-control estilo-01 sin-espacio" type="password" name="txt-con" id="txt-con" maxlength="20" placeholder="Confirmar su contraseña">
+                                    <div class="input-group-append">
+                                        <label class="input-group-text cursor-pointer ver-clave"><i class="fas fa-eye mr-1"></i>Mostrar</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="alert-add"></div>
+                            </div>
+                            @*<div class="alert alert-danger d-flex align-items-stretch" role="alert">
+                                <div class="alert-wrap mr-3">
+                                    <div class="sa">
+                                        <div class="sa-error">
+                                            <div class="sa-error-x">
+                                                <div class="sa-error-left"></div>
+                                                <div class="sa-error-right"></div>
+                                            </div>
+                                            <div class="sa-error-placeholder"></div>
+                                            <div class="sa-error-fix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="alert-wrap">
+                                    <h6 class="estilo-02">Error de acceso</h6>
+                                    <hr class="my-1"><small class="mb-0 estilo-01">Su cuenta está&nbsp;<strong>pendiente&nbsp;</strong>de aprobación</small>
+                                </div>
+                            </div>
+                            <div class="alert alert-success d-flex align-items-stretch" role="alert">
+                                <div class="alert-wrap mr-3">
+                                    <div class="sa">
+                                        <div class="sa-success">
+                                            <div class="sa-success-tip"></div>
+                                            <div class="sa-success-long"></div>
+                                            <div class="sa-success-placeholder"></div>
+                                            <div class="sa-success-fix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="alert-wrap">
+                                    <h6 class="estilo-02">Bien hecho</h6>
+                                    <hr class="my-1"><small class="mb-0 estilo-01">Su cuenta MRV a sido sincronizada</small>
+                                </div>
+                            </div>*@
+                            <button class="btn-lg btn-primary w-100 mb-3" id="sresBtn" type="submit"><i class="fas fa-sync px-1"></i>Cambiar</button>
+                        </form>
+                        @*<p class="pt-4 mb-0 text-center estilo-01">¿No tienes una cuenta?&nbsp;<a class="text-sres-verde estilo-01" href="./registro.html">Regístrese ahora <br></a><a class="text-sres-verde estilo-01" href="./recuperar.html">¿Olvidó su contraseña?</a></p>*@
+                    </div>
+                </div>
+            </div>
+            @Html.Partial("_SRES_Documentation")
+        </div>
+    </div>
+</div>

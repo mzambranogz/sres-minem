@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sres.be
 {
-    public class FactorBE : BaseBE
+    public partial class FactorBE : BaseBE
     {
         public int ID_FACTOR { get; set; }
         public string NOMBRE { get; set; }

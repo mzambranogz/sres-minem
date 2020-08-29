@@ -72,6 +72,7 @@
     <Compile Include="EtapaDA.cs" />
     <Compile Include="FactorDA.cs" />
     <Compile Include="FormulaParametroDA.cs" />
+    <Compile Include="IndicadorDA.cs" />
     <Compile Include="IndicadorDataDA.cs" />
     <Compile Include="InformePreliminarDA.cs" />
     <Compile Include="InscripcionDA.cs" />

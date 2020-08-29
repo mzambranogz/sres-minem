@@ -127,5 +127,24 @@ namespace sres.da
 
             return entidad;
         }
+
+        public List<ComponenteBE> ListaComponenteCasoCriterio(ComponenteBE entidad, OracleConnection db)
+        {
+            List<ComponenteBE> item = new List<ComponenteBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_GET_COMP_CASO_CRI";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_CASO", entidad.ID_CASO);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.Query<ComponenteBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return item;
+        }
     }
 }

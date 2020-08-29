@@ -65,11 +65,41 @@ namespace sres.ln
                 cn.Open();
                 item = paramDA.ObtenerParametro(entidad.ID_PARAMETRO, cn);
                 if (item != null)
-                    if (item.ID_TIPO_CONTROL == 1)
+                    if (item.ID_TIPO_CONTROL == 1) {
                         item.LISTA_DET = paramDA.ListarDetalleParametro(entidad.ID_PARAMETRO, cn);
+                        if (item.FILTRO != "0" && !(string.IsNullOrEmpty(item.FILTRO))) {
+                            string filtro = item.FILTRO.Replace('|',',');
+                            item.LISTA_PARAM = paramDA.ObtenerParametroFiltro(filtro, cn);
+                        }                            
+                    }
+                        
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return item;
+        }
+
+        public List<ParametroBE> ObtenerParametroLista(int idControl)
+        {
+            List<ParametroBE> lista = new List<ParametroBE>();
+            try
+            {
+                cn.Open();
+                lista = paramDA.ObtenerParametroLista(idControl, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return lista;
+        }
+
+        public List<ParametroBE> ObtenerAllParametro()
+        {
+            List<ParametroBE> lista = new List<ParametroBE>();
+            try
+            {
+                cn.Open();
+                lista = paramDA.ObtenerAllParametro(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return lista;
         }
     }
 }

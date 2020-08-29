@@ -9,5 +9,6 @@ namespace sres.be
     public partial class UsuarioBE
     {
         public string NOMBRE_COMPLETO { get; set; }
+        public string CONTRASENA_NUEVO { get; set; }
     }
 }

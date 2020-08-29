@@ -165,6 +165,7 @@
     <Content Include="Assets\images\bg-login.png" />
     <Content Include="Assets\images\bg-participantes.png" />
     <Content Include="Assets\images\bg-registro.png" />
+    <Content Include="Assets\images\bg-terminos.png" />
     <Content Include="Assets\images\bg_footer.png" />
     <Content Include="Assets\images\brillo.png" />
     <Content Include="Assets\images\bronce.png" />
@@ -179,6 +180,7 @@
     <Content Include="Assets\images\caso_03.png" />
     <Content Include="Assets\images\caso_04.png" />
     <Content Include="Assets\images\caso_05.png" />
+    <Content Include="Assets\images\clave.png" />
     <Content Include="Assets\images\colaboradores.png" />
     <Content Include="Assets\images\criterio-01.png" />
     <Content Include="Assets\images\criterio-02.png" />
@@ -196,6 +198,7 @@
     <Content Include="Assets\images\empresa-04.png" />
     <Content Include="Assets\images\empresa-05.png" />
     <Content Include="Assets\images\empresa-06.png" />
+    <Content Include="Assets\images\faq.png" />
     <Content Include="Assets\images\favicon\android-icon-144x144.png" />
     <Content Include="Assets\images\favicon\android-icon-192x192.png" />
     <Content Include="Assets\images\favicon\android-icon-36x36.png" />
@@ -257,6 +260,7 @@
     <Content Include="Assets\images\paneles.png" />
     <Content Include="Assets\images\password-level-47px.png" />
     <Content Include="Assets\images\plata.png" />
+    <Content Include="Assets\images\reconocimientos.png" />
     <Content Include="Assets\images\reunion_acuerdo_paris.png" />
     <Content Include="Assets\images\sello.svg" />
     <Content Include="Assets\images\sello_new.svg" />
@@ -271,11 +275,24 @@
     <Content Include="Assets\images\sres-logo.png" />
     <Content Include="Assets\images\sres-logo_old.png" />
     <Content Include="Assets\images\sres-menu.png" />
+    <Content Include="Assets\images\sres_bronce_0_star.png" />
+    <Content Include="Assets\images\sres_bronce_1_star.png" />
+    <Content Include="Assets\images\sres_bronce_2_star.png" />
+    <Content Include="Assets\images\sres_bronce_3_star.png" />
+    <Content Include="Assets\images\sres_oro_0_star.png" />
+    <Content Include="Assets\images\sres_oro_1_star.png" />
+    <Content Include="Assets\images\sres_oro_2_star.png" />
+    <Content Include="Assets\images\sres_oro_3_star.png" />
+    <Content Include="Assets\images\sres_plata_0_star.png" />
+    <Content Include="Assets\images\sres_plata_1_star.png" />
+    <Content Include="Assets\images\sres_plata_2_star.png" />
+    <Content Include="Assets\images\sres_plata_3_star.png" />
     <Content Include="Assets\images\tres_estrella.png" />
     <Content Include="Assets\images\tres_estrellas.png" />
     <Content Include="Assets\images\una_estrella.png" />
     <Content Include="Assets\js\pages\convocatoria.js" />
     <Content Include="Assets\js\pages\convocatoria_bandejaparticipantes.js" />
+    <Content Include="Assets\js\pages\convocatoria_cambiarcontrasena.js" />
     <Content Include="Assets\js\pages\convocatoria_criterio.js" />
     <Content Include="Assets\js\pages\convocatoria_criterioingresar.js" />
     <Content Include="Assets\js\pages\convocatoria_criterios.js" />
@@ -289,10 +306,12 @@
     <Content Include="Assets\js\pages\mantenimiento_anno.js" />
     <Content Include="Assets\js\pages\mantenimiento_caso.js" />
     <Content Include="Assets\js\pages\mantenimiento_componente.js" />
+    <Content Include="Assets\js\pages\mantenimiento_composicion.js" />
     <Content Include="Assets\js\pages\mantenimiento_convocatoria.js" />
     <Content Include="Assets\js\pages\mantenimiento_criterio.js" />
     <Content Include="Assets\js\pages\mantenimiento_documento.js" />
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
+    <Content Include="Assets\js\pages\mantenimiento_factor.js" />
     <Content Include="Assets\js\pages\mantenimiento_insignia.js" />
     <Content Include="Assets\js\pages\mantenimiento_parametro.js" />
     <Content Include="Assets\js\pages\mantenimiento_proceso.js" />
@@ -369,6 +388,8 @@
     <Compile Include="Controllers\Api\DocumentoController.cs" />
     <Compile Include="Controllers\Api\EstrellaController.cs" />
     <Compile Include="Controllers\Api\EtapaController.cs" />
+    <Compile Include="Controllers\Api\FactorController.cs" />
+    <Compile Include="Controllers\Api\IndicadorController.cs" />
     <Compile Include="Controllers\Api\IndicadorDataController.cs" />
     <Compile Include="Controllers\Api\InformePreliminarController.cs" />
     <Compile Include="Controllers\Api\InscripcionController.cs" />
@@ -496,6 +517,13 @@
     <Content Include="Views\Mantenimiento\Documento.cshtml" />
     <Content Include="Views\Mantenimiento\Insignia.cshtml" />
     <Content Include="Views\Mantenimiento\Parametro.cshtml" />
+    <Content Include="Views\Mantenimiento\Factor.cshtml" />
+    <Content Include="Views\Mantenimiento\Composicion.cshtml" />
+    <Content Include="Views\Participante\Categoria.cshtml" />
+    <Content Include="Views\Participante\PreguntasFrecuentes.cshtml" />
+    <Content Include="Views\Participante\MapaSitio.cshtml" />
+    <Content Include="Views\Participante\TerminosCondiciones.cshtml" />
+    <Content Include="Views\Convocatoria\CambiarClave.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
