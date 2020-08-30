@@ -152,16 +152,72 @@ var consultarDatos = (element) => {
     limpiarFormulario();
     $('.alert-add').html('');
     $('#btnGuardar').show();
-    $('#btnGuardar').next().html('Cancelar');
+    $('#btnGuardar').next().html('Cancelar');  
     $('#exampleModalLabel').html('ACTUALIZAR COMPOSICIÓN');
 
-    let id = $(element).attr('data-id');
-    let url = `${baseUrl}api/composicion/obtenercomposicion?idcomponente=${id}`;
+    let criterio = $(element).attr('data-id').split('-')[0];
+    let caso = $(element).attr('data-id').split('-')[1];
+    let componente = $(element).attr('data-id').split('-')[2];
+    let url = `${baseUrl}api/indicador/obtenerindicador?idCriterio=${criterio}&idCaso=${caso}&idcomponente=${componente}`;
     fetch(url)
     .then(r => r.json())
     .then(j => {
-        cargarDatos(j);
+        cargarDatos(j, element);
     });
+}
+
+var cargarDatos = (data, e) => {
+    if (data == null) return false;
+    $('#cbo-criterio').prop('disabled', true);
+    $('#cbo-caso').prop('disabled', true);
+    $('#cbo-componente').prop('disabled', true);
+    $('#cbo-criterio').val($(e).attr('data-id').split('-')[0]);
+    idCaso = $(e).attr('data-id').split('-')[1];
+    idComponente = $(e).attr('data-id').split('-')[2];
+    changeCriterio();
+    
+    if (data.LISTA_PARAM != null) {
+        if (data.LISTA_PARAM.length > 0) {
+            data.LISTA_PARAM.map((x, y) => {
+
+                debugger;
+                let aLetras = new Array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j');
+                let cLetra = aLetras[Math.floor(Math.random() * aLetras.length)];
+                let campo = x.ID_PARAMETRO;
+                let nombre_campo = x.NOMBRE;
+                let num = Math.round(Math.random() * 100);
+                let formula = "";
+                let valoresformula = "";
+                let id_mrv = `mrv-${campo}${num}${cLetra}`;
+
+                if (x.FORMULA_ARMADO != null && x.FORMULA_ARMADO != ""){
+                    $.each(x.FORMULA_ARMADO.split('|'), (x, y) => {
+                        let color = y.indexOf('F') != -1 ? "info" : y.indexOf('P') != -1 ? "primary" : y.indexOf('C') != -1 ? "warning" : "secondary";
+                        let icono = `<i class="fas fa-2x fa-arrows-alt"></i>`;
+                        let small = `<small class="badge badge-${color}">${y}</small>`;
+                        let delet = `<i class="fas fa-minus-circle cursor-pointer delete-columna-detalle" data-toggle="tooltip"  data-placement="top" title="" data-enfoque="1" data-original-title="Eliminar"></i>`;
+                        let cnt = `<div class="list-group-item sortable-item" data-value="${y}">${icono}${small}${delet}</div>`;
+                        formula += y;
+                        valoresformula += cnt;
+                    });
+                }
+
+                let icono = `<i class="fas fa-2x fa-arrows-alt"></i>`;
+                let small = `<small>${nombre_campo}</small>`;
+                let inputCom = `<input class="hidden-control column-componente" type="hidden" name="" data-cm="${campo}">`;
+                let delet = `<i class="fas fa-minus-circle cursor-pointer mr-2 mt-2 delete-columna-detalle" data-toggle="tooltip"  data-placement="top" title="" data-original-title="Eliminar"></i>`;
+                let add = `<i class="fas fa-square-root-alt cursor-pointer ml-2 mt-2 enfoque-columna-detalle ${x.FORMULA_ARMADO != null && x.FORMULA_ARMADO != "" ? `text-indigo` : ``}" data-toggle="tooltip"  data-placement="top" title="" data-original-title="Añadir fórmula"></i>`;
+                let content = `<div id="mrv-${campo}${num}${cLetra}" class="list-group-item sortable-item recorrer ${x.FORMULA_ARMADO != null && x.FORMULA_ARMADO != "" ? `enfoque-add sortable-chosen` : ``} grupo-columna-03" data-enfoque="${x.FORMULA_ARMADO != null && x.FORMULA_ARMADO != "" ? `1` : ``}" data-resultado="${x.FORMULA_ARMADO != null && x.FORMULA_ARMADO != "" ? `${formula}` : ``}" ${x.FORMULA_ARMADO != null && x.FORMULA_ARMADO != "" ? `data-resultadobd="${x.FORMULA_ARMADO}|"` : ``} draggable="${x.FORMULA_ARMADO != null && x.FORMULA_ARMADO != "" ? `true` : `false`}">${icono}${small}${inputCom}${delet}${add}</div>`;
+                $("#columnas-detalle").append(content);
+
+                if (x.FORMULA_ARMADO != null && x.FORMULA_ARMADO != ""){
+                    let t = id_mrv, n = valoresformula, m = formula;
+                    let o = [n, m];
+                    sessionStorage.setItem(t, o);
+                }
+            });
+        }
+    }
 }
 
 var guardar = () => {
@@ -224,13 +280,6 @@ var guardar = () => {
     };
     //==============================================================
     let url = `${baseUrl}api/indicador/guardarindicador`;
-    //let data = {
-    //    ID_FACTOR: id == null ? -1 : id,
-    //    NOMBRE: nombre,
-    //    SOBRE_NOMBRE: etiqueta,
-    //    LISTA_PARAM_FACTOR: parametro,
-    //    USUARIO_GUARDAR: idUsuarioLogin
-    //};
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
@@ -248,18 +297,23 @@ var nuevo = () => {
     $('.alert-add').html('');
     $('#btnGuardar').show();
     $('#btnGuardar').next().html('Cancelar');    
+    $('#cbo-criterio').prop('disabled', false);
+    $('#cbo-caso').prop('disabled', false);
+    $('#cbo-componente').prop('disabled', false);
     //$('#cbo-criterio').parent().parent().show();
     //$('#cbo-caso').parent().parent().show();
     $('#exampleModalLabel').html('REGISTRAR COMPOSICIÓN');
-    changeControl();
 }
 
 var limpiarFormulario = () => {
     $('#frm').removeData();
+    $("#columnas-detalle").html('');
     //$('#rad-incrementable').prop('checked', false);
     $('#cbo-criterio').val(0);
     $('#cbo-caso').val(0);
     $('#cbo-componente').val(0);
+    $('#cbo-tipo-control').val(1);
+    changeControl();
 }
 
 var consultarListas = () => {
@@ -311,7 +365,7 @@ var changeCriterio = () => {
             }).join('');;
         }
         $('#cbo-caso').html(`<option value="0">-seleccione-</option>${contenido}`);
-        if (idCaso > 0) { $('#cbo-caso').val(idCaso); idCaso = 0; }
+        if (idCaso > 0) { $('#cbo-caso').val(idCaso); idCaso = 0; changeCaso();}
     });
 }
 

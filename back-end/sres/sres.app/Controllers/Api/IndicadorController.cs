@@ -26,5 +26,12 @@ namespace sres.app.Controllers.Api
         {
             return indLN.GuardarIndicador(entidad);
         }
+        [Route("obtenerindicador")]
+        [HttpGet]
+        public IndicadorBE ObtenerIndicador(int idcriterio, int idcaso, int idComponente)
+        {
+            return indLN.ObtenerIndicador(new IndicadorBE() { ID_CASO = idcaso, ID_CRITERIO = idcriterio, ID_COMPONENTE = idComponente });
+        }
+
     }
 }

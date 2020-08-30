@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sres.be", "sres.be\sres.be.csproj", "{7A5B8CD0-B340-4B43-8E1B-B536206992D4}"
 EndProject
@@ -12,8 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sres.ut", "sres.ut\sres.ut.csproj", "{BE003476-6364-45C9-9F5E-C199F6153859}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sres.app", "sres.app\sres.app.csproj", "{357FD8C1-D418-429A-AD82-B0C41A39DF2B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sres.app.test", "sres.app.test\sres.app.test.csproj", "{1B00FAA5-5F61-4332-933C-929EF3BF3E0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{357FD8C1-D418-429A-AD82-B0C41A39DF2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{357FD8C1-D418-429A-AD82-B0C41A39DF2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{357FD8C1-D418-429A-AD82-B0C41A39DF2B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B00FAA5-5F61-4332-933C-929EF3BF3E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B00FAA5-5F61-4332-933C-929EF3BF3E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B00FAA5-5F61-4332-933C-929EF3BF3E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B00FAA5-5F61-4332-933C-929EF3BF3E0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
