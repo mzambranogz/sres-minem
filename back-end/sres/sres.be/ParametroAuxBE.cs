@@ -13,5 +13,6 @@ namespace sres.be
         public string ID_DELETE_DETALLE { get; set; }
         public string TIPO_CONTROL { get; set; }
         public string FORMULA { get; set; }
+        public string FORMULA_ARMADO { get; set; }
     }
 }

@@ -52,5 +52,17 @@ namespace sres.ln
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return seGuardo;
         }
+
+        public IndicadorBE ObtenerIndicador(IndicadorBE entidad)
+        {
+            IndicadorBE item = new IndicadorBE();
+            try
+            {
+                cn.Open();
+                item.LISTA_PARAM = indDA.ListarParametro(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return item;
+        }
     }
 }
