@@ -139,7 +139,9 @@
                                     <div class="form-group">
                                         <label class="estilo-01" for="txt-pswd">Contraseña</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Su contraseña debe incluir 6 caracteres como mínimo, 1 minúscula, 1 mayúscula, 1 número y 1 caracter especial (!@("@")#$&amp;*)."></i></span>
                                         <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-key"></i></span></div><input class="form-control estilo-01" type="password" name="txt-pswd" id="txt-pswd" readonly placeholder="Ingrese se contraseña" pattern="(?=.*\d)(?=.*[!@("@")#$&*])(?=.*[a-z])(?=.*[A-Z]).{6,}" autocomplete="new-password" required>
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-key"></i></span></div>
+                                            @*<input class="form-control estilo-01" type="password" name="txt-pswd" id="txt-pswd" readonly placeholder="Ingrese se contraseña" pattern="(?=.*\d)(?=.*[!@("@")#$&*])(?=.*[a-z])(?=.*[A-Z]).{6,}" autocomplete="new-password" required>*@
+                                            <input class="form-control estilo-01" type="password" name="txt-pswd" id="txt-pswd" readonly placeholder="Ingrese se contraseña" autocomplete="new-password" required>
                                             <div class="input-group-append">
                                                 <label class="input-group-text cursor-pointer ver-clave"><i class="fas fa-eye mr-1"></i>Mostrar</label>
                                             </div>

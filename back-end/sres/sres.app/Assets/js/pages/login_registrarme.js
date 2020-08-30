@@ -25,7 +25,17 @@ var inicializar = () => {
 var consultarInstitucion = () => {
     let rucInstitucion = $('#txt-ruc').val().trim();
 
-    if (rucInstitucion == "") return;
+    let message = [];
+
+    if (rucInstitucion == "") message.push("Debe ingresar Ruc para realizar la consulta");
+    else{
+        if(!(new RegExp(/[0-9]{11}/).test(rucInstitucion))) message.push("El Ruc debe tener caracteres numéricos");
+        if(!(rucInstitucion.startsWith("10") || rucInstitucion.startsWith("20"))) message.push("El Ruc debe empezar con 10 o 20");
+    }
+    if(message.length > 0){
+        $('form > .row:nth(0)').alert({ type: 'danger', title: 'Error', message: message.join("<br>") });
+        return;
+    }
 
     let urlObtenerInstitucionRuc = `${baseUrl}api/institucion/obtenerinstitucionporruc?ruc=${rucInstitucion}`;
 
@@ -273,8 +283,6 @@ var registrarUsuario = () => {
 
     let message = [];
 
-    if(!(new RegExp(/[0-9]/g).test(rucInstitucion.trim()))) message.push("El Ruc debe tener caracteres numéricos");
-    if(!(rucInstitucion.trim().startsWith("10") || rucInstitucion.trim().startsWith("20"))) message.push("El Ruc debe empezar con 10 o 20");
     if(!(new RegExp(/(?=.*\d)(?=.*[!@#$&*])(?=.*[a-z])(?=.*[A-Z]).{6,}/g).test(contraseña))) message.push("La contraseña debe contener minúscula(s), mayúscula(s), número(s) y caracter(es) especial(es) [!@#$&*]");
     if(contraseña.length < 6) message.push("La contraseña debe contener 6 o más caracteres por su seguridad");
     if(contraseña != reContraseña) message.push("Las contraseñas ingresadas no coinciden");
