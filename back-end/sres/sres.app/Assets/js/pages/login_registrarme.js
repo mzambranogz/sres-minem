@@ -283,8 +283,8 @@ var registrarUsuario = () => {
 
     let message = [];
 
-    if(!(new RegExp(/(?=.*\d)(?=.*[!@#$&*])(?=.*[a-z])(?=.*[A-Z]).{6,}/g).test(contraseña))) message.push("La contraseña debe contener minúscula(s), mayúscula(s), número(s) y caracter(es) especial(es) [!@#$&*]");
-    if(contraseña.length < 6) message.push("La contraseña debe contener 6 o más caracteres por su seguridad");
+    if(!(new RegExp(/(?=.*\d)(?=.*[!@#$&*])(?=.*[a-z])(?=.*[A-Z]).{6,}/).test(contraseña))) message.push("La contraseña debe contener minúscula(s), mayúscula(s), número(s) y caracter(es) especial(es) [!@#$&*] y debe tener mínimo 6 caracteres");
+    //if(contraseña.length < 6) message.push("La contraseña debe contener 6 o más caracteres por su seguridad");
     if(contraseña != reContraseña) message.push("Las contraseñas ingresadas no coinciden");
     if(!aceptarTerminosYCondiciones) message.push("Debe aceptar los términos y condiciones");
 
