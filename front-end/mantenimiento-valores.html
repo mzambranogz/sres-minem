@@ -747,6 +747,171 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="modal-valores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <form action="">
+            <div class="modal-header bg-sres-azul text-white">
+              <h5 class="modal-title estilo-01" id="exampleModalLabel">EDITAR VALORES</h5>
+              <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+          </form>
+          <div class="modal-body medidas-modal">
+            <div class="row">
+              <div class="col-12">
+                <div class="table-responsive tabla-principal">
+                  <table class="table table-sm table-hover">
+                    <thead class="estilo-06">
+                      <tr>
+                        <th scope="col" width="3%">
+                          <div class="d-flex flex-column justify-content-between align-items-start">
+                            <div class="d-flex justify-content-between align-items-center w-100">N°&nbsp;<i class="fas fa-sort"></i></div>
+                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda"></i></div>
+                          </div>
+                        </th>
+                        <th scope="col" width="auto">
+                          <div class="d-flex flex-column justify-content-between align-items-start">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                              <div class="pl-1">LISTA&nbsp;</div><i class="fas fa-sort"></i>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda"></i></div>
+                          </div>
+                        </th>
+                        <th scope="col" width="auto">
+                          <div class="d-flex flex-column justify-content-between align-items-start">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                              <div class="pl-1">TEXTO&nbsp;</div><i class="fas fa-sort"></i>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda"></i></div>
+                          </div>
+                        </th>
+                        <th scope="col" width="auto">
+                          <div class="d-flex flex-column justify-content-between align-items-start">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                              <div class="pl-1">PLACAS&nbsp;</div><i class="fas fa-sort"></i>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda"></i></div>
+                          </div>
+                        </th>
+                        <th scope="col" width="auto">
+                          <div class="d-flex flex-column justify-content-between align-items-start">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                              <div class="pl-1">FECHAS&nbsp;</div><i class="fas fa-sort"></i>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda"></i></div>
+                          </div>
+                        </th>
+                        <th scope="col" width="auto">
+                          <div class="d-flex flex-column justify-content-between align-items-start">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                              <div class="pl-1">COLUMNA_X&nbsp;</div><i class="fas fa-sort"></i>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda"></i></div>
+                          </div>
+                        </th>
+                        <th scope="col" width="5%">
+                          <div class="d-flex flex-column justify-content-center align-items-center">
+                            <div class="btn btn-warning btn-sm estilo-01" type="button"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>
+                          </div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id="detalles-tr-1">
+                        <td class="text-center" data-encabezado="Número" scope="row">1</td>
+                        <td data-encabezado="Lista">
+                          <div class="form-group m-0">
+                            <select class="form-control form-control-sm" id="cbo-columna1-2">
+                              <option value="">Seleccionar</option>
+                              <option value="1">Valor 1</option>
+                              <option value="2">Valor 2</option>
+                              <option value="3">Valor 3</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td data-encabezado="Texto">
+                          <div class="form-group m-0">
+                            <input class="form-control form-control-sm" type="text" placeholder="Texto aquí" id="txt-columna2-2" data-validar="1">
+                          </div>
+                        </td>
+                        <td data-encabezado="Placas">
+                          <div class="form-group m-0">
+                            <input class="form-control form-control-sm" type="text" placeholder="Texto aquí" id="txt-columna3-2" value="5" data-validar="0">
+                          </div>
+                        </td>
+                        <td data-encabezado="Fecha">
+                          <div class="form-group m-0">
+                            <input class="form-control form-control-sm" type="date" placeholder="Texto aquí" id="txt-columna4-2">
+                          </div>
+                        </td>
+                        <td data-encabezado="Columna 05">
+                          <div class="form-group m-0">
+                            <select class="form-control form-control-sm" id="cbo-columna5-2">
+                              <option value="">Seleccionar</option>
+                              <option value="1">Valor 1</option>
+                              <option value="2">Valor 2</option>
+                              <option value="3">Valor 3</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Dato final">
+                          <div class="btn btn-info btn-sm estilo-01" type="button"><i class="fas fa-minus-circle mr-1"></i>Quitar</div>
+                        </td>
+                      </tr>
+                      <tr id="detalles-tr-2">
+                        <td class="text-center" data-encabezado="Número" scope="row">2</td>
+                        <td data-encabezado="Lista">
+                          <div class="form-group m-0">
+                            <select class="form-control form-control-sm" id="cbo-columna1-3">
+                              <option value="">Seleccionar</option>
+                              <option value="1">Valor 1</option>
+                              <option value="2">Valor 2</option>
+                              <option value="3">Valor 3</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td data-encabezado="Texto">
+                          <div class="form-group m-0">
+                            <input class="form-control form-control-sm" type="text" placeholder="Texto aquí" id="txt-columna2-3" data-validar="1">
+                          </div>
+                        </td>
+                        <td data-encabezado="Placas">
+                          <div class="form-group m-0">
+                            <input class="form-control form-control-sm" type="text" placeholder="Texto aquí" id="txt-columna3-3" value="5" data-validar="0">
+                          </div>
+                        </td>
+                        <td data-encabezado="Fecha">
+                          <div class="form-group m-0">
+                            <input class="form-control form-control-sm" type="date" placeholder="Texto aquí" id="txt-columna4-3">
+                          </div>
+                        </td>
+                        <td data-encabezado="Columna 05">
+                          <div class="form-group m-0">
+                            <select class="form-control form-control-sm" id="cbo-columna5-3">
+                              <option value="">Seleccionar</option>
+                              <option value="1">Valor 1</option>
+                              <option value="2">Valor 2</option>
+                              <option value="3">Valor 3</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Dato final">
+                          <div class="btn btn-info btn-sm estilo-01" type="button"><i class="fas fa-minus-circle mr-1"></i>Quitar</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" type="button">Guardar</button>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <footer class="container-fluid set-bg" data-setbg="./images/bg_footer.png">
       <div class="container">
         <div class="row"></div>
