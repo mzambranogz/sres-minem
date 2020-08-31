@@ -71,6 +71,7 @@
     <Compile Include="EstrellaTrabajadorCamaDA.cs" />
     <Compile Include="EtapaDA.cs" />
     <Compile Include="FactorDA.cs" />
+    <Compile Include="FactorValorDA.cs" />
     <Compile Include="FormulaParametroDA.cs" />
     <Compile Include="IndicadorDA.cs" />
     <Compile Include="IndicadorDataDA.cs" />

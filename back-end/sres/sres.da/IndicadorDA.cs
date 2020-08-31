@@ -112,5 +112,29 @@ namespace sres.da
             }
             return guardo;
         }
+
+        public bool GuardarFactores(IndicadorBE entidad, OracleConnection db, OracleTransaction ot = null)
+        {
+            bool guardo = false;
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_UPD_COMPONENTE_FACTORES";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_CASO", entidad.ID_CASO);
+                p.Add("PI_ID_COMPONENTE", entidad.ID_COMPONENTE);
+                p.Add("PI_ID_FACTORES", entidad.ID_FACTORES);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                guardo = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return guardo;
+        }
     }
 }

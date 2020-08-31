@@ -15,5 +15,6 @@ namespace sres.be
         public int ID_INSCRIPCION { get; set; }
         public string CASO { get; set; }
         public string CRITERIO { get; set; }
+        public List<FactorBE> LISTA_FAC_cOMP { get; set; }
     }
 }

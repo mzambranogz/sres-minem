@@ -24,7 +24,7 @@ namespace sres.ln
                 lista = indDA.ListarBusquedaIndicador(entidad, cn);
                 if (lista.Count > 0)
                     foreach (IndicadorBE p in lista)
-                            p.LISTA_PARAM = indDA.ListarParametro(p, cn);
+                        p.LISTA_PARAM = indDA.ListarParametro(p, cn);
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return lista;
@@ -44,6 +44,9 @@ namespace sres.ln
                     if (seGuardo)
                         if (!string.IsNullOrEmpty(entidad.ID_ACTIVO))
                             seGuardo = indDA.EliminarIndicador(entidad, cn);
+
+                    if (seGuardo)
+                        seGuardo = indDA.GuardarFactores(entidad, cn);
 
                     if (seGuardo) ot.Commit();
                     else ot.Rollback();

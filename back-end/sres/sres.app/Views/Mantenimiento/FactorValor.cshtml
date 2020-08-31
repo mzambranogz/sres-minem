@@ -1,0 +1,268 @@
+﻿@{
+    ViewBag.Titulo = "Mantenimiento Factor Valores";
+    ViewBag.SRESDescription = false;
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/mantenimiento_valorfactor.js")"></script>
+}
+
+<div class="container-fluid mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="estilo-05" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index","Inicio")">Inicio</a></li>
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("TablaMantenimiento","Mantenimiento")">Mantenimiento de Tablas</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Mantenimiento de Factor valores</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <h2 class="estilo-03 text-sres-azul">Mantenimiento de Factor valores</h2>
+            </div>
+            <div class="col-lg-3">
+                @*<span data-toggle="modal" data-target="#modal-mantenimiento">
+                        <div class="btn btn-sres-verde btn-lg w-100 mb-2" id="btnNuevo" data-toggle="tooltip" data-placement="top" title="Agregar un nuevo componente">Agregar componente</div>
+                    </span>*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="rayado wow fadeIn"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="form-group">
+                    <label class="estilo-01 text-sres-oscuro" for="txt-descripcion">DESCRIPCIÓN</label>
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="text" id="txt-descripcion" placeholder="Ingrese la descripción de su búsqueda" maxlength="60">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label class="estilo-01 text-sres-oscuro">&nbsp;</label>
+                    <div class="input-group">
+                        <button class="btn btn-primary w-100" id="btnConsultar">Consultar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive tabla-principal">
+                    <table class="table table-sm table-hover" id="tblPrincipal">
+                        <thead class="estilo-06">
+                            <tr>
+                                <th scope="col" width="3%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">N°&nbsp;@*<i class="fas fa-sort"></i>*@</div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Número de orden"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="8%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">CÓDIGO&nbsp;</div><i class="fas fa-sort columna-filtro" id="ID_COMPONENTE"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="código del criterio-caso"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="17%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">COMPONENTE&nbsp;</div><i class="fas fa-sort columna-filtro" id="COMPONENTE"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre del componente"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="17%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">CASO&nbsp;</div><i class="fas fa-sort columna-filtro" id="CASO"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Caso a la que pertenece el componente"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="17%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">CRITERIO&nbsp;</div><i class="fas fa-sort columna-filtro" id="CRITERIO"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Criterio a la que pertenece el caso"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="38%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">VALORES&nbsp;</div><i class="fas fa-sort"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Factores asociados al componente"></i></div>
+                                    </div>
+                                </th>
+                                @*<th scope="col" width="10%">
+                                        <div class="d-flex flex-column justify-content-between align-items-start">
+                                            <div class="d-flex justify-content-between align-items-center w-100">
+                                                <div class="pl-1">GESTIÓN&nbsp;</div>
+                                            </div>
+                                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Herramientas y opciones"></i></div>
+                                        </div>
+                                    </th>*@
+                            </tr>
+                        </thead>
+                        <tbody class="estilo-01"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-start align-items-center">
+                <div class="row">
+                    <div class="col-12"><strong>Resultado:&nbsp;</strong><span class="inicio-registros">1</span><span id="view-page-result">-<span class="fin-registros">1</span> de <span class="total-registros">1</span> registros</span></div>
+                </div>
+            </div>
+            <div id="viewPagination" class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-end align-items-center" style="display: none">
+                <div class="row">
+                    <div class="col-12">
+                        <strong>Registros por página&nbsp;</strong>
+                        <select id="catidad-rgistros">
+                            <option value="10" selected>10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>&nbsp;
+                        <span class="pagina">1</span> de <span class="total-paginas">75</span> páginas&nbsp;
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(1)"><i class="fas fa-angle-double-left"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(2)"><i class="fas fa-angle-left"></i></button>
+                            <input id="ir-pagina" class="ir-pagina" type="number" value="1" min="1">
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(3)"><i class="fas fa-angle-right"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(4)"><i class="fas fa-angle-double-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-valores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title estilo-01" id="exampleModalLabel">Edición de Valores <br><small class="text-muted">Agregue, edite o elimine los valores que corresponden a los factores asociados a su enfoque</small></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body medidas-modal">
+                <div class="row">
+                    <div class="col-12">
+                        <h6 class="font-weight-bold" id="titulo-factor">FACTOR</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive tabla-principal tabla-detalle-indicadores-1" data-order="tbl-1">
+                            <table class="table table-hover" id="tablaFactor" data-fila="0">
+                                <thead id="tablaCabeceraFactor" data-idfactor="0">
+                                    <tr class="bg-primary text-white">
+                                        <th class="text-center" scope="col"><span>N°&nbsp;</span></th>
+                                        <th scope="col"><span>Lista&nbsp;<i class="fas fa-question-circle text-white ayuda-tooltip" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda que describe el funcionamiento general del módulo [...]"></i></span></th>
+                                        <th scope="col"><span>Texto&nbsp;<i class="fas fa-question-circle text-white ayuda-tooltip" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda que describe el funcionamiento general del módulo [...]"></i></span></th>
+                                        <th scope="col"><span>Placas&nbsp;<i class="fas fa-question-circle text-white ayuda-tooltip" data-toggle="tooltip" data-placement="bottom" title="Ingrese sus placas"></i></span></th>
+                                        <th scope="col"><span>Fecha&nbsp;<i class="fas fa-question-circle text-white ayuda-tooltip" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda que describe el funcionamiento general del módulo [...]"></i></span></th>
+                                        <th scope="col"><span>Colum_05&nbsp;<i class="fas fa-question-circle text-white ayuda-tooltip" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda que describe el funcionamiento general del módulo [...]"></i></span></th>
+                                        <th class="text-center" scope="col">Más</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTablaFactor" data-delete="">
+                                    <tr id="detalles-tr-1">
+                                        <th class="text-center" data-encabezado="Número" scope="row">1</th>
+                                        <td data-encabezado="Lista">
+                                            <div class="form-group m-0">
+                                                <select class="form-control form-control-sm" id="cbo-columna1-2">
+                                                    <option value="">Seleccionar</option>
+                                                    <option value="1">Valor 1</option>
+                                                    <option value="2">Valor 2</option>
+                                                    <option value="3">Valor 3</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td data-encabezado="Texto">
+                                            <div class="form-group m-0">
+                                                <input class="form-control form-control-sm" type="text" placeholder="Texto aquí" id="txt-columna2-2" data-validar="1">
+                                            </div>
+                                        </td>
+                                        <td data-encabezado="Placas">
+                                            <div class="form-group m-0">
+                                                <input class="form-control form-control-sm" type="text" placeholder="Texto aquí" id="txt-columna3-2" value="5" data-validar="0">
+                                            </div>
+                                        </td>
+                                        <td data-encabezado="Fecha">
+                                            <div class="form-group m-0">
+                                                <input class="form-control form-control-sm" type="date" placeholder="Texto aquí" id="txt-columna4-2">
+                                            </div>
+                                        </td>
+                                        <td data-encabezado="Columna 05">
+                                            <div class="form-group m-0">
+                                                <select class="form-control form-control-sm" id="cbo-columna5-2">
+                                                    <option value="">Seleccionar</option>
+                                                    <option value="1">Valor 1</option>
+                                                    <option value="2">Valor 2</option>
+                                                    <option value="3">Valor 3</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td class="text-center text-xs-right" data-encabezado="Acciones">
+                                            <div class="btn-group">
+                                                <div class="acciones fase-01 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></div>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item agregarCampos" href="#">
+                                                        <i class="fas fa-plus-circle"></i>&nbsp;
+                                                        Agregar
+                                                    </a><a class="dropdown-item quitarCampos" href="#">
+                                                        <i class="fas fa-minus-circle"></i>&nbsp;
+                                                        Eliminar
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="alert-add"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-sm btn-info" type="button" id="btnGuardar">Si, grabar</button>
+                <button class="btn btn-sm btn-dark" type="button" id="btnCerrar" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Hidden("columna", "ID_COMPONENTE")
+@Html.Hidden("orden", "ASC")

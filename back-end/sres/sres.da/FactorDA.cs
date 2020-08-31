@@ -197,5 +197,23 @@ namespace sres.da
             }
             return lista;
         }
+
+        public List<FactorBE> listaFactorComponente(string id, OracleConnection db)
+        {
+            List<FactorBE> item = new List<FactorBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_GET_LISTA_FACTOR_COMP";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_FACTORES", id);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.Query<FactorBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return item;
+        }
     }
 }

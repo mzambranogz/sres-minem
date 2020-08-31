@@ -172,6 +172,7 @@ var cargarDatos = (data, e) => {
     $('#cbo-caso').prop('disabled', true);
     $('#cbo-componente').prop('disabled', true);
     $('#cbo-criterio').val($(e).attr('data-id').split('-')[0]);
+    factores = data.ID_FACTORES == null ? [] : data.ID_FACTORES == "" ? [] : data.ID_FACTORES.split('|');
     idCaso = $(e).attr('data-id').split('-')[1];
     idComponente = $(e).attr('data-id').split('-')[2];
     changeCriterio();
@@ -180,7 +181,6 @@ var cargarDatos = (data, e) => {
         if (data.LISTA_PARAM.length > 0) {
             data.LISTA_PARAM.map((x, y) => {
 
-                debugger;
                 let aLetras = new Array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j');
                 let cLetra = aLetras[Math.floor(Math.random() * aLetras.length)];
                 let campo = x.ID_PARAMETRO;
@@ -250,7 +250,7 @@ var guardar = () => {
         if ($(y).attr("data-enfoque") == 1) {
             formula = $(y).attr("data-resultado");
             formula_armado = $(y).attr("data-resultadobd").substring(0, $(y).attr("data-resultadobd").length - 1);
-            //formula_armado = formula_armado.substring(0, formula_armado.length - 1);
+            verificarFactor(formula);
             ins = 1;
         }
         
@@ -264,7 +264,8 @@ var guardar = () => {
             FORMULA_ARMADO: formula_armado,
             //COMPORTAMIENTO: '=',
             //VALOR_FORMULA: 0,
-            INS: ins
+            INS: ins,
+            USUARIO_GUARDAR: idUsuarioLogin
         }
         indicadores.push(itx);
         id_activo += $(y).find(".column-componente").attr("data-cm") + ",";
@@ -276,7 +277,9 @@ var guardar = () => {
         ID_CASO: caso,
         ID_COMPONENTE: componente,
         LISTA_IND: indicadores,        
-        ID_ACTIVO: id_activo
+        ID_ACTIVO: id_activo,
+        ID_FACTORES: factores.length == 0 ? '' : ordenar(factores),
+        USUARIO_GUARDAR: idUsuarioLogin
     };
     //==============================================================
     let url = `${baseUrl}api/indicador/guardarindicador`;
@@ -308,6 +311,7 @@ var nuevo = () => {
 var limpiarFormulario = () => {
     $('#frm').removeData();
     $("#columnas-detalle").html('');
+    factores = [];
     //$('#rad-incrementable').prop('checked', false);
     $('#cbo-criterio').val(0);
     $('#cbo-caso').val(0);
@@ -413,4 +417,24 @@ var agregarColumna = () => {
     let add = `<i class="fas fa-square-root-alt cursor-pointer ml-2 mt-2 enfoque-columna-detalle" data-toggle="tooltip"  data-placement="top" title="" data-original-title="Añadir fórmula"></i>`;
     let content = `<div id="mrv-${control}${campo}${num}${cLetra}" class="list-group-item sortable-item recorrer grupo-columna-03" data-enfoque="" data-resultado="" draggable="false">${icono}${small}${inputCom}${delet}${add}</div>`;
     $("#columnas-detalle").append(content);
+}
+
+var verificarFactor = (f) => {
+    if (f == '') return;
+    let arr = f.split('['), arrfactor = [];
+    $.each(arr, (x,y) => {
+        if (y.substring(0,1) == 'F') arrfactor.push(y.substring(1,y.indexOf(']')));
+    });    
+    if (factores.length == 0) factores = arrfactor;
+    else {
+        $.each(arrfactor, (x,y) => {
+            factores.indexOf(y) == -1 ? factores.push(y) : '';
+        });
+    }
+}
+
+var ordenar = (factores) => {
+    debugger;
+    factores = factores.sort((x, y) => x - y );
+    return factores.join('|');
 }

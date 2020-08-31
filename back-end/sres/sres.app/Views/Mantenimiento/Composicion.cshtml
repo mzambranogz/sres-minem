@@ -178,8 +178,7 @@
                                 <label for="cbo-criterio">Criterio<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione un criterio"></i></label>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text" id="inputGroup10"><i class="fas fa-tachometer-alt"></i></span></div>
-                                    <select class="form-control" id="cbo-criterio" aria-describedby="inputGroup10" required>
-                                    </select>
+                                    <select class="form-control" id="cbo-criterio" aria-describedby="inputGroup10" required></select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -205,28 +204,28 @@
                             <div class="form-group">
                                 <label for="cbo-tipo-control">Controles para los detalles (Columnas)<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione uno de los controles asociados para componer las columnas"></i></label>
                                 @*<div class="input-group">
-                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-wrench"></i></span></div>
-                                    <div class="form-control" style="height:124px; overflow-y: auto;">
-                                        <div class="col-auto my-1">
-                                            <div class="custom-control custom-radio mr-sm-2">
-                                                <input class="custom-control-input" type="radio" name="rad-controles" id="rad-controles-01" value="cbo" checked>
-                                                <label class="custom-control-label badge" for="rad-controles-01">Listas de selección</label>
+                                        <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-wrench"></i></span></div>
+                                        <div class="form-control" style="height:124px; overflow-y: auto;">
+                                            <div class="col-auto my-1">
+                                                <div class="custom-control custom-radio mr-sm-2">
+                                                    <input class="custom-control-input" type="radio" name="rad-controles" id="rad-controles-01" value="cbo" checked>
+                                                    <label class="custom-control-label badge" for="rad-controles-01">Listas de selección</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto my-1">
+                                                <div class="custom-control custom-radio mr-sm-2">
+                                                    <input class="custom-control-input" type="radio" name="rad-controles" id="rad-controles-02" value="txt">
+                                                    <label class="custom-control-label badge" for="rad-controles-02">Cajas de texto</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto my-1">
+                                                <div class="custom-control custom-radio mr-sm-2">
+                                                    <input class="custom-control-input" type="radio" name="rad-controles" id="rad-controles-03" value="fch">
+                                                    <label class="custom-control-label badge" for="rad-controles-03">Cajas de fechas</label>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-auto my-1">
-                                            <div class="custom-control custom-radio mr-sm-2">
-                                                <input class="custom-control-input" type="radio" name="rad-controles" id="rad-controles-02" value="txt">
-                                                <label class="custom-control-label badge" for="rad-controles-02">Cajas de texto</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto my-1">
-                                            <div class="custom-control custom-radio mr-sm-2">
-                                                <input class="custom-control-input" type="radio" name="rad-controles" id="rad-controles-03" value="fch">
-                                                <label class="custom-control-label badge" for="rad-controles-03">Cajas de fechas</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>*@
+                                    </div>*@
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text" id="inputGroup10"><i class="fas fa-list"></i></span></div>
                                     <select class="form-control" id="cbo-tipo-control" aria-describedby="inputGroup10" required>
@@ -236,27 +235,26 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">                                
+                            <div class="row">
                                 @*<div class="col-md-12 col-lg-6">&nbsp;
-                                    <div class="form-group">
-                                        <label for="cbo-grupo">Grupo de indicador<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione o asigne un grupo indicador para identificar la columna en los detalles de indicadores"></i></label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text" id="inputGroup10"><i class="fas fa-list"></i></span></div>
-                                            <select class="form-control" id="cbo-grupo" aria-describedby="inputGroup10" required>
-                                                <option class="grupo-columna-01">Grupo iniciativa</option>
-                                                <option class="grupo-columna-02">Grupo línea base</option>
-                                                <option class="grupo-columna-03">Grupo emisiones reducidas</option>
-                                            </select>
+                                        <div class="form-group">
+                                            <label for="cbo-grupo">Grupo de indicador<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione o asigne un grupo indicador para identificar la columna en los detalles de indicadores"></i></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text" id="inputGroup10"><i class="fas fa-list"></i></span></div>
+                                                <select class="form-control" id="cbo-grupo" aria-describedby="inputGroup10" required>
+                                                    <option class="grupo-columna-01">Grupo iniciativa</option>
+                                                    <option class="grupo-columna-02">Grupo línea base</option>
+                                                    <option class="grupo-columna-03">Grupo emisiones reducidas</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>*@
+                                    </div>*@
                                 <div class="col-md-12 col-lg-12">
                                     <div class="form-group">
                                         <label for="cbo-campo">Campo asignado<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione un campo según el control seleccionado anterioremente"></i></label>
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text" id="inputGroup10"><i class="fas fa-list"></i></span></div>
-                                            <select class="form-control" id="cbo-campo" aria-describedby="inputGroup10" required>
-                                            </select>
+                                            <select class="form-control" id="cbo-campo" aria-describedby="inputGroup10" required></select>
                                         </div>
                                     </div>
                                 </div>
@@ -288,10 +286,10 @@
                                                 <div class="input-group-prepend"><span class="input-group-text font-weight-bold bg-info text-white">F</span></div>
                                                 <select class="form-control" id="cbo-factores" required>
                                                     @*<option value="0" selected>[ - Seleccione - ]</option>
-                                                    <option value="F1">Factor 1</option>
-                                                    <option value="F2">Factor 2</option>
-                                                    <option value="F3">Factor 3</option>
-                                                    <option value="F4">Factor 4</option>*@
+                                                        <option value="F1">Factor 1</option>
+                                                        <option value="F2">Factor 2</option>
+                                                        <option value="F3">Factor 3</option>
+                                                        <option value="F4">Factor 4</option>*@
                                                 </select>
                                             </div>
                                         </div><a class="btn btn-success w-100" id="add-factor" href="#" data-value="[0]"><i class="fas fa-plus px-1"></i>Agregar</a>
@@ -303,29 +301,29 @@
                                                 <div class="input-group-prepend"><span class="input-group-text font-weight-bold bg-primary text-white">P</span></div>
                                                 <select class="form-control" id="cbo-parametros" required>
                                                     @*<option value="0" selected>[ - Seleccione - ]</option>
-                                                    <option value="P1">Parámetro 1</option>
-                                                    <option value="P2">Parámetro 2</option>
-                                                    <option value="P3">Parámetro 3</option>
-                                                    <option value="P4">Parámetro 4</option>*@
+                                                        <option value="P1">Parámetro 1</option>
+                                                        <option value="P2">Parámetro 2</option>
+                                                        <option value="P3">Parámetro 3</option>
+                                                        <option value="P4">Parámetro 4</option>*@
                                                 </select>
                                             </div>
                                         </div><a class="btn btn-success w-100" id="add-parametro" href="#" data-value="[0]"><i class="fas fa-plus px-1"></i>Agregar</a>
                                     </div>
                                     @*<div class="col-sm-12 col-md-2">
-                                        <div class="form-group">
-                                            <label for="cbo-variables">Variables<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione una variable para utilizarlo en la composición de su enfoque"></i></label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text font-weight-bold bg-success text-white">V</span></div>
-                                                <select class="form-control" id="cbo-variables" required>
-                                                    <option value="0" selected>[ - Seleccione - ]</option>
-                                                    <option value="V1">Variable 1</option>
-                                                    <option value="V2">Variable 2</option>
-                                                    <option value="V3">Variable 3</option>
-                                                    <option value="V4">Variable 4</option>
-                                                </select>
-                                            </div>
-                                        </div><a class="btn btn-success w-100" id="add-variable" href="#" data-value="[0]"><i class="fas fa-plus px-1"></i>Agregar</a>
-                                    </div>*@
+                                            <div class="form-group">
+                                                <label for="cbo-variables">Variables<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione una variable para utilizarlo en la composición de su enfoque"></i></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend"><span class="input-group-text font-weight-bold bg-success text-white">V</span></div>
+                                                    <select class="form-control" id="cbo-variables" required>
+                                                        <option value="0" selected>[ - Seleccione - ]</option>
+                                                        <option value="V1">Variable 1</option>
+                                                        <option value="V2">Variable 2</option>
+                                                        <option value="V3">Variable 3</option>
+                                                        <option value="V4">Variable 4</option>
+                                                    </select>
+                                                </div>
+                                            </div><a class="btn btn-success w-100" id="add-variable" href="#" data-value="[0]"><i class="fas fa-plus px-1"></i>Agregar</a>
+                                        </div>*@
                                     <div class="col-sm-12 col-md-2">
                                         <div class="form-group">
                                             <label for="txt-constante">Constante<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span><i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Ingrese un valor constante para utilizarlo en la composición"></i></label>
@@ -390,10 +388,12 @@
     </div>
 </div>
 
-<script>    
+<script>
+
     var idCaso = 0;
     var idComponente = 0;
     var idEliminar = '';
+    var factores = [];
 </script>
 
 @Html.Hidden("columna", "ID_COMPONENTE")

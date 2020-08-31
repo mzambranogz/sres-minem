@@ -13,5 +13,6 @@ namespace sres.be
         public int ID_COMPONENTE { get; set; }
         public string NOMBRE { get; set; }
         public string INCREMENTABLE { get; set; }
+        public string ID_FACTORES { get; set; }
     }
 }
