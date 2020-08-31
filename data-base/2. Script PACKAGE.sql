@@ -1276,6 +1276,29 @@ CREATE OR REPLACE PACKAGE SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     PI_ID_COMPONENTE NUMBER,
     PO_REF OUT SYS_REFCURSOR
   );
+
+  PROCEDURE USP_UPD_COMPONENTE_FACTORES(
+      PI_ID_CRITERIO IN NUMBER,
+      PI_ID_CASO IN NUMBER,
+      PI_ID_COMPONENTE IN NUMBER,
+      PI_ID_FACTORES IN VARCHAR2,
+      PO_ROWAFFECTED OUT NUMBER,
+      PI_USUARIO_GUARDAR NUMBER
+  );
+
+  PROCEDURE USP_SEL_LISTA_BUSQ_VAL_FACTOR(
+    PI_BUSCAR VARCHAR2,
+    PI_REGISTROS NUMBER,
+    PI_PAGINA NUMBER,
+    PI_COLUMNA VARCHAR2,
+    PI_ORDEN VARCHAR2,
+    PO_REF OUT SYS_REFCURSOR
+  );
+  
+  PROCEDURE USP_GET_LISTA_FACTOR_COMP(
+    PI_ID_FACTORES VARCHAR2,
+    PO_REF OUT SYS_REFCURSOR
+  );
 END PKG_SISSELLO_MANTENIMIENTO;
 
 /
@@ -5692,6 +5715,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                                 CR.NOMBRE CRITERIO,
                                 CS.NOMBRE CASO,
                                 CM.NOMBRE COMPONENTE,
+				CM.ID_FACTORES,
                                 IND.ID_CRITERIO || '''' || IND.ID_CASO || '''' || IND.ID_COMPONENTE,
                                 ROW_NUMBER() OVER (ORDER BY ' || vCOLUMNA || ' ' || PI_ORDEN ||') AS ROWNUMBER,'
                                 || vPAGINA_TOTAL || ' AS TOTAL_PAGINAS,'
@@ -5706,7 +5730,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                         (LOWER(TRANSLATE(CM.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
                         LOWER(TRANSLATE(CS.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
                         LOWER(TRANSLATE(CR.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'')
-                        GROUP BY IND.ID_CRITERIO, IND.ID_CASO, IND.ID_COMPONENTE, CR.NOMBRE, CS.NOMBRE , CM.NOMBRE, IND.ID_CRITERIO || '''' || IND.ID_CASO || '''' || IND.ID_COMPONENTE
+                        GROUP BY IND.ID_CRITERIO, IND.ID_CASO, IND.ID_COMPONENTE, CR.NOMBRE, CS.NOMBRE , CM.NOMBRE, IND.ID_CRITERIO || '''' || IND.ID_CASO || '''' || IND.ID_COMPONENTE, CM.ID_FACTORES
                         )
                     WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
     
@@ -5731,6 +5755,113 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     WHERE IND.ID_CRITERIO = PI_ID_CRITERIO AND IND.ID_CASO = PI_ID_CASO AND IND.ID_COMPONENTE = PI_ID_COMPONENTE AND IND.FLAG_ESTADO = '1'
     ORDER BY IND.ORDEN ASC;
   END USP_SEL_GET_PARAM_INDICADOR;
+
+  PROCEDURE USP_UPD_COMPONENTE_FACTORES(
+      PI_ID_CRITERIO IN NUMBER,
+      PI_ID_CASO IN NUMBER,
+      PI_ID_COMPONENTE IN NUMBER,
+      PI_ID_FACTORES IN VARCHAR2,
+      PO_ROWAFFECTED OUT NUMBER,
+      PI_USUARIO_GUARDAR NUMBER
+  ) AS
+  BEGIN
+      UPDATE  T_GENM_COMPONENTE SET
+      ID_FACTORES = PI_ID_FACTORES,
+      UPD_USUARIO = PI_USUARIO_GUARDAR,
+      UPD_FECHA = SYSDATE
+      WHERE ID_CRITERIO = PI_ID_CRITERIO AND ID_CASO = PI_ID_CASO AND ID_COMPONENTE = PI_ID_COMPONENTE;
+      PO_ROWAFFECTED := SQL%ROWCOUNT;
+  END USP_UPD_COMPONENTE_FACTORES;
+
+  PROCEDURE USP_SEL_LISTA_BUSQ_VAL_FACTOR(
+    PI_BUSCAR VARCHAR2,
+    PI_REGISTROS NUMBER,
+    PI_PAGINA NUMBER,
+    PI_COLUMNA VARCHAR2,
+    PI_ORDEN VARCHAR2,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS    
+    vTOTAL_REG INTEGER;
+    vPAGINA_TOTAL INTEGER;
+    vPAGINA_ACTUAL INTEGER := PI_PAGINA;
+    vPAGINA_INICIAL INTEGER := 0;
+    vQUERY_CONT VARCHAR2(10000) := '';
+    vQUERY_SELECT VARCHAR2(10000) := '';
+    vCOLUMNA VARCHAR2(200);
+  BEGIN
+    vQUERY_CONT := 'SELECT  COUNT(1)
+                    FROM T_GENM_COMPONENTE CM
+                    INNER JOIN T_GENM_CASO C ON CM.ID_CASO = C.ID_CASO AND CM.ID_CRITERIO = C.ID_CRITERIO
+                    INNER JOIN T_GENM_CRITERIO CR ON C.ID_CRITERIO = CR.ID_CRITERIO
+                    WHERE 
+                    (LOWER(TRANSLATE(CM.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(C.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(CR.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'') AND
+                    CM.ID_FACTORES IS NOT NULL AND CM.FLAG_ESTADO = ''1''';
+    EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
+    
+    vPAGINA_TOTAL := CEIL(TO_NUMBER(vTOTAL_REG) / TO_NUMBER(PI_REGISTROS));
+    IF vPAGINA_ACTUAL = 0 THEN
+      vPAGINA_ACTUAL := 1;
+    END IF;
+    IF vPAGINA_ACTUAL > vPAGINA_TOTAL THEN
+      vPAGINA_ACTUAL := vPAGINA_TOTAL;
+    END IF;
+
+    vPAGINA_INICIAL := vPAGINA_ACTUAL - 1;
+    
+    IF PI_COLUMNA = 'ID_COMPONENTE' THEN
+      vCOLUMNA := 'CM.ID_CRITERIO || '''' || CM.ID_CASO || '''' || CM.ID_COMPONENTE';
+    ELSIF PI_COLUMNA = 'COMPONENTE' THEN
+      vCOLUMNA := 'CM.NOMBRE';
+    ELSIF PI_COLUMNA = 'CASO' THEN
+      vCOLUMNA := 'C.NOMBRE';
+    ELSIF PI_COLUMNA = 'CRITERIO' THEN
+      vCOLUMNA := 'CR.NOMBRE';
+    ELSE
+      vCOLUMNA := PI_COLUMNA;
+    END IF;
+    
+    vQUERY_SELECT := 'SELECT * FROM 
+                        (
+                        SELECT  CM.ID_COMPONENTE,
+                                CM.ID_CASO,
+                                CM.ID_CRITERIO,
+                                CM.INCREMENTABLE,
+                                CM.ID_CRITERIO || '''' || CM.ID_CASO || '''' || CM.ID_COMPONENTE,
+                                CM.NOMBRE,
+                                CM.ID_FACTORES,
+                                ''CASO-'' || C.ID_CASO || ''-'' || C.NOMBRE CASO,
+                                ''CRI-'' || CR.ID_CRITERIO || ''-'' || CR.NOMBRE CRITERIO,
+                                ROW_NUMBER() OVER (ORDER BY ' || vCOLUMNA || ' ' || PI_ORDEN ||') AS ROWNUMBER,'
+                                || vPAGINA_TOTAL || ' AS TOTAL_PAGINAS,'
+                                || vPAGINA_ACTUAL || ' AS PAGINA,'
+                                || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
+                                || vTOTAL_REG || ' AS TOTAL_REGISTROS
+                        FROM T_GENM_COMPONENTE CM
+                        INNER JOIN T_GENM_CASO C ON CM.ID_CASO = C.ID_CASO AND CM.ID_CRITERIO = C.ID_CRITERIO
+                        INNER JOIN T_GENM_CRITERIO CR ON C.ID_CRITERIO = CR.ID_CRITERIO
+                        WHERE 
+                        (LOWER(TRANSLATE(CM.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(C.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(CR.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'') AND
+                        CM.ID_FACTORES IS NOT NULL AND CM.FLAG_ESTADO = ''1''
+                        )
+                    WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
+    
+    OPEN PO_REF FOR vQUERY_SELECT;
+  END USP_SEL_LISTA_BUSQ_VAL_FACTOR;
+  
+  PROCEDURE USP_GET_LISTA_FACTOR_COMP(
+      PI_ID_FACTORES VARCHAR2,
+      PO_REF OUT SYS_REFCURSOR
+  ) 
+  AS
+      vQUERY_SELECT VARCHAR2(4000);
+  BEGIN
+    vQUERY_SELECT := 'SELECT * FROM T_MAEM_FACTOR WHERE ID_FACTOR IN (' || PI_ID_FACTORES ||') AND FLAG_ESTADO = ''1''';    
+    OPEN PO_REF FOR vQUERY_SELECT;
+  END USP_GET_LISTA_FACTOR_COMP;
 END PKG_SISSELLO_MANTENIMIENTO;
 
 /
