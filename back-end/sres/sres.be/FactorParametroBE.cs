@@ -15,5 +15,6 @@ namespace sres.be
         public int ORDEN { get; set; }
         public int NUMERO_PARAMETROS { get; set; }
         public string FLAG_ESTADO { get; set; }
+        public List<ParametroDetalleBE> LIST_PARAMDET { get; set; }
     }
 }

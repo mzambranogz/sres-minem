@@ -21,5 +21,18 @@ namespace sres.app.Controllers.Api
         {
             return factorLN.ListaBusquedaComponenteFactor(new ComponenteBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda == null ? "" : busqueda });
         }
+
+        [Route("obtenerfactorvalor")]
+        [HttpGet]
+        public FactorBE ObtenerFactorValor(int id)
+        {
+            return factorLN.getFactorValor(new FactorBE() { ID_FACTOR = id});
+        }
+
+        [Route("guardarfactorvalor")]
+        public bool GuardarFactorValor(FactorBE entidad)
+        {
+            return factorLN.GuardarFactorValor(entidad);
+        }
     }
 }

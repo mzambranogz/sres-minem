@@ -434,7 +434,6 @@ var verificarFactor = (f) => {
 }
 
 var ordenar = (factores) => {
-    debugger;
     factores = factores.sort((x, y) => x - y );
     return factores.join('|');
 }

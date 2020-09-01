@@ -39,5 +39,69 @@ namespace sres.da
 
             return lista;
         }
+
+        public List<FactorDataBE> getFactorValor(FactorBE f, OracleConnection db)
+        {
+            List<FactorDataBE> item = new List<FactorDataBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_GET_LISTA_FACTOR_VALOR";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_FACTOR", f.ID_FACTOR);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.Query<FactorDataBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return item;
+        }
+
+        public FactorDataBE GuardarFactorValor(FactorDataBE entidad, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_PRC_MAN_FACTOR_DATA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_FACTOR", entidad.ID_FACTOR);
+                p.Add("PI_ID_DETALLE", entidad.ID_DETALLE);
+                p.Add("PI_ID_PARAMETROS", entidad.ID_PARAMETROS);
+                p.Add("PI_VALORES", entidad.VALORES);
+                p.Add("PI_FACTOR", entidad.FACTOR);
+                p.Add("PI_UNIDAD", entidad.UNIDAD);
+                p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad;
+        }
+
+        public bool DeleteFactorData(int idFactor, int usu, OracleConnection db, OracleTransaction ot = null)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_DEL_FACTOR_DATA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_FACTOR", idFactor);
+                p.Add("PI_USUARIO_GUARDAR", usu);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                seGuardo = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return seGuardo;
+        }
     }
 }

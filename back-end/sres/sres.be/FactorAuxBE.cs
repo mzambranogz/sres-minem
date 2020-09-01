@@ -9,5 +9,6 @@ namespace sres.be
     public partial class FactorBE
     {
         public List<FactorParametroBE> LISTA_PARAM_FACTOR { get; set; }
+        public List<FactorDataBE> LISTA_FAC_DATA { get; set; }
     }
 }

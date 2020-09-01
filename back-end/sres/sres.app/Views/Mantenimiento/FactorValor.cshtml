@@ -165,12 +165,14 @@
 </div>
 
 <div class="modal fade" id="modal-valores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title estilo-01" id="exampleModalLabel">Edición de Valores <br><small class="text-muted">Agregue, edite o elimine los valores que corresponden a los factores asociados a su enfoque</small></h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
+            <form action="">
+                <div class="modal-header bg-sres-azul text-white">
+                    <h5 class="modal-title estilo-01" id="exampleModalLabel">AGREGAR VALORES</h5>
+                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+            </form>
             <div class="modal-body medidas-modal">
                 <div class="row">
                     <div class="col-12">
@@ -179,22 +181,13 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div class="table-responsive tabla-principal tabla-detalle-indicadores-1" data-order="tbl-1">
-                            <table class="table table-hover" id="tablaFactor" data-fila="0">
-                                <thead id="tablaCabeceraFactor" data-idfactor="0">
-                                    <tr class="bg-primary text-white">
-                                        <th class="text-center" scope="col"><span>N°&nbsp;</span></th>
-                                        <th scope="col"><span>Lista&nbsp;<i class="fas fa-question-circle text-white ayuda-tooltip" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda que describe el funcionamiento general del módulo [...]"></i></span></th>
-                                        <th scope="col"><span>Texto&nbsp;<i class="fas fa-question-circle text-white ayuda-tooltip" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda que describe el funcionamiento general del módulo [...]"></i></span></th>
-                                        <th scope="col"><span>Placas&nbsp;<i class="fas fa-question-circle text-white ayuda-tooltip" data-toggle="tooltip" data-placement="bottom" title="Ingrese sus placas"></i></span></th>
-                                        <th scope="col"><span>Fecha&nbsp;<i class="fas fa-question-circle text-white ayuda-tooltip" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda que describe el funcionamiento general del módulo [...]"></i></span></th>
-                                        <th scope="col"><span>Colum_05&nbsp;<i class="fas fa-question-circle text-white ayuda-tooltip" data-toggle="tooltip" data-placement="bottom" title="Texto de ayuda que describe el funcionamiento general del módulo [...]"></i></span></th>
-                                        <th class="text-center" scope="col">Más</th>
-                                    </tr>
+                        <div class="table-responsive tabla-principal">
+                            <table class="table table-sm table-hover" id="tbl-factor" data-eliminar="">
+                                <thead class="estilo-06" id="head-factor">
                                 </thead>
-                                <tbody id="cuerpoTablaFactor" data-delete="">
+                                <tbody id="body-factor">
                                     <tr id="detalles-tr-1">
-                                        <th class="text-center" data-encabezado="Número" scope="row">1</th>
+                                        <td class="text-center" data-encabezado="Número" scope="row">1</td>
                                         <td data-encabezado="Lista">
                                             <div class="form-group m-0">
                                                 <select class="form-control form-control-sm" id="cbo-columna1-2">
@@ -230,19 +223,8 @@
                                                 </select>
                                             </div>
                                         </td>
-                                        <td class="text-center text-xs-right" data-encabezado="Acciones">
-                                            <div class="btn-group">
-                                                <div class="acciones fase-01 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></div>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item agregarCampos" href="#">
-                                                        <i class="fas fa-plus-circle"></i>&nbsp;
-                                                        Agregar
-                                                    </a><a class="dropdown-item quitarCampos" href="#">
-                                                        <i class="fas fa-minus-circle"></i>&nbsp;
-                                                        Eliminar
-                                                    </a>
-                                                </div>
-                                            </div>
+                                        <td class="text-center" data-encabezado="Dato final">
+                                            <div class="btn btn-info btn-sm estilo-01" type="button"><i class="fas fa-minus-circle mr-1"></i>Quitar</div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -263,6 +245,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    var addFila = '';
+</script>
 
 @Html.Hidden("columna", "ID_COMPONENTE")
 @Html.Hidden("orden", "ASC")

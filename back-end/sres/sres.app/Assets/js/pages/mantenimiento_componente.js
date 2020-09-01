@@ -172,7 +172,6 @@ var consultarDatos = (element) => {
 }
 
 var cargarDatos = (data) => {
-    debugger;
     $('#frm').data('id', data.ID_COMPONENTE);
     $('#txt-nombre').val(data.NOMBRE);
     $('#rad-incrementable').prop('checked', data.INCREMENTABLE == '1' ? true : false);
