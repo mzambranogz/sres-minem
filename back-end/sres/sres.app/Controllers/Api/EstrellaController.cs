@@ -16,11 +16,39 @@ namespace sres.app.Controllers.Api
     {
         EstrellaLN estrellaLN = new EstrellaLN();
 
+        [Route("buscarestrella")]
+        [HttpGet]
+        public List<EstrellaBE> BuscarEstrella(string busqueda, int registros, int pagina, string columna, string orden)
+        {
+            return estrellaLN.ListaBusquedaEstrella(new EstrellaBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda == null ? "" : busqueda });
+        }
+
+        [Route("guardarestrella")]
+        public bool GuardarEstrella(EstrellaBE entidad)
+        {
+            return estrellaLN.GuardarEstrella(entidad).OK;
+        }
+
         [Route("obtenerallestrella")]
         [HttpGet]
-        public List<EstrellaBE> BuscarUsuario()
+        public List<EstrellaBE> BuscarAllEstrella()
         {
             return estrellaLN.listarEstrellas();
+        }
+
+        [Route("obtenerestrella")]
+        [HttpGet]
+        public EstrellaBE ObtenerEstrella(int id)
+        {
+            return estrellaLN.getEstrella(new EstrellaBE() { ID_ESTRELLA = id });
+        }
+
+        [Route("cambiarestadoestrella")]
+        [HttpPost]
+        public bool EliminarEstrella(EstrellaBE obj)
+        {
+            EstrellaBE c = estrellaLN.EliminarEstrella(obj);
+            return c.OK;
         }
 
     }

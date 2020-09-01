@@ -27,5 +27,58 @@ namespace sres.ln
 
             return lista;
         }
+
+        public List<EstrellaBE> ListaBusquedaEstrella(EstrellaBE entidad)
+        {
+            List<EstrellaBE> lista = new List<EstrellaBE>();
+
+            try
+            {
+                cn.Open();
+                lista = estrellaDA.ListarBusquedaEstrella(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public EstrellaBE GuardarEstrella(EstrellaBE entidad)
+        {
+            EstrellaBE item = null;
+            try
+            {
+                cn.Open();
+                item = estrellaDA.GuardarEstrella(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
+        public EstrellaBE EliminarEstrella(EstrellaBE entidad)
+        {
+            EstrellaBE item = null;
+            try
+            {
+                cn.Open();
+                item = estrellaDA.EliminarEstrella(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
+
+        public EstrellaBE getEstrella(EstrellaBE entidad)
+        {
+            EstrellaBE item = null;
+            try
+            {
+                cn.Open();
+                item = estrellaDA.getEstrella(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
     }
 }

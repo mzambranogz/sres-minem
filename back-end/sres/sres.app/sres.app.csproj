@@ -310,6 +310,7 @@
     <Content Include="Assets\js\pages\mantenimiento_convocatoria.js" />
     <Content Include="Assets\js\pages\mantenimiento_criterio.js" />
     <Content Include="Assets\js\pages\mantenimiento_documento.js" />
+    <Content Include="Assets\js\pages\mantenimiento_estrella.js" />
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
     <Content Include="Assets\js\pages\mantenimiento_factor.js" />
     <Content Include="Assets\js\pages\mantenimiento_insignia.js" />
@@ -524,6 +525,7 @@
     <Content Include="Views\Participante\TerminosCondiciones.cshtml" />
     <Content Include="Views\Convocatoria\CambiarClave.cshtml" />
     <Content Include="Views\Mantenimiento\FactorValor.cshtml" />
+    <Content Include="Views\Mantenimiento\Estrella.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
