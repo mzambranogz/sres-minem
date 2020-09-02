@@ -345,6 +345,22 @@
     <Content Include="Files\Insignias\2\Imagen\sres_bronce_0_star.png" />
     <Content Include="Files\Insignias\3\Imagen\sres_plata_0_star.png" />
     <Content Include="Files\Insignias\4\Imagen\sres_oro_0_star.png" />
+    <Content Include="Files\Reconocimientos\10\Imagen\sres_oro_0_star.png" />
+    <Content Include="Files\Reconocimientos\11\Imagen\sres_oro_1_star.png" />
+    <Content Include="Files\Reconocimientos\12\Imagen\sres_oro_2_star.png" />
+    <Content Include="Files\Reconocimientos\13\Imagen\sres_oro_3_star.png" />
+    <Content Include="Files\Reconocimientos\1\Imagen\sres_0.png" />
+    <Content Include="Files\Reconocimientos\2\Imagen\sres_bronce_0_star.png" />
+    <Content Include="Files\Reconocimientos\3\Imagen\sres_bronce_1_star.png" />
+    <Content Include="Files\Reconocimientos\4\Imagen\sres_bronce_2_star.png" />
+    <Content Include="Files\Reconocimientos\5\Imagen\sres_bronce_3_star.png" />
+    <Content Include="Files\Reconocimientos\6\Imagen\sres_plata_0_star.png" />
+    <Content Include="Files\Reconocimientos\7\Imagen\sres_plata_1_star.png" />
+    <Content Include="Files\Reconocimientos\8\Imagen\sres_plata_2_star.png" />
+    <Content Include="Files\Reconocimientos\9\Imagen\sres_plata_3_star.png" />
+    <Content Include="Files\Reconocimientos\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Log\LEER.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
