@@ -20,5 +20,6 @@ namespace sres.be
         public int USUARIO_GUARDAR { get; set; }
         public DateTime? FECHA_DESDE { get; set; }
         public DateTime? FECHA_HASTA { get; set; }
+        public int VAL { get; set; }
     }
 }

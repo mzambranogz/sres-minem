@@ -91,6 +91,7 @@
     <Compile Include="ParametroDA.cs" />
     <Compile Include="ParametroDetalleDA.cs" />
     <Compile Include="ParametroDetalleRelacionDA.cs" />
+    <Compile Include="PremiacionDA.cs" />
     <Compile Include="ProcesoDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReconocimientoDA.cs" />

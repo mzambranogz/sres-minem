@@ -107,5 +107,10 @@ namespace sres.app.Controllers
         {
             return View();
         }
+
+        public ActionResult Reconocimiento()
+        {
+            return View();
+        }
     }
 }

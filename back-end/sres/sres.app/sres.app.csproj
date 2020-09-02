@@ -316,6 +316,7 @@
     <Content Include="Assets\js\pages\mantenimiento_insignia.js" />
     <Content Include="Assets\js\pages\mantenimiento_parametro.js" />
     <Content Include="Assets\js\pages\mantenimiento_proceso.js" />
+    <Content Include="Assets\js\pages\mantenimiento_reconocimiento.js" />
     <Content Include="Assets\js\pages\mantenimiento_requerimiento.js" />
     <Content Include="Assets\js\pages\mantenimiento_rol.js" />
     <Content Include="Assets\js\pages\mantenimiento_sector.js" />
@@ -403,6 +404,7 @@
     <Compile Include="Controllers\Api\MRV\UsuarioMRVController.cs" />
     <Compile Include="Controllers\Api\ParametroController.cs" />
     <Compile Include="Controllers\Api\ParametroDetalleRelacionController.cs" />
+    <Compile Include="Controllers\Api\PremiacionController.cs" />
     <Compile Include="Controllers\Api\ProcesoController.cs" />
     <Compile Include="Controllers\Api\RequerimientoController.cs" />
     <Compile Include="Controllers\Api\RolController.cs" />
@@ -526,6 +528,7 @@
     <Content Include="Views\Convocatoria\CambiarClave.cshtml" />
     <Content Include="Views\Mantenimiento\FactorValor.cshtml" />
     <Content Include="Views\Mantenimiento\Estrella.cshtml" />
+    <Content Include="Views\Mantenimiento\Reconocimiento.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

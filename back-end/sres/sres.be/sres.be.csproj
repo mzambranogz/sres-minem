@@ -96,6 +96,7 @@
     <Compile Include="ParametroDetalleAuxBE.cs" />
     <Compile Include="ParametroDetalleBE.cs" />
     <Compile Include="ParametroDetalleRelacionBE.cs" />
+    <Compile Include="PremiacionBE.cs" />
     <Compile Include="ProcesoBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinciaBE.cs" />

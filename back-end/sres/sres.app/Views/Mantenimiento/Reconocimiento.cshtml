@@ -1,0 +1,243 @@
+﻿@using sres.ut
+@{
+    ViewBag.Titulo = "Mantenimiento Reconocimiento";
+    ViewBag.SRESDescription = false;
+    string pathFormat = AppSettings.Get<string>("Path.Reconocimiento");
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/mantenimiento_reconocimiento.js")"></script>
+}
+
+<div class="container-fluid mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="estilo-05" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index","Inicio")">Inicio</a></li>
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("TablaMantenimiento","Mantenimiento")">Mantenimiento de Tablas</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Mantenimiento de Reconocimientos</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <h2 class="estilo-03 text-sres-azul">Mantenimiento de Reconocimientos</h2>
+            </div>
+            <div class="col-lg-3">
+                <span data-toggle="modal" data-target="#modal-mantenimiento">
+                    <div class="btn btn-sres-verde btn-lg w-110 mb-2" id="btnNuevo" data-toggle="tooltip" data-placement="top" title="Agregar un nuevo reconocimiento">Agregar reconocimiento</div>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="rayado wow fadeIn"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="form-group">
+                    <label class="estilo-01 text-sres-oscuro" for="txt-descripcion">DESCRIPCIÓN</label>
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="text" id="txt-descripcion" placeholder="Ingrese la descripción de su búsqueda" maxlength="60">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label class="estilo-01 text-sres-oscuro">&nbsp;</label>
+                    <div class="input-group">
+                        <button class="btn btn-primary w-100" id="btnConsultar">Consultar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive tabla-principal">
+                    <table class="table table-sm table-hover" id="tblPrincipal">
+                        <thead class="estilo-06">
+                            <tr>
+                                <th scope="col" width="3%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">N°&nbsp;@*<i class="fas fa-sort"></i>*@</div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Número de orden"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="8%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">CÓDIGO&nbsp;</div><i class="fas fa-sort columna-filtro" id="ID_PREMIACION"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="código del reconocimiento"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="29%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">INSIGNIA&nbsp;</div><i class="fas fa-sort columna-filtro" id="INSIGNIA"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre de la insignia"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="30%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">ESTRELLA&nbsp;</div><i class="fas fa-sort columna-filtro" id="ESTRELLA"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre de la estrella"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="20%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">IMAGEN&nbsp;</div>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Imagen del reconocimiento"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="10%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">GESTIÓN&nbsp;</div>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Herramientas y opciones"></i></div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="estilo-01"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-start align-items-center">
+                <div class="row">
+                    <div class="col-12"><strong>Resultado:&nbsp;</strong><span class="inicio-registros">1</span><span id="view-page-result">-<span class="fin-registros">1</span> de <span class="total-registros">1</span> registros</span></div>
+                </div>
+            </div>
+            <div id="viewPagination" class="col-sm-12 col-lg-6 mt-4 estilo-01 d-flex justify-content-end align-items-center" style="display: none">
+                <div class="row">
+                    <div class="col-12">
+                        <strong>Registros por página&nbsp;</strong>
+                        <select id="catidad-rgistros">
+                            <option value="10" selected>10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>&nbsp;
+                        <span class="pagina">1</span> de <span class="total-paginas">75</span> páginas&nbsp;
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(1)"><i class="fas fa-angle-double-left"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(2)"><i class="fas fa-angle-left"></i></button>
+                            <input id="ir-pagina" class="ir-pagina" type="number" value="1" min="1">
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(3)"><i class="fas fa-angle-right"></i></button>
+                            <button class="btn btn-sm btn-primary" type="button" onclick="fn_avance_grilla(4)"><i class="fas fa-angle-double-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-mantenimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="" id="frm">
+                <div class="modal-header bg-sres-azul text-white">
+                    <h5 class="modal-title estilo-01" id="exampleModalLabel">REGISTRAR CASO</h5>
+                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h2 class="estilo-04 text-sres-oscuro mb-3">DATOS PRINCIPALES</h2>
+                            <div class="form-group mt-2">
+                                <label class="estilo-01" for="cbo-insignia">Insignia:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-stopwatch"></i></span></div>
+                                    <select class="form-control estilo-01" id="cbo-insignia">
+                                        <option value="0">-Seleccione-</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label class="estilo-01" for="cbo-estrella">Estrella:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-stopwatch"></i></span></div>
+                                    <select class="form-control estilo-01" id="cbo-estrella">
+                                        <option value="0">-Seleccione-</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mt-2 text-left">
+                                <label class="estilo-01" for="fle-requisito-08">Imagen representativa<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione una imagen para adjuntar (jpeg, jpg, png)"></i></span></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>
+                                    <input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-imagen" placeholder="Subir imagen" required>
+                                    <input class="d-none fil-file-control" type="file" id="fle-imagen" accept="image/*">
+                                    <div class="input-group-append">
+                                        <label class="input-group-text cursor-pointer estilo-01" for="fle-imagen"><i class="fas fa-upload mr-1"></i>Subir archivo</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="alert-add"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-sm btn-info" type="button" id="btnGuardar">Si, grabar</button>
+                    <button class="btn btn-sm btn-dark" type="button" id="btnCerrar" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-confirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-sres-azul text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmar acción</h5>
+                <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body medidas-modal">
+                <p>¿ Desea eliminar este registro ?</p>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-primary" type="button" id="btnConfirmar">Si</button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="ruta" value="@pathFormat" />
+<script>
+    var idEliminar = '';
+    const maxBytes = @(AppSettings.Get<long>("File.MaxBytes"));
+</script>
+
+@Html.Hidden("columna", "ID_PREMIACION")
+@Html.Hidden("orden", "ASC")
