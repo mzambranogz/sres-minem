@@ -66,6 +66,8 @@ namespace sres.ln
                         }
                     }
 
+                    informeDA.TrazabilidadInformePreliminar(entidad, AppSettings.Get<string>("Trazabilidad.Convocatoria.InformePreliminar"), cn);
+
                     Task.Factory.StartNew(() =>
                     {
                         foreach (dynamic item in listaEnvios)
@@ -155,6 +157,8 @@ namespace sres.ln
                         }
                         contenidoInforme += $"<tr><td style='padding:5px;'><span><strong>Empresa:</strong> {recon.RAZON_SOCIAL}</span><br>{resultado}</td></tr>";
                     }
+
+                    informeDA.TrazabilidadInformePreliminar(entidad, AppSettings.Get<string>("Trazabilidad.Convocatoria.InformeFinal"), cn);
 
                     UsuarioBE usuario = usuarioDA.getAdministrador(cn);
                     string fieldConvocatoria_ = "[CONTENIDO]", fieldServer_ = "[SERVER]", nombres_ = "[NOMBRES]";

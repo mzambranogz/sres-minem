@@ -300,6 +300,7 @@
     <Content Include="Assets\js\pages\convocatoria_evaluacioncriterios.js" />
     <Content Include="Assets\js\pages\convocatoria_evaluarinscripcion.js" />
     <Content Include="Assets\js\pages\convocatoria_inscribirme.js" />
+    <Content Include="Assets\js\pages\convocatoria_seguimiento.js" />
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\login_registrarme.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />
@@ -545,6 +546,7 @@
     <Content Include="Views\Mantenimiento\FactorValor.cshtml" />
     <Content Include="Views\Mantenimiento\Estrella.cshtml" />
     <Content Include="Views\Mantenimiento\Reconocimiento.cshtml" />
+    <Content Include="Views\Convocatoria\Seguimiento.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

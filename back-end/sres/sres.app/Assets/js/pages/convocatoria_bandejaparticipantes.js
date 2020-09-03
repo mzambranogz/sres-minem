@@ -76,7 +76,7 @@ var renderizar = (data, cantidadCeldas) => {
             let btnEvaluarRequisitos = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${idConvocatoria}/Institucion/${x.ID_INSTITUCION}/Evaluar"><i class="fas fa-edit mr-1"></i>Evaluar requisitos</a>`;
             let btnEvaluarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${idConvocatoria}/Inscripcion/${x.ID_INSCRIPCION}/EvaluacionCriterios"><i class="fas fa-edit mr-1"></i>Evaluar criterios</a>`;
             let btnVerPerfil = `<a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a>`;
-            let btnSeguimiento = `<a class="dropdown-item" href="#"><i class="fas fa-history mr-1"></i>Seguimiento</a>`;
+            let btnSeguimiento = `<a class="dropdown-item" href="${baseUrl}Convocatoria/${idConvocatoria}/Seguimiento/${x.ID_INSCRIPCION}"><i class="fas fa-history mr-1"></i>Seguimiento</a>`;
             let btnVerReconocimiento = `<a class="dropdown-item" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a>`;
             debugger;
             let OpcioneEta1 = `<div class="dropdown-menu">${btnVerPerfil}</div>`;
@@ -144,7 +144,7 @@ var btnInformeFinalvalidar = () => {
 
 var btnGenerarInforme = () => {
     debugger;
-    let data = { ID_CONVOCATORIA: idConvocatoria, ID_USUARIO: idUsuarioLogin, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: idConvocatoria, ID_ETAPA: idEtapa, ID_USUARIO: idUsuarioLogin, USUARIO_GUARDAR: idUsuarioLogin };
 
     let url = `${baseUrl}api/informepreliminar/generarinformepreliminar`;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
@@ -156,7 +156,7 @@ var btnGenerarInforme = () => {
 
 var btnGenerarInformeFinal = () => {
     debugger;
-    let data = { ID_CONVOCATORIA: idConvocatoria, ID_USUARIO: idUsuarioLogin, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: idConvocatoria, ID_ETAPA: idEtapa, ID_USUARIO: idUsuarioLogin, USUARIO_GUARDAR: idUsuarioLogin };
 
     let url = `${baseUrl}api/informepreliminar/generarinformefinal`;
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };

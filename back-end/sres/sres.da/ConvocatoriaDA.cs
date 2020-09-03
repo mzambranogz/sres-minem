@@ -685,5 +685,23 @@ namespace sres.da
             return seGuardo;
         }
 
+        public bool TrazabilidadEtapa(int idConvocatoria, int idEtapa, int idUsuario, string descripcion, OracleConnection db)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_INS_TRAZABILIDAD_ETAPA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_ETAPA", idEtapa);
+                p.Add("PI_DESCRIPCION", descripcion);
+                p.Add("PI_USUARIO_GUARDAR", idUsuario);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                seGuardo = true;
+            }
+            catch (Exception ex) { Log.Error(ex); seGuardo = false; }
+            return seGuardo;
+        }
+
     }
 }

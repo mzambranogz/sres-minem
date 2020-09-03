@@ -223,7 +223,7 @@ var guardar = () => {
     let puntaje = $(`#cbo-puntaje`).val();
     let observacion = $(`#txa-observaciones`).val();
     let url = `${baseUrl}api/criterio/guardarevaluacioncriterio`;
-    let data = { ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio, ID_DETALLE: puntaje, ID_INSCRIPCION: idInscripcion, ID_TIPO_EVALUACION: idEvaluacion, EMISIONES_REDUCIDAS: emisiones, OBSERVACION: observacion, NOMBRE_CRI: $(`.nom-cri`).val(), LIST_INSCDOC: listaEvaluacion, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio, ID_DETALLE: puntaje, ID_INSCRIPCION: idInscripcion, ID_TIPO_EVALUACION: idEvaluacion, EMISIONES_REDUCIDAS: emisiones, OBSERVACION: observacion, NOMBRE_CRI: $(`.nom-cri`).val(), LIST_INSCDOC: listaEvaluacion, ID_ETAPA: idEtapa, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)

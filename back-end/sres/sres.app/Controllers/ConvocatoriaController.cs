@@ -125,7 +125,8 @@ namespace sres.app.Controllers
         [Route("{idConvocatoria}/Institucion/{idInstitucion}/Evaluar")]
         public ActionResult EvaluarInstitucion(int idConvocatoria, int idInstitucion)
         {
-            ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerUltimaConvocatoria();
+            //ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerUltimaConvocatoria();
+            ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(idConvocatoria);
             //if (convocatoria == null) return HttpNotFound();
             ViewData["convocatoria"] = convocatoria;
             InscripcionBE inscripcion = inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, idInstitucion);
@@ -194,6 +195,24 @@ namespace sres.app.Controllers
         [Route("Cambiar-contrasena")]
         public ActionResult CambiarClave()
         {
+            return View();
+        }
+
+        [SesionOut]
+        [Route("{idConvocatoria}/Seguimiento/{idInscripcion}")]
+        public ActionResult Seguimiento(int idConvocatoria, int idInscripcion)
+        {
+            ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(idConvocatoria);
+            if (idInscripcion == 0) {
+                UsuarioBE usuario = ObtenerUsuarioLogin();
+                InscripcionBE inscripcion = inscripcionLN.ObtenerInscripcionPorConvocatoriaInstitucion(idConvocatoria, usuario.ID_INSTITUCION.Value);
+                ViewData["inscripcion"] = inscripcion;
+            }
+            else
+                ViewData["inscripcion"] = new InscripcionBE { ID_INSCRIPCION = idInscripcion };
+            ViewData["convocatoria"] = convocatoria;
+            
+
             return View();
         }
 

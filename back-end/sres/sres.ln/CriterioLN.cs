@@ -292,6 +292,7 @@ namespace sres.ln
                         {
                             ID_INSCRIPCION = item.ID_INSCRIPCION,
                             DESCRIPCION = registrocriteriodescripcion,
+                            ID_ETAPA = item.ID_ETAPA,
                             UPD_USUARIO = item.USUARIO_GUARDAR
                         };
 
@@ -382,6 +383,7 @@ namespace sres.ln
                         {
                             ID_INSCRIPCION = entidad.ID_INSCRIPCION,
                             DESCRIPCION = evaluacioncriteriodescripcion,
+                            ID_ETAPA = entidad.ID_ETAPA,
                             UPD_USUARIO = entidad.USUARIO_GUARDAR
                         };
 

@@ -56,7 +56,8 @@ namespace sres.app.Controllers.Api
             {
                 bool esNuevoRegistro = obj.ID_CONVOCATORIA <= 0;
                 convocatoria = convocatoriaLN.RegistroConvocatoria(obj);
-                if (convocatoria.OK && obj.VALIDAR_ETAPA == 1) {
+                if (convocatoria.OK && obj.VALIDAR_ETAPA == 1)
+                {
                     if ((convocatoria.OK && esNuevoRegistro) || obj.ID_ETAPA == 2 || obj.ID_ETAPA == 4 || obj.ID_ETAPA == 6 || obj.ID_ETAPA == 7 || obj.ID_ETAPA == 10 || obj.ID_ETAPA == 14)
                     {
                         List<UsuarioBE> listaUsuario = new List<UsuarioBE>();
@@ -82,6 +83,10 @@ namespace sres.app.Controllers.Api
                         {
                             mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
                         }
+
+                        if (obj.ID_ETAPA == 7) convocatoria.VAL = convocatoriaLN.TrazabilidadEtapa(obj.ID_CONVOCATORIA, Convert.ToInt16(obj.ID_ETAPA), obj.USUARIO_GUARDAR);
+                        else if (obj.ID_ETAPA == 14) convocatoria.VAL = convocatoriaLN.TrazabilidadEtapa(obj.ID_CONVOCATORIA, Convert.ToInt16(obj.ID_ETAPA), obj.USUARIO_GUARDAR);
+
                         if (listaUsuario.Count > 0)
                         {
                             if (obj.ID_ETAPA == 1) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.CreacionConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
@@ -91,7 +96,7 @@ namespace sres.app.Controllers.Api
                             else if (obj.ID_ETAPA == 7) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.CoordinacionConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
                             else if (obj.ID_ETAPA == 10) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.LevantamientoObsConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
                             else if (obj.ID_ETAPA == 14) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.FinalizacionConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
-                        }
+                        }                        
                     }
 
                     if (obj.ID_ETAPA == 3 || obj.ID_ETAPA == 5 || obj.ID_ETAPA == 8 || obj.ID_ETAPA == 11)
@@ -187,6 +192,8 @@ namespace sres.app.Controllers.Api
                                 listaEnvios.Add(envio);
                             }
 
+                            convocatoria.VAL = convocatoria.VAL = convocatoriaLN.TrazabilidadEtapa(obj.ID_CONVOCATORIA, Convert.ToInt16(obj.ID_ETAPA), obj.USUARIO_GUARDAR);
+
                             Task.Factory.StartNew(() =>
                             {
                                 foreach (dynamic item in listaEnvios)
@@ -196,11 +203,15 @@ namespace sres.app.Controllers.Api
                             });
                         }
                     }
-                }                
+                }
+                else
+                {
+                    if (obj.ID_ETAPA == 7) convocatoria.VAL = 1;
+                }               
             }
             catch (Exception ex)
             {
-                throw ex;
+                Log.Error(ex);
             }
             return convocatoria;
         }

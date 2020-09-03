@@ -155,5 +155,47 @@ namespace sres.da
 
             return ins;
         }
+
+        public InstitucionBE ObtenerInstitucionPorInscripcion(int idInscripcion, OracleConnection db)
+        {
+            InstitucionBE ins = new InstitucionBE();
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_GET_INSTITUCION_INSC";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                ins = db.QueryFirstOrDefault<InstitucionBE>(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return ins;
+        }
+
+        public List<InscripcionTrazabilidadBE> ObtenerInscripcionTrazabilidad(int idInscripcion, OracleConnection db)
+        {
+            List<InscripcionTrazabilidadBE> ins = new List<InscripcionTrazabilidadBE>();
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_INSCRIPCION_TRAZABILIDAD";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                //ins = db.Query<InscripcionTrazabilidadBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                ins = db.Query<dynamic>(sp, p, commandType: CommandType.StoredProcedure).Select(x => new InscripcionTrazabilidadBE
+                {
+                    ID_INSCRIPCION = (int)x.ID_INSCRIPCION,
+                    ID_TRAZABILIDAD = (int)x.ID_TRAZABILIDAD,
+                    DESCRIPCION = (string)x.DESCRIPCION,
+                    FECHA_TRAZA = ((DateTime)x.REG_FECHA).ToString("dd/MM/yyyy HH:mm"),
+                    CORREO = (string)x.CORREO,
+                    ROL = (string)x.ROL,
+                    ID_ROL = (int)x.ID_ROL,
+                    ETAPA = (string)x.ETAPA
+            }).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            return ins;
+        }
     }
 }

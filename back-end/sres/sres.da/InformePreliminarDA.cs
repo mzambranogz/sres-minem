@@ -98,5 +98,23 @@ namespace sres.da
 
             return lista;
         }
+
+        public bool TrazabilidadInformePreliminar(ConvocatoriaBE convocatoria, string descripcion, OracleConnection db)
+        {
+            bool seGuardo = false;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_INS_INFORME";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", convocatoria.ID_CONVOCATORIA);
+                p.Add("PI_ID_ETAPA", convocatoria.ID_ETAPA);
+                p.Add("PI_DESCRIPCION", descripcion);
+                p.Add("PI_USUARIO_GUARDAR", convocatoria.ID_USUARIO);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                seGuardo = true;
+            }
+            catch (Exception ex) { Log.Error(ex); seGuardo = false; }
+            return seGuardo;
+        }
     }
 }

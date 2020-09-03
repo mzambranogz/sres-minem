@@ -23,6 +23,7 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_INSCRIPCION", inscripcionTrazabilidad.ID_INSCRIPCION);
                 p.Add("PI_DESCRIPCION", inscripcionTrazabilidad.DESCRIPCION);
+                p.Add("PI_ID_ETAPA", inscripcionTrazabilidad.ID_ETAPA);
                 p.Add("PI_UPD_USUARIO", inscripcionTrazabilidad.UPD_USUARIO);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);

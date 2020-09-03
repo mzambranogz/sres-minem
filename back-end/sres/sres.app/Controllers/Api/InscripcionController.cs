@@ -126,5 +126,12 @@ namespace sres.app.Controllers.Api
 
             return seGuardo;
         }
+
+        [Route("inscripciontrazabilidad")]
+        [HttpGet]
+        public InstitucionBE InscripcionTrazabilidad(int idInscripcion)
+        {            
+            return inscripcionLN.InscripcionTrazabilidad(idInscripcion);
+        }
     }
 }

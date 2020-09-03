@@ -362,12 +362,12 @@ namespace sres.ln
                     if (seGuardoConvocatoria)
                     {
                         string descripcion = "";
-                        if (entidad.ID_ETAPA == 3 || entidad.ID_ETAPA == 7)
+                        if (entidad.ID_ETAPA == 6 || entidad.ID_ETAPA == 10)
                         {
                             descripcion = AppSettings.Get<string>("Trazabilidad.Convocatoria.RegistrarCriterios");
                             descripcion = descripcion.Replace("{INGRESADOS}", Convert.ToString(entidad.INGRESADOS));
                             descripcion = descripcion.Replace("{TOTAL}", Convert.ToString(entidad.TOTAL));
-                        } else if (entidad.ID_ETAPA == 5 || entidad.ID_ETAPA == 8) {
+                        } else if (entidad.ID_ETAPA == 8 || entidad.ID_ETAPA == 11) {
                             descripcion = AppSettings.Get<string>("Trazabilidad.Convocatoria.EvaluarCriterios");
                         }
                         
@@ -375,9 +375,9 @@ namespace sres.ln
                         {
                             ID_INSCRIPCION = entidad.ID_INSCRIPCION,
                             DESCRIPCION = descripcion,
+                            ID_ETAPA = Convert.ToInt16(entidad.ID_ETAPA),
                             UPD_USUARIO = entidad.USUARIO_GUARDAR
                         };
-
                         seGuardoConvocatoria = inscripcionTrazabilidadDA.RegistrarInscripcionTrazabilidad(inscripcionTrazabilidad, cn);
                     }
 
@@ -445,6 +445,24 @@ namespace sres.ln
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return seGuardoConvocatoria;
+        }
+
+        public int TrazabilidadEtapa(int idConvocatoria, int idEtapa, int idUsuario) {
+
+            bool seGuardo = false;
+            try
+            {
+                cn.Open();
+                using (OracleTransaction ot = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                {
+                    string descripcion = idEtapa == 7 ? AppSettings.Get<string>("Trazabilidad.Convocatoria.Coordinacion") : idEtapa == 13 ? AppSettings.Get<string>("Trazabilidad.Convocatoria.ComunicacionResultados") : AppSettings.Get<string>("Trazabilidad.Convocatoria.Final");
+                    seGuardo = convocatoriaDA.TrazabilidadEtapa(idConvocatoria, idEtapa, idUsuario, descripcion, cn);
+                    if (seGuardo) ot.Commit();
+                    else ot.Rollback();
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return seGuardo ? 1 : 0;
         }
     }
 }

@@ -317,7 +317,7 @@ var guardar = () => {
         }
     });
 
-    let data = { LIST_COMPONENTE: componente_ind, LIST_DOCUMENTO: listaDoc, ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio_, ID_CASO: idCaso, ID_INSCRIPCION: idInscripcion_, NOMBRE_CRI: $('.nom-cri').val(), USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { LIST_COMPONENTE: componente_ind, LIST_DOCUMENTO: listaDoc, ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio_, ID_CASO: idCaso, ID_INSCRIPCION: idInscripcion_, NOMBRE_CRI: $('.nom-cri').val(), ID_ETAPA: idEtapa, USUARIO_GUARDAR: idUsuarioLogin };
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 

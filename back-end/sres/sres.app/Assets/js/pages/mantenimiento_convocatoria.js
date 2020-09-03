@@ -605,11 +605,13 @@ var guardar = () => {
     .then(r => r.json())
     .then(j => {
         $('.alert-add').html('');
-        if (j.OK){ $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
-        j.OK ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardaron correctamente los datos de la convocatoria.', close: { time: 4000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });            
-        //alert('Se registró correctamente');
-        //cerrarFormulario();
-        $('#btnConsultar')[0].click();
+        if ($('#cbo-etapa').val() == 7 && j.VAL == 0 && j.OK)  $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Ocurrió un problema en el registro del seguimiento en el proceso de Coordinación.' });
+        if ($('#cbo-etapa').val() == 14 && j.VAL == 0 && j.OK)  $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Ocurrió un problema en el registro del seguimiento en el proceso de cierre de la convocatoria.' });
+        else{
+            if (j.OK){ $('#btnGuardar').hide(); $('#btnGuardar').next().html('Cerrar'); }
+            j.OK ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Se guardaron correctamente los datos de la convocatoria.', close: { time: 4000 }, url: `` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });            
+            $('#btnConsultar')[0].click();
+        }        
     });
 }
 

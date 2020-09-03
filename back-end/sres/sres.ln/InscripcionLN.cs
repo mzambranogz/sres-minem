@@ -68,10 +68,12 @@ namespace sres.ln
                                 trazabilidadDescripcionRegistrarInscripcion = trazabilidadDescripcionRegistrarInscripcion.Replace(item.Key, valor);
                             }
 
+                            string descripcion = inscripcion.ID_ETAPA == 2 ? trazabilidadDescripcionRegistrarInscripcion : AppSettings.Get<string>("Trazabilidad.Convocatoria.DocumentosSolicitados");
                             InscripcionTrazabilidadBE inscripcionTrazabilidad = new InscripcionTrazabilidadBE
                             {
                                 ID_INSCRIPCION = outIdInscripcion,
-                                DESCRIPCION = trazabilidadDescripcionRegistrarInscripcion,
+                                DESCRIPCION = descripcion,
+                                ID_ETAPA = inscripcion.ID_ETAPA,
                                 UPD_USUARIO = inscripcion.UPD_USUARIO
                             };
 
@@ -136,11 +138,24 @@ namespace sres.ln
                             {
                                 if (seGuardo)
                                 {
-                                    seGuardo = inscripcionRequerimientoDA.ActualizarEvaluacionInscripcionRequerimiento(iInscripcionRequerimiento, cn);
+                                    seGuardo = inscripcionRequerimientoDA.ActualizarEvaluacionInscripcionRequerimiento(iInscripcionRequerimiento, cn);                                    
                                 }
                                 else break;
                             }
                         }
+                    }
+
+                    if (seGuardo)
+                    {
+                        string descripcion = inscripcion.ID_ETAPA == 3 ? AppSettings.Get<string>("Trazabilidad.Convocatoria.EvaluarInscripcion") : AppSettings.Get<string>("Trazabilidad.Convocatoria.FiltradoParticipantes");
+                        InscripcionTrazabilidadBE inscripcionTrazabilidad = new InscripcionTrazabilidadBE
+                        {
+                            ID_INSCRIPCION = inscripcion.ID_INSCRIPCION,
+                            DESCRIPCION = descripcion,
+                            ID_ETAPA = inscripcion.ID_ETAPA,
+                            UPD_USUARIO = inscripcion.USUARIO_GUARDAR
+                        };
+                        seGuardo = inscripcionTrazabilidadDA.RegistrarInscripcionTrazabilidad(inscripcionTrazabilidad, cn);
                     }
 
                     if (seGuardo) ot.Commit();
@@ -181,6 +196,19 @@ namespace sres.ln
                     if (seGuardo)
                         seGuardo = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = Convert.ToInt16(inscripcion.ID_CONVOCATORIA), ID_ETAPA = inscripcion.ID_ETAPA, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION, OBSERVACION = inscripcion.OBSERVACION, ID_TIPO_EVALUACION = Convert.ToInt16(inscripcion.ID_TIPO_EVALUACION) }, cn);
 
+                    if (seGuardo)
+                    {
+                        string descripcion = AppSettings.Get<string>("Trazabilidad.Convocatoria.AnulacionParticipante");
+                        InscripcionTrazabilidadBE inscripcionTrazabilidad = new InscripcionTrazabilidadBE
+                        {
+                            ID_INSCRIPCION = inscripcion.ID_INSCRIPCION,
+                            DESCRIPCION = descripcion,
+                            ID_ETAPA = inscripcion.ID_ETAPA,
+                            UPD_USUARIO = inscripcion.USUARIO_GUARDAR
+                        };
+                        seGuardo = inscripcionTrazabilidadDA.RegistrarInscripcionTrazabilidad(inscripcionTrazabilidad, cn);
+                    }
+
                     if (seGuardo) ot.Commit();
                     else ot.Rollback();
                 }
@@ -201,6 +229,19 @@ namespace sres.ln
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return ins;
+        }
+
+        public InstitucionBE InscripcionTrazabilidad(int idInscripcion) {
+            InstitucionBE inst = null;
+            try
+            {
+                cn.Open();
+                inst = inscripcionDA.ObtenerInstitucionPorInscripcion(idInscripcion, cn);
+                if (inst != null) inst.LISTA_INSC_TRAZ = inscripcionDA.ObtenerInscripcionTrazabilidad(idInscripcion, cn);                              
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return inst;
         }
     }
 }
