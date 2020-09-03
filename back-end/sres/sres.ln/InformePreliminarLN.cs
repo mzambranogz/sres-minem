@@ -79,7 +79,7 @@ namespace sres.ln
                         string fieldConvocatoria_ = "[CONTENIDO]", fieldServer_ = "[SERVER]", nombres_ = "[NOMBRES]";
                         string[] fields_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_ };
                         string[] fieldsRequire_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_ };
-                        Dictionary<string, string> dataBody_ = new Dictionary<string, string> {[fieldConvocatoria_] = contenidoInforme,[fieldServer_] = AppSettings.Get<string>("Server"),[nombres_] = "Ja" };
+                        Dictionary<string, string> dataBody_ = new Dictionary<string, string> {[fieldConvocatoria_] = contenidoInforme,[fieldServer_] = AppSettings.Get<string>("Server"),[nombres_] = $"{usuario.NOMBRES} {usuario.APELLIDOS}" };
                         string subject_ = $"Informe Preliminar, convocatoria - {lista[0].NOMBRE_CONV}";
                         MailAddressCollection mailTo_ = new MailAddressCollection();
                         mailTo_.Add(new MailAddress(usuario.CORREO));

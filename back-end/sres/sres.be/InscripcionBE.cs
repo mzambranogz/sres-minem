@@ -29,6 +29,8 @@ namespace sres.be
         public string NOMBRES_USU { get; set; }
         public string RAZON_SOCIAL { get; set; }
         public int ID_ETAPA { get; set; }
+        public int ASPIRACION { get; set; }
+        public string ARCHIVO_BASE { get; set; }
         public List<InsigniaBE> ASPIRACIONES { get; set; }
     }
 }

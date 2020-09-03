@@ -107,6 +107,7 @@ namespace sres.da
                     USUARIO = new UsuarioBE { NOMBRES = (string)x.NOMBRES_USUARIO, APELLIDOS = (string)x.APELLIDOS_USUARIO, CORREO = (string)x.CORREO_USUARIO },
                     CANTIDADCRITERIOSINGRESADOS = (int)x.CANTIDADCRITERIOSINGRESADOS,
                     PUNTOSACUMULADOS = (int)x.PUNTOSACUMULADOS,
+                    ASPIRACION = (int)x.ASPIRACION,
                     CONVOCATORIA = new ConvocatoriaBE { ID_ETAPA = (int?) x.ID_ETAPA_CONVOCATORIA },
                     ROWNUMBER = (int)x.ROWNUMBER,
                     TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
