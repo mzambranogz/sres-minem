@@ -1,8 +1,10 @@
 ﻿@using sres.be
+@using sres.ut
 @{
     //ViewBag.Title = "IndexPostulante";
     UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
     List<ReconocimientoBE> listaUltimosReconocimientos = (List<ReconocimientoBE>)ViewData["ultimos_reconocimientos"];
+    string pathFormat = AppSettings.Get<string>("Path.Reconocimiento");
 }
 
 <div class="container-fluid my-5">
@@ -52,7 +54,7 @@
                 <div class="bg-sres-claro p-2">
                     <h3 class="estilo-04 text-sres-gris py-2">ÚLTIMOS RECONOCIMIENTOS</h3>
                     <div class="row">
-                        @foreach (ReconocimientoBE item in listaUltimosReconocimientos)
+                        @*@foreach (ReconocimientoBE item in listaUltimosReconocimientos)
                         {
                             if (item != null)
                             {
@@ -69,7 +71,35 @@
                                     <div class="span estilo-01 text-sres-gris py-2">-------</div>
                                 </div>
                             }
+                        }*@
+
+                        @if (listaUltimosReconocimientos != null)
+                        {
+                            if (listaUltimosReconocimientos.Count > 0)
+                            {
+                                foreach (ReconocimientoBE item in listaUltimosReconocimientos)
+                                {
+                                    <div class="col-lg-3 col-md-6 col-sm-12 text-center">
+                                        <img class="img-fluid pt-2 pb-1" src="@Url.Content($"~/{string.Format(pathFormat, item.ID_PREMIACION)}/{item.ARCHIVO_BASE}")">
+                                        <div class="span estilo-01 text-sres-gris py-2">@item.FECHA_CONVOCATORIA</div>
+                                    </div>
+                                }
+                            }
                         }
+                    </div>
+                    <div class="row">
+                        @if (listaUltimosReconocimientos != null)
+                        {
+                            if (listaUltimosReconocimientos.Count > 0)
+                            {
+                                if (listaUltimosReconocimientos[0].VAL == 0)
+                                {                                    
+                                    <div class="col-12 text-center">
+                                        <div class="small badge badge-warning">¡Ánimo, aún no logra reconocimientos...!</div>
+                                    </div>
+                                }
+                            }
+                        }                        
                     </div>
                 </div>
             </div>

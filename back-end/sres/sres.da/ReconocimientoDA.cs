@@ -52,6 +52,9 @@ namespace sres.da
                         INSCRIPCION = new InscripcionBE { CONVOCATORIA = new ConvocatoriaBE { FECHA_INICIO = (DateTime)x.FECHA_INICIO_CONVOCATORIA } },
                         ID_INSIGNIA = (int?)x.ID_INSIGNIA,
                         INSIGNIA = !((int?)x.ID_INSIGNIA).HasValue ? null : new InsigniaBE { ID_INSIGNIA = (int)x.ID_INSIGNIA, NOMBRE = (string)x.NOMBRE_INSIGNIA },
+                        ID_PREMIACION = (int)x.ID_PREMIACION,
+                        FECHA_CONVOCATORIA = ((DateTime)x.FECHA_INICIO_CONVOCATORIA).Year.ToString(),
+                        VAL = (int)x.VAL
                     }).ToList();
             }
             catch (Exception ex) { Log.Error(ex); }

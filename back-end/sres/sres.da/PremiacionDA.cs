@@ -122,5 +122,24 @@ namespace sres.da
             }
             return entidad;
         }
+
+        public PremiacionBE getPremiacionInsigniaEstrella(int idInsignia, int idEstrella, OracleConnection db)
+        {
+            PremiacionBE item = new PremiacionBE();
+            try
+            {
+                string sp = $"{Package.Criterio}USP_SEL_GET_PREM_INSIG_ESTRE";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSIGNIA", idInsignia);
+                p.Add("PI_ID_ESTRELLA", idEstrella);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.Query<PremiacionBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return item;
+        }
     }
 }

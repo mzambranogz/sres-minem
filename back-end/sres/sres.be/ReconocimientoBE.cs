@@ -23,6 +23,9 @@ namespace sres.be
         public string CATEGORIA { get; set; }
         public string ESTRELLA { get; set; }
         public string RAZON_SOCIAL { get; set; }
+        public int ID_PREMIACION { get; set; }
+        public string ARCHIVO_BASE { get; set; }
+        public string FECHA_CONVOCATORIA { get; set; }
         public string FLAG_ESTADO { get; set; }
     }
 }

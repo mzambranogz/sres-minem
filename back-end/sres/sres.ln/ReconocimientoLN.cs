@@ -13,6 +13,7 @@ namespace sres.ln
     public class ReconocimientoLN : BaseLN
     {
         ReconocimientoDA reconocimientoDA = new ReconocimientoDA();
+        PremiacionDA premDA = new PremiacionDA();
 
         public List<ReconocimientoBE> ListarUltimosReconocimientos(int idInstitucion, int cantidadRegistros)
         {
@@ -22,9 +23,20 @@ namespace sres.ln
             {
                 cn.Open();
                 lista = reconocimientoDA.ListarUltimosReconocimientos(idInstitucion, cantidadRegistros, cn);
-                while(lista.Count < cantidadRegistros)
-                {
-                    lista.Add(null);
+                if (lista.Count > 0) {
+                    foreach(ReconocimientoBE r in lista)
+                        r.ARCHIVO_BASE = premDA.getPremiacion(new PremiacionBE { ID_PREMIACION = r.ID_PREMIACION }, cn).ARCHIVO_BASE;
+                }
+                int idPremiacion = premDA.getPremiacionInsigniaEstrella(1, 1, cn).ID_PREMIACION;
+                while (lista.Count < cantidadRegistros)
+                {                    
+                    lista.Add(new ReconocimientoBE {
+                        ID_PREMIACION = idPremiacion,
+                        ARCHIVO_BASE = premDA.getPremiacion(new PremiacionBE { ID_PREMIACION = idPremiacion }, cn).ARCHIVO_BASE,
+                        FECHA_CONVOCATORIA = "-------",
+                        VAL = 0
+                    });
+                    //lista.Add(null);
                 }
             }
             catch (Exception ex) { Log.Error(ex); }
