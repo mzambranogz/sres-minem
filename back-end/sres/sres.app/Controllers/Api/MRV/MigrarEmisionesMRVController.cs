@@ -13,12 +13,18 @@ namespace sres.app.Controllers.Api.MRV
     public class MigrarEmisionesMRVController : ApiController
     {
         MigrarEmisionesLN migrarLN = new MigrarEmisionesLN();
+        sres.ln.MedidaMitigacionLN medidaLN = new sres.ln.MedidaMitigacionLN();
 
         [Route("obtenermigraremisiones")]
         [HttpGet]
         public MigrarEmisionesBE ObtenerMigrarEmisiones(string idIniciativas, string rucLogin, int idUsuarioLogin)
         {
-            return migrarLN.ObtenerMigrarEmisiones(idIniciativas, rucLogin, idUsuarioLogin);
+            MigrarEmisionesBE emisiones = migrarLN.ObtenerMigrarEmisiones(idIniciativas, rucLogin, idUsuarioLogin);
+            if (emisiones.LISTA_MIGRAR.Count > 0)
+                foreach (MigrarEmisionesBE m in emisiones.LISTA_MIGRAR)
+                    m.ARCHIVO_BASE = medidaLN.getMedidaMitigacion(new sres.be.MedidaMitigacionBE { ID_MEDMIT = m.ID_MEDMIT}).ARCHIVO_BASE;
+            return emisiones;
+            //return migrarLN.ObtenerMigrarEmisiones(idIniciativas, rucLogin, idUsuarioLogin);
         }
     }
 }

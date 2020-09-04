@@ -65,6 +65,7 @@
     <Compile Include="InscripcionRequerimientoLN.cs" />
     <Compile Include="InsigniaLN.cs" />
     <Compile Include="InstitucionLN.cs" />
+    <Compile Include="MedidaMitigacionLN.cs" />
     <Compile Include="MigrarEmisionesLN.cs" />
     <Compile Include="MRV\BaseLN.cs" />
     <Compile Include="MRV\InstitucionLN.cs" />

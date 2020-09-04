@@ -812,6 +812,9 @@ PRIMARY KEY (ID_RECONOCIMIENTO, ID_MEDMIT)
 CREATE TABLE T_MAE_MEDMIT(
 ID_MEDMIT NUMBER,
 NOMBRE VARCHAR2(200),
+DESCRIPCION VARCHAR2(4000),
+ARCHIVO_BASE VARCHAR2(4000),
+ARCHIVO_TIPO VARCHAR2(4000),
 FLAG_ESTADO VARCHAR2(1) DEFAULT '1',
 REG_USUARIO NUMBER,
 REG_FECHA DATE DEFAULT SYSDATE,
@@ -3667,18 +3670,18 @@ INSERT INTO T_GEND_TRABAJADORES_CAMAS (ID_TRABAJADORES_CAMA, ID_SUBSECTOR_TIPOEM
 INSERT INTO T_GEND_TRABAJADORES_CAMAS (ID_TRABAJADORES_CAMA, ID_SUBSECTOR_TIPOEMPRESA, NOMBRE, MAYOR_SIGNO, MENOR_SIGNO, MAYOR_VALOR, MENOR_VALOR) VALUES (9, 6, 'MAYOR A 250 TRABAJADORES', '0', '1', 0, 251);
 
 --T_MAE_MEDMIT
-INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE) VALUES (1, 'Etiquetado de Eficiencia Energética');
-INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE) VALUES (2, 'Eficiencia Energética en el sector industrial');
-INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE) VALUES (3, 'Eficiencia energética en el sector comercial');
-INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE) VALUES (4, 'Auditorías energéticas en el sector público');
-INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE) VALUES (5, 'Transformación del mercado de Iluminación en el Sector Residencial');
-INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE) VALUES (6, 'Reemplazo de lámparas en sector público');
-INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE) VALUES (7, 'Lámparas de alumbrado público');
-INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE) VALUES (8, 'Cocción limpia');
-INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE) VALUES (9, 'Electrificación rural');
-INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE) VALUES (10, 'RER conectado');
-INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE) VALUES (11, 'Generación distribuida');
-INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE) VALUES (12, 'Promoción de vehículos eléctricos');
+INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (1, 'Etiquetado de Eficiencia Energética', '', 'ico_nama_amarillo_03.svg');
+INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (2, 'Eficiencia Energética en el sector industrial', '', 'ico_nama_amarillo_06.svg');
+INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (3, 'Eficiencia energética en el sector comercial', '', 'ico_nama_amarillo_07.svg');
+INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (4, 'Auditorías energéticas en el sector público', '', 'ico_nama_amarillo_04.svg');
+INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (5, 'Transformación del mercado de Iluminación en el Sector Residencial', '', 'ico_nama_amarillo_01.svg');
+INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (6, 'Reemplazo de lámparas en sector público', '', 'ico_nama_amarillo_05.svg');
+INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (7, 'Lámparas de alumbrado público', '', 'ico_nama_amarillo_02.svg');
+INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (8, 'Cocción limpia', '', 'ico_nama_rojo_02.svg');
+INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (9, 'Electrificación rural', '', 'ico_nama_rojo_01.svg');
+INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (10, 'RER conectado', '', 'ico_nama_verde_01.svg');
+INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (11, 'Generación distribuida', '', 'ico_nama_verde_02.svg');
+INSERT INTO T_MAE_MEDMIT (ID_MEDMIT, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (12, 'Promoción de vehículos eléctricos', '', 'ico_nama_azul_01.svg');
 
 --T_MAE_DEPARTAMENTO
 INSERT INTO T_MAE_DEPARTAMENTO (ID_DEPARTAMENTO, NOMBRE) VALUES ('08', 'CUSCO');

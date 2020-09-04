@@ -82,6 +82,7 @@
     <Compile Include="InscripcionTrazabilidadDA.cs" />
     <Compile Include="InsigniaDA.cs" />
     <Compile Include="InstitucionDA.cs" />
+    <Compile Include="MedidaMitigacionDA.cs" />
     <Compile Include="MigrarEmisionesDA.cs" />
     <Compile Include="MRV\BaseDA.cs" />
     <Compile Include="MRV\InstitucionDA.cs" />

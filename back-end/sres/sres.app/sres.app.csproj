@@ -162,8 +162,10 @@
     <Content Include="Assets\images\banner-005.jpg" />
     <Content Include="Assets\images\banner-006.jpg" />
     <Content Include="Assets\images\banner.png" />
+    <Content Include="Assets\images\bg-convocatoria.png" />
     <Content Include="Assets\images\bg-login.png" />
     <Content Include="Assets\images\bg-participantes.png" />
+    <Content Include="Assets\images\bg-reconocimiento.png" />
     <Content Include="Assets\images\bg-registro.png" />
     <Content Include="Assets\images\bg-terminos.png" />
     <Content Include="Assets\images\bg_footer.png" />
@@ -182,6 +184,7 @@
     <Content Include="Assets\images\caso_05.png" />
     <Content Include="Assets\images\clave.png" />
     <Content Include="Assets\images\colaboradores.png" />
+    <Content Include="Assets\images\convocatoria.png" />
     <Content Include="Assets\images\criterio-01.png" />
     <Content Include="Assets\images\criterio-02.png" />
     <Content Include="Assets\images\criterio-03.png" />
@@ -192,6 +195,7 @@
     <Content Include="Assets\images\criterio-08.png" />
     <Content Include="Assets\images\dos_estrella.png" />
     <Content Include="Assets\images\dos_estrellas.png" />
+    <Content Include="Assets\images\empresa-00.jpg" />
     <Content Include="Assets\images\empresa-01.png" />
     <Content Include="Assets\images\empresa-02.png" />
     <Content Include="Assets\images\empresa-03.png" />
@@ -199,6 +203,9 @@
     <Content Include="Assets\images\empresa-05.png" />
     <Content Include="Assets\images\empresa-06.png" />
     <Content Include="Assets\images\faq.png" />
+    <Content Include="Assets\images\favicon-ini.png" />
+    <Content Include="Assets\images\favicon\android-chrome-192x192.png" />
+    <Content Include="Assets\images\favicon\android-chrome-512x512.png" />
     <Content Include="Assets\images\favicon\android-icon-144x144.png" />
     <Content Include="Assets\images\favicon\android-icon-192x192.png" />
     <Content Include="Assets\images\favicon\android-icon-36x36.png" />
@@ -216,6 +223,7 @@
     <Content Include="Assets\images\favicon\apple-icon-76x76.png" />
     <Content Include="Assets\images\favicon\apple-icon-precomposed.png" />
     <Content Include="Assets\images\favicon\apple-icon.png" />
+    <Content Include="Assets\images\favicon\apple-touch-icon.png" />
     <Content Include="Assets\images\favicon\browserconfig.xml" />
     <Content Include="Assets\images\favicon\favicon-16x16.png" />
     <Content Include="Assets\images\favicon\favicon-32x32.png" />
@@ -258,6 +266,7 @@
     <Content Include="Assets\images\mrv-iso.png" />
     <Content Include="Assets\images\oro.png" />
     <Content Include="Assets\images\paneles.png" />
+    <Content Include="Assets\images\participantes.png" />
     <Content Include="Assets\images\password-level-47px.png" />
     <Content Include="Assets\images\plata.png" />
     <Content Include="Assets\images\reconocimientos.png" />
@@ -275,6 +284,7 @@
     <Content Include="Assets\images\sres-logo.png" />
     <Content Include="Assets\images\sres-logo_old.png" />
     <Content Include="Assets\images\sres-menu.png" />
+    <Content Include="Assets\images\sres_0.png" />
     <Content Include="Assets\images\sres_bronce_0_star.png" />
     <Content Include="Assets\images\sres_bronce_1_star.png" />
     <Content Include="Assets\images\sres_bronce_2_star.png" />
@@ -317,6 +327,7 @@
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
     <Content Include="Assets\js\pages\mantenimiento_factor.js" />
     <Content Include="Assets\js\pages\mantenimiento_insignia.js" />
+    <Content Include="Assets\js\pages\mantenimiento_medidamitigacion.js" />
     <Content Include="Assets\js\pages\mantenimiento_parametro.js" />
     <Content Include="Assets\js\pages\mantenimiento_proceso.js" />
     <Content Include="Assets\js\pages\mantenimiento_reconocimiento.js" />
@@ -418,6 +429,7 @@
     <Compile Include="Controllers\Api\InsigniaController.cs" />
     <Compile Include="Controllers\Api\InstitucionController.cs" />
     <Compile Include="Controllers\Api\ConvocatoriaController.cs" />
+    <Compile Include="Controllers\Api\MedidaMitigacionController.cs" />
     <Compile Include="Controllers\Api\MigrarEmisionesController.cs" />
     <Compile Include="Controllers\Api\MRV\InstitucionMRVController.cs" />
     <Compile Include="Controllers\Api\MRV\MigrarEmisionesMRVController.cs" />
@@ -526,6 +538,7 @@
     <Content Include="Assets\fonts\gothamroundedmedium.ttf" />
     <Content Include="Assets\fonts\gothamroundedmedium.woff" />
     <Content Include="Assets\images\favicon\manifest.json" />
+    <Content Include="Assets\images\favicon\site.webmanifest" />
     <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
     <Content Include="Views\Convocatoria\IndexPostulante.cshtml" />
     <Content Include="Views\Convocatoria\IndexEvaluador.cshtml" />
@@ -550,6 +563,7 @@
     <Content Include="Views\Mantenimiento\Estrella.cshtml" />
     <Content Include="Views\Mantenimiento\Reconocimiento.cshtml" />
     <Content Include="Views\Convocatoria\Seguimiento.cshtml" />
+    <Content Include="Views\Mantenimiento\MedidaMitigacion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -87,6 +87,7 @@
     <Compile Include="InstitucionBE.cs" />
     <Compile Include="DocumentoBE.cs" />
     <Compile Include="InstitucionContactoBE.cs" />
+    <Compile Include="MedidaMitigacionBE.cs" />
     <Compile Include="MigrarEmisionesBE.cs" />
     <Compile Include="MRV\InstitucionBE.cs" />
     <Compile Include="MRV\MigrarEmisionesBE.cs" />

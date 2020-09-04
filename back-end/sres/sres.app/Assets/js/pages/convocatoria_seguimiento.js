@@ -21,7 +21,7 @@ var armarConsulta = (data) => {
             let h5title = `<h5 class="title">${x.ETAPA}<br><small class="text-muted"><br></small></h5>`;
             let timecontent = `<div class="timeline-content">${h5title}${divcontent}${pusuario}</div>`;
             let span = `<span class="year">${x.FECHA_TRAZA}</span>`;
-            let time = `<div class="timeline-icon"><i class="fas fa-save"></i></div>`;
+            let time = `<div class="timeline-icon"><i class="${x.ID_ETAPA == 2 ? 'fas fa-user-edit' : x.ID_ETAPA == 3 ? 'fas fa-clipboard-check' : x.ID_ETAPA == 4 ? 'fas fa-file-alt' : x.ID_ETAPA == 5 ? 'fas fa-user-check' : x.ID_ETAPA == 6 ? 'fas fa-info-circle' : x.ID_ETAPA == 7 ? 'fas fa-comments' : x.ID_ETAPA == 8 ? 'fas fa-check' : x.ID_ETAPA == 9 ? 'fas fa-file-signature' : x.ID_ETAPA == 10 ? 'fas fa-file-upload' : x.ID_ETAPA == 11 ? 'fas fa-check-double' : x.ID_ETAPA == 12 ? 'fas fa-file-contract' : x.ID_ETAPA == 13 ? 'fas fa-bullhorn' : x.ID_ETAPA == 14 ? 'fas fa-calendar-check' : 'fas fa-calendar-check'}"></i></div>`;
             let cierre = `<div class="timeline">${time}${span}${timecontent}</div>`;
             return cierre;
         }).join('');

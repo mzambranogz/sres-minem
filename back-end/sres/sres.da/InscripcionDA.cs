@@ -185,15 +185,16 @@ namespace sres.da
                 //ins = db.Query<InscripcionTrazabilidadBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
                 ins = db.Query<dynamic>(sp, p, commandType: CommandType.StoredProcedure).Select(x => new InscripcionTrazabilidadBE
                 {
-                    ID_INSCRIPCION = (int)x.ID_INSCRIPCION,
-                    ID_TRAZABILIDAD = (int)x.ID_TRAZABILIDAD,
-                    DESCRIPCION = (string)x.DESCRIPCION,
-                    FECHA_TRAZA = ((DateTime)x.REG_FECHA).ToString("dd/MM/yyyy HH:mm"),
-                    CORREO = (string)x.CORREO,
-                    ROL = (string)x.ROL,
-                    ID_ROL = (int)x.ID_ROL,
-                    ETAPA = (string)x.ETAPA
-            }).ToList();
+                        ID_INSCRIPCION = (int)x.ID_INSCRIPCION,
+                        ID_TRAZABILIDAD = (int)x.ID_TRAZABILIDAD,
+                        DESCRIPCION = (string)x.DESCRIPCION,
+                        FECHA_TRAZA = ((DateTime)x.REG_FECHA).ToString("dd/MM/yyyy HH:mm"),
+                        CORREO = (string)x.CORREO,
+                        ROL = (string)x.ROL,
+                        ID_ROL = (int)x.ID_ROL,
+                        ETAPA = (string)x.ETAPA,
+                        ID_ETAPA = (int)x.ID_ETAPA
+                }).ToList();
             }
             catch (Exception ex) { Log.Error(ex); }
             return ins;
