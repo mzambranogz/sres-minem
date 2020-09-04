@@ -193,6 +193,15 @@ var responseGuardarLogo = (data) => {
 
 var logoChange = (e) => {
     let elFile = $(e.currentTarget);
+    var fileContent = e.currentTarget.files[0];
+
+    switch (fileContent.name.substring(fileContent.name.lastIndexOf('.') + 1).toLowerCase()) {
+        case 'jpg': case 'jpeg': case 'png': break;
+        default: $(elFile).parent().parent().parent().parent().parent().parent().alert({ type: 'danger', title: 'ERROR', message: `El archivo seleccionado no presenta un extensión permitida (JPG, JPEG, PNG)` }); return false; break;
+    }
+
+    if (fileContent.size > maxBytes) { $(elFile).parent().parent().parent().parent().parent().parent().alert({ type: 'danger', title: 'ERROR', message: `El archivo debe tener un peso máximo de 4MB` }); return false; }
+    else $(elFile).parent().parent().parent().parent().parent().parent().alert('remove');
 
     if (e.currentTarget.files.length == 0) {
         let srcDefault = $(e.currentTarget).parent().parent().find('.img-fluid').attr('data-src-default');
@@ -204,8 +213,7 @@ var logoChange = (e) => {
         $(e.currentTarget).removeData('type');
         return;
     }
-
-    var fileContent = e.currentTarget.files[0];
+    //var fileContent = e.currentTarget.files[0];
 
     if (fileContent.size > maxBytes) $(elFile).parent().parent().parent().parent().parent().parent().alert({ type: 'danger', title: 'ERROR', message: `El archivo debe tener un peso máximo de 4MB` });
     else $(elFile).parent().parent().parent().parent().parent().parent().alert('remove');
