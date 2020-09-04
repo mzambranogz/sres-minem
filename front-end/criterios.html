@@ -213,7 +213,7 @@
         <div class="row">
           <div class="col-12" data-toggle="tooltip" data-placement="top" title="1 de 8 criterios registrados">
             <div class="progress" style="height: 25px;">
-              <div class="progress-bar estilo-01 bg-degradado text-limit-1" role="progressbar" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100" style="width: 12.5%">1 de 8 criterios registrados</div>
+              <div class="progress-bar estilo-01 bg-degradado d-flex" role="progressbar" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100" style="width: 12.5%">1 de 8 criterios</div>
             </div>
           </div>
         </div>
@@ -241,12 +241,307 @@
         </div>
         <div class="row">
           <div class="col-12">
+            <div class="dropdown-divider my-5 wow fadeIn"></div><b class="estilo-02 text-sres-azul">Resultados obtenidos:</b>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 text-center my-3">
+            <!--.bg-sres-claro.border-linea.rounded.h-100.p-3-->
+            <div class="alert alert-warning py-5">
+              <div class="text-sres-verde pt-3"><span class="estilo-07">527,120</span>
+                <smal class="estilo-03">tCO<sub>2</sub></smal>
+              </div>
+              <div class="badge badge-warning p-1 mt-2"><small class="estilo-01">Total de Emisiones Reducidas</small></div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 text-center my-3">
+            <!--.bg-sres-claro.border-linea.rounded.h-100.p-3-->
+            <div class="alert alert-success py-5">
+              <div class="text-sres-azul pt-3"><span class="estilo-07">180</span>
+                <smal class="estilo-03">puntos</smal>
+              </div>
+              <div class="badge badge-success p-1 mt-2"><small class="estilo-01">Total de Puntaje Acumulado</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
             <div class="rayado my-5 wow fadeIn"></div>
           </div>
         </div>
         <div class="row">
-          <div class="offset-lg-6 col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="./bandeja-postulante.html">Regresar</a></div>
+          <div class="col-lg-3 col-md-12 col-sm-12 my-3"><span data-toggle="tooltip" data-placement="top" title="Podrá importar las reducciones de emisiones de tCO2 regisstrardas desde la Plataforma de MRV"><a class="btn btn-warning text-white d-block w-100 mb-3" href="#" data-toggle="modal" data-target="#modal-valores">Importar Emisiones tCO<sub>2</sub></a></span></div>
+          <div class="col-lg-3 col-md-12 col-sm-12 my-3">
+            <!--a.btn.btn-primary.text-white.w-100.mb-3(href="./criterios.html") Finalizar-->
+          </div>
+          <div class="col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="./bandeja-postulante.html">Regresar</a></div>
           <div class="col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-primary text-white w-100 mb-3" href="./criterios.html">Finalizar</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modal-valores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <form action="">
+            <div class="modal-header bg-sres-azul text-white">
+              <h5 class="modal-title estilo-01" id="exampleModalLabel">IMPORTAR EMISIONES DE TCO2 DESDE LA PLATAFORMAR MRV</h5>
+              <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+          </form>
+          <div class="modal-body medidas-modal">
+            <div class="row">
+              <div class="col-12">
+                <p class="estilo-01 text-sres-claro">Selecciones las <b>Acciones de Mitigiación</b> con las que participará para el <b>Reconocimiento por cada medida que aporta a las contribuciones nacionales determinadas (NDC)</b></p>
+                <div class="table-responsive tabla-principal">
+                  <table class="table table-sm table-hover">
+                    <thead class="estilo-06">
+                      <tr>
+                        <th scope="col" width="4%"><i class="fas fa-tasks fa-2x" data-toggle="tooltip" data-placement="bottom" title="En esta columna puede seleccionar todas las accioens de mitigación para su participación"></i></th>
+                        <th scope="col" width="3%">
+                          <div class="d-flex flex-column justify-content-between align-items-start">
+                            <div class="d-flex justify-content-between align-items-center w-100">N°&nbsp;</div>
+                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Número de orden"></i></div>
+                          </div>
+                        </th>
+                        <th scope="col" width="8%">
+                          <div class="d-flex flex-column justify-content-between align-items-start">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                              <div class="pl-1">CÓDIGO&nbsp;</div>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Código de la acción de mitigación"></i></div>
+                          </div>
+                        </th>
+                        <th scope="col" width="15%">
+                          <div class="d-flex flex-column justify-content-between align-items-start">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                              <div class="pl-1">IMAGEN&nbsp;</div>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Imagen representativa de la medida de mitigación correspondiente"></i></div>
+                          </div>
+                        </th>
+                        <th scope="col" width="50%">
+                          <div class="d-flex flex-column justify-content-between align-items-start">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                              <div class="pl-1">MEDIDA DE MITIGACIÓN&nbsp;</div>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre de la medida de mitigación correspondiente"></i></div>
+                          </div>
+                        </th>
+                        <th scope="col" width="20%">
+                          <div class="d-flex flex-column justify-content-between align-items-start">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                              <div class="pl-1">EMISIONES&nbsp;</div>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Cantidad total de emisiones reducidas"></i></div>
+                          </div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id="detalles-tr-0">
+                        <td class="text-center" data-encabezado="Seleecionar 0">
+                          <div class="custom-control custom-checkbox p-0 m-0">
+                            <input class="custom-control-input" type="checkbox" id="chk-norma-01">
+                            <label class="custom-control-label" for="chk-norma-01"></label>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Número" scope="row">1</td>
+                        <td class="text-center" data-encabezado="Código">28561</td>
+                        <td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="./images/ico_nama_amarillo_01.svg">
+                        </td>
+                        <td data-encabezado="Medida de Mitigación">Transformación del mercado de iluminación del sector residencial
+                        </td>
+                        <td data-encabezado="Emisiones">16,746.00 tCO<sub>2</sub></td>
+                      </tr>
+                      <tr id="detalles-tr-1">
+                        <td class="text-center" data-encabezado="Seleecionar 1">
+                          <div class="custom-control custom-checkbox p-0 m-0">
+                            <input class="custom-control-input" type="checkbox" id="chk-norma-02">
+                            <label class="custom-control-label" for="chk-norma-02"></label>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Número" scope="row">2</td>
+                        <td class="text-center" data-encabezado="Código">28562</td>
+                        <td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="./images/ico_nama_amarillo_02.svg">
+                        </td>
+                        <td data-encabezado="Medida de Mitigación">Reemplazo de lámparas de alumbrado público por lámparas LED
+                        </td>
+                        <td data-encabezado="Emisiones">16,746.00 tCO<sub>2</sub></td>
+                      </tr>
+                      <tr id="detalles-tr-2">
+                        <td class="text-center" data-encabezado="Seleecionar 2">
+                          <div class="custom-control custom-checkbox p-0 m-0">
+                            <input class="custom-control-input" type="checkbox" id="chk-norma-03">
+                            <label class="custom-control-label" for="chk-norma-03"></label>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Número" scope="row">3</td>
+                        <td class="text-center" data-encabezado="Código">28563</td>
+                        <td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="./images/ico_nama_amarillo_03.svg">
+                        </td>
+                        <td data-encabezado="Medida de Mitigación">Etiquetado de eficiencia energética
+                        </td>
+                        <td data-encabezado="Emisiones">16,746.00 tCO<sub>2</sub></td>
+                      </tr>
+                      <tr id="detalles-tr-3">
+                        <td class="text-center" data-encabezado="Seleecionar 3">
+                          <div class="custom-control custom-checkbox p-0 m-0">
+                            <input class="custom-control-input" type="checkbox" id="chk-norma-04">
+                            <label class="custom-control-label" for="chk-norma-04"></label>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Número" scope="row">4</td>
+                        <td class="text-center" data-encabezado="Código">28564</td>
+                        <td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="./images/ico_nama_amarillo_04.svg">
+                        </td>
+                        <td data-encabezado="Medida de Mitigación">Auditorías energéticas sector público
+                        </td>
+                        <td data-encabezado="Emisiones">16,746.00 tCO<sub>2</sub></td>
+                      </tr>
+                      <tr id="detalles-tr-4">
+                        <td class="text-center" data-encabezado="Seleecionar 4">
+                          <div class="custom-control custom-checkbox p-0 m-0">
+                            <input class="custom-control-input" type="checkbox" id="chk-norma-05">
+                            <label class="custom-control-label" for="chk-norma-05"></label>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Número" scope="row">5</td>
+                        <td class="text-center" data-encabezado="Código">28565</td>
+                        <td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="./images/ico_nama_amarillo_05.svg">
+                        </td>
+                        <td data-encabezado="Medida de Mitigación">Reemplazo de lámparas por lámparas LED en el sector público
+                        </td>
+                        <td data-encabezado="Emisiones">16,746.00 tCO<sub>2</sub></td>
+                      </tr>
+                      <tr id="detalles-tr-5">
+                        <td class="text-center" data-encabezado="Seleecionar 5">
+                          <div class="custom-control custom-checkbox p-0 m-0">
+                            <input class="custom-control-input" type="checkbox" id="chk-norma-06">
+                            <label class="custom-control-label" for="chk-norma-06"></label>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Número" scope="row">6</td>
+                        <td class="text-center" data-encabezado="Código">28566</td>
+                        <td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="./images/ico_nama_amarillo_06.svg">
+                        </td>
+                        <td data-encabezado="Medida de Mitigación">Eficiencia energética en el sector industrial
+                        </td>
+                        <td data-encabezado="Emisiones">16,746.00 tCO<sub>2</sub></td>
+                      </tr>
+                      <tr id="detalles-tr-6">
+                        <td class="text-center" data-encabezado="Seleecionar 6">
+                          <div class="custom-control custom-checkbox p-0 m-0">
+                            <input class="custom-control-input" type="checkbox" id="chk-norma-07">
+                            <label class="custom-control-label" for="chk-norma-07"></label>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Número" scope="row">7</td>
+                        <td class="text-center" data-encabezado="Código">28567</td>
+                        <td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="./images/ico_nama_amarillo_07.svg">
+                        </td>
+                        <td data-encabezado="Medida de Mitigación">Reemplazo lámparas en el sector comercial
+                        </td>
+                        <td data-encabezado="Emisiones">16,746.00 tCO<sub>2</sub></td>
+                      </tr>
+                      <tr id="detalles-tr-7">
+                        <td class="text-center" data-encabezado="Seleecionar 7">
+                          <div class="custom-control custom-checkbox p-0 m-0">
+                            <input class="custom-control-input" type="checkbox" id="chk-norma-08">
+                            <label class="custom-control-label" for="chk-norma-08"></label>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Número" scope="row">8</td>
+                        <td class="text-center" data-encabezado="Código">28568</td>
+                        <td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="./images/ico_nama_azul_01.svg">
+                        </td>
+                        <td data-encabezado="Medida de Mitigación">Promoción de vehículos eléctricos a nivel nacional
+                        </td>
+                        <td data-encabezado="Emisiones">16,746.00 tCO<sub>2</sub></td>
+                      </tr>
+                      <tr id="detalles-tr-8">
+                        <td class="text-center" data-encabezado="Seleecionar 8">
+                          <div class="custom-control custom-checkbox p-0 m-0">
+                            <input class="custom-control-input" type="checkbox" id="chk-norma-09">
+                            <label class="custom-control-label" for="chk-norma-09"></label>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Número" scope="row">9</td>
+                        <td class="text-center" data-encabezado="Código">28569</td>
+                        <td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="./images/ico_nama_rojo_01.svg">
+                        </td>
+                        <td data-encabezado="Medida de Mitigación">Suministro de electricidad con energía renovable en áreas no conectadas
+                        </td>
+                        <td data-encabezado="Emisiones">16,746.00 tCO<sub>2</sub></td>
+                      </tr>
+                      <tr id="detalles-tr-9">
+                        <td class="text-center" data-encabezado="Seleecionar 9">
+                          <div class="custom-control custom-checkbox p-0 m-0">
+                            <input class="custom-control-input" type="checkbox" id="chk-norma-010">
+                            <label class="custom-control-label" for="chk-norma-010"></label>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Número" scope="row">10</td>
+                        <td class="text-center" data-encabezado="Código">285610</td>
+                        <td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="./images/ico_nama_rojo_02.svg">
+                        </td>
+                        <td data-encabezado="Medida de Mitigación">Cocción limpia
+                        </td>
+                        <td data-encabezado="Emisiones">16,746.00 tCO<sub>2</sub></td>
+                      </tr>
+                      <tr id="detalles-tr-10">
+                        <td class="text-center" data-encabezado="Seleecionar 10">
+                          <div class="custom-control custom-checkbox p-0 m-0">
+                            <input class="custom-control-input" type="checkbox" id="chk-norma-011">
+                            <label class="custom-control-label" for="chk-norma-011"></label>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Número" scope="row">11</td>
+                        <td class="text-center" data-encabezado="Código">285611</td>
+                        <td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="./images/ico_nama_verde_01.svg">
+                        </td>
+                        <td data-encabezado="Medida de Mitigación">Combinación de energías renovables
+                        </td>
+                        <td data-encabezado="Emisiones">16,746.00 tCO<sub>2</sub></td>
+                      </tr>
+                      <tr id="detalles-tr-11">
+                        <td class="text-center" data-encabezado="Seleecionar 11">
+                          <div class="custom-control custom-checkbox p-0 m-0">
+                            <input class="custom-control-input" type="checkbox" id="chk-norma-012">
+                            <label class="custom-control-label" for="chk-norma-012"></label>
+                          </div>
+                        </td>
+                        <td class="text-center" data-encabezado="Número" scope="row">12</td>
+                        <td class="text-center" data-encabezado="Código">285612</td>
+                        <td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="./images/ico_nama_verde_02.svg">
+                        </td>
+                        <td data-encabezado="Medida de Mitigación">Generación distribuida
+                        </td>
+                        <td data-encabezado="Emisiones">16,746.00 tCO<sub>2</sub></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="alert alert-warning d-flex align-items-stretch" role="alert">
+                  <div class="alert-wrap mr-3">
+                    <div class="sa">
+                      <div class="sa-warning">
+                        <div class="sa-warning-body"></div>
+                        <div class="sa-warning-dot"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="alert-wrap">
+                    <h6>NO ENCONTRAMOS EMISIONES PROVENIENTES DE LA PLATAFORMA MRV</h6>
+                    <hr class="my-1"><small class="mb-0 estilo-01">Para importar sus emisiones de tCO<sub>2</sub> lo invitamos a registrarse en la <b>Plataforma MRV de Energía Sostenible</b> y registrar sus acciones de mitigación.<a class="estilo-01 text-sres-azul" href="http://sismrv.minem.gob.pe/Home/registro" target="_blank">&nbsp; Más información...</a></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button class="btn btn-sm btn-info" type="button">Si, aceptar</button>
+              <button class="btn btn-sm btn-dark" type="button" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
