@@ -5,6 +5,7 @@
     $('.btnPreviousPagination').on('click', btnPreviousPaginationClick);
     $('.btnNextPagination').on('click', btnNextPaginationClick);
     $('.btnLastPagination').on('click', btnLastPaginationClick);
+    cambioNav();
 })
 
 var consultar = () => {
@@ -95,4 +96,11 @@ var btnLastPaginationClick = (e) => {
     let valor = $('#ir-pagina').attr('max');
     $('#ir-pagina').val(valor);
     consultar();
+}
+
+var cambioNav = () => {
+    $('.barra').removeClass('activo');
+    $('.barra a').removeClass('nav-active');
+    $('.barra-participante').addClass('activo');
+    $('.barra-participante a').addClass('nav-active');
 }

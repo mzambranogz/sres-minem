@@ -290,6 +290,7 @@
     <Content Include="Assets\images\tres_estrella.png" />
     <Content Include="Assets\images\tres_estrellas.png" />
     <Content Include="Assets\images\una_estrella.png" />
+    <Content Include="Assets\js\pages\categoria.js" />
     <Content Include="Assets\js\pages\convocatoria.js" />
     <Content Include="Assets\js\pages\convocatoria_bandejaparticipantes.js" />
     <Content Include="Assets\js\pages\convocatoria_cambiarcontrasena.js" />
@@ -301,6 +302,7 @@
     <Content Include="Assets\js\pages\convocatoria_evaluarinscripcion.js" />
     <Content Include="Assets\js\pages\convocatoria_inscribirme.js" />
     <Content Include="Assets\js\pages\convocatoria_seguimiento.js" />
+    <Content Include="Assets\js\pages\inicio.js" />
     <Content Include="Assets\js\pages\login.js" />
     <Content Include="Assets\js\pages\login_registrarme.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />
@@ -324,6 +326,7 @@
     <Content Include="Assets\js\pages\mantenimiento_usuario.js" />
     <Content Include="Assets\js\pages\mantenimiento_valorfactor.js" />
     <Content Include="Assets\js\pages\participantes.js" />
+    <Content Include="Assets\js\pages\preguntas_frecuentes.js" />
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
