@@ -241,7 +241,7 @@ var fileChange = (e) => {
     var fileContent = e.currentTarget.files[0];
 
     switch (fileContent.name.substring(fileContent.name.lastIndexOf('.') + 1).toLowerCase()) {
-        case 'jpg': case 'jpeg': case 'png': break;
+        case 'jpg': case 'jpeg': case 'png': case 'svg': break;
         default: $('.alert-add').alertWarning({ type: 'warning', title: 'ADVERTENCIA', message: `El archivo tiene una extensión no permitida` }); $('#txt-imagen').val(''); return false; break;
     }
 

@@ -360,6 +360,21 @@
     <Content Include="Files\Insignias\2\Imagen\sres_bronce_0_star.png" />
     <Content Include="Files\Insignias\3\Imagen\sres_plata_0_star.png" />
     <Content Include="Files\Insignias\4\Imagen\sres_oro_0_star.png" />
+    <Content Include="Files\MedidaMitigacion\10\Imagen\ico_nama_verde_01.svg" />
+    <Content Include="Files\MedidaMitigacion\11\Imagen\ico_nama_verde_02.svg" />
+    <Content Include="Files\MedidaMitigacion\12\Imagen\ico_nama_azul_01.svg" />
+    <Content Include="Files\MedidaMitigacion\1\Imagen\ico_nama_amarillo_03.svg" />
+    <Content Include="Files\MedidaMitigacion\2\Imagen\ico_nama_amarillo_06.svg" />
+    <Content Include="Files\MedidaMitigacion\3\Imagen\ico_nama_amarillo_07.svg" />
+    <Content Include="Files\MedidaMitigacion\4\Imagen\ico_nama_amarillo_04.svg" />
+    <Content Include="Files\MedidaMitigacion\5\Imagen\ico_nama_amarillo_01.svg" />
+    <Content Include="Files\MedidaMitigacion\6\Imagen\ico_nama_amarillo_05.svg" />
+    <Content Include="Files\MedidaMitigacion\7\Imagen\ico_nama_amarillo_02.svg" />
+    <Content Include="Files\MedidaMitigacion\8\Imagen\ico_nama_rojo_02.svg" />
+    <Content Include="Files\MedidaMitigacion\9\Imagen\ico_nama_rojo_01.svg" />
+    <Content Include="Files\MedidaMitigacion\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Files\Reconocimientos\10\Imagen\sres_oro_0_star.png" />
     <Content Include="Files\Reconocimientos\11\Imagen\sres_oro_1_star.png" />
     <Content Include="Files\Reconocimientos\12\Imagen\sres_oro_2_star.png" />
