@@ -14,5 +14,7 @@ namespace sres.be
         public List<ConvocatoriaCriterioPuntajeBE> LISTA_CONVCRIPUNT { get; set; }
         public int ID_CONVOCATORIA { get; set; }
         public int INGRESO_DATOS { get; set; }
+        public int PUNTAJE { get; set; }
+        public decimal EMISIONES { get; set; }
     }
 }

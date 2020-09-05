@@ -86,7 +86,7 @@
                                         <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="código del criterio-caso"></i></div>
                                     </div>
                                 </th>
-                                <th scope="col" width="23%">
+                                <th scope="col" width="16%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
                                         <div class="d-flex justify-content-between align-items-center w-100">
                                             <div class="pl-1">NOMBRE&nbsp;</div><i class="fas fa-sort columna-filtro" id="COMPONENTE"></i>
@@ -94,7 +94,15 @@
                                         <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre del componente"></i></div>
                                     </div>
                                 </th>
-                                <th scope="col" width="23%">
+                                <th scope="col" width="13%">
+                                    <div class="d-flex flex-column justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <div class="pl-1">ETIQUETA&nbsp;</div><i class="fas fa-sort columna-filtro" id="ETIQUETA"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre visible al usuario"></i></div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="20%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
                                         <div class="d-flex justify-content-between align-items-center w-100">
                                             <div class="pl-1">CASO&nbsp;</div><i class="fas fa-sort columna-filtro" id="CASO"></i>
@@ -102,7 +110,7 @@
                                         <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Caso a la que pertenece el componente"></i></div>
                                     </div>
                                 </th>
-                                <th scope="col" width="23%">
+                                <th scope="col" width="20%">
                                     <div class="d-flex flex-column justify-content-between align-items-start">
                                         <div class="d-flex justify-content-between align-items-center w-100">
                                             <div class="pl-1">CRITERIO&nbsp;</div><i class="fas fa-sort columna-filtro" id="CRITERIO"></i>
@@ -179,7 +187,14 @@
                                 <label class="estilo-01" for="txt-nombre">Nombre:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
-                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-nombre" placeholder="Nombre del documento">
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-nombre" placeholder="Nombre del componente" maxlength="100">
+                                </div>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label class="estilo-01" for="txt-etiqueta">Etiqueta:&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Nombre visible al usuario"></i></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-etiqueta" placeholder="Nombre de la etiqueta" maxlength="100">
                                 </div>
                             </div>
                             <div class="form-group mt-2">

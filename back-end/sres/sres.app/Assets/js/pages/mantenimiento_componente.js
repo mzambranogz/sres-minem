@@ -122,13 +122,14 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
             let colNro = `<td class="text-center" data-encabezado="Número de orden" scope="row" data-count="0">${(pagina - 1) * registros + (i + 1)}</td>`;
             let colCodigo = `<td class="text-center" data-encabezado="Código" scope="row"><span>${(`${formatoCodigo}${x.ID_CRITERIO}${x.ID_CASO}${x.ID_COMPONENTE}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</span></td>`;
             let colNombres = `<td class="text-left" data-encabezado="Nombre">${x.NOMBRE}</td>`;
+            let colEtiqueta = `<td class="text-left" data-encabezado="Etiqueta">${x.ETIQUETA == null ? '' : x.ETIQUETA}</td>`;
             let colCaso = `<td class="text-left" data-encabezado="Caso">${x.CASO}</td>`;
             let colCriterio = `<td class="text-left" data-encabezado="Criterio">${x.CRITERIO}</td>`;
             let colIncrementable = `<td class="text-center" data-encabezado="Incrementable">${x.INCREMENTABLE == '1' ? `<input type="checkbox" disabled checked />` : `<input type="checkbox" disabled />`}</td>`;
             let btnCambiarEstado = `${[0, 1].includes(x.FLAG_ESTADO) ? "" : `<a class="dropdown-item estilo-01 btnCambiarEstado" href="#" data-id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-estado="${x.FLAG_ESTADO}"><i class="fas fa-edit mr-1"></i>Eliminar</a>`}`;
             let btnEditar = `<a class="dropdown-item estilo-01 btnEditar" href="#" data-id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-toggle="modal" data-target="#modal-mantenimiento"><i class="fas fa-edit mr-1"></i>Editar</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Gestión"><div class="btn-group w-100"><a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a><div class="dropdown-menu">${btnCambiarEstado}${btnEditar}</div></div></td>`;
-            let fila = `<tr>${colNro}${colCodigo}${colNombres}${colCaso}${colCriterio}${colIncrementable}${colOpciones}</tr>`;
+            let fila = `<tr>${colNro}${colCodigo}${colNombres}${colEtiqueta}${colCaso}${colCriterio}${colIncrementable}${colOpciones}</tr>`;
             return fila;
         }).join('');
     };
@@ -174,6 +175,7 @@ var consultarDatos = (element) => {
 var cargarDatos = (data) => {
     $('#frm').data('id', data.ID_COMPONENTE);
     $('#txt-nombre').val(data.NOMBRE);
+    $('#txt-etiqueta').val(data.ETIQUETA == null ? '' : data.ETIQUETA);
     $('#rad-incrementable').prop('checked', data.INCREMENTABLE == '1' ? true : false);
     $('#cbo-criterio').val(data.ID_CRITERIO);
     idCaso = data.ID_CASO;
@@ -197,12 +199,13 @@ var guardar = () => {
 
     let id = $('#frm').data('id');
     let nombre = $('#txt-nombre').val();
+    let etiqueta = $('#txt-etiqueta').val();
     let criterio = $(`#cbo-criterio`).val();
     let caso = $(`#cbo-caso`).val();
     let incrementable = $('#rad-incrementable').prop('checked') ? '1' : '0';
 
     let url = `${baseUrl}api/componente/guardarcomponente`;
-    let data = { ID_CRITERIO: criterio, ID_CASO: caso, ID_COMPONENTE: id == null ? -1 : id, NOMBRE: nombre, INCREMENTABLE: incrementable, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CRITERIO: criterio, ID_CASO: caso, ID_COMPONENTE: id == null ? -1 : id, NOMBRE: nombre, ETIQUETA: etiqueta, INCREMENTABLE: incrementable, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)

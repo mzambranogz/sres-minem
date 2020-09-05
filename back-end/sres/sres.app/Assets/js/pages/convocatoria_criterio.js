@@ -26,7 +26,7 @@ var consultar = () => {
         contenido = j.map((x, i) => {
             let head = armarHead(x.LIST_INDICADOR_HEAD, x.INCREMENTABLE, "'" + x.ID_CRITERIO + '-' + x.ID_CASO + '-' + x.ID_COMPONENTE + "'", x.ID_COMPONENTE);
             let body = armarBody(x.LIST_INDICADOR_BODY, x.INCREMENTABLE);
-            return `<div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div>`;
+            return `<h3 class="estilo-02 text-sres-azul mt-5 text-left">${x.ETIQUETA == null ? '' : x.ETIQUETA}</h3><div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div>`;
         }).join('');
         $("#table-add").html(`${contenido}`);
 
@@ -60,7 +60,7 @@ var mostrarDocumentos = (data) => {
         let cabecera = `<div class="row">${tituloDoc}${tituloArchivosAdjuntos}</div>`;
 
         let contenido = data.map(x => {
-            let fileDoc = `<div class="form-group text-left"><label class="estilo-01" for="fle-requisito-${x.ID_DOCUMENTO}">${x.NOMBRE}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitose, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div><input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-${x.ID_DOCUMENTO}" placeholder="Subir documentos" value="${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ARCHIVO_BASE}" required><input class="d-none fil-file-control" type="file" id="fle-requisito-${x.ID_DOCUMENTO}" data-id="${x.ID_DOCUMENTO}" accept="application/msword, application/vnd.ms-excel, text/plain, application/pdf, image/*"><div class="input-group-append"><label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-${x.ID_DOCUMENTO}"><i class="fas fa-upload mr-1"></i>Subir archivo</label></div></div></div>`
+            let fileDoc = `<div class="form-group text-left"><label class="estilo-01" for="fle-requisito-${x.ID_DOCUMENTO}">${x.NOMBRE}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo para adjuntarlo en el registro de requisitos, se recomienda un archivo del tipo (PDF, DOC, JPG, PNG)"></i></span></label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div><input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-${x.ID_DOCUMENTO}" placeholder="Subir documentos" value="${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ARCHIVO_BASE}" required><input class="d-none fil-file-control" type="file" id="fle-requisito-${x.ID_DOCUMENTO}" data-id="${x.ID_DOCUMENTO}" accept="application/msword, application/vnd.ms-excel, text/plain, application/pdf, image/*"><div class="input-group-append"><label class="input-group-text cursor-pointer estilo-01" for="fle-requisito-${x.ID_DOCUMENTO}"><i class="fas fa-upload mr-1"></i>Subir archivo</label></div></div></div>`
             let colLeft = `<div class="col-lg-6 col-md-12 col-sm-12">${fileDoc}</div>`;
             let contenidoFileDoc = `<div class="alert alert-secondary p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha subido el documento requerido</span></div></div>`;
             if (x.OBJ_INSCDOC != null) {
@@ -174,7 +174,7 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
             if (lista[i]["ESTATICO"] == '1')
                 filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="text-center estilo-01">${validarNull(lista[i]["VALOR"])}</div><input class="get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" type="hidden" /></td>`;
             else
-                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><input class="form-control form-control-sm estilo-01 ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["RESULTADO"] == null ? `` : lista[i]["RESULTADO"] == '0' ? `alert-warning` : ``} get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} /></div></td>`;
+                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><input class="form-control form-control-sm estilo-01 ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["RESULTADO"] == null ? `alert-warning` : lista[i]["RESULTADO"] == '0' ? `alert-warning` : ``} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} /></div></td>`;
         } else if (lista[i]["ID_TIPO_CONTROL"] == 1) {
             filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><select class="form-control form-control-sm multi-opciones alert-warning ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["FILTRO"] == null ? `` : lista[i]["FILTRO"] == '' ? `` : `data-filtro="${lista[i]["FILTRO"]}" onchange="filtrar(this)"`}  ${lista[i]["VERIFICABLE"] == '1' ? `onchange="verificarValor(this)"` : ``}><option value="0">Seleccione</option>`;
             for (var j = 0; j < lista[i]["LIST_PARAMDET"].length; j++)
@@ -293,7 +293,6 @@ var guardar = () => {
     });
 
     let listaInputFile = $('input[type="file"][id*="fle-requisito-"]');
-    debugger;
     let listaDoc = Array.from(listaInputFile).filter(x => $(x).data('file') != null)
 
     if (listaDoc.length < listaInputFile.length) {
@@ -317,7 +316,12 @@ var guardar = () => {
         }
     });
 
-    let data = { LIST_COMPONENTE: componente_ind, LIST_DOCUMENTO: listaDoc, ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio_, ID_CASO: idCaso, ID_INSCRIPCION: idInscripcion_, NOMBRE_CRI: $('.nom-cri').val(), ID_ETAPA: idEtapa, USUARIO_GUARDAR: idUsuarioLogin };
+    let emisiones = 0.0
+    $(document).find('.get-emisiones').each((x, y) => {
+        emisiones += $(y).val() == '' ? 0.0 : parseFloat($(y).val().replace(/,/gi, ''));
+    });
+
+    let data = { LIST_COMPONENTE: componente_ind, LIST_DOCUMENTO: listaDoc, ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio_, ID_CASO: idCaso, ID_INSCRIPCION: idInscripcion_, NOMBRE_CRI: $('.nom-cri').val(), EMISIONES: emisiones, ID_ETAPA: idEtapa, USUARIO_GUARDAR: idUsuarioLogin };
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 

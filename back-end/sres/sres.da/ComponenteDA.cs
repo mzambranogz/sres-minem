@@ -66,6 +66,7 @@ namespace sres.da
                 p.Add("PI_ID_CASO", entidad.ID_CASO);
                 p.Add("PI_ID_COMPONENTE", entidad.ID_COMPONENTE);
                 p.Add("PI_NOMBRE", entidad.NOMBRE);
+                p.Add("PI_ETIQUETA", entidad.ETIQUETA);
                 p.Add("PI_INCREMENTABLE", entidad.INCREMENTABLE);
                 p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
