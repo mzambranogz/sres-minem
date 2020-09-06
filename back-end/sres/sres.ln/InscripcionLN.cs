@@ -200,6 +200,7 @@ namespace sres.ln
                     if (seGuardo)
                         seGuardo = convocatoriaDA.GuardarConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = Convert.ToInt16(inscripcion.ID_CONVOCATORIA), ID_ETAPA = inscripcion.ID_ETAPA, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION, OBSERVACION = inscripcion.OBSERVACION, ID_TIPO_EVALUACION = Convert.ToInt16(inscripcion.ID_TIPO_EVALUACION) }, cn);
 
+                    if (seGuardo) seGuardo = convocatoriaDA.GuardarResultadoReconocimiento(new ReconocimientoBE { ID_INSCRIPCION = inscripcion.ID_INSCRIPCION, ID_INSIGNIA = 1, PUNTAJE = 0, ID_ESTRELLA = 1, EMISIONES = 0, FLAG_MEJORACONTINUA = "0", USUARIO_GUARDAR = inscripcion.USUARIO_GUARDAR }, cn);
                     if (seGuardo)
                     {
                         string descripcion = AppSettings.Get<string>("Trazabilidad.Convocatoria.AnulacionParticipante");

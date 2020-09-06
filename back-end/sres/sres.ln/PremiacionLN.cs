@@ -99,5 +99,22 @@ namespace sres.ln
 
             return item;
         }
+
+        public List<ReconocimientoBE> ListaReconocimiento(int idInstitucion)
+        {
+            List<ReconocimientoBE> lista = new List<ReconocimientoBE>();
+            try
+            {
+                cn.Open();
+                lista = premDA.ListaReconocimiento(idInstitucion, cn);
+                if (lista.Count > 0)
+                    foreach (ReconocimientoBE r in lista)
+                        r.LISTA_REC_MEDMIT = premDA.ListaReconocimientoMedida(r.ID_RECONOCIMIENTO, cn);
+
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }

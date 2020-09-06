@@ -346,7 +346,7 @@ namespace sres.ln
 
                         ReconocimientoBE rec = reconocimientoDA.ObtenerReconocimientoUltimo(entidad.ID_INSCRIPCION, cn);
                         if (rec != null)
-                            mejora = categoria > rec.ID_INSIGNIA && estrella > rec.ID_ESTRELLA ? "0" : "1";
+                            mejora = categoria > rec.ID_INSIGNIA && estrella > rec.ID_ESTRELLA ? "1" : "0";
 
                         if (seGuardoConvocatoria) seGuardoConvocatoria = convocatoriaDA.GuardarResultadoReconocimiento(new ReconocimientoBE { ID_INSCRIPCION = entidad.ID_INSCRIPCION, ID_INSIGNIA = categoria, PUNTAJE = entidad.PUNTAJE, ID_ESTRELLA = estrella, EMISIONES = entidad.EMISIONES_REDUCIDAS, FLAG_MEJORACONTINUA = mejora, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, cn);
                         if (seGuardoConvocatoria) if (entidad.ID_ETAPA == 8) seGuardoConvocatoria = convocatoriaDA.GuardarReconocimientoMedida(entidad.ID_INSCRIPCION, entidad.USUARIO_GUARDAR , cn);

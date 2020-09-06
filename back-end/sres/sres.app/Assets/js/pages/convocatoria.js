@@ -98,7 +98,7 @@ var renderizar = (data, cantidadCeldas) => {
             let btnIngresarEditarCriterios = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Criterios"><i class="fas fa-edit mr-1"></i>${x.ID_ETAPA == 6 ? `Ingresar` : `Editar`} criterios</a>`
 
             let btnSeguimiento = `<a class="dropdown-item estilo-01" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Seguimiento/${0}"><i class="fas fa-history mr-1"></i>Seguimiento</a>`;
-            let btnVerReconocimiento = `<a class="dropdown-item estilo-01" href="#"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a>`;
+            let btnVerReconocimiento = `<a class="dropdown-item estilo-01" href="${baseUrl}Participantes/${idInstitucionLogin}/Reconocimiento"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a>`;
 
             let OpcioneEta1 = `${btnDetalles}`;
             let OpcioneEta2 = `${btnPostulacion}`;

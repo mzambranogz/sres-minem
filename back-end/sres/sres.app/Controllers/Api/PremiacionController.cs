@@ -42,5 +42,12 @@ namespace sres.app.Controllers.Api
             PremiacionBE c = premLN.EliminarPremiacion(obj);
             return c.OK;
         }
+
+        [Route("listareconocimiento")]
+        [HttpGet]
+        public List<ReconocimientoBE> ListaReconocimiento(int idInstitucion)
+        {
+            return premLN.ListaReconocimiento(idInstitucion);
+        }
     }
 }
