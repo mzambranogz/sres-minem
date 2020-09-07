@@ -417,6 +417,7 @@ var valorInicial = (idSelect, arr) => {
 }
 
 var filtrar = (e) => {
+    debugger;
     let arr = $(e).parent().parent().parent().attr('id'); //[0] ID_CRITERIO / [1] ID_cASO / [2] ID_COMPONENTE / [3] ID_INDICADOR
     let parametro = $(e).attr('data-param');
 
@@ -442,7 +443,7 @@ var filtrar = (e) => {
                 .then(j => {
                     if (j.length > 0) {
                         contenido = j.map((x, m) => {
-                            let opciones = `<option value="${x.ID_DETALLE}">${x.NOMBRE}</option>`;
+                            let opciones = `<option value="${x.ID_DETALLE}" ${(j.length == 1 ? "selected" : "")}>${x.NOMBRE}</option>`;
                             return opciones;
                         }).join('');
                         $(`#${arr}-${j[0].ID_PARAMETRO}`).html(`<option value="0">Seleccione</option>${contenido}`);

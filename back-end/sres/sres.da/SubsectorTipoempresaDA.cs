@@ -14,7 +14,7 @@ namespace sres.da
 {
     public class SubsectorTipoempresaDA : BaseDA
     {
-        public List<SubsectorTipoempresaBE> listaSubsectorTipoempresa(int idSector, OracleConnection db)
+        public List<SubsectorTipoempresaBE> listaSubsectorTipoempresa(int? idSector, OracleConnection db)
         {
             List<SubsectorTipoempresaBE> lista = new List<SubsectorTipoempresaBE>();
             try

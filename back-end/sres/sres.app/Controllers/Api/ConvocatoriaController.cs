@@ -422,6 +422,5 @@ namespace sres.app.Controllers.Api
             }
             return verificar;
         }
-
     }
 }

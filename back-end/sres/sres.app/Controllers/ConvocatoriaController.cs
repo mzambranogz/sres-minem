@@ -24,6 +24,11 @@ namespace sres.app.Controllers
         ReconocimientoLN reconocimientoLN = new ReconocimientoLN();
         MigrarEmisionesLN migrarLN = new MigrarEmisionesLN();
 
+        public ActionResult Informacion()
+        {
+            return View();
+        }
+
         [SesionOut]
         public ActionResult Index()
         {

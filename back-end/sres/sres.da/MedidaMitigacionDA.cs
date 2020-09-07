@@ -127,5 +127,23 @@ namespace sres.da
             }
             return id;
         }
+
+        public List<MedidaMitigacionBE> ObtenerAllMedidaMitigacion(OracleConnection db)
+        {
+            List<MedidaMitigacionBE> lista = new List<MedidaMitigacionBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_ALL_MEDMIT";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<MedidaMitigacionBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
     }
 }

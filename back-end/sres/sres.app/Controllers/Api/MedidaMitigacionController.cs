@@ -43,5 +43,12 @@ namespace sres.app.Controllers.Api
             MedidaMitigacionBE c = medidaLN.EliminarMedidaMitigacion(entidad);
             return c.OK;
         }
+
+        [Route("obtenerallmedidamitigacion")]
+        [HttpGet]
+        public List<MedidaMitigacionBE> ObtenerAllMedidaMitigacion()
+        {
+            return medidaLN.ObtenerAllMedidaMitigacion();
+        }
     }
 }

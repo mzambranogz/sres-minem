@@ -703,5 +703,22 @@ namespace sres.da
             return seGuardo;
         }
 
+        public List<InsigniaBE> getAllInsignia(OracleConnection db)
+        {
+            List<InsigniaBE> lista = new List<InsigniaBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_ALL_INSIGNIA";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<InsigniaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
     }
 }

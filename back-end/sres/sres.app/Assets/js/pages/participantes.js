@@ -1,4 +1,5 @@
 ﻿$(document).ready((e) => {
+    cargarCombos();
     $('#txt-buscar').on('blur', (e) => consultar());
     $('#txt-buscar')[0].blur();
     $('.btnFirstPagination').on('click', btnFirstPaginationClick);
@@ -6,19 +7,93 @@
     $('.btnNextPagination').on('click', btnNextPaginationClick);
     $('.btnLastPagination').on('click', btnLastPaginationClick);
     cambioNav();
+
+    $("#btn-buscar").click(consultar);
+    $('#cbo-categoria, #cbo-criterio, #cbo-medmit, #cbo-periodo, #cbo-insignia, #cbo-estrellas').change(consultar);
+    $("#btn-buscar")[0].click();
 })
 
+var cargarCombos = () => {
+    let urlListarComboTipoEmpresa = `${baseUrl}api/subsectortipoempresa/listasubsetortipoempresa?idSector=${idSectorLogin}`;
+    let urlListarComboCriterio = `${baseUrl}api/criterio/obtenerallcriterio`;
+    let urlListarComboMedMit = `${baseUrl}api/medidamitigacion/obtenerallmedidamitigacion`;
+    let urlListarComboPeriodo = `${baseUrl}api/anno/obtenerallanno`;
+    let urlListarComboInsignia = `${baseUrl}api/insignia/obtenerallinsignia`;
+    let urlListarComboEstrella = `${baseUrl}api/estrella/obtenerallestrella`;
+
+    Promise.all([
+            fetch(urlListarComboTipoEmpresa),
+            fetch(urlListarComboCriterio),
+            fetch(urlListarComboMedMit),
+            fetch(urlListarComboPeriodo),
+            fetch(urlListarComboInsignia),
+            fetch(urlListarComboEstrella)
+            
+    ])
+    .then(r => Promise.all(r.map(v => v.json())))
+    .then(([listaTipoEmpresa, listaCriterio, listaMedMit, listaPeriodo, listaInsignia, listaEstrella]) => {
+        cargarComboTipoEmpresa('#cbo-categoria', listaTipoEmpresa);
+        cargarComboCriterio('#cbo-criterio', listaCriterio);
+        cargarComboMedidaMitigacion('#cbo-medmit', listaMedMit);
+        cargarComboPeriodo('#cbo-periodo', listaPeriodo);
+        cargarComboInsignia('#cbo-insignia', listaInsignia);
+        cargarComboEstrella('#cbo-estrellas', listaEstrella);
+    });
+};
+
+var cargarComboTipoEmpresa = (selector, data) => {
+    let options = data.length == 0 ? '' : data.map(x => `<option value="${x.ID_SUBSECTOR_TIPOEMPRESA}">${x.NOMBRE}</option>`).join('');
+    options = `<option>Todos</option>${options}`;
+    $(selector).html(options);
+}
+
+var cargarComboCriterio = (selector, data) => {
+    let options = data.length == 0 ? '' : data.map(x => `<option value="${x.ID_CRITERIO}">${x.NOMBRE}</option>`).join('');
+    options = `<option>Todos</option>${options}`;
+    $(selector).html(options);
+}
+
+var cargarComboMedidaMitigacion = (selector, data) => {
+    let options = data.length == 0 ? '' : data.map(x => `<option value="${x.ID_MEDMIT}">${x.NOMBRE}</option>`).join('');
+    options = `<option>Todos</option>${options}`;
+    $(selector).html(options);
+}
+
+var cargarComboPeriodo = (selector, data) => {
+    let options = data.length == 0 ? '' : data.map(x => `<option value="${x.NOMBRE}">${x.NOMBRE}</option>`).join('');
+    options = `<option>Todos</option>${options}`;
+    $(selector).html(options);
+}
+
+var cargarComboInsignia = (selector, data) => {
+    let options = data.length == 0 ? '' : data.map(x => `<option value="${x.ID_INSIGNIA}">${x.NOMBRE}</option>`).join('');
+    options = `<option>Todos</option>${options}`;
+    $(selector).html(options);
+}
+
+var cargarComboEstrella = (selector, data) => {
+    let options = data.length == 0 ? '' : data.map(x => `<option value="${x.ID_ESTRELLA}">${x.NOMBRE}</option>`).join('');
+    options = `<option>Todos</option>${options}`;
+    $(selector).html(options);
+}
+
 var consultar = () => {
-    let busqueda = $('#txt-buscar').val();
+    let razonSocialInstitucion = $('#txt-buscar').val();
+    let idTipoEmpresa = $('#cbo-categoria').val();
+    let idCriterio = $('#cbo-criterio').val();
+    let idMedMit = $('#cbo-medmit').val();
+    let añoInicioConvocatoria = $('#cbo-periodo').val();
+    let idInsignia = $('#cbo-insignia').val();
+    let idEstrella = $('#cbo-estrellas').val();
     let registros = 10;
     //let registros = $('#catidad-rgistros').val();
     let pagina = $($('.ir-pagina')[0]).val();
     let columna = 'id_reconocimiento';
     let orden = 'asc'
-    let params = { busqueda, registros, pagina, columna, orden };
+    let params = { razonSocialInstitucion, idTipoEmpresa, idCriterio, idMedMit, añoInicioConvocatoria, idInsignia, idEstrella, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
-    let url = `${baseUrl}api/institucion/buscarparticipantes?${queryParams}`;
+    let url = `${baseUrl}api/reconocimiento/buscarparticipantes?${queryParams}`;
 
     fetch(url).then(r => r.json()).then(cargarDataBusqueda);
 };
@@ -44,7 +119,7 @@ var cargarDataBusqueda = (data) => {
         let elementButton = tabla.find('.btnParticipar')[x];
         $(elementButton).on('click', btnParticiparClick);
     });
-    $('html, body').animate({ scrollTop: $('#sectionSearch').offset().top }, 'slow');
+    $('html, body').animate({ scrollTop: $('#tblParticipantes').offset().top }, 'slow');
 }
 
 var renderizar = (data, cantidadCeldas) => {
@@ -53,20 +128,15 @@ var renderizar = (data, cantidadCeldas) => {
 
     if (deboRenderizar) {
         contenido = data.DATA.map((x, i) => {
-            //let fechaActual = new Date();
-            //let fechaInicio = new Date(x.FECHA_INICIO);
-            //let fechaFin = new Date(x.FECHA_FIN);
-            //let diasPlazo = Math.floor((fechaFin - fechaInicio) / (1000 * 60 * 60 * 24));
-            //let diasTranscurridos = Math.floor((fechaActual - fechaInicio) / (1000 * 60 * 60 * 24));
-            //let porcentajeAvance = (fechaInicio > fechaActual ? 0.00 : fechaActual > fechaFin ? 100 : (diasTranscurridos / diasPlazo * 100)).toFixed(2);
-
-            let colLogo = `<td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="0"><img class="img-fluid" src="${x.LOGO == null ? '' : `${baseUrl}${x.LOGO}`}" alt=""></td>`;
-            let colReconocimiento = `<td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="./images/dos_estrellas.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas"></td>`;
-            let colRazonSocial = `<td data-encabezado="Empresa participante"><div class="text-limi-1">${x.RAZON_SOCIAL}</div></td>`;
-            let colMedida = `<td class="text-center" data-encabezado="Medida NDC"><b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b></td>`;
+            let colLogo = `<td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="0"><img class="img-fluid" src="${x.INSCRIPCION.INSTITUCION.LOGO == null ? `${baseUrl}Assets/images/sin-foto.png` : `${baseUrl}${x.INSCRIPCION.INSTITUCION.LOGO}`}" alt=""></td>`;
+            let colSello = `<td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="${(x.INSIGNIA == null ? `sres_0.png` : `${baseUrl}Assets/images/${x.INSIGNIA.ARCHIVO_BASE}`)}" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con ${x.ESTRELLA}"></td>`;
+            let colRazonSocial = `<td data-encabezado="Empresa participante"><div class="text-limi-1">${x.INSCRIPCION.INSTITUCION.RAZON_SOCIAL}</div></td>`;
+            let colPuntaje = `<td data-encabezado="Puntaje"><div class="text-center">${x.PUNTAJE} ptos.</div></td>`;
+            let colEmisiones = `<td data-encabezado="Reducción"><div class="text-center">${x.EMISIONES} tCO<sup>2.</sup></div></td>`;
+            let colEstrella = `<td class="text-center" data-encabezado="Medida NDC"><i class="fas fa-medal fa-2x"></i></td>`;
             let btnVerFicha = `<a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Ficha">${btnVerFicha}</td>`;
-            let fila = `<tr>${colLogo}${colReconocimiento}${colRazonSocial}${colMedida}${colOpciones}</tr>`;
+            let fila = `<tr>${colLogo}${colSello}${colRazonSocial}${colPuntaje}${colEmisiones}${colEstrella}${colOpciones}</tr>`;
             return fila;
         }).join('');
     };

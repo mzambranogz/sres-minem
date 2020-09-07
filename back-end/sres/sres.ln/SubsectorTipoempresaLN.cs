@@ -15,7 +15,7 @@ namespace sres.ln
     {
         SubsectorTipoempresaDA subsectipoemp = new SubsectorTipoempresaDA();
 
-        public List<SubsectorTipoempresaBE> listaSubsectorTipoempresa(int idSector) {
+        public List<SubsectorTipoempresaBE> listaSubsectorTipoempresa(int? idSector) {
             List<SubsectorTipoempresaBE> lista = new List<SubsectorTipoempresaBE>();
             try
             {

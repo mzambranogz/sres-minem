@@ -23,131 +23,212 @@
         </div>
     </div>
 </div>
-
-<div class="container-fluid my-2">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-12 col-sm-12">
-                <div class="form-group m-0">
-                    <div class="input-group">
-                        <input class="form-control form-control-sm" type="text" id="txt-buscar" placeholder="Buscar aquí">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-9 col-md-12 col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12 col-lg-6 estilo-01 d-flex justify-content-start align-items-center">
-                        <div class="row">
-                            <div class="col-12"><strong>Resultado:&nbsp;</strong>1-10 de 750 registros</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6 estilo-01 d-flex justify-content-end align-items-center">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                    <button class="estilo-01 btn btn-sm btn-sres-verde btnFirstPagination" type="button"><i class="fas fa-angle-double-left"></i></button>
-                                    <button class="estilo-01 btn btn-sm btn-sres-verde btnPreviousPagination" type="button"><i class="fas fa-angle-left"></i></button>
-                                    <input class="ir-pagina estilo-01" type="number" value="1" min="1">
-                                    <button class="estilo-01 btn btn-sm btn-sres-verde btnNextPagination" type="button"><i class="fas fa-angle-right"></i></button>
-                                    <button class="estilo-01 btn btn-sm btn-sres-verde btnLastPagination" type="button"><i class="fas fa-angle-double-right"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid my-5">
+<div class="container-fluid mb-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-12 col-sm-12">
                 <h4 class="p-2 estilo-04 text-white bg-degradado wow fadeIn">FILTROS</h4>
                 <div class="bg-sres-claro px-2 py-3 mb-5 text-sres-claro h-100 wow fadeIn">
-                    <span class="estilo-01 mb-5">Reconocimientos</span>
-                    <div class="my-2">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="chk-oro">
-                                <label class="custom-control-label estilo-01" for="chk-oro">Oro</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="chk-plata">
-                                <label class="custom-control-label estilo-01" for="chk-plata">Plata</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="chk-bronce">
-                                <label class="custom-control-label estilo-01" for="chk-bronce">Bronce</label>
+                    <div class="form-group">
+                        <label class="estilo-01" for="txt-buscar">Descripción</label>
+                        <div class="input-group">
+                            <input class="form-control form-control-sm estilo-01" type="text" id="txt-buscar" placeholder="Buscar aquí">
+                            <div class="input-group-append">
+                                <label id="btn-buscar" class="input-group-text bg-success text-white cursor-pointer"><i class="fas fa-search"></i></label>
                             </div>
                         </div>
                     </div>
-                    <div class="mb-2">
-                        <div class="estilo-01 text-right"><a class="text-sres-verde btn-all" href="#">Todos</a><span class="mx-2 text-sres-gris">|</span><a class="text-sres-verde btn-not" href="#">Ninguno</a></div>
-                    </div><span class="estilo-01 mb-5">Estrellas</span>
-                    <div class="my-2">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="chk-1-estrella">
-                                <label class="custom-control-label estilo-01" for="chk-1-estrella">1 estrella</label>
-                            </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="form-group">
+                        <label class="estilo-01" for="cbo-categoria">Categoría de postulante</label>
+                        <div class="input-group">
+                            <select class="form-control form-control-sm estilo-01" id="cbo-categoria">
+                                @*<option>Todos</option>
+                                <option>Grande</option>
+                                <option>Mediana</option>
+                                <option>Pequeña</option>*@
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="chk-2-estrellas">
-                                <label class="custom-control-label estilo-01" for="chk-2-estrellas">2 estrellas</label>
-                            </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="form-group">
+                        <label class="estilo-01" for="cbo-criterio">Criterio</label>
+                        <div class="input-group">
+                            <select class="form-control form-control-sm estilo-01" id="cbo-criterio">
+                                @*<option>Criterio 01</option>
+                                <option>Criterio 02</option>
+                                <option>Criterio 03</option>
+                                <option>Criterio 04</option>
+                                <option>Criterio 05</option>
+                                <option>Criterio 06</option>
+                                <option>Criterio 07</option>
+                                <option>Criterio 08</option>*@
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="chk-3-estrellas">
-                                <label class="custom-control-label estilo-01" for="chk-3-estrellas">3 estrellas</label>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="form-group">
+                        <label class="estilo-01" for="cbo-medmit">Medida NDC</label>
+                        <div class="input-group">
+                            <select class="form-control form-control-sm estilo-01" id="cbo-medmit">
+                                @*<option>Medida de Mitigación 01</option>
+                                <option>Medida de Mitigación 02</option>
+                                <option>Medida de Mitigación 03</option>
+                                <option>Medida de Mitigación 04</option>
+                                <option>Medida de Mitigación 05</option>
+                                <option>Medida de Mitigación 06</option>
+                                <option>Medida de Mitigación 07</option>
+                                <option>Medida de Mitigación 08</option>
+                                <option>Medida de Mitigación 09</option>
+                                <option>Medida de Mitigación 10</option>
+                                <option>Medida de Mitigación 11</option>
+                                <option>Medida de Mitigación 12</option>*@
+                            </select>
+                        </div>
+                    </div>
+                    <!--.dropdown-divider-->
+                    <!--.form-group
+                    label.estilo-01(for="txt-desde") Puntaje
+                    .input-group
+                      input.form-control.form-control-sm.estilo-01(type="text", id="txt-desde", placeholder="Puntaje desde")
+                    -->
+                    <!--.form-group
+                    .input-group
+                      input.form-control.form-control-sm.estilo-01(type="text", id="txt-hasta", placeholder="Puntaje hasta")
+                    -->
+                    <div class="dropdown-divider"></div>
+                    <div class="form-group">
+                        <label class="estilo-01" for="cbo-periodo">Período</label>
+                        <div class="input-group">
+                            <select class="form-control form-control-sm estilo-01" id="cbo-periodo">
+                                @*<option>2020</option>
+                                <option>2018</option>
+                                <option>2016</option>*@
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="form-group">
+                        <label class="estilo-01" for="cbo-insignia">Insignia</label>
+                        <div class="input-group">
+                            <select class="form-control form-control-sm estilo-01" id="cbo-insignia">
+                                @*<option>Todos</option>
+                                <option>Oro</option>
+                                <option>Plata</option>
+                                <option>Bronce</option>*@
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="form-group">
+                        <label class="estilo-01" for="cbo-estrellas">Estrellas</label>
+                        <div class="input-group">
+                            <select class="form-control form-control-sm estilo-01" id="cbo-estrellas">
+                                @*<option>Todos</option>
+                                <option>3 estrellas</option>
+                                <option>2 estrellas</option>
+                                <option>1 estrella</option>*@
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="form-group">
+                        <label class="estilo-01" for="cbo-resultado">Resultados</label>
+                        <div class="input-group">
+                            <select class="form-control form-control-sm estilo-01" id="cbo-resultado">
+                                <option>Todos</option>
+                                <option>Descargar en Excel</option>
+                                <option>Descargar en PDF</option>
+                            </select>
+                            <div class="input-group-append">
+                                <label class="input-group-text bg-success text-white cursor-pointer"><i class="fas fa-download"></i></label>
                             </div>
                         </div>
                     </div>
-                    <div class="mb-2">
-                        <div class="estilo-01 text-right"><a class="text-sres-verde btn-all" href="#">Todos</a><span class="mx-2 text-sres-gris">|</span><a class="text-sres-verde btn-not" href="#">Ninguno</a></div>
-                    </div><span class="estilo-01 mb-5">Resultados</span>
-                    <div class="my-2">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="chk-excel">
-                                <label class="custom-control-label estilo-01" for="chk-excel">Formato Excel</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="chk-pdf">
-                                <label class="custom-control-label estilo-01" for="chk-pdf">Formato PDF</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-2">
-                        <div class="estilo-01 text-right"><a class="text-sres-verde" href="#">Descargar</a></div>
-                    </div>
+                    <!--span.estilo-01.mb-5 Reconocimientos-->
+                    <!--.my-2
+                    .form-group
+                      .custom-control.custom-checkbox
+                        input.custom-control-input(type="checkbox", id="chk-oro")
+                        label.custom-control-label.estilo-01(for="chk-oro") Oro
+                    .form-group
+                      .custom-control.custom-checkbox
+                        input.custom-control-input(type="checkbox", id="chk-plata")
+                        label.custom-control-label.estilo-01(for="chk-plata") Plata
+                    .form-group
+                      .custom-control.custom-checkbox
+                        input.custom-control-input(type="checkbox", id="chk-bronce")
+                        label.custom-control-label.estilo-01(for="chk-bronce") Bronce
+                    -->
+                    <!--.mb-2
+                    .estilo-01.text-right
+                      a.text-sres-verde.btn-all(href="#") Todos
+                      span.mx-2.text-sres-gris |
+                      a.text-sres-verde.btn-not(href="#") Ninguno
+
+                    -->
+                    <!--span.estilo-01.mb-5 Estrellas-->
+                    <!--.my-2
+                    .form-group
+                      .custom-control.custom-checkbox
+                        input.custom-control-input(type="checkbox", id="chk-1-estrella")
+                        label.custom-control-label.estilo-01(for="chk-1-estrella") 1 estrella
+                    .form-group
+                      .custom-control.custom-checkbox
+                        input.custom-control-input(type="checkbox", id="chk-2-estrellas")
+                        label.custom-control-label.estilo-01(for="chk-2-estrellas") 2 estrellas
+                    .form-group
+                      .custom-control.custom-checkbox
+                        input.custom-control-input(type="checkbox", id="chk-3-estrellas")
+                        label.custom-control-label.estilo-01(for="chk-3-estrellas") 3 estrellas
+                    -->
+                    <!--.mb-2
+                    .estilo-01.text-right
+                      a.text-sres-verde.btn-all(href="#") Todos
+                      span.mx-2.text-sres-gris |
+                      a.text-sres-verde.btn-not(href="#") Ninguno
+
+                    -->
+                    <!--span.estilo-01.mb-5 Resultados-->
+                    <!--.my-2
+                    .form-group
+                      .custom-control.custom-checkbox
+                        input.custom-control-input(type="checkbox", id="chk-excel")
+                        label.custom-control-label.estilo-01(for="chk-excel") Formato Excel
+                    .form-group
+                      .custom-control.custom-checkbox
+                        input.custom-control-input(type="checkbox", id="chk-pdf")
+                        label.custom-control-label.estilo-01(for="chk-pdf") Formato PDF
+                    -->
+                    <!--.mb-2
+                    .estilo-01.text-right
+                      a.text-sres-verde(href="#") Descargar
+
+                    -->
                 </div>
             </div>
             <div class="col-lg-9 col-md-12 col-sm-12">
                 <div class="table-responsive tabla-principal">
-                    <table class="table table-sm table-hover" id="tblParticipantes">
-                        <thead class="estilo-06">
+                    <table id="tblParticipantes" class="table table-sm table-hover">
+                        <thead class="estilo-06 free-with">
                             <tr>
                                 <th scope="col" width="10%">
                                     <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Logotipo de la empresa"></i><span>LOGO&nbsp;</span></span><i class="fas fa-sort"></i></div>
                                 </th>
-                                <th scope="col" width="20%">
-                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reconocimiento otorgrado"></i><span>RECONOCIMIENTO&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                                <th scope="col" width="10%">
+                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reconocimiento otorgrado"></i><span>SELLO&nbsp;</span></span><i class="fas fa-sort"></i></div>
                                 </th>
-                                <th scope="col" width="45%">
-                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre de la empresa participante"></i><span>EMPRESA PARTICIPANTE&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                                <th scope="col" width="30%">
+                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre de la empresa participante"></i><span>EMPRESA&nbsp;</span></span><i class="fas fa-sort"></i></div>
                                 </th>
                                 <th scope="col" width="15%">
-                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre de la meidida de mitigación"></i><span>MEDIDA NDC&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Puntuación obtenida"></i><span>PUNTAJE&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                                </th>
+                                <th scope="col" width="10%">
+                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reducción lograda"></i><span>REDUCCIÓN&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                                </th>
+                                <th scope="col" width="15%">
+                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Premiación adquirida"></i><span>PREMIACIÓN&nbsp;</span></span><i class="fas fa-sort"></i></div>
                                 </th>
                                 <th scope="col" width="10%">
                                     <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Herramientas y opciones"></i><span>FICHA&nbsp;</span></span><i class="fas fa-sort"></i></div>
@@ -155,171 +236,461 @@
                             </tr>
                         </thead>
                         <tbody class="estilo-01">
-                            <tr>
+                            @*<tr>
                                 <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="0">
-                                    <img class="img-fluid" src="./images/empresa-05.png" alt="">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/empresa-01.png")" alt="">
                                 </td>
                                 <td class="text-center" data-encabezado="Reconocimiento">
-                                    <img class="img-fluid medal-sres" src="./images/dos_estrellas.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                    <img class="img-fluid medal-sres" src="images/sres_oro_0_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                                 </td>
                                 <td data-encabezado="Empresa participante">
                                     <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                                 </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
                                 <td class="text-center" data-encabezado="Medida NDC">
-                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                    <i class="fas fa-medal fa-2x"></i>
                                 </td>
                                 <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
                             </tr>
                             <tr>
                                 <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="1">
-                                    <img class="img-fluid" src="./images/empresa-01.png" alt="">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/empresa-05.png")" alt="">
                                 </td>
                                 <td class="text-center" data-encabezado="Reconocimiento">
-                                    <img class="img-fluid medal-sres" src="./images/oro.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                    <img class="img-fluid medal-sres" src="images/sres_oro_1_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                                 </td>
                                 <td data-encabezado="Empresa participante">
                                     <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                                 </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
                                 <td class="text-center" data-encabezado="Medida NDC">
-                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">ABC</b>
+                                    <i class="fas fa-medal fa-2x"></i>
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
                                 </td>
                                 <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
                             </tr>
                             <tr>
                                 <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="2">
-                                    <img class="img-fluid" src="./images/empresa-02.png" alt="">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/empresa-02.png")" alt="">
                                 </td>
                                 <td class="text-center" data-encabezado="Reconocimiento">
-                                    <img class="img-fluid medal-sres" src="./images/plata.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                    <img class="img-fluid medal-sres" src="images/sres_oro_2_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                                 </td>
                                 <td data-encabezado="Empresa participante">
                                     <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                                 </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
                                 <td class="text-center" data-encabezado="Medida NDC">
-                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">DEF</b>
+                                    <i class="fas fa-medal fa-2x"></i>
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
                                 </td>
                                 <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
                             </tr>
                             <tr>
                                 <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="3">
-                                    <img class="img-fluid" src="./images/empresa-03.png" alt="">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/empresa-03.png")" alt="">
                                 </td>
                                 <td class="text-center" data-encabezado="Reconocimiento">
-                                    <img class="img-fluid medal-sres" src="./images/bronce.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                    <img class="img-fluid medal-sres" src="images/sres_oro_3_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                                 </td>
                                 <td data-encabezado="Empresa participante">
                                     <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                                 </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
                                 <td class="text-center" data-encabezado="Medida NDC">
-                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">GHI</b>
+                                    <i class="fas fa-medal fa-2x"></i>
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
                                 </td>
                                 <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
                             </tr>
                             <tr>
                                 <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="4">
-                                    <img class="img-fluid" src="./images/empresa-04.png" alt="">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/empresa-04.png")" alt="">
                                 </td>
                                 <td class="text-center" data-encabezado="Reconocimiento">
-                                    <img class="img-fluid medal-sres" src="./images/una_estrella.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                    <img class="img-fluid medal-sres" src="images/sres_plata_0_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                                 </td>
                                 <td data-encabezado="Empresa participante">
                                     <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                                 </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
                                 <td class="text-center" data-encabezado="Medida NDC">
-                                    <b class="text-nama-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">JKL</b>
+                                    <i class="fas fa-medal fa-2x"></i>
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
                                 </td>
                                 <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
                             </tr>
                             <tr>
                                 <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="5">
-                                    <img class="img-fluid" src="./images/empresa-01.png" alt="">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/empresa-05.png")" alt="">
                                 </td>
                                 <td class="text-center" data-encabezado="Reconocimiento">
-                                    <img class="img-fluid medal-sres" src="./images/oro.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                    <img class="img-fluid medal-sres" src="images/sres_plata_1_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                                 </td>
                                 <td data-encabezado="Empresa participante">
                                     <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                                 </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
                                 <td class="text-center" data-encabezado="Medida NDC">
-                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                    <i class="fas fa-medal fa-2x"></i>
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
                                 </td>
                                 <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
                             </tr>
                             <tr>
                                 <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="6">
-                                    <img class="img-fluid" src="./images/empresa-02.png" alt="">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/empresa-01.png")" alt="">
                                 </td>
                                 <td class="text-center" data-encabezado="Reconocimiento">
-                                    <img class="img-fluid medal-sres" src="./images/plata.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                    <img class="img-fluid medal-sres" src="images/sres_plata_2_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                                 </td>
                                 <td data-encabezado="Empresa participante">
                                     <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                                 </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
                                 <td class="text-center" data-encabezado="Medida NDC">
-                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                    -
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
                                 </td>
                                 <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
                             </tr>
                             <tr>
                                 <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="7">
-                                    <img class="img-fluid" src="./images/empresa-03.png" alt="">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/empresa-03.png")" alt="">
                                 </td>
                                 <td class="text-center" data-encabezado="Reconocimiento">
-                                    <img class="img-fluid medal-sres" src="./images/bronce.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                    <img class="img-fluid medal-sres" src="images/sres_plata_3_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                                 </td>
                                 <td data-encabezado="Empresa participante">
                                     <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                                 </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
                                 <td class="text-center" data-encabezado="Medida NDC">
-                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                    -
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
                                 </td>
                                 <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
                             </tr>
                             <tr>
                                 <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="8">
-                                    <img class="img-fluid" src="./images/empresa-04.png" alt="">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/empresa-04.png")" alt="">
                                 </td>
                                 <td class="text-center" data-encabezado="Reconocimiento">
-                                    <img class="img-fluid medal-sres" src="./images/una_estrella.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                    <img class="img-fluid medal-sres" src="images/sres_bronce_0_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                                 </td>
                                 <td data-encabezado="Empresa participante">
                                     <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                                 </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
                                 <td class="text-center" data-encabezado="Medida NDC">
-                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                    -
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
                                 </td>
                                 <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
                             </tr>
                             <tr>
                                 <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="9">
-                                    <img class="img-fluid" src="./images/empresa-05.png" alt="">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/empresa-05.png")" alt="">
                                 </td>
                                 <td class="text-center" data-encabezado="Reconocimiento">
-                                    <img class="img-fluid medal-sres" src="./images/dos_estrellas.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                    <img class="img-fluid medal-sres" src="images/sres_bronce_1_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                                 </td>
                                 <td data-encabezado="Empresa participante">
                                     <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                                 </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
                                 <td class="text-center" data-encabezado="Medida NDC">
-                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                    -
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
                                 </td>
                                 <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
                             </tr>
                             <tr>
                                 <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="10">
-                                    <img class="img-fluid" src="./images/empresa-05.png" alt="">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/empresa-01.png")" alt="">
                                 </td>
                                 <td class="text-center" data-encabezado="Reconocimiento">
-                                    <img class="img-fluid medal-sres" src="./images/dos_estrellas.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                    <img class="img-fluid medal-sres" src="images/sres_bronce_2_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                                 </td>
                                 <td data-encabezado="Empresa participante">
                                     <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                                 </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
                                 <td class="text-center" data-encabezado="Medida NDC">
-                                    <b class="text-sres-azul" data-toggle="tooltip" data-placement="top" title="Nombre de la medida de mitigación">MNO</b>
+                                    -
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
                                 </td>
                                 <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
                             </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="11">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/empresa-05.png")" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="images/sres_bronce_3_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    -
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="12">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/sin-foto.png")" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="images/sres_0.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    -
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="13">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/sin-foto.png")" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="images/sres_0.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    -
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="14">
+                                    <img class="img-fluid" src="@Url.Content("~/Assets/images/sin-foto.png")" alt="">
+                                </td>
+                                <td class="text-center" data-encabezado="Reconocimiento">
+                                    <img class="img-fluid medal-sres" src="images/sres_0.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
+                                </td>
+                                <td data-encabezado="Empresa participante">
+                                    <div class="text-limi-1">Empresa Energía Limpia SAC</div>
+                                </td>
+                                <td data-encabezado="Puntaje">
+                                    <div class="text-center">150 ptos.</div>
+                                </td>
+                                <td data-encabezado="Reducción">
+                                    <div class="text-center">150 tCO<sup>2.</sup></div>
+                                </td>
+                                <td class="text-center" data-encabezado="Medida NDC">
+                                    -
+                                    <!--if n==2b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") ABC
+                                    -->
+                                    <!--else if n==3b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") DEF
+                                    -->
+                                    <!--else if n==4b.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") GHI
+                                    -->
+                                    <!--else if n==5b.text-nama-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") JKL
+                                    -->
+                                    <!--elseb.text-sres-azul(data-toggle="tooltip", data-placement="top", title="Nombre de la medida de mitigación") MNO
+                                    -->
+                                </td>
+                                <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                            </tr>*@
                         </tbody>
                     </table>
                 </div>
@@ -327,7 +698,6 @@
         </div>
     </div>
 </div>
-
 <div class="container-fluid my-0 mb-5">
     <div class="container">
         <div class="row">
@@ -335,18 +705,18 @@
                 <div class="row">
                     <div class="col-sm-12 col-lg-6 estilo-01 d-flex justify-content-start align-items-center">
                         <div class="row">
-                            <div class="col-12"><strong>Resultado:&nbsp;</strong>1-10 de 750 registros</div>
+                            <div class="col-12"><span class="pagina">1</span> de <span class="total-paginas">75</span> páginas&nbsp;</div>
                         </div>
                     </div>
                     <div class="col-sm-12 col-lg-6 estilo-01 d-flex justify-content-end align-items-center">
                         <div class="row">
                             <div class="col-12">
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                    <button class="estilo-01 btn btn-sm btn-sres-verde" type="button"><i class="fas fa-angle-double-left"></i></button>
-                                    <button class="estilo-01 btn btn-sm btn-sres-verde" type="button"><i class="fas fa-angle-left"></i></button>
-                                    <input class="ir-pagina estilo-01" type="number" value="1" min="1">
-                                    <button class="estilo-01 btn btn-sm btn-sres-verde" type="button"><i class="fas fa-angle-right"></i></button>
-                                    <button class="estilo-01 btn btn-sm btn-sres-verde" type="button"><i class="fas fa-angle-double-right"></i></button>
+                                    <button class="btn btn-sm btn-primary" type="button" id="btnFirstPagination"><i class="fas fa-angle-double-left"></i></button>
+                                    <button class="btn btn-sm btn-primary" type="button" id="btnPreviousPagination"><i class="fas fa-angle-left"></i></button>
+                                    <input id="ir-pagina" class="ir-pagina" type="number" value="1" min="1">
+                                    <button class="btn btn-sm btn-primary" type="button" id="btnNextPagination"><i class="fas fa-angle-right"></i></button>
+                                    <button class="btn btn-sm btn-primary" type="button" id="btnLastPagination"><i class="fas fa-angle-double-right"></i></button>
                                 </div>
                             </div>
                         </div>

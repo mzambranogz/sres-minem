@@ -61,5 +61,49 @@ namespace sres.da
 
             return lista;
         }
+
+        public List<ReconocimientoBE> BuscarParticipantes(string razonSocialInstitucion, int? idTipoEmpresa, int? idCriterio, int? idMedMit, int? añoInicioConvocatoria, int? idInsignia, int? idEstrella, int registros, int pagina, string columna, string orden, OracleConnection db)
+        {
+            List<ReconocimientoBE> lista = new List<ReconocimientoBE>();
+
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_BUSQ_PARTICIPANTES";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_DESCRIPCION", razonSocialInstitucion);
+                p.Add("PI_ID_TIPOEMPRESA", idTipoEmpresa);
+                p.Add("PI_ID_CRITERIO", idCriterio);
+                p.Add("PI_ID_MEDMIT", idMedMit);
+                p.Add("PI_PERIODO", añoInicioConvocatoria);
+                p.Add("PI_ID_INSIGNIA", idInsignia);
+                p.Add("PI_ID_ESTRELLA", idEstrella);
+                p.Add("PI_REGISTROS", registros);
+                p.Add("PI_PAGINA", pagina);
+                p.Add("PI_COLUMNA", columna);
+                p.Add("PI_ORDEN", orden);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<dynamic>(sp, p, commandType: CommandType.StoredProcedure).Select(x =>
+                    new ReconocimientoBE
+                    {
+                        ID_RECONOCIMIENTO = (int)x.ID_RECONOCIMIENTO,
+                        ID_INSCRIPCION = (int)x.ID_INSCRIPCION,
+                        INSCRIPCION = new InscripcionBE { INSTITUCION = new InstitucionBE { RAZON_SOCIAL = (string)x.RAZON_SOCIAL_INSTITUCION, LOGO = (string)x.LOGO_INSTITUCION } },
+                        ID_INSIGNIA = (int?)x.ID_INSIGNIA,
+                        INSIGNIA = !((int?)x.ID_INSIGNIA).HasValue ? null : new InsigniaBE { ID_INSIGNIA = (int)x.ID_INSIGNIA, ARCHIVO_BASE = (string)x.ARCHIVO_BASE_INSIGNIA },
+                        ID_ESTRELLA = (int?)x.ID_ESTRELLA,
+                        ESTRELLA = (string)x.NOMBRE_ESTRELLA,
+                        PUNTAJE = (int)x.PUNTAJE,
+                        EMISIONES = (decimal)x.EMISIONES,
+                        ROWNUMBER = (int)x.ROWNUMBER,
+                        TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
+                        PAGINA = (int)x.PAGINA,
+                        CANTIDAD_REGISTROS = (int)x.CANTIDAD_REGISTROS,
+                        TOTAL_REGISTROS = (int)x.TOTAL_REGISTROS
+                    }).ToList();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return lista;
+        }
     }
 }

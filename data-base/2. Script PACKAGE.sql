@@ -1433,6 +1433,10 @@ CREATE OR REPLACE PACKAGE SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     PI_ORDEN VARCHAR2,
     PO_REF OUT SYS_REFCURSOR
   );
+
+  PROCEDURE USP_SEL_ALL_MEDMIT(
+    PO_REF OUT SYS_REFCURSOR
+  );
   
   PROCEDURE USP_SEL_VALIDACION_MEDMIT(
     PI_ID_MEDMIT NUMBER,
@@ -1549,6 +1553,21 @@ CREATE OR REPLACE PACKAGE SISSELLO."PKG_SISSELLO_VERIFICACION" AS
   
   PROCEDURE USP_SEL_INSCRIPCION_TRAZABILIDAD(
     PI_ID_INSCRIPCION NUMBER,
+    PO_REF OUT SYS_REFCURSOR
+  );
+
+  PROCEDURE USP_SEL_BUSQ_PARTICIPANTES(
+    PI_DESCRIPCION VARCHAR2,
+    PI_ID_TIPOEMPRESA NUMBER,
+    PI_ID_CRITERIO NUMBER,
+    PI_ID_MEDMIT NUMBER,
+    PI_PERIODO NUMBER,
+    PI_ID_INSIGNIA NUMBER,
+    PI_ID_ESTRELLA NUMBER,
+    PI_REGISTROS NUMBER,
+    PI_PAGINA NUMBER,
+    PI_COLUMNA VARCHAR2,
+    PI_ORDEN VARCHAR2,
     PO_REF OUT SYS_REFCURSOR
   );
 END PKG_SISSELLO_VERIFICACION;
@@ -4725,7 +4744,9 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     OPEN PO_REF FOR
     SELECT  *
     FROM  T_GEND_SUBSECTOR_TIPOEMPRESA
-    WHERE ID_SECTOR = PI_ID_SECTOR AND FLAG_ESTADO = '1'; 
+    WHERE
+    (ID_SECTOR = PI_ID_SECTOR OR PI_ID_SECTOR IS NULL) AND
+    FLAG_ESTADO = '1';
   END USP_SEL_ALL_SUBSECTOR_TIPOEMP;
   
   PROCEDURE USP_SEL_ALL_TRABAJADOR_CAMA(
@@ -6525,6 +6546,19 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     
     OPEN PO_REF FOR vQUERY_SELECT;
   END USP_SEL_LISTA_BUSQ_MEDMIT;
+
+  PROCEDURE USP_SEL_ALL_MEDMIT(
+    PO_REF OUT SYS_REFCURSOR
+  ) AS
+  BEGIN
+    OPEN PO_REF FOR
+    SELECT
+    MM.ID_MEDMIT,
+    MM.NOMBRE,
+    MM.DESCRIPCION,
+    MM.ARCHIVO_BASE
+    FROM T_MAE_MEDMIT MM;
+  END USP_SEL_ALL_MEDMIT;
   
   PROCEDURE USP_SEL_VALIDACION_MEDMIT(
     PI_ID_MEDMIT NUMBER,
@@ -6677,14 +6711,13 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM
                     T_GENM_INSCRIPCION INSC INNER JOIN
-                    T_GEND_CONV_EVA_INST CI ON INSC.ID_CONVOCATORIA = CI.ID_CONVOCATORIA AND INSC.ID_INSTITUCION = CI.ID_INSTITUCION INNER JOIN
                     T_GENM_CONVOCATORIA C ON INSC.ID_CONVOCATORIA = C.ID_CONVOCATORIA INNER JOIN
                     T_GENM_USUARIO U ON INSC.REG_USUARIO = U.ID_USUARIO INNER JOIN
                     T_GENM_INSTITUCION INST ON INSC.ID_INSTITUCION = INST.ID_INSTITUCION
                     WHERE ' ||
                     CASE
                       WHEN PI_ID_USUARIO IS NOT NULL THEN
-                        'CI.ID_USUARIO = ' || PI_ID_USUARIO || ' AND '
+                        PI_ID_USUARIO || ' IN (SELECT ID_USUARIO FROM T_GEND_CONVOCATORIA_EVALUADOR WHERE ID_CONVOCATORIA = C.ID_CONVOCATORIA AND FLAG_ESTADO = ''1'') AND '
                     END ||
                     'INSC.ID_CONVOCATORIA = ' || PI_ID_CONVOCATORIA || ' AND ' ||
                     CASE
@@ -6732,14 +6765,13 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
                                   || vTOTAL_REG || ' AS TOTAL_REGISTROS
                           FROM
                           T_GENM_INSCRIPCION INSC INNER JOIN
-                          T_GEND_CONV_EVA_INST CI ON INSC.ID_CONVOCATORIA = CI.ID_CONVOCATORIA AND INSC.ID_INSTITUCION = CI.ID_INSTITUCION INNER JOIN
                           T_GENM_CONVOCATORIA C ON INSC.ID_CONVOCATORIA = C.ID_CONVOCATORIA INNER JOIN
                           T_GENM_USUARIO U ON INSC.REG_USUARIO = U.ID_USUARIO INNER JOIN
                           T_GENM_INSTITUCION INST ON INSC.ID_INSTITUCION = INST.ID_INSTITUCION
                           WHERE ' ||
                           CASE
                             WHEN PI_ID_USUARIO IS NOT NULL THEN
-                              'CI.ID_USUARIO = ' || PI_ID_USUARIO || ' AND '
+                              PI_ID_USUARIO || ' IN (SELECT ID_USUARIO FROM T_GEND_CONVOCATORIA_EVALUADOR WHERE ID_CONVOCATORIA = C.ID_CONVOCATORIA AND FLAG_ESTADO = ''1'') AND '
                           END ||
                           'INSC.ID_CONVOCATORIA = ' || PI_ID_CONVOCATORIA || ' AND ' ||
                           CASE
@@ -6908,6 +6940,135 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
     WHERE T.ID_INSCRIPCION = PI_ID_INSCRIPCION
     ORDER BY T.ID_TRAZABILIDAD ASC;
   END USP_SEL_INSCRIPCION_TRAZABILIDAD;
+
+  PROCEDURE USP_SEL_BUSQ_PARTICIPANTES(
+    PI_DESCRIPCION VARCHAR2,
+    PI_ID_TIPOEMPRESA NUMBER,
+    PI_ID_CRITERIO NUMBER,
+    PI_ID_MEDMIT NUMBER,
+    PI_PERIODO NUMBER,
+    PI_ID_INSIGNIA NUMBER,
+    PI_ID_ESTRELLA NUMBER,
+    PI_REGISTROS NUMBER,
+    PI_PAGINA NUMBER,
+    PI_COLUMNA VARCHAR2,
+    PI_ORDEN VARCHAR2,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS
+    vTOTAL_REG INTEGER;
+    vPAGINA_TOTAL INTEGER;
+    vPAGINA_ACTUAL INTEGER := PI_PAGINA;
+    vPAGINA_INICIAL INTEGER := 0;
+    vQUERY_CONT VARCHAR2(10000) := '';
+    vQUERY_SELECT VARCHAR2(10000) := '';
+    vCOLUMNA VARCHAR2(200);
+  BEGIN
+    vQUERY_CONT := 'SELECT  COUNT(1)
+                    FROM
+                    T_GENM_RECONOCIMIENTO R INNER JOIN
+                    T_GENM_INSCRIPCION INSC ON R.ID_INSCRIPCION = INSC.ID_INSCRIPCION INNER JOIN
+                    T_GENM_CONVOCATORIA C ON INSC.ID_CONVOCATORIA = C.ID_CONVOCATORIA INNER JOIN
+                    T_GENM_INSTITUCION INST ON INSC.ID_INSTITUCION = INST.ID_INSTITUCION LEFT JOIN
+                    T_MAE_INSIGNIA I ON R.ID_INSIGNIA = I.ID_INSIGNIA LEFT JOIN
+                    T_MAE_ESTRELLA E ON R.ID_ESTRELLA = E.ID_ESTRELLA
+                    WHERE ' ||
+                    '(LOWER(TRANSLATE(INST.RAZON_SOCIAL, ''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) LIKE ''%'' || LOWER(TRANSLATE(''' || PI_DESCRIPCION || ''', ''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) || ''%'') AND ' ||
+                    CASE
+                      WHEN PI_ID_TIPOEMPRESA IS NOT NULL THEN
+                        'INST.ID_SUBSECTOR_TIPOEMPRESA = ' || PI_ID_TIPOEMPRESA || ' AND '
+                    END ||
+                    CASE
+                      WHEN PI_ID_CRITERIO IS NOT NULL THEN
+                        PI_ID_CRITERIO || ' IN (SELECT ID_CRITERIO FROM T_GEND_CONVOCATORIA_CRITERIO WHERE ID_CONVOCATORIA = C.ID_CONVOCATORIA AND FLAG_ESTADO = ''1'') AND '
+                    END ||
+                    CASE
+                      WHEN PI_ID_MEDMIT IS NOT NULL THEN
+                        PI_ID_MEDMIT || ' IN (SELECT ID_MEDMIT FROM T_GEND_RECONOCIMIENTO_MEDIDA WHERE ID_RECONOCIMIENTO = R.ID_RECONOCIMIENTO) AND '
+                    END ||
+                    CASE
+                      WHEN PI_PERIODO IS NOT NULL THEN
+                        'EXTRACT(YEAR FROM C.FECHA_INICIO) = ' || PI_PERIODO || ' AND '
+                    END ||
+                    CASE
+                      WHEN PI_ID_INSIGNIA IS NOT NULL THEN
+                        'R.ID_INSIGNIA = ' || PI_ID_INSIGNIA || ' AND '
+                    END ||
+                    CASE
+                      WHEN PI_ID_ESTRELLA IS NOT NULL THEN
+                        'R.ID_ESTRELLA = ' || PI_ID_ESTRELLA || ' AND '
+                    END ||
+                    'R.FLAG_ESTADO = ''1''';
+    EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
+
+    vPAGINA_TOTAL := CEIL(TO_NUMBER(vTOTAL_REG) / TO_NUMBER(PI_REGISTROS));
+    IF vPAGINA_ACTUAL = 0 THEN
+      vPAGINA_ACTUAL := 1;
+    END IF;
+    IF vPAGINA_ACTUAL > vPAGINA_TOTAL THEN
+      vPAGINA_ACTUAL := vPAGINA_TOTAL;
+    END IF;
+
+    vPAGINA_INICIAL := vPAGINA_ACTUAL - 1;
+
+    vCOLUMNA := 'R.' || PI_COLUMNA;
+
+    vQUERY_SELECT := 'SELECT * FROM
+                        (
+                          SELECT
+                                  R.ID_RECONOCIMIENTO,
+                                  R.ID_INSCRIPCION,
+                                  INST.LOGO AS "LOGO_INSTITUCION",
+                                  INST.RAZON_SOCIAL AS "RAZON_SOCIAL_INSTITUCION",
+                                  R.ID_INSIGNIA,
+                                  I.ARCHIVO_BASE AS "ARCHIVO_BASE_INSIGNIA",
+                                  R.PUNTAJE,
+                                  R.EMISIONES,
+                                  R.ID_ESTRELLA,
+                                  E.NOMBRE AS "NOMBRE_ESTRELLA",
+                                  ROW_NUMBER() OVER (ORDER BY ' || vCOLUMNA || ' ' || PI_ORDEN ||') AS ROWNUMBER,'
+                                  || vPAGINA_TOTAL || ' AS TOTAL_PAGINAS,'
+                                  || vPAGINA_ACTUAL || ' AS PAGINA,'
+                                  || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
+                                  || vTOTAL_REG || ' AS TOTAL_REGISTROS
+                          FROM
+                          T_GENM_RECONOCIMIENTO R INNER JOIN
+                          T_GENM_INSCRIPCION INSC ON R.ID_INSCRIPCION = INSC.ID_INSCRIPCION INNER JOIN
+                          T_GENM_CONVOCATORIA C ON INSC.ID_CONVOCATORIA = C.ID_CONVOCATORIA INNER JOIN
+                          T_GENM_INSTITUCION INST ON INSC.ID_INSTITUCION = INST.ID_INSTITUCION LEFT JOIN
+                          T_MAE_INSIGNIA I ON R.ID_INSIGNIA = I.ID_INSIGNIA LEFT JOIN
+                          T_MAE_ESTRELLA E ON R.ID_ESTRELLA = E.ID_ESTRELLA
+                          WHERE ' ||
+                          '(LOWER(TRANSLATE(INST.RAZON_SOCIAL, ''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) LIKE ''%'' || LOWER(TRANSLATE(''' || PI_DESCRIPCION || ''', ''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) || ''%'') AND ' ||
+                          CASE
+                            WHEN PI_ID_TIPOEMPRESA IS NOT NULL THEN
+                              'INST.ID_SUBSECTOR_TIPOEMPRESA = ' || PI_ID_TIPOEMPRESA || ' AND '
+                          END ||
+                          CASE
+                            WHEN PI_ID_CRITERIO IS NOT NULL THEN
+                              PI_ID_CRITERIO || ' IN (SELECT ID_CRITERIO FROM T_GEND_CONVOCATORIA_CRITERIO WHERE ID_CONVOCATORIA = C.ID_CONVOCATORIA AND FLAG_ESTADO = ''1'') AND '
+                          END ||
+                          CASE
+                            WHEN PI_ID_MEDMIT IS NOT NULL THEN
+                              PI_ID_MEDMIT || ' IN (SELECT ID_MEDMIT FROM T_GEND_RECONOCIMIENTO_MEDIDA WHERE ID_RECONOCIMIENTO = R.ID_RECONOCIMIENTO) AND '
+                          END ||
+                          CASE
+                            WHEN PI_PERIODO IS NOT NULL THEN
+                              'EXTRACT(YEAR FROM C.FECHA_INICIO) = ' || PI_PERIODO || ' AND '
+                          END ||
+                          CASE
+                            WHEN PI_ID_INSIGNIA IS NOT NULL THEN
+                              'R.ID_INSIGNIA = ' || PI_ID_INSIGNIA || ' AND '
+                          END ||
+                          CASE
+                            WHEN PI_ID_ESTRELLA IS NOT NULL THEN
+                              'R.ID_ESTRELLA = ' || PI_ID_ESTRELLA || ' AND '
+                          END ||
+                          'R.FLAG_ESTADO = ''1''
+                        )
+                    WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
+
+    OPEN PO_REF FOR vQUERY_SELECT;
+  END USP_SEL_BUSQ_PARTICIPANTES;
 END PKG_SISSELLO_VERIFICACION;
 
 /

@@ -15,7 +15,7 @@ namespace sres.be
         public InsigniaBE INSIGNIA { get; set; }
         public int PUNTAJE { get; set; }
         public string FLAG_CATEGORIA { get; set; }
-        public int ID_ESTRELLA { get; set; }
+        public int? ID_ESTRELLA { get; set; }
         public decimal EMISIONES { get; set; }
         public string FLAG_ESTRELLA { get; set; }
         public string FLAG_MEJORACONTINUA { get; set; }

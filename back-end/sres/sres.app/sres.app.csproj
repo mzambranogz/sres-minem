@@ -187,12 +187,15 @@
     <Content Include="Assets\images\convocatoria.png" />
     <Content Include="Assets\images\criterio-01.png" />
     <Content Include="Assets\images\criterio-02.png" />
+    <Content Include="Assets\images\criterio-02_old.png" />
     <Content Include="Assets\images\criterio-03.png" />
     <Content Include="Assets\images\criterio-04.png" />
+    <Content Include="Assets\images\criterio-04_old.png" />
     <Content Include="Assets\images\criterio-05.png" />
     <Content Include="Assets\images\criterio-06.png" />
     <Content Include="Assets\images\criterio-07.png" />
     <Content Include="Assets\images\criterio-08.png" />
+    <Content Include="Assets\images\criterio-08_old.png" />
     <Content Include="Assets\images\dos_estrella.png" />
     <Content Include="Assets\images\dos_estrellas.png" />
     <Content Include="Assets\images\empresa-00.jpg" />
@@ -229,10 +232,12 @@
     <Content Include="Assets\images\favicon\favicon-32x32.png" />
     <Content Include="Assets\images\favicon\favicon-96x96.png" />
     <Content Include="Assets\images\favicon\favicon.ico" />
+    <Content Include="Assets\images\favicon\manifest.json" />
     <Content Include="Assets\images\favicon\ms-icon-144x144.png" />
     <Content Include="Assets\images\favicon\ms-icon-150x150.png" />
     <Content Include="Assets\images\favicon\ms-icon-310x310.png" />
     <Content Include="Assets\images\favicon\ms-icon-70x70.png" />
+    <Content Include="Assets\images\favicon\site.webmanifest" />
     <Content Include="Assets\images\fondo_12_medidas.png" />
     <Content Include="Assets\images\Grupo 1045.png" />
     <Content Include="Assets\images\ico_nama_amarillo_01.svg" />
@@ -283,6 +288,7 @@
     <Content Include="Assets\images\sres-iso.png" />
     <Content Include="Assets\images\sres-logo.png" />
     <Content Include="Assets\images\sres-logo_old.png" />
+    <Content Include="Assets\images\sres-logo_old_02.png" />
     <Content Include="Assets\images\sres-menu.png" />
     <Content Include="Assets\images\sres_0.png" />
     <Content Include="Assets\images\sres_bronce_0_star.png" />
@@ -453,6 +459,7 @@
     <Compile Include="Controllers\Api\ParametroDetalleRelacionController.cs" />
     <Compile Include="Controllers\Api\PremiacionController.cs" />
     <Compile Include="Controllers\Api\ProcesoController.cs" />
+    <Compile Include="Controllers\Api\ReconocimientoController.cs" />
     <Compile Include="Controllers\Api\RequerimientoController.cs" />
     <Compile Include="Controllers\Api\RolController.cs" />
     <Compile Include="Controllers\Api\SectorController.cs" />
@@ -552,8 +559,6 @@
     <Content Include="Assets\fonts\gothamroundedmedium.otf" />
     <Content Include="Assets\fonts\gothamroundedmedium.ttf" />
     <Content Include="Assets\fonts\gothamroundedmedium.woff" />
-    <Content Include="Assets\images\favicon\manifest.json" />
-    <Content Include="Assets\images\favicon\site.webmanifest" />
     <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
     <Content Include="Views\Convocatoria\IndexPostulante.cshtml" />
     <Content Include="Views\Convocatoria\IndexEvaluador.cshtml" />
@@ -579,6 +584,7 @@
     <Content Include="Views\Mantenimiento\Reconocimiento.cshtml" />
     <Content Include="Views\Convocatoria\Seguimiento.cshtml" />
     <Content Include="Views\Mantenimiento\MedidaMitigacion.cshtml" />
+    <Content Include="Views\Convocatoria\Informacion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

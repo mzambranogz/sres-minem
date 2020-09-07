@@ -98,5 +98,18 @@ namespace sres.ln
 
             return item;
         }
+
+        public List<MedidaMitigacionBE> ObtenerAllMedidaMitigacion()
+        {
+            List<MedidaMitigacionBE> lista = new List<MedidaMitigacionBE>();
+            try
+            {
+                cn.Open();
+                lista = medidaDA.ObtenerAllMedidaMitigacion(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }

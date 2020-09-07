@@ -62,8 +62,9 @@
         const baseUrl = '@Url.Content("~")';
         const idUsuarioLogin = @(usuario == null ? "null" : usuario.ID_USUARIO.ToString());
         const idInstitucionLogin = @(usuario == null ? "null" : usuario.ID_INSTITUCION.ToString());
-        const rucLogin = '@(usuario == null ? "null" : usuario.INSTITUCION.RUC)';
+        const rucLogin = @(usuario == null ? "null" : $"'{usuario.INSTITUCION.RUC}'");
         const idRolLogin = @(usuario == null ? "null" : usuario.ROL == null ? "null" : usuario.ID_ROL.ToString());
+        const idSectorLogin = @(usuario == null ? "null" : usuario.INSTITUCION == null ? "null" : usuario.INSTITUCION.ID_SECTOR.ToString());
     </script>
     @RenderSection("scripts_footer", false)
 </body>

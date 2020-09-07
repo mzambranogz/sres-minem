@@ -17,7 +17,7 @@ namespace sres.app.Controllers.Api
 
         [Route("listasubsetortipoempresa")]
         [HttpGet]
-        public List<SubsectorTipoempresaBE> listaSubsectorTipoempresa(int idSector)
+        public List<SubsectorTipoempresaBE> listaSubsectorTipoempresa(int? idSector)
         {
             List<SubsectorTipoempresaBE> lista = new List<SubsectorTipoempresaBE>();
             try
