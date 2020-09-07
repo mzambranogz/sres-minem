@@ -346,6 +346,7 @@
     <Content Include="Assets\js\pages\participantes.js" />
     <Content Include="Assets\js\pages\participante_ficha.js" />
     <Content Include="Assets\js\pages\preguntas_frecuentes.js" />
+    <Content Include="Assets\js\pages\reconocimiento_criterio.js" />
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
@@ -590,6 +591,7 @@
     <Content Include="Views\Convocatoria\Informacion.cshtml" />
     <Content Include="Views\Participante\Reconocimiento.cshtml" />
     <Content Include="Views\Convocatoria\ConvocatoriaDetalle.cshtml" />
+    <Content Include="Views\Participante\ReconocimientoCriterio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

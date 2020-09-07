@@ -1693,7 +1693,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                     ''  ||
                           CASE
                             WHEN PI_ID_INSTITUCION > 0 THEN
-                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR C.ID_ETAPA < 3) AND '
+                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR (C.ID_ETAPA < 3 AND INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ')) AND '
                           END || '
                     C.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
@@ -1761,7 +1761,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                           ''  ||
                           CASE
                             WHEN PI_ID_INSTITUCION > 0 THEN
-                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR C.ID_ETAPA < 3) AND '
+                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR (C.ID_ETAPA < 3 AND INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ')) AND '
                           END || '
                           C.FLAG_ESTADO = ''1''
                         )
@@ -6740,13 +6740,14 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
     vQUERY_CONT := 'SELECT  COUNT(1)
                     FROM
                     T_GENM_INSCRIPCION INSC INNER JOIN
+                    T_GEND_CONV_EVA_INST CI ON INSC.ID_CONVOCATORIA = CI.ID_CONVOCATORIA AND INSC.ID_INSTITUCION = CI.ID_INSTITUCION INNER JOIN
                     T_GENM_CONVOCATORIA C ON INSC.ID_CONVOCATORIA = C.ID_CONVOCATORIA INNER JOIN
                     T_GENM_USUARIO U ON INSC.REG_USUARIO = U.ID_USUARIO INNER JOIN
                     T_GENM_INSTITUCION INST ON INSC.ID_INSTITUCION = INST.ID_INSTITUCION
                     WHERE ' ||
                     CASE
                       WHEN PI_ID_USUARIO IS NOT NULL THEN
-                        PI_ID_USUARIO || ' IN (SELECT ID_USUARIO FROM T_GEND_CONVOCATORIA_EVALUADOR WHERE ID_CONVOCATORIA = C.ID_CONVOCATORIA AND FLAG_ESTADO = ''1'') AND '
+                        'CI.ID_USUARIO = ' || PI_ID_USUARIO || ' AND '
                     END ||
                     'INSC.ID_CONVOCATORIA = ' || PI_ID_CONVOCATORIA || ' AND ' ||
                     CASE
@@ -6794,13 +6795,14 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
                                   || vTOTAL_REG || ' AS TOTAL_REGISTROS
                           FROM
                           T_GENM_INSCRIPCION INSC INNER JOIN
+                          T_GEND_CONV_EVA_INST CI ON INSC.ID_CONVOCATORIA = CI.ID_CONVOCATORIA AND INSC.ID_INSTITUCION = CI.ID_INSTITUCION INNER JOIN
                           T_GENM_CONVOCATORIA C ON INSC.ID_CONVOCATORIA = C.ID_CONVOCATORIA INNER JOIN
                           T_GENM_USUARIO U ON INSC.REG_USUARIO = U.ID_USUARIO INNER JOIN
                           T_GENM_INSTITUCION INST ON INSC.ID_INSTITUCION = INST.ID_INSTITUCION
                           WHERE ' ||
                           CASE
                             WHEN PI_ID_USUARIO IS NOT NULL THEN
-                              PI_ID_USUARIO || ' IN (SELECT ID_USUARIO FROM T_GEND_CONVOCATORIA_EVALUADOR WHERE ID_CONVOCATORIA = C.ID_CONVOCATORIA AND FLAG_ESTADO = ''1'') AND '
+                              'CI.ID_USUARIO = ' || PI_ID_USUARIO || ' AND '
                           END ||
                           'INSC.ID_CONVOCATORIA = ' || PI_ID_CONVOCATORIA || ' AND ' ||
                           CASE

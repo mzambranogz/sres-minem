@@ -38,8 +38,8 @@ var reconocimientocategoriaestrella = (obj) => {
     let contentseccion = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="table-responsive tabla-principal"><table class="table table-sm table-hover mb-0">${head}${body}</table></div></div>`;
     let imagen = `<div class="offset-lg-2 col-lg-2 col-md-12 col-sm-12 d-flex justify-content-center align-items-center"><img class="img-fluid" src="${baseUrl}${$('#ruta').val().replace('{0}', obj.ID_PREMIACION)}/${obj.ARCHIVO_BASE == null ? '' : obj.ARCHIVO_BASE}" alt="" data-toggle="tooltip" data-placement="top" title="${obj.INSIGNIA.ID_INSIGNIA == 1 ? 'Sin categoría' : obj.ESTRELLA_E.ID_ESTRELLA == 1 ? `Reconocimiento de ${obj.INSIGNIA.NOMBRE.toLowerCase()} sin estrellas` : `Reconocimiento de ${obj.INSIGNIA.NOMBRE.toLowerCase()} con ${obj.ESTRELLA_E.NOMBRE}`}"></div>`;
     let contenttabla = `<div class="row">${imagen}${contentseccion}</div>`;
-    let titulo2 = `<h3 class="mb-4 estilo-04 text-sres-azul d-inline">RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI (TCO2): ${obj.ESTRELLA_E.NOMBRE}<a class="p-2 estilo-01 text-sres-verde text-right" href="${baseUrl}Participantes/Categoria#categoria-02" target="_blank">Leer más...</a></h3>`;
-    let titulo1 = `<h3 class="mb-4 estilo-04 text-sres-azul d-inline">SELLO DE RECONOCIMIENTO DE ENERGÍA SOSTENIBLE: ${obj.INSIGNIA.NOMBRE}<a class="p-2 estilo-01 text-sres-verde text-right scroll-to-section" href="${baseUrl}Participantes/Categoria#categoria-01" target="_blank">Leer más...</a></h3>`;
+    let titulo2 = `<h3 class="mb-4 estilo-04 text-sres-azul d-inline">RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI (TCO2): ${obj.ESTRELLA_E.NOMBRE}<a class="p-2 estilo-01 text-sres-verde text-right" href="${baseUrl}Participantes/Reconocimientos-y-Criterio#categoria-02" target="_blank">Leer más...</a></h3>`;
+    let titulo1 = `<h3 class="mb-4 estilo-04 text-sres-azul d-inline">SELLO DE RECONOCIMIENTO DE ENERGÍA SOSTENIBLE: ${obj.INSIGNIA.NOMBRE}<a class="p-2 estilo-01 text-sres-verde text-right scroll-to-section" href="${baseUrl}Participantes/Reconocimientos-y-Criterio#categoria-01" target="_blank">Leer más...</a></h3>`;
     let div1 = `<div class="offset-lg-2 col-lg-8 col-md-12 col-sm-12">${titulo1}<div class="rayado wow fadeIn mb-3"></div>${titulo2}<div class="rayado wow fadeIn mb-3"></div>${contenttabla}</div>`;
     let content = `<div class="row my-5">${div1}</div>`;
     return content;
@@ -58,7 +58,7 @@ var reconocimientomedida = (obj) => {
                 return contenttabla;
             }).join('');
 
-            let titulo1 = `<h3 class="mb-4 estilo-04 text-sres-azul d-inline">RECONOCIMIENTO POR CADA MEDIDA QUE APORTA A LAS CONTRIBUCIONES NACIONALES DETERMINADAS (NDC)<a class="p-2 estilo-01 text-sres-verde text-right scroll-to-section" href="${baseUrl}Participantes/Categoria#categoria-03" target="_blank">Leer más...</a></h3>`;
+            let titulo1 = `<h3 class="mb-4 estilo-04 text-sres-azul d-inline">RECONOCIMIENTO POR CADA MEDIDA QUE APORTA A LAS CONTRIBUCIONES NACIONALES DETERMINADAS (NDC)<a class="p-2 estilo-01 text-sres-verde text-right scroll-to-section" href="${baseUrl}Participantes/Reconocimientos-y-Criterio#categoria-03" target="_blank">Leer más...</a></h3>`;
             let div1 = `<div class="offset-lg-2 col-lg-8 col-md-12 col-sm-12">${titulo1}<div class="rayado wow fadeIn mb-3"></div>${tablas}</div>`;
             let content = `<div class="row my-5">${div1}</div>`;
             contenido = content;
@@ -76,7 +76,7 @@ var reconocimientoemisiones = (obj) => {
         let contentseccion = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="table-responsive tabla-principal"><table class="table table-sm table-hover mb-0">${head}${body}</table></div></div>`;
         let imagen = `<div class="offset-lg-2 col-lg-2 col-md-12 col-sm-12 d-flex justify-content-center align-items-center"><img class="img-fluid" src="${baseUrl}${$('#ruta').val().replace('{0}', obj.ID_PREMIACION)}/${obj.ARCHIVO_BASE == null ? '' : obj.ARCHIVO_BASE}" alt="" data-toggle="tooltip" data-placement="top" title="${obj.INSIGNIA.ID_INSIGNIA == 1 ? 'Sin categoría' : obj.ESTRELLA_E.ID_ESTRELLA == 1 ? `Reconocimiento de ${obj.INSIGNIA.NOMBRE.toLowerCase()} sin estrellas` : `Reconocimiento de ${obj.INSIGNIA.NOMBRE.toLowerCase()} con ${obj.ESTRELLA_E.NOMBRE}`}"></div>`;
         let contenttabla = `<div class="row">${imagen}${contentseccion}</div>`;
-        let titulo1 = `<h3 class="mb-4 estilo-04 text-sres-azul d-inline">RECONOCIMIENTO DESTACADO POR REDUCCIÓN DE EMISIONES GEI (TCO2)<a class="p-2 estilo-01 text-sres-verde text-right scroll-to-section" href="${baseUrl}Participantes/Categoria#categoria-04" target="_blank">Leer más...</a></h3>`;
+        let titulo1 = `<h3 class="mb-4 estilo-04 text-sres-azul d-inline">RECONOCIMIENTO DESTACADO POR REDUCCIÓN DE EMISIONES GEI (TCO2)<a class="p-2 estilo-01 text-sres-verde text-right scroll-to-section" href="${baseUrl}Participantes/Reconocimientos-y-Criterio#categoria-04" target="_blank">Leer más...</a></h3>`;
         let div1 = `<div class="offset-lg-2 col-lg-8 col-md-12 col-sm-12">${titulo1}<div class="rayado wow fadeIn mb-3"></div>${contenttabla}</div>`;
         let content = `<div class="row my-5">${div1}</div>`;
         contenido = content;
@@ -93,7 +93,7 @@ var reconocimientomejora = (obj) => {
         let contentseccion = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="table-responsive tabla-principal"><table class="table table-sm table-hover mb-0">${head}${body}</table></div></div>`;
         let imagen = `<div class="offset-lg-2 col-lg-2 col-md-12 col-sm-12 d-flex justify-content-center align-items-center"><img class="img-fluid" src="${baseUrl}${$('#ruta').val().replace('{0}', obj.ID_PREMIACION)}/${obj.ARCHIVO_BASE == null ? '' : obj.ARCHIVO_BASE}" alt="" data-toggle="tooltip" data-placement="top" title="${obj.INSIGNIA.ID_INSIGNIA == 1 ? 'Sin categoría' : obj.ESTRELLA_E.ID_ESTRELLA == 1 ? `Reconocimiento de ${obj.INSIGNIA.NOMBRE.toLowerCase()} sin estrellas` : `Reconocimiento de ${obj.INSIGNIA.NOMBRE.toLowerCase()} con ${obj.ESTRELLA_E.NOMBRE}`}"></div>`;
         let contenttabla = `<div class="row">${imagen}${contentseccion}</div>`;
-        let titulo1 = `<h3 class="mb-4 estilo-04 text-sres-azul d-inline">RECONOCIMIENTO DESTACADO A LA MEJORA CONTINUA DE ENERGÍA SOSTENIBLE<a class="p-2 estilo-01 text-sres-verde text-right scroll-to-section" href="${baseUrl}Participantes/Categoria#categoria-05" target="_blank">Leer más...</a></h3>`;
+        let titulo1 = `<h3 class="mb-4 estilo-04 text-sres-azul d-inline">RECONOCIMIENTO DESTACADO A LA MEJORA CONTINUA DE ENERGÍA SOSTENIBLE<a class="p-2 estilo-01 text-sres-verde text-right scroll-to-section" href="${baseUrl}Participantes/Reconocimientos-y-Criterio#categoria-05" target="_blank">Leer más...</a></h3>`;
         let div1 = `<div class="offset-lg-2 col-lg-8 col-md-12 col-sm-12">${titulo1}<div class="rayado wow fadeIn mb-3"></div>${contenttabla}</div>`;
         let content = `<div class="row my-5">${div1}</div>`;
         contenido = content;
