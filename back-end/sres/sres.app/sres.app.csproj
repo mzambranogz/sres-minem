@@ -362,12 +362,13 @@
     <Content Include="Files\Criterios\LEER.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Files\Insignias\1\Imagen\sin-sres.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Files\Insignias\1\Imagen\sres_0.png" />
     <Content Include="Files\Insignias\2\Imagen\sres_bronce_0_star.png" />
     <Content Include="Files\Insignias\3\Imagen\sres_plata_0_star.png" />
     <Content Include="Files\Insignias\4\Imagen\sres_oro_0_star.png" />
+    <Content Include="Files\Insignias\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Files\MedidaMitigacion\10\Imagen\ico_nama_verde_01.svg" />
     <Content Include="Files\MedidaMitigacion\11\Imagen\ico_nama_verde_02.svg" />
     <Content Include="Files\MedidaMitigacion\12\Imagen\ico_nama_azul_01.svg" />
