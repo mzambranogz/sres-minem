@@ -221,6 +221,16 @@ namespace sres.app.Controllers
             return View();
         }
 
+        [SesionOut]
+        [Route("{idConvocatoria}/Detalle")]
+        public ActionResult ConvocatoriaDetalle(int idConvocatoria)
+        {
+            ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(idConvocatoria);
+            ViewData["convocatoria"] = convocatoria;
+
+            return View();
+        }
+
         public ActionResult CriterioIngresar()
         {
             return View();

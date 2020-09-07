@@ -164,7 +164,8 @@ var consultarConvocatoria = (element) => {
             jReq.length == 0 ? '' : jReq.map(x => $('#chk-r-'+x.ID_REQUERIMIENTO).prop('checked', true));
             //jCri.length == 0 ? '' : jCri.map(x => $('#chk-c-'+x.ID_CRITERIO).prop('checked', true));
             jEva.length == 0 ? '' : jEva.map(x => $('#chk-e-'+x.ID_USUARIO).prop('checked', true));
-            jEta.length == 0 ? '' : jEta.map(x => $('#txt-e-'+x.ID_ETAPA).val(x.DIAS));
+            //jEta.length == 0 ? '' : jEta.map(x => $('#txt-e-'+x.ID_ETAPA).val(x.DIAS));
+            jEta.length == 0 ? '' : jEta.map(x => $('#txt-e-'+x.ID_ETAPA).val(x.FECHA_ETAPA_CONV));
             jInsig.length == 0 ? '' : jInsig.map(x => $('#txt-i-'+x.ID_INSIGNIA).val(x.PUNTAJE_MIN));
             jEsttrab.length == 0 ? '' : jEsttrab.map(x => $(`#estrella-${x.ID_ESTRELLA}-${x.ID_TRABAJADORES_CAMA}`).val(x.EMISIONES_MIN))
         });
@@ -357,15 +358,17 @@ var cargarCheckEvaluador = (selector, data) => {
 }
 
 var cargarCheckEtapa = (selector, data) => {
-    let col1 = `<div class="col-sm-12 col-md-12 col-lg-5"><div class="estilo-01">Nombre de la Etapa</div><div class="dropdown-divider"></div></div>`;
-    let col2 = `<div class="col-sm-12 col-md-12 col-lg-5"><div class="estilo-01">Proceso</div><div class="dropdown-divider"></div></div>`;
-    let col3 = `<div class="col-sm-12 col-md-12 col-lg-2"><div class="estilo-01">Cantidad de Días</div><div class="dropdown-divider"></div></div>`;
+    let col1 = `<div class="col-sm-12 col-md-12 col-lg-4"><div class="estilo-01">Nombre de la Etapa</div><div class="dropdown-divider"></div></div>`;
+    let col2 = `<div class="col-sm-12 col-md-12 col-lg-4"><div class="estilo-01">Proceso</div><div class="dropdown-divider"></div></div>`;
+    //let col3 = `<div class="col-sm-12 col-md-12 col-lg-2"><div class="estilo-01">Cantidad de Días</div><div class="dropdown-divider"></div></div>`;
+    let col3 = `<div class="col-sm-12 col-md-12 col-lg-4"><div class="estilo-01">Fecha</div><div class="dropdown-divider"></div></div>`;
     let cabecera = `<div class="row">${col1}${col2}${col3}</div>`;
     //let items = data.length == 0 ? '' : data.map(x => `<tr><td>${x.ETAPA}</td><td>${x.PROCESO}</td><td><input class="etapa" type="text" id="txt-e-${x.ID_ETAPA}" /></tr></td>`).join('');
     let items = data.length == 0 ? '' : data.map(x => {
-        let c1 = `<div class="col-sm-12 col-md-12 col-lg-5"><div class="form-group mb-1"><label class="estilo-01">${x.ETAPA}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span></label></div></div>`;
-        let c2 = `<div class="col-sm-12 col-md-12 col-lg-5"><div class="form-group mb-1"><label class="estilo-01">${x.PROCESO}</label></div></div>`;
-        let c3 = `<div class="col-sm-12 col-md-12 col-lg-2"><div class="form-group mb-1"><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div><input class="form-control estilo-01 text-sres-gris etapa solo-numero" type="text" id="txt-e-${x.ID_ETAPA}" value="0" maxlength="3"></div></div></div>`;
+        let c1 = `<div class="col-sm-12 col-md-12 col-lg-4"><div class="form-group mb-1"><label class="estilo-01">${x.ETAPA}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span></label></div></div>`;
+        let c2 = `<div class="col-sm-12 col-md-12 col-lg-4"><div class="form-group mb-1"><label class="estilo-01">${x.PROCESO}</label></div></div>`;
+        //let c3 = `<div class="col-sm-12 col-md-12 col-lg-2"><div class="form-group mb-1"><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div><input class="form-control estilo-01 text-sres-gris etapa solo-numero" type="text" id="txt-e-${x.ID_ETAPA}" value="0" maxlength="3"></div></div></div>`;
+        let c3 = `<div class="col-sm-12 col-md-12 col-lg-4"><div class="form-group mb-1"><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div><input class="form-control estilo-01 text-sres-gris etapa" type="date" id="txt-e-${x.ID_ETAPA}"></div></div></div>`;
         return `<div class="row">${c1}${c2}${c3}</div>`;
     }).join('');
     $(selector).html(`${cabecera}${items}`);
@@ -565,7 +568,8 @@ var guardar = () => {
     $('.tbl-etapa').find('.etapa').each((x, y) => {
         var r = {
             ID_ETAPA: $(y).attr("id").substring(6, $(y).attr("id").length),
-            DIAS: $(y).val()
+            //DIAS: $(y).val()
+            FECHA_ETAPA: $(y).val()
         }
         etapa.push(r);
     });

@@ -140,7 +140,7 @@ namespace sres.ln
                     {
                         foreach (var it in entidad.LISTA_ETA)
                         {
-                            if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEtapa(new EtapaBE { ID_ETAPA = it.ID_ETAPA, DIAS = it.DIAS, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, idConvocatoria, cn, ot).OK)) break;
+                            if (!(seGuardoConvocatoria = convocatoriaDA.GuardarEtapa(new EtapaBE { ID_ETAPA = it.ID_ETAPA, FECHA_ETAPA = it.FECHA_ETAPA, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, idConvocatoria, cn, ot).OK)) break;
                         }
                     }
                     if (seGuardoConvocatoria)
@@ -463,6 +463,27 @@ namespace sres.ln
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return seGuardo ? 1 : 0;
+        }
+
+        public List<CriterioBE> listarConvocatoriaCriDetalle(ConvocatoriaBE entidad)
+        {
+            List<CriterioBE> lista = new List<CriterioBE>();
+
+            try
+            {
+                cn.Open();
+                lista = convocatoriaDA.listarConvocatoriaCri(entidad, cn);
+                if (lista.Count > 0)
+                {
+                    foreach (CriterioBE cr in lista)
+                    {
+                        cr.LISTA_CONVCRIPUNT = convcripuntDA.listarConvocatoriaCriterioPuntaje(cr.ID_CONVOCATORIA, cr.ID_CRITERIO, cn);
+                    }
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
     }
 }

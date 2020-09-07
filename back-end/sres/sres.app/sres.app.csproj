@@ -313,6 +313,7 @@
     <Content Include="Assets\js\pages\convocatoria_criterio.js" />
     <Content Include="Assets\js\pages\convocatoria_criterioingresar.js" />
     <Content Include="Assets\js\pages\convocatoria_criterios.js" />
+    <Content Include="Assets\js\pages\convocatoria_detalle.js" />
     <Content Include="Assets\js\pages\convocatoria_evaluacioncriterio.js" />
     <Content Include="Assets\js\pages\convocatoria_evaluacioncriterios.js" />
     <Content Include="Assets\js\pages\convocatoria_evaluarinscripcion.js" />
@@ -587,6 +588,7 @@
     <Content Include="Views\Mantenimiento\MedidaMitigacion.cshtml" />
     <Content Include="Views\Convocatoria\Informacion.cshtml" />
     <Content Include="Views\Participante\Reconocimiento.cshtml" />
+    <Content Include="Views\Convocatoria\ConvocatoriaDetalle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
