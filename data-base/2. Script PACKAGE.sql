@@ -1693,7 +1693,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                     ''  ||
                           CASE
                             WHEN PI_ID_INSTITUCION > 0 THEN
-                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR (C.ID_ETAPA < 3 AND INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ')) AND '
+                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR C.ID_ETAPA < 3) AND '
                           END || '
                     C.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
@@ -1761,7 +1761,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                           ''  ||
                           CASE
                             WHEN PI_ID_INSTITUCION > 0 THEN
-                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR (C.ID_ETAPA < 3 AND INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ')) AND '
+                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR C.ID_ETAPA < 3) AND '
                           END || '
                           C.FLAG_ESTADO = ''1''
                         )
@@ -2896,7 +2896,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
       T_GENM_INSCRIPCION I ON R.ID_INSCRIPCION = I.ID_INSCRIPCION INNER JOIN
       T_GENM_CONVOCATORIA C ON I.ID_CONVOCATORIA = C.ID_CONVOCATORIA INNER JOIN
       T_MAE_INSIGNIA INS ON R.ID_INSIGNIA = INS.ID_INSIGNIA
-      WHERE I.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' AND R.ID_INSIGNIA > 1 
+      WHERE I.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' AND R.ID_INSIGNIA > 1 AND C.ID_ETAPA > 12
       ORDER BY C.FECHA_INICIO DESC
       OFFSET 0 ROWS FETCH NEXT ' || PI_CANTIDAD || ' ROWS ONLY';
       

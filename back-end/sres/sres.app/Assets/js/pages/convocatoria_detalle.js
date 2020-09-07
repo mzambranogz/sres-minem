@@ -39,7 +39,7 @@ var armarCriterios = (data, selector) => {
     if (data.length > 0){
         contenido = data.map((x,y) => {
             let contentpuntaje = armarPuntaje(x.LISTA_CONVCRIPUNT);
-            let fila = `<tr><td data-encabezado="Descripción">${x.DESCRIPCION}</td><td class="text-center" data-encabezado="Puntaje"><table class="table table-sm table-hover mb-0"><tbody class="estilo-01">${contentpuntaje}</tbody></table></td></tr>`;
+            let fila = `<tr><td data-encabezado="Descripción">${x.DESCRIPCION == null ? '' : x.DESCRIPCION}</td><td class="text-center" data-encabezado="Puntaje"><table class="table table-sm table-hover mb-0"><tbody class="estilo-01">${contentpuntaje}</tbody></table></td></tr>`;
             let body = `<tbody class="estilo-01">${fila}</tbody>`;
             let head = `<thead class="estilo-06 free-with"><tr><th scope="col" width="60%"><div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Descripción del criterio"></i><span>DESCRIPCIÓN&nbsp;</span></span></div></th><th scope="col" width="40%"><div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Puntajes del criterio"></i><span>PUNTAJE&nbsp;</span></span></div></th></tr></thead>`;
             let contentCriterio = `<div class="col-lg-10 col-md-12 col-sm-12"><div class="table-responsive tabla-principal"><table class="table table-sm table-hover mb-0">${head}${body}</table></div></div>`;

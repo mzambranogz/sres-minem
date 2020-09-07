@@ -47,7 +47,8 @@ var consultar = () => {
             //emisiones += $(y).val() == '' ? 0.0 : parseFloat($(y).val());
             emisiones += $(y).html() == '' ? 0.0 : parseFloat($(y).html());
         });
-        $(`#txt-emisiones`).val(formatoMiles(emisiones / 1000));
+        //$(`#txt-emisiones`).val(formatoMiles(emisiones / 1000));
+        $(`#txt-emisiones`).val(formatoMiles(emisiones));
     });
 };
 

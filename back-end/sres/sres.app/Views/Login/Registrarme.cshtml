@@ -28,7 +28,7 @@
                                         <label class="estilo-01" for="txt-ruc">RUC</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Se recomienda un RUC de persona jurídica"></i></span>
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
-                                            <input class="form-control estilo-01" type="text" name="txt-ruc" id="txt-ruc" placeholder="Ingrese su número de RUC" pattern="[0-9]{11}" maxlength="11" required>
+                                            <input class="form-control estilo-01 solo-numero" type="text" name="txt-ruc" id="txt-ruc" placeholder="Ingrese su número de RUC" pattern="[0-9]{11}" maxlength="11" required>
                                         </div>
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <button class="btn-lg btn-sres-verde w-100" type="submit"><i class="fas fa-paper-plane px-1"></i>Registrarse</button>
-                                    <p class="py-4 mb-0 text-center estilo-01">¿Ya tiene un cuenta?&nbsp;<a class="text-sres-verde" href="@Url.Action("Index","Login")">Ingrese ahora <br></a><a class="text-sres-verde" href="./recuperar.html">¿Olvidó su contraseña?</a></p>
+                                    <p class="py-4 mb-0 text-center estilo-01">¿Ya tiene un cuenta?&nbsp;<a class="text-sres-verde" href="@Url.Action("Index","Login")">Ingrese ahora <br></a><a class="text-sres-verde" href="javascript:void(0)">¿Olvidó su contraseña?</a></p>
                                 </div>
                             </div>
                         </form>
