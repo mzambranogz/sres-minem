@@ -343,6 +343,7 @@
     <Content Include="Assets\js\pages\mantenimiento_usuario.js" />
     <Content Include="Assets\js\pages\mantenimiento_valorfactor.js" />
     <Content Include="Assets\js\pages\participantes.js" />
+    <Content Include="Assets\js\pages\participante_ficha.js" />
     <Content Include="Assets\js\pages\preguntas_frecuentes.js" />
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
@@ -585,6 +586,7 @@
     <Content Include="Views\Convocatoria\Seguimiento.cshtml" />
     <Content Include="Views\Mantenimiento\MedidaMitigacion.cshtml" />
     <Content Include="Views\Convocatoria\Informacion.cshtml" />
+    <Content Include="Views\Participante\Reconocimiento.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

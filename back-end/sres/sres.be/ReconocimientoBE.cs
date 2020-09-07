@@ -13,6 +13,8 @@ namespace sres.be
         public InscripcionBE INSCRIPCION { get; set; }
         public int? ID_INSIGNIA { get; set; }
         public InsigniaBE INSIGNIA { get; set; }
+        public EstrellaBE ESTRELLA_E { get; set; }
+        public List<ReconocimientoMedidaBE> LISTA_REC_MEDMIT { get; set; }
         public int PUNTAJE { get; set; }
         public string FLAG_CATEGORIA { get; set; }
         public int? ID_ESTRELLA { get; set; }
@@ -26,6 +28,10 @@ namespace sres.be
         public int ID_PREMIACION { get; set; }
         public string ARCHIVO_BASE { get; set; }
         public string FECHA_CONVOCATORIA { get; set; }
+        public string MES_CONVOCATORIA { get; set; }
+        public string ANIO_CONVOCATORIA { get; set; }
+        public DateTime FECHA_INICIO { get; set; }
+        public string DESCRIPCION { get; set; }
         public string FLAG_ESTADO { get; set; }
     }
 }

@@ -1,0 +1,46 @@
+﻿@using sres.be;
+@using sres.ut;
+@{
+    ViewBag.Titulo = "Reconocimiento";
+    ViewBag.SRESDescription = false;
+    ViewBag.Header = new Dictionary<string, object>
+    {
+        ["Imagen"] = "~/Assets/images/reconocimientos.png",
+        ["Titulo"] = "RECONOCIMIENTO"
+    };
+    InstitucionBE institucion = (InstitucionBE)ViewData["institucion"];
+    string pathFormat = AppSettings.Get<string>("Path.Institucion");
+    string pathDirectoryRelative = institucion == null ? "" : string.Format(pathFormat, institucion.ID_INSTITUCION);
+    string imagen = institucion == null ? "" : institucion.LOGO == null ? "~/Assets/images/sin-foto.png" : $"~/{pathDirectoryRelative}/{institucion.LOGO}";
+    string pathFormat_prem = AppSettings.Get<string>("Path.Reconocimiento");
+    string pathFormat_medida = AppSettings.Get<string>("Path.MedidaMitigacion");
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/pages/participante_ficha.js")"></script>
+}
+
+@if (institucion != null)
+{
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row my-5">
+                <div class="col-lg-3 col-md-12 col-sm-12"><img class="img-fluid wow slideInLeft" src="@Url.Content(imagen)" alt=""></div>
+                <div class="col-lg-9 col-md-12 col-sm-12">
+                    <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">@institucion.RAZON_SOCIAL</h2>
+                    <p class="text-justify estilo-01 text-sres-gris wow fadeIn">@institucion.DESCRIPCION</p>
+                    @*<p class="text-justify estilo-01 text-sres-gris wow fadeIn">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore inventore sapiente neque quis, perferendis officiis quisquam temporibus aut aperiam consectetur ratione nemo amet numquam id doloribus? Suscipit impedit architecto et!</p>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid my-5">
+        <div class="container" id="reconocimientos-institucion">
+        </div>
+    </div>
+    <input type="hidden" id="ruta" value="@pathFormat_prem" />
+    <input type="hidden" id="ruta_m" value="@pathFormat_medida" />
+}
+<script>
+        idInstitucion = @(institucion == null ? 0 : institucion.ID_INSTITUCION);
+</script>

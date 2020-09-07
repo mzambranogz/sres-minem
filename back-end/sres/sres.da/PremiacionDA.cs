@@ -141,5 +141,59 @@ namespace sres.da
             }
             return item;
         }
+
+        public List<ReconocimientoBE> ListaReconocimiento(int idInstitucion, OracleConnection db)
+        {
+            List<ReconocimientoBE> lista = new List<ReconocimientoBE>();
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_LISTA_RECONOCIM";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSTITUCION", idInstitucion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                //lista = db.Query<ReconocimientoBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                lista = db.Query<dynamic>(sp, p, commandType: CommandType.StoredProcedure).Select(x => new ReconocimientoBE
+                {
+                    ID_RECONOCIMIENTO = (int)x.ID_RECONOCIMIENTO,
+                    ID_INSCRIPCION = (int)x.ID_INSCRIPCION,
+                    PUNTAJE = (int)x.PUNTAJE,
+                    EMISIONES = (decimal)x.EMISIONES,
+                    FECHA_INICIO = (DateTime)x.FECHA_INICIO,
+                    MES_CONVOCATORIA = ((DateTime)x.FECHA_INICIO).ToString("MMMM").Replace(".", "").ToUpper(),
+                    ANIO_CONVOCATORIA = ((DateTime)x.FECHA_INICIO).ToString("yyyy"),
+                    DESCRIPCION = (string)x.DESCRIPCION,
+                    FLAG_MEJORACONTINUA = (string)x.FLAG_MEJORACONTINUA,
+                    FLAG_EMISIONESMAX = (string)x.FLAG_EMISIONESMAX,
+                    INSIGNIA = x.ID_INSIGNIA == null ? null : new InsigniaBE { ID_INSIGNIA = (int)x.ID_INSIGNIA, NOMBRE = (string)x.NOMBRE_INSIG },
+                    ESTRELLA_E = x.ID_ESTRELLA == null ? null : new EstrellaBE { ID_ESTRELLA = (int)x.ID_ESTRELLA, NOMBRE = (string)x.NOMBRE_ESTRELLA },
+                    ID_PREMIACION = (int)x.ID_PREMIACION,
+                    ARCHIVO_BASE = (string)x.ARCHIVO_BASE_PRE,
+                    FLAG_ESTADO = (string)x.FLAG_ESTADO
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
+
+        public List<ReconocimientoMedidaBE> ListaReconocimientoMedida(int idReconocimiento, OracleConnection db)
+        {
+            List<ReconocimientoMedidaBE> lista = new List<ReconocimientoMedidaBE>();
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_GET_RECONOC_MEDIDA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_RECONOCIMIENTO", idReconocimiento);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ReconocimientoMedidaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
     }
 }
