@@ -168,5 +168,37 @@ namespace sres.app.Controllers.Api
             }
             return estado;
         }
+
+        [Route("enviarlinkrecuperarcontraseña")]
+        [HttpGet]
+        public Dictionary<string, object> EnviarLinkRecuperarContraseña(string correo)
+        {
+            UsuarioBE usuario = usuarioLN.ObtenerUsuarioPorCorreo(correo);
+
+            if (usuario == null) return new Dictionary<string, object>
+            {
+                ["success"] = false,
+                ["message"] = "correo no existe"
+            };
+
+            string fechaHoraExpiracion = DateTime.Now.AddMinutes(10).ToString("yyyy-MM-ddTHH:mm:ss.fffK");
+            string idUsuario = usuario.ID_USUARIO.ToString();
+
+            string fieldServer = "[SERVER]", fieldNombres = "[NOMBRES]", fieldIdUsuario = "[ID_USUARIO]";
+            string[] fields = new string[] { fieldServer, fieldNombres, fieldIdUsuario };
+            string[] fieldsRequire = new string[] { fieldServer, fieldNombres, fieldIdUsuario };
+            Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldServer] = AppSettings.Get<string>("Server"), [fieldNombres] = usuario.NOMBRES, [fieldIdUsuario] = usuario.ID_USUARIO.ToString() };
+            string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, recupere su contraseña";
+            MailAddressCollection mailTo = new MailAddressCollection();
+            mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
+
+            Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.CreacionUsuario, dataBody, fields, fieldsRequire, subject, mailTo));
+
+            return new Dictionary<string, object>
+            {
+                ["success"] = true,
+                ["message"] = $"se envió link al correo {correo}"
+            };
+        }
     }
 }

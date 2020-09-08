@@ -166,8 +166,12 @@ namespace sres.app.Controllers
             }
         }
 
-
         public ActionResult Registrarme()
+        {
+            return View();
+        }
+
+        public ActionResult RecuperarContraseña()
         {
             return View();
         }

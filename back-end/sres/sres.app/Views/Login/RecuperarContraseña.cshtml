@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Titulo = "RecuperarClave";
+    ViewBag.Header = new Dictionary<string, object>
+    {
+        ["Imagen"] = "~/Assets/images/bg-login.png",
+        ["Titulo"] = "RECUPERAR CONTRASEÑA"
+    };
+
+    ViewBag.SRESDocumentation = new Dictionary<string, Dictionary<string, object>>
+    {
+        ["References"] = new Dictionary<string, object>
+        {
+            ["Show"] = true,
+            ["Titulo"] = "DOCUMENTOS DE REFERENCIA",
+            ["Data"] = new Dictionary<int, object>
+            {
+                [1] = new Dictionary<string, object> { ["Texto"] = "Estudio del Impacto del Etiquetado 2018 a 2019", ["Url"] = "http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" },
+                [2] = new Dictionary<string, object> { ["Texto"] = "Estudio del Impacto del Etiquetado de Eficiencia Energética 2020", ["Url"] = "http://namasenergia.minem.gob.pe//Content/fileman/Uploads/archivo/Estudios/energetica/2019-08-13%20Entregable%20Final%20Etiquetado%20VF.pdf" },
+                [3] = new Dictionary<string, object> { ["Texto"] = "Piloto de Auditorías Energéticas en el Sector Público", ["Url"] = "#" },
+                [4] = new Dictionary<string, object> { ["Texto"] = "Piloto de Auditorías Energéticas en el Sector Privado", ["Url"] = "#" },
+                [5] = new Dictionary<string, object> { ["Texto"] = "Reglamento de Etiquetado de Eficiencia Energética", ["Url"] = "#" },
+                [6] = new Dictionary<string, object> { ["Texto"] = "Guía de Auditorías Energéticas", ["Url"] = "#" },
+                [7] = new Dictionary<string, object> { ["Texto"] = "Manual de uso de la plataforma del Sello de Reconocimiento Energético", ["Url"] = "#" }
+            }
+        }
+    };
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/plugins/alert.js")"></script>
+    <script src="@Url.Content("~/Assets/js/plugins/counter.js")"></script>
+    <script src="@Url.Content("~/Assets/js/pages/login_recuperarcontraseña.js")"></script>
+}
+
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 d-none d-lg-block">
+                <div class="row">
+                    <div class="col-12 wow fadeIn">
+                        <div class="p-5 set-bg" data-setbg="@Url.Content("~/Assets/images/clave.png")">
+                            <p class="estilo-01 text-white text-justify barra-blanca my-5">Si ya está registrado en el Sello de Reconocimiento de Energía Sostenible acceda con sus credenciales de SRES, si ya es un Usuario Administrado en la Plataforma MRV del sector energía, puede optar por ingresar con su cuenta MRV de manera inmediata.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 mb-5 mb-lg-0">
+                <div class="row">
+                    <div class="col-12 wow fadeIn">
+                        <div class="h4 estilo-03">¿Olvidó su contraseña? <br><small class="text-muted estilo-02">Ingresa tu usuario o correo electrónico</small></div>
+                        <form class="pt-4" id="frmLogin" action="./bandeja-postulante.html" autocomplete="off">
+                            <div class="form-group">
+                                <label class="estilo-01" for="txt-user">Correo electrónico</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup1"><i class="fas fa-envelope"></i></span></div>
+                                    <input class="form-control estilo-01" type="email" id="txt-user" placeholder="Ingresar correo electrónico" aria-describedby="inputGroup1" maxlength="50" pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@("@")[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$" title="Ingrese una dirección de correo válida." autocomplete="new-user" required>
+                                </div>
+                            </div>
+                            <button class="btn-lg btn-primary w-100 mb-3" id="sresBtn" type="submit"><i class="fas fa-undo px-1"></i>Recuperar</button>
+                        </form>
+                        <p class="pt-4 mb-0 text-center estilo-01">¿No tienes una cuenta?&nbsp;<a class="text-sres-verde estilo-01" href="@Url.Action("Registrarme", "Login")">Regístrese ahora</a></p>
+                    </div>
+                </div>
+            </div>
+            @Html.Partial("_SRES_Documentation")
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="verificacion-mrv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-nama-azul text-white">
+                <h5 class="modal-title estilo-01" id="exampleModalLabel">Validación con Plataforma MRV</h5>
+                <!--button.close(type="button", data-dismiss="modal", aria-label="Close")span(aria-hidden="true") &times;
+                -->
+            </div>
+            <div class="modal-body medidas-modal">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="text-center estilo-03">Comparando datos...</h3>
+                        <p class="text-center estilo-01">Estamos procediendo a validar sus datos con la plataforma de MRV del sector energía, en breve confirmaremos los resultados.</p>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="progress mb-3" style="height: 25px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated estilo-01" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">Validando, espere un momento por favor...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--.modal-footer.d-flex.justify-content-center
+            button(type="button", class="btn btn-info") Si, grabar
+            button(type="button", class="btn btn-dark", data-dismiss="modal") Cancelar
+            -->
+        </div>
+    </div>
+</div>

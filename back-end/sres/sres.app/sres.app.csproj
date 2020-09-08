@@ -587,6 +587,7 @@
     <Content Include="Views\Mantenimiento\MedidaMitigacion.cshtml" />
     <Content Include="Views\Convocatoria\Informacion.cshtml" />
     <Content Include="Views\Participante\Reconocimiento.cshtml" />
+    <Content Include="Views\Login\RecuperarContraseña.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
