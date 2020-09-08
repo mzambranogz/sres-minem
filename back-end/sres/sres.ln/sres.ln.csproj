@@ -76,6 +76,7 @@
     <Compile Include="PremiacionLN.cs" />
     <Compile Include="ProcesoLN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuntajeLN.cs" />
     <Compile Include="ReconocimientoLN.cs" />
     <Compile Include="RequerimientoLN.cs" />
     <Compile Include="RolLN.cs" />

@@ -117,5 +117,10 @@ namespace sres.app.Controllers
         {
             return View();
         }
+
+        public ActionResult Puntaje()
+        {
+            return View();
+        }
     }
 }
