@@ -192,7 +192,7 @@ namespace sres.app.Controllers.Api
             MailAddressCollection mailTo = new MailAddressCollection();
             mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
 
-            Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.CreacionUsuario, dataBody, fields, fieldsRequire, subject, mailTo));
+            Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.RecuperacionClave, dataBody, fields, fieldsRequire, subject, mailTo));
 
             return new Dictionary<string, object>
             {

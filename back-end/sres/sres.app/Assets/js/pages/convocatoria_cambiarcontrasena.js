@@ -27,8 +27,10 @@ var sendLogin = (e) => {
     let contrasena = $('#txt-pswd').val().trim();
     let actualcontrasena = $('#txt-act').val().trim();
 
+    let idUsuario = idUsuarioLogin != null ? idUsuarioLogin : location.href.split('/')[5];
+
     let url = `${baseUrl}api/usuario/cambiarclaveusuario`;
-    let data = { ID_USUARIO: idUsuarioLogin, CONTRASENA: actualcontrasena, CONTRASENA_NUEVO: contrasena, UPD_USUARIO: idUsuarioLogin };
+    let data = { ID_USUARIO: idUsuario, CONTRASENA: actualcontrasena, CONTRASENA_NUEVO: contrasena, UPD_USUARIO: idUsuario };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)

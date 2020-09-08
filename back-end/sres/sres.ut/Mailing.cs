@@ -20,6 +20,7 @@ namespace sres.ut
             AprobacionUsuario,
             [Description("DeshabilitarUsuario.html")]
             DeshabilitarUsuario,
+            [Description("RecuperarClave.html")]
             RecuperacionClave,
             [Description("CreacionConvocatoria.html")]
             CreacionConvocatoria,
@@ -58,7 +59,7 @@ namespace sres.ut
             [Description("ObservacionRequisitos.html")]
             ObservacionRequisitos,
             [Description("AprobacionRequesitos.html")]
-            AprobacionRequesitos
+            AprobacionRequesitos,
         }
 
         static string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);

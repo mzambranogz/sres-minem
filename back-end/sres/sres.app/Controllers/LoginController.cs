@@ -16,6 +16,7 @@ using System.Net.Mail;
 
 namespace sres.app.Controllers
 {
+    [RoutePrefix("Login")]
     public class LoginController : Controller
     {
         UsuarioLN usuarioLN = new UsuarioLN();
@@ -174,6 +175,16 @@ namespace sres.app.Controllers
         public ActionResult RecuperarContraseña()
         {
             return View();
+        }
+
+        [Route("CambiarContraseña/{idUsuario}")]
+        public ActionResult CambiarContraseña(int idUsuario)
+        {
+            UsuarioBE usuario = usuarioLN.ObtenerUsuario(idUsuario);
+
+            if (usuario == null) return HttpNotFound();
+
+            return View("CambiarClave");
         }
     }
 }

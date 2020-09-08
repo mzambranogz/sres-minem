@@ -321,6 +321,7 @@
     <Content Include="Assets\js\pages\convocatoria_seguimiento.js" />
     <Content Include="Assets\js\pages\inicio.js" />
     <Content Include="Assets\js\pages\login.js" />
+    <Content Include="Assets\js\pages\login_recuperarcontraseña.js" />
     <Content Include="Assets\js\pages\login_registrarme.js" />
     <Content Include="Assets\js\pages\mantenimiento.js" />
     <Content Include="Assets\js\pages\mantenimiento_anno.js" />
@@ -582,7 +583,7 @@
     <Content Include="Views\Participante\PreguntasFrecuentes.cshtml" />
     <Content Include="Views\Participante\MapaSitio.cshtml" />
     <Content Include="Views\Participante\TerminosCondiciones.cshtml" />
-    <Content Include="Views\Convocatoria\CambiarClave.cshtml" />
+    <Content Include="Views\Shared\CambiarClave.cshtml" />
     <Content Include="Views\Mantenimiento\FactorValor.cshtml" />
     <Content Include="Views\Mantenimiento\Estrella.cshtml" />
     <Content Include="Views\Mantenimiento\Reconocimiento.cshtml" />
