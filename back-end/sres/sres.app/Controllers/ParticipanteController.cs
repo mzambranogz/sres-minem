@@ -50,5 +50,11 @@ namespace sres.app.Controllers
             ViewData["institucion"] = institucion;
             return View();
         }
+
+        [Route("Reconocimientos-y-Criterio")]
+        public ActionResult ReconocimientoCriterio()
+        {
+            return View();
+        }
     }
 }

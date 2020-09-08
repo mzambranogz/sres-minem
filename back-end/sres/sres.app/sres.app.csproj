@@ -313,6 +313,7 @@
     <Content Include="Assets\js\pages\convocatoria_criterio.js" />
     <Content Include="Assets\js\pages\convocatoria_criterioingresar.js" />
     <Content Include="Assets\js\pages\convocatoria_criterios.js" />
+    <Content Include="Assets\js\pages\convocatoria_detalle.js" />
     <Content Include="Assets\js\pages\convocatoria_evaluacioncriterio.js" />
     <Content Include="Assets\js\pages\convocatoria_evaluacioncriterios.js" />
     <Content Include="Assets\js\pages\convocatoria_evaluarinscripcion.js" />
@@ -345,6 +346,7 @@
     <Content Include="Assets\js\pages\participantes.js" />
     <Content Include="Assets\js\pages\participante_ficha.js" />
     <Content Include="Assets\js\pages\preguntas_frecuentes.js" />
+    <Content Include="Assets\js\pages\reconocimiento_criterio.js" />
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
@@ -361,12 +363,13 @@
     <Content Include="Files\Criterios\LEER.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Files\Insignias\1\Imagen\sin-sres.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Files\Insignias\1\Imagen\sres_0.png" />
     <Content Include="Files\Insignias\2\Imagen\sres_bronce_0_star.png" />
     <Content Include="Files\Insignias\3\Imagen\sres_plata_0_star.png" />
     <Content Include="Files\Insignias\4\Imagen\sres_oro_0_star.png" />
+    <Content Include="Files\Insignias\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Files\MedidaMitigacion\10\Imagen\ico_nama_verde_01.svg" />
     <Content Include="Files\MedidaMitigacion\11\Imagen\ico_nama_verde_02.svg" />
     <Content Include="Files\MedidaMitigacion\12\Imagen\ico_nama_azul_01.svg" />
@@ -588,6 +591,8 @@
     <Content Include="Views\Convocatoria\Informacion.cshtml" />
     <Content Include="Views\Participante\Reconocimiento.cshtml" />
     <Content Include="Views\Login\RecuperarContraseña.cshtml" />
+    <Content Include="Views\Convocatoria\ConvocatoriaDetalle.cshtml" />
+    <Content Include="Views\Participante\ReconocimientoCriterio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -27,6 +27,10 @@ namespace sres.be
         public int VALIDAR_ETAPA { get; set; }
         public int VALIDAR_EVALUADOR { get; set; }
         public int CODIGO { get; set; }
+        public string ROL { get; set; }
+        public DateTime FECHA_ETAPA { get; set; }
+        public string PROCESO { get; set; }
+        public string FECHA_ETAPA_CONV { get; set; }
         public int FLAG_ANULAR { get; set; }
     }
 }

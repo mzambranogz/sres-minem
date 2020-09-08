@@ -1,0 +1,157 @@
+﻿@using sres.be;
+@using sres.ut;
+@{
+    ViewBag.Titulo = "Categorías";
+    ViewBag.SRESDescription = false;
+    ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
+    string pathFormat = AppSettings.Get<string>("Path.Criterio");
+    string pathFormat_insig = AppSettings.Get<string>("Path.Insignia");
+    string path_eva = AppSettings.Get<string>("Detalle.Evaluador");
+    string path_eta = AppSettings.Get<string>("Detalle.Etapa");
+    string path_cri = AppSettings.Get<string>("Detalle.Criterio");
+    string path_insig = AppSettings.Get<string>("Detalle.Insignia");
+}
+
+@section scripts_footer{
+    <script src="@Url.Content("~/Assets/js/pages/convocatoria_detalle.js")"></script>
+}
+
+<div class="container-fluid set-bg convocatoria-top" data-setbg="@Url.Content("~/Assets/images/convocatoria.png")">
+    <div class="container">
+        <div class="row">
+            <div class="offset-1 col-10">
+                <div class="row">
+                    <div class="col-lg-12 col-ms-12 col-sm-12 mt-5 mt-lg-0 d-flex flex-column align-items-start text-white text-justify barra-blanca">
+                        <span class="estilo-02">@((convocatoria.FECHA_INICIO).ToString("dd")) @((convocatoria.FECHA_INICIO).ToString("MMMM").Replace(".", "")) @((convocatoria.FECHA_INICIO).ToString("yyyy")) al @((convocatoria.FECHA_FIN).ToString("dd")) @((convocatoria.FECHA_FIN).ToString("MMMM").Replace(".", "")) @((convocatoria.FECHA_FIN).ToString("yyyy"))</span>
+                        <h2 class="estilo-03">@convocatoria.NOMBRE</h2>
+                        <p class="estilo-01">@convocatoria.DESCRIPCION</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h2 class="p-2 estilo-04 text-white bg-degradado wow fadeIn wow slideInUp cursor-pointer" data-toggle="collapse" href="#reconocimiento-01" aria-expanded="true" aria-controls="reconocimiento-01"><i class="fas fa-users mr-1"></i>EQUIPO DE ESPECIALISTAS</h2>
+                <div class="bg-sres-claro px-2 py-3 mb-5 text-sres-claro collapse show" id="reconocimiento-01">
+                    <p class="text-justify estilo-01 text-sres-gris">@path_eva</p>
+                    <div class="row my-5">
+                        <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12">
+                            <h3 class="mb-4 estilo-04 text-sres-azul d-inline">ESPECIALISTAS DE LA DGEE</h3>
+                            <div class="rayado wow fadeIn mb-3"></div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-responsive tabla-principal">
+                                        <table class="table table-sm table-hover mb-1" id="tbl-evaluador">
+                                            <thead class="estilo-06 free-with">
+                                                <tr>
+                                                    <th scope="col" width="3%">
+                                                        <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Número de orden"></i><span>N°&nbsp;</span></span></div>
+                                                    </th>
+                                                    <th scope="col" width="39%">
+                                                        <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombres y apellidos del especialista"></i><span>NOMBRES Y APELLIDOS&nbsp;</span></span></div>
+                                                    </th>
+                                                    <th scope="col" width="38%">
+                                                        <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Cargo del especialista"></i><span>CARGO&nbsp;</span></span></div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="estilo-01"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h2 class="p-2 estilo-04 text-white bg-degradado wow fadeIn wow slideInUp cursor-pointer" data-toggle="collapse" href="#reconocimiento-02" aria-expanded="true" aria-controls="reconocimiento-02"><i class="fas fa-calendar-alt mr-1"></i>CRONOGRAMA</h2>
+                <div class="bg-sres-claro px-2 py-3 mb-5 text-sres-claro collapse show" id="reconocimiento-02">
+                    <p class="text-justify estilo-01 text-sres-gris">@path_eta</p>
+                    <div class="row my-5">
+                        <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12">
+                            <h3 class="mb-4 estilo-04 text-sres-azul d-inline">DETALLE DE LAS ETAPAS</h3>
+                            <div class="rayado wow fadeIn mb-3"></div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+                                    <div class="table-responsive tabla-principal">
+                                        <table class="table table-sm table-hover mb-0" id="tbl-etapa">
+                                            <thead class="estilo-06 free-with">
+                                                <tr>
+                                                    <th scope="col" width="3%">
+                                                        <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Número de orden"></i><span>ORDEN&nbsp;</span></span></div>
+                                                    </th>
+                                                    <th scope="col" width="39%">
+                                                        <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Etapa de la convocatoria"></i><span>ETAPA&nbsp;</span></span></div>
+                                                    </th>
+                                                    <th scope="col" width="38%">
+                                                        <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Proceso al que pertenece la etapa"></i><span>PROCESO&nbsp;</span></span></div>
+                                                    </th>
+                                                    <th scope="col" width="20%">
+                                                        <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Fecha de inicio de la etapa"></i><span>FECHA&nbsp;</span></span></div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="estilo-01"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h2 class="p-2 estilo-04 text-white bg-degradado wow fadeIn wow slideInUp cursor-pointer" data-toggle="collapse" href="#reconocimiento-03" aria-expanded="true" aria-controls="reconocimiento-03"><i class="fas fa-tasks mr-1"></i>CRITERIOS DE EVALUACIÓN</h2>
+                <div class="bg-sres-claro px-2 py-3 mb-5 text-sres-claro collapse show" id="reconocimiento-03">
+                    <p class="text-justify estilo-01 text-sres-gris">@path_cri</p>
+                    <div class="row my-5">
+                        <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12" id="criterios-det">
+                            <h3 class="mb-4 estilo-04 text-sres-azul d-inline">CARACTERÍSTICAS DE LOS CRITERIOS</h3>
+                            <div class="rayado wow fadeIn mb-3"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h2 class="p-2 estilo-04 text-white bg-degradado wow fadeIn wow slideInUp cursor-pointer" data-toggle="collapse" href="#reconocimiento-04" aria-expanded="true" aria-controls="reconocimiento-04"><i class="fas fa-medal mr-1"></i>CATEGORÍAS Y RECONOCIMIENTOS</h2>
+                <div class="bg-sres-claro px-2 py-3 mb-5 text-sres-claro collapse show" id="reconocimiento-04">
+                    <p class="text-justify estilo-01 text-sres-gris">@path_insig</p>
+                    <div class="row my-5">
+                        <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12">
+                            <h3 class="mb-4 estilo-04 text-sres-azul d-inline">RECONOCIMIENTOS</h3>
+                            <div class="rayado wow fadeIn mb-3"></div>
+                            <div class="row mb-1">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="table-responsive tabla-principal">
+                                        <table class="table table-sm table-hover mb-0" id="tbl-insignia">
+                                            <thead class="estilo-06 free-with">
+                                            </thead>
+                                            <tbody class="estilo-01"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="ruta" value="@pathFormat" />
+<input type="hidden" id="ruta_insig" value="@pathFormat_insig" />
+<script>
+    var id = @convocatoria.ID_CONVOCATORIA;
+</script>

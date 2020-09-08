@@ -279,7 +279,8 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
                 p.Add("PI_ID_ETAPA", entidad.ID_ETAPA);
-                p.Add("PI_DIAS", entidad.DIAS);
+                //p.Add("PI_DIAS", entidad.DIAS);
+                p.Add("PI_FECHA_ETAPA", entidad.FECHA_ETAPA);
                 p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, ot, commandType: CommandType.StoredProcedure);
@@ -371,7 +372,16 @@ namespace sres.da
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-                lista = db.Query<ConvocatoriaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                //lista = db.Query<ConvocatoriaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                lista = db.Query<dynamic>(sp, p, commandType: CommandType.StoredProcedure).Select(x => new ConvocatoriaBE
+                {
+                    ID_ETAPA = (int)x.ID_ETAPA,
+                    FECHA_ETAPA = (DateTime)x.FECHA_ETAPA,
+                    FECHA_ETAPA_CONV = ((DateTime)x.FECHA_ETAPA).ToString("yyyy-MM-dd") == "0001-01-01" ? "" : ((DateTime)x.FECHA_ETAPA).ToString("yyyy-MM-dd"),
+                    NOMBRE_ETAPA = (string)x.NOMBRE_ETAPA,
+                    PROCESO = (string)x.PROCESO,
+                    FLAG_ESTADO = (string)x.FLAG_ESTADO
+                }).ToList();
                 entidad.OK = true;
             }
             catch (Exception ex)

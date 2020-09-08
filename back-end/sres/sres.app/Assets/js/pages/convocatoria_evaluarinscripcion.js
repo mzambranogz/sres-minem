@@ -20,23 +20,23 @@ var mostrarListaInscripcionRequerimiento = (data) => {
         let contenido = data.map(x => {
             let existeFileRequerimientoSubido = x.ARCHIVO_BASE || '' != '';
 
-            let tituloFileRequerimiento = `<label class="estilo-01 text-limit-1">${x.REQUERIMIENTO.NOMBRE}</label>`;
+            let tituloFileRequerimiento = `<label class="estilo-01">${x.REQUERIMIENTO.NOMBRE}</label>`;
             let nombreFileRequerimiento = `<input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-${x.ID_REQUERIMIENTO}" value="${x.ARCHIVO_BASE}" readonly>`;
             let btnDescargaFileRequerimiento = `<div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/inscripcionrequerimiento/obtenerarchivo/${idConvocatoria}/${idInscripcion}/${idInstitucion}/${x.ID_REQUERIMIENTO}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div>`;
             let fileRequerimiento = `<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div>${nombreFileRequerimiento}${btnDescargaFileRequerimiento}</div>`;
-            let colLeft = `<div class="col-lg-6 col-md-12 col-sm-12">${tituloFileRequerimiento}${fileRequerimiento}</div>`;
+            let colLeft = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="form-group text-left">${tituloFileRequerimiento}${fileRequerimiento}</div></div>`;
 
             let checkAprobado = `<div class="form-check form-check-inline"><input class="form-check-input" type="radio" data-id="${x.ID_REQUERIMIENTO}" name="rad-evaluacion-05-${x.ID_REQUERIMIENTO}" id="rad-eva-09-${x.ID_REQUERIMIENTO}" value="1" ${(x.VALIDO == true ? "checked" : "")} ><label class="form-check-label" for="rad-eva-09-${x.ID_REQUERIMIENTO}">Aprobado</label></div>`;
             let checkDesaprobado = `<div class="form-check form-check-inline"><input class="form-check-input" type="radio" data-id="${x.ID_REQUERIMIENTO}" name="rad-evaluacion-05-${x.ID_REQUERIMIENTO}" id="rad-eva-10-${x.ID_REQUERIMIENTO}" value="0" ${(x.VALIDO == false ? "checked" : "")} ><label class="form-check-label" for="rad-eva-10-${x.ID_REQUERIMIENTO}">Desaprobado</label></div>`;
             let checkOptions = `<label class="estilo-01">&nbsp;${checkAprobado}${checkDesaprobado}</label>`;
 
-            let mensajeEvaluacionFileRequerimiento = `<div id="msg-${x.ID_REQUERIMIENTO}" data-id-req="${x.ID_REQUERIMIENTO}" class="alert alert-secondary p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha evaluado el documento</span></div></div>`;
+            let mensajeEvaluacionFileRequerimiento = `<div id="msg-${x.ID_REQUERIMIENTO}" data-id-req="${x.ID_REQUERIMIENTO}" class="alert alert-secondary p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha evaluado el documento</span></div></div>`;
             if (x.VALIDO == true) {
-                mensajeEvaluacionFileRequerimiento = `<div id="msg-${x.ID_REQUERIMIENTO}" data-id-req="${x.ID_REQUERIMIENTO}" class="alert alert-success p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">El documento es correcto</span></div></div>`;
+                mensajeEvaluacionFileRequerimiento = `<div id="msg-${x.ID_REQUERIMIENTO}" data-id-req="${x.ID_REQUERIMIENTO}" class="alert alert-success p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">El documento es correcto</span></div></div>`;
             } else if (x.VALIDO == false) {
-                mensajeEvaluacionFileRequerimiento = `<div id="msg-${x.ID_REQUERIMIENTO}" data-id-req="${x.ID_REQUERIMIENTO}" class="alert alert-danger p-1 d-flex"><div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div></div>`;
+                mensajeEvaluacionFileRequerimiento = `<div id="msg-${x.ID_REQUERIMIENTO}" data-id-req="${x.ID_REQUERIMIENTO}" class="alert alert-danger p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div></div>`;
             }
-            let colRight = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="form-group">${checkOptions}${mensajeEvaluacionFileRequerimiento}</div></div>`;
+            let colRight = `<div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-end"><div class="w-100 text-left">${checkOptions}${mensajeEvaluacionFileRequerimiento}</div></div>`;
             let contenidoFinal = `<div class="row">${colLeft}${colRight}</div>`;
             return contenidoFinal;
         }).join('')

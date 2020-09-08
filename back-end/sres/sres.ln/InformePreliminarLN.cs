@@ -67,22 +67,25 @@ namespace sres.ln
                     }
 
                     informeDA.TrazabilidadInformePreliminar(entidad, AppSettings.Get<string>("Trazabilidad.Convocatoria.InformePreliminar"), cn);
-
+                    UsuarioBE usuario = usuarioDA.getAdministrador(cn);
                     Task.Factory.StartNew(() =>
                     {
-                        foreach (dynamic item in listaEnvios)
-                        {
-                            mailing.SendMail(item.Template, item.Databody, item.Fields, item.FieldsRequire, item.Subject, item.MailTo);
-                        }
+                        UsuarioBE usu = usuario;
+                        if (listaEnvios.Count > 0) {
+                            foreach (dynamic item in listaEnvios)
+                            {
+                                mailing.SendMail(item.Template, item.Databody, item.Fields, item.FieldsRequire, item.Subject, item.MailTo);
+                            }
+                        }                        
 
-                        UsuarioBE usuario = usuarioDA.getAdministrador(cn);
-                        string fieldConvocatoria_ = "[CONTENIDO]", fieldServer_ = "[SERVER]", nombres_ = "[NOMBRES]";
-                        string[] fields_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_ };
-                        string[] fieldsRequire_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_ };
-                        Dictionary<string, string> dataBody_ = new Dictionary<string, string> {[fieldConvocatoria_] = contenidoInforme,[fieldServer_] = AppSettings.Get<string>("Server"),[nombres_] = $"{usuario.NOMBRES} {usuario.APELLIDOS}" };
+                        //UsuarioBE usuario = usuarioDA.getAdministrador(cn);
+                        string fieldConvocatoria_ = "[CONTENIDO]", fieldServer_ = "[SERVER]", nombres_ = "[NOMBRES]", mensaje_ = "[MENSAJE]";
+                        string[] fields_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_, mensaje_ };
+                        string[] fieldsRequire_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_, mensaje_ };
+                        Dictionary<string, string> dataBody_ = new Dictionary<string, string> {[fieldConvocatoria_] = contenidoInforme,[fieldServer_] = AppSettings.Get<string>("Server"),[nombres_] = $"{usu.NOMBRES} {usu.APELLIDOS}", [mensaje_] = listaEnvios.Count > 0 ? "A continuación el detalle de cada una de estas:" : "De acuerdo con la evaluación, no se encontraron observaciones" };
                         string subject_ = $"Informe Preliminar, convocatoria - {lista[0].NOMBRE_CONV}";
                         MailAddressCollection mailTo_ = new MailAddressCollection();
-                        mailTo_.Add(new MailAddress(usuario.CORREO));
+                        mailTo_.Add(new MailAddress(usu.CORREO));
                         mailing.SendMail(Mailing.Templates.InformePreliminar, dataBody_, fields_, fieldsRequire_, subject_, mailTo_);
                     });
                 }

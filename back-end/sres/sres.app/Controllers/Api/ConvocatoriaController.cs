@@ -422,5 +422,21 @@ namespace sres.app.Controllers.Api
             }
             return verificar;
         }
+
+        [Route("listarconvocatoriacridet")]
+        [HttpGet]
+        public List<CriterioBE> listarConvocatoriaCriDetalle(int id)
+        {
+            List<CriterioBE> lista = new List<CriterioBE>();
+            try
+            {
+                lista = convocatoriaLN.listarConvocatoriaCriDetalle(new ConvocatoriaBE() { ID_CONVOCATORIA = id });
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
     }
 }

@@ -312,3 +312,9 @@ var registrarUsuario = () => {
         }
     });
 }
+
+$(document).on("keydown", ".solo-numero", function (e) {
+    var key = window.e ? e.which : e.keyCode;
+    //var id = $("#" + e.target.id)[0].type;
+    if ((key < 48 || key > 57) && (event.keyCode < 96 || event.keyCode > 105) && key !== 8 && key !== 9 && key !== 37 && key !== 39 && key !== 46) return false;
+});

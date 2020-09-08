@@ -87,7 +87,7 @@ var renderizar = (data, cantidadCeldas) => {
             let colFechaFin = `<td class="text-center" data-encabezado="Fecha Fin">${fechaFin.toLocaleDateString("es-PE", { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>`;
             let colVencimiento = `<td class="text-center" data-encabezado="Vencimiento"><div class="progress" style="height: 21px; ${porcentajeAvance > 0 ? "background-color: #E2DBDA;" : ""}" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance"><div class="progress-bar ${porcentajeAvance > 0 ? "vigente" : "preparado"} estilo-01" role="progressbar" style="width: ${porcentajeAvance}%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">${porcentajeAvance}%</div></div></td>`;
             let colEstado = `<td data-encabezado="Estado"><b class="text-sres-verde">${x.ETAPA.NOMBRE}</b></td>`;
-            let btnDetalles = `<a class="btn btn-sm btn-success w-100" href="javascript:void(0)">Detalles</a>`;
+            let btnDetalles = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Detalle">Detalles</a>`;
             let btnPostulacion = `<a class="btn btn-sm btn-success w-100" href="javascript:void(0)" onclick="verificarDatosInternos(${x.ID_CONVOCATORIA})" >Ingresar</a>`;
             //let btnPostulacion = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Convocatoria/${x.ID_CONVOCATORIA}/Inscribirme">Ingresar</a>`;
             //EVALUADOR-ADMIN
