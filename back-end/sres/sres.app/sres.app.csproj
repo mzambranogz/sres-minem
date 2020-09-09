@@ -574,6 +574,15 @@
     <Content Include="Assets\fonts\gothamroundedmedium.otf" />
     <Content Include="Assets\fonts\gothamroundedmedium.ttf" />
     <Content Include="Assets\fonts\gothamroundedmedium.woff" />
+    <Content Include="Assets\documentos\2° RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI %28TCO2%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\documentos\3° Criterios para alcanzar Categorías y Estrellas de recocnocimiento de energía sostenible.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\documentos\SELLO DE RECONOCIMIENTO DE ENERGÍA SOSTENIBLE.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
     <Content Include="Views\Convocatoria\IndexPostulante.cshtml" />
     <Content Include="Views\Convocatoria\IndexEvaluador.cshtml" />
