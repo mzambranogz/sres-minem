@@ -330,6 +330,7 @@
     <Content Include="Assets\js\pages\mantenimiento_composicion.js" />
     <Content Include="Assets\js\pages\mantenimiento_convocatoria.js" />
     <Content Include="Assets\js\pages\mantenimiento_criterio.js" />
+    <Content Include="Assets\js\pages\mantenimiento_criteriopuntaje.js" />
     <Content Include="Assets\js\pages\mantenimiento_documento.js" />
     <Content Include="Assets\js\pages\mantenimiento_estrella.js" />
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
@@ -464,6 +465,7 @@
     <Compile Include="Controllers\Api\ParametroDetalleRelacionController.cs" />
     <Compile Include="Controllers\Api\PremiacionController.cs" />
     <Compile Include="Controllers\Api\ProcesoController.cs" />
+    <Compile Include="Controllers\Api\PuntajeController.cs" />
     <Compile Include="Controllers\Api\ReconocimientoController.cs" />
     <Compile Include="Controllers\Api\RequerimientoController.cs" />
     <Compile Include="Controllers\Api\RolController.cs" />
@@ -594,6 +596,7 @@
     <Content Include="Views\Login\RecuperarContraseña.cshtml" />
     <Content Include="Views\Convocatoria\ConvocatoriaDetalle.cshtml" />
     <Content Include="Views\Participante\ReconocimientoCriterio.cshtml" />
+    <Content Include="Views\Mantenimiento\Puntaje.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
