@@ -218,5 +218,35 @@ namespace sres.ln
             return lista;
         }
 
+        public List<InstitucionBE> ListaBusquedaInstitucion(InstitucionBE entidad)
+        {
+            List<InstitucionBE> lista = new List<InstitucionBE>();
+            try
+            {
+                cn.Open();
+                lista = institucionDA.ListarBusquedaInstitucion(entidad, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public InstitucionBE ActualizarInstitucion(InstitucionBE institucion)
+        {
+            bool seModifico = false;
+            int val = 0;
+            try
+            {
+                cn.Open();
+                InstitucionBE inst = institucionDA.ObtenerInstitucionPorRuc(institucion.RUC, cn);
+                val = inst == null ? 0 : institucion.ID_INSTITUCION == inst.ID_INSTITUCION ? 0 : 1;
+                seModifico = inst == null ? true : institucion.ID_INSTITUCION == inst.ID_INSTITUCION ? true : false;
+                if (seModifico) seModifico = institucionDA.ActualizarInstitucion(institucion, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+            return new InstitucionBE { VAL = val, OK = seModifico};
+        }
+
     }
 }

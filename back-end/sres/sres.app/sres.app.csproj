@@ -336,6 +336,7 @@
     <Content Include="Assets\js\pages\mantenimiento_etapa.js" />
     <Content Include="Assets\js\pages\mantenimiento_factor.js" />
     <Content Include="Assets\js\pages\mantenimiento_insignia.js" />
+    <Content Include="Assets\js\pages\mantenimiento_institucion.js" />
     <Content Include="Assets\js\pages\mantenimiento_medidamitigacion.js" />
     <Content Include="Assets\js\pages\mantenimiento_parametro.js" />
     <Content Include="Assets\js\pages\mantenimiento_proceso.js" />
@@ -597,6 +598,7 @@
     <Content Include="Views\Convocatoria\ConvocatoriaDetalle.cshtml" />
     <Content Include="Views\Participante\ReconocimientoCriterio.cshtml" />
     <Content Include="Views\Mantenimiento\Puntaje.cshtml" />
+    <Content Include="Views\Mantenimiento\Institucion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

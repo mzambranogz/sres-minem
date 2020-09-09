@@ -70,6 +70,20 @@ namespace sres.app.Controllers.Api
             return institucionLN.listarDistrito(idProvincia);
         }
 
+        [Route("buscarinstitucion")]
+        [HttpGet]
+        public List<InstitucionBE> BuscarInstitucion(string busqueda, int registros, int pagina, string columna, string orden)
+        {
+            return institucionLN.ListaBusquedaInstitucion(new InstitucionBE() { CANTIDAD_REGISTROS = registros, ORDER_BY = columna, ORDER_ORDEN = orden, PAGINA = pagina, BUSCAR = busqueda == null ? "" : busqueda });
+        }
+
+        [Route("actualizarinstitucion")]
+        [HttpPut]
+        public InstitucionBE ActualizarInstitucion(InstitucionBE institucion)
+        {
+            return institucionLN.ActualizarInstitucion(institucion);
+        }
+
         //[Route("buscarparticipantes")]
         //[HttpGet]
         //public DataPaginateBE BuscarParticipantes(string busqueda, int registros, int pagina, string columna, string orden)
