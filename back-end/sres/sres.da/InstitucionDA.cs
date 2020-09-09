@@ -293,5 +293,54 @@ namespace sres.da
 
             return lista;
         }
+
+        public List<InstitucionBE> ListarBusquedaInstitucion(InstitucionBE entidad, OracleConnection db)
+        {
+            List<InstitucionBE> lista = new List<InstitucionBE>();
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_BUSQ_INST";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_BUSCAR", entidad.BUSCAR);
+                p.Add("PI_REGISTROS", entidad.CANTIDAD_REGISTROS);
+                p.Add("PI_PAGINA", entidad.PAGINA);
+                p.Add("PI_COLUMNA", entidad.ORDER_BY);
+                p.Add("PI_ORDEN", entidad.ORDER_ORDEN);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<InstitucionBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                entidad.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return lista;
+        }
+
+        public bool ActualizarInstitucion(InstitucionBE institucion, OracleConnection db)
+        {
+            bool seModifico = false;
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_UPD_INSTITUCION";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSTITUCION", institucion.ID_INSTITUCION);
+                p.Add("PI_RAZON_SOCIAL", institucion.RAZON_SOCIAL);
+                p.Add("PI_RUC", institucion.RUC);
+                p.Add("PI_DOMICILIO_LEGAL", institucion.DOMICILIO_LEGAL);
+                p.Add("PI_ID_SECTOR", institucion.ID_SECTOR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seModifico = filasAfectadas > 0;
+
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seModifico;
+        }
+
     }
 }
