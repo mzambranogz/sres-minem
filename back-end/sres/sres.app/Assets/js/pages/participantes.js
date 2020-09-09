@@ -134,7 +134,7 @@ var renderizar = (data, cantidadCeldas) => {
             let colPuntaje = `<td data-encabezado="Puntaje"><div class="text-center">${x.PUNTAJE} ptos.</div></td>`;
             let colEmisiones = `<td data-encabezado="Reducción"><div class="text-center">${x.EMISIONES} tCO<sup>2.</sup></div></td>`;
             let colEstrella = `<td class="text-center" data-encabezado="Medida NDC"><i class="fas fa-medal fa-2x"></i></td>`;
-            let btnVerFicha = `<a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a>`;
+            let btnVerFicha = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Participantes/${x.INSCRIPCION.INSTITUCION.ID_INSTITUCION}/Reconocimiento">Ver</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Ficha">${btnVerFicha}</td>`;
             let fila = `<tr>${colLogo}${colSello}${colRazonSocial}${colPuntaje}${colEmisiones}${colEstrella}${colOpciones}</tr>`;
             return fila;

@@ -7319,6 +7319,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
                           SELECT
                                   R.ID_RECONOCIMIENTO,
                                   R.ID_INSCRIPCION,
+				  INST.ID_INSTITUCION,
                                   INST.LOGO AS "LOGO_INSTITUCION",
                                   INST.RAZON_SOCIAL AS "RAZON_SOCIAL_INSTITUCION",
                                   R.ID_INSIGNIA,

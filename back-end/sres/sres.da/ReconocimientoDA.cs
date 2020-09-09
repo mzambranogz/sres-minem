@@ -87,7 +87,7 @@ namespace sres.da
                     {
                         ID_RECONOCIMIENTO = (int)x.ID_RECONOCIMIENTO,
                         ID_INSCRIPCION = (int)x.ID_INSCRIPCION,
-                        INSCRIPCION = new InscripcionBE { INSTITUCION = new InstitucionBE { RAZON_SOCIAL = (string)x.RAZON_SOCIAL_INSTITUCION, LOGO = (string)x.LOGO_INSTITUCION } },
+                        INSCRIPCION = new InscripcionBE { INSTITUCION = new InstitucionBE { ID_INSTITUCION = (int)x.ID_INSTITUCION, RAZON_SOCIAL = (string)x.RAZON_SOCIAL_INSTITUCION, LOGO = (string)x.LOGO_INSTITUCION } },
                         ID_INSIGNIA = (int?)x.ID_INSIGNIA,
                         INSIGNIA = !((int?)x.ID_INSIGNIA).HasValue ? null : new InsigniaBE { ID_INSIGNIA = (int)x.ID_INSIGNIA, ARCHIVO_BASE = (string)x.ARCHIVO_BASE_INSIGNIA },
                         ID_ESTRELLA = (int?)x.ID_ESTRELLA,
