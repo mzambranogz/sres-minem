@@ -1443,6 +1443,54 @@ CREATE OR REPLACE PACKAGE SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     PI_ID_MEDMIT NUMBER,
     PI_ID_GET IN OUT NUMBER
   );
+
+  PROCEDURE USP_SEL_LISTA_BUSQ_PUNTAJE(
+    PI_BUSCAR VARCHAR2,
+    PI_REGISTROS NUMBER,
+    PI_PAGINA NUMBER,
+    PI_COLUMNA VARCHAR2,
+    PI_ORDEN VARCHAR2,
+    PO_REF OUT SYS_REFCURSOR
+  );
+  
+  PROCEDURE USP_PRC_MAN_PUNTAJE(
+        PI_ID_CRITERIO NUMBER,
+        PI_ID_DETALLE NUMBER,
+        PI_DESCRIPCION VARCHAR2,
+        PI_PUNTAJE NUMBER,
+        PO_ROWAFFECTED OUT NUMBER,
+        PI_USUARIO_GUARDAR NUMBER
+  );
+  
+  PROCEDURE USP_SEL_GET_PUNTAJE(
+    PI_ID_CRITERIO NUMBER,
+    PI_ID_DETALLE NUMBER, 
+    PO_REF OUT SYS_REFCURSOR
+  );
+  
+  PROCEDURE USP_DEL_PUNTAJE(
+    PI_ID_CRITERIO NUMBER,
+    PI_ID_DETALLE NUMBER,
+    PI_USUARIO_GUARDAR NUMBER
+  );
+
+  PROCEDURE USP_SEL_LISTA_BUSQ_INST(
+    PI_BUSCAR VARCHAR2,
+    PI_REGISTROS NUMBER,
+    PI_PAGINA NUMBER,
+    PI_COLUMNA VARCHAR2,
+    PI_ORDEN VARCHAR2,
+    PO_REF OUT SYS_REFCURSOR
+  );
+  
+  PROCEDURE USP_UPD_INSTITUCION(
+    PI_ID_INSTITUCION NUMBER,
+    PI_RAZON_SOCIAL VARCHAR2,
+    PI_RUC VARCHAR2,
+    PI_DOMICILIO_LEGAL VARCHAR2,
+    PI_ID_SECTOR VARCHAR2,
+    PO_ROWAFFECTED OUT NUMBER
+  );
 END PKG_SISSELLO_MANTENIMIENTO;
 
 /
@@ -1693,7 +1741,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                     ''  ||
                           CASE
                             WHEN PI_ID_INSTITUCION > 0 THEN
-                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR C.ID_ETAPA < 3) AND '
+                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR (C.ID_ETAPA < 3 AND INSC.ID_INSTITUCION IS NULL)) AND '
                           END || '
                     C.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
@@ -1761,7 +1809,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                           ''  ||
                           CASE
                             WHEN PI_ID_INSTITUCION > 0 THEN
-                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR C.ID_ETAPA < 3) AND '
+                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR (C.ID_ETAPA < 3 AND INSC.ID_INSTITUCION IS NULL)) AND '
                           END || '
                           C.FLAG_ESTADO = ''1''
                         )
@@ -4316,7 +4364,8 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     FROM  T_GEND_CONVOCATORIA_ETAPA CONVETA
     INNER JOIN T_MAE_ETAPA E ON CONVETA.ID_ETAPA = E.ID_ETAPA
     INNER JOIN T_MAE_PROCESO P ON E.ID_PROCESO = P.ID_PROCESO
-    WHERE CONVETA.ID_CONVOCATORIA = PI_ID_CONVOCATORIA AND CONVETA.FLAG_ESTADO = '1'; 
+    WHERE CONVETA.ID_CONVOCATORIA = PI_ID_CONVOCATORIA AND CONVETA.FLAG_ESTADO = '1'
+    ORDER BY CONVETA.ID_ETAPA ASC;
   END USP_SEL_LISTA_CONVOCAT_ETA;
   
   PROCEDURE USP_SEL_ALL_ETAPA(
@@ -6602,6 +6651,228 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
         PI_ID_GET := 0;
     END IF;
   END USP_SEL_VALIDACION_MEDMIT;
+
+  PROCEDURE USP_SEL_LISTA_BUSQ_PUNTAJE(
+    PI_BUSCAR VARCHAR2,
+    PI_REGISTROS NUMBER,
+    PI_PAGINA NUMBER,
+    PI_COLUMNA VARCHAR2,
+    PI_ORDEN VARCHAR2,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS    
+    vTOTAL_REG INTEGER;
+    vPAGINA_TOTAL INTEGER;
+    vPAGINA_ACTUAL INTEGER := PI_PAGINA;
+    vPAGINA_INICIAL INTEGER := 0;
+    vQUERY_CONT VARCHAR2(10000) := '';
+    vQUERY_SELECT VARCHAR2(10000) := '';
+    vCOLUMNA VARCHAR2(200);
+  BEGIN
+    vQUERY_CONT := 'SELECT  COUNT(1)
+                    FROM T_GEND_CRITERIO_PUNTAJE C
+                    INNER JOIN T_GENM_CRITERIO CR ON C.ID_CRITERIO = CR.ID_CRITERIO
+                    WHERE 
+                    (LOWER(TRANSLATE(C.DESCRIPCION,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(C.PUNTAJE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(CR.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'') AND
+                    C.FLAG_ESTADO = ''1''';
+    EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
+    
+    vPAGINA_TOTAL := CEIL(TO_NUMBER(vTOTAL_REG) / TO_NUMBER(PI_REGISTROS));
+    IF vPAGINA_ACTUAL = 0 THEN
+      vPAGINA_ACTUAL := 1;
+    END IF;
+    IF vPAGINA_ACTUAL > vPAGINA_TOTAL THEN
+      vPAGINA_ACTUAL := vPAGINA_TOTAL;
+    END IF;
+
+    vPAGINA_INICIAL := vPAGINA_ACTUAL - 1;
+    
+    IF PI_COLUMNA = 'ID_PUNTAJE' THEN
+      vCOLUMNA := 'C.ID_CRITERIO || '''' || C.ID_DETALLE';
+    ELSIF PI_COLUMNA = 'DESCRIPCION' THEN
+      vCOLUMNA := 'C.DESCRIPCION';
+    ELSIF PI_COLUMNA = 'PUNTAJE' THEN
+      vCOLUMNA := 'C.PUNTAJE';
+    ELSIF PI_COLUMNA = 'CRITERIO' THEN
+      vCOLUMNA := 'CR.NOMBRE';
+    ELSE
+      vCOLUMNA := PI_COLUMNA;
+    END IF;
+    
+    vQUERY_SELECT := 'SELECT * FROM 
+                        (
+                        SELECT  C.ID_DETALLE,
+                                C.ID_CRITERIO,
+                                C.ID_CRITERIO || '''' || C.ID_DETALLE,
+                                C.DESCRIPCION,
+                                C.PUNTAJE,
+                                CR.NOMBRE CRITERIO,
+                                ROW_NUMBER() OVER (ORDER BY ' || vCOLUMNA || ' ' || PI_ORDEN ||') AS ROWNUMBER,'
+                                || vPAGINA_TOTAL || ' AS TOTAL_PAGINAS,'
+                                || vPAGINA_ACTUAL || ' AS PAGINA,'
+                                || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
+                                || vTOTAL_REG || ' AS TOTAL_REGISTROS
+                        FROM T_GEND_CRITERIO_PUNTAJE C
+                        INNER JOIN T_GENM_CRITERIO CR ON C.ID_CRITERIO = CR.ID_CRITERIO
+                        WHERE
+                        (LOWER(TRANSLATE(C.DESCRIPCION,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(C.PUNTAJE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(CR.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'') AND
+                        C.FLAG_ESTADO = ''1''
+                        )
+                    WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
+    
+    OPEN PO_REF FOR vQUERY_SELECT;
+  END USP_SEL_LISTA_BUSQ_PUNTAJE;
+  
+  PROCEDURE USP_PRC_MAN_PUNTAJE(
+        PI_ID_CRITERIO NUMBER,
+        PI_ID_DETALLE NUMBER,
+        PI_DESCRIPCION VARCHAR2,
+        PI_PUNTAJE NUMBER,
+        PO_ROWAFFECTED OUT NUMBER,
+        PI_USUARIO_GUARDAR NUMBER
+    )
+    AS
+        V_ID_DETALLE NUMBER;
+    BEGIN
+        SELECT COUNT(*) INTO V_ID_DETALLE FROM T_GEND_CRITERIO_PUNTAJE WHERE ID_CRITERIO = PI_ID_CRITERIO AND ID_DETALLE = PI_ID_DETALLE;
+        IF V_ID_DETALLE > 0 THEN
+          	UPDATE T_GEND_CRITERIO_PUNTAJE FP
+            SET		FP.DESCRIPCION = PI_DESCRIPCION,
+                  FP.PUNTAJE = PI_PUNTAJE,
+                  --FP.ID_PARAMETRO = PI_ID_PARAMETRO,
+                  FP.FLAG_ESTADO = '1',
+                  FP.UPD_USUARIO = PI_USUARIO_GUARDAR,
+                  FP.UPD_FECHA = SYSDATE
+            WHERE FP.ID_CRITERIO = PI_ID_CRITERIO AND FP.ID_DETALLE = PI_ID_DETALLE;
+        ELSE
+          	SELECT 	NVL(MAX(ID_DETALLE),0) + 1 INTO V_ID_DETALLE FROM	T_GEND_CRITERIO_PUNTAJE MP WHERE	MP.ID_CRITERIO = PI_ID_CRITERIO;
+
+          	INSERT INTO T_GEND_CRITERIO_PUNTAJE(ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE, REG_USUARIO, REG_FECHA)
+            VALUES(PI_ID_CRITERIO, V_ID_DETALLE, PI_DESCRIPCION, PI_PUNTAJE, PI_USUARIO_GUARDAR, SYSDATE);
+        END IF;
+        PO_ROWAFFECTED := SQL%ROWCOUNT;
+    END USP_PRC_MAN_PUNTAJE;
+  
+  PROCEDURE USP_SEL_GET_PUNTAJE(
+    PI_ID_CRITERIO NUMBER,
+    PI_ID_DETALLE NUMBER, 
+    PO_REF OUT SYS_REFCURSOR
+  ) AS
+  BEGIN
+    OPEN PO_REF FOR
+    SELECT  *
+    FROM  T_GEND_CRITERIO_PUNTAJE
+    WHERE ID_DETALLE = PI_ID_DETALLE AND ID_CRITERIO = PI_ID_CRITERIO; 
+  END USP_SEL_GET_PUNTAJE;
+  
+  PROCEDURE USP_DEL_PUNTAJE(
+    PI_ID_CRITERIO NUMBER,
+    PI_ID_DETALLE NUMBER,
+    PI_USUARIO_GUARDAR NUMBER
+  ) AS
+  BEGIN
+    UPDATE T_GEND_CRITERIO_PUNTAJE
+    SET FLAG_ESTADO = '0',
+    UPD_USUARIO = PI_USUARIO_GUARDAR,
+    UPD_FECHA = SYSDATE
+    WHERE ID_CRITERIO = PI_ID_CRITERIO AND ID_DETALLE = PI_ID_DETALLE;
+  END USP_DEL_PUNTAJE;
+
+  PROCEDURE USP_SEL_LISTA_BUSQ_INST(
+    PI_BUSCAR VARCHAR2,
+    PI_REGISTROS NUMBER,
+    PI_PAGINA NUMBER,
+    PI_COLUMNA VARCHAR2,
+    PI_ORDEN VARCHAR2,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS    
+    vTOTAL_REG INTEGER;
+    vPAGINA_TOTAL INTEGER;
+    vPAGINA_ACTUAL INTEGER := PI_PAGINA;
+    vPAGINA_INICIAL INTEGER := 0;
+    vQUERY_CONT VARCHAR2(10000) := '';
+    vQUERY_SELECT VARCHAR2(10000) := '';
+    vCOLUMNA VARCHAR2(200);
+  BEGIN
+    vQUERY_CONT := 'SELECT  COUNT(1)
+                    FROM T_GENM_INSTITUCION E
+                    LEFT JOIN T_MAE_SECTOR P ON E.ID_SECTOR = P.ID_SECTOR
+                    WHERE 
+                    (LOWER(TRANSLATE(E.RAZON_SOCIAL,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(E.RUC,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(E.DOMICILIO_LEGAL,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                    LOWER(TRANSLATE(P.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'') AND
+                    E.FLAG_ESTADO = ''1''';
+    EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
+    
+    vPAGINA_TOTAL := CEIL(TO_NUMBER(vTOTAL_REG) / TO_NUMBER(PI_REGISTROS));
+    IF vPAGINA_ACTUAL = 0 THEN
+      vPAGINA_ACTUAL := 1;
+    END IF;
+    IF vPAGINA_ACTUAL > vPAGINA_TOTAL THEN
+      vPAGINA_ACTUAL := vPAGINA_TOTAL;
+    END IF;
+
+    vPAGINA_INICIAL := vPAGINA_ACTUAL - 1;
+    
+    IF PI_COLUMNA = 'ID_INSTITUCION' THEN
+      vCOLUMNA := 'E.ID_INSTITUCION';
+    ELSIF PI_COLUMNA = 'INSTITUCION' THEN
+      vCOLUMNA := 'E.RAZON_SOCIAL';
+    ELSIF PI_COLUMNA = 'DOMICILIO' THEN
+      vCOLUMNA := 'E.DOMICILIO_LEGAL';
+    ELSIF PI_COLUMNA = 'SECTOR' THEN
+      vCOLUMNA := 'P.ID_SECTOR';
+    ELSE
+      vCOLUMNA := PI_COLUMNA;
+    END IF;
+    
+    vQUERY_SELECT := 'SELECT * FROM 
+                        (
+                        SELECT  E.ID_INSTITUCION,
+                                E.RAZON_SOCIAL,
+                                E.RUC,
+                                E.DOMICILIO_LEGAL,
+                                P.NOMBRE NOMBRE_SECTOR,
+                                ROW_NUMBER() OVER (ORDER BY ' || vCOLUMNA || ' ' || PI_ORDEN ||') AS ROWNUMBER,'
+                                || vPAGINA_TOTAL || ' AS TOTAL_PAGINAS,'
+                                || vPAGINA_ACTUAL || ' AS PAGINA,'
+                                || PI_REGISTROS || ' AS CANTIDAD_REGISTROS,'
+                                || vTOTAL_REG || ' AS TOTAL_REGISTROS
+                        FROM T_GENM_INSTITUCION E
+                        LEFT JOIN T_MAE_SECTOR P ON E.ID_SECTOR = P.ID_SECTOR
+                        WHERE
+                        (LOWER(TRANSLATE(E.RAZON_SOCIAL,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(E.RUC,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(E.DOMICILIO_LEGAL,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' OR
+                        LOWER(TRANSLATE(P.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_BUSCAR ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'') AND
+                        E.FLAG_ESTADO = ''1''
+                        )
+                    WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
+    
+    OPEN PO_REF FOR vQUERY_SELECT;
+  END USP_SEL_LISTA_BUSQ_INST;
+  
+  PROCEDURE USP_UPD_INSTITUCION(
+    PI_ID_INSTITUCION NUMBER,
+    PI_RAZON_SOCIAL VARCHAR2,
+    PI_RUC VARCHAR2,
+    PI_DOMICILIO_LEGAL VARCHAR2,
+    PI_ID_SECTOR VARCHAR2,
+    PO_ROWAFFECTED OUT NUMBER
+  ) AS
+  BEGIN
+    UPDATE T_GENM_INSTITUCION I SET
+    I.RAZON_SOCIAL = PI_RAZON_SOCIAL,
+    I.RUC = PI_RUC,
+    I.DOMICILIO_LEGAL = PI_DOMICILIO_LEGAL,
+    I.ID_SECTOR = PI_ID_SECTOR
+    WHERE I.ID_INSTITUCION = PI_ID_INSTITUCION;    
+    PO_ROWAFFECTED := SQL%ROWCOUNT;
+  END USP_UPD_INSTITUCION;
 END PKG_SISSELLO_MANTENIMIENTO;
 
 /
@@ -7048,6 +7319,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
                           SELECT
                                   R.ID_RECONOCIMIENTO,
                                   R.ID_INSCRIPCION,
+				  INST.ID_INSTITUCION,
                                   INST.LOGO AS "LOGO_INSTITUCION",
                                   INST.RAZON_SOCIAL AS "RAZON_SOCIAL_INSTITUCION",
                                   R.ID_INSIGNIA,
