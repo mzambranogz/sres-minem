@@ -148,12 +148,12 @@ var btnLastPaginationClick = (e) => {
 
 var btnInformePreliminarvalidar = () => {
     let idetapa = $('#convocatoria_ID_ETAPA').val();
-    idetapa == 9 ? $('#btn-informe').removeClass('d-none') : $('#btn-informe').addClass('d-none');
+    idetapa == 9 ? idRolLogin == 2 ? $('#btn-informe').removeClass('d-none') : $('#btn-informe').addClass('d-none') : $('#btn-informe').addClass('d-none');
 }
 
 var btnInformeFinalvalidar = () => {
     let idetapa = $('#convocatoria_ID_ETAPA').val();
-    idetapa == 12 ? $('#btn-informefinal').removeClass('d-none') : $('#btn-informefinal').addClass('d-none');
+    idetapa == 12 ? idRolLogin == 2 ? $('#btn-informefinal').removeClass('d-none') : $('#btn-informefinal').addClass('d-none') : $('#btn-informefinal').addClass('d-none');
 }
 
 var btnGenerarInforme = () => {

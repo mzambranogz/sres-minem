@@ -155,6 +155,7 @@
     <Content Include="Assets\images\01_registro_manual.svg" />
     <Content Include="Assets\images\02_registro_masivo.svg" />
     <Content Include="Assets\images\acuerdo_paris.png" />
+    <Content Include="Assets\images\android-chrome-512x512.png" />
     <Content Include="Assets\images\banner-001.jpg" />
     <Content Include="Assets\images\banner-002.jpg" />
     <Content Include="Assets\images\banner-003.jpg" />
@@ -162,7 +163,10 @@
     <Content Include="Assets\images\banner-005.jpg" />
     <Content Include="Assets\images\banner-006.jpg" />
     <Content Include="Assets\images\banner.png" />
+    <Content Include="Assets\images\bg-categorias.png" />
     <Content Include="Assets\images\bg-convocatoria.png" />
+    <Content Include="Assets\images\bg-detalle.png" />
+    <Content Include="Assets\images\bg-gracias.png" />
     <Content Include="Assets\images\bg-login.png" />
     <Content Include="Assets\images\bg-participantes.png" />
     <Content Include="Assets\images\bg-reconocimiento.png" />
@@ -274,8 +278,11 @@
     <Content Include="Assets\images\participantes.png" />
     <Content Include="Assets\images\password-level-47px.png" />
     <Content Include="Assets\images\plata.png" />
+    <Content Include="Assets\images\preguntas_frecuentes.png" />
     <Content Include="Assets\images\reconocimientos.png" />
     <Content Include="Assets\images\reunion_acuerdo_paris.png" />
+    <Content Include="Assets\images\sector-privado.png" />
+    <Content Include="Assets\images\sector-publico.png" />
     <Content Include="Assets\images\sello.svg" />
     <Content Include="Assets\images\sello_new.svg" />
     <Content Include="Assets\images\sin-foto.png" />

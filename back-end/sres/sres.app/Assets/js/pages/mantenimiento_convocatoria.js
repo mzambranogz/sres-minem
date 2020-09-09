@@ -321,7 +321,7 @@ var armarpuntaje = (datapuntaje) => {
     let puntaje = ``;
     datapuntaje.map((x, i) => {
         //puntaje += `<tr><td class="get-detalle" id="${x.ID_DETALLE}">${x.ID_DETALLE}</td><td>${x.DESCRIPCION}</td><td><input id="puntaje-${x.ID_CRITERIO}-${x.ID_DETALLE}" class="get-puntaje" type="text" value="${x.PUNTAJE}" /></td></tr>`;    
-        puntaje += `<div class="form-group row mb-0"><label class="col-sm-8 col-form-label" for="puntaje-${x.ID_CRITERIO}-${x.ID_DETALLE}">${x.DESCRIPCION}</label><div class="col-sm-4"><input class="form-control estilo-01 get-puntaje solo-numero" type="text" id="puntaje-${x.ID_CRITERIO}-${x.ID_DETALLE}" placeholder="" value="${x.PUNTAJE}" maxlength="3"></div></div>`;
+        puntaje += `<div class="form-group row mb-0"><label class="col-sm-8 col-form-label" for="puntaje-${x.ID_CRITERIO}-${x.ID_DETALLE}">${x.DESCRIPCION}</label><div class="col-sm-4"><input class="form-control estilo-01 get-puntaje solo-numero text-right" type="text" id="puntaje-${x.ID_CRITERIO}-${x.ID_DETALLE}" placeholder="" value="${x.PUNTAJE}" maxlength="3"></div></div>`;
     });
     //puntaje = `<div class="ml-5"><table id="puntaje-${datapuntaje[0].ID_CRITERIO}" class="get-tabla-puntaje"><thead><th>N°</th><th>Descripción</th><th>Puntaje</th></thead><tbody>${puntaje}</tbody></table></div>`;  
     //return puntaje;
@@ -381,7 +381,7 @@ var cargarComboEtapa = (selector, data) => {
 
 var cargarTablaInsignia = (selector, data) => {
     //let items = data.length == 0 ? '' : data.map(x => `<tr><td>${x.NOMBRE}</td><td><input class="insignia" type="text" id="txt-i-${x.ID_INSIGNIA}" value="${x.PUNTAJE_MIN}" /></tr></td>`).join('');
-    let items = data.length == 0 ? '' : data.map(x => `<div class="form-group row mb-0"><label class="col-sm-8 col-form-label" for="txt-i-${x.ID_INSIGNIA}">${x.NOMBRE}</label><div class="col-sm-4"><input class="form-control estilo-01 insignia solo-numero" type="text" id="txt-i-${x.ID_INSIGNIA}" placeholder="" value="${x.PUNTAJE_MIN}" maxlength="3"></div></div>`).join('');
+    let items = data.length == 0 ? '' : data.map(x => `<div class="form-group row mb-0"><label class="col-sm-8 col-form-label" for="txt-i-${x.ID_INSIGNIA}">${x.NOMBRE}</label><div class="col-sm-4"><input class="form-control estilo-01 insignia solo-numero text-right" type="text" id="txt-i-${x.ID_INSIGNIA}" placeholder="" value="${x.PUNTAJE_MIN}" maxlength="3"></div></div>`).join('');
     //$(selector).find('tbody').html(items);
     $(selector).html(items);
     //let a = `<div class="form-group row mb-0"><label class="col-sm-8 col-form-label" for="txt-i-${x.ID_INSIGNIA}">${x.NOMBRE}</label><div class="col-sm-4"><input class="form-control estilo-01" type="text" id="txt-i-${x.ID_INSIGNIA}" placeholder="" value="${x.PUNTAJE_MIN}></div></div>`;
@@ -414,7 +414,7 @@ var armarTrabajadorCama = (sector, sub, data, dataE) => {
     //let tc = data.length == 0 ? `<tr><td>${sector}</td><td>${sub}</td></tr>` : data.map((x,y) => {
     let tc = data.length == 0 ? `` : data.map((x,y) => {
         //let contenido = dataE.length == 0 ? `` : dataE.map(z => `<td><input class="get-estrella" id="estrella-${z.ID_ESTRELLA}-${x.ID_TRABAJADORES_CAMA}" value="0" /></td>`).join('');
-        let contenido = dataE.length == 0 ? `` : dataE.map(z => `<div class="col-sm-12 col-md-12 col-lg-2"><div class="form-group mb-1"><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div><input class="form-control estilo-01 text-sres-gris get-estrella formato-decimal" type="text" id="estrella-${z.ID_ESTRELLA}-${x.ID_TRABAJADORES_CAMA}" value="0" maxlength="6"></div></div></div>`).join('');
+        let contenido = dataE.length == 0 ? `` : dataE.map(z => `<div class="col-sm-12 col-md-12 col-lg-2"><div class="form-group mb-1"><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div><input class="form-control estilo-01 text-sres-gris get-estrella formato-decimal text-right" type="text" id="estrella-${z.ID_ESTRELLA}-${x.ID_TRABAJADORES_CAMA}" value="0" maxlength="6"></div></div></div>`).join('');
         //return `<tr class="get-fila-estrella"><td>${sector}</td><td>${sub}</td><td>${x.NOMBRE}</td>${contenido}</tr>`;
         let c1 = `<div class="col-sm-12 col-md-12 col-lg-2"><div class="form-group mb-1"><label class="estilo-01">${sector} - ${sub}<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span></label></div></div>`;
         let c2 = `<div class="col-sm-12 col-md-12 col-lg-2"><div class="form-group mb-1"><label class="estilo-01">${x.NOMBRE}</label></div></div>`;
