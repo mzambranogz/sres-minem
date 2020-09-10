@@ -378,6 +378,7 @@ namespace sres.da
                     ID_ETAPA = (int)x.ID_ETAPA,
                     FECHA_ETAPA = (DateTime)x.FECHA_ETAPA,
                     FECHA_ETAPA_CONV = ((DateTime)x.FECHA_ETAPA).ToString("yyyy-MM-dd") == "0001-01-01" ? "" : ((DateTime)x.FECHA_ETAPA).ToString("yyyy-MM-dd"),
+                    FECHA_ETAPA_DET= ((DateTime)x.FECHA_ETAPA).ToString("yyyy-MM-dd") == "0001-01-01" ? "" : ((DateTime)x.FECHA_ETAPA).ToString("dd-MM-yyyy").Replace(".", ""),
                     NOMBRE_ETAPA = (string)x.NOMBRE_ETAPA,
                     PROCESO = (string)x.PROCESO,
                     FLAG_ESTADO = (string)x.FLAG_ESTADO

@@ -30,7 +30,7 @@ var armarEvaluadores = (data, selector) => {
 }
 
 var armarEtapas = (data, selector) => {
-    let items = data.length == 0 ? '' : data.map((x,y) => x.ID_ETAPA > 14 ? '' : `<tr><td class="text-center" data-encabezado="Orden ${y+1}">${y+1}</td><td data-encabezado="Etapa">${x.NOMBRE_ETAPA}</td><td data-encabezado="Proceso">${x.PROCESO}</td><td class="text-center" data-encabezado="Fecha"><i class="fas fa-calendar mr-1"></i>${x.FECHA_ETAPA_CONV}</td></tr>`).join('');
+    let items = data.length == 0 ? '' : data.map((x,y) => x.ID_ETAPA > 14 ? '' : `<tr><td class="text-center" data-encabezado="Orden ${y+1}">${y+1}</td><td data-encabezado="Etapa">${x.NOMBRE_ETAPA}</td><td data-encabezado="Proceso">${x.PROCESO}</td><td class="text-center" data-encabezado="Fecha"><i class="fas fa-calendar mr-1"></i>${x.FECHA_ETAPA_DET}</td></tr>`).join('');
     $(selector).find('tbody').html(items);
 }
 

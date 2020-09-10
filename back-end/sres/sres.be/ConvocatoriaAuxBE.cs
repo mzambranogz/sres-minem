@@ -31,6 +31,7 @@ namespace sres.be
         public DateTime FECHA_ETAPA { get; set; }
         public string PROCESO { get; set; }
         public string FECHA_ETAPA_CONV { get; set; }
+        public string FECHA_ETAPA_DET { get; set; }
         public int FLAG_ANULAR { get; set; }
     }
 }

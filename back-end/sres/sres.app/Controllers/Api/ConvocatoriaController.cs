@@ -207,6 +207,7 @@ namespace sres.app.Controllers.Api
                 else
                 {
                     if (obj.ID_ETAPA == 7) convocatoria.VAL = 1;
+                    if (obj.ID_ETAPA == 14) convocatoria.VAL = 1;
                 }               
             }
             catch (Exception ex)
