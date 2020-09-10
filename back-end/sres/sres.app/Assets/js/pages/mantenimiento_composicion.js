@@ -9,6 +9,7 @@
     $('#cbo-caso').on('change', (e) => changeCaso());
     $('#cbo-tipo-control').on('change', (e) => changeControl());
     $('#add-columna-detalle-1').on('click', (e) => agregarColumna());
+    $('#btnGuardarForm').on('click', (e) => guardarForm());
     consultarListas();
 });
 
@@ -133,10 +134,10 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
                     detalle = x.LISTA_PARAM.map((x, y) => {
                         return `<div class="grupo-columna-03 p-1 text-center"><small>${x.NOMBRE}${x.FORMULA == null ? '' : x.FORMULA == '' ? '' : `<i class="fas fa-square-root-alt cursor-pointer m-2 enfoque-columna-detalle" data-toggle="tooltip" data-placement="top" title="Fórmula: ${x.FORMULA}"></i>`}</small></div>`;
                     }).join('');
-                    detalle = `<div class="form-control"><div class="list-group sortable-list m-0">${detalle}</div></div>`;
+                    detalle = `<div class="form-control" ${x.INCREMENTABLE == "0" ? `style="background-color: #C3ECC3"`:``}><div class="list-group sortable-list m-0">${detalle}</div></div>`;
                 }
             }
-            let colValores = `<td class="text-center" data-encabezado="Valores">${detalle}</td>`
+            let colValores = `<td class="text-center" data-encabezado="Valores" ${x.INCREMENTABLE == "0" ? `data-toggle="modal" data-target="#modal-mantenimiento-form" onclick="configurarForm(${x.ID_CRITERIO},${x.ID_CASO},${x.ID_COMPONENTE})"`:``}>${detalle}</td>`
             //let btnCambiarEstado = `${[0, 1].includes(x.FLAG_ESTADO) ? "" : `<a class="dropdown-item estilo-01 btnCambiarEstado" href="#" data-id="${x.ID_CRITERIO}-${x.ID_CASO}" data-estado="${x.FLAG_ESTADO}"><i class="fas fa-edit mr-1"></i>Eliminar</a>`}`;
             let btnEditar = `<a class="dropdown-item estilo-01 btnEditar" href="#" data-id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-toggle="modal" data-target="#modal-mantenimiento"><i class="fas fa-edit mr-1"></i>Editar</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Gestión"><div class="btn-group w-100"><a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a><div class="dropdown-menu">${btnEditar}</div></div></td>`;
@@ -436,4 +437,213 @@ var verificarFactor = (f) => {
 var ordenar = (factores) => {
     factores = factores.sort((x, y) => x - y );
     return factores.join('|');
+}
+
+//=================================================================
+
+var configurarForm = (criterio, caso, componente) => {
+    $('.alert-add-form').html('');
+    $('#btnGuardarForm').show();
+    $('#btnGuardarForm').next().html('Cancelar');  
+    let url = `${baseUrl}api/indicador/obtenerindicadorform?idCriterio=${criterio}&idCaso=${caso}&idcomponente=${componente}`;
+    let contenido = '';
+    fetch(url).then(r => r.json()).then(j => {
+        contenido = j.map((x, i) => {
+            idCriterioform = x.ID_CRITERIO;
+            idCasoform = x.ID_CASO;
+            let head = armarHead(x.LIST_INDICADOR_HEAD, x.INCREMENTABLE, "'" + x.ID_CRITERIO + '-' + x.ID_CASO + '-' + x.ID_COMPONENTE + "'", x.ID_COMPONENTE);
+            let body = armarBody(x.LIST_INDICADOR_BODY, x.INCREMENTABLE);
+            return `<h3 class="estilo-01 text-sres-azul text-left">${x.CRITERIO == null ? '' : x.CRITERIO.toUpperCase()} - ${x.CASO == null ? '' : x.CASO.toUpperCase()} - ${x.NOMBRE == null ? '' : x.NOMBRE.toUpperCase()}</h3><div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div>`;
+        }).join('');
+        $("#table-add").html(`${contenido}`);
+        $("[data-toggle='tooltip']").tooltip();
+    });
+}
+
+var armarHead = (lista, incremental, id, componente) => {
+    let cont = ``;
+    for (var i = 0; i < lista.length; i++) {
+        cont += `<th scope="col"><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}<i class="fas fa-question-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? '' : lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i></div></th>`;
+    }
+    cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center"><div class="btn btn-warning btn-sm estilo-01" type="button" onclick="agregarFila(${id},${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div></th>` : ``;
+    return `<thead class="estilo-06"><tr>${cont}</tr></thead>`;
+};
+
+var armarBody = (lista, incremental) => {
+    let body = ``;
+    for (var i = 0; i < lista.length; i++) {
+        body += armarFila(lista[i]["FLAG_NUEVO"] == 0 ? lista[i]["LIST_INDICADORFORM"] : lista[i]["LIST_INDICADORDATA"], lista[i]["ID_CRITERIO"], lista[i]["ID_CASO"], lista[i]["ID_COMPONENTE"], lista[i]["ID_INDICADOR"], lista[i]["FLAG_NUEVO"], incremental, lista[i]["FLAG_NUEVO"] == 0 ? lista[i]["ID_INDICADOR"] : (i + 1));
+    }
+    return `<tbody class="estilo-01">${body}</tbody>`;
+};
+
+var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_nuevo, incremental, row) => {
+    let filas = ``;
+    filas += `<tr id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? incremental == '1' ? row : id_indicador : row}" data-ind="${flag_nuevo == 0 ? 0 : id_indicador}">`;
+    for (var i = 0; i < lista.length; i++) {
+        if (lista[i]["ID_TIPO_CONTROL"] == 2) {
+            filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><input class="form-control form-control-sm estilo-01 ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero text-right' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal text-right' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["RESULTADO"] == null ? `` : lista[i]["RESULTADO"] == '0' ? `` : ``} ${lista[i]["ESTATICO"] == '1' ?  `alert-warning` : ``} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} /></div></td>`;
+        } else if (lista[i]["ID_TIPO_CONTROL"] == 1) {
+            filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><select class="form-control form-control-sm multi-opciones ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["FILTRO"] == null ? `` : lista[i]["FILTRO"] == '' ? `` : `data-filtro="${lista[i]["FILTRO"]}" onchange="filtrar(this)"`}  ${lista[i]["VERIFICABLE"] == '1' ? `onchange="verificarValor(this)"` : ``}><option value="0">Seleccione</option>`;
+            for (var j = 0; j < lista[i]["LIST_PARAMDET"].length; j++)
+                filas += `<option value="${lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"]}" ${validarNull(lista[i]["VALOR"]) == lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"] ? `selected` : ``}>${lista[i]["LIST_PARAMDET"][j]["NOMBRE"]}</option>`;
+            filas += `</select></div></td>`;
+        } else if (lista[i]["ID_TIPO_CONTROL"] == 3) {
+            filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><textarea class="form-control form-control-sm estilo-01 get-valor" cols="30" rows="5" placeholder="Ingrese la descripción" maxlength="${lista[i]["TAMANO"]}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}">${validarNull(lista[i]["VALOR"])}</textarea></div></td>`;
+        }
+
+    }
+    filas += incremental == '1' ? `<td><div class="btn btn-info btn-sm estilo-01" type="button" onclick="eliminarFila(this);"><i class="fas fa-minus-circle mr-1"></i>Quitar</div></td>` : ``;
+    return `${filas}</tr>`;
+}
+
+var validarNull = (valor) => {
+    if (valor == null) valor = '';
+    return valor;
+}
+
+var valorInicial = (idSelect, arr) => {
+    let filtro = [];
+    let verificar = idSelect.attr('data-filtro') == undefined ? false : true;
+    if (!verificar) {
+        idSelect.val(0);
+        return false;
+    } else {
+        filtro = idSelect.attr('data-filtro').split('|');
+    }
+
+    if (idSelect.val() == 0) {
+        for (var i = 0; i < filtro.length; i++) {
+            $(`#${arr}-${filtro[i]}`).val(0);
+            valorInicial($(`#${arr}-${filtro[i]}`), arr);
+        }
+        return false;
+    }
+    return true;
+}
+
+var filtrar = (e) => {
+    debugger;
+    let arr = $(e).parent().parent().parent().attr('id'); //[0] ID_CRITERIO / [1] ID_cASO / [2] ID_COMPONENTE / [3] ID_INDICADOR
+    let parametro = $(e).attr('data-param');
+
+    if (!valorInicial($(e), arr)) return false;
+    let filtro = $(e).attr('data-filtro').split('|');
+
+    for (var i = 0; i < filtro.length; i++) {
+        if ($(e).parent().parent().parent().find('td').find(`[data-param=${filtro[i]}]`).length > 0) {
+            let arrFiltro = verificarFiltro(filtro[i], $(e).parent().parent().parent());
+            if (arrFiltro.length > 0) {
+                var lista = {
+                    ID_PARAMETRO: parseInt(filtro[i]),
+                    PARAMETROS: arrFiltro[0],
+                    DETALLES: arrFiltro[1]
+                }
+                let url = `${baseUrl}api/parametrodetallerelacion/filtrar`;
+                let data = { PARAMDETREL: lista, USUARIO_GUARDAR: idUsuarioLogin };
+
+                let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+                let contenido = ``;
+                fetch(url, init)
+                .then(r => r.json())
+                .then(j => {
+                    if (j.length > 0) {
+                        contenido = j.map((x, m) => {
+                            let opciones = `<option value="${x.ID_DETALLE}" ${(j.length == 1 ? "selected" : "")}>${x.NOMBRE}</option>`;
+                            return opciones;
+                        }).join('');
+                        $(`#${arr}-${j[0].ID_PARAMETRO}`).html(`<option value="0">Seleccione</option>${contenido}`);
+                    }
+                });
+            }
+        }
+    }
+}
+
+var verificarFiltro = (filtro, obj) => {
+    let verificar = true;
+    let parametros = "";
+    let detalles = "";
+    let arrFiltros = [];
+    obj.find('td').find('[data-filtro]').each((x, y) => {
+        let arr = $(y).attr('data-filtro').split('|');
+        for (let i = 0; i < arr.length; i++)
+            if (filtro == arr[i]) {
+                if ($(y).val() > 0) {
+                    parametros += $(y).attr('data-param') + '|';
+                    detalles += $(y).val() + '|';
+                    verificar = true;
+                } else
+                    verificar = false;
+            }
+        if (!verificar) return false;
+    });
+    if (verificar) {
+        arrFiltros.push(parametros.substring(0, parametros.length - 1));
+        arrFiltros.push(detalles.substring(0, detalles.length - 1));
+    }
+    return arrFiltros;
+}
+
+var formatoMiles = (n) => {
+    var m = n * 1;
+    return m.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+}
+
+$(document).on("keydown", ".solo-numero", function (e) {
+    var key = window.e ? e.which : e.keyCode;
+    //var id = $("#" + e.target.id)[0].type;
+    if ((key < 48 || key > 57) && (event.keyCode < 96 || event.keyCode > 105) && key !== 8 && key !== 9 && key !== 37 && key !== 39 && key !== 46) return false;
+});
+
+$(document).on("keyup", ".formato-decimal", function (e) {
+    $(e.target).val(function (index, value) {
+        return value.replace(/\D/g, "")
+                    .replace(/([0-9])([0-9]{2})$/, '$1.$2')
+                    .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+    });
+});
+
+var guardarForm = () => {
+    $('.alert-add-form').html('');
+    let idCriterio_ = idCriterioform;
+    let idCaso = idCasoform;
+    componente_ind = [];
+
+    let url = `${baseUrl}api/indicador/guardarindicadorform`;
+    $(".get").each((x, y) => {
+        indicador_ind = [];
+        let componente = $(y).data('comp');
+        $(y).find('tbody').find('tr').each((x, y) => {
+            indicador_data = [];
+            let indicador = $(y).data('ind');
+            $(y).find('.get-valor').each((x, y) => {
+                var r = {
+                    ID_CRITERIO: idCriterio_,
+                    ID_CASO: idCaso,
+                    ID_COMPONENTE: componente,
+                    ID_PARAMETRO: $(y).data('param'),
+                    ID_INDICADOR: 1,
+                    VALOR: $(y)[0].className.indexOf("multi-opciones") != -1 ? $(y).val() : $(y)[0].className.indexOf("solo-numero") != -1 && $(y)[0].className.indexOf("formato-decimal") != -1 ? $(y).val().replace(/,/gi, '') : $(y).val()
+                };
+                indicador_data.push(r);
+            });
+            let ind_r = { LIST_INDICADORFORM: indicador_data, ID_INDICADOR: indicador };
+            indicador_ind.push(ind_r);
+        });
+        let ind = { LIST_INDICADOR: indicador_ind, ID_CRITERIO: idCriterio_, ID_CASO: idCaso, ID_COMPONENTE: componente };
+        componente_ind.push(ind);
+    });
+
+    let data = { LIST_COMPONENTE: componente_ind, ID_CRITERIO: idCriterio_, ID_CASO: idCaso, USUARIO_GUARDAR: idUsuarioLogin };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+
+    fetch(url, init)
+    .then(r => r.json())
+    .then(j => {
+        $('.alert-add-form').html('');
+        if (j) { $('#btnGuardarForm').hide(); $('#btnGuardarForm').next().html('Cerrar'); }
+        j ? $('.alert-add-form').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los datos fueron guardados correctamente.', close: { time: 1000 }, url: `` }) : $('.alert-add-form').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+        if (j) $('#btnConsultar')[0].click();
+    });
 }

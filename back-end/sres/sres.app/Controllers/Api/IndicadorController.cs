@@ -33,5 +33,18 @@ namespace sres.app.Controllers.Api
             return indLN.ObtenerIndicador(new IndicadorBE() { ID_CASO = idcaso, ID_CRITERIO = idcriterio, ID_COMPONENTE = idComponente });
         }
 
+        [Route("obtenerindicadorform")]
+        [HttpGet]
+        public List<ComponenteBE> ObtenerIndicadorForm(int idCriterio, int idCaso, int idComponente)
+        {
+            return indLN.ObtenerIndicadorForm(idCriterio, idCaso, idComponente);
+        }
+
+        [Route("guardarindicadorform")]
+        [HttpPost]
+        public bool GuardarIndicadorForm(CasoBE entidad)
+        {
+            return indLN.GuardarIndicadorForm(entidad);
+        }
     }
 }

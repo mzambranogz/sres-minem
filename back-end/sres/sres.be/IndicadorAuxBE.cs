@@ -24,6 +24,7 @@ namespace sres.be
         public string CASO { get; set; }
         public string COMPONENTE { get; set; }
         public string ID_FACTORES { get; set; }
+        public string INCREMENTABLE { get; set; }
         public int FLAG_NUEVO { get; set; }
     }
 }
