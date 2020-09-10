@@ -584,6 +584,9 @@
     <Content Include="Assets\documentos\SELLO DE RECONOCIMIENTO DE ENERGÍA SOSTENIBLE.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\documentos\descargar-reconocimiento.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
     <Content Include="Views\Convocatoria\IndexPostulante.cshtml" />
     <Content Include="Views\Convocatoria\IndexEvaluador.cshtml" />
