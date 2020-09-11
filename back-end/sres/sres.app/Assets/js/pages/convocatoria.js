@@ -255,6 +255,7 @@ var responseMostrarDatosInstitucion = (data) => {
     $('#txt-total-mujeres').val(data.CANTIDAD_MUJERES);
     listaSubsector();
     listaDepartamento();
+    listaActividad();
     debugger;
     if (data.LISTA_CONTACTO.length > 0) { let i = 0;
         data.LISTA_CONTACTO.map(x => { i++;
@@ -270,7 +271,8 @@ var responseMostrarDatosInstitucion = (data) => {
 var btnActualizarDatosInstitucionClick = (e) => {
     e.preventDefault();
     let contacto = [];
-    let arr = [];   
+    let arr = [];
+    let idActividad = [];
 
     if ($('#txt-nombre-corto').val().trim() === "") arr.push("Ingrese el nombre corto");
     if ($('#txa-descripcion').val().trim() === "") arr.push("Ingrese la descripción");
@@ -278,7 +280,7 @@ var btnActualizarDatosInstitucionClick = (e) => {
     if ($('#cbo-provincia').val() == 0) arr.push("Seleccione una provincia");
     if ($('#cbo-distrito').val() == 0) arr.push("Seleccione un distrito");
     if ($('#txt-tipo-contribuyente').val().trim() === "") arr.push("Ingrese el tipo de contribuyente");
-    if ($('#cbo-ciiu').val() == 0) arr.push("Seleccione la actividad económica");
+    if ($('[id^=select2-cbo-ciiu-container-choice-]').length == 0) arr.push("Seleccione una actividad económica");
     if ($(`#cbo-subsector-tipoemp`).val() == 0) arr.push(`${idSector == 1 ? "Seleccione el subsector" : "Seleccione el tipo de empresa"}`);
     if ($(`#cbo-trabajador-cama`).val() == 0) arr.push(`${idSector == 1 ? "Seleccione el número de empleados/camas:" : "Seleccione el número de empleados:"}`);
     if ($(`#txt-numero`).val() == "") arr.push("Ingrese la cantidad de empleados/camas");
@@ -294,6 +296,15 @@ var btnActualizarDatosInstitucionClick = (e) => {
         return;
     }
 
+    $('[id^=select2-cbo-ciiu-container-choice-]').each((x, y) => {
+        let r = {
+            ID_INSTITUCION: idInstitucionLogin,
+            ID_ACTIVIDAD: $(y).attr('id').split('-')[6],
+            NOMBRE_ACTIVIDAD: $(y).html(),
+            USUARIO_GUARDAR: idUsuarioLogin
+        }
+        idActividad.push(r);
+    });
     let departamento = $('#cbo-departamento').val();
     let provincia = $('#cbo-provincia').val();
     let distrito = $('#cbo-distrito').val();
@@ -319,7 +330,7 @@ var btnActualizarDatosInstitucionClick = (e) => {
         contacto.push(r);
     }
 
-    let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, ID_DEPARTAMENTO: departamento, ID_PROVINCIA: provincia, ID_DISTRITO: distrito, CONTRIBUYENTE:  contribuyente, ID_ACTIVIDAD: ciiu, ID_SUBSECTOR_TIPOEMPRESA: subsectortipoempresa, ID_TRABAJADORES_CAMA: trabajadorcama, CANTIDAD: cantidad, CANTIDAD_MUJERES: cantidadmujeres, LISTA_CONTACTO: contacto, UPD_USUARIO: idUsuarioLogin };
+    let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, ID_DEPARTAMENTO: departamento, ID_PROVINCIA: provincia, ID_DISTRITO: distrito, CONTRIBUYENTE:  contribuyente, ID_ACTIVIDAD: ciiu, ID_SUBSECTOR_TIPOEMPRESA: subsectortipoempresa, ID_TRABAJADORES_CAMA: trabajadorcama, CANTIDAD: cantidad, CANTIDAD_MUJERES: cantidadmujeres, LISTA_CONTACTO: contacto, LISTA_ACTIVIDAD: idActividad, UPD_USUARIO: idUsuarioLogin };
 
     let url = `${baseUrl}api/institucion/modificardatosinstitucion`;
     let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
@@ -467,4 +478,29 @@ var armarDistrito = (data) => {
     }).join('');
     $(`#cbo-distrito`).html(`<option value="0">-Seleccionar-</option>${combo}`);
     if (vidDistrito > 0) { $(`#cbo-distrito`).val(vidDistrito); vidDistrito = 0;}
+}
+
+var listaActividad = () => {
+    let url = `${baseUrl}api/institucion/listaractividad?id=${idInstitucionLogin}`;
+    fetch(url)
+    .then(r => r.json())
+    .then(armarActividad);
+}
+
+var armarActividad = (data) => {
+    if (data == null) return;
+    if (data.length > 0) {
+        let contenido = data.map((x, y) => {
+            let idcaracter = Math.random().toString(36).substr(2, 4);
+            let li4 = Math.random().toString(36).substr(2, 4);
+            let button = `<button type="button" class="select2-selection__choice__remove" tabindex="-1" title="Remove item" aria-label="Remove item" aria-describedby="select2-cbo-ciiu-container-choice-${idcaracter}-${x.ID_ACTIVIDAD}"><span aria-hidden="true">×</span></button>`;
+            let span = `<span class="select2-selection__choice__display" id="select2-cbo-ciiu-container-choice-${idcaracter}-${x.ID_ACTIVIDAD}">${x.NOMBRE_ACTIVIDAD}</span>`;
+            let li = `<li class="select2-selection__choice" title="${x.NOMBRE_ACTIVIDAD}" data-select2-id="select2-data-${432+y}-${li4}">${button}${span}</li>`;
+            return li;
+        }).join('');
+        debugger;
+        $('.js-example-basic-multiple').select2({ placeholder: "Selecciones uno o varios códigos CIUU", });
+        $('#select2-cbo-ciiu-container').html(contenido);
+        $('#select2-cbo-ciiu-container').click[0];
+    }
 }

@@ -84,6 +84,13 @@ namespace sres.app.Controllers.Api
             return institucionLN.ActualizarInstitucion(institucion);
         }
 
+        [Route("listaractividad")]
+        [HttpGet]
+        public List<ActividadEconomicaBE> ListarActividad(int id)
+        {
+            return institucionLN.ListarActividad(id);
+        }
+
         //[Route("buscarparticipantes")]
         //[HttpGet]
         //public DataPaginateBE BuscarParticipantes(string busqueda, int registros, int pagina, string columna, string orden)
