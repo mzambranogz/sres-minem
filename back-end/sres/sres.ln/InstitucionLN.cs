@@ -153,6 +153,13 @@ namespace sres.ln
                         foreach (InstitucionContactoBE contacto in institucion.LISTA_CONTACTO)
                             if (!(seModifico = institucionDA.GuardarContacto(contacto, cn))) break;
 
+                    if (seModifico) {
+                        seModifico = institucionDA.DeleteActividadEconomica(institucion, cn);
+                        if (seModifico)
+                            foreach (ActividadEconomicaBE ae in institucion.LISTA_ACTIVIDAD)
+                                if (!(seModifico = institucionDA.GuardarActividadEconomica(ae, cn))) break;
+                    }                        
+
                     if (seModifico) ot.Commit();
                     else ot.Rollback();
                 }                    
@@ -246,6 +253,19 @@ namespace sres.ln
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return new InstitucionBE { VAL = val, OK = seModifico};
+        }
+
+        public List<ActividadEconomicaBE> ListarActividad(int id)
+        {
+            List<ActividadEconomicaBE> lista = new List<ActividadEconomicaBE>();
+            try
+            {
+                cn.Open();
+                lista = institucionDA.ListarActividad(id, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
         }
 
     }

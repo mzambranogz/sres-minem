@@ -136,5 +136,31 @@ namespace sres.da
             }
             return guardo;
         }
+
+        public IndicadorFormBE GuardarIndicadorForm(IndicadorFormBE entidad, int usuario, OracleConnection db, OracleTransaction ot = null)
+        {
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_UPD_INDICADOR_FORM";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
+                p.Add("PI_ID_cASO", entidad.ID_CASO);
+                p.Add("PI_ID_COMPONENTE", entidad.ID_COMPONENTE);
+                p.Add("PI_ID_INDICADOR", entidad.ID_INDICADOR);
+                p.Add("PI_ID_PARAMETRO", entidad.ID_PARAMETRO);
+                p.Add("PI_VALOR", entidad.VALOR);
+                p.Add("PI_USUARIO_GUARDAR", usuario);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+            return entidad;
+        }
     }
 }

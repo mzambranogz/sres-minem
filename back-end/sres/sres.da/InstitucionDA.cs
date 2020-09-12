@@ -342,5 +342,60 @@ namespace sres.da
             return seModifico;
         }
 
+        public bool GuardarActividadEconomica(ActividadEconomicaBE contacto, OracleConnection db)
+        {
+            bool seModifico = false;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_PRC_GUARDAR_ACTIVIDAD";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSTITUCION", contacto.ID_INSTITUCION);
+                p.Add("PI_ID_ACTIVIDAD", contacto.ID_ACTIVIDAD);
+                p.Add("PI_NOMBRE_ACTIVIDAD", contacto.NOMBRE_ACTIVIDAD);
+                p.Add("PI_USUARIO_GUARDAR", contacto.USUARIO_GUARDAR);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seModifico = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            return seModifico;
+        }
+
+        public bool DeleteActividadEconomica(InstitucionBE institucion, OracleConnection db)
+        {
+            bool seModifico = false;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_DEL_ACTIVIDAD";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSTITUCION", institucion.ID_INSTITUCION);
+                p.Add("PI_USUARIO_GUARDAR", institucion.UPD_USUARIO);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+                seModifico = true;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            return seModifico;
+        }
+
+        public List<ActividadEconomicaBE> ListarActividad(int id, OracleConnection db)
+        {
+            List<ActividadEconomicaBE> lista = new List<ActividadEconomicaBE>();
+            try
+            {
+                string sp = $"{Package.Criterio}USP_SEL_LISTA_ACTIVIDAD";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSTITUCION", id);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ActividadEconomicaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
     }
 }

@@ -16,7 +16,7 @@ var consultarListas = () => {
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(([jCri, jEva, jEta, jInsig]) => {
-        armarEvaluadores(jEva, '#tbl-evaluador');
+        //armarEvaluadores(jEva, '#tbl-evaluador');
         armarEtapas(jEta, '#tbl-etapa');
         armarCriterios(jCri, '#criterios-det');
         armarInsignias(jInsig, '#tbl-insignia');

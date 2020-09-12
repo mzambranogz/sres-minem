@@ -78,6 +78,7 @@ var renderizar = (data, cantidadCeldas) => {
             let btnVerPerfil = `<a class="dropdown-item" href="#"><i class="fas fa-id-card mr-1"></i>Ver perfil</a>`;
             let btnSeguimiento = `<a class="dropdown-item" href="${baseUrl}Convocatoria/${idConvocatoria}/Seguimiento/${x.ID_INSCRIPCION}"><i class="fas fa-history mr-1"></i>Seguimiento</a>`;
             let btnVerReconocimiento = `<a class="dropdown-item" href="${baseUrl}Participantes/${x.ID_INSTITUCION}/Reconocimiento"><i class="fas fa-medal mr-1"></i>Ver reconocimiento</a>`;
+            let btnDescargarReconocimiento = `<a class="dropdown-item" target="_blank" href="${baseUrl}Assets/documentos/descargar-reconocimiento.pdf"><i class="fas fa-download mr-1"></i>Descargar Reconocimiento</a>`;
             let OpcioneEta1 = `<div class="dropdown-menu">${btnVerPerfil}</div>`;
             //let OpcioneEta2 = `<div class="dropdown-menu">${btnVerPerfil}</div>`;
             let OpcioneEta2 = `<div class="dropdown-menu">${btnSeguimiento}</div>`;
@@ -105,10 +106,10 @@ var renderizar = (data, cantidadCeldas) => {
             let OpcioneEta10 = `<div class="dropdown-menu">${btnSeguimiento}<div>`;
             let OpcioneEta11 = `<div class="dropdown-menu">${idRolLogin == 2 ? btnEvaluarCriterios : ''}${btnSeguimiento}</div>`;
             let OpcioneEta12 = `<div class="dropdown-menu">${btnSeguimiento}</div>`;
-            let OpcioneEta13 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}</div>`;
-            let OpcioneEta14 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}</div>`;
-            let OpcioneEta15 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}</div>`;
-            let OpcioneEta16 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}</div>`;
+            let OpcioneEta13 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}${btnDescargarReconocimiento}</div>`;
+            let OpcioneEta14 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}${btnDescargarReconocimiento}</div>`;
+            let OpcioneEta15 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}${btnDescargarReconocimiento}</div>`;
+            let OpcioneEta16 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}${btnDescargarReconocimiento}</div>`;
 
             //let OpcionesEtapa5y8 = `<div class="dropdown-menu">${btnEvaluarRequisitos}${btnEvaluarCriterios}${btnSeguimiento}${btnVerReconocimiento}</div>`;
             //let colOpciones = `<td class="text-center" data-encabezado="Gestión">${x.CONVOCATORIA.ID_ETAPA == 5 || x.CONVOCATORIA.ID_ETAPA == 8 ? `${btnGestionar}${OpcionesEtapa5y8}` : btnDetalles}</td>`;

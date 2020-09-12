@@ -136,7 +136,8 @@ var renderizar = (data, cantidadCeldas) => {
             let colEstrella = `<td class="text-center" data-encabezado="Medida NDC"><i class="fas fa-medal fa-2x"></i></td>`;
             let btnVerFicha = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Participantes/${x.INSCRIPCION.INSTITUCION.ID_INSTITUCION}/Reconocimiento">Ver</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Ficha">${btnVerFicha}</td>`;
-            let fila = `<tr>${colLogo}${colSello}${colRazonSocial}${colPuntaje}${colEmisiones}${colEstrella}${colOpciones}</tr>`;
+            //let fila = `<tr>${colLogo}${colSello}${colRazonSocial}${colPuntaje}${colEmisiones}${colEstrella}${colOpciones}</tr>`;
+            let fila = `<tr>${colLogo}${colSello}${colRazonSocial}${colPuntaje}${colEmisiones}${colOpciones}</tr>`;
             return fila;
         }).join('');
     };
