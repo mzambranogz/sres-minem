@@ -1,4 +1,5 @@
 ﻿$(document).ready(() => {
+    if (idUsuarioLogin == null) $('#txt-act').parent().parent().remove();
     $('form').submit((e) => {
         sendLogin(e);
     })
@@ -10,7 +11,7 @@ var sendLogin = (e) => {
     $('.alert-add').html('');
     let arr = [];
 
-    if ($("#txt-act").val().trim() === "") arr.push("Debe ingresar la contraseña actual");
+    if (($("#txt-act").val() || '').trim() === "" && idUsuarioLogin != null) arr.push("Debe ingresar la contraseña actual");
     if ($("#txt-pswd").val().trim() === $("#txt-con").val().trim()) {
         if (!(/[a-zñ]/.test($("#txt-pswd").val().trim()) && /[A-ZÑ]/.test($("#txt-pswd").val().trim()) && /[0-9]/.test($("#txt-pswd").val().trim()) && /[!@#$&*]/.test($("#txt-pswd").val().trim()))) arr.push("La contraseña debe contener minúscula(s), mayúscula(s), número(s) y caracter(es) especial(es) [!@#$&*]");
         if ($("#txt-pswd").val().trim().length < 6) arr.push("La contraseña debe contener 6 o más caracteres por seguridad"); }
@@ -25,7 +26,7 @@ var sendLogin = (e) => {
     }
 
     let contrasena = $('#txt-pswd').val().trim();
-    let actualcontrasena = $('#txt-act').val().trim();
+    let actualcontrasena = ($('#txt-act').val() || '').trim();
 
     let idUsuario = idUsuarioLogin != null ? idUsuarioLogin : location.href.split('/')[5];
 

@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -480,7 +481,6 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Reporte\ReporteEstadisticoXTipoEmpresa.aspx" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config">
@@ -541,13 +541,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\GoogleResponse.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="Views\Reporte\ReporteEstadisticoXTipoEmpresa.aspx.cs">
-      <DependentUpon>ReporteEstadisticoXTipoEmpresa.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Reporte\ReporteEstadisticoXTipoEmpresa.aspx.designer.cs">
-      <DependentUpon>ReporteEstadisticoXTipoEmpresa.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -313,7 +313,7 @@ namespace sres.ln
                 UsuarioBE usu = usuarioDA.ObtenerClave(usuario.ID_USUARIO, cn);
                 estado = usu != null ? 0 : 1;
                 if (estado == 0) {
-                    cambio = Seguridad.CompararHashSal(usuario.CONTRASENA, usu.CONTRASENA);
+                    cambio = string.IsNullOrEmpty(usuario.CONTRASENA) ? true : Seguridad.CompararHashSal(usuario.CONTRASENA, usu.CONTRASENA);
                     estado = cambio ? 0 : 2;
                     if (estado == 0) {
                         usuario.CONTRASENA_NUEVO = string.IsNullOrEmpty(usuario.CONTRASENA_NUEVO) ? null : Seguridad.hashSal(usuario.CONTRASENA_NUEVO);

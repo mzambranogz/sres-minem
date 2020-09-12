@@ -15,4 +15,5 @@ namespace sres.be
             public decimal CANTIDAD_INSCRIPCIONES { get; set; }
             public decimal PORCENTAJE_INSCRIPCIONES { get; set; }
         }
+    }
 }
