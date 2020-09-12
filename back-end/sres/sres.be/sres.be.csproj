@@ -104,6 +104,7 @@
     <Compile Include="PuntajeBE.cs" />
     <Compile Include="ReconocimientoBE.cs" />
     <Compile Include="ReconocimientoMedidaBE.cs" />
+    <Compile Include="ReporteBE.cs" />
     <Compile Include="RolBE.cs" />
     <Compile Include="RequerimientoBE.cs" />
     <Compile Include="SectorBE.cs" />

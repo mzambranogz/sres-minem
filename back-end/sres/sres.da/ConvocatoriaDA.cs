@@ -122,6 +122,25 @@ namespace sres.da
             return entidad;
         }
 
+        public List<ConvocatoriaBE> ListarConvocatoria(OracleConnection db)
+        {
+            List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
+
+            try
+            {
+                string sp = $"{Package.Admin}USP_SEL_LISTA_CONVOCATORIA";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ConvocatoriaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
         public List<ConvocatoriaBE> ListarBusquedaConvocatoria(ConvocatoriaBE entidad, OracleConnection db)
         {
             List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();

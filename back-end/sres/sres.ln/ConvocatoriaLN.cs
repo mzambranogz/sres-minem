@@ -168,6 +168,20 @@ namespace sres.ln
             return item;
         }
 
+        public List<ConvocatoriaBE> ListarConvocatoria()
+        {
+            List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
+
+            try
+            {
+                cn.Open();
+                lista = convocatoriaDA.ListarConvocatoria(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
         public List<ConvocatoriaBE> ListarBusquedaConvocatoria(ConvocatoriaBE entidad)
         {
             List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
