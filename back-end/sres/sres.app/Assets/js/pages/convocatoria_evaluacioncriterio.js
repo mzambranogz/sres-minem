@@ -33,7 +33,7 @@ var consultar = () => {
         contenido = j.map((x, i) => {
             let head = armarHead(x.LIST_INDICADOR_HEAD, x.INCREMENTABLE, "'" + x.ID_CRITERIO + '-' + x.ID_CASO + '-' + x.ID_COMPONENTE + "'", x.ID_COMPONENTE);
             let body = armarBody(x.LIST_INDICADOR_BODY, x.INCREMENTABLE);
-            return `<div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div>`;
+            return `<h3 class="estilo-02 text-sres-azul mt-5 text-left">${x.ETIQUETA == null ? '' : x.ETIQUETA}</h3><div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div>`;
         }).join('');
         $("#table-add").html(`${contenido}`);
 
@@ -71,11 +71,11 @@ var mostrarDocumentos = (data) => {
     if (data.length > 0) {
         let tituloDoc = '<div class="col-lg-6 col-md-12 col-sm-12"><h3 class="estilo-02 text-sres-azul mb-5 text-left">DOCUMENTOS</h3></div>';
         let tituloArchivosAdjuntos = '<div class="col-lg-6 col-md-12 col-sm-12 d-none d-lg-block"><h3 class="estilo-02 text-sres-azul mb-5 text-left"></h3></div>';
-        let cabecera = `<div class="row">${tituloDoc}${tituloArchivosAdjuntos}</div>`;        
+        let cabecera = `<div class="row">${tituloDoc}${tituloArchivosAdjuntos}</div>`;
         let contenido = data.map(x => {
             let fileDoc = `<div class="form-group text-left"><label class="estilo-01" for="fle-requisito-${x.ID_DOCUMENTO}">${x.NOMBRE}</label><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span></div><input class="form-control form-control-sm cursor-pointer txt-file-control" type="text" id="txt-requisito-${x.ID_DOCUMENTO}" value="${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ARCHIVO_BASE}" readonly><div class="input-group-append"><a class="input-group-text cursor-pointer estilo-01" href="${baseUrl}api/criterio/obtenerdocumento/${idConvocatoria}/${idCriterio}/${$(`#cbo-caso`).val()}/${idInscripcion}/${x.ID_DOCUMENTO}" download><i class="fas fa-download mr-1"></i>Bajar archivo</a></div></div></div>`
             let colLeft = `<div class="col-lg-6 col-md-12 col-sm-12">${fileDoc}</div>`;
-            let radioAprobado = `<div class="form-check form-check-inline"><input class="form-check-input get-evaluacion" type="radio" name="rad-evaluacion-${x.ID_DOCUMENTO}" id="rad-eva-${x.ID_DOCUMENTO}-1" onchange="verificarEvaluacion(this)" value="1" ${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ID_TIPO_EVALUACION == null ? `` : x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 1 ? `checked`:``}><label class="form-check-label" for="rad-eva-${x.ID_DOCUMENTO}-1">Aprobado</label></div>`;
+            let radioAprobado = `<div class="form-check form-check-inline"><input class="form-check-input get-evaluacion" type="radio" name="rad-evaluacion-${x.ID_DOCUMENTO}" id="rad-eva-${x.ID_DOCUMENTO}-1" onchange="verificarEvaluacion(this)" value="1" ${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ID_TIPO_EVALUACION == null ? `` : x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 1 ? `checked` : ``}><label class="form-check-label" for="rad-eva-${x.ID_DOCUMENTO}-1">Aprobado</label></div>`;
             let radioDesaprobado = `<div class="form-check form-check-inline"><input class="form-check-input get-evaluacion" type="radio" name="rad-evaluacion-${x.ID_DOCUMENTO}" id="rad-eva-${x.ID_DOCUMENTO}-2" onchange="verificarEvaluacion(this)" value="0" ${x.OBJ_INSCDOC == null ? `` : x.OBJ_INSCDOC.ID_TIPO_EVALUACION == null ? `` : x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 2 ? `checked` : ``}><label class="form-check-label" for="rad-eva-${x.ID_DOCUMENTO}-2">Desaprobado</label></div>`;
             let contenidoFileDoc = `<div class="alert alert-secondary p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-exclamation-circle px-2 py-1"></i><span class="estilo-01">Aún no ha evaluado el documento</span></div></div>`;
             if (x.OBJ_INSCDOC != null) {
@@ -83,7 +83,7 @@ var mostrarDocumentos = (data) => {
                     let labelAprobado = x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 1 ? `<div class="alert alert-success p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-check-circle px-2 py-1"></i><span class="estilo-01">El documento es correcto</span></div></div>` : ``;
                     let labelDesaprobado = x.OBJ_INSCDOC.ID_TIPO_EVALUACION == 2 ? `<div class="alert alert-danger p-1 d-flex w-100"><div class="mr-lg-auto"><i class="fas fa-times-circle px-2 py-1"></i><span class="estilo-01">El documento es incorrecto</span></div></div>` : ``;
                     contenidoFileDoc = `${labelAprobado}${labelDesaprobado}`;
-                }                
+                }
             }
             //let colRight = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="form-group" id="viewContentFile-${x.ID_DOCUMENTO}"><label class="estilo-01 text-left w-100">${radioAprobado}${radioDesaprobado}</label><div id="evaluacion-${x.ID_DOCUMENTO}">${contenidoFileDoc}</div></div></div>`;
             let colRight = `<div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-end"><div class="w-100 text-left" id="viewContentFile-${x.ID_DOCUMENTO}"><label class="estilo-01">${radioAprobado}${radioDesaprobado}</label><div id="evaluacion-${x.ID_DOCUMENTO}">${contenidoFileDoc}</div></div></div>`;
@@ -238,5 +238,5 @@ var guardar = () => {
 
 var formatoMiles = (n) => {
     var m = n * 1;
-    return m.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+    return m.toFixed(3).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 }

@@ -5,7 +5,7 @@
     //$('#btnCerrar').on('click', (e) => cerrarFormulario());
     consultar();
     consultarDoc();
-    $('#btnGuardar').on('click', (e) => guardar());    
+    $('#btnGuardar').on('click', (e) => guardar());
 });
 
 $(document).on("change", "#cbo-caso", () => {
@@ -344,7 +344,7 @@ $(document).on("keydown", ".solo-numero", function (e) {
 $(document).on("keyup", ".formato-decimal", function (e) {
     $(e.target).val(function (index, value) {
         return value.replace(/\D/g, "")
-                    .replace(/([0-9])([0-9]{2})$/, '$1.$2')
+                    .replace(/([0-9])([0-9]{3})$/, '$1.$2')
                     .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
     });
 });
@@ -393,7 +393,7 @@ var enviarValores = (lista, fila) => {
 
 var formatoMiles = (n) => {
     var m = n * 1;
-    return m.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+    return m.toFixed(3).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 }
 
 var valorInicial = (idSelect, arr) => {
