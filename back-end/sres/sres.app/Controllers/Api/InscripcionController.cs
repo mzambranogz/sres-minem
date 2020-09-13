@@ -41,11 +41,11 @@ namespace sres.app.Controllers.Api
             {
                 ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(!inscripcion.ID_CONVOCATORIA.HasValue ? 0 : inscripcion.ID_CONVOCATORIA.Value);
                 UsuarioBE usuario = usuarioLN.ObtenerUsuario(!inscripcion.UPD_USUARIO.HasValue ? 0 : inscripcion.UPD_USUARIO.Value);
-                string fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldConvocatoria = "[CONVOCATORIA]";
-                string[] fields = new string[] { fieldNombres, fieldApellidos, fieldConvocatoria };
-                string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldConvocatoria };
-                Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS, [fieldConvocatoria] = convocatoria.NOMBRE };
-                string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Su inscripción fue satisfactoria";
+                string fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldConvocatoria = "[CONVOCATORIA]", fieldNombreConv = "[NOMBRE_CONV]";
+                string[] fields = new string[] { fieldNombres, fieldApellidos, fieldConvocatoria, fieldNombreConv };
+                string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldConvocatoria, fieldNombreConv };
+                Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS, [fieldConvocatoria] = convocatoria.FECHA_INICIO.Year.ToString(),[fieldNombreConv] = convocatoria.NOMBRE };
+                string subject = $"Inscripción a la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {convocatoria.FECHA_INICIO.Year.ToString()}";
                 MailAddressCollection mailTo = new MailAddressCollection();
                 mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
                 Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.InscripcionConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
@@ -68,13 +68,13 @@ namespace sres.app.Controllers.Api
                 InscripcionBE insc = inscripcionLN.ObtenerInscripcionPorId(inscripcion.ID_INSCRIPCION);
                 if (insc != null)
                 {
-                    string fieldNombres = "[NOMBRES]", fieldConvocatoria = "[CONVOCATORIA]", fieldObservacion = "[OBSERVACION]";
-                    string[] fields = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion };
-                    string[] fieldsRequire = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion };
-                    Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldNombres] = insc.NOMBRES_USU,[fieldConvocatoria] = insc.NOMBRE_CONV,[fieldObservacion] = inscripcion.OBSERVACION };
+                    string fieldNombres = "[NOMBRES]", fieldConvocatoria = "[CONVOCATORIA]", fieldObservacion = "[OBSERVACION]", fieldEntidad = "[ENTIDAD]", fieldNombreConv = "[NOMBRE_CONV]";
+                    string[] fields = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion, fieldEntidad, fieldNombreConv };
+                    string[] fieldsRequire = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion, fieldEntidad, fieldNombreConv };
+                    Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldNombres] = insc.NOMBRES_USU,[fieldConvocatoria] = insc.FECHA_INICIO.Year.ToString(),[fieldObservacion] = inscripcion.OBSERVACION, [fieldEntidad] = insc.RAZON_SOCIAL, [fieldNombreConv] = insc.NOMBRE_CONV };
                     string subject = "";
-                    if (inscripcion.ID_ETAPA == 3) subject = $"Observación de los requisitos de la convocatoria {insc.NOMBRE_CONV}";
-                    else if (inscripcion.ID_ETAPA == 5) subject = $"Aprobación de los requisitos de la convocatoria {insc.NOMBRE_CONV}";
+                    if (inscripcion.ID_ETAPA == 3) subject = $"Observación de los requisitos de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {insc.FECHA_INICIO.Year.ToString()}";
+                    else if (inscripcion.ID_ETAPA == 5) subject = $"Aprobación de los requisitos de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {insc.FECHA_INICIO.Year.ToString()}";
                     MailAddressCollection mailTo = new MailAddressCollection();
                     mailTo.Add(new MailAddress(insc.CORREO));
                     if (inscripcion.ID_ETAPA == 3) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.ObservacionRequisitos, dataBody, fields, fieldsRequire, subject, mailTo));
