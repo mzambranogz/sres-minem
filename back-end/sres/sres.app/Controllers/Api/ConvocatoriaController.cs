@@ -153,7 +153,9 @@ namespace sres.app.Controllers.Api
                         if (obj.ID_ETAPA == 3) subject = $"Revisión de los requisitos de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {obj.FECHA_INICIO.Year.ToString()}";
                         else if (obj.ID_ETAPA == 5) subject = $"Filtrado de los participantes de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {obj.FECHA_INICIO.Year.ToString()}";
                         else if (obj.ID_ETAPA == 8) subject = $"Primera Revisión de la información de los participantes de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {obj.FECHA_INICIO.Year.ToString()}";
+                        else if (obj.ID_ETAPA == 9) subject = $"Informe Preliminar de la información de los participantes de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {obj.FECHA_INICIO.Year.ToString()}";
                         else if (obj.ID_ETAPA == 11) subject = $"Segunda Revisión de la información de los participantes de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {obj.FECHA_INICIO.Year.ToString()}";
+                        else if (obj.ID_ETAPA == 12) subject = $"Informe Final de la información de los participantes de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {obj.FECHA_INICIO.Year.ToString()}";
                         //MailAddressCollection mailTo = new MailAddressCollection();
                         //foreach (ConvocatoriaBE usuario in lista)
                         //{
@@ -178,7 +180,9 @@ namespace sres.app.Controllers.Api
                                 if (obj.ID_ETAPA == 3) template = Mailing.Templates.RevisionReqConvocatoria;
                                 else if (obj.ID_ETAPA == 5) template = Mailing.Templates.FiltradoConvocatoria;
                                 else if (obj.ID_ETAPA == 8) template = Mailing.Templates.RevisionN1Convocatoria;
+                                else if (obj.ID_ETAPA == 9) template = Mailing.Templates.InformePreConvocatoria;
                                 else if (obj.ID_ETAPA == 11) template = Mailing.Templates.RevisionN2Convocatoria;
+                                else if (obj.ID_ETAPA == 12) template = Mailing.Templates.InformeFinalConvocatoria;
                                 //else if (obj.ID_ETAPA == 7) template = Mailing.Templates.CoordinacionConvocatoria;
                                 //else if (obj.ID_ETAPA == 10) template = Mailing.Templates.LevantamientoObsConvocatoria;
 

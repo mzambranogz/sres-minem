@@ -454,6 +454,8 @@
     <Content Include="Mailing\FiltradoConvocatoria.html" />
     <Content Include="Mailing\FinalizacionConvocatoria.html" />
     <Content Include="Mailing\InformeFinal.html" />
+    <Content Include="Mailing\InformeFinalConvocatoria.html" />
+    <Content Include="Mailing\InformePreConvocatoria.html" />
     <Content Include="Mailing\InformePreliminar.html" />
     <Content Include="Mailing\InscripcionAnulacion.html" />
     <Content Include="Mailing\InscripcionConvocatoria.html" />
