@@ -10,5 +10,6 @@ namespace sres.be
     {
         public string NOMBRE_COMPLETO { get; set; }
         public string CONTRASENA_NUEVO { get; set; }
+        public string RAZON_SOCIAL { get; set; }
     }
 }

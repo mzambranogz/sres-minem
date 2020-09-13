@@ -215,6 +215,7 @@
     <Content Include="Assets\images\caso_03.png" />
     <Content Include="Assets\images\caso_04.png" />
     <Content Include="Assets\images\caso_05.png" />
+    <Content Include="Assets\images\cinta.png" />
     <Content Include="Assets\images\clave.png" />
     <Content Include="Assets\images\colaboradores.png" />
     <Content Include="Assets\images\convocatoria.png" />
@@ -308,6 +309,7 @@
     <Content Include="Assets\images\password-level-47px.png" />
     <Content Include="Assets\images\plata.png" />
     <Content Include="Assets\images\preguntas_frecuentes.png" />
+    <Content Include="Assets\images\preguntas_frecuentes_email.jpg" />
     <Content Include="Assets\images\reconocimientos.png" />
     <Content Include="Assets\images\reunion_acuerdo_paris.png" />
     <Content Include="Assets\images\sector-privado.png" />

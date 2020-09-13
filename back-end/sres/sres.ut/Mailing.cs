@@ -172,7 +172,9 @@ namespace sres.ut
                     ["imagenMEM"] = new Dictionary<string, string> { ["logo-minem.jpg"] = MediaTypeNames.Image.Jpeg },
                     ["imagenBanner"] = new Dictionary<string, string> { ["sres-logo.png"] = "image/png" },
                     ["imagenGEF"] = new Dictionary<string, string> { ["logo_gef.jpg"] = MediaTypeNames.Image.Jpeg },
-                    ["imagenPNUD"] = new Dictionary<string, string> { ["logo_pnud.jpg"] = MediaTypeNames.Image.Jpeg }
+                    ["imagenPNUD"] = new Dictionary<string, string> { ["logo_pnud.jpg"] = MediaTypeNames.Image.Jpeg },
+                    ["imagenFRECUENTE"] = new Dictionary<string, string> {["preguntas_frecuentes_email.jpg"] = MediaTypeNames.Image.Jpeg },
+                    ["imagenCINTA"] = new Dictionary<string, string> {["cinta.png"] = "image/png" }
                 };
 
                 AddImages(viewHtml, images);

@@ -31,6 +31,7 @@ namespace sres.be
         public int ID_ETAPA { get; set; }
         public int ASPIRACION { get; set; }
         public string ARCHIVO_BASE { get; set; }
+        public DateTime FECHA_INICIO { get; set; }
         public List<InsigniaBE> ASPIRACIONES { get; set; }
     }
 }

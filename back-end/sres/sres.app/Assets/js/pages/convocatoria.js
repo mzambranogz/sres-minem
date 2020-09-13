@@ -16,7 +16,7 @@
     $('#cbo-provincia').on('change', provinciaChange);
     listaSubsector();
     listaDepartamento();
-    cambiarPrimerInicio();    
+    cambiarPrimerInicio();
 });
 
 var consultar = () => {
@@ -26,8 +26,8 @@ var consultar = () => {
     let fechaHasta = $('#dat-hasta').val();
     let registros = $('#catidad-rgistros').val();
     let pagina = $('#ir-pagina').val();;
-    let columna = 'id_convocatoria';    
-    let orden = 'asc';    
+    let columna = 'id_convocatoria';
+    let orden = 'asc';
     let idInstitucion = idRolLogin == 3 ? idInstitucionLogin : 0;
     let idUsuario = idRolLogin == 2 ? idUsuarioLogin : 0;
     let params = { nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden, idInstitucion, idUsuario };
@@ -64,7 +64,7 @@ var cargarDataBusqueda = (data) => {
     $('html, body').animate({ scrollTop: $('#sectionSearch').offset().top }, 'slow');
 }
 
-var renderizar = (data, cantidadCeldas) => {    
+var renderizar = (data, cantidadCeldas) => {
     let deboRenderizar = data.CANTIDAD_REGISTROS > 0;
     let contenido = `<tr><th colspan='${cantidadCeldas}'>No existe información</th></tr>`;
 
@@ -117,7 +117,7 @@ var renderizar = (data, cantidadCeldas) => {
             let OpcioneEta14 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}${btnDescargarReconocimiento}</div>`;
             let OpcioneEta15 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}${btnDescargarReconocimiento}</div>`;
             let OpcioneEta16 = `<div class="dropdown-menu">${btnSeguimiento}${btnVerReconocimiento}${btnDescargarReconocimiento}</div>`;
-            
+
             let colOpcionesEvaAdmin = `<td class="text-center" data-encabezado="Gestión">${x.ID_ETAPA == 1 || x.ID_ETAPA == 2 ? OpcioneEta1 : x.ID_ETAPA < 14 ? idRolLogin == 2 ? x.VALIDAR_EVALUADOR == 0 ? OpcioneEta1 : btnVerEvaluar : btnVerEvaluar : btnVerEvaluar}</td>`;
             let colOpciones = `<td class="text-center" data-encabezado="Gestión">${x.ID_ETAPA == 1 ? OpcioneEta1 : ''}${x.ID_ETAPA == 2 ? OpcioneEta2 : ''}<div class="btn-group w-100 ${x.ID_ETAPA > 2 ? '' : 'd-none'}">${btnGestionar}${x.ID_ETAPA == 3 ? OpcioneEta3 : ''}${x.ID_ETAPA == 4 ? OpcioneEta4 : ''}${x.ID_ETAPA == 5 ? OpcioneEta5 : ''}${x.ID_ETAPA == 6 ? OpcioneEta6 : ''}${x.ID_ETAPA == 7 ? OpcioneEta7 : ''}${x.ID_ETAPA == 8 ? OpcioneEta8 : ''}${x.ID_ETAPA == 9 ? OpcioneEta9 : ''}${x.ID_ETAPA == 10 ? OpcioneEta10 : ''}${x.ID_ETAPA == 11 ? OpcioneEta11 : ''}${x.ID_ETAPA == 12 ? OpcioneEta12 : ''}${x.ID_ETAPA == 13 ? OpcioneEta13 : ''}${x.ID_ETAPA == 14 ? OpcioneEta14 : ''}${x.ID_ETAPA == 15 ? OpcioneEta15 : ''}${x.ID_ETAPA == 16 ? OpcioneEta16 : ''}</div></td>`;
             let colAnulado = `<td class="text-center" data-encabezado="Gestión"><div class="btn-group w-100">${btnGestionar}${OpcioneEta12}</div></td>`
@@ -181,7 +181,7 @@ var responseGuardarLogo = (data) => {
     if (data == true) {
         $('#fle-logo').parent().parent().parent().parent().parent().parent().alert({ type: 'success', title: '¡BIEN HECHO!', message: `Se actualizó el logo correctamente`, close: { time: 3000 } });
         $('#btnGuardarLogo').hide();
-        
+
         let url = `${baseUrl}Login/RefrescarDatosSession`;
         fetch(url).then(r => r.json()).then(j => console.log(j));
 
@@ -257,8 +257,10 @@ var responseMostrarDatosInstitucion = (data) => {
     listaDepartamento();
     listaActividad();
     debugger;
-    if (data.LISTA_CONTACTO.length > 0) { let i = 0;
-        data.LISTA_CONTACTO.map(x => { i++;
+    if (data.LISTA_CONTACTO.length > 0) {
+        let i = 0;
+        data.LISTA_CONTACTO.map(x => {
+            i++;
             $(`#txt-nombre-0${i}`).val(x.NOMBRE);
             $(`#txt-cargo-0${i}`).val(x.CARGO);
             $(`#txt-telefono-0${i}`).val(x.TELEFONO);
@@ -320,17 +322,17 @@ var btnActualizarDatosInstitucionClick = (e) => {
     for (var i = 0; i < 4 ; i++) {
         var r = {
             ID_INSTITUCION: idInstitucionLogin,
-            ID_CONTACTO: (i+1),
-            NOMBRE: $(`#txt-nombre-0${i+1}`).val(),
-            CARGO: $(`#txt-cargo-0${i+1}`).val(),
-            TELEFONO: $(`#txt-telefono-0${i+1}`).val(),
+            ID_CONTACTO: (i + 1),
+            NOMBRE: $(`#txt-nombre-0${i + 1}`).val(),
+            CARGO: $(`#txt-cargo-0${i + 1}`).val(),
+            TELEFONO: $(`#txt-telefono-0${i + 1}`).val(),
             CORREO: $(`#txt-email-0${i + 1}`).val(),
             USUARIO_GUARDAR: idUsuarioLogin
         }
         contacto.push(r);
     }
 
-    let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, ID_DEPARTAMENTO: departamento, ID_PROVINCIA: provincia, ID_DISTRITO: distrito, CONTRIBUYENTE:  contribuyente, ID_ACTIVIDAD: ciiu, ID_SUBSECTOR_TIPOEMPRESA: subsectortipoempresa, ID_TRABAJADORES_CAMA: trabajadorcama, CANTIDAD: cantidad, CANTIDAD_MUJERES: cantidadmujeres, LISTA_CONTACTO: contacto, LISTA_ACTIVIDAD: idActividad, UPD_USUARIO: idUsuarioLogin };
+    let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, ID_DEPARTAMENTO: departamento, ID_PROVINCIA: provincia, ID_DISTRITO: distrito, CONTRIBUYENTE: contribuyente, ID_ACTIVIDAD: ciiu, ID_SUBSECTOR_TIPOEMPRESA: subsectortipoempresa, ID_TRABAJADORES_CAMA: trabajadorcama, CANTIDAD: cantidad, CANTIDAD_MUJERES: cantidadmujeres, LISTA_CONTACTO: contacto, LISTA_ACTIVIDAD: idActividad, UPD_USUARIO: idUsuarioLogin };
 
     let url = `${baseUrl}api/institucion/modificardatosinstitucion`;
     let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
@@ -411,7 +413,7 @@ var cantidadChange = () => {
     let menor = parseFloat($(`#txt-numero`).attr('min'));
     let num = parseFloat($(`#txt-numero`).val());
     if (mayor != undefined && menor != undefined) { if (num < menor || num > mayor) $(`#txt-numero`).val(menor); }
-    else if (mayor != undefined){ if (num > mayor) $(`#txt-numero`).val(mayor);}
+    else if (mayor != undefined) { if (num > mayor) $(`#txt-numero`).val(mayor); }
     else if (menor != undefined) { if (num < menor) $(`#txt-numero`).val(menor); }
 }
 
@@ -461,7 +463,7 @@ var armarProvincia = (data) => {
         return `<option value="${x.ID_PROVINCIA}">${x.NOMBRE}</option>`
     }).join('');
     $(`#cbo-provincia`).html(`<option value="0">-Seleccionar-</option>${combo}`);
-    if (vidProvincia > 0) { $(`#cbo-provincia`).val(vidProvincia); provinciaChange(); vidProvincia = 0;}
+    if (vidProvincia > 0) { $(`#cbo-provincia`).val(vidProvincia); provinciaChange(); vidProvincia = 0; }
 }
 
 var provinciaChange = () => {
@@ -477,7 +479,7 @@ var armarDistrito = (data) => {
         return `<option value="${x.ID_DISTRITO}">${x.NOMBRE}</option>`
     }).join('');
     $(`#cbo-distrito`).html(`<option value="0">-Seleccionar-</option>${combo}`);
-    if (vidDistrito > 0) { $(`#cbo-distrito`).val(vidDistrito); vidDistrito = 0;}
+    if (vidDistrito > 0) { $(`#cbo-distrito`).val(vidDistrito); vidDistrito = 0; }
 }
 
 var listaActividad = () => {
@@ -495,12 +497,15 @@ var armarActividad = (data) => {
             let li4 = Math.random().toString(36).substr(2, 4);
             let button = `<button type="button" class="select2-selection__choice__remove" tabindex="-1" title="Remove item" aria-label="Remove item" aria-describedby="select2-cbo-ciiu-container-choice-${idcaracter}-${x.ID_ACTIVIDAD}"><span aria-hidden="true">×</span></button>`;
             let span = `<span class="select2-selection__choice__display" id="select2-cbo-ciiu-container-choice-${idcaracter}-${x.ID_ACTIVIDAD}">${x.NOMBRE_ACTIVIDAD}</span>`;
-            let li = `<li class="select2-selection__choice" title="${x.NOMBRE_ACTIVIDAD}" data-select2-id="select2-data-${432+y}-${li4}">${button}${span}</li>`;
+            let li = `<li class="select2-selection__choice" title="${x.NOMBRE_ACTIVIDAD}" data-select2-id="select2-data-${432 + y}-${li4}">${button}${span}</li>`;
             return li;
         }).join('');
         debugger;
         $('.js-example-basic-multiple').select2({ placeholder: "Selecciones uno o varios códigos CIUU", });
         $('#select2-cbo-ciiu-container').html(contenido);
-        $('#select2-cbo-ciiu-container').click[0];
+
     }
+    //$('.js-example-basic-multiple').select2({ placeholder: "Selecciones uno o varios códigos CIUU", });
+    //debugger;
+    //$('#cbo-ciiu option[value="1"]').attr('selected', true);
 }
