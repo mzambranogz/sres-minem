@@ -44,10 +44,10 @@ namespace sres.ln
                                 contenidoTemp += $"<span><strong>{ccpi.NOMBRE_CRI}</strong></span><br><span><strong>Observación: </strong>{ccpi.OBSERVACION}</span></br>";
                             }
                             contenidoInforme += $"<tr><td style='padding:5px;'><span>La entidad <strong>{ins.RAZON_SOCIAL}</strong> con el responsable de la información </span><strong>{ins.NOMBRES_USU}</strong>, se identificaron las siguientes observaciones:<br>{contenidoTemp}</td></tr>";
-                            string fieldConvocatoria = "[CONTENIDO]", fieldServer = "[SERVER]", nombres = "[NOMBRES]";
-                            string[] fields = new string[] { fieldConvocatoria, fieldServer, nombres };
-                            string[] fieldsRequire = new string[] { fieldConvocatoria, fieldServer, nombres };
-                            Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldConvocatoria] = contenido,[fieldServer] = AppSettings.Get<string>("Server"),[nombres] = ins.NOMBRES_USU };
+                            string fieldConvocatoria = "[CONTENIDO]", fieldServer = "[SERVER]", nombres = "[NOMBRES]", empresa = "[ENTIDAD]";
+                            string[] fields = new string[] { fieldConvocatoria, fieldServer, nombres, empresa };
+                            string[] fieldsRequire = new string[] { fieldConvocatoria, fieldServer, nombres, empresa };
+                            Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldConvocatoria] = contenido,[fieldServer] = AppSettings.Get<string>("Server"),[nombres] = ins.NOMBRES_USU, [empresa] = ins.RAZON_SOCIAL };
                             string subject = $"Levantamiento de observaciones, convocatoria - {ins.NOMBRE_CONV}";
                             MailAddressCollection mailTo = new MailAddressCollection();
                             mailTo.Add(new MailAddress(ins.CORREO));
@@ -79,11 +79,11 @@ namespace sres.ln
                         }                        
 
                         //UsuarioBE usuario = usuarioDA.getAdministrador(cn);
-                        string fieldConvocatoria_ = "[CONTENIDO]", fieldServer_ = "[SERVER]", nombres_ = "[NOMBRES]", mensaje_ = "[MENSAJE]";
-                        string[] fields_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_, mensaje_ };
-                        string[] fieldsRequire_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_, mensaje_ };
-                        Dictionary<string, string> dataBody_ = new Dictionary<string, string> {[fieldConvocatoria_] = contenidoInforme,[fieldServer_] = AppSettings.Get<string>("Server"),[nombres_] = $"{usu.NOMBRES} {usu.APELLIDOS}", [mensaje_] = listaEnvios.Count > 0 ? "A continuación el detalle de cada una de estas:" : "De acuerdo con la evaluación, no se encontraron observaciones" };
-                        string subject_ = $"Informe Preliminar, convocatoria - {lista[0].NOMBRE_CONV}";
+                        string fieldConvocatoria_ = "[CONTENIDO]", fieldServer_ = "[SERVER]", nombres_ = "[NOMBRES]", mensaje_ = "[MENSAJE]", convocatoria = "[CONVOCATORIA]";
+                        string[] fields_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_, mensaje_, convocatoria };
+                        string[] fieldsRequire_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_, mensaje_, convocatoria };
+                        Dictionary<string, string> dataBody_ = new Dictionary<string, string> {[fieldConvocatoria_] = contenidoInforme,[fieldServer_] = AppSettings.Get<string>("Server"),[nombres_] = $"{usu.NOMBRES} {usu.APELLIDOS}", [mensaje_] = listaEnvios.Count > 0 ? "A continuación el detalle de cada evaluación:" : "De acuerdo con la evaluación, no se encontraron observaciones.", [convocatoria] = lista[0].FECHA_INICIO.Year.ToString() };
+                        string subject_ = $"Informe Preliminar de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {lista[0].FECHA_INICIO.Year}";
                         MailAddressCollection mailTo_ = new MailAddressCollection();
                         mailTo_.Add(new MailAddress(usu.CORREO));
                         mailing.SendMail(Mailing.Templates.InformePreliminar, dataBody_, fields_, fieldsRequire_, subject_, mailTo_);
@@ -121,7 +121,7 @@ namespace sres.ln
                             contenidoInforme += $"<tr><td style='padding:5px;'>{empresa}<br><span><strong>Responsable de la información:</strong> {ins.NOMBRES_USU}</span><br>Detalles de la evaluación:<br>{contenido}</td></tr>";
                         }
                     }
-                    contenidoInforme += $"<tr><td style='padding:5px;'>Los resultados obtenidos por las empresas son los siguientes:</td></tr>";
+                    contenidoInforme += $"<tr><td style='padding:5px;'>Los reconocimientos obtenidos por cada empresa participante son los siguientes:</td></tr>";
                     foreach (InscripcionBE ins in lista)
                     {
                         string resultado = "";
@@ -164,11 +164,11 @@ namespace sres.ln
                     informeDA.TrazabilidadInformePreliminar(entidad, AppSettings.Get<string>("Trazabilidad.Convocatoria.InformeFinal"), cn);
 
                     UsuarioBE usuario = usuarioDA.getAdministrador(cn);
-                    string fieldConvocatoria_ = "[CONTENIDO]", fieldServer_ = "[SERVER]", nombres_ = "[NOMBRES]";
-                    string[] fields_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_ };
-                    string[] fieldsRequire_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_ };
-                    Dictionary<string, string> dataBody_ = new Dictionary<string, string> {[fieldConvocatoria_] = contenidoInforme,[fieldServer_] = AppSettings.Get<string>("Server"),[nombres_] = $"{usuario.NOMBRES} {usuario.APELLIDOS}" };
-                    string subject_ = $"Informe Final, convocatoria - {lista[0].NOMBRE_CONV}";
+                    string fieldConvocatoria_ = "[CONTENIDO]", fieldServer_ = "[SERVER]", nombres_ = "[NOMBRES]", convocatoria = "[CONVOCATORIA]";
+                    string[] fields_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_, convocatoria };
+                    string[] fieldsRequire_ = new string[] { fieldConvocatoria_, fieldServer_, nombres_, convocatoria };
+                    Dictionary<string, string> dataBody_ = new Dictionary<string, string> {[fieldConvocatoria_] = contenidoInforme,[fieldServer_] = AppSettings.Get<string>("Server"),[nombres_] = $"{usuario.NOMBRES} {usuario.APELLIDOS}", [convocatoria] = lista[0].FECHA_INICIO.Year.ToString() };
+                    string subject_ = $"Informe Final de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {lista[0].FECHA_INICIO.Year}";
                     MailAddressCollection mailTo_ = new MailAddressCollection();
                     mailTo_.Add(new MailAddress(usuario.CORREO));
 

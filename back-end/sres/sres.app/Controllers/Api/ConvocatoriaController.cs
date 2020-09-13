@@ -143,27 +143,67 @@ namespace sres.app.Controllers.Api
 
                     if (obj.ID_ETAPA == 3 || obj.ID_ETAPA == 5 || obj.ID_ETAPA == 8 || obj.ID_ETAPA == 11)
                     {
+                        List<dynamic> listaEnvios = new List<dynamic>();
                         List<ConvocatoriaBE> lista = convocatoriaLN.listarConvocatoriaEva(new ConvocatoriaBE() { ID_CONVOCATORIA = obj.ID_CONVOCATORIA });
-                        string fieldConvocatoria = "[CONVOCATORIA]", fieldServer = "[SERVER]";
-                        string[] fields = new string[] { fieldConvocatoria, fieldServer };
-                        string[] fieldsRequire = new string[] { fieldConvocatoria, fieldServer };
-                        Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldConvocatoria] = obj.NOMBRE,[fieldServer] = AppSettings.Get<string>("Server") };
+                        string fieldConvocatoria = "[CONVOCATORIA]", fieldServer = "[SERVER]", fieldNombres = "[NOMBRES]";
+                        string[] fields = new string[] { fieldConvocatoria, fieldServer, fieldNombres };
+                        string[] fieldsRequire = new string[] { fieldConvocatoria, fieldServer, fieldNombres };
+                        //Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldConvocatoria] = obj.NOMBRE,[fieldServer] = AppSettings.Get<string>("Server") };
                         string subject = "";
-                        if (obj.ID_ETAPA == 3) subject = $"Revisión de los requisitos de la convocatoria {obj.NOMBRE}";
-                        else if (obj.ID_ETAPA == 5) subject = $"Filtrado de los participantes de la convocatoria {obj.NOMBRE}";
-                        else if (obj.ID_ETAPA == 8) subject = $"Primera Revisión de la información de los participantes de la convocatoria {obj.NOMBRE}";
-                        else if (obj.ID_ETAPA == 11) subject = $"Segunda Revisión de la información de los participantes de la convocatoria {obj.NOMBRE}";
-                        MailAddressCollection mailTo = new MailAddressCollection();
-                        foreach (ConvocatoriaBE usuario in lista)
-                        {
-                            mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRE}"));
-                        }
+                        if (obj.ID_ETAPA == 3) subject = $"Revisión de los requisitos de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {obj.FECHA_INICIO.Year.ToString()}";
+                        else if (obj.ID_ETAPA == 5) subject = $"Filtrado de los participantes de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {obj.FECHA_INICIO.Year.ToString()}";
+                        else if (obj.ID_ETAPA == 8) subject = $"Primera Revisión de la información de los participantes de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {obj.FECHA_INICIO.Year.ToString()}";
+                        else if (obj.ID_ETAPA == 11) subject = $"Segunda Revisión de la información de los participantes de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {obj.FECHA_INICIO.Year.ToString()}";
+                        //MailAddressCollection mailTo = new MailAddressCollection();
+                        //foreach (ConvocatoriaBE usuario in lista)
+                        //{
+                        //    mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRE}"));
+                        //}
+                        //if (lista.Count > 0)
+                        //{
+                        //    if (obj.ID_ETAPA == 3) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.RevisionReqConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
+                        //    else if (obj.ID_ETAPA == 5) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.FiltradoConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
+                        //    else if (obj.ID_ETAPA == 8) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.RevisionN1Convocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
+                        //    else if (obj.ID_ETAPA == 11) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.RevisionN2Convocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
+                        //}
+
                         if (lista.Count > 0)
                         {
-                            if (obj.ID_ETAPA == 3) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.RevisionReqConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
-                            else if (obj.ID_ETAPA == 5) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.FiltradoConvocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
-                            else if (obj.ID_ETAPA == 8) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.RevisionN1Convocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
-                            else if (obj.ID_ETAPA == 11) Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.RevisionN2Convocatoria, dataBody, fields, fieldsRequire, subject, mailTo));
+                            foreach (ConvocatoriaBE usuario in lista)
+                            {
+                                Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldConvocatoria] = obj.FECHA_INICIO.Year.ToString(),[fieldServer] = AppSettings.Get<string>("Server"), [fieldNombres] = usuario.NOMBRE };
+                                MailAddressCollection mailTo = new MailAddressCollection();
+                                mailTo.Add(new MailAddress(usuario.CORREO));
+                                var template = Mailing.Templates.RevisionReqConvocatoria;
+                                if (obj.ID_ETAPA == 3) template = Mailing.Templates.RevisionReqConvocatoria;
+                                else if (obj.ID_ETAPA == 5) template = Mailing.Templates.FiltradoConvocatoria;
+                                else if (obj.ID_ETAPA == 8) template = Mailing.Templates.RevisionN1Convocatoria;
+                                else if (obj.ID_ETAPA == 11) template = Mailing.Templates.RevisionN2Convocatoria;
+                                //else if (obj.ID_ETAPA == 7) template = Mailing.Templates.CoordinacionConvocatoria;
+                                //else if (obj.ID_ETAPA == 10) template = Mailing.Templates.LevantamientoObsConvocatoria;
+
+                                dynamic envio = new
+                                {
+                                    Template = template,
+                                    Databody = dataBody,
+                                    Fields = fields,
+                                    FieldsRequire = fieldsRequire,
+                                    Subject = subject,
+                                    MailTo = mailTo
+                                };
+                                listaEnvios.Add(envio);
+                            }
+
+                            Task.Factory.StartNew(() =>
+                            {
+                                if (listaEnvios.Count > 0)
+                                {
+                                    foreach (dynamic item in listaEnvios)
+                                    {
+                                        mailing.SendMail(item.Template, item.Databody, item.Fields, item.FieldsRequire, item.Subject, item.MailTo);
+                                    }
+                                }
+                            });
                         }
                     }
 

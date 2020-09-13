@@ -37,7 +37,7 @@ namespace sres.app.Controllers.Api
             int idInscripcion = 0;
             bool seGuardo = inscripcionLN.GuardarInscripcion(inscripcion, out idInscripcion);
 
-            if (seGuardo)
+            if (seGuardo && inscripcion.ID_ETAPA == 2)
             {
                 ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(!inscripcion.ID_CONVOCATORIA.HasValue ? 0 : inscripcion.ID_CONVOCATORIA.Value);
                 UsuarioBE usuario = usuarioLN.ObtenerUsuario(!inscripcion.UPD_USUARIO.HasValue ? 0 : inscripcion.UPD_USUARIO.Value);
