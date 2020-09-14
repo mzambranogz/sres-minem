@@ -7,19 +7,28 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace sres.app.Views.Reporte {
+namespace sres.app.Reportes {
     
     
-    public partial class WebForm1 {
+    public partial class ReporteEstadisticoReconocimientoSySSXConvocatoria {
         
         /// <summary>
-        /// Control frmReporte.
+        /// Control form1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmReporte;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        
+        /// <summary>
+        /// Control ScriptManager1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
         /// Control ddlConvocatoria.
@@ -38,5 +47,14 @@ namespace sres.app.Views.Reporte {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConsultar;
+        
+        /// <summary>
+        /// Control rpwReporte.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Microsoft.Reporting.WebForms.ReportViewer rpwReporte;
     }
 }

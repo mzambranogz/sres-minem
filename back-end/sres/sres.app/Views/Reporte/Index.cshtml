@@ -1,6 +1,9 @@
-﻿@{
+﻿@using sres.app.Models
+@using sres.be
+@{
     ViewBag.Titulo = "Reporte";
     ViewBag.SRESDescription = false;
+    UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
 }
 
 @section scripts_footer{
@@ -45,18 +48,26 @@
                         <div class="input-group-prepend"><span class="input-group-text" id="inputGroup1"><i class="fas fa-table"></i></span></div>
                         <select class="form-control estilo-01 text-sres-oscuro" id="cbo-tabla-mantenimiento" required>
                             <option value="0" data-url="">-Seleccione una Tabla de Matenimiento-</option>
-                            <option value="1" data-url="Reporte/ReporteEstadisticoXTipoEmpresa.aspx">Reporte Estadístico Por Tipo Empresa</option>
+                            @if (usuario.ID_ROL == (int?)EnumsCustom.Roles.ADMINISTRADOR)
+                            {
+                                <option value="1" data-url="Reportes/ReporteEstadisticoTipoEmpresaXConvocatoria.aspx">Reporte estadístico de tipo de empresa por convocatoria</option>
+                                <option value="2" data-url="Reportes/ReporteEstadisticoTipoPostulanteXConvocatoria.aspx">Reporte estadístico de tipo de postulante por convocatoria</option>
+                                <option value="3" data-url="Reportes/ReporteEstadisticoReconocimientoXConvocatoria.aspx">Reporte estadístico de reconocimientos por convocatoria</option>
+                                <option value="4" data-url="Reportes/ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx">Reporte estadístico de reconocimientos (Sector y SubSector) por convocatoria</option>
+                            }
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6">&nbsp;</div>
-                    <div class="col-sm-12 col-md-6 col-lg-6"><a class="btn btn-primary w-100 mb-2" href="#" id="ir-reporte">Ir al reporte</a></div>
-                </div>
-                <div class="row" id="report-view">
-
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <a class="btn btn-primary w-100 mb-2" href="#" id="ir-reporte">Ir al reporte</a>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="row" id="report-view">
+            <iframe id="iframe-report-view" src="" style="width: 100%; height:0px; border:none;"></iframe>
         </div>
     </div>
 </div>

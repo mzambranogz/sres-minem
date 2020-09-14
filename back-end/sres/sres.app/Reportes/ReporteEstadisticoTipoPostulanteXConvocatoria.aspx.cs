@@ -1,4 +1,5 @@
-﻿using sres.be;
+﻿using Microsoft.Reporting.WebForms;
+using sres.be;
 using sres.ln;
 using System;
 using System.Collections.Generic;
@@ -7,16 +8,16 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace sres.app.Views.Reporte
+namespace sres.app.Reportes
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class ReporteEstadisticoTipoPostulanteXConvocatoria : System.Web.UI.Page
     {
         ConvocatoriaLN convocatoriaLN = new ConvocatoriaLN();
         ReporteLN reporteLN = new ReporteLN();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!Page.IsPostBack)
             {
                 CargarCombos();
             }
@@ -31,13 +32,19 @@ namespace sres.app.Views.Reporte
         {
             List<ConvocatoriaBE> listaCombo = convocatoriaLN.ListarConvocatoria();
             ddlConvocatoria.DataSource = listaCombo;
+            ddlConvocatoria.DataBind();
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
             int idConvocatoria = int.Parse(ddlConvocatoria.SelectedValue);
 
-            List<ReporteBE.ReporteEstadisticoXTipoEmpresa> data = reporteLN.ListarReporteEstadisticoXTipoEmpresa(idConvocatoria);
+            List<ReporteBE.ReporteEstadisticoTipoPostulanteXConvocatoria> data = reporteLN.ListarReporteEstadisticoTipoPostulanteXConvocatoria(idConvocatoria);
+
+            ReportDataSource dataSource = new ReportDataSource("dsReporte", data);
+            rpwReporte.Visible = true;
+            rpwReporte.LocalReport.DataSources.Clear();
+            rpwReporte.LocalReport.DataSources.Add(dataSource);
         }
     }
 }

@@ -13,17 +13,97 @@ namespace sres.da
 {
     public class ReporteDA : BaseDA
     {
-        public List<ReporteBE.ReporteEstadisticoXTipoEmpresa> ListarReporteEstadisticoXTipoEmpresa(int idConvocatoria, OracleConnection db)
+        public List<ReporteBE.ReporteEstadisticoTipoEmpresaXConvocatoria> ListarReporteEstadisticoTipoEmpresaXConvocatoria(int idConvocatoria, OracleConnection db)
         {
-            List<ReporteBE.ReporteEstadisticoXTipoEmpresa> lista = new List<ReporteBE.ReporteEstadisticoXTipoEmpresa>();
+            List<ReporteBE.ReporteEstadisticoTipoEmpresaXConvocatoria> lista = new List<ReporteBE.ReporteEstadisticoTipoEmpresaXConvocatoria>();
 
             try
             {
-                string sp = $"{Package.Admin}USP_SEL_REP_ESTADXTIPOEMPRESA";
+                string sp = $"{Package.Admin}USP_SEL_REP_ESTADTIPOEMPRESAXCONV";
                 var p = new OracleDynamicParameters();
                 p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-                lista = db.Query<ReporteBE.ReporteEstadisticoXTipoEmpresa>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                lista = db.Query<ReporteBE.ReporteEstadisticoTipoEmpresaXConvocatoria>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<ReporteBE.ReporteEstadisticoTipoPostulanteXConvocatoria> ListarReporteEstadisticoTipoPostulanteXConvocatoria(int idConvocatoria, OracleConnection db)
+        {
+            List<ReporteBE.ReporteEstadisticoTipoPostulanteXConvocatoria> lista = new List<ReporteBE.ReporteEstadisticoTipoPostulanteXConvocatoria>();
+
+            try
+            {
+                string sp = $"{Package.Admin}USP_SEL_REP_ESTADTIPOPOSTXCONV";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ReporteBE.ReporteEstadisticoTipoPostulanteXConvocatoria>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<ReporteBE.ReporteEstadisticoInsigniaXConvocatoria> ListarReporteEstadisticoInsigniaXConvocatoria(int idConvocatoria, OracleConnection db)
+        {
+            List<ReporteBE.ReporteEstadisticoInsigniaXConvocatoria> lista = new List<ReporteBE.ReporteEstadisticoInsigniaXConvocatoria>();
+
+            try
+            {
+                string sp = $"{Package.Admin}USP_SEL_REP_ESTADRECINSIGXCONV";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ReporteBE.ReporteEstadisticoInsigniaXConvocatoria>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<ReporteBE.ReporteEstadisticoEstrellaXConvocatoria> ListarReporteEstadisticoEstrellaXConvocatoria(int idConvocatoria, OracleConnection db)
+        {
+            List<ReporteBE.ReporteEstadisticoEstrellaXConvocatoria> lista = new List<ReporteBE.ReporteEstadisticoEstrellaXConvocatoria>();
+
+            try
+            {
+                string sp = $"{Package.Admin}USP_SEL_REP_ESTADRECESTREXCONV";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ReporteBE.ReporteEstadisticoEstrellaXConvocatoria>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
+
+        public List<ReporteBE.ReporteEstadisticoMejoraContinuaXConvocatoria> ListarReporteEstadisticoMejoraContinuaXConvocatoria(int idConvocatoria, OracleConnection db)
+        {
+            List<ReporteBE.ReporteEstadisticoMejoraContinuaXConvocatoria> lista = new List<ReporteBE.ReporteEstadisticoMejoraContinuaXConvocatoria>();
+
+            try
+            {
+                string sp = $"{Package.Admin}USP_SEL_REP_ESTADRECMCXCONV";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ReporteBE.ReporteEstadisticoMejoraContinuaXConvocatoria>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
             {
