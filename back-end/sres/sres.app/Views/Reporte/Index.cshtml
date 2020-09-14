@@ -4,13 +4,102 @@
     ViewBag.Titulo = "Reporte";
     ViewBag.SRESDescription = false;
     UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
+    ViewBag.Header = new Dictionary<string, object>
+    {
+        ["Imagen"] = "~/Assets/images/bg-reportes.png",
+        ["Titulo"] = "REPORTE DE RESULTADOS"
+    };
 }
 
 @section scripts_footer{
     <script src="@Url.Content("~/Assets/js/pages/reporte.js")"></script>
 }
 
+@*<div class="container-fluid set-bg" data-setbg="./images/bg-reportes.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 py-5">
+                <h1 class="estilo-03 text-white barra-blanca px-1 wow fadeIn">REPORTE DE RESULTADOS</h1>
+            </div>
+        </div>
+    </div>
+</div>*@
 <div class="container-fluid mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="estilo-05" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index","Inicio")">Inicio</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Reportes</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="estilo-03 text-sres-azul">Verificación y Reportes</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="rayado wow fadeIn"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <form>
+                    <div class="form-group">
+                        <label for="txt-buscar">Seleccionar&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="right" title="Seleccione una opción de la siguiente lista y presione ir al reporte para visualizarlo"></i></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend"><span class="input-group-text" id="inputGroup1"><i class="fas fa-file-invoice"></i></span></div>
+                            <select class="form-control cbo-list" id="cbo-tabla-mantenimiento" required>
+                                <option data-url="">-Seleccione un Tipo de Reporte-</option>
+                                @if (usuario.ID_ROL == (int?)EnumsCustom.Roles.ADMINISTRADOR)
+                                {
+                                    <option value="1" data-url="Reportes/ReporteEstadisticoTipoEmpresaXConvocatoria.aspx">Reporte estadístico de tipo de empresa por convocatoria</option>
+                                    <option value="2" data-url="Reportes/ReporteEstadisticoTipoPostulanteXConvocatoria.aspx">Reporte estadístico de tipo de postulante por convocatoria</option>
+                                    <option value="3" data-url="Reportes/ReporteEstadisticoReconocimientoXConvocatoria.aspx">Reporte estadístico de reconocimientos por convocatoria</option>
+                                    <option value="4" data-url="Reportes/ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx">Reporte estadístico de reconocimientos (Sector y SubSector) por convocatoria</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">&nbsp;</div>
+                        <div class="col-sm-12 col-md-6 col-lg-6"><a class="btn btn-success w-100 mb-2 go-select" href="#" id="ir-reporte"><i class="far fa-hand-point-up px-1"></i>Ir al reporte</a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" id="report-view">
+            <iframe id="iframe-report-view" src="" style="width: 100%; height:0px; border:none;"></iframe>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="container-fluid mt-5">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -70,4 +159,4 @@
             <iframe id="iframe-report-view" src="" style="width: 100%; height:0px; border:none;"></iframe>
         </div>
     </div>
-</div>
+</div>*@

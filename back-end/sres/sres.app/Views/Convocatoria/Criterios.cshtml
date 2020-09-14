@@ -17,6 +17,7 @@
     string criteriosdescripcion = AppSettings.Get<string>("Criterios.Descripcion");
     string pathFormat_mt = AppSettings.Get<string>("Path.MedidaMitigacion");
     string pathFormat_reg_mrv = AppSettings.Get<string>("Registro.MRV");
+    string pathFormat_ini_mrv = AppSettings.Get<string>("Inicio.MRV");
 }
 
 @section scripts_footer{
@@ -149,7 +150,7 @@
                     <div class="dropdown-divider my-5 wow fadeIn"></div><b class="estilo-02 text-sres-azul">Resultados obtenidos:</b>
                 </div>
             </div>
-            <div class="row">
+            @*<div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 text-center my-3">
                     <div class="alert alert-warning py-5">
                         <div class="text-sres-verde pt-3">
@@ -168,7 +169,51 @@
                         <div class="badge badge-success p-1 mt-2"><small class="estilo-01">Total de Puntaje Acumulado</small></div>
                     </div>
                 </div>
+            </div>*@
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-warning py-5">
+                        <div class="text-sres-verde pt-3">
+                            <span class="estilo-07">@emisiones.ToString("N3")</span>
+                            <smal class="estilo-03">tCO<sub>2</sub></smal>
+                        </div>
+                        <div class="badge badge-warning p-1 mt-2"><small class="estilo-01">Total de Emisiones <br> Reducidas de tCO<sub>2</sub></small></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-success py-5">
+                        <div class="text-sres-azul pt-3">
+                            <span class="estilo-07">@puntaje</span>
+                            <smal class="estilo-03">puntos</smal>
+                        </div>
+                        <div class="badge badge-success p-1 mt-2"><small class="estilo-01">Total de Puntaje Preliminar, <br> Pendiente de Aprobación</small></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-info py-5">
+                        <div class="text-sres-azul pt-3">
+                            <span class="estilo-07">720</span>
+                            <smal class="estilo-03">puntos</smal>
+                        </div>
+                        <div class="badge badge-primary p-1 mt-2"><small class="estilo-01">Total de Puntaje Posible, <br> Potecialmente por Alcanzar</small></div>
+                    </div>
+                </div>
             </div>
+            @if (convocatoria.ID_ETAPA == 6)
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <div class="dropdown-divider my-5 wow fadeIn"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 my-3 text-center">
+                        <span class="d-block" data-toggle="tooltip" data-placement="top" title="Podrá importar las reducciones de emisiones de tCO2 registradas desde la Plataforma de MRV"><a class="btn btn-warning btn-lg" href="javascript:void(0)" id="migrar-emisiones" data-toggle="modal" data-target="#modal-valores"><i class="fas fa-file-import mr-1"></i>Importar Emisiones Reducidas de tCO<sub>2</sub> de la Plataforma MRV</a></span>
+                        <a class="estilo-01 text-sres-verde cursor-pointer d-block mt-3" href="@pathFormat_ini_mrv" target="_blank">Ver Plataforma MRV del Sector Energía</a>
+                    </div>
+                </div>
+            }
             <div class="row">
                 <div class="col-12">
                     <div class="rayado my-5 wow fadeIn"></div>
@@ -176,10 +221,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12 my-3">
-                    @if (convocatoria.ID_ETAPA == 6)
+                    @*@if (convocatoria.ID_ETAPA == 6)
                     {
                         <span data-toggle="tooltip" data-placement="top" title="Podrá importar las emisiones reducidas de tCO2 registradas desde la Plataforma de MRV para participar en el reconocimiento por cada medida que aporta a las Contribuciones Nacionales Determinadas (NDC)"><a class="btn btn-warning text-white d-block w-100 mb-3" href="javascript:void(0)" id="migrar-emisiones" data-toggle="modal" data-target="#modal-valores">Importar Emisiones tCO<sub>2</sub></a></span>
-                    }
+                    }*@
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 my-3"></div>
                 <div class="col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Action("Index","Convocatoria")">Regresar</a></div>
@@ -259,7 +304,7 @@ else
                     <div class="dropdown-divider my-5 wow fadeIn"></div><b class="estilo-02 text-sres-azul">Resultados obtenidos:</b>
                 </div>
             </div>
-            <div class="row">
+            @*<div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 text-center my-3">
                     <div class="alert alert-warning py-5">
                         <div class="text-sres-verde pt-3">
@@ -278,7 +323,51 @@ else
                         <div class="badge badge-success p-1 mt-2"><small class="estilo-01">Total de Puntaje Acumulado</small></div>
                     </div>
                 </div>
+            </div>*@
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-warning py-5">
+                        <div class="text-sres-verde pt-3">
+                            <span class="estilo-07">@emisiones.ToString("N3")</span>
+                            <smal class="estilo-03">tCO<sub>2</sub></smal>
+                        </div>
+                        <div class="badge badge-warning p-1 mt-2"><small class="estilo-01">Total de Emisiones <br> Reducidas de tCO<sub>2</sub></small></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-success py-5">
+                        <div class="text-sres-azul pt-3">
+                            <span class="estilo-07">@puntaje</span>
+                            <smal class="estilo-03">puntos</smal>
+                        </div>
+                        <div class="badge badge-success p-1 mt-2"><small class="estilo-01">Total de Puntaje Preliminar, <br> Pendiente de Aprobación</small></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-info py-5">
+                        <div class="text-sres-azul pt-3">
+                            <span class="estilo-07">720</span>
+                            <smal class="estilo-03">puntos</smal>
+                        </div>
+                        <div class="badge badge-primary p-1 mt-2"><small class="estilo-01">Total de Puntaje Posible, <br> Potecialmente por Alcanzar</small></div>
+                    </div>
+                </div>
             </div>
+            @if (convocatoria.ID_ETAPA == 6)
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <div class="dropdown-divider my-5 wow fadeIn"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 my-3 text-center">
+                        <span class="d-block" data-toggle="tooltip" data-placement="top" title="Podrá importar las reducciones de emisiones de tCO2 registradas desde la Plataforma de MRV"><a class="btn btn-warning btn-lg" href="javascript:void(0)" id="migrar-emisiones" data-toggle="modal" data-target="#modal-valores"><i class="fas fa-file-import mr-1"></i>Importar Emisiones Reducidas de tCO<sub>2</sub> de la Plataforma MRV</a></span>
+                        <a class="estilo-01 text-sres-verde cursor-pointer d-block mt-3" href="@pathFormat_ini_mrv" target="_blank">Ver Plataforma MRV del Sector Energía</a>
+                    </div>
+                </div>
+            }
             <div class="row">
                 <div class="col-12">
                     <div class="rayado my-5 wow fadeIn"></div>
@@ -286,10 +375,10 @@ else
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12 my-3">
-                    @if (convocatoria.ID_ETAPA == 6)
+                    @*@if (convocatoria.ID_ETAPA == 6)
                     {
                         <span data-toggle="tooltip" data-placement="top" title="Podrá importar las emisiones reducidas de tCO2 registradas desde la Plataforma de MRV para participar en el reconocimiento por cada medida que aporta a las Contribuciones Nacionales Determinadas (NDC)"><a class="btn btn-warning text-white d-block w-100 mb-3" href="javascript:void(0)" id="migrar-emisiones" data-toggle="modal" data-target="#modal-valores">Importar Emisiones tCO<sub>2</sub></a></span>
-                    }
+                    }*@
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 my-3"></div>
                 <div class="col-lg-3 col-md-12 col-sm-12 my-3"><a class="btn btn-secondary text-white w-100 mb-3" href="@Url.Action("Index","Convocatoria")">Regresar</a></div>
