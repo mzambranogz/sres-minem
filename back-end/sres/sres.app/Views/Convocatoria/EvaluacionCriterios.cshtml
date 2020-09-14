@@ -15,6 +15,7 @@
     string pathFormat = AppSettings.Get<string>("Path.Criterio");
     string obs = convetainsc == null ? "" : convetainsc.OBSERVACION == null ? "" : convetainsc.OBSERVACION;
     int evaluacion = convetainsc == null ? 0 : convetainsc.OBSERVACION == null ? 0 : convetainsc.ID_TIPO_EVALUACION;
+    string criteriosdescripcion = AppSettings.Get<string>("Criterios.DescripcionEva");
 }
 
 @section scripts_footer{
@@ -93,8 +94,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <p class="estilo-02 text-justify text-sres-azul m-0">Ingrese y complete todos los criterios de evaluación</p>
-                        <p class="estilo-01 text-justify text-sres-gris m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum eligendi beatae nesciunt hic reiciendis delectus dolorem molestias ducimus quis recusandae tempore labore et, perferendis, adipisci cumque temporibus id eum aperiam. &nbsp;<a class="text-sres-verde" href="#" target="_blank">Ver más información</a></p>
+                        <p class="estilo-02 text-justify text-sres-azul m-0">Criterios de evaluación</p>
+                        <p class="estilo-01 text-justify text-sres-gris m-0">@criteriosdescripcion</p>
                     </div>
                 </div>
             </div>
@@ -204,8 +205,8 @@ else
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <p class="estilo-02 text-justify text-sres-azul m-0">Ingrese y complete todos los criterios de evaluación</p>
-                <p class="estilo-01 text-justify text-sres-gris m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum eligendi beatae nesciunt hic reiciendis delectus dolorem molestias ducimus quis recusandae tempore labore et, perferendis, adipisci cumque temporibus id eum aperiam. &nbsp;<a class="text-sres-verde" href="#" target="_blank">Ver más información</a></p>
+                <p class="estilo-02 text-justify text-sres-azul m-0">Criterios de evaluación</p>
+                <p class="estilo-01 text-justify text-sres-gris m-0">@criteriosdescripcion</p>
             </div>
         </div>
     </div>

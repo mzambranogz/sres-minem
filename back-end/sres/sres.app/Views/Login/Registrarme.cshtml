@@ -47,7 +47,7 @@
                                         <label class="estilo-01" for="txt-institucion">Entidad</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;<i class="fas fa-question-circle ayuda-tooltip" data-toggle="tooltip" data-placement="top" title="Ingrese el nombre comercial o razón social de su empresa"></i></span>
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
-                                            <input class="form-control estilo-01" type="text" name="txt-institucion" id="txt-institucion" readonly placeholder="Ingrese su institución" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{8,70}" maxlength="70" required>
+                                            <input class="form-control estilo-01" type="text" name="txt-institucion" id="txt-institucion" readonly placeholder="Ingrese su institución" @*pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]"*@ maxlength="70" required>
                                         </div>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                                         <label class="estilo-01" for="txt-nombre">Nombres</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
-                                            <input class="form-control estilo-01" type="text" name="txt-nombre" id="txt-nombre" readonly placeholder="Ingrese su nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,54}" maxlength="54" required>
+                                            <input class="form-control estilo-01" type="text" name="txt-nombre" id="txt-nombre" readonly placeholder="Ingrese su nombres" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{0,54}" maxlength="54" required>
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@
                                         <label class="estilo-01" for="txt-apellido">Apellidos</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
-                                            <input class="form-control estilo-01" type="text" name="txt-apellido" id="txt-apellido" readonly placeholder="Ingrese su apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{8,54}" maxlength="54" required>
+                                            <input class="form-control estilo-01" type="text" name="txt-apellido" id="txt-apellido" readonly placeholder="Ingrese su apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{0,54}" maxlength="54" required>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@
                                         <label class="estilo-01" for="txt-telefono">Teléfono fijo</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-phone-alt"></i></span></div>
-                                            <input class="form-control estilo-01" type="tel" name="txt-telefono" id="txt-telefono" readonly placeholder="Ingrese su teléfono" pattern="[0-9]{6,10}" maxlength="10">
+                                            <input class="form-control estilo-01 solo-numero" type="tel" name="txt-telefono" id="txt-telefono" readonly placeholder="Ingrese su teléfono" @*pattern="[0-9]{9,12}"*@ maxlength="10">
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +118,7 @@
                                         <label class="estilo-01" for="txt-anexo">Anexo</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-phone-square-alt"></i></span></div>
-                                            <input class="form-control estilo-01" type="tel" name="txt-anexo" id="txt-anexo" readonly placeholder="Ingrese su anexo" pattern="[0-9]{4,5}" maxlength="5">
+                                            <input class="form-control estilo-01 solo-numero" type="tel" name="txt-anexo" id="txt-anexo" readonly placeholder="Ingrese su anexo" @*pattern="[0-9]"*@ maxlength="5">
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                                         <label class="estilo-01" for="txt-celular">Teléfono móvil</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-mobile-alt"></i></span></div>
-                                            <input class="form-control estilo-01" type="text" name="txt-celular" id="txt-celular" readonly placeholder="Ingrese su celular" pattern="[0-9]{9,12}" maxlength="12" required>
+                                            <input class="form-control estilo-01 solo-numero" type="text" name="txt-celular" id="txt-celular" readonly placeholder="Ingrese su celular" @*pattern="[0-9]"*@ maxlength="12" required>
                                         </div>
                                     </div>
                                 </div>
@@ -141,7 +141,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-key"></i></span></div>
                                             @*<input class="form-control estilo-01" type="password" name="txt-pswd" id="txt-pswd" readonly placeholder="Ingrese se contraseña" pattern="(?=.*\d)(?=.*[!@("@")#$&*])(?=.*[a-z])(?=.*[A-Z]).{6,}" autocomplete="new-password" required>*@
-                                            <input class="form-control estilo-01" type="password" name="txt-pswd" id="txt-pswd" readonly placeholder="Ingrese se contraseña" autocomplete="new-password" required>
+                                            <input class="form-control estilo-01" type="password" name="txt-pswd" maxlength="30" id="txt-pswd" readonly placeholder="Ingrese se contraseña" autocomplete="new-password" required>
                                             <div class="input-group-append">
                                                 <label class="input-group-text cursor-pointer ver-clave"><i class="fas fa-eye mr-1"></i>Mostrar</label>
                                             </div>
@@ -162,7 +162,7 @@
                                         <label class="estilo-01" for="txt-re-pswd">Confirmar contraseña</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-key"></i></span></div>
-                                            <input class="form-control estilo-01" type="password" name="txt-re-pswd" id="txt-re-pswd" readonly placeholder="Confirmar su contraseña" required>
+                                            <input class="form-control estilo-01" type="password" name="txt-re-pswd" maxlength="30" id="txt-re-pswd" readonly placeholder="Confirmar su contraseña" required>
                                             <div class="input-group-append">
                                                 <label class="input-group-text cursor-pointer ver-clave"><i class="fas fa-eye mr-1"></i>Mostrar</label>
                                             </div>
