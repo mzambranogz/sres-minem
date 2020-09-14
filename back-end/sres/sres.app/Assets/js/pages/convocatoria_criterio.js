@@ -330,7 +330,7 @@ var guardar = () => {
     .then(j => {
         //if (j) {
         j ? $('#btnGuardar').parent().parent().hide() : '';
-        j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Los registro de este criterio fueron guardados correctamente.', close: { time: 4000 }, url: `${baseUrl}Convocatoria/${idConvocatoria}/Criterios` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
+        j ? $('.alert-add').html('').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: 'Felicidades por completar este criterio, ya puedes continuar con el siguiente.', close: { time: 4000 }, url: `${baseUrl}Convocatoria/${idConvocatoria}/Criterios` }) : $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: 'Inténtelo nuevamente por favor.' });
         //}
     });
 }
@@ -443,7 +443,8 @@ var filtrar = (e) => {
                 .then(j => {
                     if (j.length > 0) {
                         contenido = j.map((x, m) => {
-                            let opciones = `<option value="${x.ID_DETALLE}" ${(j.length == 1 ? "selected" : "")}>${x.NOMBRE}</option>`;
+                            //let opciones = `<option value="${x.ID_DETALLE}" ${(j.length == 1 ? "selected" : "")}>${x.NOMBRE}</option>`;
+                            let opciones = `<option value="${x.ID_DETALLE}">${x.NOMBRE}</option>`;
                             return opciones;
                         }).join('');
                         $(`#${arr}-${j[0].ID_PARAMETRO}`).html(`<option value="0">Seleccione</option>${contenido}`);

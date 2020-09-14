@@ -501,6 +501,7 @@ var armarActividad = (data) => {
             return li;
         }).join('');
         debugger;
+        //$('#cbo-ciiu').html('<option value="1" selected>CIUU-0111-CULTIVO DE CEREALES (EXCEPTO ARROZ), LEGUMBRES Y SEMILLAS OLEAGINOSAS</option><option value="2">CIUU-0112-CULTIVO DE ARROZ</option>');
         $('.js-example-basic-multiple').select2({ placeholder: "Selecciones uno o varios códigos CIUU", });
         $('#select2-cbo-ciiu-container').html(contenido);
 

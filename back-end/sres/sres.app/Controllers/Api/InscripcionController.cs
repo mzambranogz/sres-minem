@@ -116,7 +116,7 @@ namespace sres.app.Controllers.Api
                     string fieldNombres = "[NOMBRES]", fieldConvocatoria = "[CONVOCATORIA]", fieldObservacion = "[OBSERVACION]";
                     string[] fields = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion };
                     string[] fieldsRequire = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion };
-                    Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldNombres] = insc.NOMBRES_USU,[fieldConvocatoria] = insc.NOMBRE_CONV,[fieldObservacion] = inscripcion.OBSERVACION };
+                    Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldNombres] = insc.NOMBRES_USU,[fieldConvocatoria] = insc.FECHA_INICIO.Year.ToString(),[fieldObservacion] = inscripcion.OBSERVACION };
                     string subject = $"{insc.NOMBRES_USU}, su inscripción fue anulada";
                     MailAddressCollection mailTo = new MailAddressCollection();
                     mailTo.Add(new MailAddress(insc.CORREO));
