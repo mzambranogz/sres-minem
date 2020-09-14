@@ -98,7 +98,9 @@ namespace sres.da
                         TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
                         PAGINA = (int)x.PAGINA,
                         CANTIDAD_REGISTROS = (int)x.CANTIDAD_REGISTROS,
-                        TOTAL_REGISTROS = (int)x.TOTAL_REGISTROS
+                        TOTAL_REGISTROS = (int)x.TOTAL_REGISTROS,
+                        ID_PREMIACION = (int)x.ID_PREMIACION,
+                        ARCHIVO_BASE = (string)x.ARCHIVO_BASE_PRE
                     }).ToList();
             }
             catch (Exception ex) { Log.Error(ex); }

@@ -98,7 +98,6 @@ var evaluarInscripcion = () => {
     }
 
     let listaInputFile = $('[data-id-req]');
-    //debugger;
     let listaInscripcionRequerimiento = Array.from(listaInputFile).filter(x => !$(x).hasClass('alert-secondary'));
 
     if (listaInscripcionRequerimiento.length == 0) {
@@ -134,11 +133,12 @@ var evaluarInscripcion = () => {
         USUARIO_GUARDAR: idUsuarioLogin
     }
 
-    //console.log(formData);
+
     //let url = `${baseUrl}api/inscripcion/evaluarinscripcion`;
     let url = ``;
-
-    if ($('.alert-danger').length == 0 || idEtapa != 5) url = `${baseUrl}api/inscripcion/evaluarinscripcion`;
+    let listaValidar = Array.from(listaInputFile).filter(x => $(x).hasClass('alert-danger'));
+    //if ($('.alert-danger').length == 0 || idEtapa != 5) url = `${baseUrl}api/inscripcion/evaluarinscripcion`;
+    if (listaValidar.length == 0 || idEtapa != 5) url = `${baseUrl}api/inscripcion/evaluarinscripcion`;
     else url = `${baseUrl}api/inscripcion/anularinscripcion`;
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
@@ -151,8 +151,9 @@ var evaluarInscripcion = () => {
 
 var mostrarMensaje = (data) => {
     if (data == true) {
+        let listaValidar = Array.from($('[data-id-req]')).filter(x => $(x).hasClass('alert-danger'));
         $('#btnEvaluar').parent().parent().hide();
-        if ($('.alert-danger').length == 0 || idEtapa != 5) $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: `¡Se guardó correctamente!`, close: { time: 5000 } });
+        if (listaValidar.length == 0 || idEtapa != 5) $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'BIEN HECHO', message: `¡Se guardó correctamente!`, close: { time: 5000 } });
         else $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'success', title: 'CORRECTO', message: `¡Se realizó correctamente el proceso de anulación y se notificó al usuario responsable!`, close: { time: 5000 } });
         setTimeout(() => { location.href = `${baseUrl}Convocatoria/${idConvocatoria}/BandejaParticipantes/`; }, 5000);
         //cargarListaInscripcionRequerimiento();
