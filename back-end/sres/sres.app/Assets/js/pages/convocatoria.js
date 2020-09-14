@@ -244,19 +244,22 @@ var btnMostrarDatosInstitucionClick = (e) => {
 }
 
 var responseMostrarDatosInstitucion = (data) => {
+    debugger;
+    if (idSector == 1) $('#cbo-ciiu option[data-sector="2"]').remove();
+    else if (idSector == 2) $('#cbo-ciiu option[data-sector="1"]').remove();
     $('#txt-nombre-corto').val(data.NOMBRE_COMERCIAL);
     $('#txa-descripcion').val(data.DESCRIPCION);
     vidProvincia = idProvincia;
     vidDistrito = idDistrito;
     $('#txt-tipo-contribuyente').val(data.CONTRIBUYENTE);
-    $('#cbo-ciiu').val(data.ID_ACTIVIDAD);
+    //$('#cbo-ciiu').val(data.ID_ACTIVIDAD);
     vidTrabajadorCama = idTrabajadorCama;
     vcantidad = cantidad;
     $('#txt-total-mujeres').val(data.CANTIDAD_MUJERES);
     listaSubsector();
     listaDepartamento();
     listaActividad();
-    debugger;
+    //debugger;
     if (data.LISTA_CONTACTO.length > 0) {
         let i = 0;
         data.LISTA_CONTACTO.map(x => {
@@ -492,21 +495,18 @@ var listaActividad = () => {
 var armarActividad = (data) => {
     if (data == null) return;
     if (data.length > 0) {
-        let contenido = data.map((x, y) => {
-            let idcaracter = Math.random().toString(36).substr(2, 4);
-            let li4 = Math.random().toString(36).substr(2, 4);
-            let button = `<button type="button" class="select2-selection__choice__remove" tabindex="-1" title="Remove item" aria-label="Remove item" aria-describedby="select2-cbo-ciiu-container-choice-${idcaracter}-${x.ID_ACTIVIDAD}"><span aria-hidden="true">×</span></button>`;
-            let span = `<span class="select2-selection__choice__display" id="select2-cbo-ciiu-container-choice-${idcaracter}-${x.ID_ACTIVIDAD}">${x.NOMBRE_ACTIVIDAD}</span>`;
-            let li = `<li class="select2-selection__choice" title="${x.NOMBRE_ACTIVIDAD}" data-select2-id="select2-data-${432 + y}-${li4}">${button}${span}</li>`;
-            return li;
-        }).join('');
-        debugger;
-        //$('#cbo-ciiu').html('<option value="1" selected>CIUU-0111-CULTIVO DE CEREALES (EXCEPTO ARROZ), LEGUMBRES Y SEMILLAS OLEAGINOSAS</option><option value="2">CIUU-0112-CULTIVO DE ARROZ</option>');
-        $('.js-example-basic-multiple').select2({ placeholder: "Selecciones uno o varios códigos CIUU", });
-        $('#select2-cbo-ciiu-container').html(contenido);
+        //let contenido = data.map((x, y) => {
+        //    let idcaracter = Math.random().toString(36).substr(2, 4);
+        //    let li4 = Math.random().toString(36).substr(2, 4);
+        //    let button = `<button type="button" class="select2-selection__choice__remove" tabindex="-1" title="Remove item" aria-label="Remove item" aria-describedby="select2-cbo-ciiu-container-choice-${idcaracter}-${x.ID_ACTIVIDAD}"><span aria-hidden="true">×</span></button>`;
+        //    let span = `<span class="select2-selection__choice__display" id="select2-cbo-ciiu-container-choice-${idcaracter}-${x.ID_ACTIVIDAD}">${x.NOMBRE_ACTIVIDAD}</span>`;
+        //    let li = `<li class="select2-selection__choice" title="${x.NOMBRE_ACTIVIDAD}" data-select2-id="select2-data-${432 + y}-${li4}">${button}${span}</li>`;
+        //    return li;
+        //}).join('');
 
+        data.map((x, y) => {
+            $(`#cbo-ciiu option[value="${x.ID_ACTIVIDAD}"]`).prop('selected', true);
+        });
+        $('.js-example-basic-multiple').select2({ placeholder: "Selecciones uno o varios códigos CIUU", });
     }
-    //$('.js-example-basic-multiple').select2({ placeholder: "Selecciones uno o varios códigos CIUU", });
-    //debugger;
-    //$('#cbo-ciiu option[value="1"]').attr('selected', true);
 }
