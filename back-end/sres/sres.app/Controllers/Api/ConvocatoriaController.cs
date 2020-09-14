@@ -257,11 +257,11 @@ namespace sres.app.Controllers.Api
                                 }
                                 contenidoInforme += $"<tr><td style='padding:5px;'>{resultado}</td></tr>";
 
-                                string fieldConvocatoria = "[CONVOCATORIA]", fieldServer = "[SERVER]", nombres = "[NOMBRES]", contenido = "[CONTENIDO]";
-                                string[] fields = new string[] { fieldConvocatoria, fieldServer, nombres, contenido };
-                                string[] fieldsRequire = new string[] { fieldConvocatoria, fieldServer, nombres, contenido };
-                                Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldConvocatoria] = obj.NOMBRE,[fieldServer] = AppSettings.Get<string>("Server"),[nombres] = ins.NOMBRES_USU,[contenido] = contenidoInforme };
-                                string subject = $"Resultados de la convocatoria {ins.NOMBRE_CONV}";
+                                string fieldConvocatoria = "[CONVOCATORIA]", fieldServer = "[SERVER]", nombres = "[NOMBRES]", contenido = "[CONTENIDO]", entidad = "[ENTIDAD]";
+                                string[] fields = new string[] { fieldConvocatoria, fieldServer, nombres, contenido, entidad };
+                                string[] fieldsRequire = new string[] { fieldConvocatoria, fieldServer, nombres, contenido, entidad };
+                                Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldConvocatoria] = obj.FECHA_INICIO.Year.ToString(),[fieldServer] = AppSettings.Get<string>("Server"),[nombres] = ins.NOMBRES_USU,[contenido] = contenidoInforme, [entidad] = ins.RAZON_SOCIAL };
+                                string subject = $"Resultados de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {obj.FECHA_INICIO.Year.ToString()}";
                                 MailAddressCollection mailTo = new MailAddressCollection();
                                 mailTo.Add(new MailAddress(ins.CORREO));
 

@@ -128,8 +128,10 @@ var renderizar = (data, cantidadCeldas) => {
 
     if (deboRenderizar) {
         contenido = data.DATA.map((x, i) => {
-            let colLogo = `<td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="0"><img class="img-fluid" src="${x.INSCRIPCION.INSTITUCION.LOGO == null ? `${baseUrl}Assets/images/sin-foto.png` : `${baseUrl}${x.INSCRIPCION.INSTITUCION.LOGO}`}" alt=""></td>`;
-            let colSello = `<td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="${(x.INSIGNIA == null ? `sres_0.png` : `${baseUrl}Assets/images/${x.INSIGNIA.ARCHIVO_BASE}`)}" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con ${x.ESTRELLA}"></td>`;
+            //let colLogo = `<td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="0"><img class="img-fluid" src="${x.INSCRIPCION.INSTITUCION.LOGO == null ? `${baseUrl}Assets/images/sin-foto.png` : `${baseUrl}${x.INSCRIPCION.INSTITUCION.LOGO}`}" alt=""></td>`;
+            let colLogo = `<td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="0"><img class="img-fluid" src="${x.INSCRIPCION.INSTITUCION.LOGO == null ? `${baseUrl}Assets/images/sin-foto.png` : `${baseUrl}${$('#ruta').val().replace('{0}', x.INSCRIPCION.INSTITUCION.ID_INSTITUCION)}/${x.INSCRIPCION.INSTITUCION.LOGO}`}" alt=""></td>`;
+            //let colSello = `<td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="${(x.INSIGNIA == null ? `sres_0.png` : `${baseUrl}Assets/images/${x.INSIGNIA.ARCHIVO_BASE}`)}" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con ${x.ESTRELLA}"></td>`;
+            let colSello = `<td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="${baseUrl}${$('#ruta_rec').val().replace('{0}', x.ID_PREMIACION)}/${x.ARCHIVO_BASE}" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con ${x.ESTRELLA}"></td>`;
             let colRazonSocial = `<td data-encabezado="Empresa participante"><div class="text-limi-1">${x.INSCRIPCION.INSTITUCION.RAZON_SOCIAL}</div></td>`;
             let colPuntaje = `<td data-encabezado="Puntaje"><div class="text-center">${x.PUNTAJE} ptos.</div></td>`;
             let colEmisiones = `<td data-encabezado="Reducción"><div class="text-center">${x.EMISIONES} tCO<sup>2.</sup></div></td>`;
