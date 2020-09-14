@@ -715,10 +715,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc" />
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc" />
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoReconocimientoXConvocatoria.rdlc" />
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc" />
+    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoReconocimientoXConvocatoria.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
