@@ -8,7 +8,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link rel="stylesheet" href="~/Assets/css/style.css"/>
+    <link rel="stylesheet" href="~/Assets/css/style.css" />
 </head>
 <body>
     <form id="frmReporte" runat="server">
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="row">
-            <rsweb:ReportViewer ID="rpwReporte" runat="server" style="width: 100%" Visible="false">
+            <rsweb:ReportViewer ID="rpwReporte" runat="server" Style="width: 100%" Visible="false">
                 <LocalReport ReportPath="App_Data/Reportes/rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc"></LocalReport>
             </rsweb:ReportViewer>
         </div>

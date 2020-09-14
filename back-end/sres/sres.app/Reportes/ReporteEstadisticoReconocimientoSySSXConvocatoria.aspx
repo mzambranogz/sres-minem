@@ -6,9 +6,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link rel="stylesheet" href="~/Assets/css/style.css"/>
+    <link rel="stylesheet" href="~/Assets/css/style.css" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="row">
-            <rsweb:ReportViewer ID="rpwReporte" runat="server" style="width: 100%" Visible="false">
+            <rsweb:ReportViewer ID="rpwReporte" runat="server" Style="width: 100%" Visible="false">
                 <LocalReport ReportPath="App_Data/Reportes/rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc"></LocalReport>
             </rsweb:ReportViewer>
         </div>
