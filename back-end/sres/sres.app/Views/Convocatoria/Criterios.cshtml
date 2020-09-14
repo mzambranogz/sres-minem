@@ -8,6 +8,7 @@
     List<CriterioBE> listaCriterio = (List<CriterioBE>)ViewData["listaCriterio"];
     ConvocatoriaEtapaInscripcionBE convetainsc = (ConvocatoriaEtapaInscripcionBE)ViewData["convetainsc"];
     MigrarEmisionesBE migrar = (MigrarEmisionesBE)ViewData["migrar"];
+    PuntajeBE puntaje_conv = (PuntajeBE)ViewData["puntaje"];
     decimal total_criterio = listaCriterio.Count();
     decimal ingresados = 0, emisiones = 0;
     int puntaje = 0;
@@ -18,6 +19,7 @@
     string pathFormat_mt = AppSettings.Get<string>("Path.MedidaMitigacion");
     string pathFormat_reg_mrv = AppSettings.Get<string>("Registro.MRV");
     string pathFormat_ini_mrv = AppSettings.Get<string>("Inicio.MRV");
+    int puntaje_posible = puntaje_conv == null ? 0 : puntaje_conv.PUNTAJE;
 }
 
 @section scripts_footer{
@@ -193,10 +195,10 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 text-center my-3">
                     <div class="alert alert-info py-5">
                         <div class="text-sres-azul pt-3">
-                            <span class="estilo-07">720</span>
+                            <span class="estilo-07">@puntaje_posible</span>
                             <smal class="estilo-03">puntos</smal>
                         </div>
-                        <div class="badge badge-primary p-1 mt-2"><small class="estilo-01">Total de Puntaje Posible, <br> Potecialmente por Alcanzar</small></div>
+                        <div class="badge badge-primary p-1 mt-2"><small class="estilo-01">Total de Puntaje Posible, <br> Potencialmente por Alcanzar</small></div>
                     </div>
                 </div>
             </div>
@@ -347,10 +349,10 @@ else
                 <div class="col-lg-4 col-md-6 col-sm-12 text-center my-3">
                     <div class="alert alert-info py-5">
                         <div class="text-sres-azul pt-3">
-                            <span class="estilo-07">720</span>
+                            <span class="estilo-07">@puntaje_posible</span>
                             <smal class="estilo-03">puntos</smal>
                         </div>
-                        <div class="badge badge-primary p-1 mt-2"><small class="estilo-01">Total de Puntaje Posible, <br> Potecialmente por Alcanzar</small></div>
+                        <div class="badge badge-primary p-1 mt-2"><small class="estilo-01">Total de Puntaje Posible, <br> Potencialmente por Alcanzar</small></div>
                     </div>
                 </div>
             </div>

@@ -108,5 +108,26 @@ namespace sres.da
 
             return entidad;
         }
+
+        public PuntajeBE getPuntajePosible(int convocatoria, OracleConnection db)
+        {
+            PuntajeBE item = new PuntajeBE();
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_PUNTAJE_POSIBLE";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", convocatoria);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.Query<PuntajeBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                item.OK = true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                item.OK = false;
+            }
+
+            return item;
+        }
     }
 }

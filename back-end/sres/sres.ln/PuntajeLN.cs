@@ -67,5 +67,18 @@ namespace sres.ln
 
             return item;
         }
+
+        public PuntajeBE getPuntajePosible(int convocatoria)
+        {
+            PuntajeBE item = null;
+            try
+            {
+                cn.Open();
+                item = puntajeDA.getPuntajePosible(convocatoria, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
     }
 }
