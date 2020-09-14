@@ -19,6 +19,7 @@
     //consultarEtapa('#tbl-etapa');
 });
 
+var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
 
 var consultar = () => {
     //let busqueda = $('#textoBusqueda').val();
@@ -477,7 +478,10 @@ var guardar = () => {
     if ($('#txt-titulo').val().trim() === "") arr.push("Ingrese el título de la convocatoria");
     if ($('#txa-descripcion').val().trim() === "") arr.push("Ingrese la descripción de la convocatoria");
     if ($('#dat-inicio').val() == "") arr.push("Seleccione la fecha de inicio");
+    if ($('#dat-inicio').val() != "") if ($('#dat-inicio').val() < utc) arr.push("La fecha de inicio no puede ser menor a la actual");
     if ($('#dat-fin').val() == "") arr.push("Seleccione la fecha de finalización");
+    if ($('#dat-fin').val() != "") if ($('#dat-fin').val() < utc) arr.push("La fecha de fin no puede ser menor a la actual");
+    if ($('#dat-inicio').val() != "" && $('#dat-fin').val() != "") if ($('#dat-inicio').val() >= $('#dat-fin').val()) arr.push("La fecha de inicio no puede ser mayor o igual a la fecha de fin");
     if ($('#txt-capacidad').val() == "") arr.push("Ingrese la capacidad de postulantes");
 
     if (arr.length > 0) {
