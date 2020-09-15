@@ -16,5 +16,7 @@ namespace sres.be
         public int ID_ETAPA { get; set; }
         public string NOMBRE_CRI { get; set; }
         public decimal EMISIONES { get; set; }
+        public decimal ENERGIA { get; set; }
+        public decimal COMBUSTIBLE { get; set; }
     }
 }
