@@ -9,7 +9,7 @@
     $('#txt-user-correo').on('blur', (e) => consultarUsuarioCorreo());
     cargarInformacionInicial();
 });
-
+var flag_ndc = '0';
 var fn_avance_grilla = (boton) => {
     var total = 0, miPag = 0;
     miPag = Number($("#ir-pagina").val());
@@ -335,6 +335,7 @@ var consultarUsuario = (element) => {
             $('#cbo-sector').val(jInstitucion.ID_SECTOR);
             cambiarPropiedadLecturaUsuario(true);
             $('#txt-ruc').prop('readonly', true);
+            flag_ndc = jInstitucion.FLAG_APORTENDC;
         });
     });
 }
@@ -388,6 +389,7 @@ var guardarUsuario = () => {
         RAZON_SOCIAL: $('#txt-institucion').val(),
         DOMICILIO_LEGAL: $('#txt-direccion').val(),
         ID_SECTOR: $('#cbo-sector').val(),
+        FLAG_APORTENDC: $('#frmUsuario').data('idUsuario') == null ? '0' : $('#cbo-perfil').val() == 3 ? flag_ndc : '0',
         UPD_USUARIO: idUsuarioLogin
     }
 

@@ -119,6 +119,7 @@ namespace sres.da
                 p.Add("PI_RAZON_SOCIAL", institucion.RAZON_SOCIAL);
                 p.Add("PI_DOMICILIO_LEGAL", institucion.DOMICILIO_LEGAL);
                 p.Add("PI_ID_SECTOR", institucion.ID_SECTOR);
+                p.Add("PI_FLAG_APORTENDC", institucion.FLAG_APORTENDC);
                 p.Add("PI_UPD_USUARIO", institucion.UPD_USUARIO);
                 p.Add("PI_ID_GET", 0, OracleDbType.Int32, ParameterDirection.Output);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);

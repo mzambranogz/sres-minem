@@ -28,6 +28,7 @@ namespace sres.be
         public int ID_ACTIVIDAD { get; set; }
         public int CANTIDAD { get; set; }
         public int CANTIDAD_MUJERES { get; set; }
+        public string FLAG_APORTENDC { get; set; }
         public string FLAG_ESTADO { get; set; }
         public int? UPD_USUARIO { get; set; }
     }
