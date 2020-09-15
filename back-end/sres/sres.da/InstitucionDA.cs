@@ -175,6 +175,7 @@ namespace sres.da
                 p.Add("PI_ID_TRABAJADORES_CAMA", institucion.ID_TRABAJADORES_CAMA);
                 p.Add("PI_CANTIDAD", institucion.CANTIDAD);
                 p.Add("PI_CANTIDAD_MUJERES", institucion.CANTIDAD_MUJERES);
+                p.Add("PI_FLAG_APORTENDC", institucion.FLAG_APORTENDC);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
 

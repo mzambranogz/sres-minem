@@ -244,7 +244,6 @@ var btnMostrarDatosInstitucionClick = (e) => {
 }
 
 var responseMostrarDatosInstitucion = (data) => {
-    debugger;
     if (idSector == 1) $('#cbo-ciiu option[data-sector="2"]').remove();
     else if (idSector == 2) $('#cbo-ciiu option[data-sector="1"]').remove();
     $('#txt-nombre-corto').val(data.NOMBRE_COMERCIAL);
@@ -256,10 +255,10 @@ var responseMostrarDatosInstitucion = (data) => {
     vidTrabajadorCama = idTrabajadorCama;
     vcantidad = cantidad;
     $('#txt-total-mujeres').val(data.CANTIDAD_MUJERES);
+    $('#chk-aporte-ndc').prop('checked', data.FLAG_APORTENDC == '1' ? true : false)
     listaSubsector();
     listaDepartamento();
     listaActividad();
-    //debugger;
     if (data.LISTA_CONTACTO.length > 0) {
         let i = 0;
         data.LISTA_CONTACTO.map(x => {
@@ -321,6 +320,7 @@ var btnActualizarDatosInstitucionClick = (e) => {
     let trabajadorcama = $(`#cbo-trabajador-cama`).val();
     let cantidad = $(`#txt-numero`).val();
     let cantidadmujeres = $(`#txt-total-mujeres`).val();
+    let aportendc = $('#chk-aporte-ndc').prop('checked') ? '1' : '0';
 
     for (var i = 0; i < 4 ; i++) {
         var r = {
@@ -335,7 +335,7 @@ var btnActualizarDatosInstitucionClick = (e) => {
         contacto.push(r);
     }
 
-    let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, ID_DEPARTAMENTO: departamento, ID_PROVINCIA: provincia, ID_DISTRITO: distrito, CONTRIBUYENTE: contribuyente, ID_ACTIVIDAD: ciiu, ID_SUBSECTOR_TIPOEMPRESA: subsectortipoempresa, ID_TRABAJADORES_CAMA: trabajadorcama, CANTIDAD: cantidad, CANTIDAD_MUJERES: cantidadmujeres, LISTA_CONTACTO: contacto, LISTA_ACTIVIDAD: idActividad, UPD_USUARIO: idUsuarioLogin };
+    let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, ID_DEPARTAMENTO: departamento, ID_PROVINCIA: provincia, ID_DISTRITO: distrito, CONTRIBUYENTE: contribuyente, ID_ACTIVIDAD: ciiu, ID_SUBSECTOR_TIPOEMPRESA: subsectortipoempresa, ID_TRABAJADORES_CAMA: trabajadorcama, CANTIDAD: cantidad, CANTIDAD_MUJERES: cantidadmujeres, LISTA_CONTACTO: contacto, LISTA_ACTIVIDAD: idActividad, FLAG_APORTENDC: aportendc,  UPD_USUARIO: idUsuarioLogin };
 
     let url = `${baseUrl}api/institucion/modificardatosinstitucion`;
     let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
@@ -510,3 +510,8 @@ var armarActividad = (data) => {
         $('.js-example-basic-multiple').select2({ placeholder: "Selecciones uno o varios códigos CIUU", });
     }
 }
+
+$(document).on("keydown", ".solo-numero", function (e) {
+    var key = window.e ? e.which : e.keyCode;
+    if ((key < 48 || key > 57) && (event.keyCode < 96 || event.keyCode > 105) && key !== 8 && key !== 9 && key !== 37 && key !== 39 && key !== 46) return false;
+});
