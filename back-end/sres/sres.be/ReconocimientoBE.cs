@@ -19,6 +19,8 @@ namespace sres.be
         public string FLAG_CATEGORIA { get; set; }
         public int? ID_ESTRELLA { get; set; }
         public decimal EMISIONES { get; set; }
+        public decimal ENERGIA { get; set; }
+        public decimal COMBUSTIBLE { get; set; }
         public string FLAG_ESTRELLA { get; set; }
         public string FLAG_MEJORACONTINUA { get; set; }
         public string FLAG_EMISIONESMAX { get; set; }

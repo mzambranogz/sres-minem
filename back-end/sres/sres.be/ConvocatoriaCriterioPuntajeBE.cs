@@ -14,6 +14,8 @@ namespace sres.be
         public string DESCRIPCION { get; set; }
         public int PUNTAJE { get; set; }
         public decimal EMISIONES_REDUCIDAS { get; set; }
+        public decimal ENERGIA { get; set; }
+        public decimal COMBUSTIBLE { get; set; }
         public string FLAG_ESTADO { get; set; }
     }
 }

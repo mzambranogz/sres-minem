@@ -557,6 +557,8 @@ namespace sres.da
                 p.Add("PI_PUNTAJE", entidad.PUNTAJE);
                 p.Add("PI_ID_ESTRELLA", entidad.ID_ESTRELLA);
                 p.Add("PI_EMISIONES", entidad.EMISIONES);
+                p.Add("PI_ENERGIA", entidad.ENERGIA);
+                p.Add("PI_COMBUSTIBLE", entidad.COMBUSTIBLE);
                 p.Add("PI_FLAG_MEJORACONTINUA", entidad.FLAG_MEJORACONTINUA);
                 p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
