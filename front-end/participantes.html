@@ -66,8 +66,8 @@
               -->
               <li class="nav-item btn activo"><a class="nav-link wow slideInUp nav-active" href="./participantes.html" data-wow-delay=".4s"><i class="fas fa-users fa-lg mr-1"></i>PARTICIPANTES</a></li>
               <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./convocatoria.html" data-wow-delay=".5s"><i class="fas fa-bullhorn fa-lg mr-1"></i>CONVOCATORIA</a></li>
-              <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./reconocimientos.html" data-wow-delay=".6s"><i class="fas fa-medal fa-lg mr-1"></i>RECONOCIMIENTOS Y CRITERIOS</a></li>
               <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./categorias.html" data-wow-delay=".7s"><i class="fas fa-network-wired fa-lg mr-1"></i>CATEGORÍAS</a></li>
+              <li class="nav-item btn"><a class="nav-link wow slideInUp" href="./reconocimientos.html" data-wow-delay=".6s"><i class="fas fa-trophy fa-lg mr-1"></i>PREMIACIÓN ESPECIAL</a></li>
             </ul><a class="btn btn-sm border-0 rounded-0 btn-sres-mix-claro mr-3 animated slideInRight" href="./registro.html" role="button"><i class="fas fa-pencil-alt mr-2"></i>REGISTRARSE</a><a class="btn btn-sm border-0 rounded-0 btn-sres-mix-oscuro animated slideInRight" href="./login.html" role="button"><i class="fas fa-sign-in-alt mr-2"></i>INICIAR SESIÓN</a>
             <div class="d-none d-lg-block" id="line"></div>
           </div>
@@ -185,7 +185,7 @@
       </div>
     </div>
     <div class="container-fluid mb-5">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-lg-3 col-md-12 col-sm-12">
             <h4 class="p-2 estilo-04 text-white bg-degradado wow fadeIn">FILTROS</h4>
@@ -378,19 +378,60 @@
                 <thead class="estilo-06 free-with">
                   <tr>
                     <th scope="col" width="10%">
-                      <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Logotipo de la empresa"></i><span>LOGO&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                      <div class="d-flex flex-column justify-content-between align-items-start">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <div class="pl-1 text-center w-100">LOGO DE LA EMPRESA&nbsp;</div><i class="fas fa-sort"></i>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="LOGO"></i></div>
+                      </div>
                     </th>
                     <th scope="col" width="15%">
-                      <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reconocimiento otorgrado"></i><span>RECONOCIMIENTO&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                      <div class="d-flex flex-column justify-content-between align-items-start">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <div class="pl-1 text-center w-100">RECONOCIMIENTO OBTENIDO&nbsp;</div><i class="fas fa-sort"></i>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="RECONOCIMIENTO"></i></div>
+                      </div>
                     </th>
-                    <th scope="col" width="40%">
-                      <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre de la empresa participante"></i><span>EMPRESA O INSTITUCIÓN&nbsp;</span></span><i class="fas fa-sort"></i></div>
-                    </th>
-                    <th scope="col" width="15%">
-                      <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Puntuación obtenida"></i><span>PUNTAJE&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                    <th scope="col" width="25%">
+                      <div class="d-flex flex-column justify-content-between align-items-start">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <div class="pl-1 text-center w-100">NOMBRE DE LA INSTITUCIÓN <br> O RAZÓN SOCIAL DE LA EMPRESA&nbsp;</div><i class="fas fa-sort"></i>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="EMPRESA"></i></div>
+                      </div>
                     </th>
                     <th scope="col" width="10%">
-                      <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reducción lograda"></i><span>REDUCCIÓN&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                      <div class="d-flex flex-column justify-content-between align-items-start">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <div class="pl-1 text-center w-100">PUNTAJE LOGRADO&nbsp;</div><i class="fas fa-sort"></i>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="PUNTAJE"></i></div>
+                      </div>
+                    </th>
+                    <th scope="col" width="10%">
+                      <div class="d-flex flex-column justify-content-between align-items-start">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <div class="pl-1 text-center w-100">REDUCCIÓN ENERGÉTICO <br>KW HORA AÑO &nbsp;</div><i class="fas fa-sort"></i>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="AHORRO ENERGÉTICO DE ELECTRICIDAD"></i></div>
+                      </div>
+                    </th>
+                    <th scope="col" width="10%">
+                      <div class="d-flex flex-column justify-content-between align-items-start">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <div class="pl-1 text-center w-100">REDUCCIÓN COMBUSTIBLE <br>TJ POR AÑO &nbsp;</div><i class="fas fa-sort"></i>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="AHORRO COMBUSTIBLE"></i></div>
+                      </div>
+                    </th>
+                    <th scope="col" width="10%">
+                      <div class="d-flex flex-column justify-content-between align-items-start">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <div class="pl-1 text-center w-100">REDUCCIÓN EMISIONES <br>tCO<sub>2.</sub> &nbsp;</div><i class="fas fa-sort"></i>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="REDUCCIÓN"></i></div>
+                      </div>
                     </th>
                     <!--th(scope="col", width="15%")
                     .d-flex.justify-content-between.align-items-center
@@ -400,13 +441,18 @@
                       i.fas.fa-sort
                     -->
                     <th scope="col" width="10%">
-                      <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Herramientas y opciones"></i><span>FICHA&nbsp;</span></span><i class="fas fa-sort"></i></div>
+                      <div class="d-flex flex-column justify-content-between align-items-start">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <div class="pl-1 text-center w-100">VER FICHA <br> DE EMPRESA&nbsp;</div><i class="fas fa-sort"></i>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="FICHA"></i></div>
+                      </div>
                     </th>
                   </tr>
                 </thead>
                 <tbody class="estilo-01">
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="0"><img class="img-fluid" src="./images/empresa-01.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="0"><img class="img-fluid" src="./images/empresa-01.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_oro_0_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -414,10 +460,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -425,10 +477,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="1"><img class="img-fluid" src="./images/empresa-05.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="1"><img class="img-fluid" src="./images/empresa-05.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_oro_1_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -436,10 +488,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -447,10 +505,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="2"><img class="img-fluid" src="./images/empresa-02.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="2"><img class="img-fluid" src="./images/empresa-02.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_oro_2_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -458,10 +516,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -469,10 +533,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="3"><img class="img-fluid" src="./images/empresa-03.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="3"><img class="img-fluid" src="./images/empresa-03.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_oro_3_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -480,10 +544,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -491,10 +561,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="4"><img class="img-fluid" src="./images/empresa-04.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="4"><img class="img-fluid" src="./images/empresa-04.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_plata_0_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -502,10 +572,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -513,10 +589,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="5"><img class="img-fluid" src="./images/empresa-05.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="5"><img class="img-fluid" src="./images/empresa-05.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_plata_1_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -524,10 +600,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -535,10 +617,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="6"><img class="img-fluid" src="./images/empresa-01.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="6"><img class="img-fluid" src="./images/empresa-01.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_plata_2_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -546,10 +628,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -557,10 +645,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="7"><img class="img-fluid" src="./images/empresa-03.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="7"><img class="img-fluid" src="./images/empresa-03.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_plata_3_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -568,10 +656,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -579,10 +673,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="8"><img class="img-fluid" src="./images/empresa-04.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="8"><img class="img-fluid" src="./images/empresa-04.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_bronce_0_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -590,10 +684,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -601,10 +701,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="9"><img class="img-fluid" src="./images/empresa-05.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="9"><img class="img-fluid" src="./images/empresa-05.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_bronce_1_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -612,10 +712,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -623,10 +729,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="10"><img class="img-fluid" src="./images/empresa-01.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="10"><img class="img-fluid" src="./images/empresa-01.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_bronce_2_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -634,10 +740,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -645,10 +757,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="11"><img class="img-fluid" src="./images/empresa-05.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="11"><img class="img-fluid" src="./images/empresa-05.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_bronce_3_star.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -656,10 +768,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -667,10 +785,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="12"><img class="img-fluid" src="./images/sin-foto.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="12"><img class="img-fluid" src="./images/sin-foto.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_0.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -678,10 +796,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -689,10 +813,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="13"><img class="img-fluid" src="./images/sin-foto.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="13"><img class="img-fluid" src="./images/sin-foto.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_0.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -700,10 +824,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -711,10 +841,10 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                   <tr>
-                    <td class="text-center text-sm-left" data-encabezado="Logo" scope="row" data-count="14"><img class="img-fluid" src="./images/sin-foto.png" alt="">
+                    <td class="text-center" data-encabezado="Logo" scope="row" data-count="14"><img class="img-fluid" src="./images/sin-foto.png" alt="">
                     </td>
                     <td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="images/sres_0.png" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con 3 estrellas">
                     </td>
@@ -722,10 +852,16 @@
                       <div class="text-limi-1">Empresa Energía Limpia SAC</div>
                     </td>
                     <td data-encabezado="Puntaje">
-                      <div class="text-center">150 ptos.</div>
+                      <div class="text-center">150</div>
                     </td>
-                    <td data-encabezado="Reducción">
-                      <div class="text-center">150 tCO<sup>2.</sup></div>
+                    <td data-encabezado="Ahorro de combustible">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Ahorro energético de electricidad">
+                      <div class="text-center">150</div>
+                    </td>
+                    <td data-encabezado="Reducción de emisiones">
+                      <div class="text-center">150</div>
                     </td>
                     <!--td.text-center(data-encabezado="Medida NDC")
                     if n<7
@@ -733,7 +869,7 @@
                     else
                       | -
                     -->
-                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html">Ver</a></td>
+                    <td class="text-center" data-encabezado="Ficha"><a class="btn btn-sm btn-success w-100" href="./ficha.html"><i class="fas fa-eye mr-1"></i>Ver ficha</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -743,7 +879,7 @@
       </div>
     </div>
     <div class="container-fluid my-0 mb-5">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="offset-lg-3 col-lg-9 col-md-12 col-sm-12">
             <div class="row">
