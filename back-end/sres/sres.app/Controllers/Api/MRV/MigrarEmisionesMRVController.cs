@@ -23,6 +23,9 @@ namespace sres.app.Controllers.Api.MRV
             if (emisiones.LISTA_MIGRAR.Count > 0)
                 foreach (MigrarEmisionesBE m in emisiones.LISTA_MIGRAR)
                     m.ARCHIVO_BASE = medidaLN.getMedidaMitigacion(new sres.be.MedidaMitigacionBE { ID_MEDMIT = m.ID_MEDMIT}).ARCHIVO_BASE;
+
+            if (emisiones.LISTA_MIGRAR.Count > 0)
+                    emisiones.LISTA_MIGRAR = medidaLN.actualizarValoresEmisiones(emisiones.LISTA_MIGRAR);
             return emisiones;
             //return migrarLN.ObtenerMigrarEmisiones(idIniciativas, rucLogin, idUsuarioLogin);
         }

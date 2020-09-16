@@ -1700,6 +1700,12 @@ CREATE OR REPLACE PACKAGE SISSELLO."PKG_SISSELLO_VERIFICACION" AS
     PI_ID_CONVOCATORIA NUMBER,
     PO_REF OUT SYS_REFCURSOR
   );
+
+  PROCEDURE USP_SEL_EMISION_INICIATIVA(
+    PI_ID_INICIATIVA NUMBER,
+    PI_ID_MEDMIT NUMBER,
+    PO_REF OUT SYS_REFCURSOR
+  );
 END PKG_SISSELLO_VERIFICACION;
 
 /
@@ -1918,7 +1924,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
     vQUERY_SELECT VARCHAR2(10000) := '';
     vCOLUMNA VARCHAR2(200);
   BEGIN
-    vQUERY_CONT := 'SELECT  COUNT(1)
+    vQUERY_CONT := 'SELECT  COUNT(DISTINCT C.ID_CONVOCATORIA)
                     FROM T_GENM_CONVOCATORIA C INNER JOIN
                     T_MAE_ETAPA E ON C.ID_ETAPA = E.ID_ETAPA
                     ' ||
@@ -1932,7 +1938,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                       WHEN PI_NRO_INFORME IS NOT NULL THEN
                       'LOWER(TRANSLATE(C.NRO_INFORME,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND '
                     END ||
-                    'LOWER(TRANSLATE(C.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND ' ||
+                    'LOWER(TRANSLATE(C.DESCRIPCION,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND ' ||
                     CASE
                       WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NOT NULL THEN
                       '(
@@ -1947,7 +1953,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                     ''  ||
                           CASE
                             WHEN PI_ID_INSTITUCION > 0 THEN
-                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR (C.ID_ETAPA < 3 AND INSC.ID_INSTITUCION IS NULL)) AND '
+                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR C.ID_ETAPA < 3) AND '
                           END || '
                     C.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
@@ -1962,9 +1968,14 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
 
     vPAGINA_INICIAL := vPAGINA_ACTUAL - 1;
     
-    vCOLUMNA := 'C.' || PI_COLUMNA;
-    
-    vQUERY_SELECT := 'SELECT * FROM 
+    --vCOLUMNA := 'C.' || PI_COLUMNA;
+    vCOLUMNA := PI_COLUMNA;
+    vQUERY_SELECT := 'SELECT DISTINCT ID_CONVOCATORIA, NOMBRE, DESCRIPCION, FECHA_INICIO, FECHA_FIN, LIMITE_POSTULANTE, LIMITE_POSTULANTE, NRO_INFORME, ID_ETAPA, NOMBRE_ETAPA, FLAG_ESTADO, VALIDAR_EVALUADOR,' ||
+                                        CASE 
+                                          WHEN PI_ID_INSTITUCION > 0 THEN
+                                            ' FLAG_ANULAR, '
+                                        END 
+                                  || ' TOTAL_PAGINAS,PAGINA,CANTIDAD_REGISTROS,  TOTAL_REGISTROS FROM 
                         (
                           SELECT  C.ID_CONVOCATORIA,
                                   C.NOMBRE,
@@ -2000,7 +2011,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                             WHEN PI_NRO_INFORME IS NOT NULL THEN
                             'LOWER(TRANSLATE(C.NRO_INFORME,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND '
                           END ||
-                          'LOWER(TRANSLATE(C.NOMBRE,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND ' ||
+                          'LOWER(TRANSLATE(C.DESCRIPCION,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND ' ||
                           CASE
                             WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NOT NULL THEN
                             '(
@@ -2015,11 +2026,12 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                           ''  ||
                           CASE
                             WHEN PI_ID_INSTITUCION > 0 THEN
-                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR (C.ID_ETAPA < 3 AND INSC.ID_INSTITUCION IS NULL)) AND '
+                              ' (INSC.ID_INSTITUCION = ' || PI_ID_INSTITUCION || ' OR C.ID_ETAPA < 3) AND '
                           END || '
                           C.FLAG_ESTADO = ''1''
                         )
-                    WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1));
+                    WHERE  ROWNUMBER BETWEEN ' || TO_CHAR(PI_REGISTROS * vPAGINA_INICIAL + 1) || ' AND ' || TO_CHAR(PI_REGISTROS * (vPAGINA_INICIAL + 1)) || ' 
+                    ORDER BY ' || vCOLUMNA || ' ' || PI_ORDEN;
     
     OPEN PO_REF FOR vQUERY_SELECT;
   END USP_SEL_BUSQ_CONVOCATORIA;
@@ -7737,6 +7749,22 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
     GROUP BY CCP.ID_CONVOCATORIA, CCP.ID_CRITERIO
     );
   END USP_SEL_PUNTAJE_POSIBLE;
+
+  PROCEDURE USP_SEL_EMISION_INICIATIVA(
+    PI_ID_INICIATIVA NUMBER,
+    PI_ID_MEDMIT NUMBER,
+    PO_REF OUT SYS_REFCURSOR
+  ) AS
+  BEGIN
+    OPEN PO_REF FOR
+    SELECT 
+    ME.REDUCIDO,
+    ME.ID_INICIATIVA,
+    ME.ID_MEDMIT
+    FROM 
+    T_GENM_MIGRAR_EMISIONES ME
+    WHERE ME.ID_INICIATIVA = PI_ID_INICIATIVA AND ME.ID_MEDMIT = PI_ID_MEDMIT AND FLAG_ESTADO = '1';
+  END USP_SEL_EMISION_INICIATIVA;
 END PKG_SISSELLO_VERIFICACION;
 
 /

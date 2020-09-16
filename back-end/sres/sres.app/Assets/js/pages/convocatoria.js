@@ -79,7 +79,7 @@ var renderizar = (data, cantidadCeldas) => {
             let porcentajeAvance = x.ID_ETAPA > 14 ? 100 : Math.round((x.ID_ETAPA - 1) / 13 * 100);
             let formatoCodigo = '00000000';
 
-            let colNro = `<td class="text-center" data-encabezado="Número" scope="row">${x.ROWNUMBER}</td>`
+            let colNro = `<td class="text-center" data-encabezado="Número" scope="row">${(i + 1) + (data.PAGINA - 1) * data.CANTIDAD_REGISTROS}</td>`
             let colNroInforme = `<td class="text-center" data-encabezado="Número expediente" scope="row">${(`${formatoCodigo}${x.ID_CONVOCATORIA}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</td>`;
             let colPeriodo = `<td class="text-center" data-encabezado="Período">${fechaInicio.getFullYear()}</td>`;
             let colNombre = `<td data-encabezado="Progreso"><div class="text-limi-1">${x.NOMBRE}</div></td>`;

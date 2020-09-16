@@ -86,5 +86,22 @@ namespace sres.da
 
             return lista;
         }
+
+        public MigrarEmisionesBE actualizarValoresEmisiones(int idIniciativa, int idMedmit, OracleConnection db)
+        {
+            MigrarEmisionesBE migracion = new MigrarEmisionesBE();
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_EMISION_INICIATIVA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INICIATIVA", idIniciativa);
+                p.Add("PI_ID_MEDMIT", idMedmit);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                migracion = db.Query<MigrarEmisionesBE>(sp, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return migracion;
+        }
     }
 }

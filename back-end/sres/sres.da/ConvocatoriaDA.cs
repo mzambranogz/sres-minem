@@ -44,7 +44,7 @@ namespace sres.da
                     ID_ETAPA = (int?)x.ID_ETAPA,
                     ETAPA = x.ID_ETAPA == null ? null : new EtapaBE { ID_ETAPA = (int)x.ID_ETAPA, NOMBRE = (string)x.NOMBRE_ETAPA },
                     FLAG_ESTADO = (string)x.FLAG_ESTADO,
-                    ROWNUMBER = (int)x.ROWNUMBER,
+                    //ROWNUMBER = (int)x.ROWNUMBER,
                     TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
                     PAGINA = (int)x.PAGINA,
                     CANTIDAD_REGISTROS = (int)x.CANTIDAD_REGISTROS,

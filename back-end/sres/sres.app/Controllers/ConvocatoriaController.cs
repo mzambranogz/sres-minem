@@ -83,7 +83,8 @@ namespace sres.app.Controllers
             //if (inscripcion == null) return HttpNotFound();
             List<CriterioBE> listaCriterio = criterioLN.ListarCriterioPorConvocatoria(idConvocatoria, inscripcion.ID_INSCRIPCION);
             ConvocatoriaEtapaInscripcionBE convetainsc = convetainscLN.ObtenerConvocatoriaEtapaInscripcion(new ConvocatoriaEtapaInscripcionBE { ID_CONVOCATORIA = convocatoria.ID_CONVOCATORIA, ID_ETAPA = convocatoria.ID_ETAPA, ID_INSCRIPCION = inscripcion.ID_INSCRIPCION});
-            MigrarEmisionesBE migrar = migrarLN.obtenerIdIniciativasEmisiones(inscripcion.ID_INSCRIPCION);
+            //MigrarEmisionesBE migrar = migrarLN.obtenerIdIniciativasEmisiones(inscripcion.ID_INSCRIPCION);
+            MigrarEmisionesBE migrar = new MigrarEmisionesBE { INICIATIVAS = "0"};
             PuntajeBE puntaje = puntajeLN.getPuntajePosible(idConvocatoria);
 
             ViewData["convocatoria"] = convocatoria;

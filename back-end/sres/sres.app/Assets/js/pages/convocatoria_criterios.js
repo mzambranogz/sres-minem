@@ -37,15 +37,18 @@ var filtrarEmisiones = () => {
                 $('#btn-migrar').parent().removeClass('d-flex').addClass('d-none');
             } else if (j.VALIDACION == 2) {
                 $('#registrar-mrv').removeClass('d-flex').addClass('d-none');
-                let filas = j.LISTA_MIGRAR.map((z,w) => {
-                    let td1 = `<td class="text-center" data-encabezado="Seleecionar 1"><div class="custom-control custom-checkbox p-0 m-0"><input class ="custom-control-input get-chk-ini" type="checkbox" id="chk-send-im-${z.ID_INICIATIVA}-${z.ID_MEDMIT}"><label class ="custom-control-label" for="chk-send-im-${z.ID_INICIATIVA}-${z.ID_MEDMIT}"></label></div></td>`;
-                    let td2 = `<td class="text-center" data-encabezado="Número" scope="row">${w+1}</td>`;
-                    let td3 = `<td class="text-center" data-encabezado="Código">${z.ID_INICIATIVA}</td>`;
-                    let td4 = `<td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="${baseUrl}${$('#ruta').val().replace('{0}', z.ID_MEDMIT)}/${z.ARCHIVO_BASE == null ? '' : z.ARCHIVO_BASE}"></td>`;
-                    let td5 = `<td data-encabezado="Medida de Mitigación">${z.NOMBRE_MEDMIT}</td>`;
-                    let td6 = `<td data-encabezado="Emisiones">${formatoMiles(z.REDUCIDO)} tCO<sub>2</sub><input class="get-reducido" value="${z.REDUCIDO}" type="hidden" /></td>`;
-                    return tr = `<tr id="detalles-tr-${w + 1}" class="get-fila-iniciativas">${td1}${td2}${td3}${td4}${td5}${td6}</tr>`;
-                    //return `<tr class="get-fila-iniciativas"><td><div class="custom-control custom-checkbox-new custom-checkbox d-inline-block pl-3"><input class="custom-control-input get-chk-ini" type="checkbox" id="chk-send-im-${z.ID_INICIATIVA}-${z.ID_MEDMIT}"><label class="custom-control-label" for="chk-send-im-${z.ID_INICIATIVA}-${z.ID_MEDMIT}">&nbsp;</label></div></td><td><span>${z.ID_INICIATIVA}</span></td><td><span>${z.DESC_INICIATIVA}</span></td><td><span>${z.NOMBRE_MEDMIT}</span></td><td><span>${formatoMiles(z.REDUCIDO)}<input class="get-reducido" value="${z.REDUCIDO}" type="hidden" /></span></td></tr>`;
+                let filas = j.LISTA_MIGRAR.map((z, w) => {
+                    if (z.REDUCIDO <= 0) {
+                        return ``;
+                    } else {
+                        let td1 = `<td class="text-center" data-encabezado="Seleecionar 1"><div class="custom-control custom-checkbox p-0 m-0"><input class ="custom-control-input get-chk-ini" type="checkbox" id="chk-send-im-${z.ID_INICIATIVA}-${z.ID_MEDMIT}"><label class ="custom-control-label" for="chk-send-im-${z.ID_INICIATIVA}-${z.ID_MEDMIT}"></label></div></td>`;
+                        let td2 = `<td class="text-center" data-encabezado="Número" scope="row">${w + 1}</td>`;
+                        let td3 = `<td class="text-center" data-encabezado="Código">${z.ID_INICIATIVA}</td>`;
+                        let td4 = `<td class="text-center" data-encabezado="Imagen"><img class="img-thumbnail border-0" src="${baseUrl}${$('#ruta').val().replace('{0}', z.ID_MEDMIT)}/${z.ARCHIVO_BASE == null ? '' : z.ARCHIVO_BASE}"></td>`;
+                        let td5 = `<td data-encabezado="Medida de Mitigación" class="text-center">${z.NOMBRE_MEDMIT}</td>`;
+                        let td6 = `<td data-encabezado="Emisiones" class="text-right">${formatoMiles(z.REDUCIDO)}<input class="get-reducido" value="${z.REDUCIDO}" type="hidden" /></td>`;
+                        return tr = `<tr id="detalles-tr-${w + 1}" class="get-fila-iniciativas">${td1}${td2}${td3}${td4}${td5}${td6}</tr>`;
+                    }
                 });
                 $('#tabla-migrar').find('tbody').html(filas);
                 mostrarSeleccionado();

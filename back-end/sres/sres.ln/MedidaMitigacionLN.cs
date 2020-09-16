@@ -15,6 +15,7 @@ namespace sres.ln
     public class MedidaMitigacionLN : BaseLN
     {
         MedidaMitigacionDA medidaDA = new MedidaMitigacionDA();
+        MigrarEmisionesDA migraDA = new MigrarEmisionesDA();
 
         public List<MedidaMitigacionBE> ListaBusquedaMedidaMitigacion(MedidaMitigacionBE entidad)
         {
@@ -109,6 +110,22 @@ namespace sres.ln
             }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
+            return lista;
+        }
+
+        public List<sres.be.MRV.MigrarEmisionesBE> actualizarValoresEmisiones(List<sres.be.MRV.MigrarEmisionesBE> lista) {
+            try
+            {
+                cn.Open();
+                foreach (sres.be.MRV.MigrarEmisionesBE m in lista)
+                {
+                    MigrarEmisionesBE migra = migraDA.actualizarValoresEmisiones(m.ID_INICIATIVA, m.ID_MEDMIT, cn);
+                    decimal emision = migra == null ? 0 : migra.REDUCIDO;
+                    if (emision > 0)
+                        m.REDUCIDO = m.REDUCIDO - emision;
+                }
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
             return lista;
         }
     }
