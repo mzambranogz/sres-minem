@@ -20,6 +20,8 @@ namespace sres.be
         public string UNIDAD { get; set; }
         public string RESULTADO { get; set; }
         public string EMISIONES { get; set; }
+        public decimal ENERGIA { get; set; }
+        public decimal COMBUSTIBLE { get; set; }
         public string AHORRO { get; set; }
         public int TAMANO { get; set; }
         public string DESCRIPCION { get; set; }

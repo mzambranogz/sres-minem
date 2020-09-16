@@ -16,5 +16,7 @@ namespace sres.be
         public int INGRESO_DATOS { get; set; }
         public int PUNTAJE { get; set; }
         public decimal EMISIONES { get; set; }
+        public decimal ENERGIA { get; set; }
+        public decimal COMBUSTIBLE { get; set; }
     }
 }

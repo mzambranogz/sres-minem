@@ -78,6 +78,8 @@ namespace sres.da
                 p.Add("PI_ID_CASO", entidad.ID_CASO);
                 p.Add("PI_ID_INSCRIPCION", entidad.ID_INSCRIPCION);
                 p.Add("PI_EMISIONES", entidad.EMISIONES);
+                p.Add("PI_ENERGIA", entidad.ENERGIA);
+                p.Add("PI_COMBUSTIBLE", entidad.COMBUSTIBLE);
                 p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.Execute(sp, p, commandType: CommandType.StoredProcedure);
