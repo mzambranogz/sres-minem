@@ -4,7 +4,7 @@
     ViewBag.Header = new Dictionary<string, object>
     {
         ["Imagen"] = "~/Assets/images/reconocimientos.png",
-        ["Titulo"] = "RECONOCIMIENTOS Y CRITERIOS"
+        ["Titulo"] = "PREMIACIÓN ESPECIAL"
     };
 }
 
@@ -14,7 +14,7 @@
 
 <div class="container-fluid my-5">
     <div class="container">
-        <div class="row">
+        @*<div class="row">
             <div class="col-12">
                 <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp" id="categoria-01">1° Reconocimiento de Energía Eficiente y Sostenible</h2>
                 <p class="text-justify estilo-01 text-sres-gris wow slideInUp">El reconocimiento se entrega en tres categorías, según el alcance y esfuerzo de las entidades que implementan las medidas de energía sostenible. Las categorías son: Oro, Plata y Bronce.</p>
@@ -142,33 +142,10 @@
             <div class="col-lg-6 col-md-12 col-sm-12 text-center my-2 wow slideInRight">
                 <div class="p-2 my-4 estilo-04 text-sres-verde text-center w-100 wow slideInUp">Criterio de evaluación para el sector público</div><img class="img-fluid" src="@Url.Content("~/Assets/images/sector-publico.png")">
             </div>
-        </div>
-        @*<div class="row">
-            <div class="col-12">
-                <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp" id="categoria-03">3° Reconocimiento por cada medida que aporta a las Contribuciones Nacionales Determinadas (NDC)</h2>
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Este reconocimiento será otorgado a aquellas entidades que, adicional a alcanzar una categoría en el Sello, logren contribuir con el más alto aporte de emisiones reducidas de CO2 en cada medida relacionada a la NDC de mitigación del cambio climático desde el sector del uso y generación de energía, implementadas por el Minem, desde la DGEE. Éstas son:</p>
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">
-                    <ol>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Etiquetado de Eficiencia Energética</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Eficiencia energética en el sector industrial</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Eficiencia energética en el sector comercial (no aplica para entidades del sector público)</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Auditorias energética en el sector público (no aplica para entidades del sector privado)</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Transformación del mercado de iluminación en el sector residencial</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Reemplazo de lámparas de baja eficiencia por lámparas LED en el sector público</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Reemplazo de lámparas de alumbrado público de vapor de sodio de alta presión (VSAP) por lámparas LED. (no aplica para entidades del sector privado)</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Cocción limpia (ámbito rural)</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Electrificación rural con sistemas fotovoltaicos</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Combinación de las Energías Renovables</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Generación distribuida</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Vehículos eléctricos</li>
-                    </ol>
-                </p>
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Para esto, la medida no debió ser contabilizada en los aportes de la NDC, además de que la entidad no haya comercializado sus emisiones en cada medida.</p>
-            </div>
         </div>*@
         <div class="row mb-5">
             <div class="col-12">
-                <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp" id="categoria-03">3° Reconocimiento por cada medida que aporta a las Contribuciones Nacionales Determinadas (NDC)</h2>
+                <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp" id="categoria-03">Reconocimiento por cada medida que aporta a las Contribuciones Nacionales Determinadas (NDC)</h2>
                 <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Este reconocimiento será otorgado a aquellas entidades que, adicional a alcanzar una categoría, logren contribuir con el más alto aporte de emisiones reducidas de CO2 en cada medida relacionada a la NDC de mitigación del cambio climático desde el sector del uso y generación de energía, implementadas por el Minem, desde la DGEE. Éstas son:</p>
                 <p class="text-justify estilo-01 text-sres-gris wow slideInUp">
                     <ol>
@@ -189,71 +166,86 @@
                 <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Para esto, la medida no debió ser contabilizada en los aportes de la NDC, además de que la entidad no haya comercializado sus emisiones en cada medida.</p>
             </div>
         </div>
+    </div>
+</div>
+<div class="container-fluid set-bg franja" data-setbg="@Url.Content("~/Assets/images/bg-premiacion.png")">
+    <div class="container-fluid">
         <div class="row mb-5">
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
+            <h2 class="p-2 my-4 estilo-04 text-white text-center w-100" style="z-index: 1;">Criterios para alcanzar Categorías y Estrellas de reconocimiento de energía sostenible</h2>
+        </div>
+        <div class="row mb-5">
+            <div class="col-lg-2 col-md-6 col-sm-12 text-center my-5">
                 <img class="img-fluid mb-3" src="@Url.Content("~/Assets/images/ico_nama_amarillo_01.svg")">
-                <div class="estilo-01 text-sres-verde">Transformación del mercado de iluminación del sector residencial</div>
+                <div class="estilo-01 text-white mt-3">Transformación del mercado de iluminación del sector residencial</div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
+            <div class="col-lg-2 col-md-6 col-sm-12 text-center my-5">
                 <img class="img-fluid mb-3" src="@Url.Content("~/Assets/images/ico_nama_amarillo_02.svg")">
-                <div class="estilo-01 text-sres-verde">Reemplazo de lámparas de alumbrado público por lámparas LED</div>
+                <div class="estilo-01 text-white mt-3">Reemplazo de lámparas de alumbrado público por lámparas LED</div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
+            <div class="col-lg-2 col-md-6 col-sm-12 text-center my-5">
                 <img class="img-fluid mb-3" src="@Url.Content("~/Assets/images/ico_nama_amarillo_03.svg")">
-                <div class="estilo-01 text-sres-verde">Etiquetado de eficiencia energética</div>
+                <div class="estilo-01 text-white mt-3">Etiquetado de eficiencia energética</div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
+            <div class="col-lg-2 col-md-6 col-sm-12 text-center my-5">
                 <img class="img-fluid mb-3" src="@Url.Content("~/Assets/images/ico_nama_amarillo_04.svg")">
-                <div class="estilo-01 text-sres-verde">Auditorías energéticas sector público</div>
+                <div class="estilo-01 text-white mt-3">Auditorías energéticas sector público</div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
+            <div class="col-lg-2 col-md-6 col-sm-12 text-center my-5">
                 <img class="img-fluid mb-3" src="@Url.Content("~/Assets/images/ico_nama_amarillo_05.svg")">
-                <div class="estilo-01 text-sres-verde">Reemplazo de lámparas por lámparas LED en el sector público</div>
+                <div class="estilo-01 text-white mt-3">Reemplazo de lámparas por lámparas LED en el sector público</div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
+            <div class="col-lg-2 col-md-6 col-sm-12 text-center my-5">
                 <img class="img-fluid mb-3" src="@Url.Content("~/Assets/images/ico_nama_amarillo_06.svg")">
-                <div class="estilo-01 text-sres-verde">Eficiencia energética en el sector industrial</div>
+                <div class="estilo-01 text-white mt-3">Eficiencia energética en el sector industrial</div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
+            <div class="col-lg-2 col-md-6 col-sm-12 text-center my-5">
                 <img class="img-fluid mb-3" src="@Url.Content("~/Assets/images/ico_nama_amarillo_07.svg")">
-                <div class="estilo-01 text-sres-verde">Reemplazo lámparas en el sector comercial</div>
+                <div class="estilo-01 text-white mt-3">Reemplazo lámparas en el sector comercial</div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
+            <div class="col-lg-2 col-md-6 col-sm-12 text-center my-5">
                 <img class="img-fluid mb-3" src="@Url.Content("~/Assets/images/ico_nama_azul_01.svg")">
-                <div class="estilo-01 text-sres-verde">Promoción de vehículos eléctricos a nivel nacional</div>
+                <div class="estilo-01 text-white mt-3">Promoción de vehículos eléctricos a nivel nacional</div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
+            <div class="col-lg-2 col-md-6 col-sm-12 text-center my-5">
                 <img class="img-fluid mb-3" src="@Url.Content("~/Assets/images/ico_nama_rojo_01.svg")">
-                <div class="estilo-01 text-sres-verde">Suministro de electricidad con energía renovable en áreas no conectadas</div>
+                <div class="estilo-01 text-white mt-3">Suministro de electricidad con energía renovable en áreas no conectadas</div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
+            <div class="col-lg-2 col-md-6 col-sm-12 text-center my-5">
                 <img class="img-fluid mb-3" src="@Url.Content("~/Assets/images/ico_nama_rojo_02.svg")">
-                <div class="estilo-01 text-sres-verde">Cocción limpia</div>
+                <div class="estilo-01 text-white mt-3">Cocción limpia</div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
+            <div class="col-lg-2 col-md-6 col-sm-12 text-center my-5">
                 <img class="img-fluid mb-3" src="@Url.Content("~/Assets/images/ico_nama_verde_01.svg")">
-                <div class="estilo-01 text-sres-verde">Combinación de energías renovables</div>
+                <div class="estilo-01 text-white mt-3">Combinación de energías renovables</div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
+            <div class="col-lg-2 col-md-6 col-sm-12 text-center my-5">
                 <img class="img-fluid mb-3" src="@Url.Content("~/Assets/images/ico_nama_verde_02.svg")">
-                <div class="estilo-01 text-sres-verde">Generación distribuida</div>
+                <div class="estilo-01 text-white mt-3">Generación distribuida</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-lg-4 col-lg-4 col-md-12 col-sm-12 mb-5 text-center"><a class="btn btn-sres-azul estilo-01 wow slideInUp" href="http://sismrv.minem.gob.pe/" target="_blank">Visìta La Plataforma MRV del Sector Energìa</a></div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 my-5">
+                <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp" id="categoria-04">Reconocimiento destacado por reducción de emisiones GEI &nbsp;<span>(tCO<sub>2</sub>)</span></h2>
+                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Recibirán esta distinción las entidades (privadas y públicas), que además de alcanzar una categoría del Sello, logren contribuir con el más alto aporte de emisiones de CO2 en cada medida relacionada a la NDC implementada por Minem.  Cabe señalar que, la medida no debió ser contabilizada en los aportes de la NDC, además de que la entidad no haya comercializado sus emisiones en cada medida.</p>
             </div>
         </div>
         <div class="row">
             <div class="col-12 mb-5">
-                <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp" id="categoria-04">4° Reconocimiento destacado por reducción de emisiones GEI  <span>(tCO<sub>2</sub>)</span></h2>
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Recibirán esta distinción las entidades (privadas y públicas), que además de alcanzar una categoría del reconocimiento, logren contribuir con el más alto aporte de emisiones de CO2 en cada medida relacionada a la NDC implementada por Minem.  Cabe señalar que, la medida no debió ser contabilizada en los aportes de la NDC, además de que la entidad no haya comercializado sus emisiones en cada medida.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 mb-5">
-                <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp" id="categoria-05">5° Reconocimiento destacado a la mejora continua de energía sostenible</h2>
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Recibirán esta distinción las entidades del sector privado y público, que logren aumentar de categoría en el Reconocimiento de Energía Sostenible y también logra aumentar su nivel de estrellas en su reconocimiento por reducción de emisiones de GEI con respecto al año anterior a la postulación. La entidad que logre el mayor puntaje en mejora de su categoría, cumpliendo con los criterios exigidos por su categoría, será acreedora al reconocimiento destacado a la mejora continua de energía sostenible.</p>
+                <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp" id="categoria-05">Reconocimiento de mejora continua por energía eficiente y sostenible</h2>
+                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Recibirán esta distinción las entidades del sector privado y público, que logren aumentar de categoría en el Sello de Reconocimiento de Energía Sostenible y también logra aumentar su nivel de estrellas en su reconocimiento por reducción de emisiones de GEI con respecto al año anterior a la postulación. La entidad que logre el mayor puntaje en mejora de su categoría, cumpliendo con los criterios exigidos por su categoría, será acreedora al reconocimiento destacado a la mejora continuade energía sostenible.</p>
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="modal-criterios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+@*<div class="modal fade" id="modal-criterios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <form action="">
@@ -276,4 +268,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@

@@ -94,6 +94,8 @@ namespace sres.da
                         ESTRELLA = (string)x.NOMBRE_ESTRELLA,
                         PUNTAJE = (int)x.PUNTAJE,
                         EMISIONES = (decimal)x.EMISIONES,
+                        ENERGIA = (decimal)x.ENERGIA,
+                        COMBUSTIBLE = (decimal)x.COMBUSTIBLE,
                         ROWNUMBER = (int)x.ROWNUMBER,
                         TOTAL_PAGINAS = (int)x.TOTAL_PAGINAS,
                         PAGINA = (int)x.PAGINA,

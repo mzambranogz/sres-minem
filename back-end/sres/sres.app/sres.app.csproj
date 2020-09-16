@@ -178,11 +178,13 @@
     <Content Include="Assets\images\banner.png" />
     <Content Include="Assets\images\bg-categorias.png" />
     <Content Include="Assets\images\bg-convocatoria.png" />
+    <Content Include="Assets\images\bg-criterios.png" />
     <Content Include="Assets\images\bg-detalle.png" />
     <Content Include="Assets\images\bg-gracias.png" />
     <Content Include="Assets\images\bg-login.png" />
     <Content Include="Assets\images\bg-mantenimientos.png" />
     <Content Include="Assets\images\bg-participantes.png" />
+    <Content Include="Assets\images\bg-premiacion.png" />
     <Content Include="Assets\images\bg-reconocimiento.png" />
     <Content Include="Assets\images\bg-registro.png" />
     <Content Include="Assets\images\bg-reportes.png" />

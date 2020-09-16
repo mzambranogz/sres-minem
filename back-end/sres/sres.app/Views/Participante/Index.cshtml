@@ -27,7 +27,7 @@
     </div>
 </div>
 <div class="container-fluid mb-5">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-12 col-sm-12">
                 <h4 class="p-2 estilo-04 text-white bg-degradado wow fadeIn">FILTROS</h4>
@@ -215,29 +215,79 @@
                 <div class="table-responsive tabla-principal">
                     <table id="tblParticipantes" class="table table-sm table-hover">
                         <thead class="estilo-06 free-with">
-                            <tr>
-                                <th scope="col" width="10%">
-                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Logotipo de la empresa"></i><span>LOGO&nbsp;</span></span><i class="fas fa-sort"></i></div>
-                                </th>
-                                <th scope="col" width="15%">
-                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reconocimiento otorgrado"></i><span>RECONOCIMIENTO&nbsp;</span></span><i class="fas fa-sort"></i></div>
-                                </th>
-                                <th scope="col" width="40%">
-                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre de la empresa participante"></i><span>EMPRESA O INSTITUCIÓN&nbsp;</span></span><i class="fas fa-sort"></i></div>
-                                </th>
-                                <th scope="col" width="15%">
-                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Puntuación obtenida"></i><span>PUNTAJE&nbsp;</span></span><i class="fas fa-sort"></i></div>
-                                </th>
-                                <th scope="col" width="10%">
-                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reducción lograda"></i><span>REDUCCIÓN&nbsp;</span></span><i class="fas fa-sort"></i></div>
-                                </th>
-                                @*<th scope="col" width="15%">
-                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Premiación adquirida"></i><span>PREMIACIÓN&nbsp;</span></span><i class="fas fa-sort"></i></div>
-                                </th>*@
-                                <th scope="col" width="10%">
-                                    <div class="d-flex justify-content-between align-items-center"><span class="d-flex justify-content-between align-items-center"><i class="fas fa-question-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Herramientas y opciones"></i><span>FICHA&nbsp;</span></span><i class="fas fa-sort"></i></div>
-                                </th>
-                            </tr>
+                          <tr>
+                            <th scope="col" width="10%">
+                              <div class="d-flex flex-column justify-content-between align-items-start">
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                  <div class="pl-1 text-center w-100">LOGO DE LA EMPRESA&nbsp;</div><i class="fas fa-sort"></i>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="LOGO"></i></div>
+                              </div>
+                            </th>
+                            <th scope="col" width="15%">
+                              <div class="d-flex flex-column justify-content-between align-items-start">
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                  <div class="pl-1 text-center w-100">RECONOCIMIENTO OBTENIDO&nbsp;</div><i class="fas fa-sort"></i>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="RECONOCIMIENTO"></i></div>
+                              </div>
+                            </th>
+                            <th scope="col" width="25%">
+                              <div class="d-flex flex-column justify-content-between align-items-start">
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                  <div class="pl-1 text-center w-100">NOMBRE DE LA INSTITUCIÓN <br> O RAZÓN SOCIAL DE LA EMPRESA&nbsp;</div><i class="fas fa-sort"></i>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="EMPRESA"></i></div>
+                              </div>
+                            </th>
+                            <th scope="col" width="10%">
+                              <div class="d-flex flex-column justify-content-between align-items-start">
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                  <div class="pl-1 text-center w-100">PUNTAJE LOGRADO&nbsp;</div><i class="fas fa-sort"></i>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="PUNTAJE"></i></div>
+                              </div>
+                            </th>
+                            <th scope="col" width="10%">
+                              <div class="d-flex flex-column justify-content-between align-items-start">
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                  <div class="pl-1 text-center w-100">REDUCCIÓN ENERGÉTICO <br>KW HORA AÑO &nbsp;</div><i class="fas fa-sort"></i>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="AHORRO ENERGÉTICO DE ELECTRICIDAD"></i></div>
+                              </div>
+                            </th>
+                            <th scope="col" width="10%">
+                              <div class="d-flex flex-column justify-content-between align-items-start">
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                  <div class="pl-1 text-center w-100">REDUCCIÓN COMBUSTIBLE <br>TJ POR AÑO &nbsp;</div><i class="fas fa-sort"></i>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="AHORRO COMBUSTIBLE"></i></div>
+                              </div>
+                            </th>
+                            <th scope="col" width="10%">
+                              <div class="d-flex flex-column justify-content-between align-items-start">
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                  <div class="pl-1 text-center w-100">REDUCCIÓN EMISIONES <br>tCO<sub>2.</sub> &nbsp;</div><i class="fas fa-sort"></i>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="REDUCCIÓN DE EMISIONES"></i></div>
+                              </div>
+                            </th>
+                            <!--th(scope="col", width="15%")
+                            .d-flex.justify-content-between.align-items-center
+                              span.d-flex.justify-content-between.align-items-center
+                                i.fas.fa-question-circle.mr-1(data-toggle="tooltip", data-placement="bottom", title="Premiación adquirida")
+                                span PREMIACIÓN&nbsp;
+                              i.fas.fa-sort
+                            -->
+                            <th scope="col" width="10%">
+                              <div class="d-flex flex-column justify-content-between align-items-start">
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                  <div class="pl-1 text-center w-100">VER FICHA <br> DE EMPRESA&nbsp;</div><i class="fas fa-sort"></i>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center w-100"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="FICHA"></i></div>
+                              </div>
+                            </th>
+                          </tr>
                         </thead>
                         <tbody class="estilo-01">
                             @*<tr>
