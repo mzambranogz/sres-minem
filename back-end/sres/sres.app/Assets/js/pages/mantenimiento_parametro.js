@@ -205,6 +205,7 @@ var cargarDatos = (data) => {
             }
         }        
     }
+    debugger;
     $("#rad-estatico").prop("checked", data.ESTATICO == '1' ? true : false);
     $("#rad-editable").prop("checked", data.EDITABLE == '1' ? true : false);
     $("#rad-verificable").prop("checked", data.VERIFICABLE == '1' ? true : false);
@@ -213,6 +214,7 @@ var cargarDatos = (data) => {
     $("#rad-resultado").prop("checked", data.RESULTADO == '1' ? true : false);
     $("#rad-emisiones").prop("checked", data.EMISIONES == '1' ? true : false);
     $("#rad-ahorro").prop("checked", data.AHORRO == '1' ? true : false);
+    $("#rad-combustible").prop("checked", data.COMBUSTIBLE == '1' ? true : false);
     $('#txt-descripcion-parametro').val(data.DESCRIPCION == null ? '' : data.DESCRIPCION);
     $('#txt-combinacion-unidades').val(data.UNIDAD == null ? '' : data.UNIDAD);
     $('#txt-tamano').val(data.TAMANO);
@@ -260,6 +262,7 @@ var guardar = () => {
     let resultado = $("#rad-resultado").prop("checked") ? '1' : '0';
     let emisiones = $("#rad-emisiones").prop("checked") ? '1' : '0';
     let ahorro = $("#rad-ahorro").prop("checked") ? '1' : '0';
+    let combustible = $("#rad-combustible").prop("checked") ? '1' : '0';
     let descripcion = $('#txt-descripcion-parametro').val();
     let unidad = $('#txt-combinacion-unidades').val();
     let tamano = $('#txt-tamano').val();
@@ -282,6 +285,7 @@ var guardar = () => {
         RESULTADO: resultado,
         EMISIONES: emisiones,
         AHORRO: ahorro,
+        COMBUSTIBLE: combustible,
         DESCRIPCION: descripcion,
         UNIDAD: unidad,
         TAMANO: tamano,
@@ -314,6 +318,7 @@ var changeTipoControl = () => {
         $('#rad-resultado').parent().parent().addClass('d-none');
         $('#rad-emisiones').parent().parent().addClass('d-none');
         $('#rad-ahorro').parent().parent().addClass('d-none');
+        $('#rad-combustible').parent().parent().addClass('d-none'); 
         $('#txt-tamano').parent().parent().addClass('d-none');
     }
     else {
@@ -326,7 +331,7 @@ var changeTipoControl = () => {
         $('#txt-tamano').parent().parent().removeClass('d-none');
         let opcion = $('#cbo-tipo-control').val() == 2 ? '<option value="0">-seleccione-</option><option value="1">Numérico</option><option value="2">Texto</option><option value="3">Fecha</option>' : '<option value="0">-seleccione-</option><option value="2">Texto</option>';
         $('#cbo-tipo-dato').html(opcion);
-        if (idTipoDato > 0) { $('#cbo-tipo-dato').val(idTipoDato); idTipoDato = 0; }
+        if (idTipoDato > 0) { $('#cbo-tipo-dato').val(idTipoDato); idTipoDato = 0; changeTipoDato(); }
     }
 }
 
@@ -338,12 +343,14 @@ var changeTipoDato = () => {
         $('#rad-resultado').parent().parent().removeClass('d-none');
         $('#rad-emisiones').parent().parent().removeClass('d-none');
         $('#rad-ahorro').parent().parent().removeClass('d-none');
+        $('#rad-combustible').parent().parent().removeClass('d-none');
     }
     else {
         $('#rad-decimal').parent().parent().addClass('d-none');
         $('#rad-resultado').parent().parent().addClass('d-none');
         $('#rad-emisiones').parent().parent().addClass('d-none');
-        $('#rad-ahorro').parent().parent().addClass('d-none');        
+        $('#rad-ahorro').parent().parent().addClass('d-none');
+        $('#rad-combustible').parent().parent().addClass('d-none');
     }
 }
 
@@ -358,6 +365,8 @@ var nuevo = () => {
 var limpiarFormulario = () => {
     $('#frm').removeData();
     $('#txt-nombre').val('');
+    $('#txt-etiqueta-parametro').val('');
+    $('#txt-descripcion-parametro').val('');
     $('#cbo-tipo-control').parent().parent().show();
     limpiarCheck();
     $('#cbo-tipo-control').val(1);
@@ -376,6 +385,7 @@ var limpiarCheck = () => {
     $('#rad-resultado').prop('checked', false);
     $('#rad-emisiones').prop('checked', false);
     $('#rad-ahorro').prop('checked', false);
+    $('#rad-combustible').prop('checked', false);
 }
 
 var validarNoEstatico = (e) => {

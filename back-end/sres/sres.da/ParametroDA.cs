@@ -112,6 +112,7 @@ namespace sres.da
                 p.Add("PI_RESULTADO", entidad.RESULTADO);
                 p.Add("PI_EMISIONES", entidad.EMISIONES);
                 p.Add("PI_AHORRO", entidad.AHORRO);
+                p.Add("PI_COMBUSTIBLE", entidad.COMBUSTIBLE);
                 p.Add("PI_DESCRIPCION", entidad.DESCRIPCION);
                 p.Add("PI_UNIDAD", entidad.UNIDAD);
                 p.Add("PI_TAMANO", entidad.TAMANO);
