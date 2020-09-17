@@ -128,7 +128,7 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
             let colNro = `<td class="text-center" data-encabezado="Número de orden" scope="row" data-count="0">${(pagina - 1) * registros + (i + 1)}</td>`;
             let colCodigo = `<td class="text-center" data-encabezado="Código" scope="row"><span>${(`${formatoCodigo}${x.ID_CRITERIO}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</span></td>`;
             let colNombres = `<td class="text-left" data-encabezado="Nombre">${x.NOMBRE}</td>`;
-            let colDescripcion = `<td data-encabezado="Descripción"><div class="text-limit-1">${x.DESCRIPCION == null ? '' : x.DESCRIPCION}</div></td>`;
+            let colDescripcion = `<td data-encabezado="Descripción">${x.DESCRIPCION == null ? '' : x.DESCRIPCION}</td>`;
             let colImagen = `<td class="text-center" data-encabezado="Imagen"><img src="${baseUrl}${$('#ruta').val().replace('{0}', x.ID_CRITERIO)}/${x.ARCHIVO_BASE == null ? '' : x.ARCHIVO_BASE}" width="50%" height="auto"></td>`;
             let btnCambiarEstado = `${[0, 1].includes(x.FLAG_ESTADO) ? "" : `<a class="dropdown-item estilo-01 btnCambiarEstado" href="#" data-id="${x.ID_CRITERIO}" data-estado="${x.FLAG_ESTADO}"><i class="fas fa-edit mr-1"></i>Eliminar</a>`}`;
             let btnEditar = `<a class="dropdown-item estilo-01 btnEditar" href="#" data-id="${x.ID_CRITERIO}" data-toggle="modal" data-target="#modal-mantenimiento"><i class="fas fa-edit mr-1"></i>Editar</a>`;

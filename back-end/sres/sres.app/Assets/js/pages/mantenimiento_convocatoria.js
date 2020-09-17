@@ -225,7 +225,7 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
             let colNro = `<td class="text-center" data-encabezado="Número de orden" scope="row" data-count="0">${(pagina - 1) * registros + (i + 1)}</td>`;
             let colExp = `<td class="text-center" data-encabezado="Número expediente" scope="row"><span>${(`${formatoCodigo}${x.ID_CONVOCATORIA}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</span></td>`;
             let colNombre = `<td class="text-center" data-encabezado="Título">${x.NOMBRE}</td>`;
-            let colDescripcion = `<td data-encabezado="Descripción"><div class="text-limit-1">${x.DESCRIPCION}</div></td>`;
+            let colDescripcion = `<td data-encabezado="Descripción">${x.DESCRIPCION}</td>`;
             let colFechaInicio = `<td class="text-center" data-encabezado="Fecha Inicio">${x.TXT_FECHA_INICIO == '01/01/0001' ? '' : x.TXT_FECHA_INICIO}</td>`;
             let colFechaFin = `<td class="text-center" data-encabezado="Fecha Fin">${x.TXT_FECHA_FIN == '01/01/0001' ? '' : x.TXT_FECHA_FIN}</td>`;
             let colProgreso = `<td class="text-center" data-encabezado="Progreso"><div class="progress" style="height: 21px; ${porcentajeAvance > 0 ? "background-color: #E2DBDA;" : ""}" data-toggle="tooltip" data-placement="top" title="Porcentaje de avance"><div class="progress-bar ${porcentajeAvance > 0 ? "vigente" : "preparado"} estilo-01" role="progressbar" style="width: ${porcentajeAvance}%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">${porcentajeAvance}%</div></div></td>`;

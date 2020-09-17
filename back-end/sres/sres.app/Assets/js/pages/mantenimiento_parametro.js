@@ -14,6 +14,7 @@
     $('#add-lista').on('click', (e) => validarParametro());
     $('#edit-lista').on('click', (e) => actualizarParametro());
     $('#add-lista-param').on('click', (e) => agregarParametroFiltro());
+    $('.tipo-lista-alterna').addClass('d-none');
     consultarListas();
 });
 
