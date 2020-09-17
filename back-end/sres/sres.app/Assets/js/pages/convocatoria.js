@@ -331,7 +331,7 @@ var btnActualizarDatosInstitucionClick = (e) => {
             ID_INSTITUCION: idInstitucionLogin,
             ID_CONTACTO: (i + 1),
             NOMBRE: $(`#txt-nombre-0${i + 1}`).val(),
-            CARGO: $(`#txt-cargo-0${i + 1}`),
+            CARGO: $(`#txt-cargo-0${i + 1}`).val(),
             TELEFONO: $(`#txt-telefono-0${i + 1}`).val(),
             CORREO: $(`#txt-email-0${i + 1}`).val(),
             USUARIO_GUARDAR: idUsuarioLogin
