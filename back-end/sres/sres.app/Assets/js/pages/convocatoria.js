@@ -421,8 +421,8 @@ var trabajadorcamaChange = () => {
     let menor = option.data('min');
     mayor != undefined ? $(`#txt-numero`).removeAttr('max').attr('max', mayor) : $(`#txt-numero`).removeAttr('max');
     menor != undefined ? $(`#txt-numero`).removeAttr('min').attr('min', menor) : $(`#txt-numero`).removeAttr('min');
-    mayor != undefined ? $(`#txt-total-mujeres`).removeAttr('max').attr('max', mayor) : $(`#txt-total-mujeres`).removeAttr('max');
-    menor != undefined ? $(`#txt-total-mujeres`).removeAttr('min').attr('min', menor) : $(`#txt-total-mujeres`).removeAttr('min');
+    mayor != undefined ? idSector == 1 ? $(`#cbo-trabajador-cama`).val() == 1 ? $(`#txt-total-mujeres`).removeAttr('max') : $(`#txt-total-mujeres`).removeAttr('max').attr('max', mayor) : $(`#txt-total-mujeres`).removeAttr('max').attr('max', mayor) : $(`#txt-total-mujeres`).removeAttr('max');
+    menor != undefined ? $(`#txt-total-mujeres`).removeAttr('min').attr('min', 0) : $(`#txt-total-mujeres`).removeAttr('min');
 }
 
 var cantidadChange = () => {

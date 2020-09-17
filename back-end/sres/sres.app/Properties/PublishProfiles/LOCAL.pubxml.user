@@ -16,7 +16,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/14/2020 12:43:56</publishTime>
     </File>
     <File Include="Assets/css/style.css">
-      <publishTime>09/14/2020 11:58:52</publishTime>
+      <publishTime>09/16/2020 11:13:16</publishTime>
     </File>
     <File Include="Assets/documentos/2° RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI %28TCO2%29.pdf">
       <publishTime>09/13/2020 18:24:21</publishTime>
@@ -252,6 +252,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Assets/images/bg-convocatoria.png">
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
+    <File Include="Assets/images/bg-criterios.png">
+      <publishTime>09/16/2020 07:34:08</publishTime>
+    </File>
     <File Include="Assets/images/bg-detalle.png">
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
@@ -266,6 +269,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="Assets/images/bg-participantes.png">
       <publishTime>09/13/2020 18:24:22</publishTime>
+    </File>
+    <File Include="Assets/images/bg-premiacion.png">
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/bg-reconocimiento.png">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -365,6 +371,12 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="Assets/images/criterio-08_old.png">
       <publishTime>09/13/2020 18:24:22</publishTime>
+    </File>
+    <File Include="Assets/images/criterio-09.png">
+      <publishTime>09/17/2020 08:08:45</publishTime>
+    </File>
+    <File Include="Assets/images/diagrama.png">
+      <publishTime>09/17/2020 12:54:08</publishTime>
     </File>
     <File Include="Assets/images/dos_estrella.png">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -499,40 +511,40 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_01.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_02.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_03.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_04.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_05.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_06.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_07.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_azul_01.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_rojo_01.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_rojo_02.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_verde_01.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_verde_02.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/log-sres-blanco.png">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -616,7 +628,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Assets/images/sector-publico.png">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Assets/images/sello.svg">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -712,7 +724,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:21</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria.js">
-      <publishTime>09/14/2020 11:04:13</publishTime>
+      <publishTime>09/17/2020 15:56:59</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria_bandejaparticipantes.js">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -721,22 +733,22 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria_criterio.js">
-      <publishTime>09/14/2020 08:00:22</publishTime>
+      <publishTime>09/16/2020 10:22:17</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria_criterioingresar.js">
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria_criterios.js">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 16:56:28</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria_detalle.js">
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria_evaluacioncriterio.js">
-      <publishTime>09/13/2020 18:28:20</publishTime>
+      <publishTime>09/16/2020 11:00:37</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria_evaluacioncriterios.js">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/15/2020 17:29:04</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria_evaluarinscripcion.js">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -760,7 +772,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Assets/js/pages/login_registrarme.js">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/15/2020 00:10:56</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento.js">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -778,10 +790,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento_convocatoria.js">
-      <publishTime>09/14/2020 01:32:17</publishTime>
+      <publishTime>09/16/2020 22:45:13</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento_criterio.js">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 22:44:38</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento_criteriopuntaje.js">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -808,7 +820,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento_parametro.js">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 22:34:04</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento_proceso.js">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -826,13 +838,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento_usuario.js">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/15/2020 00:47:09</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento_valorfactor.js">
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Assets/js/pages/participantes.js">
-      <publishTime>09/13/2020 21:28:43</publishTime>
+      <publishTime>09/17/2020 12:10:51</publishTime>
     </File>
     <File Include="Assets/js/pages/participante_ficha.js">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -1051,16 +1063,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="bin/sres.app.dll">
-      <publishTime>09/14/2020 14:19:49</publishTime>
+      <publishTime>09/17/2020 16:18:11</publishTime>
     </File>
     <File Include="bin/sres.be.dll">
-      <publishTime>09/14/2020 14:13:16</publishTime>
+      <publishTime>09/17/2020 16:16:08</publishTime>
     </File>
     <File Include="bin/sres.da.dll">
-      <publishTime>09/14/2020 14:13:16</publishTime>
+      <publishTime>09/17/2020 16:16:09</publishTime>
     </File>
     <File Include="bin/sres.ln.dll">
-      <publishTime>09/14/2020 14:13:16</publishTime>
+      <publishTime>09/17/2020 16:16:09</publishTime>
     </File>
     <File Include="bin/sres.ut.dll">
       <publishTime>09/14/2020 14:13:16</publishTime>
@@ -1107,6 +1119,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Files/Criterios/3/Imagen/criterio-03.png">
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
+    <File Include="Files/Criterios/3/Imagen/criterio-09.png">
+      <publishTime>09/17/2020 08:08:45</publishTime>
+    </File>
     <File Include="Files/Criterios/4/Imagen/criterio-04.png">
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
@@ -1114,6 +1129,12 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Files/Criterios/6/Imagen/criterio-06.png">
+      <publishTime>09/13/2020 18:24:22</publishTime>
+    </File>
+    <File Include="Files/Criterios/6/Imagen/criterio-07.png">
+      <publishTime>09/13/2020 18:24:22</publishTime>
+    </File>
+    <File Include="Files/Criterios/7/Imagen/criterio-03.png">
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Files/Criterios/7/Imagen/criterio-07.png">
@@ -1144,40 +1165,40 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/1/Imagen/ico_nama_amarillo_03.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/10/Imagen/ico_nama_verde_01.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/11/Imagen/ico_nama_verde_02.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/12/Imagen/ico_nama_azul_01.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/2/Imagen/ico_nama_amarillo_06.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/3/Imagen/ico_nama_amarillo_07.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/4/Imagen/ico_nama_amarillo_04.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/5/Imagen/ico_nama_amarillo_01.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/6/Imagen/ico_nama_amarillo_05.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/7/Imagen/ico_nama_amarillo_02.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/8/Imagen/ico_nama_rojo_02.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/9/Imagen/ico_nama_rojo_01.svg">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 07:34:08</publishTime>
     </File>
     <File Include="Files/MedidaMitigacion/LEER.txt">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -1234,7 +1255,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Mailing/AprobacionUsuario.html">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/17/2020 14:24:37</publishTime>
     </File>
     <File Include="Mailing/CoordinacionConvocatoria.html">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -1336,7 +1357,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Views/Convocatoria/BandejaParticipantes.cshtml">
-      <publishTime>09/14/2020 00:17:32</publishTime>
+      <publishTime>09/16/2020 08:42:22</publishTime>
     </File>
     <File Include="Views/Convocatoria/CambiarClave.cshtml">
       <publishTime>09/06/2020 23:21:18</publishTime>
@@ -1351,28 +1372,28 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Views/Convocatoria/Criterios.cshtml">
-      <publishTime>09/14/2020 14:08:48</publishTime>
+      <publishTime>09/16/2020 12:52:32</publishTime>
     </File>
     <File Include="Views/Convocatoria/EvaluacionCriterio.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/15/2020 16:40:20</publishTime>
     </File>
     <File Include="Views/Convocatoria/EvaluacionCriterios.cshtml">
-      <publishTime>09/13/2020 22:08:58</publishTime>
+      <publishTime>09/15/2020 17:25:40</publishTime>
     </File>
     <File Include="Views/Convocatoria/EvaluarInstitucion.cshtml">
       <publishTime>09/14/2020 12:17:52</publishTime>
     </File>
     <File Include="Views/Convocatoria/Index.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/17/2020 09:46:26</publishTime>
     </File>
     <File Include="Views/Convocatoria/IndexEvaluador.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/17/2020 10:38:04</publishTime>
     </File>
     <File Include="Views/Convocatoria/IndexPostulante.cshtml">
-      <publishTime>09/14/2020 10:53:14</publishTime>
+      <publishTime>09/17/2020 15:47:33</publishTime>
     </File>
     <File Include="Views/Convocatoria/Informacion.cshtml">
-      <publishTime>09/13/2020 21:48:05</publishTime>
+      <publishTime>09/17/2020 14:23:43</publishTime>
     </File>
     <File Include="Views/Convocatoria/Inscribirme.cshtml">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -1396,82 +1417,82 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Views/Login/Registrarme.cshtml">
-      <publishTime>09/14/2020 13:14:47</publishTime>
+      <publishTime>09/17/2020 15:40:24</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Anno.cshtml">
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Caso.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:08:08</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Componente.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:15:24</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Composicion.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:18:23</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Convocatoria.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:06:47</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Criterio.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 22:45:45</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Documento.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:16:08</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Estrella.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:19:51</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Etapa.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:01:59</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Factor.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:17:29</publishTime>
     </File>
     <File Include="Views/Mantenimiento/FactorValor.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:19:23</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Insignia.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:16:45</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Institucion.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:21:56</publishTime>
     </File>
     <File Include="Views/Mantenimiento/MedidaMitigacion.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:20:58</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Parametro.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 22:33:27</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Proceso.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 22:58:11</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Puntaje.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:21:34</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Reconocimiento.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:20:24</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Requerimiento.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 22:52:56</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Rol.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:07:19</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Sector.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 23:07:46</publishTime>
     </File>
     <File Include="Views/Mantenimiento/TablaMantenimiento.cshtml">
       <publishTime>09/14/2020 12:20:02</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Usuario.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/16/2020 22:51:54</publishTime>
     </File>
     <File Include="Views/Participante/Categoria.cshtml">
-      <publishTime>09/13/2020 18:24:22</publishTime>
+      <publishTime>09/17/2020 08:29:30</publishTime>
     </File>
     <File Include="Views/Participante/Index.cshtml">
-      <publishTime>09/13/2020 21:40:12</publishTime>
+      <publishTime>09/17/2020 12:25:28</publishTime>
     </File>
     <File Include="Views/Participante/MapaSitio.cshtml">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -1483,7 +1504,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Views/Participante/ReconocimientoCriterio.cshtml">
-      <publishTime>09/13/2020 21:43:00</publishTime>
+      <publishTime>09/16/2020 10:07:23</publishTime>
     </File>
     <File Include="Views/Participante/TerminosCondiciones.cshtml">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -1504,7 +1525,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/13/2020 18:24:22</publishTime>
     </File>
     <File Include="Views/Shared/_Menu.cshtml">
-      <publishTime>09/14/2020 12:06:30</publishTime>
+      <publishTime>09/16/2020 10:09:45</publishTime>
     </File>
     <File Include="Views/Shared/_MenuBottom.cshtml">
       <publishTime>09/13/2020 18:24:22</publishTime>

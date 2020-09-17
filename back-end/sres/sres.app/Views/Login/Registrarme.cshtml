@@ -172,6 +172,16 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="chk-aporte-ndc">
+                                            <label class="custom-control-label estilo-01" for="chk-aporte-ndc">Estás interesado en ayudar al país con su compromiso de cambio climático contribuyendo a la NDC. &nbsp;<a class="estilo-01" href="http://sismrv.minem.gob.pe/" target="_blank">Visitar Plataforma MRV del Sector Energía</a></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
                                     <div class="rayado pt-2 mb-3"></div>
                                 </div>
                             </div>
@@ -183,16 +193,16 @@
                                             <label class="custom-control-label estilo-01" for="chk-terminos-condiciones">Aceptar los términos y condiciones de uso. &nbsp;</label><a class="estilo-01" href="#" data-toggle="modal" data-target="#terminos-condiciones">Ver aquí</a>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    @*<div class="form-group">
                                         <div class="custom-control custom-checkbox">
                                             <input class="custom-control-input" type="checkbox" id="chk-aporte-ndc">
                                             <label class="custom-control-label estilo-01" for="chk-aporte-ndc">Acepta importar sus emisiones reducidas de la NDC. &nbsp;</label>
                                         </div>
-                                    </div>
+                                    </div>*@
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <button class="btn-lg btn-sres-verde w-100" type="submit"><i class="fas fa-paper-plane px-1"></i>Registrarse</button>
-                                    <p class="py-4 mb-0 text-center estilo-01">¿Ya tiene un cuenta?&nbsp;<a class="text-sres-verde" href="@Url.Action("Index","Login")">Ingrese ahora <br></a><a class="text-sres-verde" href="@Url.Action("RecuperarContraseña", "Login")">¿Olvidó su contraseña?</a></p>
+                                    <p class="py-4 mb-0 text-center estilo-01">¿Ya tiene una cuenta?&nbsp;<a class="text-sres-verde" href="@Url.Action("Index","Login")">Ingrese ahora <br></a><a class="text-sres-verde" href="@Url.Action("RecuperarContraseña", "Login")">¿Olvidó su contraseña?</a></p>
                                 </div>
                             </div>
                         </form>
