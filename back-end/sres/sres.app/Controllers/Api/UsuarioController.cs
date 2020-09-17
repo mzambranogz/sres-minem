@@ -68,15 +68,15 @@ namespace sres.app.Controllers.Api
 
             if (seGuardo)
             {
-                string fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldServer = "[SERVER]";
+                string fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldServer = "[SERVER]", fieldentidad = "[ENTIDAD]";
                 usuario = usuarioLN.ObtenerUsuario(usuario.ID_USUARIO);
 
                 if (habilitar)
                 {
-                    string[] fields = new string[] { fieldNombres, fieldApellidos, fieldServer };
-                    string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldServer };
-                    Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS, [fieldServer] = AppSettings.Get<string>("Server") };
-                    string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Su cuenta ha sido aprobada en nuestra plataforma SRES del sector energía";
+                    string[] fields = new string[] { fieldNombres, fieldApellidos, fieldServer, fieldentidad };
+                    string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldServer, fieldentidad };
+                    Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS, [fieldServer] = AppSettings.Get<string>("Server"), [fieldentidad] = usuario.RAZON_SOCIAL };
+                    string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Su cuenta ha sido aprobada en nuestra plataforma Reconocimiento de Energía Eficiente y Sostenible";
                     MailAddressCollection mailTo = new MailAddressCollection();
                     mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
 
@@ -87,7 +87,7 @@ namespace sres.app.Controllers.Api
                     string[] fields = new string[] { fieldNombres, fieldApellidos };
                     string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos };
                     Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS };
-                    string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Su cuenta ha sido deshabilitada en nuestra plataforma SRES del sector energía";
+                    string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Su cuenta ha sido deshabilitada en nuestra plataforma Reconocimiento de Energía Eficiente y Sostenible";
                     MailAddressCollection mailTo = new MailAddressCollection();
                     mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
 

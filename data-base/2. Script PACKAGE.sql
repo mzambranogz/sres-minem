@@ -1680,6 +1680,8 @@ CREATE OR REPLACE PACKAGE SISSELLO."PKG_SISSELLO_VERIFICACION" AS
     PI_PERIODO NUMBER,
     PI_ID_INSIGNIA NUMBER,
     PI_ID_ESTRELLA NUMBER,
+    PI_ID_SECTOR NUMBER,
+    PI_ID_ESPECIAL NUMBER,
     PI_REGISTROS NUMBER,
     PI_PAGINA NUMBER,
     PI_COLUMNA VARCHAR2,
@@ -3676,8 +3678,10 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
     U.CELULAR,
     U.ID_INSTITUCION,
     U.ID_ROL,
-    U.FLAG_ESTADO --ADD
+    U.FLAG_ESTADO, --ADD
+    INST.RAZON_SOCIAL
     FROM T_GENM_USUARIO U
+    INNER JOIN T_GENM_INSTITUCION INST ON U.ID_INSTITUCION = INST.ID_INSTITUCION
     WHERE U.ID_USUARIO = PI_ID_USUARIO;
   END USP_SEL_OBTIENE_USUARIO;
   
@@ -7582,6 +7586,8 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
     PI_PERIODO NUMBER,
     PI_ID_INSIGNIA NUMBER,
     PI_ID_ESTRELLA NUMBER,
+    PI_ID_SECTOR NUMBER,
+    PI_ID_ESPECIAL NUMBER,
     PI_REGISTROS NUMBER,
     PI_PAGINA NUMBER,
     PI_COLUMNA VARCHAR2,
@@ -7630,6 +7636,18 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
                       WHEN PI_ID_ESTRELLA IS NOT NULL THEN
                         'R.ID_ESTRELLA = ' || PI_ID_ESTRELLA || ' AND '
                     END ||
+                    CASE
+                      WHEN PI_ID_SECTOR IS NOT NULL THEN
+                        'INST.ID_SECTOR = ' || PI_ID_SECTOR || ' AND '
+                    END ||
+                    CASE
+                      WHEN PI_ID_ESPECIAL = 1 THEN
+                        '(R.FLAG_MEJORACONTINUA = ''' || PI_ID_ESPECIAL || ''' OR R.FLAG_EMISIONESMAX = ''' || PI_ID_ESPECIAL || ''' OR (SELECT COUNT(*) FROM T_GEND_RECON_MEDIDA_RESULTADO MR WHERE MR.ID_RECONOCIMIENTO = R.ID_RECONOCIMIENTO AND MR.OBTENIDO = ''1'') > 0) AND '
+                      WHEN PI_ID_ESPECIAL = 0 THEN
+                        '(R.FLAG_MEJORACONTINUA = ''' || PI_ID_ESPECIAL || ''' AND R.FLAG_EMISIONESMAX = ''' || PI_ID_ESPECIAL || ''' AND (SELECT COUNT(*) FROM T_GEND_RECON_MEDIDA_RESULTADO MR WHERE MR.ID_RECONOCIMIENTO = R.ID_RECONOCIMIENTO AND MR.OBTENIDO = ''1'') = ' || PI_ID_ESPECIAL || ') AND '
+                      ELSE
+                        ''
+                    END ||
                     'R.FLAG_ESTADO = ''1''';
     EXECUTE IMMEDIATE vQUERY_CONT INTO vTOTAL_REG;
 
@@ -7650,7 +7668,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
                           SELECT
                                   R.ID_RECONOCIMIENTO,
                                   R.ID_INSCRIPCION,
-				  INST.ID_INSTITUCION,
+                                  INST.ID_INSTITUCION,
                                   INST.LOGO AS "LOGO_INSTITUCION",
                                   INST.RAZON_SOCIAL AS "RAZON_SOCIAL_INSTITUCION",
                                   R.ID_INSIGNIA,
@@ -7700,6 +7718,18 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
                           CASE
                             WHEN PI_ID_ESTRELLA IS NOT NULL THEN
                               'R.ID_ESTRELLA = ' || PI_ID_ESTRELLA || ' AND '
+                          END ||
+                          CASE
+                            WHEN PI_ID_SECTOR IS NOT NULL THEN
+                              'INST.ID_SECTOR = ' || PI_ID_SECTOR || ' AND '
+                          END ||
+                          CASE
+                            WHEN PI_ID_ESPECIAL = 1 THEN
+                              '(R.FLAG_MEJORACONTINUA = ''' || PI_ID_ESPECIAL || ''' OR R.FLAG_EMISIONESMAX = ''' || PI_ID_ESPECIAL || ''' OR (SELECT COUNT(*) FROM T_GEND_RECON_MEDIDA_RESULTADO MR WHERE MR.ID_RECONOCIMIENTO = R.ID_RECONOCIMIENTO AND MR.OBTENIDO = ''1'') > 0) AND '
+                            WHEN PI_ID_ESPECIAL = 0 THEN
+                              '(R.FLAG_MEJORACONTINUA = ''' || PI_ID_ESPECIAL || ''' AND R.FLAG_EMISIONESMAX = ''' || PI_ID_ESPECIAL || ''' AND (SELECT COUNT(*) FROM T_GEND_RECON_MEDIDA_RESULTADO MR WHERE MR.ID_RECONOCIMIENTO = R.ID_RECONOCIMIENTO AND MR.OBTENIDO = ''1'') = ' || PI_ID_ESPECIAL || ') AND '
+                            ELSE
+                              ''
                           END ||
                           'R.FLAG_ESTADO = ''1''
                         )

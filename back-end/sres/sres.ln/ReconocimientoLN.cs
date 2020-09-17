@@ -45,14 +45,14 @@ namespace sres.ln
             return lista;
         }
 
-        public List<ReconocimientoBE> BuscarParticipantes(string razonSocialInstitucion, int? idTipoEmpresa, int? idCriterio, int? idMedMit, int? añoInicioConvocatoria, int? idInsignia, int? idEstrella, int registros, int pagina, string columna, string orden)
+        public List<ReconocimientoBE> BuscarParticipantes(string razonSocialInstitucion, int? idTipoEmpresa, int? idCriterio, int? idMedMit, int? añoInicioConvocatoria, int? idInsignia, int? idEstrella, int? idSector, int? idEspecial, int registros, int pagina, string columna, string orden)
         {
             List<ReconocimientoBE> lista = new List<ReconocimientoBE>();
 
             try
             {
                 cn.Open();
-                lista = reconocimientoDA.BuscarParticipantes(razonSocialInstitucion, idTipoEmpresa, idCriterio, idMedMit, añoInicioConvocatoria, idInsignia, idEstrella, registros, pagina, columna, orden, cn);
+                lista = reconocimientoDA.BuscarParticipantes(razonSocialInstitucion, idTipoEmpresa, idCriterio, idMedMit, añoInicioConvocatoria, idInsignia, idEstrella, idSector, idEspecial, registros, pagina, columna, orden, cn);
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }

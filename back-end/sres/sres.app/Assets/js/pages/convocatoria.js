@@ -12,6 +12,7 @@
     $('#cbo-subsector-tipoemp').on('change', subsectortipoempresaChange);
     $(`#cbo-trabajador-cama`).on('change', trabajadorcamaChange);
     $(`#txt-numero`).on('blur', cantidadChange);
+    $('#txt-total-mujeres').on('blur', cantidadmujeresChange);
     $('#cbo-departamento').on('change', departamentoChange);
     $('#cbo-provincia').on('change', provinciaChange);
     listaSubsector();
@@ -244,6 +245,8 @@ var btnMostrarDatosInstitucionClick = (e) => {
 }
 
 var responseMostrarDatosInstitucion = (data) => {
+    if (idSector == 1) $('#cbo-trabajador-cama').prop('disabled', false);
+    else if (idSector == 2) $('#cbo-trabajador-cama').prop('disabled', true);
     if (idSector == 1) $('#cbo-ciiu option[data-sector="2"]').remove();
     else if (idSector == 2) $('#cbo-ciiu option[data-sector="1"]').remove();
     $('#txt-nombre-corto').val(data.NOMBRE_COMERCIAL);
@@ -254,7 +257,8 @@ var responseMostrarDatosInstitucion = (data) => {
     //$('#cbo-ciiu').val(data.ID_ACTIVIDAD);
     vidTrabajadorCama = idTrabajadorCama;
     vcantidad = cantidad;
-    $('#txt-total-mujeres').val(data.CANTIDAD_MUJERES);
+    vcantidadmujeres = cantidadmujeres;
+    //$('#txt-total-mujeres').val(data.CANTIDAD_MUJERES);
     $('#chk-aporte-ndc').prop('checked', data.FLAG_APORTENDC == '1' ? true : false)
     listaSubsector();
     listaDepartamento();
@@ -327,7 +331,7 @@ var btnActualizarDatosInstitucionClick = (e) => {
             ID_INSTITUCION: idInstitucionLogin,
             ID_CONTACTO: (i + 1),
             NOMBRE: $(`#txt-nombre-0${i + 1}`).val(),
-            CARGO: $(`#txt-cargo-0${i + 1}`).val(),
+            CARGO: $(`#txt-cargo-0${i + 1}`),
             TELEFONO: $(`#txt-telefono-0${i + 1}`).val(),
             CORREO: $(`#txt-email-0${i + 1}`).val(),
             USUARIO_GUARDAR: idUsuarioLogin
@@ -354,6 +358,7 @@ var responseActualizarDatosInstitucion = (data) => {
         idSubsectortipoemp = $(`#cbo-subsector-tipoemp`).val();
         idTrabajadorCama = $(`#cbo-trabajador-cama`).val();
         cantidad = $(`#txt-numero`).val();
+        cantidadmujeres = $(`#txt-total-mujeres`).val();
         $('#lblDescripcionInstitucion').text($('#txa-descripcion').val());
         $('#txt-nombre-corto').val('');
         $('#txa-descripcion').val('');
@@ -385,7 +390,7 @@ var armarCombosubsectortipoempresa = (data) => {
 
 var subsectortipoempresaChange = () => {
     $(`#txt-numero`).val('');
-    if ($(`#cbo-subsector-tipoemp`).val() == 0) { $(`#cbo-trabajador-cama`).html(`<option value="0">-Seleccione-</option>`); return };
+    if ($(`#cbo-subsector-tipoemp`).val() == 0) { $(`#cbo-trabajador-cama`).html(`<option value="0">-Seleccione-</option>`); if (idSector == 1) $('[for="cbo-trabajador-cama"]').html('Número de empleados/camas:'); if (idSector == 1) $('[for="txt-numero"]').html('Cantidad de empleados/camas (Cantidad total):'); return };
     let url = `${baseUrl}api/trabajadorcama/listatrabajadorcama?idSubsectorTipoempresa=${$(`#cbo-subsector-tipoemp`).val()}`;
     fetch(url)
     .then(r => r.json())
@@ -393,25 +398,34 @@ var subsectortipoempresaChange = () => {
 }
 
 var armarCombotrabajadorcama = (data) => {
+    if (idSector == 1) if ($(`#cbo-subsector-tipoemp`).val() == 1) $('[for="cbo-trabajador-cama"]').html('Número de camas:');
+    if (idSector == 1) if ($(`#cbo-subsector-tipoemp`).val() == 2) $('[for="cbo-trabajador-cama"]').html('Número de empleados:');
+    if (idSector == 1) if ($(`#cbo-subsector-tipoemp`).val() == 1) $('[for="txt-numero"]').html('Cantidad de camas (Cantidad total):');
+    if (idSector == 1) if ($(`#cbo-subsector-tipoemp`).val() == 2) $('[for="txt-numero"]').html('Cantidad de empleados (Cantidad total):');
     let combo = data.map((x, y) => {
         return `<option value="${x.ID_TRABAJADORES_CAMA}" ${x.MAYOR_SIGNO == '1' ? `data-max="${x.MAYOR_VALOR}"` : ``} ${x.MENOR_SIGNO == '1' ? `data-min="${x.MENOR_VALOR}"` : ``}>${x.NOMBRE}</option>`
     }).join('');
     $(`#cbo-trabajador-cama`).html(data.length == 1 ? combo : `<option value="0">-Seleccione-</option>${combo}`);
-    if (vidTrabajadorCama > 0) { $(`#cbo-trabajador-cama`).val(vidTrabajadorCama); vidTrabajadorCama = 0; trabajadorcamaChange(); vcantidad == 0 ? $(`#txt-numero`).val('') : $(`#txt-numero`).val(vcantidad); vcantidad = 0; }
+    if (vidTrabajadorCama > 0) {
+        $(`#cbo-trabajador-cama`).val(vidTrabajadorCama); vidTrabajadorCama = 0; trabajadorcamaChange();
+        vcantidad == 0 ? $(`#txt-numero`).val('') : $(`#txt-numero`).val(vcantidad); vcantidad = 0;
+        vcantidadmujeres == 0 ? $(`#txt-total-mujeres`).val('') : $(`#txt-total-mujeres`).val(vcantidadmujeres); vcantidadmujeres = 0;
+    }
     else { trabajadorcamaChange(); }
 }
 
 var trabajadorcamaChange = () => {
-    if ($(`#cbo-trabajador-cama`).val() == 0) { $(`#txt-numero`).val(''); return };
+    if ($(`#cbo-trabajador-cama`).val() == 0) { $(`#txt-numero`).val(''); $(`#txt-total-mujeres`).val(''); return };
     let option = $(`#cbo-trabajador-cama`).find(`option[value='${$(`#cbo-trabajador-cama`).val()}']`);
     let mayor = option.data('max');
     let menor = option.data('min');
     mayor != undefined ? $(`#txt-numero`).removeAttr('max').attr('max', mayor) : $(`#txt-numero`).removeAttr('max');
     menor != undefined ? $(`#txt-numero`).removeAttr('min').attr('min', menor) : $(`#txt-numero`).removeAttr('min');
+    mayor != undefined ? $(`#txt-total-mujeres`).removeAttr('max').attr('max', mayor) : $(`#txt-total-mujeres`).removeAttr('max');
+    menor != undefined ? $(`#txt-total-mujeres`).removeAttr('min').attr('min', menor) : $(`#txt-total-mujeres`).removeAttr('min');
 }
 
 var cantidadChange = () => {
-    debugger;
     let mayor = parseFloat($(`#txt-numero`).attr('max'));
     let menor = parseFloat($(`#txt-numero`).attr('min'));
     let num = parseFloat($(`#txt-numero`).val());
@@ -420,8 +434,16 @@ var cantidadChange = () => {
     else if (menor != undefined) { if (num < menor) $(`#txt-numero`).val(menor); }
 }
 
+var cantidadmujeresChange = () => {
+    let mayor = parseFloat($(`#txt-total-mujeres`).attr('max'));
+    let menor = parseFloat($(`#txt-total-mujeres`).attr('min'));
+    let num = parseFloat($(`#txt-total-mujeres`).val());
+    if (mayor != undefined && menor != undefined) { if (num < menor || num > mayor) $(`#txt-total-mujeres`).val(menor); }
+    else if (mayor != undefined) { if (num > mayor) $(`#txt-total-mujeres`).val(mayor); }
+    else if (menor != undefined) { if (num < menor) $(`#txt-total-mujeres`).val(menor); }
+}
+
 var cambiarPrimerInicio = () => {
-    debugger;
     if (idRol != 3) return;
     if (primerinicio != 0) return;
     let url = `${baseUrl}api/institucion/cambiarprimerinicio?idInstitucion=${idInstitucionLogin}`;

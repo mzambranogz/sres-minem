@@ -9,37 +9,46 @@
     cambioNav();
 
     $("#btn-buscar").click(consultar);
-    $('#cbo-categoria, #cbo-criterio, #cbo-medmit, #cbo-periodo, #cbo-insignia, #cbo-estrellas').change(consultar);
+    $('#cbo-categoria, #cbo-criterio, #cbo-medmit, #cbo-periodo, #cbo-insignia, #cbo-estrellas, #cbo-sector, #cbo-reconocimiento-especial').change(consultar);
     $("#btn-buscar")[0].click();
 })
 
 var cargarCombos = () => {
-    let urlListarComboTipoEmpresa = `${baseUrl}api/subsectortipoempresa/listasubsetortipoempresa?idSector=${idSectorLogin}`;
-    let urlListarComboCriterio = `${baseUrl}api/criterio/obtenerallcriterio`;
-    let urlListarComboMedMit = `${baseUrl}api/medidamitigacion/obtenerallmedidamitigacion`;
-    let urlListarComboPeriodo = `${baseUrl}api/anno/obtenerallanno`;
+    //let urlListarComboTipoEmpresa = `${baseUrl}api/subsectortipoempresa/listasubsetortipoempresa?idSector=${idSectorLogin}`;
+    //let urlListarComboCriterio = `${baseUrl}api/criterio/obtenerallcriterio`;
+    //let urlListarComboMedMit = `${baseUrl}api/medidamitigacion/obtenerallmedidamitigacion`;
+    //let urlListarComboPeriodo = `${baseUrl}api/anno/obtenerallanno`;
     let urlListarComboInsignia = `${baseUrl}api/insignia/obtenerallinsignia`;
     let urlListarComboEstrella = `${baseUrl}api/estrella/obtenerallestrella`;
+    let urlListarSectorPorEstado = `${baseUrl}api/sector/listarsectorporestado?flagEstado=1`;
 
     Promise.all([
-            fetch(urlListarComboTipoEmpresa),
-            fetch(urlListarComboCriterio),
-            fetch(urlListarComboMedMit),
-            fetch(urlListarComboPeriodo),
+            //fetch(urlListarComboTipoEmpresa),
+            //fetch(urlListarComboCriterio),
+            //fetch(urlListarComboMedMit),
+            //fetch(urlListarComboPeriodo),
             fetch(urlListarComboInsignia),
-            fetch(urlListarComboEstrella)
-            
+            fetch(urlListarComboEstrella),
+            fetch(urlListarSectorPorEstado)
     ])
     .then(r => Promise.all(r.map(v => v.json())))
-    .then(([listaTipoEmpresa, listaCriterio, listaMedMit, listaPeriodo, listaInsignia, listaEstrella]) => {
-        cargarComboTipoEmpresa('#cbo-categoria', listaTipoEmpresa);
-        cargarComboCriterio('#cbo-criterio', listaCriterio);
-        cargarComboMedidaMitigacion('#cbo-medmit', listaMedMit);
-        cargarComboPeriodo('#cbo-periodo', listaPeriodo);
+    //.then(([listaTipoEmpresa, listaCriterio, listaMedMit, listaPeriodo, listaInsignia, listaEstrella]) => {
+    .then(([listaInsignia, listaEstrella, listaSector]) => {
+        //cargarComboTipoEmpresa('#cbo-categoria', listaTipoEmpresa);
+        //cargarComboCriterio('#cbo-criterio', listaCriterio);
+        //cargarComboMedidaMitigacion('#cbo-medmit', listaMedMit);
+        //cargarComboPeriodo('#cbo-periodo', listaPeriodo);
         cargarComboInsignia('#cbo-insignia', listaInsignia);
         cargarComboEstrella('#cbo-estrellas', listaEstrella);
+        cargarComboSector('#cbo-sector', listaSector);
     });
 };
+
+var cargarComboSector = (selector, data) => {
+    let options = data.length == 0 ? '' : data.map(x => `<option value="${x.ID_SECTOR}">${x.NOMBRE}</option>`).join('');
+    options = `<option>Todos</option>${options}`;
+    $(selector).html(options);
+}
 
 var cargarComboTipoEmpresa = (selector, data) => {
     let options = data.length == 0 ? '' : data.map(x => `<option value="${x.ID_SUBSECTOR_TIPOEMPRESA}">${x.NOMBRE}</option>`).join('');
@@ -85,12 +94,14 @@ var consultar = () => {
     let añoInicioConvocatoria = $('#cbo-periodo').val();
     let idInsignia = $('#cbo-insignia').val();
     let idEstrella = $('#cbo-estrellas').val();
+    let idSector = $('#cbo-sector').val();
+    let idEspecial = $('#cbo-reconocimiento-especial').val();
     let registros = 10;
     //let registros = $('#catidad-rgistros').val();
     let pagina = $($('.ir-pagina')[0]).val();
     let columna = 'id_reconocimiento';
     let orden = 'asc'
-    let params = { razonSocialInstitucion, idTipoEmpresa, idCriterio, idMedMit, añoInicioConvocatoria, idInsignia, idEstrella, registros, pagina, columna, orden };
+    let params = { razonSocialInstitucion, idTipoEmpresa, idCriterio, idMedMit, añoInicioConvocatoria, idInsignia, idEstrella, idSector, idEspecial, registros, pagina, columna, orden };
     let queryParams = Object.keys(params).map(x => params[x] == null ? x : `${x}=${params[x]}`).join('&');
 
     let url = `${baseUrl}api/reconocimiento/buscarparticipantes?${queryParams}`;

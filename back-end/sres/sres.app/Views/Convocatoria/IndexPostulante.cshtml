@@ -110,6 +110,11 @@
 <div class="container-fluid" id="sectionSearch">
     <div class="container">
         <div class="row">
+            <div class="col-12">
+                <h3 class="estilo-02 text-sres-azul my-2">FILTROS DE BÚSQUEDA</h3>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-2">
                 <div class="form-group">
                     <label class="estilo-01 text-sres-oscuro" for="txt-expediente">CÓDIGO</label>
@@ -302,7 +307,7 @@
                                 </div>
                             </div>
                             <div class="form-group mt-2">
-                                <label for="txa-descripcion">Descripción:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                <label for="txa-descripcion">Descripción de la empresa (Mínimo 100 caracteres):</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
                                     <textarea class="form-control estilo-01 text-sres-gris" id="txa-descripcion" cols="30" rows="3" placeholder="Ingrese la descripción de su empresa" maxlength="800"></textarea>
@@ -864,7 +869,7 @@
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-4">
                                 <div class="form-group mt-2">
-                                    <label class="estilo-01" for="txt-numero">Cantidad de empleados/camas (Cantidad total):</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    <label class="estilo-01" for="txt-numero">@(usuario.INSTITUCION.ID_SECTOR == 1 ? "Cantidad de empleados/camas (Cantidad total):" : "Cantidad de empleados (Cantidad total):")</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div>
                                         <input class="form-control estilo-01" type="number" id="txt-numero" placeholder="Ingrese cantidad" maxlength="12" required>
@@ -1053,11 +1058,11 @@
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-3">
                             <div class="form-group">
-                                <label class="estilo-01" for="txt-cargo-04">Cargo</label>
+                                <label class="estilo-01" for="txt-cargo-04">Fecha de conformidad</label>
                                 <!--span.text-danger.font-weight-bold &nbsp;(*)&nbsp;-->
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user-circle"></i></span></div>
-                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-cargo-04" maxlength="12" placeholder="Cargo">
+                                    <input class="form-control estilo-01 text-sres-gris" type="date" id="txt-cargo-04" maxlength="12" placeholder="Cargo">
                                 </div>
                             </div>
                         </div>

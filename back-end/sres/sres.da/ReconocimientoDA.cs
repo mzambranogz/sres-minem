@@ -62,7 +62,7 @@ namespace sres.da
             return lista;
         }
 
-        public List<ReconocimientoBE> BuscarParticipantes(string razonSocialInstitucion, int? idTipoEmpresa, int? idCriterio, int? idMedMit, int? añoInicioConvocatoria, int? idInsignia, int? idEstrella, int registros, int pagina, string columna, string orden, OracleConnection db)
+        public List<ReconocimientoBE> BuscarParticipantes(string razonSocialInstitucion, int? idTipoEmpresa, int? idCriterio, int? idMedMit, int? añoInicioConvocatoria, int? idInsignia, int? idEstrella, int? idSector, int? idEspecial, int registros, int pagina, string columna, string orden, OracleConnection db)
         {
             List<ReconocimientoBE> lista = new List<ReconocimientoBE>();
 
@@ -77,6 +77,8 @@ namespace sres.da
                 p.Add("PI_PERIODO", añoInicioConvocatoria);
                 p.Add("PI_ID_INSIGNIA", idInsignia);
                 p.Add("PI_ID_ESTRELLA", idEstrella);
+                p.Add("PI_ID_SECTOR", idSector);
+                p.Add("PI_ID_ESPECIAL", idEspecial);
                 p.Add("PI_REGISTROS", registros);
                 p.Add("PI_PAGINA", pagina);
                 p.Add("PI_COLUMNA", columna);
