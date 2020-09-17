@@ -177,8 +177,8 @@
       <div class="container">
         <div class="row">
           <div class="col-12 my-5">
-            <p class="text-justify estilo-01 text-sres-gris wow fadeIn">A continuación, presentamos a las entidades públicas y privadas que cuentan con el Sello de Reconocimiento de Energía Sostenible <b>(vigente o no vigente)</b> en el territorio nacional.</p>
-            <p class="text-justify estilo-01 text-sres-gris wow fadeIn">Todas y cada una de ellas desarrollan e implementan diversas medidas de energía sostenible, eficiencia energética y uso racional de la energía, permitiendo así la competitividad, el incentivo del ahorro por consumo, la reducción de costos, además de la reducción de gases de efecto invernadero.</p>
+            <p class="text-justify estilo-01 text-sres-gris wow fadeIn">A continuación, presentamos a las organizaciones públicas y privadas que se encuentran postulando al Reconocimiento de Energía Eficiente y Sostenible a nivel nacional.</p>
+            <p class="text-justify estilo-01 text-sres-gris wow fadeIn">Los postulantes han desarrollado diversas medidas de eficiencia y energía sostenible, permitiendo así la competitividad, el incentivo del ahorro por consumo energético, reducción de costos y reducción de gases de efecto invernadero (GEI), principal causa del cambio climático.</p>
             <div class="rayado wow fadeIn"></div>
           </div>
         </div>
@@ -191,12 +191,22 @@
             <h4 class="p-2 estilo-04 text-white bg-degradado wow fadeIn">FILTROS</h4>
             <div class="bg-sres-claro px-2 py-3 mb-5 text-sres-claro h-100 wow fadeIn">
               <div class="form-group">
-                <label class="estilo-01" for="txt-buscar">Descripción</label>
+                <label class="estilo-01" for="txt-buscar">Nombre de Empresa</label>
                 <div class="input-group">
                   <input class="form-control form-control-sm estilo-01" type="text" id="txt-buscar" placeholder="Buscar aquí">
                   <div class="input-group-append">
                     <label class="input-group-text bg-success text-white cursor-pointer"><i class="fas fa-search"></i></label>
                   </div>
+                </div>
+              </div>
+              <div class="dropdown-divider"></div>
+              <div class="form-group">
+                <label class="estilo-01" for="cbo-sector">Sector</label>
+                <div class="input-group">
+                  <select class="form-control form-control-sm estilo-01" id="cbo-sector">
+                    <option>Público</option>
+                    <option>Privado</option>
+                  </select>
                 </div>
               </div>
               <div class="dropdown-divider"></div>
@@ -208,6 +218,8 @@
                     <option>Grande</option>
                     <option>Mediana</option>
                     <option>Pequeña</option>
+                    <option>Salud</option>
+                    <option>Otros</option>
                   </select>
                 </div>
               </div>
@@ -270,13 +282,24 @@
               </div>
               <div class="dropdown-divider"></div>
               <div class="form-group">
-                <label class="estilo-01" for="cbo-insignia">Reconocimientovvv</label>
+                <label class="estilo-01" for="cbo-insignia">Reconocimientos</label>
                 <div class="input-group">
                   <select class="form-control form-control-sm estilo-01" id="cbo-insignia">
                     <option>Todos</option>
                     <option>Oro</option>
                     <option>Plata</option>
                     <option>Bronce</option>
+                  </select>
+                </div>
+              </div>
+              <div class="dropdown-divider"></div>
+              <div class="form-group">
+                <label class="estilo-01" for="cbo-especial">Reconocimientos especiales</label>
+                <div class="input-group">
+                  <select class="form-control form-control-sm estilo-01" id="cbo-especial">
+                    <option>Todos</option>
+                    <option>Si</option>
+                    <option>No</option>
                   </select>
                 </div>
               </div>
@@ -294,7 +317,10 @@
               </div>
               <div class="dropdown-divider"></div>
               <div class="form-group">
-                <label class="estilo-01" for="cbo-estrellas">Resultados</label>
+                <button class="btn bg-sres-azul text-white w-100"><i class="fas fa-search mr-1"></i>Filtrar</button>
+              </div>
+              <div class="form-group mt-5">
+                <label class="estilo-01" for="cbo-estrellas">Descargar Resultados</label>
                 <div class="input-group">
                   <select class="form-control form-control-sm estilo-01" id="cbo-insignia">
                     <option>Todos</option>
@@ -305,10 +331,6 @@
                     <label class="input-group-text bg-success text-white cursor-pointer"><i class="fas fa-download"></i></label>
                   </div>
                 </div>
-              </div>
-              <div class="dropdown-divider"></div>
-              <div class="form-group">
-                <button class="btn bg-sres-azul text-white w-100"><i class="fas fa-search mr-1"></i>Filtrar</button>
               </div>
               <!--span.estilo-01.mb-5 Reconocimientos-->
               <!--.my-2
