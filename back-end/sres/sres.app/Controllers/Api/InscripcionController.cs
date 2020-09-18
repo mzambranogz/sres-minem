@@ -68,10 +68,10 @@ namespace sres.app.Controllers.Api
                 InscripcionBE insc = inscripcionLN.ObtenerInscripcionPorId(inscripcion.ID_INSCRIPCION);
                 if (insc != null)
                 {
-                    string fieldNombres = "[NOMBRES]", fieldConvocatoria = "[CONVOCATORIA]", fieldObservacion = "[OBSERVACION]", fieldEntidad = "[ENTIDAD]", fieldNombreConv = "[NOMBRE_CONV]";
-                    string[] fields = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion, fieldEntidad, fieldNombreConv };
-                    string[] fieldsRequire = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion, fieldEntidad, fieldNombreConv };
-                    Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldNombres] = insc.NOMBRES_USU,[fieldConvocatoria] = insc.FECHA_INICIO.Year.ToString(),[fieldObservacion] = inscripcion.OBSERVACION, [fieldEntidad] = insc.RAZON_SOCIAL, [fieldNombreConv] = insc.NOMBRE_CONV };
+                    string fieldNombres = "[NOMBRES]", fieldConvocatoria = "[CONVOCATORIA]", fieldObservacion = "[OBSERVACION]", fieldEntidad = "[ENTIDAD]", fieldNombreConv = "[NOMBRE_CONV]", fieldServer = "[SERVER]";
+                    string[] fields = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion, fieldEntidad, fieldNombreConv, fieldServer };
+                    string[] fieldsRequire = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion, fieldEntidad, fieldNombreConv, fieldServer };
+                    Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldNombres] = insc.NOMBRES_USU,[fieldConvocatoria] = insc.FECHA_INICIO.Year.ToString(),[fieldObservacion] = inscripcion.OBSERVACION, [fieldEntidad] = insc.RAZON_SOCIAL, [fieldNombreConv] = insc.NOMBRE_CONV,[fieldServer] = AppSettings.Get<string>("Server") };
                     string subject = "";
                     if (inscripcion.ID_ETAPA == 3) subject = $"Observación de los requisitos de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {insc.FECHA_INICIO.Year.ToString()}";
                     else if (inscripcion.ID_ETAPA == 5) subject = $"Aprobación de los requisitos de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {insc.FECHA_INICIO.Year.ToString()}";
@@ -113,10 +113,10 @@ namespace sres.app.Controllers.Api
             {
                 InscripcionBE insc = inscripcionLN.ObtenerInscripcionPorId(inscripcion.ID_INSCRIPCION);
                 if (insc != null) {
-                    string fieldNombres = "[NOMBRES]", fieldConvocatoria = "[CONVOCATORIA]", fieldObservacion = "[OBSERVACION]";
-                    string[] fields = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion };
-                    string[] fieldsRequire = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion };
-                    Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldNombres] = insc.NOMBRES_USU,[fieldConvocatoria] = insc.FECHA_INICIO.Year.ToString(),[fieldObservacion] = inscripcion.OBSERVACION };
+                    string fieldNombres = "[NOMBRES]", fieldConvocatoria = "[CONVOCATORIA]", fieldObservacion = "[OBSERVACION]", fieldServer = "[SERVER]";
+                    string[] fields = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion, fieldServer };
+                    string[] fieldsRequire = new string[] { fieldNombres, fieldConvocatoria, fieldObservacion, fieldServer };
+                    Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldNombres] = insc.NOMBRES_USU,[fieldConvocatoria] = insc.FECHA_INICIO.Year.ToString(),[fieldObservacion] = inscripcion.OBSERVACION,[fieldServer] = AppSettings.Get<string>("Server") };
                     string subject = $"{insc.NOMBRES_USU}, su inscripción fue anulada";
                     MailAddressCollection mailTo = new MailAddressCollection();
                     mailTo.Add(new MailAddress(insc.CORREO));

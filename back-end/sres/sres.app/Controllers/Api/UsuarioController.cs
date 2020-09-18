@@ -84,9 +84,9 @@ namespace sres.app.Controllers.Api
                 }
                 else
                 {
-                    string[] fields = new string[] { fieldNombres, fieldApellidos };
-                    string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos };
-                    Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS };
+                    string[] fields = new string[] { fieldNombres, fieldApellidos, fieldServer, fieldentidad };
+                    string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldServer, fieldentidad };
+                    Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS,[fieldServer] = AppSettings.Get<string>("Server"),[fieldentidad] = usuario.RAZON_SOCIAL };
                     string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, Su cuenta ha sido deshabilitada en nuestra plataforma Reconocimiento de Energía Eficiente y Sostenible";
                     MailAddressCollection mailTo = new MailAddressCollection();
                     mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
@@ -114,7 +114,7 @@ namespace sres.app.Controllers.Api
                 string[] fields = new string[] { fieldRuc, fieldDireccion, fieldSector, fieldNombres, fieldApellidos, fieldEmail, fieldTelefono, fieldCelular, fieldAnexo };
                 string[] fieldsRequire = new string[] { fieldRuc, fieldDireccion, fieldSector, fieldNombres, fieldApellidos, fieldEmail, fieldCelular };
                 Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldRuc] = usuario.INSTITUCION.RUC,[fieldDireccion] = usuario.INSTITUCION.DOMICILIO_LEGAL,[fieldSector] = usuario.INSTITUCION.SECTOR.NOMBRE,[fieldNombres] = usuario.NOMBRES,[fieldApellidos] = usuario.APELLIDOS,[fieldEmail] = usuario.CORREO,[fieldTelefono] = usuario.TELEFONO,[fieldCelular] = usuario.CELULAR,[fieldAnexo] = usuario.ANEXO };
-                string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, fue registrado en nuestra plataforma SRES del sector energía";
+                string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, fue registrado en nuestra plataforma del Reconocimiento de Energía Eficiente y Sostenible";
                 MailAddressCollection mailTo = new MailAddressCollection();
                 mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
 
@@ -126,7 +126,7 @@ namespace sres.app.Controllers.Api
                 string[] fields_ = new string[] { fieldNombres, fieldApellidos, fieldServer };
                 string[] fieldsRequire_ = new string[] { fieldNombres, fieldApellidos, fieldServer };
                 Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldNombres] = usuario.NOMBRES,[fieldApellidos] = usuario.APELLIDOS,[fieldServer] = AppSettings.Get<string>("Server") };
-                string asunto = usuario.FLAG_ESTADO == "1" ? "Su cuenta ha sido aprobada en nuestra plataforma SRES del sector energía" : usuario.FLAG_ESTADO == "2" ? "Su cuenta ha sido deshabilitada en nuestra plataforma SRES del sector energía" : "";
+                string asunto = usuario.FLAG_ESTADO == "1" ? "Su cuenta ha sido aprobada en nuestra plataforma del Reconocimiento de Energía Eficiente y Sostenible" : usuario.FLAG_ESTADO == "2" ? "Su cuenta ha sido deshabilitada en nuestra plataforma del Reconocimiento de Energía Eficiente y Sostenible" : "";
                 string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, {asunto}";
 
                 MailAddressCollection mailTo = new MailAddressCollection();
