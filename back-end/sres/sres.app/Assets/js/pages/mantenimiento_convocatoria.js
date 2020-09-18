@@ -431,6 +431,7 @@ var nuevo = () => {
     $('#btnGuardar').next().html('Cancelar');
     $('#etapa-convocatoria').hide();
     $('.relacion-evaluador').addClass('d-none');
+    $('#cbo-etapa').val(1);
     //$('.postulante-evaluador-btn').addClass('d-none');
     //$('.postulante-evaluador').addClass('d-none');
 }
@@ -473,16 +474,20 @@ var limpiarFormulario = () => {
 
 var guardar = () => {
     let id = $('#frm').data('id');
+    let ve = 0, vc = 0, vi = 0;
     let arr = []; 
-
+    debugger;
     if ($('#txt-titulo').val().trim() === "") arr.push("Ingrese el título de la convocatoria");
     if ($('#txa-descripcion').val().trim() === "") arr.push("Ingrese la descripción de la convocatoria");
     if ($('#dat-inicio').val() == "") arr.push("Seleccione la fecha de inicio");
-    if ($('#dat-inicio').val() != "") if ($('#dat-inicio').val() < utc) arr.push("La fecha de inicio no puede ser menor a la actual");
+    if (id == null) if ($('#dat-inicio').val() != "") if ($('#dat-inicio').val() < utc) arr.push("La fecha de inicio no puede ser menor a la actual");
     if ($('#dat-fin').val() == "") arr.push("Seleccione la fecha de finalización");
-    if ($('#dat-fin').val() != "") if ($('#dat-fin').val() < utc) arr.push("La fecha de fin no puede ser menor a la actual");
+    if (id == null) if ($('#dat-fin').val() != "") if ($('#dat-fin').val() < utc) arr.push("La fecha de fin no puede ser menor a la actual");
     if ($('#dat-inicio').val() != "" && $('#dat-fin').val() != "") if ($('#dat-inicio').val() >= $('#dat-fin').val()) arr.push("La fecha de inicio no puede ser mayor o igual a la fecha de fin");
     if ($('#txt-capacidad').val() == "") arr.push("Ingrese la capacidad de postulantes");
+    if ($('[id^=chk-e-]').length > 0) { $('[id^=chk-e-]').each((x,y) => {if ($(y).prop('checked')) ve = 1;}); if (ve == 0) arr.push("Seleccione al menos un evaluador")};
+    if ($('.criterio').length > 0) { $('.criterio').each((x,y) => {if ($(y).prop('checked')) vc = 1;}); if (vc == 0) arr.push("Seleccione al menos un criterio")};
+    if ($('.insignia').length > 0) { $('.insignia').each((x,y) => {if ($(y).val() == "") vi = 1;}); if (vi == 1) arr.push("Debe ingresar el puntaje de cada categoría")}; 
 
     if (arr.length > 0) {
         let error = '';
