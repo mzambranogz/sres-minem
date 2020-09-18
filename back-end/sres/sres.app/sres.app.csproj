@@ -90,6 +90,8 @@
       <HintPath>C:\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.WebForms\12.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.WebForms.DLL</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -466,6 +468,38 @@
     <Content Include="Reportes\ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx" />
     <Content Include="Reportes\ReporteEstadisticoReconocimientoXConvocatoria.aspx" />
     <Content Include="Reportes\ReporteEstadisticoTipoPostulanteXConvocatoria.aspx" />
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosAntPenales.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosAntPNP.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosDNI.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosMigraciones.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosPrincipalesRUC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosRepresenatesRUC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosSunarp.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosSUNEDU.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ServicioPIDE\srvConsultas.wsdl" />
+    <None Include="Service References\ServicioPIDE\WCF_ServiciosExternos.disco" />
+    <None Include="Service References\ServicioPIDE\configuration91.svcinfo" />
+    <None Include="Service References\ServicioPIDE\configuration.svcinfo" />
+    <None Include="Service References\ServicioPIDE\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -560,6 +594,11 @@
       <DependentUpon>ReporteEstadisticoTipoPostulanteXConvocatoria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Response\GoogleResponse.cs" />
+    <Compile Include="Service References\ServicioPIDE\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Reportes\ReporteEstadisticoTipoEmpresaXConvocatoria.aspx.cs">
       <DependentUpon>ReporteEstadisticoTipoEmpresaXConvocatoria.aspx</DependentUpon>
@@ -693,6 +732,15 @@
     <Content Include="Views\Mantenimiento\Puntaje.cshtml" />
     <Content Include="Views\Mantenimiento\Institucion.cshtml" />
     <Content Include="Views\Reporte\Index.cshtml" />
+    <None Include="Service References\ServicioPIDE\WCF_ServiciosExternos.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioPIDE\WCF_ServiciosExternos1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioPIDE\WCF_ServiciosExternos2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -731,6 +779,12 @@
     <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServicioPIDE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

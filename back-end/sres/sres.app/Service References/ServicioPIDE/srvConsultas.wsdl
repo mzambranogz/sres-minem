@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="srvConsultas" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://vservicios.mem.int/ServiciosExternos/WCF_ServiciosExternos.srvConsultas.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://vservicios.mem.int/ServiciosExternos/WCF_ServiciosExternos.srvConsultas.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://vservicios.mem.int/ServiciosExternos/WCF_ServiciosExternos.srvConsultas.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IsrvConsultas_ConsultaDNI_PIDE_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaDNI_PIDE" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaDNI_PIDE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaDNI_PIDEResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_DatosRUC_SUNAT_InputMessage">
+    <wsdl:part name="parameters" element="tns:DatosRUC_SUNAT" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_DatosRUC_SUNAT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DatosRUC_SUNATResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaRUC_PIDE_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaRUC_PIDE" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaRUC_PIDE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaRUC_PIDEResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaRUCRepresentante_PIDE_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaRUCRepresentante_PIDE" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaRUCRepresentante_PIDE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaRUCRepresentante_PIDEResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaMIGRACIONES_PIDE_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaMIGRACIONES_PIDE" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaMIGRACIONES_PIDE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaMIGRACIONES_PIDEResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaSUNARP_PIDE_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaSUNARP_PIDE" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaSUNARP_PIDE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaSUNARP_PIDEResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaSUNEDU_PIDE_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaSUNEDU_PIDE" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaSUNEDU_PIDE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaSUNEDU_PIDEResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaAntecedenteJudicial_PIDE_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaAntecedenteJudicial_PIDE" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaAntecedenteJudicial_PIDE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaAntecedenteJudicial_PIDEResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaAntecedentePolicial_PIDE_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaAntecedentePolicial_PIDE" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaAntecedentePolicial_PIDE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaAntecedentePolicial_PIDEResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaAntecedentePenales_PIDE_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaAntecedentePenales_PIDE" />
+  </wsdl:message>
+  <wsdl:message name="IsrvConsultas_ConsultaAntecedentePenales_PIDE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaAntecedentePenales_PIDEResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IsrvConsultas">
+    <wsdl:operation name="ConsultaDNI_PIDE">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaDNI_PIDE" message="tns:IsrvConsultas_ConsultaDNI_PIDE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaDNI_PIDEResponse" message="tns:IsrvConsultas_ConsultaDNI_PIDE_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DatosRUC_SUNAT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvConsultas/DatosRUC_SUNAT" message="tns:IsrvConsultas_DatosRUC_SUNAT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvConsultas/DatosRUC_SUNATResponse" message="tns:IsrvConsultas_DatosRUC_SUNAT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRUC_PIDE">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaRUC_PIDE" message="tns:IsrvConsultas_ConsultaRUC_PIDE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaRUC_PIDEResponse" message="tns:IsrvConsultas_ConsultaRUC_PIDE_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRUCRepresentante_PIDE">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaRUCRepresentante_PIDE" message="tns:IsrvConsultas_ConsultaRUCRepresentante_PIDE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaRUCRepresentante_PIDEResponse" message="tns:IsrvConsultas_ConsultaRUCRepresentante_PIDE_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaMIGRACIONES_PIDE">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaMIGRACIONES_PIDE" message="tns:IsrvConsultas_ConsultaMIGRACIONES_PIDE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaMIGRACIONES_PIDEResponse" message="tns:IsrvConsultas_ConsultaMIGRACIONES_PIDE_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSUNARP_PIDE">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaSUNARP_PIDE" message="tns:IsrvConsultas_ConsultaSUNARP_PIDE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaSUNARP_PIDEResponse" message="tns:IsrvConsultas_ConsultaSUNARP_PIDE_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSUNEDU_PIDE">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaSUNEDU_PIDE" message="tns:IsrvConsultas_ConsultaSUNEDU_PIDE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaSUNEDU_PIDEResponse" message="tns:IsrvConsultas_ConsultaSUNEDU_PIDE_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAntecedenteJudicial_PIDE">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaAntecedenteJudicial_PIDE" message="tns:IsrvConsultas_ConsultaAntecedenteJudicial_PIDE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaAntecedenteJudicial_PIDEResponse" message="tns:IsrvConsultas_ConsultaAntecedenteJudicial_PIDE_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAntecedentePolicial_PIDE">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaAntecedentePolicial_PIDE" message="tns:IsrvConsultas_ConsultaAntecedentePolicial_PIDE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaAntecedentePolicial_PIDEResponse" message="tns:IsrvConsultas_ConsultaAntecedentePolicial_PIDE_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAntecedentePenales_PIDE">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaAntecedentePenales_PIDE" message="tns:IsrvConsultas_ConsultaAntecedentePenales_PIDE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvConsultas/ConsultaAntecedentePenales_PIDEResponse" message="tns:IsrvConsultas_ConsultaAntecedentePenales_PIDE_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IsrvConsultas" type="tns:IsrvConsultas">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConsultaDNI_PIDE">
+      <soap:operation soapAction="http://tempuri.org/IsrvConsultas/ConsultaDNI_PIDE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DatosRUC_SUNAT">
+      <soap:operation soapAction="http://tempuri.org/IsrvConsultas/DatosRUC_SUNAT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRUC_PIDE">
+      <soap:operation soapAction="http://tempuri.org/IsrvConsultas/ConsultaRUC_PIDE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRUCRepresentante_PIDE">
+      <soap:operation soapAction="http://tempuri.org/IsrvConsultas/ConsultaRUCRepresentante_PIDE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaMIGRACIONES_PIDE">
+      <soap:operation soapAction="http://tempuri.org/IsrvConsultas/ConsultaMIGRACIONES_PIDE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSUNARP_PIDE">
+      <soap:operation soapAction="http://tempuri.org/IsrvConsultas/ConsultaSUNARP_PIDE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSUNEDU_PIDE">
+      <soap:operation soapAction="http://tempuri.org/IsrvConsultas/ConsultaSUNEDU_PIDE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAntecedenteJudicial_PIDE">
+      <soap:operation soapAction="http://tempuri.org/IsrvConsultas/ConsultaAntecedenteJudicial_PIDE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAntecedentePolicial_PIDE">
+      <soap:operation soapAction="http://tempuri.org/IsrvConsultas/ConsultaAntecedentePolicial_PIDE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAntecedentePenales_PIDE">
+      <soap:operation soapAction="http://tempuri.org/IsrvConsultas/ConsultaAntecedentePenales_PIDE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="srvConsultas">
+    <wsdl:port name="BasicHttpBinding_IsrvConsultas" binding="tns:BasicHttpBinding_IsrvConsultas">
+      <soap:address location="http://vservicios.mem.int/ServiciosExternos/WCF_ServiciosExternos.srvConsultas.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

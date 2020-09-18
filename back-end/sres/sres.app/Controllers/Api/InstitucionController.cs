@@ -1,4 +1,5 @@
-﻿using sres.be;
+﻿using sres.app.ServicioPIDE;
+using sres.be;
 using sres.ln;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,25 @@ namespace sres.app.Controllers.Api
     public class InstitucionController : ApiController
     {
         InstitucionLN institucionLN = new InstitucionLN();
+
+
+        [Route("obtenerinstitucionporrucservicio")]
+        [HttpGet]
+        public InstitucionBE ObtenerInstitucionPorRucPide(string ruc)
+        {
+            IsrvConsultasClient clientePIDE = new IsrvConsultasClient();
+            BEDatosPrincipalesRUC empresa = clientePIDE.ConsultaRUC_PIDE(ruc);
+            InstitucionBE Entidad = null;
+            if (empresa.OK)
+            {
+                Entidad = new InstitucionBE();
+                Entidad.RAZON_SOCIAL = empresa.Nombre;
+            }
+
+            return Entidad;
+
+            //return institucionLN.ObtenerInstitucionPorRuc(ruc);
+        }
 
         [Route("obtenerinstitucionporruc")]
         [HttpGet]

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://vservicios.mem.int/ServiciosExternos/WCF_ServiciosExternos.srvConsultas.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" />
+  <xs:element name="ConsultaDNI_PIDE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DNI" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaDNI_PIDEResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" minOccurs="0" name="ConsultaDNI_PIDEResult" nillable="true" type="q1:BEDatosDNI" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DatosRUC_SUNAT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RUC" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DatosRUC_SUNATResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" minOccurs="0" name="DatosRUC_SUNATResult" nillable="true" type="q2:BEDatosPrincipalesRUC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaRUC_PIDE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RUC" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaRUC_PIDEResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" minOccurs="0" name="ConsultaRUC_PIDEResult" nillable="true" type="q3:BEDatosPrincipalesRUC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaRUCRepresentante_PIDE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RUC" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaRUCRepresentante_PIDEResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" minOccurs="0" name="ConsultaRUCRepresentante_PIDEResult" nillable="true" type="q4:ArrayOfBEDatosRepresenatesRUC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaMIGRACIONES_PIDE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NUMDOC" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaMIGRACIONES_PIDEResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" minOccurs="0" name="ConsultaMIGRACIONES_PIDEResult" nillable="true" type="q5:BEDatosMigraciones" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaSUNARP_PIDE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Tipo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DNI" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RazonSocial" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaSUNARP_PIDEResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" minOccurs="0" name="ConsultaSUNARP_PIDEResult" nillable="true" type="q6:ArrayOfBEDatosSunarp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaSUNEDU_PIDE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DNI" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaSUNEDU_PIDEResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" minOccurs="0" name="ConsultaSUNEDU_PIDEResult" nillable="true" type="q7:ArrayOfBEDatosSUNEDU" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaAntecedenteJudicial_PIDE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DNI" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaAntecedenteJudicial_PIDEResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ConsultaAntecedenteJudicial_PIDEResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaAntecedentePolicial_PIDE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DNI" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaAntecedentePolicial_PIDEResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" minOccurs="0" name="ConsultaAntecedentePolicial_PIDEResult" nillable="true" type="q8:BEDatosAntPNP" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaAntecedentePenales_PIDE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DNI" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaAntecedentePenales_PIDEResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" minOccurs="0" name="ConsultaAntecedentePenales_PIDEResult" nillable="true" type="q9:BEDatosAntPenales" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

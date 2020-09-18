@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="18424137-421f-4705-969b-14aa1e560712" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://vservicios.mem.int/ServiciosExternos/WCF_ServiciosExternos.srvConsultas.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WCF_ServiciosExternos.xsd" MetadataType="Schema" ID="6e2f1625-3bb1-4caf-879d-3d731287e602" SourceId="1" SourceUrl="http://vservicios.mem.int/ServiciosExternos/WCF_ServiciosExternos.srvConsultas.svc?xsd=xsd0" />
+    <MetadataFile FileName="WCF_ServiciosExternos.disco" MetadataType="Disco" ID="b5886339-32be-4ffd-8074-77e5242c8618" SourceId="1" SourceUrl="http://vservicios.mem.int/ServiciosExternos/WCF_ServiciosExternos.srvConsultas.svc?disco" />
+    <MetadataFile FileName="WCF_ServiciosExternos1.xsd" MetadataType="Schema" ID="b3c4f60e-64fa-4232-bed4-71c6c8a9594f" SourceId="1" SourceUrl="http://vservicios.mem.int/ServiciosExternos/WCF_ServiciosExternos.srvConsultas.svc?xsd=xsd1" />
+    <MetadataFile FileName="WCF_ServiciosExternos2.xsd" MetadataType="Schema" ID="5d329d49-6cde-4de8-8170-9dfba0e8f50d" SourceId="1" SourceUrl="http://vservicios.mem.int/ServiciosExternos/WCF_ServiciosExternos.srvConsultas.svc?xsd=xsd2" />
+    <MetadataFile FileName="srvConsultas.wsdl" MetadataType="Wsdl" ID="ce915cdc-a3a0-4eb6-9905-0772ac3dcbc7" SourceId="1" SourceUrl="http://vservicios.mem.int/ServiciosExternos/WCF_ServiciosExternos.srvConsultas.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

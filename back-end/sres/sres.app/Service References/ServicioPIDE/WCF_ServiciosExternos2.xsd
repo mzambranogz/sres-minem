@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EntidadPIDE.minem.gob.pe" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="BEDatosDNI">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BEBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ApellidoMaterno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ApellidoPaterno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Dni" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EstadoCivil" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Foto" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Nombres" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Restriccion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Ubigeo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BEDatosDNI" nillable="true" type="tns:BEDatosDNI" />
+  <xs:complexType name="BEBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrMsg" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OK" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BEBase" nillable="true" type="tns:BEBase" />
+  <xs:complexType name="BEDatosPrincipalesRUC">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BEBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Activo" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CIIU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodTipoVia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodTipoZona" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodigoDist" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodigoDpto" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodigoProv" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Departamento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Distrito" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DomicilioLegal" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FechaAlta" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FechaBaja" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Habido" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreCIIU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Numeracion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Provincia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Referencia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Ruc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TipoEmpresa" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TipoPersona" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TipoVia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TipoZona" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Ubigeo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Via" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Zona" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BEDatosPrincipalesRUC" nillable="true" type="tns:BEDatosPrincipalesRUC" />
+  <xs:complexType name="ArrayOfBEDatosRepresenatesRUC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BEDatosRepresenatesRUC" nillable="true" type="tns:BEDatosRepresenatesRUC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBEDatosRepresenatesRUC" nillable="true" type="tns:ArrayOfBEDatosRepresenatesRUC" />
+  <xs:complexType name="BEDatosRepresenatesRUC">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BEBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cod_cargo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="cod_depar" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="desc_docide" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="num_ord_suce" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rso_cargoo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rso_docide" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rso_fecact" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rso_fecnac" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rso_nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rso_nrodoc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rso_numruc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rso_userna" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rso_vdesde" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BEDatosRepresenatesRUC" nillable="true" type="tns:BEDatosRepresenatesRUC" />
+  <xs:complexType name="BEDatosMigraciones">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BEBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CalidadMigraciones" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Nombres" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrimerApellido" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Respuesta" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SegundoApellido" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BEDatosMigraciones" nillable="true" type="tns:BEDatosMigraciones" />
+  <xs:complexType name="ArrayOfBEDatosSunarp">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BEDatosSunarp" nillable="true" type="tns:BEDatosSunarp" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBEDatosSunarp" nillable="true" type="tns:ArrayOfBEDatosSunarp" />
+  <xs:complexType name="BEDatosSunarp">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BEBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ApeMaterno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ApePaterno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Libro" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumPartida" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Oficina" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RazonSocial" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TipoDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TipoRegistro" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Zona" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="numeroPlaca" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BEDatosSunarp" nillable="true" type="tns:BEDatosSunarp" />
+  <xs:complexType name="ArrayOfBEDatosSUNEDU">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BEDatosSUNEDU" nillable="true" type="tns:BEDatosSUNEDU" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBEDatosSUNEDU" nillable="true" type="tns:ArrayOfBEDatosSUNEDU" />
+  <xs:complexType name="BEDatosSUNEDU">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BEBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Abreviatura" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ApeMaterno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ApePaterno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FechaConsulta" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HoraConsulta" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MsjRespuesta" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Nombres" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Pais" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Respuesta" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TipoDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TituloProfesional" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Universidad" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BEDatosSUNEDU" nillable="true" type="tns:BEDatosSUNEDU" />
+  <xs:complexType name="BEDatosAntPNP">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BEBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Respuesta" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="antecedente" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="apellidoMaterno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="apellidoPaterno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="codigoPersona" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="contextura" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dobleIdentidad" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaNacimiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="homonimia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="lugarNacimiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nombreMadre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nombrePadre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nombrecompleto" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nombres" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nroDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sexo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="talla" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tipoDocumento" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BEDatosAntPNP" nillable="true" type="tns:BEDatosAntPNP" />
+  <xs:complexType name="BEDatosAntPenales">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BEBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Respuesta" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BEDatosAntPenales" nillable="true" type="tns:BEDatosAntPenales" />
+</xs:schema>
