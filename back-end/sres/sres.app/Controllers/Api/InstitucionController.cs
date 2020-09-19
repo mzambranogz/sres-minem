@@ -1,6 +1,7 @@
 ﻿using sres.app.ServicioPIDE;
 using sres.be;
 using sres.ln;
+using sres.ut;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,19 +21,36 @@ namespace sres.app.Controllers.Api
         [HttpGet]
         public InstitucionBE ObtenerInstitucionPorRucPide(string ruc)
         {
-            IsrvConsultasClient clientePIDE = new IsrvConsultasClient();
-            BEDatosPrincipalesRUC empresa = clientePIDE.ConsultaRUC_PIDE(ruc);
-            InstitucionBE Entidad = null;
-            if (empresa.OK)
+            InstitucionBE Entidad = new InstitucionBE();
+            try
             {
-                Entidad = new InstitucionBE();
-                Entidad.RAZON_SOCIAL = empresa.Nombre;
-                Entidad.DOMICILIO_LEGAL = empresa.DomicilioLegal;
+                IsrvConsultasClient clientePIDE = new IsrvConsultasClient();
+                BEDatosPrincipalesRUC empresa = clientePIDE.ConsultaRUC_PIDE(ruc);
+                if (empresa.OK)
+                {
+                    Entidad = new InstitucionBE();
+                    Entidad.RAZON_SOCIAL = empresa.Nombre;
+                    Entidad.DOMICILIO_LEGAL = empresa.DomicilioLegal;
+                    Entidad.OK = true;
+                }
+                else
+                {
+                    Entidad.OK = false;
+                    Entidad.VAL = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                Entidad.OK = false;
+                Entidad.VAL = 2;
             }
 
+            //DATOS PRUEBA
+            //Entidad.RAZON_SOCIAL = "LAS RATAS";
+            //Entidad.DOMICILIO_LEGAL = "Los tusilagos";
+            //Entidad.OK = true;
             return Entidad;
-
-            //return institucionLN.ObtenerInstitucionPorRuc(ruc);
         }
 
         [Route("obtenerinstitucionporruc")]

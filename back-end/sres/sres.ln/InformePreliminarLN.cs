@@ -44,11 +44,11 @@ namespace sres.ln
                                 contenidoTemp += $"<span><strong>{ccpi.NOMBRE_CRI}</strong></span><br><span><strong>Observación: </strong>{ccpi.OBSERVACION}</span></br>";
                             }
                             contenidoInforme += $"<tr><td style='padding:5px;'><span>La entidad <strong>{ins.RAZON_SOCIAL}</strong> con el responsable de la información </span><strong>{ins.NOMBRES_USU}</strong>, se identificaron las siguientes observaciones:<br>{contenidoTemp}</td></tr>";
-                            string fieldConvocatoria = "[CONTENIDO]", fieldServer = "[SERVER]", nombres = "[NOMBRES]", empresa = "[ENTIDAD]";
-                            string[] fields = new string[] { fieldConvocatoria, fieldServer, nombres, empresa };
-                            string[] fieldsRequire = new string[] { fieldConvocatoria, fieldServer, nombres, empresa };
-                            Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldConvocatoria] = contenido,[fieldServer] = AppSettings.Get<string>("Server"),[nombres] = ins.NOMBRES_USU, [empresa] = ins.RAZON_SOCIAL };
-                            string subject = $"Levantamiento de observaciones, convocatoria - {ins.NOMBRE_CONV}";
+                            string fieldConvocatoria = "[CONTENIDO]", fieldServer = "[SERVER]", nombres = "[NOMBRES]", empresa = "[ENTIDAD]", periodo = "[CONVOCATORIA]";
+                            string[] fields = new string[] { fieldConvocatoria, fieldServer, nombres, empresa, periodo };
+                            string[] fieldsRequire = new string[] { fieldConvocatoria, fieldServer, nombres, empresa, periodo };
+                            Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldConvocatoria] = contenido,[fieldServer] = AppSettings.Get<string>("Server"),[nombres] = ins.NOMBRES_USU, [empresa] = ins.RAZON_SOCIAL, [periodo] = ins.FECHA_INICIO.Year.ToString() };
+                            string subject = $"Levantamiento de observaciones de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {ins.FECHA_INICIO.Year}";
                             MailAddressCollection mailTo = new MailAddressCollection();
                             mailTo.Add(new MailAddress(ins.CORREO));
 

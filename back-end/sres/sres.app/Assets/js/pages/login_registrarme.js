@@ -82,7 +82,13 @@ var cargarDatosInstitucionMRV = (data) => {
     cambiarPropiedadLecturaUsuario(!existeInformacion);
 
     if (!existeInformacion) {
-        $('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continue y complete sus datos en todos los campos del siguiente formulario.' });
+        //$('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continue y complete sus datos en todos los campos del siguiente formulario.' });
+        let ruc = $('#txt-ruc').val();
+        let urlObtenerInstitucionMRVPorRuc = `${baseUrl}api/institucion/obtenerinstitucionporrucservicio?ruc=${ruc}`;
+
+        fetch(urlObtenerInstitucionMRVPorRuc)
+        .then(r => r.json())
+        .then(j => cargarDatosInstitucionServicio(j));
         return;
     }
 
@@ -90,6 +96,30 @@ var cargarDatosInstitucionMRV = (data) => {
     $('#txt-institucion').val(data.NOMBRE_INSTITUCION);
     $('#txt-direccion').val(data.DIRECCION_INSTITUCION);
     $('#cbo-sector').val(data.ID_SECTOR_INSTITUCION);
+
+    $('form > .row:nth(0)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continue y complete sus datos en los campos restantes del siguiente formulario.' });
+}
+
+var cargarDatosInstitucionServicio = (data) => {
+    //let existeInformacion = data != null;
+    let existeInformacion = data.OK;
+
+    limpiarDatosInstitucion();
+    limpiarDatosUsuario();
+    cambiarPropiedadLecturaInstitucion(!existeInformacion);
+    cambiarPropiedadLecturaUsuario(true);
+
+    if (!existeInformacion) {
+        //$('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continue y complete sus datos en todos los campos del siguiente formulario.' });
+        $('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continue y complete sus datos en todos los campos del siguiente formulario.' });
+        return;
+    }
+
+    $('#frmRegister').data('idInstitucion', data.ID_INSTITUCION);
+    $('#txt-institucion').val(data.RAZON_SOCIAL);
+    $('#txt-direccion').val(data.DOMICILIO_LEGAL);
+    //$('#cbo-sector').val(data.ID_SECTOR_INSTITUCION);
+    $('#cbo-sector').prop('disabled', false);
 
     $('form > .row:nth(0)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continue y complete sus datos en los campos restantes del siguiente formulario.' });
 }
@@ -225,7 +255,7 @@ var limpiarDatosInstitucion = () => {
     $('#frmRegister').removeData('idInstitucion');
     $('#txt-institucion').val('');
     $('#txt-direccion').val('');
-    $('#cbo-sector option:first').prop('checked', true);
+    $('#cbo-sector option:first').prop('selected', true);
     cambiarPropiedadLecturaInstitucion(false);
 }
 

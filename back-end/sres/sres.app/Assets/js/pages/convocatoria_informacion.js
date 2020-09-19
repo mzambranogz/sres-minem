@@ -20,5 +20,10 @@ var consultarConvocatoria = () => {
             let final = `<div class="col-lg-12 col-md-12 col-sm-12"><div class="rayado">&nbsp;</div></div>`;
             let contenerdor1 = `<div class="container"><div class="row">${inicio}${convocatoria}${final}</div></div>`;
             $('#info-convocatoria').html(contenerdor1);
+
+            $('.set-bg').each(function () {
+                var bg = $(this).data('setbg');
+                $(this).css({ 'background-image': 'url(' + bg + ')', 'background-size': 'cover', 'background-position': 'center center' });
+            });
         });
 }
