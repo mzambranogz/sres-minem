@@ -67,7 +67,8 @@ prompt ==================================
 prompt
 CREATE OR REPLACE PACKAGE SISSELLO."PKG_SISSELLO_CRITERIO" AS
   PROCEDURE USP_SEL_BUSQ_CONVOCATORIA(
-    PI_NRO_INFORME VARCHAR2,
+    --PI_NRO_INFORME VARCHAR2,
+    PI_CODIGO NUMBER,
     PI_NOMBRE VARCHAR2,
     PI_FECHA_INICIO DATE,
     PI_FECHA_FIN DATE,
@@ -1911,7 +1912,8 @@ prompt =======================================
 prompt
 CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
   PROCEDURE USP_SEL_BUSQ_CONVOCATORIA(
-    PI_NRO_INFORME VARCHAR2,
+    --PI_NRO_INFORME VARCHAR2,
+    PI_CODIGO NUMBER,
     PI_NOMBRE VARCHAR2,
     PI_FECHA_INICIO DATE,
     PI_FECHA_FIN DATE,
@@ -1942,9 +1944,13 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                     || '
                     WHERE ' ||
                     CASE
+                      WHEN PI_CODIGO > 0 THEN
+                      'C.ID_CONVOCATORIA ='|| PI_CODIGO ||' AND '
+                    END ||
+                    /*CASE
                       WHEN PI_NRO_INFORME IS NOT NULL THEN
                       'LOWER(TRANSLATE(C.NRO_INFORME,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND '
-                    END ||
+                    END ||*/
                     'LOWER(TRANSLATE(C.DESCRIPCION,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND ' ||
                     CASE
                       WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NOT NULL THEN
@@ -2015,9 +2021,13 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_CRITERIO" AS
                           END || '
                           WHERE ' ||
                           CASE
+                            WHEN PI_CODIGO > 0 THEN
+                            'C.ID_CONVOCATORIA ='|| PI_CODIGO ||' AND '
+                          END ||
+                          /*CASE
                             WHEN PI_NRO_INFORME IS NOT NULL THEN
                             'LOWER(TRANSLATE(C.NRO_INFORME,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NRO_INFORME ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND '
-                          END ||
+                          END ||*/
                           'LOWER(TRANSLATE(C.DESCRIPCION,''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) like ''%''|| LOWER(TRANSLATE('''|| PI_NOMBRE ||''',''ÁÉÍÓÚáéíóú'',''AEIOUaeiou'')) ||''%'' AND ' ||
                           CASE
                             WHEN PI_FECHA_INICIO IS NOT NULL AND PI_FECHA_FIN IS NOT NULL THEN

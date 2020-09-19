@@ -26,7 +26,7 @@ namespace sres.app.Controllers.Api
         [HttpGet]
         public DataPaginateBE BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, int idInstitucion, int idUsuario)
         {
-            List<ConvocatoriaBE> convocatoria = convocatoriaLN.BuscarConvocatoria(nroInforme, nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden, idInstitucion, idUsuario);
+            List<ConvocatoriaBE> convocatoria = convocatoriaLN.BuscarConvocatoria(nroInforme == "" ? 0 : Convert.ToInt32(nroInforme), nombre, fechaDesde, fechaHasta, registros, pagina, columna, orden, idInstitucion, idUsuario);
 
             DataPaginateBE data = new DataPaginateBE
             {

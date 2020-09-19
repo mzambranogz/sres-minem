@@ -26,7 +26,7 @@ namespace sres.ln
         InstitucionDA institucionDA = new InstitucionDA();
         EstrellaTrabajadorCamaDA estrellaTrabCamaDA = new EstrellaTrabajadorCamaDA();
 
-        public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, int idInstitucion, int idUsuario)
+        public List<ConvocatoriaBE> BuscarConvocatoria(int nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, int idInstitucion, int idUsuario)
         {
             List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
 

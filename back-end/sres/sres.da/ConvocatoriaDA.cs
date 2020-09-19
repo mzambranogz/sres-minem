@@ -14,7 +14,7 @@ namespace sres.da
 {
     public class ConvocatoriaDA : BaseDA
     {
-        public List<ConvocatoriaBE> BuscarConvocatoria(string nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, int idInstitucion, int idUsuario, OracleConnection db)
+        public List<ConvocatoriaBE> BuscarConvocatoria(int nroInforme, string nombre, DateTime? fechaDesde, DateTime? fechaHasta, int registros, int pagina, string columna, string orden, int idInstitucion, int idUsuario, OracleConnection db)
         {
             List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
 
@@ -22,7 +22,8 @@ namespace sres.da
             {
                 string sp = $"{Package.Criterio}USP_SEL_BUSQ_CONVOCATORIA";
                 var p = new OracleDynamicParameters();
-                p.Add("PI_NRO_INFORME", nroInforme);
+                ///p.Add("PI_NRO_INFORME", nroInforme);
+                p.Add("PI_CODIGO", nroInforme);
                 p.Add("PI_NOMBRE", nombre);
                 p.Add("PI_FECHA_INICIO", fechaDesde);
                 p.Add("PI_FECHA_FIN", fechaHasta);
@@ -37,6 +38,7 @@ namespace sres.da
                 {
                     ID_CONVOCATORIA = (int)x.ID_CONVOCATORIA,
                     NOMBRE = (string)x.NOMBRE,
+                    DESCRIPCION = (string)x.DESCRIPCION,
                     FECHA_INICIO = (DateTime)x.FECHA_INICIO,
                     FECHA_FIN = (DateTime)x.FECHA_FIN,
                     LIMITE_POSTULANTE = (int)x.LIMITE_POSTULANTE,
