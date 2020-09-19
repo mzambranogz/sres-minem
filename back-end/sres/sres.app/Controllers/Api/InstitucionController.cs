@@ -27,6 +27,7 @@ namespace sres.app.Controllers.Api
             {
                 Entidad = new InstitucionBE();
                 Entidad.RAZON_SOCIAL = empresa.Nombre;
+                Entidad.DOMICILIO_LEGAL = empresa.DomicilioLegal;
             }
 
             return Entidad;

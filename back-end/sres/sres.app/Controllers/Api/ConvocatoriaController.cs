@@ -525,5 +525,21 @@ namespace sres.app.Controllers.Api
             }
             return lista;
         }
+
+        [Route("listarconvocatoriainfo")]
+        [HttpGet]
+        public List<ConvocatoriaBE> listarConvocatoriaInformacion()
+        {
+            List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
+            try
+            {
+                lista = convocatoriaLN.listarConvocatoriaInformacion();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
     }
 }

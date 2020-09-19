@@ -499,5 +499,18 @@ namespace sres.ln
 
             return lista;
         }
+
+        public List<ConvocatoriaBE> listarConvocatoriaInformacion()
+        {
+            List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
+            try
+            {
+                cn.Open();
+                lista = convocatoriaDA.listarConvocatoriaInformacion(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }

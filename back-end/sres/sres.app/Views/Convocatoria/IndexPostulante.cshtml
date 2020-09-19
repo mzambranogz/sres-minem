@@ -363,7 +363,12 @@
                                 <label class="estilo-01" for="txt-tipo-contribuyente">Tipo de contribuyente:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user-check"></i></span></div>
-                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-tipo-contribuyente" placeholder="Ingrese Tipo contribuyente" maxlength="60">
+                                    @*<input class="form-control estilo-01 text-sres-gris" type="text" id="txt-tipo-contribuyente" placeholder="Ingrese Tipo contribuyente" maxlength="60">*@
+                                    <select class="form-control estilo-01" id="txt-tipo-contribuyente">
+                                        <option value="0">-Seleccionar-</option>
+                                        <option value="1">PERSONA JURÍDICA</option>
+                                        <option value="2">PERSONA NATURAL</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

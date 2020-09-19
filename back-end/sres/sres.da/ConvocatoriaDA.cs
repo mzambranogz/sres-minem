@@ -752,5 +752,33 @@ namespace sres.da
 
             return lista;
         }
+
+        public List<ConvocatoriaBE> listarConvocatoriaInformacion(OracleConnection db)
+        {
+            List<ConvocatoriaBE> lista = new List<ConvocatoriaBE>();
+            try
+            {
+                string sp = $"{Package.Verificacion}USP_SEL_CONVOCATORIA_INFO";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                //lista = db.Query<ConvocatoriaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+                lista = db.Query<dynamic>(sp, p, commandType: CommandType.StoredProcedure).Select(x => new ConvocatoriaBE
+                {
+                    ID_CONVOCATORIA = (int)x.ID_CONVOCATORIA,
+                    NOMBRE = (string)x.NOMBRE,
+                    FECHA_INICIO = (DateTime)x.FECHA_INICIO,
+                    FECHA_FIN = (DateTime)x.FECHA_FIN,
+                    TXT_FECHA_INICIO = ((DateTime)x.FECHA_INICIO).ToString("dd-MM-yyyy"),
+                    DESCRIPCION = (string)x.DESCRIPCION,
+                    FLAG_ESTADO = (string)x.FLAG_ESTADO,
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
+        }
     }
 }

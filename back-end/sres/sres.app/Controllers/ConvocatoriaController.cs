@@ -25,8 +25,11 @@ namespace sres.app.Controllers
         MigrarEmisionesLN migrarLN = new MigrarEmisionesLN();
         PuntajeLN puntajeLN = new PuntajeLN();
 
-        public ActionResult Informacion()
+        [Route("{idConvocatoria}/Informacion")]
+        public ActionResult Informacion(int idConvocatoria)
         {
+            ConvocatoriaBE convocatoria = idConvocatoria == 0 ? convocatoriaLN.ObtenerUltimaConvocatoria() : convocatoriaLN.ObtenerConvocatoria(idConvocatoria);
+            ViewData["convocatoria"] = convocatoria;
             return View();
         }
 

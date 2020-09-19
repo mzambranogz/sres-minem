@@ -284,10 +284,12 @@ var btnActualizarDatosInstitucionClick = (e) => {
 
     if ($('#txt-nombre-corto').val().trim() === "") arr.push("Ingrese el nombre corto");
     if ($('#txa-descripcion').val().trim() === "") arr.push("Ingrese la descripción");
+    if ($('#txa-descripcion').val().length < 100) arr.push("La descripción debe tener mínimo 100 caracteres");
     if ($('#cbo-departamento').val() == 0) arr.push("Seleccione un departamento");
     if ($('#cbo-provincia').val() == 0) arr.push("Seleccione una provincia");
     if ($('#cbo-distrito').val() == 0) arr.push("Seleccione un distrito");
-    if ($('#txt-tipo-contribuyente').val().trim() === "") arr.push("Ingrese el tipo de contribuyente");
+    //if ($('#txt-tipo-contribuyente').val().trim() === "") arr.push("Ingrese el tipo de contribuyente");
+    if ($('#txt-tipo-contribuyente').val() == 0) arr.push("Seleccione un tipo de contribuyente");
     if ($('[id^=select2-cbo-ciiu-container-choice-]').length == 0) arr.push("Seleccione una actividad económica");
     if ($(`#cbo-subsector-tipoemp`).val() == 0) arr.push(`${idSector == 1 ? "Seleccione el subsector" : "Seleccione el tipo de empresa"}`);
     if ($(`#cbo-trabajador-cama`).val() == 0) arr.push(`${idSector == 1 ? "Seleccione el número de empleados/camas:" : "Seleccione el número de empleados:"}`);

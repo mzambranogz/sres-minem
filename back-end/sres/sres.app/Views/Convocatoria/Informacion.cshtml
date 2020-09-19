@@ -1,4 +1,4 @@
-﻿
+﻿@using sres.be
 @{
     ViewBag.Titulo = "Convocatoria";
     ViewBag.SRESDescription = false;
@@ -7,6 +7,7 @@
         ["Imagen"] = "~/Assets/images/bg-convocatoria.png",
         ["Titulo"] = "CONVOCATORIA Y PROCESO DE POSTULACIÓN"
     };
+    ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
 }
 
 @section scripts_footer{
@@ -30,11 +31,11 @@
             <div class="offset-1 col-10">
                 <div class="row">
                     <div class="col-lg-12 col-ms-12 col-sm-12 mt-5 mt-lg-0 d-flex flex-column align-items-start text-white text-justify barra-blanca">
-                        <a class="text-white" href="./convocatoria-detalle.html">
-                            <span class="estilo-02">01 Marzo 2021 al 31 Abril 2021</span>
-                            <h2 class="estilo-03">PRIMERA CONVOCATORIA DE RECONOCIMIENTOS SRES 2021</h2>
-                            <p class="estilo-01">Será otorgado a aquellas entidades públicas y/o privadas que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.</p>
-                        </a>
+                        @*<a class="text-white" href="./convocatoria-detalle.html">*@
+                            <span class="estilo-02">@(convocatoria == null ? "01" : (convocatoria.FECHA_INICIO).ToString("dd")) @(convocatoria == null ? "Marzo" : (convocatoria.FECHA_INICIO).ToString("MMMM").Replace(".", "")) @(convocatoria == null ? "2021" : (convocatoria.FECHA_INICIO).ToString("yyyy")) al @(convocatoria == null ? "31" : (convocatoria.FECHA_FIN).ToString("dd")) @(convocatoria == null ? "Abril" : (convocatoria.FECHA_FIN).ToString("MMMM").Replace(".", "")) @(convocatoria == null ? "2021" : (convocatoria.FECHA_FIN).ToString("yyyy"))</span>
+                            <h2 class="estilo-03">@( convocatoria == null ? "PRIMERA CONVOCATORIA DE RECONOCIMIENTOS REES 2021" : convocatoria.NOMBRE )</h2>
+                            <p class="estilo-01">@( convocatoria == null ? "Será otorgado a aquellas entidades públicas y/o privadas que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía." : convocatoria.DESCRIPCION )</p>
+                        @*</a>*@
                     </div>
                 </div>
             </div>
@@ -85,8 +86,8 @@
         </div>
     </div>
 </div>
-<div class="container-fluid my-5">
-    <div class="container">
+<div class="container-fluid my-5" id="info-convocatoria">
+    @*<div class="container">
         <div class="row">
             <div class="col-12 mb-5">
                 <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">ÚLTIMAS CONVOCATORIAS</h2>
@@ -120,113 +121,5 @@
                 <div class="rayado">&nbsp;</div>
             </div>
         </div>
-    </div>
+    </div>*@
 </div>
-<div class="container-fluid my-0 mb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-sm-12 col-lg-6 estilo-01 d-flex justify-content-start align-items-center">
-                        <div class="row">
-                            <div class="col-12"><strong>Resultado:&nbsp;</strong>1-10 de 750 registros</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6 estilo-01 d-flex justify-content-end align-items-center">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                    <button class="estilo-01 btn btn-sm btn-sres-verde" type="button"><i class="fas fa-angle-double-left"></i></button>
-                                    <button class="estilo-01 btn btn-sm btn-sres-verde" type="button"><i class="fas fa-angle-left"></i></button>
-                                    <input class="ir-pagina estilo-01" type="number" value="1" min="1">
-                                    <button class="estilo-01 btn btn-sm btn-sres-verde" type="button"><i class="fas fa-angle-right"></i></button>
-                                    <button class="estilo-01 btn btn-sm btn-sres-verde" type="button"><i class="fas fa-angle-double-right"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-@*<div class="container-fluid my-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 mb-5">
-                <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">Proceso de Postulación</h2>
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">
-                    <ul>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Publicación y difusión de la convocatoria del Reconocimiento de Energía Eficiente y Sostenible en la página oficial del Ministerio de Energía y Minas, y en la sección Convocatoria, de esta Plataforma.</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Preparación de documentos para la Postulación Virtual a través de esta misma plataforma.</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Tiempo de resolución de consultas y observaciones sobre el contenido de las bases deberán ser dirigidos al correo electrónico: Dgee1@minem.gob.pe (ejemplo)</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Último día para la presentación y entrega de documentos: 20 de noviembre 2020</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Proceso de evaluación para el otorgamiento del SRES.</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Información del otorgamiento del Reconocimiento de Energía Eficiente y Sostenible a la entidad postulando por escrito.</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Ceremonia de premiación para los ganadores en cada categoría, con motivo del Día Mundial de la Eficiencia Energética.</li>
-                    </ul>
-                </p>
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Es importante mencionar que, con la finalidad de que la entidad postulante demuestre las condiciones legales para realizar sus actividades económicas, se sugiere que éstas puedan cumplir con los siguientes criterios:</p>
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">
-                    <ul>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Encontrarse como empresa activa en la SUNAT</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">No tener incumplimiento de pagos según registro de INFOCORP.</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Tener saneamiento legal físico.</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Presentar la postulación debidamente firmada por el titular o representante legal de la empresa.</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Documento de constitución de la empresa en registros públicos.</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Firmar un compromiso de acceso a la información y confidencialidad.</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Cumplir con la normativa vigente que corresponda, pudiendo ser excluidas del premio en caso de verificarse incumplimiento de ésta, incluso una vez entregado el mismo.</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Declaración jurada de veracidad de la información suministrada.</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Permitir la visita a las instalaciones, facilitar información complementaria y/o presentar el proyecto al Comité Organizador y Evaluador, en caso que éste lo solicite.</li>
-                    </ul>
-                </p>
-            </div>
-            <div class="col-12 mb-5">
-                <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">Proceso de Evaluación</h2>
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">
-                    <ol>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Coordinación, entre el evaluador y la entidad postulante para optar por el Reconocimiento de Energía Eficiente y Sostenible.</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Primera revisión de los documentos</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Informe preliminar del evaluador</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Levantamiento de observaciones por la entidad postulante</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Segunda revisión de los documentos</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Informe final del evaluador</li>
-                        <li class="estilo-01 text-sres-gris wow slideInUp">Comunicación de resultados a las entidades postulantes</li>
-                    </ol>
-                </p>
-            </div>
-            <div class="col-12 mb-5">
-                <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">ÚLTIMAS CONVOCATORIAS</h2>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-5 wow slideInUp">
-                <div class="set-bg convocatoria-prev" data-setbg="@Url.Content("~/Assets/images/caso_01.png")"></div>
-                <a class="estilo-04 text-sres-verde text-limit-2 text-justify text-uppercase" href="#" target="_">Convocatoria nacional de eficiencia energética edición 2020 - 2</a><small class="d-block pt-2 pb-3 estilo-05 text-sres-gris">02-06-2020</small>
-                <p class="m-0 estilo-01 text-sres-gris text-limit-5 text-justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-5 wow slideInUp">
-                <div class="set-bg convocatoria-prev" data-setbg="@Url.Content("~/Assets/images/caso_02.png")"></div>
-                <a class="estilo-04 text-sres-verde text-limit-2 text-justify text-uppercase" href="#" target="_">Convocatoria nacional de eficiencia energética edición 2020 - 3</a><small class="d-block pt-2 pb-3 estilo-05 text-sres-gris">02-06-2020</small>
-                <p class="m-0 estilo-01 text-sres-gris text-limit-5 text-justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-5 wow slideInUp">
-                <div class="set-bg convocatoria-prev" data-setbg="@Url.Content("~/Assets/images/caso_03.png")"></div>
-                <a class="estilo-04 text-sres-verde text-limit-2 text-justify text-uppercase" href="#" target="_">Convocatoria nacional de eficiencia energética edición 2020 - 4</a><small class="d-block pt-2 pb-3 estilo-05 text-sres-gris">02-06-2020</small>
-                <p class="m-0 estilo-01 text-sres-gris text-limit-5 text-justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-5 wow slideInUp">
-                <div class="set-bg convocatoria-prev" data-setbg="@Url.Content("~/Assets/images/caso_04.png")"></div>
-                <a class="estilo-04 text-sres-verde text-limit-2 text-justify text-uppercase" href="#" target="_">Convocatoria nacional de eficiencia energética edición 2020 - 5</a><small class="d-block pt-2 pb-3 estilo-05 text-sres-gris">02-06-2020</small>
-                <p class="m-0 estilo-01 text-sres-gris text-limit-5 text-justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-5 wow slideInUp">
-                <div class="set-bg convocatoria-prev" data-setbg="@Url.Content("~/Assets/images/caso_05.png")"></div>
-                <a class="estilo-04 text-sres-verde text-limit-2 text-justify text-uppercase" href="#" target="_">Convocatoria nacional de eficiencia energética edición 2020 - 6</a><small class="d-block pt-2 pb-3 estilo-05 text-sres-gris">02-06-2020</small>
-                <p class="m-0 estilo-01 text-sres-gris text-limit-5 text-justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            </div>
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="rayado">&nbsp;</div>
-            </div>
-        </div>
-    </div>
-</div>*@
