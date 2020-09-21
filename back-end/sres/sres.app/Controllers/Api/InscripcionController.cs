@@ -41,10 +41,10 @@ namespace sres.app.Controllers.Api
             {
                 ConvocatoriaBE convocatoria = convocatoriaLN.ObtenerConvocatoria(!inscripcion.ID_CONVOCATORIA.HasValue ? 0 : inscripcion.ID_CONVOCATORIA.Value);
                 UsuarioBE usuario = usuarioLN.ObtenerUsuario(!inscripcion.UPD_USUARIO.HasValue ? 0 : inscripcion.UPD_USUARIO.Value);
-                string fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldConvocatoria = "[CONVOCATORIA]", fieldNombreConv = "[NOMBRE_CONV]";
-                string[] fields = new string[] { fieldNombres, fieldApellidos, fieldConvocatoria, fieldNombreConv };
-                string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldConvocatoria, fieldNombreConv };
-                Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS, [fieldConvocatoria] = convocatoria.FECHA_INICIO.Year.ToString(),[fieldNombreConv] = convocatoria.NOMBRE };
+                string fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldConvocatoria = "[CONVOCATORIA]", fieldNombreConv = "[NOMBRE_CONV]", fieldServer = "[SERVER]";
+                string[] fields = new string[] { fieldNombres, fieldApellidos, fieldConvocatoria, fieldNombreConv, fieldServer };
+                string[] fieldsRequire = new string[] { fieldNombres, fieldApellidos, fieldConvocatoria, fieldNombreConv, fieldServer };
+                Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES, [fieldApellidos] = usuario.APELLIDOS, [fieldConvocatoria] = convocatoria.FECHA_INICIO.Year.ToString(),[fieldNombreConv] = convocatoria.NOMBRE,[fieldServer] = AppSettings.Get<string>("Server") };
                 string subject = $"Inscripción a la convocatoria del Reconocimiento de Energía Eficiente y Sostenible por el periodo {convocatoria.FECHA_INICIO.Year.ToString()}";
                 MailAddressCollection mailTo = new MailAddressCollection();
                 mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));

@@ -110,10 +110,10 @@ namespace sres.app.Controllers.Api
             {
                 usuario.INSTITUCION.SECTOR = sectorLN.ObtenerSector(usuario.INSTITUCION.ID_SECTOR);
 
-                string fieldRuc = "[RUC]", fieldDireccion = "[DIRECCION]", fieldSector = "[SECTOR]", fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldEmail = "[EMAIL]", fieldTelefono = "[TELEFONO]", fieldCelular = "[CELULAR]", fieldAnexo = "[ANEXO]";
-                string[] fields = new string[] { fieldRuc, fieldDireccion, fieldSector, fieldNombres, fieldApellidos, fieldEmail, fieldTelefono, fieldCelular, fieldAnexo };
-                string[] fieldsRequire = new string[] { fieldRuc, fieldDireccion, fieldSector, fieldNombres, fieldApellidos, fieldEmail, fieldCelular };
-                Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldRuc] = usuario.INSTITUCION.RUC,[fieldDireccion] = usuario.INSTITUCION.DOMICILIO_LEGAL,[fieldSector] = usuario.INSTITUCION.SECTOR.NOMBRE,[fieldNombres] = usuario.NOMBRES,[fieldApellidos] = usuario.APELLIDOS,[fieldEmail] = usuario.CORREO,[fieldTelefono] = usuario.TELEFONO,[fieldCelular] = usuario.CELULAR,[fieldAnexo] = usuario.ANEXO };
+                string fieldRuc = "[RUC]", fieldDireccion = "[DIRECCION]", fieldSector = "[SECTOR]", fieldNombres = "[NOMBRES]", fieldApellidos = "[APELLIDOS]", fieldEmail = "[EMAIL]", fieldTelefono = "[TELEFONO]", fieldCelular = "[CELULAR]", fieldAnexo = "[ANEXO]", fieldServer = "[SERVER]";
+                string[] fields = new string[] { fieldRuc, fieldDireccion, fieldSector, fieldNombres, fieldApellidos, fieldEmail, fieldTelefono, fieldCelular, fieldAnexo, fieldServer };
+                string[] fieldsRequire = new string[] { fieldRuc, fieldDireccion, fieldSector, fieldNombres, fieldApellidos, fieldEmail, fieldCelular, fieldServer };
+                Dictionary<string, string> dataBody = new Dictionary<string, string> {[fieldRuc] = usuario.INSTITUCION.RUC,[fieldDireccion] = usuario.INSTITUCION.DOMICILIO_LEGAL,[fieldSector] = usuario.INSTITUCION.SECTOR.NOMBRE,[fieldNombres] = usuario.NOMBRES,[fieldApellidos] = usuario.APELLIDOS,[fieldEmail] = usuario.CORREO,[fieldTelefono] = usuario.TELEFONO,[fieldCelular] = usuario.CELULAR,[fieldAnexo] = usuario.ANEXO, [fieldServer] = AppSettings.Get<string>("Server") };
                 string subject = $"{usuario.NOMBRES} {usuario.APELLIDOS}, fue registrado en nuestra plataforma del Reconocimiento de Energía Eficiente y Sostenible";
                 MailAddressCollection mailTo = new MailAddressCollection();
                 mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
