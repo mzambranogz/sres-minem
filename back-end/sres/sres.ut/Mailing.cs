@@ -167,6 +167,12 @@ namespace sres.ut
                 AddAddressCollection(mail.CC, addressCC);
                 AddAddressCollection(mail.Bcc, addressCCO);
 
+                ServicePointManager.ServerCertificateValidationCallback = delegate (object s
+                   , X509Certificate certificate
+                   , X509Chain chain
+                   , SslPolicyErrors sslPolicyErrors)
+                { return true; };
+
                 mail.Subject = subject;
 
                 AlternateView viewHtml = AlternateView.CreateAlternateViewFromString(templateBody, Encoding.UTF8, MediaTypeNames.Text.Html);

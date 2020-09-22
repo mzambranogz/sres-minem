@@ -11,9 +11,8 @@
     <link rel="stylesheet" href="~/Assets/css/style.css" />
 </head>
 <body>
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="row">
             <div class="col-sm-5">
                 <div class="form-group">
