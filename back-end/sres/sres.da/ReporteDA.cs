@@ -112,5 +112,56 @@ namespace sres.da
 
             return lista;
         }
+
+        public List<ReporteBE.ReportePostulacionesXSectorSubSector> ListaReportePostulacionesXSectorSubsector(int idSector, int idSubSector, OracleConnection db)
+        {
+            List<ReporteBE.ReportePostulacionesXSectorSubSector> lista = new List<ReporteBE.ReportePostulacionesXSectorSubSector>();
+
+            try
+            {
+                string sp = $"{Package.Admin}USP_SEL_REP_EVALSECTORSUBSECTOR";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_SECTOR", idSector);
+                p.Add("PI_ID_SUBSECTOR", idSubSector);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ReporteBE.ReportePostulacionesXSectorSubSector>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
+
+        public List<ReporteBE.ReporteEvaluadorDos> ListaReporteEvaluadorSegundo(int idConvocatoria, int idInstitucion, OracleConnection db)
+        {
+            List<ReporteBE.ReporteEvaluadorDos> lista = new List<ReporteBE.ReporteEvaluadorDos>();
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
+
+        public List<ReporteBE.ReporteEvaluadorTres> ListaReporteEvaluadorTercero(int idConvocatoria, int idInstitucion, OracleConnection db)
+        {
+            List<ReporteBE.ReporteEvaluadorTres> lista = new List<ReporteBE.ReporteEvaluadorTres>();
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
     }
 }

@@ -51,5 +51,47 @@ namespace sres.be
             public string MEJORACONTINUA { get; set; }
             public decimal CANTIDAD { get; set; }
         }
+
+        public class ReportePostulacionesXSectorSubSector
+        {
+            public string PERIODO { get; set; }
+            public string RAZON_SOCIAL { get; set; }
+            public string RESPONSABLE { get; set; }
+            public string CATEGORIA { get; set; }
+            public string ESTRELLA { get; set; }
+            public int PUNTAJE { get; set; }
+            public double EMISIONES { get; set; }
+            public double ENERGIA { get; set; }
+            public double COMBUSTIBLE { get; set; }
+            public DateTime REG_FECHA { get; set; }
+            public string SECTOR { get; set; }
+            public string SUBSECTOR { get; set; }
+            public int NUMERO_ESTRELLA { get; set; }
+            public int ID_SECTOR { get; set; }
+            public int ID_SUBSECTOR_TIPOEMPRESA { get; set; }
+        }
+
+        public class ReporteEvaluadorDos
+        {
+            public string CRITERIO { get; set; }
+            public string CRITERIO_PUNTAJE { get; set; }
+            public int PUNTAJE { get; set; }
+            public double EMISIONES_REDUCIDAS { get; set; }
+            public string OBSERVACION { get; set; }
+            public int ID_CONVOCATORIA { get; set; }
+            public int ID_INSTITUCION { get; set; }
+        }
+
+        public class ReporteEvaluadorTres
+        {
+            public string PERIODO { get; set; }
+            public string RAZON_SOCIAL { get; set; }
+            public string CATEGORIA { get; set; }
+            public string ESTRELLA { get; set; }
+            public int PUNTAJE { get; set; }
+            public int ID_CONVOCATORIA { get; set; }
+            public int ID_INSTITUCION { get; set; }
+        }
+
     }
 }

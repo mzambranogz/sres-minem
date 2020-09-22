@@ -468,6 +468,7 @@
     <Content Include="Reportes\ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx" />
     <Content Include="Reportes\ReporteEstadisticoReconocimientoXConvocatoria.aspx" />
     <Content Include="Reportes\ReporteEstadisticoTipoPostulanteXConvocatoria.aspx" />
+    <Content Include="Reportes\ReportePostulacionesXSectorSubSector.aspx" />
     <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosAntPenales.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -592,6 +593,13 @@
     </Compile>
     <Compile Include="Reportes\ReporteEstadisticoTipoPostulanteXConvocatoria.aspx.designer.cs">
       <DependentUpon>ReporteEstadisticoTipoPostulanteXConvocatoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReportePostulacionesXSectorSubSector.aspx.cs">
+      <DependentUpon>ReportePostulacionesXSectorSubSector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReportePostulacionesXSectorSubSector.aspx.designer.cs">
+      <DependentUpon>ReportePostulacionesXSectorSubSector.aspx</DependentUpon>
     </Compile>
     <Compile Include="Response\GoogleResponse.cs" />
     <Compile Include="Service References\ServicioPIDE\Reference.cs">
@@ -779,6 +787,7 @@
     <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\Reportes\rptReportePostulacionesXSectorSubsector.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

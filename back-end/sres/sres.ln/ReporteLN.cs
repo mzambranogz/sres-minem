@@ -82,5 +82,19 @@ namespace sres.ln
 
             return lista;
         }
+
+        public List<ReporteBE.ReportePostulacionesXSectorSubSector> ListaReportePostulacionesXSectorSubsector(int idSector, int idSubSector)
+        {
+            List<ReporteBE.ReportePostulacionesXSectorSubSector> lista = new List<ReporteBE.ReportePostulacionesXSectorSubSector>();
+
+            try
+            {
+                cn.Open();
+                lista = reporteDA.ListaReportePostulacionesXSectorSubsector(idSector, idSubSector, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }
