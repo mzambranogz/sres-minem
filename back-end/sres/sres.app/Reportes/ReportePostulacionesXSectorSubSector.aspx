@@ -17,7 +17,7 @@
             <div class="col-sm-5">
                 <div class="form-group">
                     <label>SECTOR:</label>
-                    <asp:DropDownList ID="ddlSector" runat="server" DataTextField="NOMBRE" DataValueField="ID_SECTOR" CssClass="form-control" OnSelectedIndexChanged="ddlSector_SelectedIndexChanged"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlSector" runat="server" DataTextField="NOMBRE" DataValueField="ID_SECTOR" CssClass="form-control" OnSelectedIndexChanged="ddlSector_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                 </div>
             </div>
         </div>
