@@ -52,10 +52,16 @@ namespace sres.app.Reportes
             int idSector = int.Parse(ddlSector.SelectedValue);
             int idSubSector = int.Parse(ddlSubSector.SelectedValue);
 
+
+            string sector = ddlSector.SelectedItem.Text;
+            string subSector = ddlSubSector.SelectedItem.Text;
+
             List<ReporteBE.ReportePostulacionesXSectorSubSector> dataReporte = new ReporteLN().ListaReportePostulacionesXSectorSubsector(idSector, idSubSector);
 
             ReportDataSource dsReporte = new ReportDataSource("dsPostulacionesSectorSubsector", dataReporte);
             rpwReporte.Visible = true;
+            rpwReporte.LocalReport.SetParameters(new ReportParameter("Sector", sector));
+            rpwReporte.LocalReport.SetParameters(new ReportParameter("SubSector", subSector));
             rpwReporte.LocalReport.DataSources.Clear();
             rpwReporte.LocalReport.DataSources.Add(dsReporte);
             //rpwReporte.LocalReport.Refresh();
