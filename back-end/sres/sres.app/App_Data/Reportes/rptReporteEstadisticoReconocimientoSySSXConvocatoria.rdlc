@@ -111,7 +111,9 @@
                     <Y>=Sum(Fields!CANTIDAD.Value)</Y>
                   </ChartDataPointValues>
                   <ChartDataLabel>
-                    <Style />
+                    <Style>
+                      <Format>#,0.00;(#,0.00)</Format>
+                    </Style>
                     <Label>#VALY - #PERCENT</Label>
                     <Visible>true</Visible>
                   </ChartDataLabel>
@@ -420,7 +422,9 @@
                     <Y>=Sum(Fields!CANTIDAD.Value)</Y>
                   </ChartDataPointValues>
                   <ChartDataLabel>
-                    <Style />
+                    <Style>
+                      <Format>#,0.00;(#,0.00)</Format>
+                    </Style>
                     <Label>#VALY - #PERCENT</Label>
                     <Visible>true</Visible>
                   </ChartDataLabel>
@@ -729,7 +733,9 @@
                     <Y>=Sum(Fields!CANTIDAD.Value)</Y>
                   </ChartDataPointValues>
                   <ChartDataLabel>
-                    <Style />
+                    <Style>
+                      <Format>#,0.00;(#,0.00)</Format>
+                    </Style>
                     <Label>#VALY - #PERCENT</Label>
                     <Visible>true</Visible>
                   </ChartDataLabel>

@@ -51,7 +51,9 @@
                     <Y>=Sum(Fields!CANTIDAD_INSCRIPCIONES.Value)</Y>
                   </ChartDataPointValues>
                   <ChartDataLabel>
-                    <Style />
+                    <Style>
+                      <Format>#,0.00;(#,0.00)</Format>
+                    </Style>
                     <Label>#VALY - #PERCENT</Label>
                     <Visible>true</Visible>
                   </ChartDataLabel>

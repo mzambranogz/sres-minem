@@ -18,7 +18,7 @@ namespace sres.da
             {
                 return new
                 {
-                    Admin = $"{User}.PKG_SiSSELLO_ADMIN.",
+                    Admin = $"{User}.PKG_SISSELLO_ADMIN.",
                     Mantenimiento = $"{User}.PKG_SISSELLO_MANTENIMIENTO.",
                     Criterio = $"{User}.PKG_SISSELLO_CRITERIO.",
                     Verificacion = $"{User}.PKG_SISSELLO_VERIFICACION."
