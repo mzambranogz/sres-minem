@@ -58,7 +58,7 @@ namespace sres.app.Reportes
             rpwReporte.Visible = true;
             rpwReporte.LocalReport.DataSources.Clear();
             rpwReporte.LocalReport.DataSources.Add(dsReporte);
-            rpwReporte.LocalReport.Refresh();
+            //rpwReporte.LocalReport.Refresh();
         }
 
         protected void ddlSector_SelectedIndexChanged(object sender, EventArgs e)

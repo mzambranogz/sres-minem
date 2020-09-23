@@ -36,9 +36,8 @@
         </div>
         <div class="row">
 
-            <rsweb:ReportViewer ID="rpwReporte" runat="server" Style="width: 100%" Visible="False" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt">
-                <LocalReport ReportPath="App_Data/Reportes/rptReportePostulacionesXSectorSubsector.rdlc">
-                </LocalReport>
+            <rsweb:ReportViewer ID="rpwReporte" runat="server" Style="width: 100%" Visible="false" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt">
+                <LocalReport ReportPath="App_Data/Reportes/rptReportePostulacionesXSectorSubsector.rdlc"></LocalReport>
             </rsweb:ReportViewer>
 
         </div>

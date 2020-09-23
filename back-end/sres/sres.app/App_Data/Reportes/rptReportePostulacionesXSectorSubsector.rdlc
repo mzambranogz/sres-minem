@@ -1716,10 +1716,12 @@
   <ReportParameters>
     <ReportParameter Name="Sector">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="SubSector">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
