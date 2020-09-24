@@ -12,6 +12,7 @@
     $('#tab-head-02').on('click', (e) => limpiarSeccionPos());
     $('#ir-pagina').on('change', (e) => cambiarPagina());
     $('#catidad-rgistros').on('change', (e) => cambiarPagina());
+    $('#cbo-proceso').on('click', (e) => cambiarProceso());
     consultarListas();
     //consultarRequerimiento('#list-req');
     //consultarCriterio('#list-criterio');
@@ -90,6 +91,7 @@ var consultarConvocatoria = (element) => {
     $('#btnGuardar').next().html('Cancelar');
     $('.relacion-evaluador').removeClass('d-none');
     $('#etapa-convocatoria').show();
+    $('#proceso-convocatoria').show();
     limpiarFormulario();
     let id = $(element).attr('data-id');
 
@@ -206,6 +208,7 @@ var removerPostulante = (data) => {
 var cargarDatos = (data) => {
     idEtapa_actual = data.ID_ETAPA;
     $('#cbo-etapa').val(data.ID_ETAPA);
+    validarEtapa(data.ID_ETAPA);
     $('#frm').data('id', data.ID_CONVOCATORIA);
     $('#txt-titulo').val(data.NOMBRE);
     $('#txa-descripcion').val(data.DESCRIPCION);
@@ -266,6 +269,7 @@ var consultarListas = () => {
     let urlConsultarListaInsignia = `${baseUrl}api/insignia/obtenerallinsignia`;
     let urlConsultarListaEstrella = `${baseUrl}api/estrella/obtenerallestrella`;
     let urlConsultarListaSector = `${baseUrl}api/sector/obtenerallsector`;
+    let urlConsultarListaProceso = `${baseUrl}api/proceso/obtenerallproceso`;
     Promise.all([
         fetch(urlConsultarListaCriterio),
         fetch(urlConsultarListaRequerimiento),
@@ -273,13 +277,14 @@ var consultarListas = () => {
         fetch(urlConsultarListaEtapa),
         fetch(urlConsultarListaInsignia),
         fetch(urlConsultarListaEstrella),
-        fetch(urlConsultarListaSector)
+        fetch(urlConsultarListaSector),
+        fetch(urlConsultarListaProceso)
     ])
     .then(r => Promise.all(r.map(v => v.json())))
     .then(cargarCheckListas);
 }
 
-var cargarCheckListas = ([listaCriterio, listaRequerimiento, listaEvaluador, listaEtapa, listaInsignia, listaEstrella, listaSector]) => {
+var cargarCheckListas = ([listaCriterio, listaRequerimiento, listaEvaluador, listaEtapa, listaInsignia, listaEstrella, listaSector, listaProceso]) => {
     //cargarCheckCriterio('#list-criterio', listaCriterio);
     cargarCheckCriterio('.tab-criterio-content', listaCriterio);
     //cargarCheckRequerimiento('#list-req', listaRequerimiento);
@@ -293,6 +298,7 @@ var cargarCheckListas = ([listaCriterio, listaRequerimiento, listaEvaluador, lis
     cargarTablaInsignia('.tbl-insignia', listaInsignia);
     //cargarTablaEstrellaSector("#tbl-estrellas", listaEstrella, listaSector);
     cargarTablaEstrellaSector(".tbl-estrellas", listaEstrella, listaSector);
+    cargarComboProceso('#cbo-proceso', listaProceso);
 }
 
 var cargarCheckRequerimiento = (selector, data) => {
@@ -359,8 +365,8 @@ var cargarCheckEvaluador = (selector, data) => {
 }
 
 var cargarCheckEtapa = (selector, data) => {
-    let col1 = `<div class="col-sm-12 col-md-12 col-lg-4"><div class="estilo-01">Nombre de la Etapa</div><div class="dropdown-divider"></div></div>`;
-    let col2 = `<div class="col-sm-12 col-md-12 col-lg-4"><div class="estilo-01">Proceso</div><div class="dropdown-divider"></div></div>`;
+    let col1 = `<div class="col-sm-12 col-md-12 col-lg-4"><div class="estilo-01">Actividad</div><div class="dropdown-divider"></div></div>`;
+    let col2 = `<div class="col-sm-12 col-md-12 col-lg-4"><div class="estilo-01">Etapa</div><div class="dropdown-divider"></div></div>`;
     //let col3 = `<div class="col-sm-12 col-md-12 col-lg-2"><div class="estilo-01">Cantidad de Días</div><div class="dropdown-divider"></div></div>`;
     let col3 = `<div class="col-sm-12 col-md-12 col-lg-4"><div class="estilo-01">Fecha</div><div class="dropdown-divider"></div></div>`;
     let cabecera = `<div class="row">${col1}${col2}${col3}</div>`;
@@ -424,14 +430,21 @@ var armarTrabajadorCama = (sector, sub, data, dataE) => {
     return tc;
 }
 
+var cargarComboProceso = (selector, data) => {
+    let items = data.length == 0 ? '' : data.map(x => `<option value="${x.ID_PROCESO}">${x.NOMBRE}</option>`).join('');
+    $(selector).html(items);
+}
+
 var nuevo = () => {
     limpiarFormulario();
     $('.alert-add').html('');
     $('#btnGuardar').show(); 
     $('#btnGuardar').next().html('Cancelar');
     $('#etapa-convocatoria').hide();
+    $('#proceso-convocatoria').hide();
     $('.relacion-evaluador').addClass('d-none');
     $('#cbo-etapa').val(1);
+    $('#cbo-proceso').val(1);
     //$('.postulante-evaluador-btn').addClass('d-none');
     //$('.postulante-evaluador').addClass('d-none');
 }
@@ -848,4 +861,24 @@ $(".columna-filtro").click(function (e) {
 
     $('#btnConsultar')[0].click();
 });
+
+var cambiarProceso = () => {    
+    $('#cbo-etapa option').prop('hidden', true);
+    if ($('#cbo-proceso').val() == 1){
+        for(let i=0; i<5; i++) $(`#cbo-etapa option[value=${i+1}]`).prop('hidden', false);
+    }else if ($('#cbo-proceso').val() == 2){
+        for(let i=0; i<7; i++) $(`#cbo-etapa option[value=${i+6}]`).prop('hidden', false);
+    }else if ($('#cbo-proceso').val() == 3){
+        for(let i=0; i<2; i++) $(`#cbo-etapa option[value=${i+13}]`).prop('hidden', false);
+    }else if ($('#cbo-proceso').val() == 4){
+        for(let i=0; i<1; i++) $(`#cbo-etapa option[value=${i+15}]`).prop('hidden', false);
+    }
+}
+
+var validarEtapa = (idetapa) => {
+    if (idetapa < 6) $('#cbo-proceso').val(1);
+    else if (idetapa < 13) $('#cbo-proceso').val(2);
+    else if (idetapa < 15) $('#cbo-proceso').val(3);
+    else $('#cbo-proceso').val(4);
+}
 
