@@ -627,23 +627,29 @@
                         <label class="estilo-01" for="cbo-etapa">Etapa de la convocatoria:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                         <div class="input-group">
                           <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-stopwatch"></i></span></div>
-                          <select class="form-control estilo-01" id="cbo-evaluadores-01">
-                            <option value="1">Publicación y difusión</option>
-                            <option value="2">Postulación</option>
-                            <option value="3">Revisión requisitos</option>
-                            <option value="4">Documentos solicitados</option>
-                            <option value="5">Filtrado de participantes</option>
-                            <option value="6">Recopilación de información</option>
-                            <option value="7">Coordinación</option>
-                            <option value="8">Revisión N1</option>
-                            <option value="9">Informe preliminar</option>
-                            <option value="10">Levantamiento de observaciones</option>
-                            <option value="11">Revisión N2</option>
-                            <option value="12">Informe final</option>
-                            <option value="13">Comunicación de resultados</option>
-                            <option value="14">Invitación a ceremonia premiación</option>
-                            <option value="15">Finalizado</option>
-                            <option value="16">Post-evaluación</option>
+                          <select class="form-control estilo-01 bg-warning" id="cbo-evaluadores-01">
+                            <optgroup label="Actividades Etapa 01">
+                              <option value="1">Publicación y difusión</option>
+                              <option value="2">Postulación</option>
+                              <option value="3">Revisión requisitos</option>
+                              <option value="4">Documentos solicitados</option>
+                            </optgroup>
+                            <optgroup label="Actividades Etapa 02">
+                              <option value="5">Filtrado de participantes</option>
+                              <option value="6">Recopilación de información</option>
+                              <option value="7">Coordinación</option>
+                              <option value="8">Revisión N1</option>
+                              <option value="9">Informe preliminar</option>
+                              <option value="10">Levantamiento de observaciones</option>
+                              <option value="11">Revisión N2</option>
+                              <option value="12">Informe final</option>
+                            </optgroup>
+                            <optgroup label="Actividades Etapa 03">
+                              <option value="13">Comunicación de resultados</option>
+                              <option value="14">Invitación a ceremonia premiación</option>
+                              <option value="15">Finalizado</option>
+                              <option value="16">Post-evaluación</option>
+                            </optgroup>
                           </select>
                         </div>
                       </div>
@@ -1238,7 +1244,10 @@
               </div>
               <div class="row mt-5">
                 <div class="col-sm-12 col-md-12 col-lg-12">
-                  <h2 class="estilo-04 text-sres-oscuro mb-3">CONFIGURACIÓN DE CRITERIOS</h2>
+                  <h2 class="estilo-04 text-sres-oscuro mb-3 acordeon_conf">CONFIGURACIÓN DE CRITERIOS</h2>
+                  <div class="dropdown-divider"></div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12">
                   <div class="form-group mt-2">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                       <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Ahorro de energía eléctrica total"><a class="nav-link estilo-01 active" id="tab-head-cri-01" data-toggle="tab" href="#tab-body-cri-01" role="tab" aria-controls="tab-body-cri-01" aria-selected="true"><i class="fas fa-check-circle text-sres-verde mr-1"></i>Criterio 01</a></li>
@@ -1467,521 +1476,526 @@
               </div>
               <div class="row mt-5">
                 <div class="col-sm-12 col-md-12 col-lg-12">
-                  <h2 class="estilo-04 text-sres-oscuro mb-3">ETAPAS Y CATEGORÍAS</h2>
+                  <h2 class="estilo-04 text-sres-oscuro mb-3 acordeon_conf">ETAPAS Y CATEGORÍAS</h2>
+                  <div class="dropdown-divider"></div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-8">
-                  <div class="form-group">
-                    <label class="estilo-01" for="mls-puntuación">ETAPAS<span class="text-danger font-weight-bold">&nbsp;(*)</span></label>
-                    <div class="input-group">
-                      <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-hourglass-half"></i></span></div>
-                      <div class="form-control" style="height:auto; overflow-y: auto;">
-                        <div class="col-auto my-1">
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="estilo-01">Nombre de la Etapa</div>
-                              <div class="dropdown-divider"></div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="estilo-01">Proceso</div>
-                              <div class="dropdown-divider"></div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="estilo-01">Cantidad de Días</div>
-                              <div class="dropdown-divider"></div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Publicación y difusión<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-1">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-8">
+                      <div class="form-group">
+                        <label class="estilo-01" for="mls-puntuación">ETAPAS<span class="text-danger font-weight-bold">&nbsp;(*)</span></label>
+                        <div class="input-group">
+                          <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="fas fa-hourglass-half"></i></span></div>
+                          <div class="form-control" style="height:auto; overflow-y: auto;">
+                            <div class="col-auto my-1">
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="estilo-01">Nombre de la Etapa</div>
+                                  <div class="dropdown-divider"></div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="estilo-01">Proceso</div>
+                                  <div class="dropdown-divider"></div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="estilo-01">Cantidad de Días</div>
+                                  <div class="dropdown-divider"></div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-1" value="1">
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Publicación y difusión<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-1">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-1" value="1">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Postulación<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-2">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Postulación<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-2">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-2" value="2">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-2" value="2">
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Revisión requisitos<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-3">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-3" value="3">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Revisión requisitos<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-3">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Documentos solicitados<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-4">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-4" value="4">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-3" value="3">
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Filtrado de participantes<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-5">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-5" value="5">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Documentos solicitados<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-4">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Recopilación de información<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-6">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-6" value="6">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-4" value="4">
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Coordinación<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-7">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-7" value="7">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Filtrado de participantes<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-5">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Revisión N° 1<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-8">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-8" value="8">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-5" value="5">
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Informe preliminar<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-9">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-9" value="9">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Recopilación de información<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-6">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Levantamiento de observaciones<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-10">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-10" value="10">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-6" value="6">
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Revisión N° 2<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-11">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-11" value="11">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Coordinación<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-7">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Informe final<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-12">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-12" value="12">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-7" value="7">
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Comunicación de resultados<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-13">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-13" value="13">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Revisión N° 1<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-8">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Invitación a ceremonia premiación<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-14">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-14" value="14">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-8" value="8">
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Finalizado<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-15">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-15" value="15">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Informe preliminar<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-9">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <label class="estilo-01">Post-evaluación<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
+                                    </label>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-9" value="9">
+                                <div class="col-sm-12 col-md-12 col-lg-5">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
+                                      <select class="form-control estilo-01" id="cbo-proceso-16">
+                                        <option>Publicación y difusión</option>
+                                        <option>Postulación</option>
+                                        <option>Recopilación de información</option>
+                                        <option>Evaluación</option>
+                                        <option>Invitación a ceremonia premiación</option>
+                                        <option>Post Convocatoria</option>
+                                      </select>
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Levantamiento de observaciones<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-10">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-10" value="10">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Revisión N° 2<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-11">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-11" value="11">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Informe final<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-12">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-12" value="12">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Comunicación de resultados<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-13">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-13" value="13">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Invitación a ceremonia premiación<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-14">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-14" value="14">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Finalizado<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-15">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-15" value="15">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <label class="estilo-01">Post-evaluación<span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-5">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-tasks"></i></span></div>
-                                  <select class="form-control estilo-01" id="cbo-proceso-16">
-                                    <option>Publicación y difusión</option>
-                                    <option>Postulación</option>
-                                    <option>Recopilación de información</option>
-                                    <option>Evaluación</option>
-                                    <option>Invitación a ceremonia premiación</option>
-                                    <option>Post Convocatoria</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-2">
-                              <div class="form-group mb-1">
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
-                                  <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-16" value="16">
+                                <div class="col-sm-12 col-md-12 col-lg-2">
+                                  <div class="form-group mb-1">
+                                    <div class="input-group">
+                                      <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-day"></i></span></div>
+                                      <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-dias-16" value="16">
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -1989,37 +2003,37 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-4">
-                  <div class="form-group">
-                    <label class="estilo-01" for="mls-categoria">Categoría de SRES<span class="text-danger font-weight-bold">&nbsp;(*)</span></label>
-                    <div class="input-group">
-                      <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="far fa-list-alt"></i></span></div>
-                      <div class="form-control" style="height:auto; overflow-y: auto;">
-                        <div class="col-auto my-1">
-                          <div class="form-group row mb-0">
-                            <label class="col-sm-8 col-form-label" for="txt-cri-01-p01">Ninguno</label>
-                            <div class="col-sm-4">
-                              <input class="form-control estilo-01" type="text" id="txt-cri-01-p01" placeholder="">
-                            </div>
-                          </div>
-                          <div class="form-group row mb-0">
-                            <label class="col-sm-8 col-form-label" for="txt-cri-01-p01">Bronce</label>
-                            <div class="col-sm-4">
-                              <input class="form-control estilo-01" type="text" id="txt-cri-01-p01" placeholder="">
-                            </div>
-                          </div>
-                          <div class="form-group row mb-0">
-                            <label class="col-sm-8 col-form-label" for="txt-cri-01-p01">Plata</label>
-                            <div class="col-sm-4">
-                              <input class="form-control estilo-01" type="text" id="txt-cri-01-p01" placeholder="">
-                            </div>
-                          </div>
-                          <div class="form-group row mb-0">
-                            <label class="col-sm-8 col-form-label" for="txt-cri-01-p01">Oro</label>
-                            <div class="col-sm-4">
-                              <input class="form-control estilo-01" type="text" id="txt-cri-01-p01" placeholder="">
+                    <div class="col-sm-12 col-md-12 col-lg-4">
+                      <div class="form-group">
+                        <label class="estilo-01" for="mls-categoria">Categoría de SRES<span class="text-danger font-weight-bold">&nbsp;(*)</span></label>
+                        <div class="input-group">
+                          <div class="input-group-prepend"><span class="input-group-text" id="inputGroup9"><i class="far fa-list-alt"></i></span></div>
+                          <div class="form-control" style="height:auto; overflow-y: auto;">
+                            <div class="col-auto my-1">
+                              <div class="form-group row mb-0">
+                                <label class="col-sm-8 col-form-label" for="txt-cri-01-p01">Ninguno</label>
+                                <div class="col-sm-4">
+                                  <input class="form-control estilo-01" type="text" id="txt-cri-01-p01" placeholder="">
+                                </div>
+                              </div>
+                              <div class="form-group row mb-0">
+                                <label class="col-sm-8 col-form-label" for="txt-cri-01-p01">Bronce</label>
+                                <div class="col-sm-4">
+                                  <input class="form-control estilo-01" type="text" id="txt-cri-01-p01" placeholder="">
+                                </div>
+                              </div>
+                              <div class="form-group row mb-0">
+                                <label class="col-sm-8 col-form-label" for="txt-cri-01-p01">Plata</label>
+                                <div class="col-sm-4">
+                                  <input class="form-control estilo-01" type="text" id="txt-cri-01-p01" placeholder="">
+                                </div>
+                              </div>
+                              <div class="form-group row mb-0">
+                                <label class="col-sm-8 col-form-label" for="txt-cri-01-p01">Oro</label>
+                                <div class="col-sm-4">
+                                  <input class="form-control estilo-01" type="text" id="txt-cri-01-p01" placeholder="">
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -2030,7 +2044,8 @@
               </div>
               <div class="row mt-5">
                 <div class="col-sm-12 col-md-12 col-lg-12">
-                  <h2 class="estilo-04 text-sres-oscuro mb-3">ESTRELLAS POR EMISIONES</h2>
+                  <h2 class="estilo-04 text-sres-oscuro mb-3 acordeon_conf">ESTRELLAS POR EMISIONES</h2>
+                  <div class="dropdown-divider"></div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-12">
                   <div class="form-group">
@@ -2485,7 +2500,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <div class="row mt-5">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                   <div class="alert alert-danger d-flex align-items-stretch" role="alert">
                     <div class="alert-wrap mr-3">
