@@ -399,5 +399,28 @@ namespace sres.da
             return lista;
         }
 
+        public bool GuardarDatosIntitucionPIDE(InstitucionBE institucion, int? idInstitucion, OracleConnection db)
+        {
+            bool seModifico = false;
+            try
+            {
+                string sp = $"{Package.Criterio}USP_UPD_DATOS_INST_PIDE";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_INSTITUCION", idInstitucion);
+                p.Add("PI_ID_DEPARTAMENTO", institucion.ID_DEPARTAMENTO);
+                p.Add("PI_ID_PROVINCIA", institucion.ID_PROVINCIA);
+                p.Add("PI_ID_DISTRITO", institucion.ID_DISTRITO);
+                p.Add("PI_CONTRIBUYENTE", institucion.CONTRIBUYENTE);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.Execute(sp, p, commandType: CommandType.StoredProcedure);
+
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                seModifico = filasAfectadas > 0;
+            }
+            catch (Exception ex) { Log.Error(ex); }
+
+            return seModifico;
+        }
+
     }
 }

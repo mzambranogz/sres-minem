@@ -16,7 +16,6 @@ namespace sres.app.Controllers.Api
     {
         InstitucionLN institucionLN = new InstitucionLN();
 
-
         [Route("obtenerinstitucionporrucservicio")]
         [HttpGet]
         public InstitucionBE ObtenerInstitucionPorRucPide(string ruc)
@@ -31,6 +30,10 @@ namespace sres.app.Controllers.Api
                     Entidad = new InstitucionBE();
                     Entidad.RAZON_SOCIAL = empresa.Nombre;
                     Entidad.DOMICILIO_LEGAL = empresa.DomicilioLegal;
+                    Entidad.CONTRIBUYENTE = empresa.TipoPersona == "PERSONA JURIDICA" ? "1" : "2";
+                    Entidad.ID_DEPARTAMENTO = empresa.CodigoDpto;
+                    Entidad.ID_PROVINCIA = empresa.CodigoProv;
+                    Entidad.ID_DISTRITO = empresa.CodigoDist;
                     Entidad.OK = true;
                 }
                 else
@@ -49,6 +52,10 @@ namespace sres.app.Controllers.Api
             //DATOS PRUEBA
             //Entidad.RAZON_SOCIAL = "LAS RATAS";
             //Entidad.DOMICILIO_LEGAL = "Los tusilagos";
+            //Entidad.CONTRIBUYENTE = "2";
+            //Entidad.ID_DEPARTAMENTO = "15";
+            //Entidad.ID_PROVINCIA = "1501";
+            //Entidad.ID_DISTRITO = "150130";
             //Entidad.OK = true;
             return Entidad;
         }

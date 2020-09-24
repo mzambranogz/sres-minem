@@ -141,8 +141,12 @@ namespace sres.ln
                     if (seGuardoInstitucion)
                     {
                         usuario.ID_INSTITUCION = idInstitucion <= 0 ? usuario.ID_INSTITUCION.HasValue ? (usuario.ID_INSTITUCION <= 0 ? null : usuario.ID_INSTITUCION) : null : idInstitucion;
-                        usuario.CONTRASENA = string.IsNullOrEmpty(usuario.CONTRASENA) ? null : Seguridad.hashSal(usuario.CONTRASENA);
-                        seGuardo = usuarioDA.GuardarUsuario(usuario, cn);
+                        if (usuario.INSTITUCION.VALIDARPIDE == 1) seGuardo = institucionDA.GuardarDatosIntitucionPIDE(usuario.INSTITUCION, usuario.ID_INSTITUCION, cn);
+                        else seGuardo = true;
+                        if (seGuardo) {
+                            usuario.CONTRASENA = string.IsNullOrEmpty(usuario.CONTRASENA) ? null : Seguridad.hashSal(usuario.CONTRASENA);
+                            seGuardo = usuarioDA.GuardarUsuario(usuario, cn);
+                        }                        
                     }
 
                     if (seGuardo) ot.Commit();

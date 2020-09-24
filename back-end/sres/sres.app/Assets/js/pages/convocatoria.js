@@ -376,6 +376,7 @@ var responseActualizarDatosInstitucion = (data) => {
 
 var listaSubsector = () => {
     if (idRol != 3) return false;
+    $('#txt-tipo-contribuyente').val(idContribuyente == null ? 0 : idContribuyente);
     let url = `${baseUrl}api/subsectortipoempresa/listasubsetortipoempresa?idSector=${idSector}`;
     fetch(url)
     .then(r => r.json())
