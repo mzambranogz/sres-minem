@@ -221,6 +221,7 @@
     <Content Include="Assets\images\criterio-08.png" />
     <Content Include="Assets\images\criterio-08_old.png" />
     <Content Include="Assets\images\criterio-09.png" />
+    <Content Include="Assets\images\diagrama-01.png" />
     <Content Include="Assets\images\diagrama.png" />
     <Content Include="Assets\images\dos_estrella.png" />
     <Content Include="Assets\images\dos_estrellas.png" />
@@ -265,6 +266,7 @@
     <Content Include="Assets\images\favicon\ms-icon-70x70.png" />
     <Content Include="Assets\images\favicon\site.webmanifest" />
     <Content Include="Assets\images\fondo_12_medidas.png" />
+    <Content Include="Assets\images\gei.png" />
     <Content Include="Assets\images\Grupo 1045.png" />
     <Content Include="Assets\images\ico_nama_amarillo_01.svg" />
     <Content Include="Assets\images\ico_nama_amarillo_02.svg" />

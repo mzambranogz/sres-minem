@@ -209,6 +209,7 @@ var cargarDatos = (data) => {
     idEtapa_actual = data.ID_ETAPA;
     $('#cbo-etapa').val(data.ID_ETAPA);
     validarEtapa(data.ID_ETAPA);
+    cambiarProceso();
     $('#frm').data('id', data.ID_CONVOCATORIA);
     $('#txt-titulo').val(data.NOMBRE);
     $('#txa-descripcion').val(data.DESCRIPCION);

@@ -144,10 +144,10 @@ var renderizar = (data, cantidadCeldas) => {
             //let colSello = `<td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="${(x.INSIGNIA == null ? `sres_0.png` : `${baseUrl}Assets/images/${x.INSIGNIA.ARCHIVO_BASE}`)}" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con ${x.ESTRELLA}"></td>`;
             let colSello = `<td class="text-center" data-encabezado="Reconocimiento"><img class="img-fluid medal-sres" src="${baseUrl}${$('#ruta_rec').val().replace('{0}', x.ID_PREMIACION)}/${x.ARCHIVO_BASE}" alt="" data-toggle="tooltip" data-placement="top" title="Reconocimiento de oro con ${x.ESTRELLA}"></td>`;
             let colRazonSocial = `<td data-encabezado="Empresa participante"><div class="text-limi-1">${x.INSCRIPCION.INSTITUCION.RAZON_SOCIAL}</div></td>`;
-            let colPuntaje = `<td data-encabezado="Puntaje"><div class="text-center">${x.PUNTAJE} ptos.</div></td>`;
-            let colEnergia = `<td data-encabezado="Ahorro energético de electricidad"><div class="text-center">${x.ENERGIA}</div></td>`;
-            let colCombustible = `<td data-encabezado="Ahorro de combustible"><div class="text-center">${x.COMBUSTIBLE}</div></td>`;
-            let colEmisiones = `<td data-encabezado="Reducción de emisiones"><div class="text-center">${x.EMISIONES}</div></td>`;            
+            let colPuntaje = `<td data-encabezado="Puntaje"><div class="text-center">${x.PUNTAJE}</div></td>`;
+            let colEnergia = `<td data-encabezado="Ahorro energético de electricidad"><div class="text-right">${formatoMiles(x.ENERGIA)}</div></td>`;
+            let colCombustible = `<td data-encabezado="Ahorro de combustible"><div class="text-right">${formatoMiles(x.COMBUSTIBLE)}</div></td>`;
+            let colEmisiones = `<td data-encabezado="Reducción de emisiones"><div class="text-right">${formatoMiles(x.EMISIONES)}</div></td>`;            
             let colEstrella = `<td class="text-center" data-encabezado="Medida NDC"><i class="fas fa-medal fa-2x"></i></td>`;
             let btnVerFicha = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Participantes/${x.INSCRIPCION.INSTITUCION.ID_INSTITUCION}/Reconocimiento">Ver</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Ficha">${btnVerFicha}</td>`;
@@ -189,4 +189,8 @@ var cambioNav = () => {
     $('.barra a').removeClass('nav-active');
     $('.barra-participante').addClass('activo');
     $('.barra-participante a').addClass('nav-active');
+}
+
+function formatoMiles(n) { //add20
+    return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 }
