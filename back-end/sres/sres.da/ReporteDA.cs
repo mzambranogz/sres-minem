@@ -134,13 +134,18 @@ namespace sres.da
             return lista;
         }
 
-        public List<ReporteBE.ReporteEvaluadorDos> ListaReporteEvaluadorSegundo(int idConvocatoria, int idInstitucion, OracleConnection db)
+        public List<ReporteBE.ReporteConvocatoriaEmpresa> ListaReporteConvocatoriasXEmpresa(int idConvocatoria, int idInstitucion, OracleConnection db)
         {
-            List<ReporteBE.ReporteEvaluadorDos> lista = new List<ReporteBE.ReporteEvaluadorDos>();
+            List<ReporteBE.ReporteConvocatoriaEmpresa> lista = new List<ReporteBE.ReporteConvocatoriaEmpresa>();
 
             try
             {
-
+                string sp = $"{Package.Admin}USP_SEL_REP_CONVOCATORIAEMPRESA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_INSTITUCION", idInstitucion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ReporteBE.ReporteConvocatoriaEmpresa>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
             {
@@ -149,13 +154,18 @@ namespace sres.da
             return lista;
         }
 
-        public List<ReporteBE.ReporteEvaluadorTres> ListaReporteEvaluadorTercero(int idConvocatoria, int idInstitucion, OracleConnection db)
+        public List<ReporteBE.ReporteReconocimientoEmpresa> ListaReporteReconocimientoEmpresa(int idConvocatoria, int idInstitucion, OracleConnection db)
         {
-            List<ReporteBE.ReporteEvaluadorTres> lista = new List<ReporteBE.ReporteEvaluadorTres>();
+            List<ReporteBE.ReporteReconocimientoEmpresa> lista = new List<ReporteBE.ReporteReconocimientoEmpresa>();
 
             try
             {
-
+                string sp = $"{Package.Admin}USP_SEL_REP_RECONOCIMIENTOEMPRESA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_INSTITUCION", idInstitucion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ReporteBE.ReporteReconocimientoEmpresa>(sp, p, commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
             {

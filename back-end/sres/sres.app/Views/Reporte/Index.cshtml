@@ -16,14 +16,14 @@
 }
 
 @*<div class="container-fluid set-bg" data-setbg="./images/bg-reportes.png">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 py-5">
-                <h1 class="estilo-03 text-white barra-blanca px-1 wow fadeIn">REPORTE DE RESULTADOS</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 py-5">
+                    <h1 class="estilo-03 text-white barra-blanca px-1 wow fadeIn">REPORTE DE RESULTADOS</h1>
+                </div>
             </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 <div class="container-fluid mt-5">
     <div class="container">
         <div class="row">
@@ -73,9 +73,9 @@
                                 @if (usuario.ID_ROL == (int?)EnumsCustom.Roles.EVALUADOR)
                                 {
                                     <option value="1" data-url="Reportes/ReportePostulacionesXSectorSubSector.aspx">Reporte de postulaciones por sector y subsector</option>
-                                    @*<option value="2" data-url="Reportes/ReporteEstadisticoTipoPostulanteXConvocatoria.aspx">Reporte estadístico de tipo de postulante por convocatoria</option>
-                                    <option value="3" data-url="Reportes/ReporteEstadisticoReconocimientoXConvocatoria.aspx">Reporte estadístico de reconocimientos por convocatoria</option>
-                                    <option value="4" data-url="Reportes/ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx">Reporte estadístico de reconocimientos (Sector y SubSector) por convocatoria</option>*@
+                                    <option value="2" data-url="Reportes/ReporteConvocatoriaXEmpresa.aspx">Reporte de Convocatorias y Empresas</option>
+                                    <option value="3" data-url="Reportes/ReporteReconocimientoXConvocatoriaEmpresa.aspx">Reporte de reconocimientos por convocatoria y empresa</option>
+                                    @*<option value="4" data-url="Reportes/ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx">Reporte estadístico de reconocimientos (Sector y SubSector) por convocatoria</option>*@
                                 }
                             </select>
                         </div>
@@ -107,63 +107,63 @@
 
 
 @*<div class="container-fluid mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="estilo-05" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index","Inicio")">Inicio</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Reportes</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid my-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="estilo-03 text-sres-azul">Reportes</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="rayado wow fadeIn"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="form-group">
-                    <label for="txt-buscar">Buscar&nbsp;</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" id="inputGroup1"><i class="fas fa-table"></i></span></div>
-                        <select class="form-control estilo-01 text-sres-oscuro" id="cbo-tabla-mantenimiento" required>
-                            <option value="0" data-url="">-Seleccione una Tabla de Matenimiento-</option>
-                            @if (usuario.ID_ROL == (int?)EnumsCustom.Roles.ADMINISTRADOR)
-                            {
-                                <option value="1" data-url="Reportes/ReporteEstadisticoTipoEmpresaXConvocatoria.aspx">Reporte estadístico de tipo de empresa por convocatoria</option>
-                                <option value="2" data-url="Reportes/ReporteEstadisticoTipoPostulanteXConvocatoria.aspx">Reporte estadístico de tipo de postulante por convocatoria</option>
-                                <option value="3" data-url="Reportes/ReporteEstadisticoReconocimientoXConvocatoria.aspx">Reporte estadístico de reconocimientos por convocatoria</option>
-                                <option value="4" data-url="Reportes/ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx">Reporte estadístico de reconocimientos (Sector y SubSector) por convocatoria</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6">&nbsp;</div>
-                    <div class="col-sm-12 col-md-6 col-lg-6">
-                        <a class="btn btn-primary w-100 mb-2" href="#" id="ir-reporte">Ir al reporte</a>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="estilo-05" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index","Inicio")">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Reportes</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
-        <div class="row" id="report-view">
-            <iframe id="iframe-report-view" src="" style="width: 100%; height:0px; border:none;"></iframe>
+    </div>
+    <div class="container-fluid my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="estilo-03 text-sres-azul">Reportes</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="rayado wow fadeIn"></div>
+                </div>
+            </div>
         </div>
     </div>
-</div>*@
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label for="txt-buscar">Buscar&nbsp;</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend"><span class="input-group-text" id="inputGroup1"><i class="fas fa-table"></i></span></div>
+                            <select class="form-control estilo-01 text-sres-oscuro" id="cbo-tabla-mantenimiento" required>
+                                <option value="0" data-url="">-Seleccione una Tabla de Matenimiento-</option>
+                                @if (usuario.ID_ROL == (int?)EnumsCustom.Roles.ADMINISTRADOR)
+                                {
+                                    <option value="1" data-url="Reportes/ReporteEstadisticoTipoEmpresaXConvocatoria.aspx">Reporte estadístico de tipo de empresa por convocatoria</option>
+                                    <option value="2" data-url="Reportes/ReporteEstadisticoTipoPostulanteXConvocatoria.aspx">Reporte estadístico de tipo de postulante por convocatoria</option>
+                                    <option value="3" data-url="Reportes/ReporteEstadisticoReconocimientoXConvocatoria.aspx">Reporte estadístico de reconocimientos por convocatoria</option>
+                                    <option value="4" data-url="Reportes/ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx">Reporte estadístico de reconocimientos (Sector y SubSector) por convocatoria</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">&nbsp;</div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <a class="btn btn-primary w-100 mb-2" href="#" id="ir-reporte">Ir al reporte</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="report-view">
+                <iframe id="iframe-report-view" src="" style="width: 100%; height:0px; border:none;"></iframe>
+            </div>
+        </div>
+    </div>*@

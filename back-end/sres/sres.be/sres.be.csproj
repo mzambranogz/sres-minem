@@ -114,6 +114,12 @@
     <Compile Include="UsuarioAuxBE.cs" />
     <Compile Include="UsuarioBE.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\sres.ut\sres.ut.csproj">
+      <Project>{BE003476-6364-45C9-9F5E-C199F6153859}</Project>
+      <Name>sres.ut</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

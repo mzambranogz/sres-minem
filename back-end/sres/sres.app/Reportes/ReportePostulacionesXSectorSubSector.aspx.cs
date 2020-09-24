@@ -42,6 +42,7 @@ namespace sres.app.Reportes
             SubsectorTipoempresaBE itemTodos = new SubsectorTipoempresaBE() { ID_SECTOR = -1, ID_SUBSECTOR_TIPOEMPRESA = -1, NOMBRE = "[TODOS]" };
             if (listaCombo == null)
                 listaCombo = new List<SubsectorTipoempresaBE>();
+            listaCombo.Sort((p, q) => string.Compare(p.NOMBRE, q.NOMBRE));
             listaCombo.Insert(0, itemTodos);
             ddlSubSector.DataSource = listaCombo;
             ddlSubSector.DataBind();
@@ -51,13 +52,10 @@ namespace sres.app.Reportes
         {
             int idSector = int.Parse(ddlSector.SelectedValue);
             int idSubSector = int.Parse(ddlSubSector.SelectedValue);
-
-
             string sector = ddlSector.SelectedItem.Text;
             string subSector = ddlSubSector.SelectedItem.Text;
 
             List<ReporteBE.ReportePostulacionesXSectorSubSector> dataReporte = new ReporteLN().ListaReportePostulacionesXSectorSubsector(idSector, idSubSector);
-
             ReportDataSource dsReporte = new ReportDataSource("dsPostulacionesSectorSubsector", dataReporte);
             rpwReporte.Visible = true;
             rpwReporte.LocalReport.SetParameters(new ReportParameter("Sector", sector));

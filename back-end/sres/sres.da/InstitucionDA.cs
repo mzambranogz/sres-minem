@@ -73,7 +73,7 @@ namespace sres.da
 
             try
             {
-                string sp = $"{Package.Criterio}USP_SEL_LISTA_INSTITUCION";
+                string sp = $"{Package.Mantenimiento}USP_SEL_LISTA_INSTITUCION";
                 var p = new OracleDynamicParameters();
                 p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 lista = db.Query<InstitucionBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();

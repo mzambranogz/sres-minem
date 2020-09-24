@@ -96,5 +96,34 @@ namespace sres.ln
 
             return lista;
         }
+
+        public List<ReporteBE.ReporteConvocatoriaEmpresa> ListaReporteConvocatoriasXEmpresa(int idConvocatoria, int idInstitucion)
+        {
+            List<ReporteBE.ReporteConvocatoriaEmpresa> lista = new List<ReporteBE.ReporteConvocatoriaEmpresa>();
+
+            try
+            {
+                cn.Open();
+                lista = reporteDA.ListaReporteConvocatoriasXEmpresa(idConvocatoria, idInstitucion, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
+
+        public List<ReporteBE.ReporteReconocimientoEmpresa> ListaReporteReconocimientoEmpresa(int idConvocatoria, int idInstitucion)
+        {
+            List<ReporteBE.ReporteReconocimientoEmpresa> lista = new List<ReporteBE.ReporteReconocimientoEmpresa>();
+
+            try
+            {
+                cn.Open();
+                lista = reporteDA.ListaReporteReconocimientoEmpresa(idConvocatoria, idInstitucion, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+
+        }
     }
 }
