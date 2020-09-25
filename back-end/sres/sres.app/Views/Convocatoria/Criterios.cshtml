@@ -180,6 +180,45 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-warning py-3">
+                        <div class="badge badge-warning badge-sres p-1 mt-2"><small class="estilo-02">Total de Emisiones GEI Reducidas de tCO<sub>2</sub></small></div>
+                        <div class="text-sres-verd">
+                            <span class="d-block estilo-09 mt-3">@emisiones.ToString("N2")</span>
+                            <smal class="d-block estilo-01 mb-3 encima">toneladas CO<sub>2</sub></smal>
+                        </div><i class="far fa-check-circle fa-3x"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-success py-3">
+                        <div class="badge badge-success badge-sres p-1 mt-2"><small class="estilo-02">Total de Puntaje Preliminar, Pendiente de Aprobación</small></div>
+                        <div class="text-sres-azul">
+                            <span class="d-block estilo-09 mt-3">@puntaje</span>
+                            <smal class="d-block estilo-01 mb-3 encima">de @puntaje_posible puntos potenciales</smal>
+                        </div><i class="fas fa-chart-line fa-3x"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-info py-3">
+                        <div class="badge badge-info badge-sres p-1 mt-2"><small class="estilo-02">Total de Ahorro Energético Eléctrico Reducido</small></div>
+                        <div class="text-sres-azul">
+                            <span class="d-block estilo-09 mt-3">@energia.ToString("N2")</span>
+                            <smal class="d-block estilo-01 mb-3 encima">Kilovatio Hora</smal>
+                        </div><i class="fas fa-bolt fa-3x"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-primary py-3">
+                        <div class="badge badge-primary badge-sres p-1 mt-2"><small class="estilo-02">Total de Ahorro de Combustible Reducido</small></div>
+                        <div class="text-sres-azul">
+                            <span class="d-block estilo-09 mt-3">@combustible.ToString("N2")</span>
+                            <smal class="d-block estilo-01 mb-3 encima">Tera Joules</smal>
+                        </div><i class="fas fa-charging-station fa-3x"></i>
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
                     <div class="alert alert-warning py-5">
                         <i class="far fa-check-circle fa-2x"></i>
                         <div class="text-sres-verde d-flex justify-content-center align-items-center">
@@ -219,22 +258,7 @@
                         <div class="badge badge-primary badge-sres p-1 mt-2"><small class="estilo-01">Total de Ahorro de Combustible Reducido</small></div>
                     </div>
                 </div>
-            </div>
-
-            @*@if (convocatoria.ID_ETAPA == 6)
-            {
-                <div class="row">
-                    <div class="col-12">
-                        <div class="dropdown-divider my-5 wow fadeIn"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 my-3 text-center">
-                        <span class="d-block" data-toggle="tooltip" data-placement="top" title="Podrá importar las reducciones de emisiones de tCO2 registradas desde la Plataforma de MRV"><a class="btn btn-warning btn-lg" href="javascript:void(0)" id="migrar-emisiones" data-toggle="modal" data-target="#modal-valores"><i class="fas fa-file-import mr-1"></i>Importar Emisiones Reducidas de tCO<sub>2</sub> de la Plataforma MRV</a></span>
-                        <a class="estilo-01 text-sres-verde cursor-pointer d-block mt-3" href="@pathFormat_ini_mrv" target="_blank">Ver Plataforma MRV del Sector Energía</a>
-                    </div>
-                </div>
-            }*@
+            </div>*@
             <div class="row">
                 <div class="col-12">
                     <div class="rayado my-5 wow fadeIn"></div>
@@ -348,6 +372,44 @@ else
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-warning py-3">
+                        <div class="badge badge-warning badge-sres p-1 mt-2"><small class="estilo-02">Total de Emisiones GEI Reducidas de tCO<sub>2</sub></small></div>
+                        <div class="text-sres-verd">
+                            <span class="d-block estilo-09 mt-3">@emisiones.ToString("N2")</span>
+                            <smal class="d-block estilo-01 mb-3 encima">toneladas CO<sub>2</sub></smal>
+                        </div><i class="far fa-check-circle fa-3x"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-success py-3">
+                        <div class="badge badge-success badge-sres p-1 mt-2"><small class="estilo-02">Total de Puntaje Preliminar, Pendiente de Aprobación</small></div>
+                        <div class="text-sres-azul">
+                            <span class="d-block estilo-09 mt-3">@puntaje</span>
+                            <smal class="d-block estilo-01 mb-3 encima">de @puntaje_posible puntos potenciales</smal>
+                        </div><i class="fas fa-chart-line fa-3x"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-info py-3">
+                        <div class="badge badge-info badge-sres p-1 mt-2"><small class="estilo-02">Total de Ahorro Energético Eléctrico Reducido</small></div>
+                        <div class="text-sres-azul">
+                            <span class="d-block estilo-09 mt-3">@energia.ToString("N2")</span>
+                            <smal class="d-block estilo-01 mb-3 encima">Kilovatio Hora</smal>
+                        </div><i class="fas fa-bolt fa-3x"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-primary py-3">
+                        <div class="badge badge-primary badge-sres p-1 mt-2"><small class="estilo-02">Total de Ahorro de Combustible Reducido</small></div>
+                        <div class="text-sres-azul">
+                            <span class="d-block estilo-09 mt-3">@combustible.ToString("N2")</span>
+                            <smal class="d-block estilo-01 mb-3 encima">Tera Joules</smal>
+                        </div><i class="fas fa-charging-station fa-3x"></i>
+                    </div>
+                </div>
+            </div>
+            @*<div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
                     <div class="alert alert-warning py-5">
                         <i class="far fa-check-circle fa-2x"></i>
                         <div class="text-sres-verde d-flex justify-content-center align-items-center">
@@ -387,22 +449,8 @@ else
                         <div class="badge badge-primary badge-sres p-1 mt-2"><small class="estilo-01">Total de Ahorro de Combustible Reducido</small></div>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
-            @*@if (convocatoria.ID_ETAPA == 6)
-            {
-                <div class="row">
-                    <div class="col-12">
-                        <div class="dropdown-divider my-5 wow fadeIn"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 my-3 text-center">
-                        <span class="d-block" data-toggle="tooltip" data-placement="top" title="Podrá importar las reducciones de emisiones de tCO2 registradas desde la Plataforma de MRV"><a class="btn btn-warning btn-lg" href="javascript:void(0)" id="migrar-emisiones" data-toggle="modal" data-target="#modal-valores"><i class="fas fa-file-import mr-1"></i>Importar Emisiones Reducidas de tCO<sub>2</sub> de la Plataforma MRV</a></span>
-                        <a class="estilo-01 text-sres-verde cursor-pointer d-block mt-3" href="@pathFormat_ini_mrv" target="_blank">Ver Plataforma MRV del Sector Energía</a>
-                    </div>
-                </div>
-            }*@
             <div class="row">
                 <div class="col-12">
                     <div class="rayado my-5 wow fadeIn"></div>
