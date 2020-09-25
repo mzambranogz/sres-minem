@@ -3315,42 +3315,42 @@ INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAM
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (1, 1, 'Copia de facturas de energía eléctrica de los últimos 12 meses, en el periodo de la mejora.', '', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (1, 2, 'Ficha técnica de los equipos adquiridos por la empresa o entidad.', '', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (1, 3, 'Memoria descriptiva de la implementación de mejora.', 'ESTRUCTURA: OBJETIVO, ALCANCE, DESARROLLO DE INGENIERÍA, NORMAS APLICABLES, UBICACIÓN DEL PROYECTO, ESPECIFICACIONES TÉCNICAS, MEMORIA DE CÁLCULO Y CONCLUSIONES.', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (1, 4, 'Otros documentos.', '', '0');
+--INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (1, 4, 'Otros documentos.', '', '0');
 
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (2, 1, 'Copia de facturas de energía eléctrica de los últimos 12 meses, en el periodo de la mejora.', '', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (2, 2, 'Ficha técnica de los equipos adquiridos por la empresa o entidad.', '', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (2, 3, 'Memoria descriptiva de la implementación de mejora.', 'ESTRUCTURA: OBJETIVO, ALCANCE, DESARROLLO DE INGENIERÍA, NORMAS APLICABLES, UBICACIÓN DEL PROYECTO, ESPECIFICACIONES TÉCNICAS, MEMORIA DE CÁLCULO Y CONCLUSIONES.', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (2, 4, 'Otros documentos.', '', '0');
+--INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (2, 4, 'Otros documentos.', '', '0');
 
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (3, 1, 'Copia de facturas de energía eléctrica de los últimos 12 meses, en el periodo de la mejora.', '', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (3, 2, 'Ficha técnica de los equipos adquiridos por la empresa o entidad.', '', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (3, 3, 'Memoria descriptiva de la implementación de mejora.', 'ESTRUCTURA: OBJETIVO, ALCANCE, DESARROLLO DE INGENIERÍA, NORMAS APLICABLES, UBICACIÓN DEL PROYECTO, ESPECIFICACIONES TÉCNICAS, MEMORIA DE CÁLCULO Y CONCLUSIONES.', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (3, 4, 'Otros documentos.', '', '0');
+--INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (3, 4, 'Otros documentos.', '', '0');
 
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (4, 1, 'Copia del manual de la entidad sobre el cumplimiento del Sistema de Gestión ISO 50001 refrendada por un Ingeniero responsable de la actividad o ingeniero externo calificado, colegiado y habilitado tal como: Ingeniero en Energía, Ingeniero Mecánico Eléctrico, Ingeniero Mecánico, Ingeniero Electricista o Ingeniero Químico o afines.', 'ESTRUCTURA MANUAL: Objeto y campo de aplicación, términos y definiciones, responsabilidad de la dirección, política energética, planificación energética, implementación y operación, verificación y revisión por la dirección.', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (4, 2, 'Informe validado por un Ingeniero responsable de la actividad.', 'ESTRUCTURA: Resumen ejecutivo, indicadores de desempeño energéticos monitoreados Y verificados, descripción del sistema formal (formato de fichas, plataforma u otra metodología) para reporte de resultados del monitoreo de indicadores de desempeño, mejoramiento de indicadores de desempeño energético y data estadística de una antigüedad de 12 meses de indicadores de desempeño energético.', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (4, 3, 'Informe elaborado por el profesional responsable de la actividad y refrendado por el representante legal.', 'ESTRUCTURA: Resumen ejecutivo, indicadores de desempeño energéticos monitoreados, reporte estadístico de una antigüedad de 12 meses de indicadores de desempeño energético y documento de reporte de línea base energética.', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (4, 4, 'Otros documentos.', '', '0');
+--INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (4, 4, 'Otros documentos.', '', '0');
 
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (5, 1, 'Documentación refrendada por el representante legal de la entidad.', 'ESTRUCTURA: Resumen ejecutivo, objetivo, reportes de facturas, inventario energético, indicadores de desempeño obtenidos.', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (5, 2, 'Documentación refrendada por un Ingeniero responsable de la entidad o profesional externo calificado, colegiado y habilitado tal como: Ingeniero en Energía, Ingeniero Mecánico Eléctrico, Ingeniero Mecánico, Ingeniero Electricista o Ingeniero Químico o afines.', 'ESTRUCTURA: Resumen ejecutivo, objetivo, descripción de procesos, cálculos justificados, instrumentos usados en la medición, propuesta de medidas de energía sostenible y registro fotográfico.', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (5, 3, 'Documentación refrendada por un Ingeniero responsable de la entidad o profesional externo calificado, colegiado y habilitado tal como: Ingeniero en Energía, Ingeniero Mecánico Eléctrico, Ingeniero Mecánico, Ingeniero Electricista o Ingeniero Químico o afines.', 'ESTRUCTURA: Resumen ejecutivo, objetivo, descripción de procesos, cálculos justificados, instrumentos usados en la medición, propuesta de medidas de energía sostenible, propuesta de cálculos económicos, apertura de partida de eficiencia energética en el presupuesto de la empresa o fuentes de financiamiento y registro fotográfico.', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (5, 4, 'Otros documentos.', '', '0');
+--INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (5, 4, 'Otros documentos.', '', '0');
 
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (6, 1, 'Declaración jurada simple de cumplimiento del criterio firmada por el titular de la empresa.', '', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (6, 2, 'Documentos con las actividades relacionadas a la gestión de la energía para los trabajadores de la entidad.', '', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (6, 3, 'Documentos con los registros de asistencia de las actividades relacionadas a la gestión de la energía.', '', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (6, 4, 'Registro fotográfico de la actividad relacionada a la gestión de la energía.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (6, 5, 'Otros documentos.', '', '0');
+--INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (6, 5, 'Otros documentos.', '', '0');
 
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (7, 1, 'Descripción de las funciones que realiza el trabajador incorporado relacionado a la gestión de la energía, refrendado por el representante legal.', '', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (7, 2, 'Copia del registro de planilla del trabajador y/o contrato.', 'Mínimo 6 meses de antigüedad en el mismo cargo laboral', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (7, 3, 'Otros documentos.', '', '0');
+--INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (7, 3, 'Otros documentos.', '', '0');
 
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 1, 'Documento con la descripción de las funciones que realiza el trabajador incorporado relacionado a la gestión de la energía, refrendado por el representante legal.', '', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 2, 'Registro de planilla del personal femenino y/o contrato.', 'Mínimo 6 meses de antigüedad en el mismo cargo laboral', '0');
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 3, 'Reporte del número de trabajadores de la empresa, refrendado por el titular de la empresa o entidad y validado por reporte de Ministerio de Trabajo.', 'Indicar el porcentaje de mujeres y hombres', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 4, 'Otros documentos.', '', '0');
+--INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 4, 'Otros documentos.', '', '0');
 ----------------------
 
 --T_MAEM_FORMULA_PARAMETRO
