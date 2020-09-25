@@ -164,9 +164,10 @@
                                 }
 
                                 @Html.Raw(icono)
-                                <a class="d-block @bg @linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">
+                                <a class="d-block @bg @linea rounded h-100 p-3 criterios" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">
                                     <img class="img-fluid" src="@Url.Content($"~/{pathDirectoryRelative}/{item.ARCHIVO_BASE}")">
                                     <div class="estilo-01 text-sres-azul pt-3">@item.NOMBRE</div>
+                                    <div class="criterios-descripcion">@item.DESCRIPCION</div>
                                 </a>
                             </div>
                         }
@@ -356,9 +357,10 @@ else
                                 }
 
                                 @Html.Raw(icono)
-                                <a class="d-block @bg @linea rounded h-100 p-3" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">
+                                <a class="d-block @bg @linea rounded h-100 p-3 criterios" href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Criterio/{item.ID_CRITERIO}")">
                                     <img class="img-fluid" src="@Url.Content($"~/{pathDirectoryRelative}/{item.ARCHIVO_BASE}")">
                                     <div class="estilo-01 text-sres-azul pt-3">@item.NOMBRE</div>
+                                    <div class="criterios-descripcion">@item.DESCRIPCION</div>
                                 </a>
                             </div>
                         }
