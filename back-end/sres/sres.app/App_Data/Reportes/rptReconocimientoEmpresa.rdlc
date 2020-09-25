@@ -123,7 +123,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>CONVOCATORIA1</rd:DefaultName>
@@ -131,7 +133,7 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>LightGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -189,7 +191,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>RAZON_SOCIAL</rd:DefaultName>
@@ -197,7 +201,7 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <BackgroundColor>Silver</BackgroundColor>
+                        <BackgroundColor>LightGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -275,7 +279,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>CATEGORIA</rd:DefaultName>
@@ -340,7 +346,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>ESTRELLA</rd:DefaultName>
@@ -402,11 +410,13 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!PUNTAJE.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>#,0.00;(#,0.00)</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Left</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -421,7 +431,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -553,7 +562,7 @@
         </TablixRowHierarchy>
         <DataSetName>dsReconocimientoEmpresa</DataSetName>
         <Top>0.17639cm</Top>
-        <Left>2.4765cm</Left>
+        <Left>5.334cm</Left>
         <Height>9.48181cm</Height>
         <Width>13.55133cm</Width>
         <Style>
@@ -566,7 +575,7 @@
     <Height>3.80244in</Height>
     <Style />
   </Body>
-  <Width>7.29442in</Width>
+  <Width>7.7215in</Width>
   <Page>
     <PageHeader>
       <Height>3.51367cm</Height>
@@ -592,10 +601,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox32</rd:DefaultName>
-          <Top>0.94403cm</Top>
-          <Left>0.92287cm</Left>
+          <Top>0.91757cm</Top>
+          <Left>6.60492cm</Left>
           <Height>0.6cm</Height>
-          <Width>16.82983cm</Width>
+          <Width>11.82921cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -623,10 +632,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox44</rd:DefaultName>
-          <Top>1.9812cm</Top>
-          <Left>0.92287cm</Left>
+          <Top>1.95474cm</Top>
+          <Left>1.87537cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.28317cm</Width>
+          <Width>3.60066cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -655,10 +664,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox45</rd:DefaultName>
-          <Top>2.68703cm</Top>
-          <Left>0.92287cm</Left>
+          <Top>2.66057cm</Top>
+          <Left>1.87537cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.28317cm</Width>
+          <Width>3.60066cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -681,12 +690,14 @@
                   <Style />
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Convocatoria</rd:DefaultName>
-          <Top>1.9812cm</Top>
-          <Left>4.38242cm</Left>
+          <Top>1.95474cm</Top>
+          <Left>5.96992cm</Left>
           <Height>0.6cm</Height>
           <Width>13.37028cm</Width>
           <ZIndex>3</ZIndex>
@@ -711,12 +722,14 @@
                   <Style />
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Empresa</rd:DefaultName>
-          <Top>2.68703cm</Top>
-          <Left>4.38242cm</Left>
+          <Top>2.66057cm</Top>
+          <Left>5.96992cm</Left>
           <Height>0.6cm</Height>
           <Width>13.37028cm</Width>
           <ZIndex>4</ZIndex>
@@ -763,7 +776,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox48</rd:DefaultName>
           <Top>0.3782cm</Top>
-          <Left>15.2527cm</Left>
+          <Left>16.5227cm</Left>
           <Height>0.6cm</Height>
           <Width>2.5cm</Width>
           <Style>

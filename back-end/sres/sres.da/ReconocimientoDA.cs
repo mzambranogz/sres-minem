@@ -104,7 +104,10 @@ namespace sres.da
                         CANTIDAD_REGISTROS = (int)x.CANTIDAD_REGISTROS,
                         TOTAL_REGISTROS = (int)x.TOTAL_REGISTROS,
                         ID_PREMIACION = (int)x.ID_PREMIACION,
-                        ARCHIVO_BASE = (string)x.ARCHIVO_BASE_PRE
+                        ARCHIVO_BASE = (string)x.ARCHIVO_BASE_PRE,
+                        FLAG_MEJORACONTINUA = (string)x.FLAG_MEJORACONTINUA,
+                        FLAG_EMISIONESMAX = (string)x.FLAG_EMISIONESMAX,
+                        PREMIO_MEDMIT = (int)x.PREMIO_MEDMIT
                     }).ToList();
             }
             catch (Exception ex) { Log.Error(ex); }

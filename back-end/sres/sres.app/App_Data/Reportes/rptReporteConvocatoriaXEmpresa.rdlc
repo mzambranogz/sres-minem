@@ -37,6 +37,7 @@
                               <Value>Nombre del Criterio</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -91,6 +92,7 @@
                               <Value>Descripción del Puntaje</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -145,6 +147,7 @@
                               <Value>Puntaje</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -199,6 +202,7 @@
                               <Value>Reducción de Emisiones tCO2</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -253,6 +257,7 @@
                               <Value>Observación</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -316,7 +321,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>CONVOCATORIA1</rd:DefaultName>
@@ -375,7 +382,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -409,7 +416,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>RAZON_SOCIAL1</rd:DefaultName>
@@ -501,7 +510,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>CRITERIO</rd:DefaultName>
@@ -552,7 +563,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>CRITERIO_PUNTAJE</rd:DefaultName>
@@ -605,7 +618,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -637,7 +650,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>EMISIONES_REDUCIDAS</rd:DefaultName>
@@ -688,7 +703,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>OBSERVACION</rd:DefaultName>
@@ -778,8 +795,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>dsConvocatoriaEmpresa</DataSetName>
-        <Top>0.17639cm</Top>
-        <Left>0.381cm</Left>
+        <Top>0.14111cm</Top>
+        <Left>2.31246cm</Left>
         <Height>2.69633cm</Height>
         <Width>17.82232cm</Width>
         <Style>
@@ -792,7 +809,7 @@
     <Height>1.28333in</Height>
     <Style />
   </Body>
-  <Width>7.31425in</Width>
+  <Width>8.41842in</Width>
   <Page>
     <PageHeader>
       <Height>3.38667cm</Height>
@@ -819,9 +836,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox36</rd:DefaultName>
           <Top>0.66887cm</Top>
-          <Left>0.381cm</Left>
+          <Left>3.9769cm</Left>
           <Height>0.6cm</Height>
-          <Width>17.82232cm</Width>
+          <Width>15.30878cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -850,8 +867,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox37</rd:DefaultName>
-          <Top>1.76953cm</Top>
-          <Left>1.45203cm</Left>
+          <Top>1.72367cm</Top>
+          <Left>2.60879cm</Left>
           <Height>0.6cm</Height>
           <Width>2.881cm</Width>
           <ZIndex>1</ZIndex>
@@ -884,7 +901,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox38</rd:DefaultName>
           <Top>2.50006cm</Top>
-          <Left>1.45203cm</Left>
+          <Left>2.60879cm</Left>
           <Height>0.6cm</Height>
           <Width>2.881cm</Width>
           <ZIndex>2</ZIndex>
@@ -913,8 +930,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Convocatoria</rd:DefaultName>
-          <Top>1.76953cm</Top>
-          <Left>4.58383cm</Left>
+          <Top>1.72367cm</Top>
+          <Left>5.66618cm</Left>
           <Height>0.6cm</Height>
           <Width>13.6195cm</Width>
           <ZIndex>3</ZIndex>
@@ -944,7 +961,7 @@
           </Paragraphs>
           <rd:DefaultName>Empresa</rd:DefaultName>
           <Top>2.50006cm</Top>
-          <Left>4.58383cm</Left>
+          <Left>5.66618cm</Left>
           <Height>0.6cm</Height>
           <Width>13.6195cm</Width>
           <ZIndex>4</ZIndex>
@@ -966,7 +983,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>1.60867cm</Height>
+      <Height>2.32304cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -991,7 +1008,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox41</rd:DefaultName>
           <Top>0.37253cm</Top>
-          <Left>15.70332cm</Left>
+          <Left>17.63478cm</Left>
           <Height>0.6cm</Height>
           <Width>2.5cm</Width>
           <Style>
@@ -1011,10 +1028,10 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>29.7cm</PageHeight>
-    <PageWidth>21cm</PageWidth>
-    <LeftMargin>1cm</LeftMargin>
-    <RightMargin>2cm</RightMargin>
+    <PageHeight>21cm</PageHeight>
+    <PageWidth>29.7cm</PageWidth>
+    <LeftMargin>2cm</LeftMargin>
+    <RightMargin>1cm</RightMargin>
     <TopMargin>1cm</TopMargin>
     <BottomMargin>2cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
