@@ -280,6 +280,7 @@
     <Content Include="Assets\images\ico_nama_rojo_02.svg" />
     <Content Include="Assets\images\ico_nama_verde_01.svg" />
     <Content Include="Assets\images\ico_nama_verde_02.svg" />
+    <Content Include="Assets\images\lazo.png" />
     <Content Include="Assets\images\log-sres-blanco.png" />
     <Content Include="Assets\images\login-left.png" />
     <Content Include="Assets\images\logo-blockchain-blanco.png" />

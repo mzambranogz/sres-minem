@@ -186,7 +186,8 @@ namespace sres.ut
                     ["imagenGEF"] = new Dictionary<string, string> { ["logo_gef.jpg"] = MediaTypeNames.Image.Jpeg },
                     ["imagenPNUD"] = new Dictionary<string, string> { ["logo_pnud.jpg"] = MediaTypeNames.Image.Jpeg },
                     ["imagenFRECUENTE"] = new Dictionary<string, string> {["preguntas_frecuentes_email.jpg"] = MediaTypeNames.Image.Jpeg },
-                    ["imagenCINTA"] = new Dictionary<string, string> {["cinta.png"] = "image/png" }
+                    ["imagenCINTA"] = new Dictionary<string, string> {["cinta.png"] = "image/png" },
+                    ["imagenLAZO"] = new Dictionary<string, string> {["lazo.png"] = "image/png" }
                 };
 
                 AddImages(viewHtml, images);
