@@ -158,6 +158,8 @@ namespace sres.da
                     ID_INSCRIPCION = (int)x.ID_INSCRIPCION,
                     PUNTAJE = (int)x.PUNTAJE,
                     EMISIONES = (decimal)x.EMISIONES,
+                    ENERGIA = (decimal)x.ENERGIA,
+                    COMBUSTIBLE = (decimal)x.COMBUSTIBLE,
                     FECHA_INICIO = (DateTime)x.FECHA_INICIO,
                     MES_CONVOCATORIA = ((DateTime)x.FECHA_INICIO).ToString("MMMM").Replace(".", "").ToUpper(),
                     ANIO_CONVOCATORIA = ((DateTime)x.FECHA_INICIO).ToString("yyyy"),
