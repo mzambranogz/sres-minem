@@ -54,7 +54,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ENERGIA</Value>
+                              <Value />
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -84,16 +84,17 @@
                     <Image Name="imgReconocimiento">
                       <Source>External</Source>
                       <Value>="file:" &amp; Fields!RUTA_IMAGEN.Value</Value>
-                      <Sizing>Fit</Sizing>
                       <Style>
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <PaddingLeft>5pt</PaddingLeft>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Image>
                     <ColSpan>2</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
