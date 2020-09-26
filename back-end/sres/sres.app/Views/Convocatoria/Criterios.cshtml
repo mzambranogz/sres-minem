@@ -181,6 +181,45 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-info p-0">
+                        <div class="badge badge-info badge-sres px-4 py-2"><small class="estilo-02">Total de Ahorro Energético Eléctrico Reducido</small></div>
+                        <div class="text-sres-azul">
+                            <span class="d-block estilo-09 mt-3">@energia.ToString("N2")</span>
+                            <smal class="d-block estilo-01 mb-3 encima">Kilovatio Hora</smal>
+                        </div><i class="fas fa-bolt fa-3x mb-3"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-primary p-0">
+                        <div class="badge badge-primary badge-sres px-4 py-2"><small class="estilo-02">Total de Ahorro de Combustible Reducido</small></div>
+                        <div class="text-sres-azul">
+                            <span class="d-block estilo-09 mt-3">@combustible.ToString("N2")</span>
+                            <smal class="d-block estilo-01 mb-3 encima">Tera Joules</smal>
+                        </div><i class="fas fa-charging-station fa-3x mb-3"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-warning p-0">
+                        <div class="badge badge-warning badge-sres px-4 py-2"><small class="estilo-02">Total de Emisiones GEI Reducidas de tCO<sub>2</sub></small></div>
+                        <div class="text-sres-verd">
+                            <span class="d-block estilo-09 mt-3">@emisiones.ToString("N2")</span>
+                            <smal class="d-block estilo-01 mb-3 encima">toneladas CO<sub>2</sub></smal>
+                        </div><i class="far fa-check-circle fa-3x mb-3"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-success p-0">
+                        <div class="badge badge-success badge-sres px-4 py-2"><small class="estilo-02">Total de Puntaje Preliminar, Pendiente de Aprobación</small></div>
+                        <div class="text-sres-azul">
+                            <span class="d-block estilo-09 mt-3">@puntaje</span>
+                            <smal class="d-block estilo-01 mb-3 encima">de @puntaje_posible puntos potenciales</smal>
+                        </div><i class="fas fa-chart-line fa-3x mb-3"></i>
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
                     <div class="alert alert-info py-3">
                         <div class="badge badge-info badge-sres p-1 mt-2"><small class="estilo-02">Total de Ahorro Energético Eléctrico Reducido</small></div>
                         <div class="text-sres-azul">
@@ -216,50 +255,9 @@
                         </div><i class="fas fa-chart-line fa-3x"></i>
                     </div>
                 </div>
-            </div>
-
-            @*<div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                    <div class="alert alert-warning py-5">
-                        <i class="far fa-check-circle fa-2x"></i>
-                        <div class="text-sres-verde d-flex justify-content-center align-items-center">
-                            <span class="estilo-03">@emisiones.ToString("N2")</span>
-                            <smal class="estilo-01 encima">tCO<sub>2</sub></smal>
-                        </div>
-                        <div class="badge badge-warning badge-sres p-1 mt-2"><small class="estilo-01">Total de Emisiones Reducidas de tCO<sub>2</sub></small></div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                    <div class="alert alert-success py-5">
-                        <i class="fas fa-chart-line fa-2x"></i>
-                        <div class="text-sres-azul d-flex justify-content-center align-items-center">
-                            <span class="estilo-03">@puntaje/@puntaje_posible</span>
-                            <smal class="estilo-01 encima">puntos <br> potenciales</smal>
-                        </div>
-                        <div class="badge badge-success badge-sres p-1 mt-2"><small class="estilo-01">Total de Puntaje Preliminar, Pendiente de Aprobación</small></div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                    <div class="alert alert-info py-5">
-                        <i class="fas fa-bolt fa-2x"></i>
-                        <div class="text-sres-azul d-flex justify-content-center align-items-center">
-                            <span class="estilo-03">@energia.ToString("N2")</span>
-                            <smal class="estilo-01 encima">kilo Watts</smal>
-                        </div>
-                        <div class="badge badge-info badge-sres p-1 mt-2"><small class="estilo-01">Total de Ahorro Energético Eléctrico Reducido</small></div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                    <div class="alert alert-primary py-5">
-                        <i class="fas fa-charging-station fa-2x"></i>
-                        <div class="text-sres-azul d-flex justify-content-center align-items-center">
-                            <span class="estilo-03">@combustible.ToString("N2")</span>
-                            <smal class="estilo-01 encima">Tera Joules</smal>
-                        </div>
-                        <div class="badge badge-primary badge-sres p-1 mt-2"><small class="estilo-01">Total de Ahorro de Combustible Reducido</small></div>
-                    </div>
-                </div>
             </div>*@
+
+           
             <div class="row">
                 <div class="col-12">
                     <div class="rayado my-5 wow fadeIn"></div>
@@ -374,6 +372,45 @@ else
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-info p-0">
+                        <div class="badge badge-info badge-sres px-4 py-2"><small class="estilo-02">Total de Ahorro Energético Eléctrico Reducido</small></div>
+                        <div class="text-sres-azul">
+                            <span class="d-block estilo-09 mt-3">@energia.ToString("N2")</span>
+                            <smal class="d-block estilo-01 mb-3 encima">Kilovatio Hora</smal>
+                        </div><i class="fas fa-bolt fa-3x mb-3"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-primary p-0">
+                        <div class="badge badge-primary badge-sres px-4 py-2"><small class="estilo-02">Total de Ahorro de Combustible Reducido</small></div>
+                        <div class="text-sres-azul">
+                            <span class="d-block estilo-09 mt-3">@combustible.ToString("N2")</span>
+                            <smal class="d-block estilo-01 mb-3 encima">Tera Joules</smal>
+                        </div><i class="fas fa-charging-station fa-3x mb-3"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-warning p-0">
+                        <div class="badge badge-warning badge-sres px-4 py-2"><small class="estilo-02">Total de Emisiones GEI Reducidas de tCO<sub>2</sub></small></div>
+                        <div class="text-sres-verd">
+                            <span class="d-block estilo-09 mt-3">@emisiones.ToString("N2")</span>
+                            <smal class="d-block estilo-01 mb-3 encima">toneladas CO<sub>2</sub></smal>
+                        </div><i class="far fa-check-circle fa-3x mb-3"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
+                    <div class="alert alert-success p-0">
+                        <div class="badge badge-success badge-sres px-4 py-2"><small class="estilo-02">Total de Puntaje Preliminar, Pendiente de Aprobación</small></div>
+                        <div class="text-sres-azul">
+                            <span class="d-block estilo-09 mt-3">@puntaje</span>
+                            <smal class="d-block estilo-01 mb-3 encima">de @puntaje_posible puntos potenciales</smal>
+                        </div><i class="fas fa-chart-line fa-3x mb-3"></i>
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
                     <div class="alert alert-info py-3">
                         <div class="badge badge-info badge-sres p-1 mt-2"><small class="estilo-02">Total de Ahorro Energético Eléctrico Reducido</small></div>
                         <div class="text-sres-azul">
@@ -409,48 +446,6 @@ else
                         </div><i class="fas fa-chart-line fa-3x"></i>
                     </div>
                 </div>                
-            </div>
-            @*<div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                    <div class="alert alert-warning py-5">
-                        <i class="far fa-check-circle fa-2x"></i>
-                        <div class="text-sres-verde d-flex justify-content-center align-items-center">
-                            <span class="estilo-03">@emisiones.ToString("N2")</span>
-                            <smal class="estilo-01 encima">tCO<sub>2</sub></smal>
-                        </div>
-                        <div class="badge badge-warning badge-sres p-1 mt-2"><small class="estilo-01">Total de Emisiones Reducidas de tCO<sub>2</sub></small></div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                    <div class="alert alert-success py-5">
-                        <i class="fas fa-chart-line fa-2x"></i>
-                        <div class="text-sres-azul d-flex justify-content-center align-items-center">
-                            <span class="estilo-03">@puntaje/@puntaje_posible</span>
-                            <smal class="estilo-01 encima">puntos <br> potenciales</smal>
-                        </div>
-                        <div class="badge badge-success badge-sres p-1 mt-2"><small class="estilo-01">Total de Puntaje Preliminar, Pendiente de Aprobación</small></div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                    <div class="alert alert-info py-5">
-                        <i class="fas fa-bolt fa-2x"></i>
-                        <div class="text-sres-azul d-flex justify-content-center align-items-center">
-                            <span class="estilo-03">@energia.ToString("N2")</span>
-                            <smal class="estilo-01 encima">kilo Watts</smal>
-                        </div>
-                        <div class="badge badge-info badge-sres p-1 mt-2"><small class="estilo-01">Total de Ahorro Energético Eléctrico Reducido</small></div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 text-center my-3">
-                    <div class="alert alert-primary py-5">
-                        <i class="fas fa-charging-station fa-2x"></i>
-                        <div class="text-sres-azul d-flex justify-content-center align-items-center">
-                            <span class="estilo-03">@combustible.ToString("N2")</span>
-                            <smal class="estilo-01 encima">Tera Joules</smal>
-                        </div>
-                        <div class="badge badge-primary badge-sres p-1 mt-2"><small class="estilo-01">Total de Ahorro de Combustible Reducido</small></div>
-                    </div>
-                </div>
             </div>*@
 
             <div class="row">
