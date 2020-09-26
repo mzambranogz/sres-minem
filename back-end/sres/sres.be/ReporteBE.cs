@@ -78,6 +78,8 @@ namespace sres.be
             public string CRITERIO_PUNTAJE { get; set; }
             public int PUNTAJE { get; set; }
             public double EMISIONES_REDUCIDAS { get; set; }
+            public double ENERGIA { get; set; }
+            public double COMBUSTIBLE { get; set; }
             public string OBSERVACION { get; set; }
             public int ID_CONVOCATORIA { get; set; }
             public int ID_INSTITUCION { get; set; }
@@ -93,6 +95,9 @@ namespace sres.be
             public string CATEGORIA { get; set; }
             public string ESTRELLA { get; set; }
             public int PUNTAJE { get; set; }
+            public double EMISIONES { get; set; }
+            public double ENERGIA { get; set; }
+            public double COMBUSTIBLE { get; set; }
             public int ID_CONVOCATORIA { get; set; }
             public int ID_INSTITUCION { get; set; }
             public int ID_PREMIACION { get; set; }
