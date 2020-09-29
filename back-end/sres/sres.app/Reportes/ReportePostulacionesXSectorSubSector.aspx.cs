@@ -29,21 +29,21 @@ namespace sres.app.Reportes
         void CargarSector()
         {
             List<SectorBE> listaCombo = new SectorLN().ListarSectorPorEstado("1");
-            SectorBE itemTodos = new SectorBE() { ID_SECTOR = -1, NOMBRE = "[TODOS]" };
+            //SectorBE itemTodos = new SectorBE() { ID_SECTOR = -1, NOMBRE = "[TODOS]" };
             if (listaCombo == null)
                 listaCombo = new List<SectorBE>();
-            listaCombo.Insert(0, itemTodos);
+            //listaCombo.Insert(0, itemTodos);
             ddlSector.DataSource = listaCombo;
             ddlSector.DataBind();
         }
         void CargarSubSector()
         {
             List<SubsectorTipoempresaBE> listaCombo = new SubsectorTipoempresaLN().listaSubsectorTipoempresa(int.Parse(ddlSector.SelectedValue));
-            SubsectorTipoempresaBE itemTodos = new SubsectorTipoempresaBE() { ID_SECTOR = -1, ID_SUBSECTOR_TIPOEMPRESA = -1, NOMBRE = "[TODOS]" };
+            //SubsectorTipoempresaBE itemTodos = new SubsectorTipoempresaBE() { ID_SECTOR = -1, ID_SUBSECTOR_TIPOEMPRESA = -1, NOMBRE = "[TODOS]" };
             if (listaCombo == null)
                 listaCombo = new List<SubsectorTipoempresaBE>();
             listaCombo.Sort((p, q) => string.Compare(p.NOMBRE, q.NOMBRE));
-            listaCombo.Insert(0, itemTodos);
+            //listaCombo.Insert(0, itemTodos);
             ddlSubSector.DataSource = listaCombo;
             ddlSubSector.DataBind();
         }

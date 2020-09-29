@@ -28,10 +28,10 @@ namespace sres.app.Reportes
         void CargarConvocatoria()
         {
             List<ConvocatoriaBE> listaCombo = new ConvocatoriaLN().ListarConvocatoria();
-            ConvocatoriaBE itemTodos = new ConvocatoriaBE() { ID_CONVOCATORIA = -1, NOMBRE = "[TODOS]" };
+            //ConvocatoriaBE itemTodos = new ConvocatoriaBE() { ID_CONVOCATORIA = -1, NOMBRE = "TODOS" };
             if (listaCombo == null)
                 listaCombo = new List<ConvocatoriaBE>();
-            listaCombo.Insert(0, itemTodos);
+            //listaCombo.Insert(0, itemTodos);
             ddlConvocatoria.DataSource = listaCombo;
             ddlConvocatoria.DataBind();
         }
@@ -39,11 +39,11 @@ namespace sres.app.Reportes
         void CargarEmpresa()
         {
             List<InstitucionBE> listaCombo = new InstitucionLN().ListarInstitucion();
-            InstitucionBE itemTodos = new InstitucionBE() { ID_INSTITUCION= -1, RAZON_SOCIAL = "[TODOS]" };
+            //InstitucionBE itemTodos = new InstitucionBE() { ID_INSTITUCION= -1, RAZON_SOCIAL = "TODOS" };
             if (listaCombo == null)
                 listaCombo = new List<InstitucionBE>();
             listaCombo.Sort((p, q) => string.Compare(p.RAZON_SOCIAL, q.RAZON_SOCIAL));
-            listaCombo.Insert(0, itemTodos);
+            //listaCombo.Insert(0, itemTodos);
             ddlEmpresa.DataSource = listaCombo;
             ddlEmpresa.DataBind();
         }
