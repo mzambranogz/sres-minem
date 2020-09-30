@@ -203,23 +203,45 @@
                 <div class="input-group">
                   <div class="input-group-prepend"><span class="input-group-text" id="inputGroup1"><i class="fas fa-file-invoice"></i></span></div>
                   <select class="form-control cbo-list" id="cbo-reporte" required>
-                    <option data-url="">-Seleccione un Tipo de Reporte-</option>
-                    <option data-url="./reportes01.html">Reporte de escenarios</option>
-                    <option data-url="./reportes02.html">Reporte general de medidas de mitigación</option>
-                    <option data-url="./reportes03.html">Reporte por número de inciativas implementadas según medida de mitigación por períodos</option>
-                    <option data-url="./reportes04.html">Reporte de emisiones de GEI reducidas según medidas de mitigación por períodos</option>
-                    <option data-url="./reportes05.html">Reporte de iniciativas de mitigación por período</option>
+                    <option value="0">-Seleccione un Tipo de Reporte-</option>
+                    <option value="1">Reporte de acción de mitigación por sector y medida de mitigación</option>
+                    <option value="2">Reporte de emisiones de GEI reducidas por medidas de mitigación</option>
+                    <option value="3">Reporte de escenarios</option>
                   </select>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-6">&nbsp;</div>
-                <div class="col-sm-12 col-md-6 col-lg-6"><a class="btn btn-success w-100 mb-2 go-select" href="#" id="ir-reporte"><i class="far fa-hand-point-up px-1"></i>Ir al reporte</a></div>
+                <div class="col-sm-12 col-md-6 col-lg-6"><a class="btn btn-success w-100 mb-2 go-select" href="#" id="ir-reporte" onclick="fn_ejecutaReporte(event)"><i class="far fa-hand-point-up px-1"></i>Ir al reporte</a></div>
               </div>
             </form>
           </div>
         </div>
       </div>
+    </div>
+    <div class="container-fluid bg-sres-claro">
+      <div class="container mt-5" id="mireporte">
+        <iframe id="iframeReporte" src="" frameborder="0"></iframe>
+      </div>
+      <script>
+        function fn_ejecutaReporte(e){
+          e.preventDefault();
+          var idReporte = parseInt(document.getElementById("cbo-reporte").value);
+          var url = '';
+          if(idReporte > 0){
+            if (idReporte == 1) {
+              url = 'http://grupo-zuniga.com/proyectos/app/guia_usuario_app.pdf';//'http://sismrv.minem.gob.pe/Reportes/ReporteIni.aspx';
+            } else {
+              url = 'http://grupo-zuniga.com/proyectos/app/_OLD_guia_usuario_app.pdf';//'http://sismrv.minem.gob.pe/Reportes/frmReportes.aspx?IdReporte=' + idReporte;
+            }
+            $("#ir-reporte").html("<i class='fas fa-spinner fa-spin px-1'></i> Cargando...");
+            $("#iframeReporte").attr("src", url).on('load', function () {
+                $("#ir-reporte").html("<i class='far fa-hand-point-up px-1'></i> Ir al reporte");
+            });
+          }else{
+          }
+        }
+      </script>
     </div>
     <footer class="container-fluid set-bg" data-setbg="./images/bg_footer.png">
       <div class="container">
