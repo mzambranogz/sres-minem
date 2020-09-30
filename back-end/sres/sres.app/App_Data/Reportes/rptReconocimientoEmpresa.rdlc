@@ -6,99 +6,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.67911cm</Width>
+              <Width>3.47286cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.18228cm</Width>
+              <Width>4.73249cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
-            <TablixRow>
-              <Height>0.6cm</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox1">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox1</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox42">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox42</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-              </TablixCells>
-            </TablixRow>
-            <TablixRow>
-              <Height>4.30361cm</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Image Name="imgReconocimiento">
-                      <Source>External</Source>
-                      <Value>="file:" &amp; Fields!RUTA_IMAGEN.Value</Value>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>6pt</PaddingLeft>
-                        <PaddingTop>4pt</PaddingTop>
-                        <PaddingBottom>4pt</PaddingBottom>
-                      </Style>
-                    </Image>
-                    <ColSpan>2</ColSpan>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell />
-              </TablixCells>
-            </TablixRow>
             <TablixRow>
               <Height>0.6cm</Height>
               <TablixCells>
@@ -538,11 +452,9 @@
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
           <TablixMembers>
-            <TablixMember />
             <TablixMember>
               <Group Name="Detalles" />
               <TablixMembers>
-                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -554,10 +466,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>dsReconocimientoEmpresa</DataSetName>
-        <Top>3.35139cm</Top>
+        <Top>8.0075cm</Top>
         <Left>0.81454cm</Left>
-        <Height>9.93236cm</Height>
-        <Width>7.86138cm</Width>
+        <Height>5.02875cm</Height>
+        <Width>8.20535cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -732,6 +644,24 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Image Name="imgReconocimiento2">
+        <Source>External</Source>
+        <Value>="file:" &amp; Fields!RUTA_IMAGEN.Value</Value>
+        <Sizing>FitProportional</Sizing>
+        <Top>3.56378cm</Top>
+        <Left>2.71954cm</Left>
+        <Height>3.64215cm</Height>
+        <Width>7.12056cm</Width>
+        <ZIndex>6</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>7pt</PaddingLeft>
+          <PaddingTop>5pt</PaddingTop>
+          <PaddingBottom>7pt</PaddingBottom>
+        </Style>
+      </Image>
     </ReportItems>
     <Height>5.32327in</Height>
     <Style>
@@ -740,7 +670,7 @@
       </Border>
     </Style>
   </Body>
-  <Width>7.42675in</Width>
+  <Width>7.3955in</Width>
   <Page>
     <PageHeader>
       <Height>1.42346cm</Height>
@@ -794,9 +724,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox48</rd:DefaultName>
           <Top>0.3782cm</Top>
-          <Left>16.2052cm</Left>
+          <Left>16.41687cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.5cm</Width>
+          <Width>1.97083cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -807,16 +737,15 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Textbox Name="Textbox3">
+        <Textbox Name="Textbox5">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Fuente: Plataforma de Reconocimiento de Energía Eficiente y Sostenible</Value>
+                  <Value>Fuente: Sistema de Información de Reconocimiento de Energía Eficiente y Sostenible</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -824,11 +753,11 @@
               <Style />
             </Paragraph>
           </Paragraphs>
-          <rd:DefaultName>Textbox3</rd:DefaultName>
-          <Top>0.3782cm</Top>
-          <Left>0.26141cm</Left>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>0.29003cm</Top>
+          <Left>0.81454cm</Left>
           <Height>0.6cm</Height>
-          <Width>12.50125cm</Width>
+          <Width>15.66043cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
