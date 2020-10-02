@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="overflow-y: scroll;">
 
             <rsweb:ReportViewer ID="rpwReporte" runat="server" Style="width: 100%" Visible="false" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt">
                 <LocalReport ReportPath="App_Data/Reportes/rptReportePostulacionesXSectorSubsector.rdlc"></LocalReport>

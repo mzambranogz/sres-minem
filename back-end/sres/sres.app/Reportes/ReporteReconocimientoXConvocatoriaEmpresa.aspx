@@ -34,8 +34,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <rsweb:ReportViewer ID="rpwReporte" runat="server" Style="width: 100%" Visible="False" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt">
+        <div class="row" style="overflow-y: scroll;">
+            <rsweb:ReportViewer ID="rpwReporte" runat="server" Style="width: 100%;" Height="100%" Visible="False" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt"  AsyncRendering="False" SizeToReportContent="True">
                 <LocalReport EnableExternalImages="True" ReportPath="App_Data\Reportes\rptReconocimientoEmpresa.rdlc">
                 </LocalReport>
             </rsweb:ReportViewer>
