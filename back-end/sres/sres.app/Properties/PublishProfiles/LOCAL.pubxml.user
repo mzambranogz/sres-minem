@@ -13,7 +13,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="AppSettings.config">
-      <publishTime>09/25/2020 09:25:01</publishTime>
+      <publishTime>09/26/2020 14:36:03</publishTime>
     </File>
     <File Include="Assets/css/style.css">
       <publishTime>09/24/2020 18:20:05</publishTime>
@@ -853,10 +853,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/js/pages/participantes.js">
-      <publishTime>09/25/2020 08:56:24</publishTime>
+      <publishTime>09/26/2020 01:21:50</publishTime>
     </File>
     <File Include="Assets/js/pages/participante_ficha.js">
-      <publishTime>09/24/2020 20:24:43</publishTime>
+      <publishTime>09/26/2020 16:35:18</publishTime>
     </File>
     <File Include="Assets/js/pages/preguntas_frecuentes.js">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -880,16 +880,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="bin/App_Data/Reportes/rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc">
-      <publishTime>09/25/2020 08:59:06</publishTime>
+      <publishTime>09/26/2020 12:17:19</publishTime>
     </File>
     <File Include="bin/App_Data/Reportes/rptReporteEstadisticoReconocimientoXConvocatoria.rdlc">
-      <publishTime>09/25/2020 08:59:06</publishTime>
+      <publishTime>09/26/2020 12:17:22</publishTime>
     </File>
     <File Include="bin/App_Data/Reportes/rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc">
-      <publishTime>09/25/2020 08:59:08</publishTime>
+      <publishTime>09/26/2020 12:17:24</publishTime>
     </File>
     <File Include="bin/App_Data/Reportes/rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc">
-      <publishTime>09/25/2020 08:59:09</publishTime>
+      <publishTime>09/26/2020 12:17:17</publishTime>
     </File>
     <File Include="bin/Assets/documentos/2° RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI %28TCO2%29.pdf">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -1072,16 +1072,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="bin/sres.app.dll">
-      <publishTime>09/25/2020 15:59:51</publishTime>
+      <publishTime>09/28/2020 10:03:31</publishTime>
     </File>
     <File Include="bin/sres.be.dll">
-      <publishTime>09/25/2020 15:59:43</publishTime>
+      <publishTime>09/28/2020 10:03:26</publishTime>
     </File>
     <File Include="bin/sres.da.dll">
-      <publishTime>09/25/2020 15:59:44</publishTime>
+      <publishTime>09/28/2020 10:03:27</publishTime>
     </File>
     <File Include="bin/sres.ln.dll">
-      <publishTime>09/25/2020 15:59:45</publishTime>
+      <publishTime>09/28/2020 10:03:27</publishTime>
     </File>
     <File Include="bin/sres.ut.dll">
       <publishTime>09/25/2020 15:59:43</publishTime>
@@ -1414,7 +1414,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Views/Convocatoria/Criterios.cshtml">
-      <publishTime>09/24/2020 20:51:34</publishTime>
+      <publishTime>09/26/2020 16:39:11</publishTime>
     </File>
     <File Include="Views/Convocatoria/EvaluacionCriterio.cshtml">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -1534,7 +1534,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 18:29:15</publishTime>
     </File>
     <File Include="Views/Participante/Index.cshtml">
-      <publishTime>09/24/2020 19:50:02</publishTime>
+      <publishTime>09/26/2020 01:20:30</publishTime>
     </File>
     <File Include="Views/Participante/MapaSitio.cshtml">
       <publishTime>09/24/2020 09:56:22</publishTime>

@@ -93,6 +93,26 @@
     </div>
 </div>
 
+@*<script>
+        function fn_ejecutaReporte(e){
+          e.preventDefault();
+          var idReporte = parseInt(document.getElementById("cbo-reporte").value);
+          var url = '';
+          if(idReporte > 0){
+            if (idReporte == 1) {
+              url = 'http://grupo-zuniga.com/proyectos/app/guia_usuario_app.pdf';//'http://sismrv.minem.gob.pe/Reportes/ReporteIni.aspx';
+            } else {
+              url = 'http://grupo-zuniga.com/proyectos/app/_OLD_guia_usuario_app.pdf';//'http://sismrv.minem.gob.pe/Reportes/frmReportes.aspx?IdReporte=' + idReporte;
+            }
+            $("#ir-reporte").html("<i class='fas fa-spinner fa-spin px-1'></i> Cargando...");
+            $("#iframeReporte").attr("src", url).on('load', function () {
+                $("#ir-reporte").html("<i class='far fa-hand-point-up px-1'></i> Ir al reporte");
+            });
+          }else{
+          }
+        }
+</script>*@
+
 
 
 
