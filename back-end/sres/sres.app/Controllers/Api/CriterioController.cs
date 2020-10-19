@@ -130,6 +130,20 @@ namespace sres.app.Controllers.Api
             return criterioLN.GuardarEvaluacionCriterioInscripcion(entidad);
         }
 
+        [Route("obtenerallcategoria")]
+        [HttpGet]
+        public List<CategoriaBE> ObtenerCategoria()
+        {
+            try
+            {
+                return criterioLN.getAllCategoria();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         //[Route("listarcriterioporconvocatoria")]
         //[HttpGet]
         //public List<CriterioBE> ListarCriterioPorConvocatoria(int idConvocatoria)

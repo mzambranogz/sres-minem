@@ -18,5 +18,6 @@ namespace sres.be
         public decimal EMISIONES { get; set; }
         public decimal ENERGIA { get; set; }
         public decimal COMBUSTIBLE { get; set; }
+        public string CATEGORIA { get; set; }
     }
 }

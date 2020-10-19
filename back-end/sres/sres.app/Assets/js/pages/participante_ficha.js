@@ -34,14 +34,15 @@ var cargarreconocimiento = (data) => {
 }
 
 var reconocimientocategoriaestrella = (obj) => {    
-    let body = `<tbody class="estilo-01"><tr><td data-encabezado="Puntaje"><div class="text-right">${obj.PUNTAJE} ptos.</div></td><td data-encabezado="Reducción"><div class="text-right">${formatoMiles(obj.EMISIONES)}</div></td></tr></tbody>`;
+    let body = `<tbody class="estilo-01"><tr><td data-encabezado="Puntaje"><div class="text-center">${obj.PUNTAJE} ptos.</div></td><td data-encabezado="Reducción"><div class="text-center">${formatoMiles(obj.EMISIONES)}</div></td></tr></tbody>`;
     let columnaPuntaje = `<div class="d-flex flex-column justify-content-between align-items-center"><div class="d-flex justify-content-between align-items-center"><div class="pl-1 text-center w-100">PUNTAJE&nbsp;</div></div><div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Puntuación obtenida"></i></div></div>`;
     let columnaReduccion = `<div class="d-flex flex-column justify-content-between align-items-center"><div class="d-flex justify-content-between align-items-center"><div class="pl-1 text-center w-100">REDUCCIÓN&nbsp;tCO<sub>2</sub></div></div><div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reducción lograda"></i></div></div>`;
     //let columnaCombustible = `<div class="d-flex flex-column justify-content-between align-items-center"><div class="d-flex justify-content-between align-items-center"><div class="pl-1 text-center w-100">REDUCCIÓN&nbsp;tCO<sub>2</sub></div></div><div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reducción lograda"></i></div></div>`;
     //let columnaElectricidad = `<div class="d-flex flex-column justify-content-between align-items-center"><div class="d-flex justify-content-between align-items-center"><div class="pl-1 text-center w-100">REDUCCIÓN&nbsp;tCO<sub>2</sub></div></div><div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reducción lograda"></i></div></div>`;
     let head = `<thead class="estilo-06 free-with"><tr><th scope="col" width=50%">${columnaPuntaje}</th><th scope="col" width="50%">${columnaReduccion}</th></tr></thead>`;
     let contentseccion = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="table-responsive tabla-principal"><table class="table table-sm table-hover mb-0">${head}${body}</table></div></div>`;
-    let imagen = `<div class="offset-lg-2 col-lg-2 col-md-12 col-sm-12 d-flex justify-content-center align-items-center"><img class="img-fluid" src="${baseUrl}${$('#ruta').val().replace('{0}', obj.ID_PREMIACION)}/${obj.ARCHIVO_BASE == null ? '' : obj.ARCHIVO_BASE}" alt="" data-toggle="tooltip" data-placement="top" title="${obj.INSIGNIA.ID_INSIGNIA == 1 ? 'Sin categoría' : obj.ESTRELLA_E.ID_ESTRELLA == 1 ? `Reconocimiento ${obj.INSIGNIA.NOMBRE.toLowerCase()} sin estrellas` : `Reconocimiento ${obj.INSIGNIA.NOMBRE.toLowerCase()} con ${obj.ESTRELLA_E.NOMBRE}`}"></div>`;
+    //let imagen = `<div class="offset-lg-2 col-lg-2 col-md-12 col-sm-12 d-flex justify-content-center align-items-center"><img class="img-fluid" src="${baseUrl}${$('#ruta').val().replace('{0}', obj.ID_PREMIACION)}/${obj.ARCHIVO_BASE == null ? '' : obj.ARCHIVO_BASE}" alt="" data-toggle="tooltip" data-placement="top" title="${obj.INSIGNIA.ID_INSIGNIA == 1 ? 'Sin categoría' : obj.ESTRELLA_E.ID_ESTRELLA == 1 ? `Reconocimiento ${obj.INSIGNIA.NOMBRE.toLowerCase()} sin estrellas` : `Reconocimiento ${obj.INSIGNIA.NOMBRE.toLowerCase()} con ${obj.ESTRELLA_E.NOMBRE}`}"></div>`;
+    let imagen = `<div class="offset-lg-2 col-lg-2 col-md-12 col-sm-12 d-flex justify-content-center align-items-center"><img class="img-fluid" src="${baseUrl}${$('#ruta').val().replace('{0}', obj.INSIGNIA.ID_INSIGNIA)}/${obj.INSIGNIA.ARCHIVO_BASE == null ? '' : obj.INSIGNIA.ARCHIVO_BASE}" alt="" data-toggle="tooltip" data-placement="top" title="${obj.INSIGNIA.ID_INSIGNIA == 1 ? 'Sin categoría' : `Reconocimiento categoría ${obj.INSIGNIA.NOMBRE.toLowerCase()}`}"></div>`;
     let contenttabla = `<div class="row">${imagen}${contentseccion}</div>`;
     let titulo2 = `<h3 class="estilo-04 text-sres-azul">NIVELES DE RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI: &nbsp;<b class="text-sres-verde">${obj.ESTRELLA_E.NOMBRE}</b></h3>`;
     let titulo1 = `<h3 class="estilo-04 text-sres-azul">CATEGORÍA DE RECONOCIMIENTO DE ENERGÍA EFECIENTE Y SOSTENIBLE: &nbsp;<b class="text-sres-verde">${obj.INSIGNIA.NOMBRE}</b></h3>`;
@@ -55,7 +56,7 @@ var reconocimientomedida = (obj) => {
     if (obj.LISTA_REC_MEDMIT != null) {
         if (obj.LISTA_REC_MEDMIT.length > 0) {
             let tablas = obj.LISTA_REC_MEDMIT.map((x, y) => {
-                let body = `<tbody class="estilo-01"><tr><td data-encabezado="Reducción"><div class="text-right">${formatoMiles(x.REDUCIDO)}</div></td></tr></tbody>`;
+                let body = `<tbody class="estilo-01"><tr><td data-encabezado="Reducción"><div class="text-center">${formatoMiles(x.REDUCIDO)}</div></td></tr></tbody>`;
                 let columnaReduccion = `<div class="d-flex flex-column justify-content-between align-items-center"><div class="d-flex justify-content-between align-items-center"><div class="pl-1 text-center w-100">REDUCCIÓN&nbsp;tCO<sub>2</sub></div></div><div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reducción lograda"></i></div></div>`;
                 let head = `<thead class="estilo-06 free-with"><tr><th scope="col" width="50%">${columnaReduccion}</th></tr></thead>`;
                 let contentseccion = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="table-responsive tabla-principal"><table class="table table-sm table-hover mb-0">${head}${body}</table></div></div>`;
@@ -77,7 +78,7 @@ var reconocimientoemisiones = (obj) => {
     if (obj.FLAG_EMISIONESMAX == null) return '';
     let contenido = "";
     if (obj.FLAG_EMISIONESMAX == '1') {
-        let body = `<tbody class="estilo-01"><tr></td><td data-encabezado="Reducción"><div class="text-right">${formatoMiles(obj.EMISIONES)}</div></td></tr></tbody>`;
+        let body = `<tbody class="estilo-01"><tr></td><td data-encabezado="Reducción"><div class="text-center">${formatoMiles(obj.EMISIONES)}</div></td></tr></tbody>`;
         let columnaReduccion = `<div class="d-flex flex-column justify-content-between align-items-center"><div class="d-flex justify-content-between align-items-center"><div class="pl-1 text-center w-100">REDUCCIÓN&nbsp;tCO<sub>2</sub></div></div><div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reducción lograda"></i></div></div>`;
         let head = `<thead class="estilo-06 free-with"><tr><th scope="col" width="50%">${columnaReduccion}</th></tr></thead>`;
         let contentseccion = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="table-responsive tabla-principal"><table class="table table-sm table-hover mb-0">${head}${body}</table></div></div>`;
@@ -96,7 +97,7 @@ var reconocimientomejora = (obj) => {
     if (obj.FLAG_MEJORACONTINUA == null) return '';
     let contenido = "";
     if (obj.FLAG_MEJORACONTINUA == '1') {
-        let body = `<tbody class="estilo-01"><tr><td data-encabezado="Puntaje"><div class="text-center">${obj.PUNTAJE} ptos.</div></td><td data-encabezado="Reducción"><div class="text-right">${formatoMiles(obj.EMISIONES)}</div></td></tr></tbody>`;
+        let body = `<tbody class="estilo-01"><tr><td data-encabezado="Puntaje"><div class="text-center">${obj.PUNTAJE} ptos.</div></td><td data-encabezado="Reducción"><div class="text-center">${formatoMiles(obj.EMISIONES)}</div></td></tr></tbody>`;
         let columnaReduccion = `<div class="d-flex flex-column justify-content-between align-items-center"><div class="d-flex justify-content-between align-items-center"><div class="pl-1 text-center w-100">REDUCCIÓN&nbsp;tCO<sub>2</sub></div></div><div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reducción lograda"></i></div></div>`;
         let head = `<thead class="estilo-06 free-with"><tr><th scope="col" width="50%">${columnaReduccion}</th></tr></thead>`;
         let contentseccion = `<div class="col-lg-6 col-md-12 col-sm-12"><div class="table-responsive tabla-principal"><table class="table table-sm table-hover mb-0">${head}${body}</table></div></div>`;

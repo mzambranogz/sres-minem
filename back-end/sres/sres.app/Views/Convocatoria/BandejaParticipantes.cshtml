@@ -9,7 +9,8 @@
     ViewBag.Full = false;
     ViewBag.HasOptions = true;
     @Html.HiddenFor(x => convocatoria.ID_ETAPA);
-    string pathFormat = AppSettings.Get<string>("Path.Reconocimiento");
+    //string pathFormat = AppSettings.Get<string>("Path.Reconocimiento");
+    string pathFormat = AppSettings.Get<string>("Path.Insignia");
 }
 @section scripts_footer{
     <script>

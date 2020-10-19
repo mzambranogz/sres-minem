@@ -7,6 +7,7 @@
     $('#btnConfirmar').on('click', (e) => eliminar());
     $('#btnGuardar').on('click', (e) => guardar());
     $('input[type="file"][id="fle-imagen"]').on('change', fileChange);
+    cargarInformacionInicial();
 });
 
 var fn_avance_grilla = (boton) => {
@@ -128,12 +129,13 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
             let colNro = `<td class="text-center" data-encabezado="Número de orden" scope="row" data-count="0">${(pagina - 1) * registros + (i + 1)}</td>`;
             let colCodigo = `<td class="text-center" data-encabezado="Código" scope="row"><span>${(`${formatoCodigo}${x.ID_CRITERIO}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</span></td>`;
             let colNombres = `<td class="text-left" data-encabezado="Nombre">${x.NOMBRE}</td>`;
+            let colCategoria = `<td class="text-center" data-encabezado="Categoría">${x.CATEGORIA}</td>`;
             let colDescripcion = `<td data-encabezado="Descripción">${x.DESCRIPCION == null ? '' : x.DESCRIPCION}</td>`;
             let colImagen = `<td class="text-center" data-encabezado="Imagen"><img src="${baseUrl}${$('#ruta').val().replace('{0}', x.ID_CRITERIO)}/${x.ARCHIVO_BASE == null ? '' : x.ARCHIVO_BASE}" width="50%" height="auto"></td>`;
             let btnCambiarEstado = `${[0, 1].includes(x.FLAG_ESTADO) ? "" : `<a class="dropdown-item estilo-01 btnCambiarEstado" href="#" data-id="${x.ID_CRITERIO}" data-estado="${x.FLAG_ESTADO}"><i class="fas fa-edit mr-1"></i>Eliminar</a>`}`;
             let btnEditar = `<a class="dropdown-item estilo-01 btnEditar" href="#" data-id="${x.ID_CRITERIO}" data-toggle="modal" data-target="#modal-mantenimiento"><i class="fas fa-edit mr-1"></i>Editar</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Gestión"><div class="btn-group w-100"><a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a><div class="dropdown-menu">${btnCambiarEstado}${btnEditar}</div></div></td>`;
-            let fila = `<tr>${colNro}${colCodigo}${colNombres}${colDescripcion}${colImagen}${colOpciones}</tr>`;
+            let fila = `<tr>${colNro}${colCodigo}${colNombres}${colCategoria}${colDescripcion}${colImagen}${colOpciones}</tr>`;
             return fila;
         }).join('');
     };
@@ -180,7 +182,8 @@ var limpiarFormulario = () => {
     $('#txa-descripcion').val('');
     $('#txt-imagen').val('');
     $('#fle-imagen').val('');
-    $('#fle-imagen').removeData('file')
+    $('#fle-imagen').removeData('file');
+    $('#cbo-categoria').val(0);
 }
 
 var consultarCriterio = (element) => {
@@ -204,25 +207,40 @@ var cargarDatos = (data) => {
     $('#frm').data('id', data.ID_CRITERIO);
     $('#txt-nombre').val(data.NOMBRE);
     $('#txa-descripcion').val(data.DESCRIPCION);
+    $('#cbo-categoria').val(data.ID_CATEGORIA);
     $('#txt-imagen').val(data.ARCHIVO_BASE);
     data.ARCHIVO_CONTENIDO == null ? '' : $(`#fle-imagen`).data('file', data.ARCHIVO_CONTENIDO);
 }
 
 var guardar = () => {
     $('.alert-add').html('');
+    let arr = [];
     let verif = $('#fle-imagen').data('file') != null ? true : false;
     if (!verif) {
         $('.alert-add').html('').alertError({ type: 'danger', title: 'ERROR', message: 'Necesita ingresar una imagen' });
         return;
     }
+
+    if ($('#txt-nombre').val().trim() === "") arr.push("Debe ingresar el nombre del criterio");
+    if ($("#cbo-categoria").val() == 0) arr.push("Debe seleccionar una categoría");
+
+    if (arr.length > 0) {
+        let error = '';
+        $.each(arr, function (ind, elem) { error += '<li><small class="mb-0">' + elem + '</li></small>'; });
+        error = `<ul>${error}</ul>`;
+        $('.alert-add').alertError({ type: 'danger', title: 'ERROR', message: error });
+        return;
+    }
+
     let idCriterio = $('#frm').data('id');
     let nombre = $('#txt-nombre').val();
     let descripcion = $('#txa-descripcion').val();
     let nombrefile = $(`#txt-imagen`).val();
     let archivo = $('#fle-imagen').data('file');
+    let categoria = $('#cbo-categoria').val();
     
     let url = `${baseUrl}api/criterio/guardarcriterio`;
-    let data = { ID_CRITERIO: idCriterio == null ? -1 : idCriterio, NOMBRE: nombre, DESCRIPCION: descripcion, ARCHIVO_BASE: nombrefile, ARCHIVO_CONTENIDO: archivo, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CRITERIO: idCriterio == null ? -1 : idCriterio, NOMBRE: nombre, DESCRIPCION: descripcion, ARCHIVO_BASE: nombrefile, ARCHIVO_CONTENIDO: archivo, ID_CATEGORIA: categoria, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
@@ -266,4 +284,21 @@ var fileChange = (e) => {
         elFile.data('type', fileContent.type);
     }
     reader.readAsDataURL(e.currentTarget.files[0]);
+}
+
+var cargarInformacionInicial = () => {
+    let urlListar = `${baseUrl}api/criterio/obtenerallcategoria`;
+    Promise.all([
+        fetch(urlListar),
+    ])
+    .then(r => Promise.all(r.map(v => v.json())))
+    .then(([lista]) => {
+        cargarCombo('#cbo-categoria', lista);
+    })
+}
+
+var cargarCombo = (selector, data) => {
+    let options = data.length == 0 ? '' : data.map(x => `<option value="${x.ID_CATEGORIA}">${x.NOMBRE}</option>`).join('');
+    options = `<option value="0">-Seleccione una categoría-</option>${options}`;
+    $(selector).html(options);
 }

@@ -44,6 +44,7 @@ namespace sres.da
                 p.Add("PI_NOMBRE", entidad.NOMBRE);
                 p.Add("PI_DESCRIPCION", entidad.DESCRIPCION);
                 p.Add("PI_ARCHIVO_BASE", entidad.ARCHIVO_BASE);
+                p.Add("PI_ID_CATEGORIA", entidad.ID_CATEGORIA);
                 p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 p.Add("PI_ID_GET", 0, OracleDbType.Int32, ParameterDirection.Output);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
@@ -467,6 +468,25 @@ namespace sres.da
             }
 
             return entidad;
+        }
+
+        public List<CategoriaBE> getAllCategoria(OracleConnection db)
+        {
+            List<CategoriaBE> lista = new List<CategoriaBE>();
+
+            try
+            {
+                string sp = $"{Package.Mantenimiento}USP_SEL_ALL_CATEGORIA";
+                var p = new OracleDynamicParameters();
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<CategoriaBE>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return lista;
         }
     }
 }

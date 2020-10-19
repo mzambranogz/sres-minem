@@ -14,6 +14,7 @@ namespace sres.ln
     {
         ReconocimientoDA reconocimientoDA = new ReconocimientoDA();
         PremiacionDA premDA = new PremiacionDA();
+        InsigniaDA insigDA = new InsigniaDA();
 
         public List<ReconocimientoBE> ListarUltimosReconocimientos(int idInstitucion, int cantidadRegistros)
         {
@@ -25,14 +26,18 @@ namespace sres.ln
                 lista = reconocimientoDA.ListarUltimosReconocimientos(idInstitucion, cantidadRegistros, cn);
                 if (lista.Count > 0) {
                     foreach(ReconocimientoBE r in lista)
-                        r.ARCHIVO_BASE = premDA.getPremiacion(new PremiacionBE { ID_PREMIACION = r.ID_PREMIACION }, cn).ARCHIVO_BASE;
+                        //r.ARCHIVO_BASE = premDA.getPremiacion(new PremiacionBE { ID_PREMIACION = r.ID_PREMIACION }, cn).ARCHIVO_BASE;
+                        r.ARCHIVO_BASE = insigDA.getInsignia(new InsigniaBE { ID_INSIGNIA = Convert.ToInt16(r.ID_INSIGNIA) }, cn).ARCHIVO_BASE;
                 }
-                int idPremiacion = premDA.getPremiacionInsigniaEstrella(1, 1, cn).ID_PREMIACION;
+                //int idPremiacion = premDA.getPremiacionInsigniaEstrella(1, 1, cn).ID_PREMIACION;
+                int idInsignia = 1;
                 while (lista.Count < cantidadRegistros)
                 {                    
                     lista.Add(new ReconocimientoBE {
-                        ID_PREMIACION = idPremiacion,
-                        ARCHIVO_BASE = premDA.getPremiacion(new PremiacionBE { ID_PREMIACION = idPremiacion }, cn).ARCHIVO_BASE,
+                        //ID_PREMIACION = idPremiacion,
+                        ID_INSIGNIA = idInsignia,
+                        //ARCHIVO_BASE = premDA.getPremiacion(new PremiacionBE { ID_PREMIACION = idPremiacion }, cn).ARCHIVO_BASE,
+                        ARCHIVO_BASE = insigDA.getInsignia(new InsigniaBE { ID_INSIGNIA = idInsignia }, cn).ARCHIVO_BASE,
                         FECHA_CONVOCATORIA = "-------",
                         VAL = 0
                     });

@@ -88,17 +88,30 @@ CONSTRAINT INSTITUCION_FK FOREIGN KEY (ID_INSTITUCION) REFERENCES T_GENM_INSTITU
 CONSTRAINT ROL_FK FOREIGN KEY (ID_ROL) REFERENCES T_MAE_ROL (ID_ROL)
 );
 
+CREATE TABLE T_MAE_CATEGORIA(
+ID_CATEGORIA NUMBER,
+NOMBRE VARCHAR2(60),
+FLAG_ESTADO VARCHAR2(1) DEFAULT '1',
+REG_USUARIO NUMBER,
+REG_FECHA DATE DEFAULT SYSDATE,
+UPD_USUARIO NUMBER,
+UPD_FECHA DATE,
+PRIMARY KEY(ID_CATEGORIA)
+);
+
 CREATE TABLE T_GENM_CRITERIO(
 ID_CRITERIO NUMBER,
 NOMBRE VARCHAR2(300),
 DESCRIPCION VARCHAR2(4000),
 ARCHIVO_BASE VARCHAR2(4000),
 ARCHIVO_TIPO VARCHAR2(4000),
+ID_CATEGORIA NUMBER,
 FLAG_ESTADO VARCHAR2(1) DEFAULT '1',
 REG_USUARIO NUMBER,
 REG_FECHA DATE DEFAULT SYSDATE,
 UPD_USUARIO NUMBER,
 UPD_FECHA DATE,
+FOREIGN KEY (ID_CATEGORIA) REFERENCES T_MAE_CATEGORIA (ID_CATEGORIA),
 CONSTRAINT CRITERIO_PK PRIMARY KEY (ID_CRITERIO)
 );
 
@@ -949,15 +962,19 @@ VALUES (6, 'Javier', 'Paredes', 'javier@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlV
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
 VALUES (7, 'María', 'Lima', 'maria@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 4, 3, 1);
 
+--T_MAE_CATEGORIA
+INSERT INTO T_MAE_CATEGORIA (ID_CATEGORIA, NOMBRE) VALUES (1, 'PRIMARIO');
+INSERT INTO T_MAE_CATEGORIA (ID_CATEGORIA, NOMBRE) VALUES (2, 'SECUNDARIO');
+
 --T_GENM_CRITERIO
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (1, 'Ahorro de energía eléctrica total', 'Es el reconocimiento que se le da a la organización pública o privada que ha medido su ahorro energético (mínimo 1 año) después de la implementación de mejora de eficiencia energética. Este porcentaje de ahorro es el consumo reducido por la medida implementada respecto al consumo total de energía eléctrica de la organización. Este reconocimiento brinda puntaje para alcanzar la categoría deseada y a su vez brinda puntaje para la obtención de estrellas que permite reconocer como han logrado reducir sus emisiones de Gases de Efecto Invernadero (GEI) en beneficio del ambiente.', 'criterio-01.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (2, 'Ahorro de consumo de combustible', 'Es el reconocimiento que se le da a la organización pública o privada que ha medido su ahorro de combustible (mínimo 1 año) obtenida a partir de una implementación de mejora de eficiencia energética. Este porcentaje de ahorro es el consumo reducido por la medida implementada respecti al consumo total de combustible de la organzación. Este reconocimiento brinda puntaje para alcanzar la categoría deseada y a su vez brinda puntaje para la obtención de estrellas que permite reconocer como han logrado reducir sus emisiones de Gases de Efecto Invernadero (GEI) en beneficio del ambiente.', 'criterio-02.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (3, 'Incorporación de vehículos eléctricos', '', 'criterio-09.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (4, 'Implementación de un sistema de gestión de la energía', 'Es el reconocimiento que se le da a la organización pública o privada que se encuentre en el camino de la optimización del uso de la energía con el fin de buscar el uso racional y eficiente de la energía. A través de la gestión energética se detectan oportunidades de mejora en acpectos relacionados con la calidad y seguridad de los sistemas energéticos, logrando que los usuarios conozcan el sistema, identifiquen los puntos de consumo e implmentar mejoras, alcanzando altos niveles de eficiencia energética, en ese sentido el presente reconocimiento se les dará a las organizaciones que se establezcan una política y unos objetivos energéticos, para alcanzar dichos objetivos. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-04.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (5, 'Diagnóstico energético', 'Es el reconocimiento que se le da a la organización pública o privada por la realizaciónde de auditorías energéticas en cualquiera de sus tres niveles de esfuerzo, la cual debe haber sido realizada hasta dos (02) años de antiguedad con respecto a la fehca de su postulación. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-05.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (6, 'Fortalecimiento de capacidades para el buen uso de la energía', 'Es el reconocimiento que se le da a la organización pública o privada por la realización de actividades de promoción y difusión del uso de la energía y cambio climático en sus intalaciones. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-07.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (7, 'Generación de puestos de trabajo relacionado a la gestión de la energía', 'Es el reconocimiento que se le da a la organización pública o privada que cuente con personal a tiempo completo con funciones relacionadas a la gestión de la energía, como resultado de la iniciativa o proyecto para la implementación de una medida de eficiencia energética. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-03.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (8, 'Enfoque transversal de género', 'Es el reconocimiento que se le da a la organización pública o privada que cuente con personal femenino en puestos de toma de decisión dentro de las actividades asociadas a la gestión de la energía. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-08.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, ID_CATEGORIA, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (1, 1, 'Reducción de consumo de energía eléctrica', 'Es el reconocimiento que se le da a la organización pública o privada que ha medido su ahorro energético (mínimo 1 año) después de la implementación de mejora de eficiencia energética. Este porcentaje de ahorro es el consumo reducido por la medida implementada respecto al consumo total de energía eléctrica de la organización. Este reconocimiento brinda puntaje para alcanzar la categoría deseada y a su vez brinda puntaje para la obtención de estrellas que permite reconocer como han logrado reducir sus emisiones de Gases de Efecto Invernadero (GEI) en beneficio del ambiente.', 'criterio-01.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, ID_CATEGORIA, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (2, 1, 'Reducción de consumo de energía térmica', 'Es el reconocimiento que se le da a la organización pública o privada que ha medido su ahorro de combustible (mínimo 1 año) obtenida a partir de una implementación de mejora de eficiencia energética. Este porcentaje de ahorro es el consumo reducido por la medida implementada respecti al consumo total de combustible de la organzación. Este reconocimiento brinda puntaje para alcanzar la categoría deseada y a su vez brinda puntaje para la obtención de estrellas que permite reconocer como han logrado reducir sus emisiones de Gases de Efecto Invernadero (GEI) en beneficio del ambiente.', 'criterio-02.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, ID_CATEGORIA, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (3, 1, 'Cambio de combustible a energía eléctrica', '', 'criterio-09.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, ID_CATEGORIA, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (4, 2, 'Implementación de un sistema de gestión de la energía', 'Es el reconocimiento que se le da a la organización pública o privada que se encuentre en el camino de la optimización del uso de la energía con el fin de buscar el uso racional y eficiente de la energía. A través de la gestión energética se detectan oportunidades de mejora en acpectos relacionados con la calidad y seguridad de los sistemas energéticos, logrando que los usuarios conozcan el sistema, identifiquen los puntos de consumo e implmentar mejoras, alcanzando altos niveles de eficiencia energética, en ese sentido el presente reconocimiento se les dará a las organizaciones que se establezcan una política y unos objetivos energéticos, para alcanzar dichos objetivos. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-04.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, ID_CATEGORIA, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (5, 2, 'Desarrollo de Auditorías Energéticas', 'Es el reconocimiento que se le da a la organización pública o privada por la realizaciónde de auditorías energéticas en cualquiera de sus tres niveles de esfuerzo, la cual debe haber sido realizada hasta dos (02) años de antiguedad con respecto a la fehca de su postulación. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-05.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, ID_CATEGORIA, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (6, 2, 'Buenas prácticas para el uso eficiente de la energía', 'Es el reconocimiento que se le da a la organización pública o privada por la realización de actividades de promoción y difusión del uso de la energía y cambio climático en sus intalaciones. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-07.png');
+INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, ID_CATEGORIA, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (7, 2, 'Personal dedicado a la gestión de la energía', 'Es el reconocimiento que se le da a la organización pública o privada que cuente con personal a tiempo completo con funciones relacionadas a la gestión de la energía, como resultado de la iniciativa o proyecto para la implementación de una medida de eficiencia energética. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-03.png');
+--INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, ID_CATEGORIA, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (8, 2, 'Enfoque transversal de género', 'Es el reconocimiento que se le da a la organización pública o privada que cuente con personal femenino en puestos de toma de decisión dentro de las actividades asociadas a la gestión de la energía. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-08.png');
 
 --T_GENM_REQUERIMIENTO
 INSERT INTO T_GENM_REQUERIMIENTO (ID_REQUERIMIENTO, NOMBRE) VALUES (1, 'Documento de saneamiento legal físico.');
@@ -1056,7 +1073,7 @@ INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (6, 1, 'Fortalecim
 --CRI 7
 INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (7, 1, 'Personal dedicados a Gestión de la Energía');
 --CRI 8
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (8, 1, 'Igualdad de género');
+--INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (8, 1, 'Igualdad de género');
 
 --T_GENM_COMPONENTE
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (1, 1, 1, 'Componente 1', '1');
@@ -1098,10 +1115,10 @@ INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCR
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (7, 1, 1, 'Componente 1', '0');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (7, 1, 2, 'Componente 2', '0');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (7, 1, 3, 'Componente 3', '1');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 1, 'Componente 1', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 2, 'Componente 2', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 3, 'Componente 3', '1');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 4, 'Componente 4', '0');
+--INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 1, 'Componente 1', '0');
+--INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 2, 'Componente 2', '0');
+--INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 3, 'Componente 3', '1');
+--INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 4, 'Componente 4', '0');
 
 --T_MAE_TIPO_CONTROL
 INSERT INTO T_MAE_TIPO_CONTROL (ID_TIPO_CONTROL, NOMBRE) VALUES (1, 'LISTA');
@@ -2994,7 +3011,7 @@ INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO,
 INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 3, 63, 4);
 
 --INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 1, 2, 2);
+/*INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 1, 2, 2);
 INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 1, 3, 3);
 INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 1, 4, 4);
 INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 1, 5, 5);
@@ -3009,7 +3026,7 @@ INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO,
 INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 3, 93, 1);
 INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 3, 94, 2);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 4, 95, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 4, 95, 1);*/
 
 --T_MAEM_INDICADOR_FORM
 --INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 1, 1, '');
@@ -3292,7 +3309,7 @@ INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAM
 INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 3, 63, 1, '');
 
 --INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 1, 1, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 1, 2, 1, '');
+/*INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 1, 2, 1, '');
 INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 1, 3, 1, '');
 INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 1, 4, 1, '');
 INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 1, 5, 1, '');
@@ -3307,7 +3324,7 @@ INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAM
 INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 3, 93, 1, '');
 INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 3, 94, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 4, 95, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 4, 95, 1, '');*/
 
 -----------------------------------------------------------------------------------
 
@@ -3347,9 +3364,9 @@ INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OB
 INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (7, 2, 'Copia del registro de planilla del trabajador y/o contrato.', 'Mínimo 6 meses de antigüedad en el mismo cargo laboral', '0');
 --INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (7, 3, 'Otros documentos.', '', '0');
 
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 1, 'Documento con la descripción de las funciones que realiza el trabajador incorporado relacionado a la gestión de la energía, refrendado por el representante legal.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 2, 'Registro de planilla del personal femenino y/o contrato.', 'Mínimo 6 meses de antigüedad en el mismo cargo laboral', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 3, 'Reporte del número de trabajadores de la empresa, refrendado por el titular de la empresa o entidad y validado por reporte de Ministerio de Trabajo.', 'Indicar el porcentaje de mujeres y hombres', '0');
+--INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 1, 'Documento con la descripción de las funciones que realiza el trabajador incorporado relacionado a la gestión de la energía, refrendado por el representante legal.', '', '0');
+--INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 2, 'Registro de planilla del personal femenino y/o contrato.', 'Mínimo 6 meses de antigüedad en el mismo cargo laboral', '0');
+--INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 3, 'Reporte del número de trabajadores de la empresa, refrendado por el titular de la empresa o entidad y validado por reporte de Ministerio de Trabajo.', 'Indicar el porcentaje de mujeres y hombres', '0');
 --INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 4, 'Otros documentos.', '', '0');
 ----------------------
 
@@ -3379,7 +3396,7 @@ INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PA
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (3,4,1,51,'=','([P47]*[C1000]/[F9]*[F7]/[C1000000]+([P48]*[F12]*[F7]/[C1000000]))-(([P47]/([C1]-[F6])*[F5])+[P48]*[F12]*[F8]/[C1000000])','(|[P47]|*|[C1000]|/|[F9]|*|[F7]|/|[C1000000]|+|(|[P48]|*|[F12]|*|[F7]|/|[C1000000]|)|)|-|(|(|[P47]|/|(|[C1]|-|[F6]|)|*|[F5]|)|+|[P48]|*|[F12]|*|[F8]|/|[C1000000]|)');
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (3,4,1,54,'=','([P47]*[C1000]/[F9]/[F13]/[C1000]+[P48]*[F12]/[F13]/[C1000])-([P47]*[C1000]*[C0.0036]/[C1000]+[P48]*[F12]/[F14]/[C1000])','(|[P47]|*|[C1000]|/|[F9]|/|[F13]|/|[C1000]|+|[P48]|*|[F12]|/|[F13]|/|[C1000]|)|-|(|[P47]|*|[C1000]|*|[C0.0036]|/|[C1000]|+|[P48]|*|[F12]|/|[F14]|/|[C1000]|)');
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (3,4,1,55,'=','([C1]-([P47]*[C1000]*[C0.0036]/[C1000]+[P48]*[F12]/[F14]/[C1000])/([P47]*[C1000]/[F9]/[F13]/[C1000]+[P48]*[F12]/[F13]/[C1000]))*[C100]','(|[C1]|-|(|[P47]|*|[C1000]|*|[C0.0036]|/|[C1000]|+|[P48]|*|[F12]|/|[F14]|/|[C1000]|)|/|(|[P47]|*|[C1000]|/|[F9]|/|[F13]|/|[C1000]|+|[P48]|*|[F12]|/|[F13]|/|[C1000]|)|)|*|[C100]');
-INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (8,1,2,92,'=','[P91]/[P90]*[C100]','[P91]|/|[P90]|*|[C100]');
+--INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (8,1,2,92,'=','[P91]/[P90]*[C100]','[P91]|/|[P90]|*|[C100]');
 
 
 --T_MAEM_FACTOR
@@ -3748,43 +3765,55 @@ INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, F
 
 --T_GEND_CRITERIO_PUNTAJE
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 1, 'Sin puntaje', 0);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 2, 'Mayor o igual a 5% y menor a 10%', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 3, 'Mayor o igual a 10% y menor a 15%', 10);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 4, 'Mayor o igual al 15%', 15);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 2, 'Mayor o igual a 5% y menor a 10%', 10);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 3, 'Mayor o igual a 10% y menor a 15%', 20);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 4, 'Mayor o igual a 15% y menor a 20%', 30);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 5, 'Mayor o igual a 20% y menor a 25%', 40);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 6, 'Mayor o igual a 25% y menor a 30%', 50);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 7, 'Mayor o igual a 30%', 60);
 
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 1, 'Sin puntaje', 0);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 2, 'Mayor o igual a 1% y menor a 2%', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 3, 'Mayor o igual a 2% y menor a 3%', 10);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 4, 'Mayor o igual al 3%', 15);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 2, 'Mayor o igual a 1% y menor a 2%', 10);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 3, 'Mayor o igual a 2% y menor a 3%', 20);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 4, 'Mayor o igual a 3% y menor a 5%', 30);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 5, 'Mayor o igual a 5% y menor a 8%', 40);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 6, 'Mayor o igual a 8% y menor a 10%', 50);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 7, 'Mayor o igual al 10%', 60);
 
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 1, 'Sin puntaje', 0);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 2, 'Mayor o igual a 1% y menor a 2%', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 3, 'Mayor o igual a 2% y menor a 3%', 10);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 4, 'Mayor o igual al 3%', 15);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 2, 'Mayor o igual a 1% y menor a 2%', 10);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 3, 'Mayor o igual a 2% y menor a 3%', 20);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 4, 'Mayor o igual a 3% y menor a 5%', 30);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 5, 'Mayor o igual a 5% y menor a 8%', 40);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 6, 'Mayor o igual a 8% y menor a 10%', 50);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 7, 'Mayor o igual al 10%', 60);
 
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (4, 1, 'Sin puntaje', 0);
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (4, 2, 'Monitoreo de indicadores', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (4, 3, 'Sistema formal para monitorear y reportar', 10);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (4, 4, 'ISO 50001 - SGE', 15);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (4, 3, 'Sistema formal para monitorear y reportar', 7.5);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (4, 4, 'ISO 50001 - SGE', 10);
 
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 1, 'Sin puntaje', 0);
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 2, 'Auditoría energética nivel I', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 3, 'Auditoría energética nivel II', 10);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 4, 'Auditoría energética nivel III', 15);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 3, 'Auditoría energética nivel II', 7.5);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 4, 'Auditoría energética nivel III', 10);
 
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 1, 'Sin puntaje', 0);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 2, 'Al menos 1 actividad', 2);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 3, 'Al menos 2 actividades', 3);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 4, 'Más de 2 actividades', 5);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 2, '1 buena práctica', 2);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 3, '2 buenas prácticas', 4);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 4, '3 buenas prácticas', 6);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 5, '4 buenas prácticas', 8);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 6, 'Más de 4 buenas prácticas', 10);
 
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (7, 1, 'Sin puntaje', 0);
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (7, 2, '1 nuevo puesto de trabajo', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (7, 3, 'Más de 2 nuevos puestos de trabajo', 10);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (7, 3, 'Más de 2 nuevos puestos de trabajo', 7.5);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (7, 4, 'Más de 2 nuevos puestos de trabajo y un puesto destinado a personal femenino', 10);
 
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 1, 'Sin puntaje', 0);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 2, 'Mayor o igual a 5% y menor a 15%', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 3, 'Mayor o igual a 15% y menor a 30%', 7);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 4, 'Mayor o igual al 30%', 10);
+--INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 1, 'Sin puntaje', 0);
+--INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 2, 'Mayor o igual a 5% y menor a 15%', 5);
+--INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 3, 'Mayor o igual a 15% y menor a 30%', 7);
+--INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 4, 'Mayor o igual al 30%', 10);
 
 --T_GEND_SUBSECTOR_TIPOEMPRESA
 INSERT INTO T_GEND_SUBSECTOR_TIPOEMPRESA (ID_SUBSECTOR_TIPOEMPRESA, ID_SECTOR, NOMBRE) VALUES (1, 1, 'SALUD');

@@ -156,7 +156,7 @@ namespace sres.da
                 {
                     ID_RECONOCIMIENTO = (int)x.ID_RECONOCIMIENTO,
                     ID_INSCRIPCION = (int)x.ID_INSCRIPCION,
-                    PUNTAJE = (int)x.PUNTAJE,
+                    PUNTAJE = (decimal)x.PUNTAJE,
                     EMISIONES = (decimal)x.EMISIONES,
                     ENERGIA = (decimal)x.ENERGIA,
                     COMBUSTIBLE = (decimal)x.COMBUSTIBLE,
@@ -166,7 +166,7 @@ namespace sres.da
                     DESCRIPCION = (string)x.DESCRIPCION,
                     FLAG_MEJORACONTINUA = (string)x.FLAG_MEJORACONTINUA,
                     FLAG_EMISIONESMAX = (string)x.FLAG_EMISIONESMAX,
-                    INSIGNIA = x.ID_INSIGNIA == null ? null : new InsigniaBE { ID_INSIGNIA = (int)x.ID_INSIGNIA, NOMBRE = (string)x.NOMBRE_INSIG },
+                    INSIGNIA = x.ID_INSIGNIA == null ? null : new InsigniaBE { ID_INSIGNIA = (int)x.ID_INSIGNIA, NOMBRE = (string)x.NOMBRE_INSIG, ARCHIVO_BASE = (string)x.ARCHIVO_BASE },
                     ESTRELLA_E = x.ID_ESTRELLA == null ? null : new EstrellaBE { ID_ESTRELLA = (int)x.ID_ESTRELLA, NOMBRE = (string)x.NOMBRE_ESTRELLA },
                     ID_PREMIACION = (int)x.ID_PREMIACION,
                     ARCHIVO_BASE = (string)x.ARCHIVO_BASE_PRE,

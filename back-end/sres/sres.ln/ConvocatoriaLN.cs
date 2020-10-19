@@ -334,7 +334,7 @@ namespace sres.ln
         {
             bool seGuardoConvocatoria = false;
             int categoria = 0;
-            int estrella = 0;
+            int estrella = 1;
             string mejora = "0";      
             try
             {
@@ -349,18 +349,19 @@ namespace sres.ln
                             foreach (ConvocatoriaInsigniaBE ci in lista)
                                 if (entidad.PUNTAJE >= ci.PUNTAJE_MIN) { categoria = ci.ID_INSIGNIA; break; }                                    
 
-                        InstitucionBE institucion = institucionDA.ObtenerInstitucionInscripcion(entidad.ID_INSCRIPCION, cn);
-                        if (institucion != null) {
-                            List<EstrellaTrabajadorCamaBE> listaEstrellaTrabCama = estrellaTrabCamaDA.listarEstrellaTrabCama(entidad.ID_CONVOCATORIA, institucion.ID_TRABAJADORES_CAMA, cn);
-                            if (listaEstrellaTrabCama.Count > 0)
-                                foreach (EstrellaTrabajadorCamaBE es in listaEstrellaTrabCama)
-                                    if (entidad.EMISIONES_REDUCIDAS >= es.EMISIONES_MIN) { estrella = es.ID_ESTRELLA; break; }
+                        //InstitucionBE institucion = institucionDA.ObtenerInstitucionInscripcion(entidad.ID_INSCRIPCION, cn);
+                        //if (institucion != null) {
+                        //    List<EstrellaTrabajadorCamaBE> listaEstrellaTrabCama = estrellaTrabCamaDA.listarEstrellaTrabCama(entidad.ID_CONVOCATORIA, institucion.ID_TRABAJADORES_CAMA, cn);
+                        //    if (listaEstrellaTrabCama.Count > 0)
+                        //        foreach (EstrellaTrabajadorCamaBE es in listaEstrellaTrabCama)
+                        //            if (entidad.EMISIONES_REDUCIDAS >= es.EMISIONES_MIN) { estrella = es.ID_ESTRELLA; break; }
                                         
-                        }
+                        //}
 
                         ReconocimientoBE rec = reconocimientoDA.ObtenerReconocimientoUltimo(entidad.ID_INSCRIPCION, cn);
                         if (rec != null)
-                            mejora = categoria > rec.ID_INSIGNIA && estrella > rec.ID_ESTRELLA ? "1" : "0";
+                            //mejora = categoria > rec.ID_INSIGNIA && estrella > rec.ID_ESTRELLA ? "1" : "0";
+                            mejora = categoria > rec.ID_INSIGNIA ? "1" : "0";
 
                         if (seGuardoConvocatoria) seGuardoConvocatoria = convocatoriaDA.GuardarResultadoReconocimiento(new ReconocimientoBE { ID_INSCRIPCION = entidad.ID_INSCRIPCION, ID_INSIGNIA = categoria, PUNTAJE = entidad.PUNTAJE, ID_ESTRELLA = estrella, EMISIONES = entidad.EMISIONES_REDUCIDAS, FLAG_MEJORACONTINUA = mejora, ENERGIA = entidad.ENERGIA, COMBUSTIBLE = entidad.COMBUSTIBLE, USUARIO_GUARDAR = entidad.USUARIO_GUARDAR }, cn);
                         if (seGuardoConvocatoria) if (entidad.ID_ETAPA == 8) seGuardoConvocatoria = convocatoriaDA.GuardarReconocimientoMedida(entidad.ID_INSCRIPCION, entidad.USUARIO_GUARDAR , cn);

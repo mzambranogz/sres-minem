@@ -106,7 +106,7 @@ namespace sres.da
                     UPD_FECHA = (DateTime)x.REG_FECHA,
                     USUARIO = new UsuarioBE { NOMBRES = (string)x.NOMBRES_USUARIO, APELLIDOS = (string)x.APELLIDOS_USUARIO, CORREO = (string)x.CORREO_USUARIO },
                     CANTIDADCRITERIOSINGRESADOS = (int)x.CANTIDADCRITERIOSINGRESADOS,
-                    PUNTOSACUMULADOS = (int)x.PUNTOSACUMULADOS,
+                    PUNTOSACUMULADOS = (decimal)x.PUNTOSACUMULADOS,
                     ASPIRACION = (int)x.ASPIRACION,
                     CONVOCATORIA = new ConvocatoriaBE { ID_ETAPA = (int?) x.ID_ETAPA_CONVOCATORIA },
                     ROWNUMBER = (int)x.ROWNUMBER,

@@ -12,7 +12,8 @@
     string pathFormat = AppSettings.Get<string>("Path.Institucion");
     string pathDirectoryRelative = institucion == null ? "" : string.Format(pathFormat, institucion.ID_INSTITUCION);
     string imagen = institucion == null ? "" : institucion.LOGO == null ? "~/Assets/images/sin-foto.png" : $"~/{pathDirectoryRelative}/{institucion.LOGO}";
-    string pathFormat_prem = AppSettings.Get<string>("Path.Reconocimiento");
+    //string pathFormat_prem = AppSettings.Get<string>("Path.Reconocimiento");
+    string pathFormat_prem = AppSettings.Get<string>("Path.Insignia");
     string pathFormat_medida = AppSettings.Get<string>("Path.MedidaMitigacion");
 }
 

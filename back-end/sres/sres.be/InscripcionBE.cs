@@ -23,7 +23,7 @@ namespace sres.be
         public DateTime UPD_FECHA { get; set; }
         public UsuarioBE USUARIO { get; set; }
         public int CANTIDADCRITERIOSINGRESADOS { get; set; }
-        public int PUNTOSACUMULADOS { get; set; }
+        public decimal PUNTOSACUMULADOS { get; set; }
         public string NOMBRE_CONV { get; set; }
         public string CORREO { get; set; }
         public string NOMBRES_USU { get; set; }

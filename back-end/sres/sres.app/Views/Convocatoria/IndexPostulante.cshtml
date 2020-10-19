@@ -4,7 +4,8 @@
     //ViewBag.Title = "IndexPostulante";
     UsuarioBE usuario = Session["user"] == null ? null : (UsuarioBE)Session["user"];
     List<ReconocimientoBE> listaUltimosReconocimientos = (List<ReconocimientoBE>)ViewData["ultimos_reconocimientos"];
-    string pathFormat = AppSettings.Get<string>("Path.Reconocimiento");
+    //string pathFormat = AppSettings.Get<string>("Path.Reconocimiento");
+    string pathFormat = AppSettings.Get<string>("Path.Insignia");
 }
 
 <div class="container-fluid my-5">
@@ -87,7 +88,8 @@
                                 foreach (ReconocimientoBE item in listaUltimosReconocimientos)
                                 {
                                     <div class="col-lg-3 col-md-6 col-sm-12 text-center">
-                                        <img class="img-fluid pt-2 pb-1" src="@Url.Content($"~/{string.Format(pathFormat, item.ID_PREMIACION)}/{item.ARCHIVO_BASE}")">
+                                        @*<img class="img-fluid pt-2 pb-1" src="@Url.Content($"~/{string.Format(pathFormat, item.ID_PREMIACION)}/{item.ARCHIVO_BASE}")">*@
+                                        <img class="img-fluid pt-2 pb-1" src="@Url.Content($"~/{string.Format(pathFormat, item.ID_INSIGNIA)}/{item.ARCHIVO_BASE}")">
                                         <div class="span estilo-01 text-sres-gris py-2">@item.FECHA_CONVOCATORIA</div>
                                     </div>
                                 }

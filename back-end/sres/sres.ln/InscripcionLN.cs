@@ -20,6 +20,7 @@ namespace sres.ln
         InscripcionTrazabilidadDA inscripcionTrazabilidadDA = new InscripcionTrazabilidadDA();
         ConvocatoriaDA convocatoriaDA = new ConvocatoriaDA();
         PremiacionDA premDA = new PremiacionDA();
+        InsigniaDA insigDA = new InsigniaDA();
 
         public InscripcionBE ObtenerInscripcionPorConvocatoriaInstitucion(int idConvocatoria, int idInstitucion)
         {
@@ -179,7 +180,8 @@ namespace sres.ln
                 lista = inscripcionDA.BuscarInscripcion(idConvocatoria, idInscripcion, razonSocialInstitucion, nombresCompletosUsuario, idUsuario, registros, pagina, columna, orden, cn);
                 if (lista.Count > 0)
                     foreach (InscripcionBE ins in lista)
-                        ins.ARCHIVO_BASE = premDA.getPremiacion(new PremiacionBE { ID_PREMIACION = ins.ASPIRACION }, cn).ARCHIVO_BASE;
+                        //ins.ARCHIVO_BASE = premDA.getPremiacion(new PremiacionBE { ID_PREMIACION = ins.ASPIRACION }, cn).ARCHIVO_BASE;
+                        ins.ARCHIVO_BASE = insigDA.getInsignia(new InsigniaBE { ID_INSIGNIA = ins.ASPIRACION }, cn).ARCHIVO_BASE;
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }

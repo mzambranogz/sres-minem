@@ -16,7 +16,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/26/2020 14:36:03</publishTime>
     </File>
     <File Include="Assets/css/style.css">
-      <publishTime>09/24/2020 18:20:05</publishTime>
+      <publishTime>09/30/2020 11:29:35</publishTime>
     </File>
     <File Include="Assets/documentos/2° RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI %28TCO2%29.pdf">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -733,10 +733,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria.js">
-      <publishTime>09/24/2020 13:09:14</publishTime>
+      <publishTime>10/02/2020 14:15:59</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria_bandejaparticipantes.js">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/02/2020 14:17:23</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria_cambiarcontrasena.js">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -853,7 +853,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/js/pages/participantes.js">
-      <publishTime>09/26/2020 01:21:50</publishTime>
+      <publishTime>10/02/2020 14:15:19</publishTime>
     </File>
     <File Include="Assets/js/pages/participante_ficha.js">
       <publishTime>09/26/2020 16:35:18</publishTime>
@@ -865,7 +865,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/js/pages/reporte.js">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/30/2020 11:51:41</publishTime>
     </File>
     <File Include="Assets/js/plugins/alert.js">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -880,13 +880,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="bin/App_Data/Reportes/rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc">
-      <publishTime>09/26/2020 12:17:19</publishTime>
+      <publishTime>10/07/2020 17:02:04</publishTime>
     </File>
     <File Include="bin/App_Data/Reportes/rptReporteEstadisticoReconocimientoXConvocatoria.rdlc">
-      <publishTime>09/26/2020 12:17:22</publishTime>
+      <publishTime>10/07/2020 17:02:04</publishTime>
     </File>
     <File Include="bin/App_Data/Reportes/rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc">
-      <publishTime>09/26/2020 12:17:24</publishTime>
+      <publishTime>10/07/2020 17:02:04</publishTime>
     </File>
     <File Include="bin/App_Data/Reportes/rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc">
       <publishTime>09/26/2020 12:17:17</publishTime>
@@ -1072,19 +1072,19 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="bin/sres.app.dll">
-      <publishTime>09/28/2020 10:03:31</publishTime>
+      <publishTime>10/07/2020 17:10:51</publishTime>
     </File>
     <File Include="bin/sres.be.dll">
-      <publishTime>09/28/2020 10:03:26</publishTime>
+      <publishTime>10/07/2020 17:10:45</publishTime>
     </File>
     <File Include="bin/sres.da.dll">
-      <publishTime>09/28/2020 10:03:27</publishTime>
+      <publishTime>10/07/2020 17:10:46</publishTime>
     </File>
     <File Include="bin/sres.ln.dll">
-      <publishTime>09/28/2020 10:03:27</publishTime>
+      <publishTime>10/07/2020 17:10:46</publishTime>
     </File>
     <File Include="bin/sres.ut.dll">
-      <publishTime>09/25/2020 15:59:43</publishTime>
+      <publishTime>10/07/2020 17:10:45</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>09/24/2020 09:56:21</publishTime>
@@ -1339,25 +1339,25 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Reportes/ReporteConvocatoriaXEmpresa.aspx">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/07/2020 17:02:04</publishTime>
     </File>
     <File Include="Reportes/ReporteEstadisticoReconocimientoSySSXConvocatoria.aspx">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/07/2020 17:02:04</publishTime>
     </File>
     <File Include="Reportes/ReporteEstadisticoReconocimientoXConvocatoria.aspx">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/07/2020 17:02:04</publishTime>
     </File>
     <File Include="Reportes/ReporteEstadisticoTipoEmpresaXConvocatoria.aspx">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/07/2020 17:02:04</publishTime>
     </File>
     <File Include="Reportes/ReporteEstadisticoTipoPostulanteXConvocatoria.aspx">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/07/2020 17:02:04</publishTime>
     </File>
     <File Include="Reportes/ReportePostulacionesXSectorSubSector.aspx">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/07/2020 17:02:04</publishTime>
     </File>
     <File Include="Reportes/ReporteReconocimientoXConvocatoriaEmpresa.aspx">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/07/2020 17:02:04</publishTime>
     </File>
     <File Include="Service References/ServicioPIDE/sres.app.ServicioPIDE.BEDatosAntPenales.datasource">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -1552,7 +1552,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Views/Reporte/Index.cshtml">
-      <publishTime>09/25/2020 09:31:43</publishTime>
+      <publishTime>09/30/2020 11:37:01</publishTime>
     </File>
     <File Include="Views/Shared/CambiarClave.cshtml">
       <publishTime>09/24/2020 09:56:22</publishTime>

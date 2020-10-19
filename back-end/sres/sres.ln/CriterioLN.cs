@@ -424,5 +424,19 @@ namespace sres.ln
             pathFile = !File.Exists(pathFile) ? null : pathFile;
             return pathFile;
         }
+
+        public List<CategoriaBE> getAllCategoria()
+        {
+            List<CategoriaBE> lista = new List<CategoriaBE>();
+
+            try
+            {
+                cn.Open();
+                lista = criterioDA.getAllCategoria(cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }
