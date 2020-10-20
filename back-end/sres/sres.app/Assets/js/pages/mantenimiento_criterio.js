@@ -235,12 +235,14 @@ var guardar = () => {
     let idCriterio = $('#frm').data('id');
     let nombre = $('#txt-nombre').val();
     let descripcion = $('#txa-descripcion').val();
+    let descripcion_corta = $('#txa-descripcion-corta').val();
+    let descripcion_valor = $('#txt-descripcion-valor').val();
     let nombrefile = $(`#txt-imagen`).val();
     let archivo = $('#fle-imagen').data('file');
     let categoria = $('#cbo-categoria').val();
     
     let url = `${baseUrl}api/criterio/guardarcriterio`;
-    let data = { ID_CRITERIO: idCriterio == null ? -1 : idCriterio, NOMBRE: nombre, DESCRIPCION: descripcion, ARCHIVO_BASE: nombrefile, ARCHIVO_CONTENIDO: archivo, ID_CATEGORIA: categoria, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CRITERIO: idCriterio == null ? -1 : idCriterio, NOMBRE: nombre, DESCRIPCION: descripcion, ARCHIVO_BASE: nombrefile, ARCHIVO_CONTENIDO: archivo, DESCRIPCION_CORTA: descripcion_corta, DESCRIPCION_VALOR: descripcion_valor, ID_CATEGORIA: categoria, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)

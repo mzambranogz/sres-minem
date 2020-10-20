@@ -8,14 +8,14 @@
             ["Imagen"] = "~/Assets/images/carousel-01.jpg",
             ["Titulo"] = "¡REGÍSTRATE AHORA!",
             ["SubTitulo"] = "Y OBTÉN LOGROS POR TU COMPROMISO",
-            ["Descripcion"] = "El Reconocimiento de Energía Eficiente y Sostenible es un distintivo entregado por el Ministerio de Energía y Minas, a través de la Dirección General de Eficiencia Energética.",
+            ["Descripcion"] = "El Reconocimiento de Energía Eficiente y Sostenible (REES) es un distintivo entregado por el Ministerio de Energía y Minas, a través de la Dirección General de Eficiencia Energética.",
             ["Html"] = $"<a class='btn btn-sm btn-sres-linea-blanca wow slideInUp' href='{Url.Action("Informacion", "Convocatoria")}'>CONVOCATORIAS</a><a class='btn btn-sm btn-sres-linea-azul ml-3 wow slideInUp' href='{Url.Action("Reconocimientos-y-Criterio", "Participantes")}'>RECONOCIMIENTOS</a>"
         },
         [2] = new Dictionary<string, object>
         {
             ["Imagen"] = "~/Assets/images/carousel-02.jpg",
             ["Titulo"] = "¡POSTULA YA!",
-            ["SubTitulo"] = "EL RECONOCIMIENTO DE ENERGÍA EFICIENTE Y SOSTENIBLE",
+            ["SubTitulo"] = "EL RECONOCIMIENTO DE ENERGÍA EFICIENTE Y SOSTENIBLE (REES)",
             ["Descripcion"] = "Será otorgado a aquellas entidades públicas y/o privadas que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.",
             ["Html"] = $"<a class='btn btn-sm btn-sres-linea-blanca wow slideInUp' href='{Url.Action("Informacion", "Convocatoria")}'>CONVOCATORIAS</a><a class='btn btn-sm btn-sres-linea-azul ml-3 wow slideInUp' href='{Url.Action("Reconocimientos-y-Criterio", "Participantes")}'>RECONOCIMIENTOS</a>"
         },
@@ -58,7 +58,7 @@
 @section scripts_footer{
     <script src="@Url.Content("~/Assets/js/pages/inicio.js")"></script>
 }
-<div class="container-fluid">
+@*<div class="container-fluid">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -68,8 +68,20 @@
             </div>
         </div>
     </div>
+</div>*@
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center my-5 text-sres-azul estilo-03 wow slideInUp">El Reconocimiento de Energía Eficiente y Sostenible</h1>
+                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">El Reconocimiento de Energía Eficiente y Sostenible (REES) es un <b>distintivo otorgada por el Ministerio de Energía y Minas del Perú</b> a través de su órgano directivo la Dirección General de Eficiencia Energética, a aquellas entidades que demuestren un alto compromiso y liderazgo en el uso eficiente y responsable de la energía.</p>
+                <p class="text-justify mb-4 estilo-01 text-sres-gris wow slideInUp">Con él se busca reconocer a <b>entidades y empresas del Estado</b>, así como <b>a las empresas privadas  a nivel nacional, que integran en su cultura organizacional el óptimo uso responsable y sostenible de la energía</b>, así como el desarrollo de la eficiencia y gestión energética implementada en sus instalaciones y procesos, permitiendo así, incentivar al ahorro de energía primaria, reducción de costos energéticos y aumentar su competitividad.</p>
+                <p class="text-justify mb-5 estilo-01 text-sres-gris wow slideInUp">De esta manera estas organizaciones suman a los esfuerzos del Estado por conseguir la eficiencia energética, así como reducir la emisión de gases de efecto invernadero, en cumplimiento de las medidas de adaptación y mitigación expresadas en las Contribuciones Nacionalmente Determinadas (NDC).</p>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="container-fluid set-bg franja" data-setbg="@Url.Content("~/Assets/images/reunion_acuerdo_paris.png")">
+@*<div class="container-fluid set-bg franja" data-setbg="@Url.Content("~/Assets/images/reunion_acuerdo_paris.png")">
     <div class="container">
         <div class="row">
             <div class="offset-1 col-10">
@@ -82,71 +94,29 @@
             </div>
         </div>
     </div>
-</div>
-@*<div class="container-fluid my-5">
+</div>*@
+<div class="container-fluid set-bg franja" data-setbg="@Url.Content("~/Assets/images/reunion_acuerdo_paris.png")">
     <div class="container">
         <div class="row">
-            <div class="col-12 mb-5">
-                <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">OBJETIVO</h2>
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">El Sello de Reconocimiento de Energía sostenible busca <b>identificar y premiar</b> cada dos años a entidades del sector público y privado a nivel nacional en el desarrollo de la eficiencia y gestión energética implementada en sus instalaciones y procesos, permitiendo así, <b>incentivar al ahorro de energía primaria</b>, <b>reducción de costos energéticos</b> y <b>aumentar su competitividad</b>, <b>además de la reducción de gases de efecto invernadero</b>.</p>
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">En ese sentido el Sello de reconocimiento de energía sostenible es una distinción que premia al esfuerzo de las entidades, categorizada en tres niveles: <a href="@Url.Action("Categoria","Participantes")" class="text-sres-verde">Oro, Plata y Bronce</a>, a los cuales se acceden <b>mediante el cumplimiento de 8 criterios</b>. Asimismo el Sello permite reconocer a las entidades por la reducción de emisiones de CO<sub>2</sub>, por aparte a las Contribuciones Nacionales Determinadas (NDC)</p>
-            </div>
-            <div class="col-12 mb-5">
-                <div class="p-2 my-4 estilo-04 text-sres-verde text-center wow slideInUp">Criterios para alcanzar Categorías y Estrellas de recocnocimiento de energía sostenible</div>
+            <div class="offset-1 col-10">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
-                        <img class="criterios-evaluacion img-fluid" src="@Url.Content("~/Assets/images/criterio-01.png")">
-                        <div class="estilo-01 text-sres-verde">Ahorro de energía eléctrica total</div>
-                        <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada que ha medido su ahorro energético (mínimo 1 año) después de la implementación de mejora de eficiencia energética. Este porcentaje de ahorro es el consumo reducido por la medida implementada respecto al consumo total de energía eléctrica de la organización. Este reconocimiento brinda puntaje para alcanzar la categoría deseada y a su vez brinda puntaje para la obtención de estrellas que permite reconocer como han logrado reducir sus emisiones de Gases de Efecto Invernadero (GEI) en beneficio del ambiente.</p>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
-                        <img class="criterios-evaluacion img-fluid" src="@Url.Content("~/Assets/images/criterio-02.png")">
-                        <div class="estilo-01 text-sres-verde">Ahorro de consumo de combustible</div>
-                        <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada que ha medido su ahorro de combustible (mínimo 1 año) obtenida a partir de una implementación de mejora de eficiencia energética. Este porcentaje de ahorro es el consumo reducido por la medida implementada respecti al consumo total de combustible de la organzación. Este reconocimiento brinda puntaje para alcanzar la categoría deseada y a su vez brinda puntaje para la obtención de estrellas que permite reconocer como han logrado reducir sus emisiones de Gases de Efecto Invernadero (GEI) en beneficio del ambiente.</p>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
-                        <img class="criterios-evaluacion img-fluid" src="@Url.Content("~/Assets/images/criterio-03.png")">
-                        <div class="estilo-01 text-sres-verde">Personal dedicados a Gestión de la Energía</div>
-                        <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada que cuente con personal a tiempo completo con funciones relacionadas a la gestión de la energía, como resultado de la iniciativa o proyecto para la implementación de una medida de eficiencia energética. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.</p>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
-                        <img class="criterios-evaluacion img-fluid" src="@Url.Content("~/Assets/images/criterio-04.png")">
-                        <div class="estilo-01 text-sres-verde">Implementación de SGEn</div>
-                        <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada que se encuentre en el camino de la optimización del uso de la energía con el fin de buscar el uso racional y eficiente de la energía. A través de la gestión energética se detectan oportunidades de mejora en acpectos relacionados con la calidad y seguridad de los sistemas energéticos, logrando que los usuarios conozcan el sistema, identifiquen los puntos de consumo e implmentar mejoras, alcanzando altos niveles de eficiencia energética, en ese sentido el presente reconocimiento se les dará a las organizaciones que se establezcan una política y unos objetivos energéticos, para alcanzar dichos objetivos. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.</p>
-                    </div>                    
-                    <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
-                        <img class="criterios-evaluacion img-fluid" src="@Url.Content("~/Assets/images/criterio-05.png")">
-                        <div class="estilo-01 text-sres-verde">Desarrollo de Auditoría Energética</div>
-                        <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada por la realizaciónde de auditorías energéticas en cualquiera de sus tres niveles de esfuerzo, la cual debe haber sido realizada hasta dos (02) años de antiguedad con respecto a la fehca de su postulación. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.</p>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInLeft">
-                        <img class="criterios-evaluacion img-fluid" src="@Url.Content("~/Assets/images/criterio-06.png")">
-                        <div class="estilo-01 text-sres-verde">Huella de carbono</div>
-                        <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada que hayan registrado su huella de carbono en la plataforma Huella de Carbono Perú del MINAM, que permite reconocer oficialmente el esfuerzo de las organizaciones públicas y privadas en reducir sus emisiones de Gases de Efecto Invernadero (GEI), a través de la medición de sus emisiones y el reporte de las acciones para reducirlas y/o neutralizarlas. Este reconocimiento brinda puntaje para alcanzar la categoría deseada y a su vez brinda puntaje para la obtención de estrellas que permite reconocer como han logrado reducir sus emisiones de Gases de Efecto Invernadero (GEI) en beneficio del ambiente.</p>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
-                        <img class="criterios-evaluacion img-fluid" src="@Url.Content("~/Assets/images/criterio-07.png")">
-                        <div class="estilo-01 text-sres-verde">Fortalecimiento de capacidades</div>
-                        <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada por la realización de actividades de promoción y difusión del uso de la energía y cambio climático en sus intalaciones. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.</p>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 text-center my-2 wow slideInRight">
-                        <img class="criterios-evaluacion img-fluid" src="@Url.Content("~/Assets/images/criterio-08.png")">
-                        <div class="estilo-01 text-sres-verde">Igualdad de género</div>
-                        <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada que cuente con personal femenino en puestos de toma de decisión dentro de las actividades asociadas a la gestión de la energía. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.</p>
+                    <div class="col-lg-4 col-ms-12 col-sm-12 d-flex justify-content-center"><img class="wow slideInLeft" src="@Url.Content("~/Assets/images/rees_reconocimientos.png")" alt="Reconocimientos REES"></div>
+                    <div class="col-lg-8 col-ms-12 col-sm-12 mt-5 mt-lg-0 d-flex align-items-center text-white text-justify barra-blanca">
+                        <p class="wow slideInRight">El Reconocimiento de Energía Eficiente y Sostenible es un distintivo que incrementa la competitividad de la entidad, añade valor a la marca en la percepción de sus clientes, otras entidades de la competencia, y su entorno.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>*@
+</div>
 <div class="container-fluid my-5">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">OBJETIVO</h2>
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">El reconocimiento de energía eficiente y sostenible busca <b>identificar y premiar</b> cada dos años a organizaciones del sector público y privado a nivel nacional en el desarrollo de la eficiencia y gestión energética implementada en sus instalaciones y procesos, permitiendo así, <b>incentivar al ahorro de energía primaria</b>, <b>reducción de costos energéticos</b> y <b>aumentar su competitividad</b>, <b>además de la reducción de gases de efecto invernadero</b>.</p>
+                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">El Reconocimiento de Energía Eficiente y Sostenible (REES) busca identificar y premiar a entidades y empresas del Estado, así como en las empresas privadas a nivel nacional en, además de la reducción de gases de efecto invernadero.</p>
                 <!--p.text-justify.estilo-01.text-sres-gris.wow.slideInUp El Sello de reconocimiento de energía sostenible es una distinción que premia al esfuerzo de las entidades, categorizada en tres niveles: <a href="./categorias-y-reconocimientos.html" class="text-sres-verde">Oro, Plata y Bronce</a>, a los cuales se acceden <b>mediante el cumplimiento de 8 criterios</b>-->
-                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">En ese sentido el reconocimiento de energía eficiente y sostenible es una distinción que premia al esfuerzo de las entidades, categorizada en tres niveles: <a href="@Url.Action("Categoria","Participantes")" class="text-sres-verde">Oro, Plata y Bronce</a>, a los cuales se acceden <b>mediante el cumplimiento de 8 criterios</b>. Asimismo el Sello permite reconocer a las entidades por la reducción de emisiones de CO<sub>2</sub>, por aparte a las Contribuciones Nacionales Determinadas (NDC)</p>
+                <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Estas entidades asumen un compromiso, que cumplen y desarrollan obteniendo resultados cuantificables, dando evidencia de las buenas prácticas y <b>destacándose entre otras del mismo rubro</b>. Estos esfuerzos generan finalmente una percepción positiva entre sus clientes y la sociedad.</p>
             </div>
         </div>
     </div>
@@ -155,24 +125,46 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-12 col-sm-12">
-                <div class="row">
+                @*<div class="row">
                     <div class="col-12 mb-5">
                         <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">BENEFICIOS</h2>
                         <p class="text-justify estilo-01 text-sres-gris wow slideInUp">La integración de mejoras para alcanzar la gestión sostenible de los recursos energéticos trae numerosos beneficios a la entidad que las implementa: <b>integración de tecnologías modernas y limpias</b>; mejora de los indicadores de desempeño energético, reducción de costos en la facturación mensual por consumo de energía; <b>promoción y uso de las energías renovables</b>, y <b>reducción de emisiones de CO2</b>. Además, aporta a la mejora del clima laboral y de las relaciones interpersonales, al asumir compromisos por actividades desarrolladas con el mismo fin.</p>
                         <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Asimismo, el reconocimiento de energía eficiente y sostenible es un <b>distintivo que incrementa la competitividad de la entidad</b>,<b> añade valor a la marca en la percepción de sus clientes</b>, otras entidades de la competencia, y su entorno.</p>
                     </div>
-                </div>
+                </div>*@
                 <div class="row">
+                    <div class="col-12 mb-5">
+                        <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInLeft">BENEFICIOS</h2>
+                        <p class="text-justify estilo-01 text-sres-gris wow slideInLeft">La integración de mejoras para alcanzar la gestión sostenible de los recursos energéticos trae numerosos beneficios a la entidad que las implementa:</p>
+                        <p class="text-justify estilo-01 text-sres-gris wow slideInUp">
+                            <ul>
+                                <li class="estilo-01 text-sres-gris wow slideInUp">Integración de tecnologías modernas y limpias</li>
+                                <li class="estilo-01 text-sres-gris wow slideInUp">Mejora de los indicadores de desempeño energético</li>
+                                <li class="estilo-01 text-sres-gris wow slideInUp">Reducción de costos en la facturación mensual por consumo de energía</li>
+                                <li class="estilo-01 text-sres-gris wow slideInUp">Promoción y uso de las energías renovables  y</li>
+                                <li class="estilo-01 text-sres-gris wow slideInUp">Reducción de emisiones de CO<sub>2</sub></li>
+                            </ul>
+                        </p>
+                        <p class="text-justify estilo-01 text-sres-gris wow slideInLeft">Además, aporta a la mejora del clima laboral y de las relaciones interpersonales, al asumir compromisos por actividades desarrolladas con el mismo fin.</p>
+                    </div>
+                </div>
+                @*<div class="row">
                     <div class="col-12 mb-5">
                         <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">IMPORTANCIA</h2>
                         <p class="text-justify estilo-01 text-sres-gris wow slideInUp">El <b>REES destaca a las entidades</b> que buscan la mejora continua del desempeño energético y así contribuyen al desarrollo sostenible, promoviendo la reducción de emisiones de GEI, y por lo tanto, <b>aportan al cumplimiento de metas de las NDC</b>.</p>
                         <p class="text-justify estilo-01 text-sres-gris wow slideInUp">Estas entidades asumen un compromiso, que cumplen y desarrollan obteniendo resultados cuantificables, dando evidencia de las buenas prácticas y <b>destacándose entre otras del mismo rubro</b>. Estos esfuerzos generan finalmente una percepción positiva entre sus clientes y la sociedad.</p>
                     </div>
-                </div>
-                <div class="row">
+                </div>*@
+                @*<div class="row">
                     <div class="col-12 mb-5">
                         <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInUp">MARCO LEGAL</h2>
                         <p class="text-justify estilo-01 text-sres-gris wow slideInUp">En marco del <b>Decreto Supremo Nº 053-2007-EM</b> reglamento de la Ley de Promoción del Uso Eficiente de la Energía - <b>Ley Nº 27345</b>, según lo señalado en el <b>Artículo N°9</b>, el Ministerio de Energía y Minas propondrá criterios de evaluación para premios nacionales, en ese sentido la Dirección General de Eficiencia Energética en cumplimiento de lo señalado ha desarrollado esta herramienta para reconocimiento de energía sostenible, con el fin de promover iniciativas por parte de instituciones públicas y privadas para mitigar emisiones mediante eficiencia energética, las cuales serán reportadas en las contribuciones Nacionalmente Determinadas del Perú (<b>NDC – Perú</b>) presentadas en la COP 21 en diciembre del 2015, la mismas que fueron ratificadas en abril del 2016, mediante <b>Decreto Supremo Nº 058-2016-RE</b>.</p>
+                    </div>
+                </div>*@
+                <div class="row">
+                    <div class="col-12 mb-5">
+                        <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado wow slideInLeft">MARCO LEGAL</h2>
+                        <p class="text-justify estilo-01 text-sres-gris wow slideInLeft">En marco del <b>Decreto Supremo Nº 053-2007-EM</b> reglamento de la Ley de Promoción del Uso Eficiente de la Energía - <b>Ley Nº 27345</b>, según lo señalado en el <b>Artículo N°9</b>, el Ministerio de Energía y Minas propondrá criterios de evaluación para premios nacionales, en ese sentido la Dirección General de Eficiencia Energética en cumplimiento de lo señalado ha desarrollado esta herramienta para reconocimiento de energía sostenible, con el fin de promover iniciativas por parte de instituciones públicas y privadas para mitigar emisiones mediante eficiencia energética, las cuales serán reportadas en las contribuciones Nacionalmente Determinadas del Perú (<b>NDC – Perú</b>) presentadas en la COP 21 en diciembre del 2015, la mismas que fueron ratificadas en abril del 2016, mediante <b>Decreto Supremo Nº 058-2016-RE</b>.</p>
                     </div>
                 </div>
             </div>

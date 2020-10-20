@@ -44,6 +44,8 @@ namespace sres.da
                 p.Add("PI_NOMBRE", entidad.NOMBRE);
                 p.Add("PI_DESCRIPCION", entidad.DESCRIPCION);
                 p.Add("PI_ARCHIVO_BASE", entidad.ARCHIVO_BASE);
+                p.Add("PI_DESCRIPCION_CORTA", entidad.DESCRIPCION_CORTA);
+                p.Add("PI_DESCRIPCION_VALOR", entidad.DESCRIPCION_VALOR);
                 p.Add("PI_ID_CATEGORIA", entidad.ID_CATEGORIA);
                 p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 p.Add("PI_ID_GET", 0, OracleDbType.Int32, ParameterDirection.Output);
