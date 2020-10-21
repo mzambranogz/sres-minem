@@ -6,6 +6,7 @@
     $('.btnPreviousPagination').on('click', btnPreviousPaginationClick);
     $('.btnNextPagination').on('click', btnNextPaginationClick);
     $('.btnLastPagination').on('click', btnLastPaginationClick);
+    $('#cbo-sector').on('change', changeSector);
     cambioNav();
 
     $("#btn-buscar").click(consultar);
@@ -14,30 +15,30 @@
 })
 
 var cargarCombos = () => {
-    //let urlListarComboTipoEmpresa = `${baseUrl}api/subsectortipoempresa/listasubsetortipoempresa?idSector=${idSectorLogin}`;
-    //let urlListarComboCriterio = `${baseUrl}api/criterio/obtenerallcriterio`;
-    //let urlListarComboMedMit = `${baseUrl}api/medidamitigacion/obtenerallmedidamitigacion`;
-    //let urlListarComboPeriodo = `${baseUrl}api/anno/obtenerallanno`;
+    let urlListarComboTipoEmpresa = `${baseUrl}api/subsectortipoempresa/listasubsetortipoempresa?idSector=${$('#cbo-sector').val()}`;
+    let urlListarComboCriterio = `${baseUrl}api/criterio/obtenerallcriterio`;
+    let urlListarComboMedMit = `${baseUrl}api/medidamitigacion/obtenerallmedidamitigacion`;
+    let urlListarComboPeriodo = `${baseUrl}api/anno/obtenerallanno`;
     let urlListarComboInsignia = `${baseUrl}api/insignia/obtenerallinsignia`;
     let urlListarComboEstrella = `${baseUrl}api/estrella/obtenerallestrella`;
     let urlListarSectorPorEstado = `${baseUrl}api/sector/listarsectorporestado?flagEstado=1`;
 
     Promise.all([
-            //fetch(urlListarComboTipoEmpresa),
-            //fetch(urlListarComboCriterio),
-            //fetch(urlListarComboMedMit),
-            //fetch(urlListarComboPeriodo),
+            fetch(urlListarComboTipoEmpresa),
+            fetch(urlListarComboCriterio),
+            fetch(urlListarComboMedMit),
+            fetch(urlListarComboPeriodo),
             fetch(urlListarComboInsignia),
             fetch(urlListarComboEstrella),
             fetch(urlListarSectorPorEstado)
     ])
     .then(r => Promise.all(r.map(v => v.json())))
-    //.then(([listaTipoEmpresa, listaCriterio, listaMedMit, listaPeriodo, listaInsignia, listaEstrella]) => {
-    .then(([listaInsignia, listaEstrella, listaSector]) => {
-        //cargarComboTipoEmpresa('#cbo-categoria', listaTipoEmpresa);
-        //cargarComboCriterio('#cbo-criterio', listaCriterio);
-        //cargarComboMedidaMitigacion('#cbo-medmit', listaMedMit);
-        //cargarComboPeriodo('#cbo-periodo', listaPeriodo);
+    .then(([listaTipoEmpresa, listaCriterio, listaMedMit, listaPeriodo, listaInsignia, listaEstrella, listaSector]) => {
+    //.then(([listaInsignia, listaEstrella, listaSector]) => {
+        cargarComboTipoEmpresa('#cbo-categoria', listaTipoEmpresa);
+        cargarComboCriterio('#cbo-criterio', listaCriterio);
+        cargarComboMedidaMitigacion('#cbo-medmit', listaMedMit);
+        cargarComboPeriodo('#cbo-periodo', listaPeriodo);
         cargarComboInsignia('#cbo-insignia', listaInsignia);
         cargarComboEstrella('#cbo-estrellas', listaEstrella);
         cargarComboSector('#cbo-sector', listaSector);
@@ -152,7 +153,7 @@ var renderizar = (data, cantidadCeldas) => {
             let colCombustible = `<td data-encabezado="Ahorro de combustible"><div class="text-right">${formatoMiles(x.COMBUSTIBLE)}</div></td>`;
             let colEmisiones = `<td data-encabezado="Reducción de emisiones"><div class="text-right">${formatoMiles(x.EMISIONES)}</div></td>`;            
             let colEstrella = `<td class="text-center" data-encabezado="Medida NDC"><i class="fas fa-medal fa-2x"></i></td>`;
-            let btnVerFicha = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Participantes/${x.INSCRIPCION.INSTITUCION.ID_INSTITUCION}/Reconocimiento">Ver</a>`;
+            let btnVerFicha = `<a class="btn btn-sm btn-success w-100" href="${baseUrl}Participantes/${x.INSCRIPCION.INSTITUCION.ID_INSTITUCION}/Reconocimiento"><i class="fas fa-eye mr-1"></i>Ver ficha</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Ficha">${btnVerFicha}</td>`;
             //let fila = `<tr>${colLogo}${colSello}${colRazonSocial}${colPuntaje}${colEmisiones}${colEstrella}${colOpciones}</tr>`;
             let fila = `<tr>${colLogo}${colSello}${colRazonSocial}${colPuntaje}${colEnergia}${colCombustible}${colEmisiones}${colOpciones}</tr>`;
@@ -196,4 +197,15 @@ var cambioNav = () => {
 
 function formatoMiles(n) { //add20
     return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+}
+
+var changeSector = () => {
+    if ($('#cbo-sector').val() == null){ $("#cbo-categoria").html("<option>Todos</option>"); return;}
+    let urlListarComboTipoEmpresa = `${baseUrl}api/subsectortipoempresa/listasubsetortipoempresa?idSector=${$('#cbo-sector').val()}`;
+
+    fetch(urlListarComboTipoEmpresa)
+    .then(r => r.json())
+    .then(j => {
+        cargarComboTipoEmpresa("#cbo-categoria",j);
+    });
 }

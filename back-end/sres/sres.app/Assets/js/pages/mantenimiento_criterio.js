@@ -131,11 +131,12 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
             let colNombres = `<td class="text-left" data-encabezado="Nombre">${x.NOMBRE}</td>`;
             let colCategoria = `<td class="text-center" data-encabezado="Categoría">${x.CATEGORIA}</td>`;
             let colDescripcion = `<td data-encabezado="Descripción">${x.DESCRIPCION == null ? '' : x.DESCRIPCION}</td>`;
+            let colDescripcionCorta = `<td data-encabezado="Descripción corta">${x.DESCRIPCION_CORTA == null ? '' : x.DESCRIPCION_CORTA}</td>`;
             let colImagen = `<td class="text-center" data-encabezado="Imagen"><img src="${baseUrl}${$('#ruta').val().replace('{0}', x.ID_CRITERIO)}/${x.ARCHIVO_BASE == null ? '' : x.ARCHIVO_BASE}" width="50%" height="auto"></td>`;
             let btnCambiarEstado = `${[0, 1].includes(x.FLAG_ESTADO) ? "" : `<a class="dropdown-item estilo-01 btnCambiarEstado" href="#" data-id="${x.ID_CRITERIO}" data-estado="${x.FLAG_ESTADO}"><i class="fas fa-edit mr-1"></i>Eliminar</a>`}`;
             let btnEditar = `<a class="dropdown-item estilo-01 btnEditar" href="#" data-id="${x.ID_CRITERIO}" data-toggle="modal" data-target="#modal-mantenimiento"><i class="fas fa-edit mr-1"></i>Editar</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Gestión"><div class="btn-group w-100"><a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a><div class="dropdown-menu">${btnCambiarEstado}${btnEditar}</div></div></td>`;
-            let fila = `<tr>${colNro}${colCodigo}${colNombres}${colCategoria}${colDescripcion}${colImagen}${colOpciones}</tr>`;
+            let fila = `<tr>${colNro}${colCodigo}${colNombres}${colCategoria}${colDescripcion}${colDescripcionCorta}${colImagen}${colOpciones}</tr>`;
             return fila;
         }).join('');
     };
@@ -180,6 +181,8 @@ var limpiarFormulario = () => {
     $('#frm').removeData();
     $('#txt-nombre').val('');
     $('#txa-descripcion').val('');
+    $('#txa-descripcion-corta').val('');
+    $('#txt-descripcion-valor').val('');
     $('#txt-imagen').val('');
     $('#fle-imagen').val('');
     $('#fle-imagen').removeData('file');
@@ -207,6 +210,8 @@ var cargarDatos = (data) => {
     $('#frm').data('id', data.ID_CRITERIO);
     $('#txt-nombre').val(data.NOMBRE);
     $('#txa-descripcion').val(data.DESCRIPCION);
+    $('#txa-descripcion-corta').val(data.DESCRIPCION_CORTA == null ? '' : data.DESCRIPCION_CORTA);
+    $('#txt-descripcion-valor').val(data.DESCRIPCION_VALOR == null ? '' : data.DESCRIPCION_VALOR);
     $('#cbo-categoria').val(data.ID_CATEGORIA);
     $('#txt-imagen').val(data.ARCHIVO_BASE);
     data.ARCHIVO_CONTENIDO == null ? '' : $(`#fle-imagen`).data('file', data.ARCHIVO_CONTENIDO);

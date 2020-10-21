@@ -3543,7 +3543,9 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
             NOMBRE,
             DESCRIPCION,
             ARCHIVO_BASE,
-            ID_CATEGORIA --ADD
+            ID_CATEGORIA, --ADD
+            DESCRIPCION_CORTA, --ADD
+            DESCRIPCION_VALOR --ADD
     FROM  T_GENM_CRITERIO
     WHERE ID_CRITERIO = PI_ID_CRITERIO; 
   END USP_SEL_GET_CRITERIO;
@@ -3592,6 +3594,8 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_MANTENIMIENTO" AS
                                 C.DESCRIPCION,
                                 C.ARCHIVO_BASE,
                                 CAT.NOMBRE CATEGORIA,
+				C.DESCRIPCION_CORTA,
+                                C.DESCRIPCION_VALOR,
                                 ROW_NUMBER() OVER (ORDER BY ' || vCOLUMNA || ' ' || PI_ORDEN ||') AS ROWNUMBER,'
                                 || vPAGINA_TOTAL || ' AS TOTAL_PAGINAS,'
                                 || vPAGINA_ACTUAL || ' AS PAGINA,'
@@ -7807,7 +7811,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
                     END ||
                     CASE
                       WHEN PI_ID_CRITERIO IS NOT NULL THEN
-                        PI_ID_CRITERIO || ' IN (SELECT ID_CRITERIO FROM T_GEND_CONVOCATORIA_CRITERIO WHERE ID_CONVOCATORIA = C.ID_CONVOCATORIA AND FLAG_ESTADO = ''1'') AND '
+                        PI_ID_CRITERIO || ' IN (SELECT ID_CRITERIO FROM T_GEND_CONV_CRI_PUNT_INSC WHERE ID_CONVOCATORIA = C.ID_CONVOCATORIA AND FLAG_ESTADO = ''1'') AND '
                     END ||
                     CASE
                       WHEN PI_ID_MEDMIT IS NOT NULL THEN
@@ -7894,7 +7898,7 @@ CREATE OR REPLACE PACKAGE BODY SISSELLO."PKG_SISSELLO_VERIFICACION" AS
                           END ||
                           CASE
                             WHEN PI_ID_CRITERIO IS NOT NULL THEN
-                              PI_ID_CRITERIO || ' IN (SELECT ID_CRITERIO FROM T_GEND_CONVOCATORIA_CRITERIO WHERE ID_CONVOCATORIA = C.ID_CONVOCATORIA AND FLAG_ESTADO = ''1'') AND '
+                              PI_ID_CRITERIO || ' IN (SELECT ID_CRITERIO FROM T_GEND_CONV_CRI_PUNT_INSC WHERE ID_CONVOCATORIA = C.ID_CONVOCATORIA AND FLAG_ESTADO = ''1'') AND '
                           END ||
                           CASE
                             WHEN PI_ID_MEDMIT IS NOT NULL THEN

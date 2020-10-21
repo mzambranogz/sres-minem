@@ -388,11 +388,6 @@
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
-    <Content Include="Files\Criterios\1\Imagen\criterio-01.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Files\Criterios\2\Imagen\criterio-02.png" />
-    <Content Include="Files\Criterios\3\Imagen\criterio-09.png" />
     <Content Include="Files\Criterios\4\Imagen\criterio-04.png" />
     <Content Include="Files\Criterios\5\Imagen\criterio-05.png" />
     <Content Include="Files\Criterios\6\Imagen\criterio-07.png" />
@@ -776,6 +771,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Files\Criterios\1\Imagen\" />
+    <Folder Include="Files\Criterios\2\Imagen\" />
+    <Folder Include="Files\Criterios\3\Imagen\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\_Base\" />
   </ItemGroup>

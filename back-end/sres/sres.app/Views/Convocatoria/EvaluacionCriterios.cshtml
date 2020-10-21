@@ -7,15 +7,17 @@
     List<CriterioBE> listaCriterio = (List<CriterioBE>)ViewData["listaCriterio"];
     ConvocatoriaEtapaInscripcionBE convetainsc = (ConvocatoriaEtapaInscripcionBE)ViewData["convetainsc"];
     ConvocatoriaCriterioPuntajeBE convcripuntaje = (ConvocatoriaCriterioPuntajeBE)ViewData["convcripuntaje"];
-    int idInscripcion = (int)ViewData["idinscripcion"];
+    int idInscripcion = (int)ViewData["idinscripcion"], flag_categoria = 0;
     decimal total_criterio = listaCriterio.Count();
     decimal ingresados = 0;
     foreach (var cri in listaCriterio) { if (cri.INGRESO_DATOS > 0) { ingresados++; } }
+    foreach (var cri in listaCriterio) { if (cri.ID_CATEGORIA == 1) { if (cri.INGRESO_DATOS > 0) { flag_categoria = 1; } } }
     decimal porcentaje_avance = Decimal.Round(ingresados * 100 / total_criterio);
     string pathFormat = AppSettings.Get<string>("Path.Criterio");
     string obs = convetainsc == null ? "" : convetainsc.OBSERVACION == null ? "" : convetainsc.OBSERVACION;
     int evaluacion = convetainsc == null ? 0 : convetainsc.OBSERVACION == null ? 0 : convetainsc.ID_TIPO_EVALUACION;
     string criteriosdescripcion = AppSettings.Get<string>("Criterios.DescripcionEva");
+    string linea_categoria = flag_categoria == 0 ? "border-linea" : "border-linea-verde";
 }
 
 @section scripts_footer{
@@ -113,7 +115,7 @@
         </div>
         <div class="container-fluid my-5">
             <div class="container">
-                <div class="row">
+                @*<div class="row">
                     @if (listaCriterio != null)
                     {
                         if (listaCriterio.Count > 0)
@@ -142,6 +144,79 @@
                              }
                          }
                      }
+                </div>*@
+
+                <div class="row mb-5">
+                    <h2 class="p-2 my-4 estilo-04 text-center text-sres-azul w-100" style="z-index: 1;">CRITERIOS PARA ALCANZAR CATEGORÍAS DEl RECONOCIMIENTO DE ENERGÍA eficiente y sostenible</h2>
+                </div>
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="offset-lg-2 col-lg-3 offset-md-3 col-md-3 offset-sm-3 col-sm-6 text-center my-2 d-flex">
+                            <i class="fas fa-2x fa-check-circle text-sres-verde indicador"></i>
+                            <img class="criterios-evaluacion img-fluid w-100 shadow @linea_categoria" src="@Url.Content("~/Assets/images/criterio-01.png")" data-anidado="3">
+                            <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada que ha medido su ahorro energético (mínimo 1 año) después de la implementación de mejora de eficiencia energética. Este porcentaje de ahorro es el consumo reducido por la medida implementada respecto al consumo total de energía eléctrica de la organización. Este reconocimiento brinda puntaje para alcanzar la categoría deseada y a su vez brinda puntaje para la obtención de estrellas que permite reconocer como han logrado reducir sus emisiones de Gases de Efecto Invernadero (GEI) en beneficio del ambiente.</p>
+                        </div>
+                        <div class="col-lg-5 col-md-6 col-sm-12">
+                            <a class="estilo-02 text-sres-azul mt-3 text-left" href="#" data-toggle="modal" data-target="#modal-criterios-anidado">Reducción de Consumo Energético</a>
+                            <div class="dropdown-divider"></div>
+                            <div class="estilo-10 text-sres-verde text-left">Equivale al 60% del puntaje total</div>
+                            <div class="estilo-01 text-sres-gris mt-1 text-justify mt-3">Es el principal criterio para la obtención del Reconocimiento del Energía Eficiente y Sostenible. Bajo él, se consideran todas las acciones que resultan en ahorro de energía eléctrica y ahorro de energía térmica, sumando para el puntaje de valoración</div>
+                            <!--.estilo-01.text-white.mt-1.text-justify.mt-2 Estimado postulante el 50% del puntaje para adquirir categoría del Reconocimiento se logrará con las acciones de ahorro de energía.-->
+                            <div class="estilo-01 mt-1 text-justify mt-2">Este criterio equivale al 60% del puntaje potencial total para adquirir la categoría de reconocimiento con las acciones de reducción de ahorro energético.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <h2 class="p-2 mt-4 estilo-04 text-sres-azul text-center w-100" style="z-index: 1;">OTRAS ACCIONES DE GESTIÓN EFICIENTE Y SOSTENIBLE DE LA ENERGÍA QUE APORTAN A LA VALORACIÓN DE LA POSTULACIÓN</h2>
+                    <div class="estilo-01 text-center w-100" style="z-index: 1;">El otro 40% del puntaje potencial se puede obtener a través de los siguientes 4 criterios.</div>
+                </div>
+                <div class="container">
+                    <div class="row mb-5">
+
+                        @if (listaCriterio != null)
+                    {
+                        if (listaCriterio.Count > 0)
+                        {
+                            string bg = "";
+                            string linea = "";
+                            string icono = "";
+                            string pathDirectoryRelative = "";
+                            foreach (CriterioBE item in listaCriterio)
+                            {
+                                if (item.ID_CATEGORIA == 2)
+                                {
+                                    {
+                                        bg = item.INGRESO_DATOS == 0 ? "bg-sres-claro" : "bg-sres-verde-claro";
+                                        linea = item.INGRESO_DATOS == 0 ? "border-linea" : "border-linea-verde";
+                                        icono = item.INGRESO_DATOS == 0 ? "" : "<i class='fas fa-check-circle text-sres-verde indicador'></i>";
+                                        pathDirectoryRelative = string.Format(pathFormat, item.ID_CRITERIO);
+                                    }
+
+                                        <div class="col-lg-6 col-md-6 col-sm-12 text-center my-3">
+                                            <div class="row">
+                                                <div class="col-lg-4 text-center text-lg-right">
+                                                    <a href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Inscripcion/{idInscripcion}/EvaluacionCriterio/{item.ID_CRITERIO}")">
+                                                        @Html.Raw(icono)
+                                                        <img class="criterios-evaluacion img-fluid shadow @linea" src="@Url.Content($"~/{pathDirectoryRelative}/{item.ARCHIVO_BASE}")">
+                                                    </a>
+                                                    <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada que se encuentre en el camino de la optimización del uso de la energía con el fin de buscar el uso racional y eficiente de la energía. A través de la gestión energética se detectan oportunidades de mejora en acpectos relacionados con la calidad y seguridad de los sistemas energéticos, logrando que los usuarios conozcan el sistema, identifiquen los puntos de consumo e implmentar mejoras, alcanzando altos niveles de eficiencia energética, en ese sentido el presente reconocimiento se les dará a las organizaciones que se establezcan una política y unos objetivos energéticos, para alcanzar dichos objetivos. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.</p>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <a href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Inscripcion/{idInscripcion}/EvaluacionCriterio/{item.ID_CRITERIO}")">
+                                                        <div class="estilo-02 text-sres-azul text-left">@item.NOMBRE</div>
+                                                    </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <div class="estilo-10 text-sres-verde text-left">@item.DESCRIPCION_VALOR</div>
+                                                    <div class="estilo-01 text-sres-gris text-justify mt-3">@item.DESCRIPCION_CORTA</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                }
+                            }
+                        }
+                    </div>
                 </div>
 
                 <div class="row">
@@ -224,7 +299,7 @@ else
 </div>
 <div class="container-fluid my-5">
     <div class="container">
-        <div class="row">
+        @*<div class="row">
             @if (listaCriterio != null)
             {
                 if (listaCriterio.Count > 0)
@@ -253,8 +328,80 @@ else
                      }
                 }
             }
-        </div>
+        </div>*@
 
+        <div class="row mb-5">
+            <h2 class="p-2 my-4 estilo-04 text-center text-sres-azul w-100" style="z-index: 1;">CRITERIOS PARA ALCANZAR CATEGORÍAS DEl RECONOCIMIENTO DE ENERGÍA eficiente y sostenible</h2>
+        </div>
+        <div class="container">
+            <div class="row mb-5">
+                <div class="offset-lg-2 col-lg-3 offset-md-3 col-md-3 offset-sm-3 col-sm-6 text-center my-2 d-flex">
+                    <i class="fas fa-2x fa-check-circle text-sres-verde indicador"></i>
+                    <img class="criterios-evaluacion img-fluid w-100 shadow @linea_categoria" src="@Url.Content("~/Assets/images/criterio-01.png")" data-anidado="3">
+                    <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada que ha medido su ahorro energético (mínimo 1 año) después de la implementación de mejora de eficiencia energética. Este porcentaje de ahorro es el consumo reducido por la medida implementada respecto al consumo total de energía eléctrica de la organización. Este reconocimiento brinda puntaje para alcanzar la categoría deseada y a su vez brinda puntaje para la obtención de estrellas que permite reconocer como han logrado reducir sus emisiones de Gases de Efecto Invernadero (GEI) en beneficio del ambiente.</p>
+                </div>
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                    <a class="estilo-02 text-sres-azul mt-3 text-left" href="#" data-toggle="modal" data-target="#modal-criterios-anidado">Reducción de Consumo Energético</a>
+                    <div class="dropdown-divider"></div>
+                    <div class="estilo-10 text-sres-verde text-left">Equivale al 60% del puntaje total</div>
+                    <div class="estilo-01 text-sres-gris mt-1 text-justify mt-3">Es el principal criterio para la obtención del Reconocimiento del Energía Eficiente y Sostenible. Bajo él, se consideran todas las acciones que resultan en ahorro de energía eléctrica y ahorro de energía térmica, sumando para el puntaje de valoración</div>
+                    <!--.estilo-01.text-white.mt-1.text-justify.mt-2 Estimado postulante el 50% del puntaje para adquirir categoría del Reconocimiento se logrará con las acciones de ahorro de energía.-->
+                    <div class="estilo-01 mt-1 text-justify mt-2">Este criterio equivale al 60% del puntaje potencial total para adquirir la categoría de reconocimiento con las acciones de reducción de ahorro energético.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <h2 class="p-2 mt-4 estilo-04 text-sres-azul text-center w-100" style="z-index: 1;">OTRAS ACCIONES DE GESTIÓN EFICIENTE Y SOSTENIBLE DE LA ENERGÍA QUE APORTAN A LA VALORACIÓN DE LA POSTULACIÓN</h2>
+            <div class="estilo-01 text-center w-100" style="z-index: 1;">El otro 40% del puntaje potencial se puede obtener a través de los siguientes 4 criterios.</div>
+        </div>
+        <div class="container">
+            <div class="row mb-5">
+
+                @if (listaCriterio != null)
+                {
+                    if (listaCriterio.Count > 0)
+                    {
+                        string bg = "";
+                        string linea = "";
+                        string icono = "";
+                        string pathDirectoryRelative = "";
+                        foreach (CriterioBE item in listaCriterio)
+                        {
+                            if (item.ID_CATEGORIA == 2)
+                            {
+                                {
+                                    bg = item.INGRESO_DATOS == 0 ? "bg-sres-claro" : "bg-sres-verde-claro";
+                                    linea = item.INGRESO_DATOS == 0 ? "border-linea" : "border-linea-verde";
+                                    icono = item.INGRESO_DATOS == 0 ? "" : "<i class='fas fa-check-circle text-sres-verde indicador'></i>";
+                                    pathDirectoryRelative = string.Format(pathFormat, item.ID_CRITERIO);
+                                }
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 text-center my-3">
+                                    <div class="row">
+                                        <div class="col-lg-4 text-center text-lg-right">
+                                            <a href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Inscripcion/{idInscripcion}/EvaluacionCriterio/{item.ID_CRITERIO}")">
+                                                @Html.Raw(icono)
+                                                <img class="criterios-evaluacion img-fluid shadow @linea" src="@Url.Content($"~/{pathDirectoryRelative}/{item.ARCHIVO_BASE}")">
+                                            </a>
+                                            <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada que se encuentre en el camino de la optimización del uso de la energía con el fin de buscar el uso racional y eficiente de la energía. A través de la gestión energética se detectan oportunidades de mejora en acpectos relacionados con la calidad y seguridad de los sistemas energéticos, logrando que los usuarios conozcan el sistema, identifiquen los puntos de consumo e implmentar mejoras, alcanzando altos niveles de eficiencia energética, en ese sentido el presente reconocimiento se les dará a las organizaciones que se establezcan una política y unos objetivos energéticos, para alcanzar dichos objetivos. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.</p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <a href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Inscripcion/{idInscripcion}/EvaluacionCriterio/{item.ID_CRITERIO}")">
+                                                <div class="estilo-02 text-sres-azul text-left">@item.NOMBRE</div>
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <div class="estilo-10 text-sres-verde text-left">@item.DESCRIPCION_VALOR</div>
+                                            <div class="estilo-01 text-sres-gris text-justify mt-3">@item.DESCRIPCION_CORTA</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    }
+                }
+            </div>
+        </div>
         <div class="row">
             <div class="col-12">
                 <div class="form-group mt-5">
@@ -305,6 +452,63 @@ else
 </div>
 }
 
+
+<div class="modal fade" id="modal-criterios-anidado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="">
+                <div class="modal-header bg-sres-azul text-white">
+                    <h5 class="modal-title estilo-01" id="exampleModalLabel">CRITERIOS DE EVALUACIÓN</h5>
+                    <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+            </form>
+            <div class="modal-body medidas-modal">
+
+                @if (listaCriterio != null)
+                {
+                    if (listaCriterio.Count > 0)
+                    {
+                        string bg = "";
+                        string linea = "";
+                        string icono = "";
+                        string pathDirectoryRelative = "";
+                        foreach (CriterioBE item in listaCriterio)
+                        {
+                            if (item.ID_CATEGORIA == 1)
+                            {
+                                {
+                                    bg = item.INGRESO_DATOS == 0 ? "bg-sres-claro" : "bg-sres-verde-claro";
+                                    linea = item.INGRESO_DATOS == 0 ? "border-linea" : "border-linea-verde";
+                                    icono = item.INGRESO_DATOS == 0 ? "" : "<i class='fas fa-check-circle text-sres-verde indicador'></i>";
+                                    pathDirectoryRelative = string.Format(pathFormat, item.ID_CRITERIO);
+                                }
+
+                                <div class="row my-5">
+                                    <div class="col-lg-3 col-md-12 col-sm-12 text-center text-lg-right">
+                                        <a href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Inscripcion/{idInscripcion}/EvaluacionCriterio/{item.ID_CRITERIO}")">
+                                            @Html.Raw(icono)
+                                            <img class="9riterios-evaluacion img-fluid shadow p-3 @linea" src="@Url.Content($"~/{pathDirectoryRelative}/{item.ARCHIVO_BASE}")">
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-9 col-md-12 col-sm-12">
+                                        <a href="@Url.Content($"~/Convocatoria/{convocatoria.ID_CONVOCATORIA}/Inscripcion/{idInscripcion}/EvaluacionCriterio/{item.ID_CRITERIO}")">
+                                            <h2 class="p-2 mb-4 estilo-04 text-sres-azul rayado" id="criterio-titulo">@item.NOMBRE</h2>
+                                        </a>
+                                        <p class="text-justify estilo-01 text-sres-gris" id="criterio-parrafo">@item.DESCRIPCION_CORTA</p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                }
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     const idConvocatoria = @convocatoria.ID_CONVOCATORIA;
