@@ -16,7 +16,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/26/2020 14:36:03</publishTime>
     </File>
     <File Include="Assets/css/style.css">
-      <publishTime>09/30/2020 11:29:35</publishTime>
+      <publishTime>10/20/2020 00:12:17</publishTime>
     </File>
     <File Include="Assets/documentos/2° RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI %28TCO2%29.pdf">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -196,223 +196,241 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/images/001.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/002.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/003.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/004.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/005.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/006.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/01_registro_manual.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/02_registro_masivo.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/acuerdo_paris.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/android-chrome-512x512.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/banner-001.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/banner-002.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/banner-003.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/banner-004.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/banner-005.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/banner-006.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/banner.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-categorias.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-convocatoria.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-criterios.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-detalle.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-gracias.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-login.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-mantenimientos.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-participantes.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-premiacion.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-reconocimiento.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-registro.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-reportes.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg-terminos.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bg_footer.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/brillo.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/bronce.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/carousel-01.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/carousel-02.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/carousel-03.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/carousel-04.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/carousel-05.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/carousel-06.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/caso_01.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/caso_02.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/caso_03.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/caso_04.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/caso_05.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
+    </File>
+    <File Include="Assets/images/caso_06.png">
+      <publishTime>10/20/2020 00:12:17</publishTime>
     </File>
     <File Include="Assets/images/cinta.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/clave.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/colaboradores.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/convocatoria.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/criterio-01.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/criterio-02.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/criterio-02_old.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/criterio-03.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/criterio-04.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/criterio-04_old.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/criterio-05.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/criterio-06.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/criterio-07.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/criterio-08.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/criterio-08_old.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/criterio-09.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
+    </File>
+    <File Include="Assets/images/criterio-10.png">
+      <publishTime>10/20/2020 00:12:17</publishTime>
+    </File>
+    <File Include="Assets/images/criterio-11.png">
+      <publishTime>10/20/2020 00:12:17</publishTime>
+    </File>
+    <File Include="Assets/images/criterio-12.png">
+      <publishTime>10/20/2020 00:12:17</publishTime>
+    </File>
+    <File Include="Assets/images/criterio-13.png">
+      <publishTime>10/20/2020 00:12:17</publishTime>
     </File>
     <File Include="Assets/images/diagrama-01.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/diagrama.png">
       <publishTime>09/24/2020 18:20:05</publishTime>
     </File>
+    <File Include="Assets/images/diagrama_2.png">
+      <publishTime>10/20/2020 00:12:17</publishTime>
+    </File>
     <File Include="Assets/images/dos_estrella.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/dos_estrellas.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/empresa-00.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/empresa-01.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/empresa-02.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/empresa-03.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/empresa-04.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/empresa-05.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/empresa-06.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/faq.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/favicon-ini.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/favicon/android-chrome-192x192.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -508,169 +526,178 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/images/fondo_12_medidas.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/gei.png">
-      <publishTime>09/24/2020 18:06:07</publishTime>
+      <publishTime>09/24/2020 18:20:05</publishTime>
     </File>
     <File Include="Assets/images/Grupo 1045.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_01.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_02.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_03.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_04.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_05.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_06.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_amarillo_07.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_azul_01.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_rojo_01.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_rojo_02.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_verde_01.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/ico_nama_verde_02.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/lazo.png">
       <publishTime>09/24/2020 19:21:13</publishTime>
     </File>
     <File Include="Assets/images/log-sres-blanco.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/login-left.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo-blockchain-blanco.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo-gef-blanco.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo-minem-blanco.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo-minem.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo-nama-blanco.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo-pnud-blanco.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo_gef.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo_gef.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo_gef.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo_mrv_new_negro.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo_mrv_new_negro.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo_pnud.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo_pnud.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/logo_pnud.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/mrv-iso.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/oro.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/images/paneles.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/participantes.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/password-level-47px.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/plata.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/images/preguntas_frecuentes.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/preguntas_frecuentes_email.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
+    </File>
+    <File Include="Assets/images/proceso.png">
+      <publishTime>10/20/2020 00:12:17</publishTime>
     </File>
     <File Include="Assets/images/reconocimientos.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
+    </File>
+    <File Include="Assets/images/rees-iso.png">
+      <publishTime>10/20/2020 00:12:17</publishTime>
+    </File>
+    <File Include="Assets/images/rees_reconocimientos.png">
+      <publishTime>10/20/2020 00:12:17</publishTime>
     </File>
     <File Include="Assets/images/reunion_acuerdo_paris.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sector-privado.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sector-publico.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sello.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sello_new.svg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sin-foto.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sin-sres.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/images/slide-01.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/slide-02.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/slide-03.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/slide-04.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/slide-05.jpg">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres-iso.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/images/sres-logo.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres-logo_old.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -682,43 +709,43 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/images/sres_0.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres_bronce_0_star.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres_bronce_1_star.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres_bronce_2_star.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres_bronce_3_star.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres_oro_0_star.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres_oro_1_star.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres_oro_2_star.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres_oro_3_star.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres_plata_0_star.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres_plata_1_star.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres_plata_2_star.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/sres_plata_3_star.png">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>09/24/2020 09:56:23</publishTime>
     </File>
     <File Include="Assets/images/tres_estrella.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -802,7 +829,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 17:15:36</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento_criterio.js">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/21/2020 00:29:38</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento_criteriopuntaje.js">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -853,10 +880,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/js/pages/participantes.js">
-      <publishTime>10/02/2020 14:15:19</publishTime>
+      <publishTime>10/20/2020 23:54:50</publishTime>
     </File>
     <File Include="Assets/js/pages/participante_ficha.js">
-      <publishTime>09/26/2020 16:35:18</publishTime>
+      <publishTime>10/19/2020 17:48:03</publishTime>
     </File>
     <File Include="Assets/js/pages/preguntas_frecuentes.js">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -874,7 +901,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Assets/js/script.js">
-      <publishTime>09/24/2020 18:20:05</publishTime>
+      <publishTime>10/20/2020 00:12:17</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -941,6 +968,21 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="bin/Files/Criterios/1/Imagen/criterio-01.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
+    </File>
+    <File Include="bin/Files/Criterios/1/Imagen/criterio-11.png">
+      <publishTime>10/21/2020 01:25:25</publishTime>
+    </File>
+    <File Include="bin/Files/Criterios/2/Imagen/criterio-12.png">
+      <publishTime>10/21/2020 01:25:25</publishTime>
+    </File>
+    <File Include="bin/Files/Criterios/3/Imagen/criterio-13.png">
+      <publishTime>10/21/2020 01:25:25</publishTime>
+    </File>
+    <File Include="bin/Files/Criterios/5/Imagen/criterio-10.png">
+      <publishTime>10/21/2020 01:25:25</publishTime>
+    </File>
+    <File Include="bin/Files/Criterios/6/Imagen/criterio-05.png">
+      <publishTime>10/21/2020 01:25:25</publishTime>
     </File>
     <File Include="bin/Files/Criterios/LEER.txt">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -1072,19 +1114,19 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="bin/sres.app.dll">
-      <publishTime>10/07/2020 17:10:51</publishTime>
+      <publishTime>10/21/2020 01:29:57</publishTime>
     </File>
     <File Include="bin/sres.be.dll">
-      <publishTime>10/07/2020 17:10:45</publishTime>
+      <publishTime>10/21/2020 01:29:54</publishTime>
     </File>
     <File Include="bin/sres.da.dll">
-      <publishTime>10/07/2020 17:10:46</publishTime>
+      <publishTime>10/21/2020 01:29:55</publishTime>
     </File>
     <File Include="bin/sres.ln.dll">
-      <publishTime>10/07/2020 17:10:46</publishTime>
+      <publishTime>10/21/2020 01:29:55</publishTime>
     </File>
     <File Include="bin/sres.ut.dll">
-      <publishTime>10/07/2020 17:10:45</publishTime>
+      <publishTime>10/21/2020 01:29:54</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>09/24/2020 09:56:21</publishTime>
@@ -1122,8 +1164,14 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Files/Criterios/1/Imagen/criterio-01.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
+    <File Include="Files/Criterios/1/Imagen/criterio-11.png">
+      <publishTime>10/21/2020 01:25:25</publishTime>
+    </File>
     <File Include="Files/Criterios/2/Imagen/criterio-02.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
+    </File>
+    <File Include="Files/Criterios/2/Imagen/criterio-12.png">
+      <publishTime>10/21/2020 01:25:25</publishTime>
     </File>
     <File Include="Files/Criterios/3/Imagen/criterio-03.png">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -1131,11 +1179,20 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Files/Criterios/3/Imagen/criterio-09.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
+    <File Include="Files/Criterios/3/Imagen/criterio-13.png">
+      <publishTime>10/21/2020 01:25:25</publishTime>
+    </File>
     <File Include="Files/Criterios/4/Imagen/criterio-04.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Files/Criterios/5/Imagen/criterio-05.png">
       <publishTime>09/24/2020 09:56:22</publishTime>
+    </File>
+    <File Include="Files/Criterios/5/Imagen/criterio-10.png">
+      <publishTime>10/21/2020 01:25:25</publishTime>
+    </File>
+    <File Include="Files/Criterios/6/Imagen/criterio-05.png">
+      <publishTime>10/21/2020 01:25:25</publishTime>
     </File>
     <File Include="Files/Criterios/6/Imagen/criterio-06.png">
       <publishTime>09/13/2020 18:24:22</publishTime>
@@ -1399,7 +1456,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Views/Convocatoria/BandejaParticipantes.cshtml">
-      <publishTime>09/24/2020 19:48:33</publishTime>
+      <publishTime>10/19/2020 17:59:40</publishTime>
     </File>
     <File Include="Views/Convocatoria/CambiarClave.cshtml">
       <publishTime>09/06/2020 23:21:18</publishTime>
@@ -1414,13 +1471,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Views/Convocatoria/Criterios.cshtml">
-      <publishTime>09/26/2020 16:39:11</publishTime>
+      <publishTime>10/21/2020 01:12:35</publishTime>
     </File>
     <File Include="Views/Convocatoria/EvaluacionCriterio.cshtml">
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Views/Convocatoria/EvaluacionCriterios.cshtml">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/21/2020 00:44:10</publishTime>
     </File>
     <File Include="Views/Convocatoria/EvaluarInstitucion.cshtml">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -1432,10 +1489,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 19:45:05</publishTime>
     </File>
     <File Include="Views/Convocatoria/IndexPostulante.cshtml">
-      <publishTime>09/24/2020 19:39:50</publishTime>
+      <publishTime>10/19/2020 17:20:25</publishTime>
     </File>
     <File Include="Views/Convocatoria/Informacion.cshtml">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/20/2020 00:46:48</publishTime>
     </File>
     <File Include="Views/Convocatoria/Inscribirme.cshtml">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -1447,7 +1504,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Views/Inicio/Index.cshtml">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/20/2020 00:58:09</publishTime>
     </File>
     <File Include="Views/Inscripcion/Index.cshtml">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -1474,10 +1531,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 19:56:38</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Convocatoria.cshtml">
-      <publishTime>09/25/2020 08:17:56</publishTime>
+      <publishTime>10/19/2020 14:56:19</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Criterio.cshtml">
-      <publishTime>09/24/2020 19:56:38</publishTime>
+      <publishTime>10/21/2020 00:25:57</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Documento.cshtml">
       <publishTime>09/24/2020 19:56:38</publishTime>
@@ -1525,16 +1582,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 19:56:38</publishTime>
     </File>
     <File Include="Views/Mantenimiento/TablaMantenimiento.cshtml">
-      <publishTime>09/24/2020 11:21:39</publishTime>
+      <publishTime>10/19/2020 18:03:34</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Usuario.cshtml">
       <publishTime>09/24/2020 19:56:38</publishTime>
     </File>
     <File Include="Views/Participante/Categoria.cshtml">
-      <publishTime>09/24/2020 18:29:15</publishTime>
+      <publishTime>10/20/2020 00:36:08</publishTime>
     </File>
     <File Include="Views/Participante/Index.cshtml">
-      <publishTime>09/26/2020 01:20:30</publishTime>
+      <publishTime>10/20/2020 23:42:19</publishTime>
     </File>
     <File Include="Views/Participante/MapaSitio.cshtml">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -1543,10 +1600,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Views/Participante/Reconocimiento.cshtml">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/19/2020 17:49:46</publishTime>
     </File>
     <File Include="Views/Participante/ReconocimientoCriterio.cshtml">
-      <publishTime>09/24/2020 18:32:29</publishTime>
+      <publishTime>10/20/2020 01:04:58</publishTime>
     </File>
     <File Include="Views/Participante/TerminosCondiciones.cshtml">
       <publishTime>09/24/2020 09:56:22</publishTime>
@@ -1582,7 +1639,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/24/2020 09:56:22</publishTime>
     </File>
     <File Include="Views/Shared/_SRES_Documentation.cshtml">
-      <publishTime>09/24/2020 09:56:22</publishTime>
+      <publishTime>10/20/2020 01:00:17</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>09/24/2020 09:56:22</publishTime>

@@ -205,6 +205,7 @@
     <Content Include="Assets\images\caso_03.png" />
     <Content Include="Assets\images\caso_04.png" />
     <Content Include="Assets\images\caso_05.png" />
+    <Content Include="Assets\images\caso_06.png" />
     <Content Include="Assets\images\cinta.png" />
     <Content Include="Assets\images\clave.png" />
     <Content Include="Assets\images\colaboradores.png" />
@@ -221,8 +222,13 @@
     <Content Include="Assets\images\criterio-08.png" />
     <Content Include="Assets\images\criterio-08_old.png" />
     <Content Include="Assets\images\criterio-09.png" />
+    <Content Include="Assets\images\criterio-10.png" />
+    <Content Include="Assets\images\criterio-11.png" />
+    <Content Include="Assets\images\criterio-12.png" />
+    <Content Include="Assets\images\criterio-13.png" />
     <Content Include="Assets\images\diagrama-01.png" />
     <Content Include="Assets\images\diagrama.png" />
+    <Content Include="Assets\images\diagrama_2.png" />
     <Content Include="Assets\images\dos_estrella.png" />
     <Content Include="Assets\images\dos_estrellas.png" />
     <Content Include="Assets\images\empresa-00.jpg" />
@@ -305,7 +311,10 @@
     <Content Include="Assets\images\plata.png" />
     <Content Include="Assets\images\preguntas_frecuentes.png" />
     <Content Include="Assets\images\preguntas_frecuentes_email.jpg" />
+    <Content Include="Assets\images\proceso.png" />
     <Content Include="Assets\images\reconocimientos.png" />
+    <Content Include="Assets\images\rees-iso.png" />
+    <Content Include="Assets\images\rees_reconocimientos.png" />
     <Content Include="Assets\images\reunion_acuerdo_paris.png" />
     <Content Include="Assets\images\sector-privado.png" />
     <Content Include="Assets\images\sector-publico.png" />
@@ -388,11 +397,23 @@
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
+    <Content Include="Files\Criterios\1\Imagen\criterio-11.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Criterios\2\Imagen\criterio-12.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Criterios\3\Imagen\criterio-13.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Files\Criterios\4\Imagen\criterio-04.png" />
-    <Content Include="Files\Criterios\5\Imagen\criterio-05.png" />
-    <Content Include="Files\Criterios\6\Imagen\criterio-07.png" />
+    <Content Include="Files\Criterios\5\Imagen\criterio-10.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Criterios\6\Imagen\criterio-05.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Files\Criterios\7\Imagen\criterio-03.png" />
-    <Content Include="Files\Criterios\8\Imagen\criterio-08.png" />
     <Content Include="Files\Criterios\LEER.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -771,9 +792,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Files\Criterios\1\Imagen\" />
-    <Folder Include="Files\Criterios\2\Imagen\" />
-    <Folder Include="Files\Criterios\3\Imagen\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\_Base\" />
   </ItemGroup>
