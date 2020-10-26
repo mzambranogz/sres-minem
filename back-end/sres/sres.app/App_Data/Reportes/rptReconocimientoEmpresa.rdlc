@@ -64,7 +64,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Left</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -134,7 +134,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Left</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -466,8 +466,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>dsReconocimientoEmpresa</DataSetName>
-        <Top>8.0075cm</Top>
-        <Left>0.81454cm</Left>
+        <Top>3.5625cm</Top>
+        <Left>8.11704cm</Left>
         <Height>5.02875cm</Height>
         <Width>8.20535cm</Width>
         <Style>
@@ -562,7 +562,7 @@
         </Paragraphs>
         <rd:DefaultName>Convocatoria</rd:DefaultName>
         <Top>1.4642cm</Top>
-        <Left>3.73969cm</Left>
+        <Left>3.69036cm</Left>
         <Height>0.6cm</Height>
         <Width>13.37028cm</Width>
         <ZIndex>3</ZIndex>
@@ -594,7 +594,7 @@
         </Paragraphs>
         <rd:DefaultName>Empresa</rd:DefaultName>
         <Top>2.17003cm</Top>
-        <Left>3.10469cm</Left>
+        <Left>2.89826cm</Left>
         <Height>0.6cm</Height>
         <Width>13.37028cm</Width>
         <ZIndex>4</ZIndex>
@@ -648,8 +648,8 @@
         <Source>External</Source>
         <Value>="file:" &amp; Fields!RUTA_IMAGEN.Value</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>3.56378cm</Top>
-        <Left>2.71954cm</Left>
+        <Top>4.19878cm</Top>
+        <Left>1.44954cm</Left>
         <Height>3.64215cm</Height>
         <Width>7.12056cm</Width>
         <ZIndex>6</ZIndex>
@@ -657,20 +657,17 @@
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>7pt</PaddingLeft>
-          <PaddingTop>5pt</PaddingTop>
-          <PaddingBottom>7pt</PaddingBottom>
         </Style>
       </Image>
     </ReportItems>
-    <Height>5.32327in</Height>
+    <Height>3.70869in</Height>
     <Style>
       <Border>
         <Style>None</Style>
       </Border>
     </Style>
   </Body>
-  <Width>7.3955in</Width>
+  <Width>7.23925in</Width>
   <Page>
     <PageHeader>
       <Height>1.42346cm</Height>
@@ -699,7 +696,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>1.18005cm</Height>
+      <Height>1.31234cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
