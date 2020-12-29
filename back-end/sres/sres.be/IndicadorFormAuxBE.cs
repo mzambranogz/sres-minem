@@ -22,9 +22,11 @@ namespace sres.be
         public string EMISIONES { get; set; }
         public decimal ENERGIA { get; set; }
         public decimal COMBUSTIBLE { get; set; }
+        public decimal CAMBIO_MATRIZ { get; set; }
         public string AHORRO { get; set; }
         public int TAMANO { get; set; }
         public string DESCRIPCION { get; set; }
+        public string VISIBLE { get; set; }
         public List<ParametroDetalleBE> LIST_PARAMDET { get; set; }
     }
 }

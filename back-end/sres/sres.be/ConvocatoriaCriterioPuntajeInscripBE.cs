@@ -17,6 +17,7 @@ namespace sres.be
         public decimal EMISIONES_REDUCIDAS { get; set; }
         public decimal ENERGIA { get; set; }
         public decimal COMBUSTIBLE { get; set; }
+        public decimal CAMBIO_MATRIZ { get; set; }
         public string OBSERVACION { get; set; }
         public string NOMBRE_CRI { get; set; }
         public string NOMBRE_CONV { get; set; }

@@ -26,5 +26,6 @@ namespace sres.be
         public string COMBUSTIBLE { get; set; }
         public int TAMANO { get; set; }
         public string DESCRIPCION { get; set; }
+        public string VISIBLE { get; set; }
     }
 }

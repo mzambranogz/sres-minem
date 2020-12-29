@@ -1,9 +1,19 @@
-﻿$(document).ready(() => {
+﻿var electricidadHead = 0, combustibleHead = 0, energiaelectrica = 0, energiatermica = 0, cambiomatriz = 0, emisiones = 0, ahorroenergia = 0, ahorrotermica = 0, ahorrocambio = 0;
+
+$(document).ready(() => {
     consultar();
     consultarDoc();
     cargarEvaluacion();
     $('#btnGuardar').on('click', (e) => guardar());
+    validarCamposVisibles();
 });
+
+var validarCamposVisibles = () => {
+    if (idCriterio == 1) {
+        $('#section-calculo').removeClass('d-none');
+        $('#section-porcentaje').removeClass('d-none');
+    }
+}
 
 var cargarEvaluacion = () => {
     let params = { idCriterio, idInscripcion, idConvocatoria };
@@ -61,6 +71,8 @@ var consultar = () => {
             combustible += $(y).html() == '' ? 0.0 : parseFloat($(y).html());
         });
         $(`#txt-combustible`).val(formatoMiles(combustible));
+
+        contabilizar();
     });
 };
 
@@ -109,8 +121,9 @@ var mostrarDocumentos = (data) => {
 var armarHead = (lista, incremental, id, componente) => {
     let cont = ``;
     for (var i = 0; i < lista.length; i++) {
+        let val = validarParametroVisible(lista[i]["ID_PARAMETRO"]);
         //cont += `<th scope="col"><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}<i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? '' : lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i></div></th>`;
-        cont += `<th scope="col"><div class="flex-column d-flex justify-content-center align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}</div></th>`;
+        cont += `<th scope="col" ${val ? lista[i]["OBJ_PARAMETRO"].VISIBLE == '0' ? `class="d-none"` : '' : ''}><div class="flex-column d-flex justify-content-center align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}</div></th>`;
     }
     return `<thead class="estilo-06"><tr>${cont}</tr></thead>`;
 };
@@ -128,22 +141,23 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
     filas += `<tr id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? incremental == '1' ? row : id_indicador : row}" data-ind="${flag_nuevo == 0 ? 0 : id_indicador}">`;
     for (var i = 0; i < lista.length; i++) {
         if (lista[i]["ID_TIPO_CONTROL"] == 2) {
+            let val = validarParametroVisible(lista[i]["ID_PARAMETRO"]);
             if (lista[i]["ESTATICO"] == '1')
-                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="text-center estilo-01">${validarNull(lista[i]["VALOR"])}</div><input class="get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" type="hidden" /></td>`;
+                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${val ? lista[i]["VISIBLE"] == '0' ? `class="d-none"` : '' : ''}><div class="text-center estilo-01">${validarNull(lista[i]["VALOR"])}</div><input class="get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" type="hidden" /></td>`;
             else
                 //filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``}  get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} readonly /></div></div></td>`;
-                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero text-right' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal text-right' : ''} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``} ${lista[i]["COMBUSTIBLE"] == null ? `` : lista[i]["COMBUSTIBLE"] == '1' ? `get-combustible` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}">${lista[i]["DECIMAL_V"] == null ? validarNull(lista[i]["VALOR"]) : lista[i]["DECIMAL_V"] == '1' ? formatoMiles(validarNull(lista[i]["VALOR"])) : validarNull(lista[i]["VALOR"])}</span></div></div></td>`;
+                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${val ? lista[i]["VISIBLE"] == '0' ? `class="d-none"` : '' : ''}><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero text-right' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal text-right' : ''} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``} ${lista[i]["COMBUSTIBLE"] == null ? `` : lista[i]["COMBUSTIBLE"] == '1' ? `get-combustible` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}">${lista[i]["DECIMAL_V"] == null ? validarNull(lista[i]["VALOR"]) : lista[i]["DECIMAL_V"] == '1' ? formatoMiles(validarNull(lista[i]["VALOR"])) : validarNull(lista[i]["VALOR"])}</span></div></div></td>`;
         } else if (lista[i]["ID_TIPO_CONTROL"] == 1) {
             let v = 0;
             for (var j = 0; j < lista[i]["LIST_PARAMDET"].length; j++) {
                 if (validarNull(lista[i]["VALOR"]) == lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"]) {
                     //filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${lista[i]["LIST_PARAMDET"][j]["NOMBRE"]}" readonly /></div></div></td>`;
-                    filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}">${lista[i]["LIST_PARAMDET"][j]["NOMBRE"]}</span></div></div></td>`;
+                    filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${lista[i]["VISIBLE"] == '0' ? `class="d-none"` : ''}><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}" data-valor="${lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"]}">${lista[i]["LIST_PARAMDET"][j]["NOMBRE"]}</span></div></div></td>`;
                     v++;
                 }
             }
             //if (v == 0) filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="" readonly /></div></div></td>`;
-            if (v == 0) filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}"><span></div></div></td>`;
+            if (v == 0) filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}" data-valor="0"><span></div></div></td>`;
         } else if (lista[i]["ID_TIPO_CONTROL"] == 3) {
             filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}">${validarNull(lista[i]["VALOR"])}</span></div></div></td>`;
         }
@@ -239,7 +253,7 @@ var guardar = () => {
     let puntaje = $(`#cbo-puntaje`).val();
     let observacion = $(`#txa-observaciones`).val();
     let url = `${baseUrl}api/criterio/guardarevaluacioncriterio`;
-    let data = { ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio, ID_DETALLE: puntaje, ID_INSCRIPCION: idInscripcion, ID_TIPO_EVALUACION: idEvaluacion, EMISIONES_REDUCIDAS: emisiones, ENERGIA: energia, COMBUSTIBLE: combustible, OBSERVACION: observacion, NOMBRE_CRI: $(`.nom-cri`).val(), LIST_INSCDOC: listaEvaluacion, ID_ETAPA: idEtapa, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio, ID_DETALLE: puntaje, ID_INSCRIPCION: idInscripcion, ID_TIPO_EVALUACION: idEvaluacion, EMISIONES_REDUCIDAS: emisiones, ENERGIA: energiaelectrica, COMBUSTIBLE: energiatermica, CAMBIO_MATRIZ: cambiomatriz, OBSERVACION: observacion, NOMBRE_CRI: $(`.nom-cri`).val(), LIST_INSCDOC: listaEvaluacion, ID_ETAPA: idEtapa, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
@@ -254,4 +268,59 @@ var guardar = () => {
 var formatoMiles = (n) => {
     var m = n * 1;
     return m.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+}
+
+var contabilizar = () => {
+    if (idCriterio != 1) return;
+    electricidadHead = 0; combustibleHead = 0, energiaelectrica = 0, energiatermica = 0, cambiomatriz = 0, emisiones = 0;
+    $('#1-1-1').find('tbody').find('tr').each((x, y) => {
+        let v = $(y).find('[data-param=109]').data('valor');
+        if (v != null && v > 0) {
+            if (v == "1") electricidadHead += $(y).find('[data-param=114]').html() == null ? 0 : $(y).find('[data-param=114]').html() == "" ? 0 : parseFloat($(y).find('[data-param=114]').html().replace(/,/gi, ''));
+            else combustibleHead += $(y).find('[data-param=114]').html() == null ? 0 : $(y).find('[data-param=114]').html() == "" ? 0 : parseFloat($(y).find('[data-param=114]').html().replace(/,/gi, ''));
+        }
+    });
+
+    $('#1-1-2').find('tbody').find('tr').each((x, y) => {
+        let v1 = $(y).find('[data-param=118]').data('valor');
+        let v2 = $(y).find('[data-param=127]').data('valor');
+        if (v1 != null && v1 > 0 && v2 != null && v2 > 0) {
+            let v = evaluarEnergia(v1, v2);
+            if (v == 1) energiaelectrica += $(y).find('[data-param=134]').html() == null ? 0 : $(y).find('[data-param=134]').html() == "" ? 0 : parseFloat($(y).find('[data-param=134]').html().replace(/,/gi, ''));
+            else if (v == 2) energiatermica += $(y).find('[data-param=134]').html() == null ? 0 : $(y).find('[data-param=134]').html() == "" ? 0 : parseFloat($(y).find('[data-param=134]').html().replace(/,/gi, ''));
+            else if (v == 3) cambiomatriz += $(y).find('[data-param=134]').html() == null ? 0 : $(y).find('[data-param=134]').html() == "" ? 0 : parseFloat($(y).find('[data-param=134]').html().replace(/,/gi, ''));
+            emisiones += $(y).find('[data-param=135]').html() == null ? 0 : $(y).find('[data-param=135]').html() == "" ? 0 : parseFloat($(y).find('[data-param=135]').html().replace(/,/gi, ''));
+        }
+    });
+    $('#txt-emisiones').val(formatoMiles(emisiones));
+    $('#txt-electrica').val(formatoMiles(energiaelectrica));
+    $('#txt-termica').val(formatoMiles(energiatermica));
+    $('#txt-matriz').val(formatoMiles(cambiomatriz));    
+    $('#1-1-1').find('tbody').find('[data-param=146]').each((x, y) => {
+        let id = `#${$(y).attr('id')}`;
+        let v = $(id).data('valor');
+        let valor = parseFloat($(id).parent().parent().parent().parent().find('[data-param=114]').html().replace(/,/gi, ''));
+        debugger;
+        if (v == 1) ahorroenergia = valor == 0 ? 0 : energiaelectrica / valor;
+        else if (v == 2) ahorrotermica = valor == 0 ? 0 : energiatermica / valor;
+        else if (v == 3) ahorrocambio = valor == 0 ? 0 : cambiomatriz / valor;
+    });
+    $('#txt-ahorro-electrica').val(formatoMiles(ahorroenergia));
+    $('#txt-ahorro-termica').val(formatoMiles(ahorrotermica));
+    $('#txt-ahorro-matriz').val(formatoMiles(ahorrocambio));
+    //console.log(`electrica: ${energiaelectrica}, termica: ${energiatermica}, matriz: ${cambiomatriz}, emisiones: ${emisiones}`);
+}
+
+var evaluarEnergia = (e1, e2) => {
+    let v = 0;
+    if (e1 == "1" && e2 == "1") v = 1;
+    else if (e1 > 1 && e2 > 1) v = 2;
+    else if ((e1 == "1" && e2 > 1) || (e1 > 1 && e2 == "1")) v = 3;
+    return v;
+}
+
+var validarParametroVisible = (p) => {
+    let v = true;
+    if (p == 139 || p == 140 || p == 141 || p == 142 || p == 143 || p == 144) v = false;
+    return v;
 }

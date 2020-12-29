@@ -1,4 +1,6 @@
-﻿$(document).ready(() => {
+﻿var electricidadHead = 0, combustibleHead = 0, energiaelectrica = 0, energiatermica = 0, cambiomatriz = 0, emisiones = 0;
+
+$(document).ready(() => {
     //$('#btnConsultar').on('click', (e) => consultar());
     //$('#btnConsultar')[0].click();
     //$('#btnNuevo').on('click', (e) => nuevo());
@@ -152,7 +154,7 @@ var armarHead = (lista, incremental, id, componente) => {
     let cont = ``;
     for (var i = 0; i < lista.length; i++) {
         //cont += `<th scope="col"><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? `<i class="mt-2"></i>` : `<i class="fas fa-question-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i>`}</div></th>`;
-        cont += `<th scope="col"><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}<i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? '' : lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i></div></th>`;
+        cont += `<th scope="col" ${lista[i]["OBJ_PARAMETRO"].VISIBLE == '0' ? `class="d-none"` : ''}><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}<i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? '' : lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i></div></th>`;
     }
     cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center"><div class="btn btn-warning btn-sm estilo-01" type="button" onclick="agregarFila(${id},${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div></th>` : ``;
     return `<thead class="estilo-06"><tr>${cont}</tr></thead>`;
@@ -172,11 +174,11 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
     for (var i = 0; i < lista.length; i++) {
         if (lista[i]["ID_TIPO_CONTROL"] == 2) {
             if (lista[i]["ESTATICO"] == '1')
-                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="text-center estilo-01">${validarNull(lista[i]["VALOR"])}</div><input class="get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" type="hidden" /></td>`;
+                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${lista[i]["VISIBLE"] == '0' ? `class="d-none"` : ''}><div class="text-center estilo-01">${validarNull(lista[i]["VALOR"])}</div><input class="get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" type="hidden" /></td>`;
             else
-                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><input class="form-control form-control-sm estilo-01 ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero text-right' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal text-right' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["RESULTADO"] == null ? `alert-warning` : lista[i]["RESULTADO"] == '0' ? `alert-warning` : ``} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``} ${lista[i]["COMBUSTIBLE"] == null ? `` : lista[i]["COMBUSTIBLE"] == '1' ? `get-combustible` : ``} get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${lista[i]["DECIMAL_V"] == null ? validarNull(lista[i]["VALOR"]) : lista[i]["DECIMAL_V"] == '1' ? formatoMiles(validarNull(lista[i]["VALOR"])) : validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} /></div></td>`;
+                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${lista[i]["VISIBLE"] == '0' ? `class="d-none"` : ''}><div class="form-group m-0"><input class="form-control form-control-sm estilo-01 ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero text-right' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal text-right' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["RESULTADO"] == null ? `alert-warning` : lista[i]["RESULTADO"] == '0' ? `alert-warning` : ``} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``} ${lista[i]["COMBUSTIBLE"] == null ? `` : lista[i]["COMBUSTIBLE"] == '1' ? `get-combustible` : ``} ${lista[i]["CAMBIO_MATRIZ"] == null ? `` : lista[i]["CAMBIO_MATRIZ"] == '1' ? `get-cambio-matriz` : ``} get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${lista[i]["DECIMAL_V"] == null ? validarNull(lista[i]["VALOR"]) : lista[i]["DECIMAL_V"] == '1' ? formatoMiles(validarNull(lista[i]["VALOR"])) : validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} /></div></td>`;
         } else if (lista[i]["ID_TIPO_CONTROL"] == 1) {
-            filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><select class="form-control form-control-sm multi-opciones alert-warning ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["FILTRO"] == null ? `` : lista[i]["FILTRO"] == '' ? `` : `data-filtro="${lista[i]["FILTRO"]}" onchange="filtrar(this)"`}  ${lista[i]["VERIFICABLE"] == '1' ? `onchange="verificarValor(this)"` : ``}><option value="0">Seleccione</option>`;
+            filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${lista[i]["VISIBLE"] == '0' ? `class="d-none"` : ''}><div class="form-group m-0"><select class="form-control form-control-sm multi-opciones alert-warning ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["FILTRO"] == null ? `` : lista[i]["FILTRO"] == '' ? `` : `data-filtro="${lista[i]["FILTRO"]}" onchange="filtrar(this)"`}  ${lista[i]["VERIFICABLE"] == '1' ? `onchange="verificarValor(this)"` : ``}><option value="0">Seleccione</option>`;
             for (var j = 0; j < lista[i]["LIST_PARAMDET"].length; j++)
                 filas += `<option value="${lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"]}" ${validarNull(lista[i]["VALOR"]) == lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"] ? `selected` : ``}>${lista[i]["LIST_PARAMDET"][j]["NOMBRE"]}</option>`;
             filas += `</select></div></td>`;
@@ -250,7 +252,7 @@ var agregarFila = (id, componente) => {
 }
 
 var armarNuevaFila = (lista, row) => {
-    debugger;
+     
     let fila = '';
     for (var i = 0; i < lista.length; i++) {
         fila += armarFila(lista[i]["LIST_INDICADORFORM"], lista[i]["ID_CRITERIO"], lista[i]["ID_CASO"], lista[i]["ID_COMPONENTE"], row, 0, '1', row);
@@ -331,7 +333,12 @@ var guardar = () => {
         combustible += $(y).val() == '' ? 0.0 : parseFloat($(y).val().replace(/,/gi, ''));
     });
 
-    let data = { LIST_COMPONENTE: componente_ind, LIST_DOCUMENTO: listaDoc, ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio_, ID_CASO: idCaso, ID_INSCRIPCION: idInscripcion_, NOMBRE_CRI: $('.nom-cri').val(), EMISIONES: emisiones, ENERGIA: energia, COMBUSTIBLE: combustible, ID_ETAPA: idEtapa, USUARIO_GUARDAR: idUsuarioLogin };
+    let cambio_matriz = 0.0;
+    $(document).find('.get-cambio-matriz').each((x, y) => {
+        cambio_matriz += $(y).val() == '' ? 0.0 : parseFloat($(y).val().replace(/,/gi, ''));
+    });
+
+    let data = { LIST_COMPONENTE: componente_ind, LIST_DOCUMENTO: listaDoc, ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio_, ID_CASO: idCaso, ID_INSCRIPCION: idInscripcion_, NOMBRE_CRI: $('.nom-cri').val(), EMISIONES: emisiones, ENERGIA: energia, COMBUSTIBLE: combustible, CAMBIO_MATRIZ: cambio_matriz, ID_ETAPA: idEtapa, USUARIO_GUARDAR: idUsuarioLogin };
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
@@ -386,6 +393,7 @@ var calcular = (obj, id_componente, fila) => {
 }
 
 var enviarValores = (lista, fila) => {
+     
     let url = `${baseUrl}api/indicadordata/calcular`;
     let data = { LIST_INDICADORDATA: lista, USUARIO_GUARDAR: idUsuarioLogin };
 
@@ -394,10 +402,13 @@ var enviarValores = (lista, fila) => {
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
+         
         j.map((x, i) => {
+             
             y = $(`#${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}-${fila}-${x.ID_PARAMETRO}`);
-            $(y)[0].className.indexOf("multi-opciones") != -1 ? $(y).val(x.VALOR) : $(y)[0].className.indexOf("solo-numero") != -1 && $(y)[0].className.indexOf("formato-decimal") != -1 ? $(y).val(formatoMiles(x.VALOR)) : $(y).val(x.VALOR);
+            $(y)[0].className.indexOf("multi-opciones") != -1 ? $(y).val(x.VALOR) : $(y)[0].className.indexOf("solo-numero") != -1 && $(y)[0].className.indexOf("formato-decimal") != -1 ? $(y).val(formatoMiles(x.VALOR)) : $(y).val(x.VALOR);            
         });
+        contabilizar();
     });
 }
 
@@ -427,7 +438,7 @@ var valorInicial = (idSelect, arr) => {
 }
 
 var filtrar = (e) => {
-    debugger;
+    // 
     let arr = $(e).parent().parent().parent().attr('id'); //[0] ID_CRITERIO / [1] ID_cASO / [2] ID_COMPONENTE / [3] ID_INDICADOR
     let parametro = $(e).attr('data-param');
 
@@ -453,8 +464,8 @@ var filtrar = (e) => {
                 .then(j => {
                     if (j.length > 0) {
                         contenido = j.map((x, m) => {
-                            //let opciones = `<option value="${x.ID_DETALLE}" ${(j.length == 1 ? "selected" : "")}>${x.NOMBRE}</option>`;
-                            let opciones = `<option value="${x.ID_DETALLE}">${x.NOMBRE}</option>`;
+                            let opciones = `<option value="${x.ID_DETALLE}" ${(j.length == 1 ? "selected" : "")}>${x.NOMBRE}</option>`;
+                            //let opciones = `<option value="${x.ID_DETALLE}">${x.NOMBRE}</option>`;
                             return opciones;
                         }).join('');
                         $(`#${arr}-${j[0].ID_PARAMETRO}`).html(`<option value="0">Seleccione</option>${contenido}`);
@@ -488,4 +499,37 @@ var verificarFiltro = (filtro, obj) => {
         arrFiltros.push(detalles.substring(0, detalles.length - 1));
     }
     return arrFiltros;
+}
+
+var contabilizar = () => {    
+    if (idCriterio != 1) return;
+    electricidadHead = 0; combustibleHead = 0, energiaelectrica = 0, energiatermica = 0, cambiomatriz = 0, emisiones = 0;
+    $('#1-1-1').find('tbody').find('tr').each((x, y) => {
+        let v = $(y).find('[data-param=109]').val();
+        if (v != null && v > 0) {
+            if (v == "1") electricidadHead += $(y).find('[data-param=114]').val() == null ? 0 : $(y).find('[data-param=114]').val() == "" ? 0 : parseFloat($(y).find('[data-param=114]').val().replace(/,/gi, ''));
+            else combustibleHead += $(y).find('[data-param=114]').val() == null ? 0 : $(y).find('[data-param=114]').val() == "" ? 0 : parseFloat($(y).find('[data-param=114]').val().replace(/,/gi, ''));
+        }            
+    });
+
+    $('#1-1-2').find('tbody').find('tr').each((x, y) => {
+        let v1 = $(y).find('[data-param=118]').val();
+        let v2 = $(y).find('[data-param=127]').val();
+        if (v1 != null && v1 > 0 && v2 != null && v2 > 0) {
+            let v = evaluarEnergia(v1,v2);
+            if (v == 1) energiaelectrica += $(y).find('[data-param=134]').val() == null ? 0 : $(y).find('[data-param=134]').val() == "" ? 0 : parseFloat($(y).find('[data-param=134]').val().replace(/,/gi, ''));
+            else if (v == 2) energiatermica += $(y).find('[data-param=134]').val() == null ? 0 : $(y).find('[data-param=134]').val() == "" ? 0 : parseFloat($(y).find('[data-param=134]').val().replace(/,/gi, ''));
+            else if (v == 3) cambiomatriz += $(y).find('[data-param=134]').val() == null ? 0 : $(y).find('[data-param=134]').val() == "" ? 0 : parseFloat($(y).find('[data-param=134]').val().replace(/,/gi, ''));
+            emisiones += $(y).find('[data-param=135]').val() == null ? 0 : $(y).find('[data-param=135]').val() == "" ? 0 : parseFloat($(y).find('[data-param=135]').val().replace(/,/gi, ''));
+        }
+    });
+    console.log(`electrica: ${energiaelectrica}, termica: ${energiatermica}, matriz: ${cambiomatriz}, emisiones: ${emisiones}`);
+}
+
+var evaluarEnergia = (e1, e2) => {
+    let v = 0;
+    if (e1 == "1" && e2 == "1") v = 1;
+    else if (e1 > 1 && e2 > 1) v = 2;
+    else if ((e1 == "1" && e2 > 1) || (e1 > 1 && e2 == "1")) v = 3;
+    return v;
 }
