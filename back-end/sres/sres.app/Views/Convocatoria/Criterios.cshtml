@@ -379,7 +379,11 @@ else
             <div class="container">
                 <div class="row mb-5">
                     <div class="offset-lg-2 col-lg-3 offset-md-3 col-md-3 offset-sm-3 col-sm-6 text-center my-2 d-flex">
-                        <i class="fas fa-2x fa-check-circle text-sres-verde indicador"></i>
+                        @*<i class="fas fa-2x fa-check-circle text-sres-verde indicador"></i>*@
+                        @if (flag_categoria > 0)
+                        {
+                            <i class="fas fa-2x fa-check-circle text-sres-verde indicador"></i>
+                        } 
                         <img class="criterios-evaluacion img-fluid w-100 shadow @linea_categoria" src="@Url.Content("~/Assets/images/criterio-01.png")" data-anidado="3">
                         <p class="d-none">Es el reconocimiento que se le da a la organización pública o privada que ha medido su ahorro energético (mínimo 1 año) después de la implementación de mejora de eficiencia energética. Este porcentaje de ahorro es el consumo reducido por la medida implementada respecto al consumo total de energía eléctrica de la organización. Este reconocimiento brinda puntaje para alcanzar la categoría deseada y a su vez brinda puntaje para la obtención de estrellas que permite reconocer como han logrado reducir sus emisiones de Gases de Efecto Invernadero (GEI) en beneficio del ambiente.</p>
                     </div>

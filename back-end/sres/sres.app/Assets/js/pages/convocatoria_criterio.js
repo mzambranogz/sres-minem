@@ -57,7 +57,7 @@ var consultarDoc = () => {
 
 var mostrarDocumentos = (data) => {
     if (data.length > 0) {
-        let tituloDoc = '<div class="col-lg-6 col-md-12 col-sm-12"><h3 class="estilo-02 text-sres-azul mb-5 text-left">DOCUMENTOS</h3></div>';
+        let tituloDoc = '<div class="col-lg-6 col-md-12 col-sm-12"><h3 class="estilo-02 text-sres-azul mb-5 text-left">DOCUMENTOS DE SUSTENTO</h3></div>';
         let tituloArchivosAdjuntos = '<div class="col-lg-6 col-md-12 col-sm-12 d-none d-lg-block"><h3 class="estilo-02 text-sres-azul mb-5 text-left">ARCHIVOS ADJUNTOS</h3></div>';
         let cabecera = `<div class="row">${tituloDoc}${tituloArchivosAdjuntos}</div>`;
 

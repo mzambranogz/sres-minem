@@ -136,26 +136,25 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 text-center my-3">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend"><span class="input-group-text bg-sres-azul text-white"><i class="fas fa-list"></i></span></div>
-                                @if (listaCaso != null)
-                                {
-                                    <select class="form-control" id="cbo-caso">
-
-                                        @foreach (var caso in listaCaso)
-                                        {
-                                            <option value="@caso.ID_CASO">@caso.NOMBRE</option>
-                                        }
-
-                                    </select>
-                                }
+                @if (listaCaso != null)
+                {
+                        <div class="row @(listaCaso.Count < 2 ? "d-none":"")">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text bg-sres-azul text-white"><i class="fas fa-list"></i></span></div>
+                                            <select class="form-control" id="cbo-caso">
+                                                @foreach (var caso in listaCaso)
+                                                {
+                                                    <option value="@caso.ID_CASO">@caso.NOMBRE</option>
+                                                }
+                                            </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                }
+                
                 <div id="table-add"></div>
                 <div class="row">
                     <div class="col-12">
