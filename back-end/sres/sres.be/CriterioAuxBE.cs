@@ -19,5 +19,6 @@ namespace sres.be
         public decimal ENERGIA { get; set; }
         public decimal COMBUSTIBLE { get; set; }
         public string CATEGORIA { get; set; }
+        public string TITULO_OPCIONES { get; set; }
     }
 }
