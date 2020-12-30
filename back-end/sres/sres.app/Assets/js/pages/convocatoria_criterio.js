@@ -28,7 +28,7 @@ var consultar = () => {
         contenido = j.map((x, i) => {
             let head = armarHead(x.LIST_INDICADOR_HEAD, x.INCREMENTABLE, "'" + x.ID_CRITERIO + '-' + x.ID_CASO + '-' + x.ID_COMPONENTE + "'", x.ID_COMPONENTE);
             let body = armarBody(x.LIST_INDICADOR_BODY, x.INCREMENTABLE);
-            return `<h3 class="estilo-02 text-sres-azul mt-5 text-left">${x.ETIQUETA == null ? '' : x.ETIQUETA}</h3><div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div>`;
+            return `<h3 class="estilo-02 text-sres-azul mt-5 text-left">${x.ETIQUETA == null ? '' : x.ETIQUETA}</h3><div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div>${x.INCREMENTABLE == '1' ? `<div class="row"><div class="btn btn-warning btn-sm estilo-01" type="button" onclick="agregarFila('${`${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}`}',${x.ID_COMPONENTE});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div>` : ''}`;
         }).join('');
         $("#table-add").html(`${contenido}`);
 
