@@ -113,6 +113,29 @@ namespace sres.da
             catch (Exception ex) { Log.Error(ex); }
 
             return lista;
+        }        
+
+        public bool NombreFicha(ConvocatoriaBE entidad, OracleConnection db)
+        {
+            try
+            {
+                string sp = $"{Package.Admin}USP_UPD_NOMBRE_FICHA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", entidad.ID_CONVOCATORIA);
+                p.Add("PI_ID_INSTITUCION", entidad.ID_INSTITUCION);
+                p.Add("PI_NOMBRE_FICHA", entidad.NOMBRE_FICHA);
+                p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
+                db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
+                int filasAfectadas = (int)p.Get<dynamic>("PO_ROWAFFECTED").Value;
+                entidad.OK = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                entidad.OK = false;
+            }
+
+            return entidad.OK;
         }
     }
 }

@@ -114,5 +114,37 @@ namespace sres.be
             }
         }
 
+        public class ReporteReconocimiento
+        {
+            public int ID_RECONOCIMIENTO { get; set; }
+            public string PERIODO { get; set; }
+            public string PERIODO_ACTUAL { get; set; }
+            public string RAZON_SOCIAL { get; set; }
+            public string CONVOCATORIA { get; set; }
+            public string CATEGORIA { get; set; }
+            public string ESTRELLA { get; set; }
+            public int PUNTAJE { get; set; }
+            public double EMISIONES { get; set; }
+            public double ENERGIA { get; set; }
+            public double COMBUSTIBLE { get; set; }
+            public int ID_CONVOCATORIA { get; set; }
+            public int ID_INSTITUCION { get; set; }
+            public int ID_PREMIACION { get; set; }
+            public string ARCHIVO_BASE_PRE { get; set; }
+            public int FLAG_MEDIDA { get; set; }
+            public int FLAG_MEJORACONTINUA { get; set; }
+            public string PREMIO_ESPECIAL { get; set; }
+            public string RUTA_IMAGEN
+            {
+                get
+                {
+                    string rutaReconocimiento = AppSettings.Get<string>("Path.Reconocimiento").Replace("/", "\\").Replace("{0}", ID_PREMIACION.ToString());
+                    string rutaFisicaServidor = AppSettings.Get<string>("ServerFisico");
+                    string rutaImagen = rutaFisicaServidor + rutaReconocimiento + "\\" + ARCHIVO_BASE_PRE;
+                    return rutaImagen;
+                }
+            }
+        }
+
     }
 }

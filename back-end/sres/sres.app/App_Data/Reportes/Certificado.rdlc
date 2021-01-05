@@ -155,7 +155,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Oro y premiciación especial(Valor dínamico)</Value>
+                <Value>=First(Fields!CATEGORIA.Value, "dsreconocimiento") + " " + First(Fields!PREMIO_ESPECIAL.Value, "dsreconocimiento")</Value>
                 <Style>
                   <FontSize>15pt</FontSize>
                   <Color>#076db2</Color>
@@ -168,59 +168,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox12</rd:DefaultName>
-        <Top>3.51213cm</Top>
+        <Top>3.47686cm</Top>
         <Left>1.08162cm</Left>
         <Height>0.75875cm</Height>
         <Width>21.41299cm</Width>
         <ZIndex>3</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Image Name="imgReconocimiento2">
-        <Source>External</Source>
-        <Value>="file:" &amp; Fields!RUTA_IMAGEN.Value</Value>
-        <Sizing>FitProportional</Sizing>
-        <Top>4.48585cm</Top>
-        <Left>9.00189cm</Left>
-        <Height>3.64215cm</Height>
-        <Width>7.12056cm</Width>
-        <ZIndex>4</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Image>
-      <Textbox Name="Textbox14">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>A</Value>
-                <Style>
-                  <FontSize>13pt</FontSize>
-                  <Color>#4f4a74</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox14</rd:DefaultName>
-        <Top>8.42187cm</Top>
-        <Left>8.0137cm</Left>
-        <Height>0.6cm</Height>
-        <Width>0.48917cm</Width>
-        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -238,7 +190,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Nombre de institución</Value>
+                <Value>="A " + First(Fields!RAZON_SOCIAL.Value, "dsreconocimiento")</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
                   <Color>#076db2</Color>
@@ -252,10 +204,10 @@
         </Paragraphs>
         <rd:DefaultName>Textbox14</rd:DefaultName>
         <Top>8.42187cm</Top>
-        <Left>8.50759cm</Left>
+        <Left>1.22068cm</Left>
         <Height>0.6cm</Height>
-        <Width>8.90292cm</Width>
-        <ZIndex>6</ZIndex>
+        <Width>21.27393cm</Width>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -273,40 +225,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>por el Periodo</Value>
-                <Style>
-                  <FontSize>13pt</FontSize>
-                  <Color>#4f4a74</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox14</rd:DefaultName>
-        <Top>9.18193cm</Top>
-        <Left>8.0137cm</Left>
-        <Height>0.6cm</Height>
-        <Width>2.91452cm</Width>
-        <ZIndex>7</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox17">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>[Año de la convocatoria]</Value>
+                <Value>="por el periodo " + First(Fields!PERIODO.Value, "dsreconocimiento")</Value>
                 <Style>
                   <FontSize>13pt</FontSize>
                   <Color>#4f4a74</Color>
@@ -319,11 +238,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox14</rd:DefaultName>
-        <Top>9.18193cm</Top>
-        <Left>11.10491cm</Left>
+        <Top>9.19826cm</Top>
+        <Left>1.22068cm</Left>
         <Height>0.6cm</Height>
-        <Width>6.3056cm</Width>
-        <ZIndex>8</ZIndex>
+        <Width>21.27393cm</Width>
+        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -371,8 +290,8 @@
         <Top>10.09474cm</Top>
         <Left>1.22068cm</Left>
         <Height>0.62646cm</Height>
-        <Width>21.41299cm</Width>
-        <ZIndex>9</ZIndex>
+        <Width>21.27393cm</Width>
+        <ZIndex>6</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -390,7 +309,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Lima, </Value>
+                <Value>="Lima, " + First(Fields!PERIODO_ACTUAL.Value, "dsreconocimiento")</Value>
                 <Style>
                   <FontSize>13pt</FontSize>
                   <Color>#4f4a74</Color>
@@ -404,46 +323,10 @@
         </Paragraphs>
         <rd:DefaultName>Textbox12</rd:DefaultName>
         <Top>11.0737cm</Top>
-        <Left>11.48651cm</Left>
+        <Left>1.22068cm</Left>
         <Height>0.62646cm</Height>
-        <Width>1.42608cm</Width>
-        <ZIndex>10</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox20">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontSize>13pt</FontSize>
-                  <Format>d 'de' MMMM 'de' yyyy</Format>
-                  <Color>#4f4a74</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox12</rd:DefaultName>
-        <Top>11.0737cm</Top>
-        <Left>12.91259cm</Left>
-        <Height>0.62646cm</Height>
-        <Width>2.27275cm</Width>
-        <ZIndex>11</ZIndex>
+        <Width>21.27393cm</Width>
+        <ZIndex>7</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -541,85 +424,111 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="DsBlockChain">
+    <DataSource Name="sresln">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>e8579230-9ea1-4003-88f6-92dfa9349a09</rd:DataSourceID>
+      <rd:DataSourceID>7beb6d28-5a4d-4765-9bde-a10d42fa2191</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="sresln1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>4b653eb1-8210-4104-bad0-486b7b5aab0d</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DtBlockChain">
+    <DataSet Name="dsreconocimiento">
       <Query>
-        <DataSourceName>DsBlockChain</DataSourceName>
+        <DataSourceName>sresln1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="ID_BLOCKCHAIN">
-          <DataField>ID_BLOCKCHAIN</DataField>
+        <Field Name="ID_RECONOCIMIENTO">
+          <DataField>ID_RECONOCIMIENTO</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="ID_INICIATIVA">
-          <DataField>ID_INICIATIVA</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="HASH">
-          <DataField>HASH</DataField>
+        <Field Name="PERIODO">
+          <DataField>PERIODO</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ID_MEDMIT">
-          <DataField>ID_MEDMIT</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="NOMBRE_MEDMIT">
-          <DataField>NOMBRE_MEDMIT</DataField>
+        <Field Name="PERIODO_ACTUAL">
+          <DataField>PERIODO_ACTUAL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ID_USUARIO">
-          <DataField>ID_USUARIO</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="NOMBRE_INICIATIVA">
-          <DataField>NOMBRE_INICIATIVA</DataField>
+        <Field Name="RAZON_SOCIAL">
+          <DataField>RAZON_SOCIAL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="INVERSION_INICIATIVA">
-          <DataField>INVERSION_INICIATIVA</DataField>
+        <Field Name="CONVOCATORIA">
+          <DataField>CONVOCATORIA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CATEGORIA">
+          <DataField>CATEGORIA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ESTRELLA">
+          <DataField>ESTRELLA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PUNTAJE">
+          <DataField>PUNTAJE</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="EMISIONES">
+          <DataField>EMISIONES</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="ID_MONEDA">
-          <DataField>ID_MONEDA</DataField>
+        <Field Name="ENERGIA">
+          <DataField>ENERGIA</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="COMBUSTIBLE">
+          <DataField>COMBUSTIBLE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="ID_CONVOCATORIA">
+          <DataField>ID_CONVOCATORIA</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="FECHA_CREA_INICIATIVA">
-          <DataField>FECHA_CREA_INICIATIVA</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+        <Field Name="ID_INSTITUCION">
+          <DataField>ID_INSTITUCION</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="FECHA_IMPLE_INICIATIVA">
-          <DataField>FECHA_IMPLE_INICIATIVA</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+        <Field Name="ID_PREMIACION">
+          <DataField>ID_PREMIACION</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="FECHA_FIN_INICIATIVA">
-          <DataField>FECHA_FIN_INICIATIVA</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="NOMBRE_INSTITUCION">
-          <DataField>NOMBRE_INSTITUCION</DataField>
+        <Field Name="ARCHIVO_BASE_PRE">
+          <DataField>ARCHIVO_BASE_PRE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="RESPONSABLE">
-          <DataField>RESPONSABLE</DataField>
+        <Field Name="FLAG_MEDIDA">
+          <DataField>FLAG_MEDIDA</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FLAG_MEJORACONTINUA">
+          <DataField>FLAG_MEJORACONTINUA</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PREMIO_ESPECIAL">
+          <DataField>PREMIO_ESPECIAL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RUTA_IMAGEN">
+          <DataField>RUTA_IMAGEN</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>DsBlockChain</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Dell\Desktop\back-end Blockchain\Web Dinamico 2\MRVMinem\Reportes\DsBlockChain.xsd</rd:SchemaPath>
-        <rd:TableName>DtBlockChain</rd:TableName>
-        <rd:TableAdapterFillMethod />
-        <rd:TableAdapterGetDataMethod />
-        <rd:TableAdapterName />
+        <rd:DataSetName>sres.ln</rd:DataSetName>
+        <rd:TableName>ReporteLN</rd:TableName>
+        <rd:ObjectDataSourceSelectMethod>DescargarReconocimiento</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[sres.be.ReporteBE+ReporteReconocimiento] DescargarReconocimiento(Int32, Int32)</rd:ObjectDataSourceSelectMethodSignature>
+        <rd:ObjectDataSourceType>sres.ln.ReporteLN, sres.ln, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

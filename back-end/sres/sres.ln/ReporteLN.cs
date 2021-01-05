@@ -125,5 +125,19 @@ namespace sres.ln
             return lista;
 
         }
+
+        public List<ReporteBE.ReporteReconocimiento> DescargarReconocimiento(int idconvocatoria, int idinstitucion)
+        {
+            List<ReporteBE.ReporteReconocimiento> lista = new List<ReporteBE.ReporteReconocimiento>();
+
+            try
+            {
+                cn.Open();
+                lista = reporteDA.Descargarreconocimiento(idconvocatoria, idinstitucion, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return lista;
+        }
     }
 }

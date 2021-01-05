@@ -173,5 +173,33 @@ namespace sres.da
             }
             return lista;
         }
+
+        public List<ReporteBE.ReporteReconocimiento> Descargarreconocimiento(int idConvocatoria, int idInstitucion, OracleConnection db)
+        {
+            List<ReporteBE.ReporteReconocimiento> lista = new List<ReporteBE.ReporteReconocimiento>();
+
+            try
+            {
+                string sp = $"{Package.Admin}USP_SEL_REP_RECONOCIMIENTOEMPRESA";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_INSTITUCION", idInstitucion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                lista = db.Query<ReporteBE.ReporteReconocimiento>(sp, p, commandType: CommandType.StoredProcedure).ToList();
+
+                if (lista != null)
+                    foreach (var item in lista)
+                    {
+                        if (item.FLAG_MEDIDA == 1 || item.FLAG_MEJORACONTINUA == 1)
+                            item.PREMIO_ESPECIAL = "y premiación especial";
+                    }
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return lista;
+        }
     }
 }

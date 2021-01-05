@@ -63,6 +63,20 @@ namespace sres.ln
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }
 
             return lista;
+        }        
+
+        public bool NombreFicha(ConvocatoriaBE ent)
+        {
+            bool seGuardo = false;
+            try
+            {
+                cn.Open();
+                reconocimientoDA.NombreFicha(ent, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return seGuardo;
         }
     }
 }

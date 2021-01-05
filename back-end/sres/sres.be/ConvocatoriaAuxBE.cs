@@ -21,6 +21,7 @@ namespace sres.be
         public int ID_REQUERIMIENTO { get; set; }
         public int ID_CRITERIO { get; set; }
         public int ID_USUARIO { get; set; }
+        public int ID_INSTITUCION { get; set; }
         public string NOMBRE_ETAPA { get; set; }
         public int DIAS { get; set; }
         public string CORREO { get; set; }
@@ -33,5 +34,6 @@ namespace sres.be
         public string FECHA_ETAPA_CONV { get; set; }
         public string FECHA_ETAPA_DET { get; set; }
         public int FLAG_ANULAR { get; set; }
+        public string NOMBRE_FICHA { get; set; }
     }
 }

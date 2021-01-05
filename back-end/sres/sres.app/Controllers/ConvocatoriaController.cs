@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using sres.app.Repositorio;
 
 namespace sres.app.Controllers
 {
@@ -236,6 +237,20 @@ namespace sres.app.Controllers
             ViewData["convocatoria"] = convocatoria;
 
             return View();
+        }
+
+        [SesionOut]
+        [Route("{0}/Reconocimiento")]
+        public ActionResult DescargarReconocimiento(ConvocatoriaBE entidad)
+        {
+            string nombreArchivo = Guid.NewGuid() + ".pdf";
+            string nombrePDF = nombrePDF = AppSettings.Get<string>("Ruta.Ficha") + nombreArchivo;
+            bool success = new ReporteRepositorio().DescargarReconocimiento(entidad.ID_CONVOCATORIA, entidad.ID_INSTITUCION, nombrePDF);
+            if (success)
+            {
+                reconocimientoLN.NombreFicha(new ConvocatoriaBE() { ID_CONVOCATORIA = entidad.ID_CONVOCATORIA, ID_INSTITUCION = entidad.ID_INSTITUCION, NOMBRE_FICHA = nombreArchivo });
+            }
+            return Json(new { success = true, message = nombreArchivo });
         }
 
         public ActionResult CriterioIngresar()

@@ -636,6 +636,7 @@
     <Compile Include="Reportes\ReporteReconocimientoXConvocatoriaEmpresa.aspx.designer.cs">
       <DependentUpon>ReporteReconocimientoXConvocatoriaEmpresa.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Repositorio\ReporteRepositorio.cs" />
     <Compile Include="Response\GoogleResponse.cs" />
     <Compile Include="Service References\ServicioPIDE\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -792,6 +793,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Fichas\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\_Base\" />
   </ItemGroup>
@@ -810,6 +812,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="App_Data\Reportes\Certificado.rdlc" />
     <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

@@ -35,6 +35,6 @@ namespace sres.be
         public DateTime FECHA_INICIO { get; set; }
         public string DESCRIPCION { get; set; }
         public string FLAG_ESTADO { get; set; }
-        public int PREMIO_MEDMIT { get; set; }
+        public int PREMIO_MEDMIT { get; set; }        
     }
 }
