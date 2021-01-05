@@ -122,10 +122,11 @@ var renderizar = (data, cantidadCeldas, pagina, registros) => {
             let colCodigo = `<td class="text-center" data-encabezado="Código" scope="row"><span>${(`${formatoCodigo}${x.ID_CRITERIO}${x.ID_DOCUMENTO}`).split('').reverse().join('').substring(0, formatoCodigo.length).split('').reverse().join('')}</span></td>`;
             let colNombres = `<td class="text-left" data-encabezado="Nombre">${x.NOMBRE}</td>`;
             let colCriterio = `<td class="text-left" data-encabezado="Criterio">${x.CRITERIO}</td>`;
+            let colObligatorio = `<td class="text-center" data-encabezado="Incrementable">${x.OBLIGATORIO == '1' ? `<input type="checkbox" disabled checked />` : `<input type="checkbox" disabled />`}</td>`;
             let btnCambiarEstado = `${[0, 1].includes(x.FLAG_ESTADO) ? "" : `<a class="dropdown-item estilo-01 btnCambiarEstado" href="#" data-id="${x.ID_CRITERIO}-${x.ID_DOCUMENTO}" data-estado="${x.FLAG_ESTADO}"><i class="fas fa-edit mr-1"></i>Eliminar</a>`}`;
             let btnEditar = `<a class="dropdown-item estilo-01 btnEditar" href="#" data-id="${x.ID_CRITERIO}-${x.ID_DOCUMENTO}" data-toggle="modal" data-target="#modal-mantenimiento"><i class="fas fa-edit mr-1"></i>Editar</a>`;
             let colOpciones = `<td class="text-center" data-encabezado="Gestión"><div class="btn-group w-100"><a class="btn btn-sm bg-success text-white w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">Gestionar</a><div class="dropdown-menu">${btnCambiarEstado}${btnEditar}</div></div></td>`;
-            let fila = `<tr>${colNro}${colCodigo}${colNombres}${colCriterio}${colOpciones}</tr>`;
+            let fila = `<tr>${colNro}${colCodigo}${colNombres}${colCriterio}${colObligatorio}${colOpciones}</tr>`;
             return fila;
         }).join('');
     };
@@ -171,6 +172,7 @@ var cargarDatos = (data) => {
     $('#frm').data('id', data.ID_DOCUMENTO);
     $('#txt-nombre').val(data.NOMBRE);
     $('#cbo-criterio').val(data.ID_CRITERIO);
+    $('#rad-obligatorio').prop('checked', data.OBLIGATORIO == '1' ? true : false);
 }
 
 var guardar = () => {
@@ -190,9 +192,10 @@ var guardar = () => {
     let id = $('#frm').data('id');
     let nombre = $('#txt-nombre').val();
     let criterio = $(`#cbo-criterio`).val();
+    let obligatorio = $('#rad-obligatorio').prop('checked') ? '1' : '0';
 
     let url = `${baseUrl}api/documento/guardardocumento`;
-    let data = { ID_CRITERIO: criterio, ID_DOCUMENTO: id == null ? -1 : id, NOMBRE: nombre, USUARIO_GUARDAR: idUsuarioLogin };
+    let data = { ID_CRITERIO: criterio, ID_DOCUMENTO: id == null ? -1 : id, NOMBRE: nombre, OBLIGATORIO: obligatorio, USUARIO_GUARDAR: idUsuarioLogin };
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
@@ -210,7 +213,7 @@ var nuevo = () => {
     $('.alert-add').html('');
     $('#btnGuardar').show();
     $('#btnGuardar').next().html('Cancelar');
-    $('#cbo-criterio').parent().parent().show();
+    $('#cbo-criterio').parent().parent().show();    
     $('#exampleModalLabel').html('REGISTRAR DOCUMENTO');
 }
 
@@ -218,6 +221,7 @@ var limpiarFormulario = () => {
     $('#frm').removeData();
     $('#txt-nombre').val('');
     $('#cbo-criterio').val(0);
+    $('#rad-obligatorio').prop('checked', false);
 }
 
 var consultarListas = () => {

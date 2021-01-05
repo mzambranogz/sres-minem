@@ -138,6 +138,7 @@ namespace sres.da
                 p.Add("PI_ID_CRITERIO", entidad.ID_CRITERIO);
                 p.Add("PI_ID_DOCUMENTO", entidad.ID_DOCUMENTO);
                 p.Add("PI_NOMBRE", entidad.NOMBRE);
+                p.Add("PI_OBLIGATORIO", entidad.OBLIGATORIO);
                 p.Add("PI_USUARIO_GUARDAR", entidad.USUARIO_GUARDAR);
                 p.Add("PO_ROWAFFECTED", dbType: OracleDbType.Int32, direction: ParameterDirection.Output);
                 db.ExecuteScalar(sp, p, commandType: CommandType.StoredProcedure);
