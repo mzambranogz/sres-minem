@@ -28,7 +28,8 @@ var consultar = () => {
         contenido = j.map((x, i) => {
             let head = armarHead(x.LIST_INDICADOR_HEAD, x.INCREMENTABLE, "'" + x.ID_CRITERIO + '-' + x.ID_CASO + '-' + x.ID_COMPONENTE + "'", x.ID_COMPONENTE);
             let body = armarBody(x.LIST_INDICADOR_BODY, x.INCREMENTABLE);
-            return `<h3 class="estilo-02 text-sres-azul mt-5 text-left">${x.ETIQUETA == null ? '' : x.ETIQUETA}</h3><div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div>${x.INCREMENTABLE == '1' ? `<div class="row"><div class="btn btn-warning btn-sm estilo-01" type="button" onclick="agregarFila('${`${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}`}',${x.ID_COMPONENTE});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div>` : ''}`;
+            //return `<h3 class="estilo-02 text-sres-azul mt-5 text-left">${x.ETIQUETA == null ? '' : x.ETIQUETA}</h3><div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div>${x.INCREMENTABLE == '1' ? `<div class="btn btn-warning btn-sm estilo-01 addBtnGnralLeft" type="button" onclick="agregarFila('${`${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}`}',${x.ID_COMPONENTE});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>` : ''}`;
+            return `<h3 class="estilo-02 text-sres-azul mt-5 text-left">${x.ETIQUETA == null ? '' : x.ETIQUETA}</h3><div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div>`;
         }).join('');
         $("#table-add").html(`${contenido}`);
 
@@ -37,6 +38,8 @@ var consultar = () => {
                 armarBodyEstatico(x.LIST_INDICADOR_BODY);
         });
         $("[data-toggle='tooltip']").tooltip();
+        scrollButtons();
+        scrollButtonsAgregar(id_criterio, id_caso);
     });
 };
 
@@ -151,13 +154,25 @@ var btnEliminarFileClick = (e) => {
 }
 
 var armarHead = (lista, incremental, id, componente) => {
-    let cont = ``, contbau = 0, contini = 0, contresul = 0;
+    let cont = ``, contbau = 0, contini = 0, contresul = 0, indicador = 0;
     for (var i = 0; i < lista.length; i++) {
+        if (indicador == 0) {
+            if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contbau++;
+            if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 124) indicador = 124;
+        } else if (indicador == 124) {
+            if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contini++;
+            if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 133) indicador = 133;
+        } else if (indicador == 133) {
+            contresul++;
+        }
         //cont += `<th scope="col"><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? `<i class="mt-2"></i>` : `<i class="fas fa-question-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i>`}</div></th>`;
         cont += `<th scope="col" ${lista[i]["OBJ_PARAMETRO"].VISIBLE == '0' ? `class="d-none"` : ''}><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}<i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? '' : lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i></div></th>`;
     }
-    cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center"><div class="btn btn-warning btn-sm estilo-01" type="button" onclick="agregarFila(${id},${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div></th>` : ``;
-    return `<thead class="estilo-06"><tr>${cont}</tr></thead>`;
+    let columnabau = `<th colspan="${contbau}"><div class="d-flex flex-column justify-content-center align-items-center"><span>LÍNEA BASE</span><small></small><i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Línea base"></i></div></th>`;
+    let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>MEJORA</span><small></small><i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Después de la implementación de mejora"></i></div></th>`;
+    let columnares = `<th colspan="${contresul}"><div class="d-flex flex-column justify-content-center align-items-center"><span>RESULTADOS</span><small></small><i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Resultados"></i></div></th>`;
+    cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center"><div class="btn btn-warning btn-sm estilo-01 addBtnGeneral" type="button" onclick="agregarFila(${id},${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div></th>` : ``;
+    return `<thead class="estilo-06">${idCriterio == 1 && componente == 2 ? `<tr>${columnabau}${columnaini}${columnares}</tr>` : ''}<tr>${cont}</tr></thead>`;
 };
 
 var armarBody = (lista, incremental) => {
@@ -533,4 +548,21 @@ var evaluarEnergia = (e1, e2) => {
     else if (e1 > 1 && e2 > 1) v = 2;
     else if ((e1 == "1" && e2 > 1) || (e1 > 1 && e2 == "1")) v = 3;
     return v;
+}
+
+function scrollButtonsAgregar(criterio, caso) {
+    var $wrapAll = $(".tabla-principal");
+
+    $wrapAll.each(function () {
+        $wrap = $(this);
+        var $btn = $wrap.find(".addBtnGeneral");
+        let componente = $wrap.find("table").data('comp');
+        if ($btn.length > 0) {
+            console.log("si");
+            $wrap.parent().append(`<div class="btn btn-warning btn-sm estilo-01 addBtnGnralLeft" type="button" onclick="agregarFila('${`${criterio}-${caso}-${componente}`}',${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>`);
+            $wrap.parent().append(`<div class="btn btn-warning btn-sm estilo-01 addBtnGnralRight" type="button" onclick="agregarFila('${`${criterio}-${caso}-${componente}`}',${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>`);
+        } else {
+            console.log("no");
+        }
+    });
 }

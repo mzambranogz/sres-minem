@@ -65,6 +65,46 @@
         const rucLogin = '@(usuario == null ? "" : $"{usuario.INSTITUCION.RUC}")';
         const idRolLogin = @(usuario == null ? "null" : usuario.ROL == null ? "null" : usuario.ID_ROL.ToString());
         const idSectorLogin = @(usuario == null ? "null" : usuario.INSTITUCION == null ? "null" : usuario.INSTITUCION.ID_SECTOR.ToString());
+
+        function scrollButtons() {
+            var $wrapAll = $(".tabla-principal");
+
+            $wrapAll.each(function () {
+                $wrap = $(this);
+                if ($wrap.get(0).scrollWidth > $wrap.width()) {
+                    console.log('si');
+                    $wrap.wrap("<div class='wrap-principal'></div>");
+                    $(".wrap-principal").append("<div class='flag-left'><i class='fas fa-angle-left'></i></div>");
+                    $(".wrap-principal").append("<div class='flag-right'><i class='fas fa-angle-right'></i></div>");
+                    $wrap.attr({ "style": "overflow: hidden !important;" });
+                } else {
+                    console.log('no');
+                }
+
+               /* var $btn = $wrap.find(".addBtnGnral");
+                if($btn.length>0){
+                    console.log("si");
+                    $wrap.parent().append('<div class="btn btn-warning btn-sm estilo-01 addBtnGnralLeft" type="button"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>');
+                    $wrap.parent().append('<div class="btn btn-warning btn-sm estilo-01 addBtnGnralRight" type="button"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>');
+                }else{
+                    console.log("no");
+                }*/
+            });
+
+        }
+        scrollButtons();
+
+        $(document).on("click",".flag-left", function () {
+            debugger;
+            var $wrap = $(this).parent().find(".tabla-principal");
+            $wrap.animate({ scrollLeft: '-=180' }, 500);
+        });
+        $(document).on("click",".flag-right", function () {
+            debugger;
+            var $wrap = $(this).parent().find(".tabla-principal");
+            $wrap.animate({ scrollLeft: '+=180' }, 500);
+        });
+        
     </script>
     @RenderSection("scripts_footer", false)
 </body>
