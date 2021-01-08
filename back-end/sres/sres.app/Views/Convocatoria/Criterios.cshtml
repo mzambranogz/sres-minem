@@ -20,7 +20,7 @@
     string pathFormat_mt = AppSettings.Get<string>("Path.MedidaMitigacion");
     string pathFormat_reg_mrv = AppSettings.Get<string>("Registro.MRV");
     string pathFormat_ini_mrv = AppSettings.Get<string>("Inicio.MRV");
-    decimal puntaje_posible = puntaje_conv == null ? 0 : puntaje_conv.PUNTAJE;
+    decimal puntaje_posible = puntaje_conv == null ? 0 : puntaje_conv.PUNTAJE > 100 ? 100 : puntaje_conv.PUNTAJE;
     string linea_categoria = flag_categoria == 0 ? "border-linea" : "border-linea-verde";
 }
 

@@ -16,6 +16,8 @@ namespace sres.be
         public decimal EMISIONES_REDUCIDAS { get; set; }
         public decimal ENERGIA { get; set; }
         public decimal COMBUSTIBLE { get; set; }
+        public decimal CONSUMO_ENERGETICO { get; set; }
+        public decimal EFICIENCIA_TRANSPORTE { get; set; }
         public string FLAG_ESTADO { get; set; }
     }
 }

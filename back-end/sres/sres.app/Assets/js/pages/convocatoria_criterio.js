@@ -29,7 +29,7 @@ var consultar = () => {
             let head = armarHead(x.LIST_INDICADOR_HEAD, x.INCREMENTABLE, "'" + x.ID_CRITERIO + '-' + x.ID_CASO + '-' + x.ID_COMPONENTE + "'", x.ID_COMPONENTE);
             let body = armarBody(x.LIST_INDICADOR_BODY, x.INCREMENTABLE);
             //return `<h3 class="estilo-02 text-sres-azul mt-5 text-left">${x.ETIQUETA == null ? '' : x.ETIQUETA}</h3><div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div>${x.INCREMENTABLE == '1' ? `<div class="btn btn-warning btn-sm estilo-01 addBtnGnralLeft" type="button" onclick="agregarFila('${`${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}`}',${x.ID_COMPONENTE});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>` : ''}`;
-            return `<h3 class="estilo-02 text-sres-azul mt-5 text-left">${x.ETIQUETA == null ? '' : x.ETIQUETA}</h3><div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div>`;
+            return `<h3 class="estilo-02 text-sres-azul mt-5 text-left">${x.ETIQUETA == null ? '' : x.ETIQUETA}</h3><div class="table-responsive tabla-principal"><table class="table table-sm table-hover m-0 get" id="${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}" data-comp="${x.ID_COMPONENTE}" data-eliminar="">${head}${body}</table></div><div class="btn-agregar"></div>`;
         }).join('');
         $("#table-add").html(`${contenido}`);
 
@@ -171,7 +171,8 @@ var armarHead = (lista, incremental, id, componente) => {
     let columnabau = `<th colspan="${contbau}"><div class="d-flex flex-column justify-content-center align-items-center"><span>LÍNEA BASE</span><small></small><i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Línea base"></i></div></th>`;
     let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>MEJORA</span><small></small><i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Después de la implementación de mejora"></i></div></th>`;
     let columnares = `<th colspan="${contresul}"><div class="d-flex flex-column justify-content-center align-items-center"><span>RESULTADOS</span><small></small><i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Resultados"></i></div></th>`;
-    cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center"><div class="btn btn-warning btn-sm estilo-01 addBtnGeneral" type="button" onclick="agregarFila(${id},${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div></th>` : ``;
+    //cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center"><div class="btn btn-warning btn-sm estilo-01 addBtnGeneral" type="button" onclick="agregarFila(${id},${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div></th>` : ``;
+    cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center addBtnGeneral"></div></th>` : ``;
     return `<thead class="estilo-06">${idCriterio == 1 && componente == 2 ? `<tr>${columnabau}${columnaini}${columnares}</tr>` : ''}<tr>${cont}</tr></thead>`;
 };
 
@@ -191,7 +192,7 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
             if (lista[i]["ESTATICO"] == '1')
                 filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${lista[i]["VISIBLE"] == '0' ? `class="d-none"` : ''}><div class="text-center estilo-01">${validarNull(lista[i]["VALOR"])}</div><input class="get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" type="hidden" /></td>`;
             else
-                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${lista[i]["VISIBLE"] == '0' ? `class="d-none"` : ''}><div class="form-group m-0"><input class="form-control form-control-sm estilo-01 ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero text-right' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal text-right' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["RESULTADO"] == null ? `alert-warning` : lista[i]["RESULTADO"] == '0' ? `alert-warning` : ``} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``} ${lista[i]["COMBUSTIBLE"] == null ? `` : lista[i]["COMBUSTIBLE"] == '1' ? `get-combustible` : ``} ${lista[i]["CAMBIO_MATRIZ"] == null ? `` : lista[i]["CAMBIO_MATRIZ"] == '1' ? `get-cambio-matriz` : ``} get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${lista[i]["DECIMAL_V"] == null ? validarNull(lista[i]["VALOR"]) : lista[i]["DECIMAL_V"] == '1' ? formatoMiles(validarNull(lista[i]["VALOR"])) : validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} /></div></td>`;
+                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${lista[i]["VISIBLE"] == '0' ? `class="d-none"` : ''}><div class="form-group m-0"><input class="form-control form-control-sm ${lista[i]["ID_TIPO_DATO"] == '3' ? 'estilo-06' : 'estilo-01'} ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero text-right' : lista[i]["ID_TIPO_DATO"] == '3' ? 'text-right' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal text-right' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["RESULTADO"] == null ? `alert-warning` : lista[i]["RESULTADO"] == '0' ? `alert-warning` : ``} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``} ${lista[i]["COMBUSTIBLE"] == null ? `` : lista[i]["COMBUSTIBLE"] == '1' ? `get-combustible` : ``} ${lista[i]["CAMBIO_MATRIZ"] == null ? `` : lista[i]["CAMBIO_MATRIZ"] == '1' ? `get-cambio-matriz` : ``} get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${lista[i]["DECIMAL_V"] == null ? validarNull(lista[i]["VALOR"]) : lista[i]["DECIMAL_V"] == '1' ? formatoMiles(validarNull(lista[i]["VALOR"])) : validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} /></div></td>`;
         } else if (lista[i]["ID_TIPO_CONTROL"] == 1) {
             filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${lista[i]["VISIBLE"] == '0' ? `class="d-none"` : ''}><div class="form-group m-0"><select class="form-control form-control-sm multi-opciones alert-warning ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["FILTRO"] == null ? `` : lista[i]["FILTRO"] == '' ? `` : `data-filtro="${lista[i]["FILTRO"]}" onchange="filtrar(this)"`}  ${lista[i]["VERIFICABLE"] == '1' ? `onchange="verificarValor(this)"` : ``}><option value="0">Seleccione</option>`;
             for (var j = 0; j < lista[i]["LIST_PARAMDET"].length; j++)
@@ -203,7 +204,7 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
         }
 
     }
-    filas += incremental == '1' ? `<td><div class="btn btn-info btn-sm estilo-01" type="button" onclick="eliminarFila(this);"><i class="fas fa-minus-circle mr-1"></i>Quitar</div></td>` : ``;
+    filas += incremental == '1' ? `<td><div class="btn btn-info btn-sm estilo-01" type="button" onclick="eliminarFila(this);"><i class="fas fa-minus-circle mr-1"></i>&nbsp;Quitar&nbsp;&nbsp;</div></td>` : ``;
     return `${filas}</tr>`;
 }
 
@@ -338,23 +339,31 @@ var guardar = () => {
 
     let emisiones = 0.0
     $(document).find('.get-emisiones').each((x, y) => {
-        emisiones += $(y).val() == '' ? 0.0 : parseFloat($(y).val().replace(/,/gi, ''));
+        emisiones += $(y).val() == '' ? 0.0 : parseFloat($(y).val().replace(/,/gi, '')) < 0 ? 0.0 : parseFloat($(y).val().replace(/,/gi, ''));
     });
 
     let energia = 0.0
     $(document).find('.get-ahorro').each((x, y) => {
-        energia += $(y).val() == '' ? 0.0 : parseFloat($(y).val().replace(/,/gi, ''));
+        energia += $(y).val() == '' ? 0.0 : parseFloat($(y).val().replace(/,/gi, '')) < 0 ? 0.0 : parseFloat($(y).val().replace(/,/gi, ''));
     });
 
     let combustible = 0.0;
     $(document).find('.get-combustible').each((x, y) => {
-        combustible += $(y).val() == '' ? 0.0 : parseFloat($(y).val().replace(/,/gi, ''));
+        combustible += $(y).val() == '' ? 0.0 : parseFloat($(y).val().replace(/,/gi, '')) < 0 ? 0.0 : parseFloat($(y).val().replace(/,/gi, ''));
     });
 
     let cambio_matriz = 0.0;
     $(document).find('.get-cambio-matriz').each((x, y) => {
-        cambio_matriz += $(y).val() == '' ? 0.0 : parseFloat($(y).val().replace(/,/gi, ''));
+        cambio_matriz += $(y).val() == '' ? 0.0 : parseFloat($(y).val().replace(/,/gi, '')) < 0 ? 0.0 : parseFloat($(y).val().replace(/,/gi, ''));
     });
+
+    if (idCriterio == 1) {
+        energia = energia / 1000;
+        combustible = combustible / 1000;
+        cambio_matriz = cambio_matriz / 1000;
+    }
+
+    combustible += cambio_matriz; //cambio de matriz es ahorro de combustible
     
     let data = { LIST_COMPONENTE: componente_ind, LIST_DOCUMENTO: listaDoc, ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio_, ID_CASO: idCaso, ID_INSCRIPCION: idInscripcion_, NOMBRE_CRI: $('.nom-cri').val(), EMISIONES: emisiones, ENERGIA: energia, COMBUSTIBLE: combustible, CAMBIO_MATRIZ: cambio_matriz, ID_ETAPA: idEtapa, USUARIO_GUARDAR: idUsuarioLogin };
 
@@ -425,6 +434,7 @@ var enviarValores = (lista, fila) => {
             $(y)[0].className.indexOf("multi-opciones") != -1 ? $(y).val(x.VALOR) : $(y)[0].className.indexOf("solo-numero") != -1 && $(y)[0].className.indexOf("formato-decimal") != -1 ? $(y).val(formatoMiles(x.VALOR)) : $(y).val(x.VALOR);            
         });
         contabilizar();
+        contabilizar2();
     });
 }
 
@@ -520,7 +530,7 @@ var verificarFiltro = (filtro, obj) => {
 var contabilizar = () => {    
     if (idCriterio != 1) return;
     electricidadHead = 0; combustibleHead = 0, energiaelectrica = 0, energiatermica = 0, cambiomatriz = 0, emisiones = 0;
-    $('#1-1-1').find('tbody').find('tr').each((x, y) => {
+    $('#1-1-1').find('tbody').find('tr').each((x, y) => {        
         let v = $(y).find('[data-param=109]').val();
         if (v != null && v > 0) {
             if (v == "1") electricidadHead += $(y).find('[data-param=114]').val() == null ? 0 : $(y).find('[data-param=114]').val() == "" ? 0 : parseFloat($(y).find('[data-param=114]').val().replace(/,/gi, ''));
@@ -529,17 +539,40 @@ var contabilizar = () => {
     });
 
     $('#1-1-2').find('tbody').find('tr').each((x, y) => {
+        let m = $(y).find('[data-param=135]').val().replace(/,/gi, '');
+        let n = $(y).find('[data-param=134]').val().replace(/,/gi, '');
+        if (m < 0) $(y).find('[data-param=135]').val('0.00');
+        if (n < 0) $(y).find('[data-param=134]').val('0.00');
         let v1 = $(y).find('[data-param=118]').val();
         let v2 = $(y).find('[data-param=127]').val();
         if (v1 != null && v1 > 0 && v2 != null && v2 > 0) {
             let v = evaluarEnergia(v1,v2);
-            if (v == 1) energiaelectrica += $(y).find('[data-param=134]').val() == null ? 0 : $(y).find('[data-param=134]').val() == "" ? 0 : parseFloat($(y).find('[data-param=134]').val().replace(/,/gi, ''));
-            else if (v == 2) energiatermica += $(y).find('[data-param=134]').val() == null ? 0 : $(y).find('[data-param=134]').val() == "" ? 0 : parseFloat($(y).find('[data-param=134]').val().replace(/,/gi, ''));
-            else if (v == 3) cambiomatriz += $(y).find('[data-param=134]').val() == null ? 0 : $(y).find('[data-param=134]').val() == "" ? 0 : parseFloat($(y).find('[data-param=134]').val().replace(/,/gi, ''));
+            if (v == 1) energiaelectrica += $(y).find('[data-param=134]').val() == null ? 0 : $(y).find('[data-param=134]').val() == "" ? 0 : parseFloat($(y).find('[data-param=134]').val().replace(/,/gi, '')) < 0 ? 0 : parseFloat($(y).find('[data-param=134]').val().replace(/,/gi, ''));
+            else if (v == 2) energiatermica += $(y).find('[data-param=134]').val() == null ? 0 : $(y).find('[data-param=134]').val() == "" ? 0 : parseFloat($(y).find('[data-param=134]').val().replace(/,/gi, '')) < 0 ? 0 : parseFloat($(y).find('[data-param=134]').val().replace(/,/gi, ''));
+            else if (v == 3) cambiomatriz += $(y).find('[data-param=134]').val() == null ? 0 : $(y).find('[data-param=134]').val() == "" ? 0 : parseFloat($(y).find('[data-param=134]').val().replace(/,/gi, '')) < 0 ? 0 : parseFloat($(y).find('[data-param=134]').val().replace(/,/gi, ''));
             emisiones += $(y).find('[data-param=135]').val() == null ? 0 : $(y).find('[data-param=135]').val() == "" ? 0 : parseFloat($(y).find('[data-param=135]').val().replace(/,/gi, ''));
         }
     });
+    energiaelectrica = energiaelectrica / 1000;
+    energiatermica = energiatermica / 1000;
+    cambiomatriz = cambiomatriz / 1000;
     console.log(`electrica: ${energiaelectrica}, termica: ${energiatermica}, matriz: ${cambiomatriz}, emisiones: ${emisiones}`);
+}
+
+var contabilizar2 = () => {
+    if (idCriterio != 2) return;
+
+    $('.tabla-principal').each((x, y) => {
+        $(y).find('tbody').find('tr').each((m, n) => {
+            let v1 = $(n).find('[data-param=51]').val().replace(/,/gi, '');
+            let v2 = $(n).find('[data-param=54]').val().replace(/,/gi, '');
+            let v3 = $(n).find('[data-param=55]').val().replace(/,/gi, '');
+            if (v1 < 0) $(n).find('[data-param=51]').val('0.00');
+            if (v2 < 0) $(n).find('[data-param=54]').val('0.00');
+            if (v3 < 0) $(n).find('[data-param=55]').val('0.00');
+        });        
+    });
+    //console.log(`electrica: ${energiaelectrica}, termica: ${energiatermica}, matriz: ${cambiomatriz}, emisiones: ${emisiones}`);
 }
 
 var evaluarEnergia = (e1, e2) => {
@@ -559,8 +592,18 @@ function scrollButtonsAgregar(criterio, caso) {
         let componente = $wrap.find("table").data('comp');
         if ($btn.length > 0) {
             console.log("si");
-            $wrap.parent().append(`<div class="btn btn-warning btn-sm estilo-01 addBtnGnralLeft" type="button" onclick="agregarFila('${`${criterio}-${caso}-${componente}`}',${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>`);
-            $wrap.parent().append(`<div class="btn btn-warning btn-sm estilo-01 addBtnGnralRight" type="button" onclick="agregarFila('${`${criterio}-${caso}-${componente}`}',${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>`);
+            let elemento = $wrap.parent();
+            if (elemento[0].className == "wrap-principal") {
+                //$wrap.parent().append(`<div class="btn btn-warning btn-sm estilo-01 addBtnGnralLeft" type="button" onclick="agregarFila('${`${criterio}-${caso}-${componente}`}',${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>`);
+                $wrap.parent().append(`<div class="btn btn-warning btn-sm estilo-01 addBtnGnralRight mr-1" type="button" onclick="agregarFila('${`${criterio}-${caso}-${componente}`}',${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>`);
+            } else {
+                $wrap.wrap("<div class='wrap-principal'></div>");
+                //$wrap.parent().append(`<div class="btn btn-warning btn-sm estilo-01 addBtnGnralLeft" type="button" onclick="agregarFila('${`${criterio}-${caso}-${componente}`}',${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>`);
+                $wrap.parent().append(`<div class="btn btn-warning btn-sm estilo-01 addBtnGnralRight mr-1" type="button" onclick="agregarFila('${`${criterio}-${caso}-${componente}`}',${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>`);
+                //$wrap.next().append(`<div class="btn btn-warning btn-sm estilo-01" style="left: 0; position: absolute;" type="button" onclick="agregarFila('${`${criterio}-${caso}-${componente}`}',${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>`);
+                //$wrap.next().append(`<div class="btn btn-warning btn-sm estilo-01" style="right: 0; position: absolute;" type="button" onclick="agregarFila('${`${criterio}-${caso}-${componente}`}',${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div>`);
+            }
+            
         } else {
             console.log("no");
         }

@@ -32,10 +32,14 @@ namespace sres.ln
         public ConvocatoriaCriterioPuntajeBE ObtenerPuntajeInscripcion(int idConvocatoria, int idInscripcion)
         {
             ConvocatoriaCriterioPuntajeBE item = new ConvocatoriaCriterioPuntajeBE();
+            ConvocatoriaCriterioPuntajeBE itempuntajeCE = new ConvocatoriaCriterioPuntajeBE();
             try
             {
                 cn.Open();
                 item = convcripuntajeDA.ObtenerPuntajeInscripcion(idConvocatoria, idInscripcion, cn);
+                itempuntajeCE = convcripuntajeDA.ObtenerPuntajeConsumoEficiencia(idConvocatoria, idInscripcion, cn);
+                decimal restante = itempuntajeCE.CONSUMO_ENERGETICO + itempuntajeCE.EFICIENCIA_TRANSPORTE - 60;
+                item.PUNTAJE -= restante;
             }
             catch (Exception ex) { Log.Error(ex); }
             finally { if (cn.State == ConnectionState.Open) cn.Close(); }

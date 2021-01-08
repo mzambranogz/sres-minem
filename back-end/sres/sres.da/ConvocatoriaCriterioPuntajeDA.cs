@@ -97,5 +97,25 @@ namespace sres.da
 
             return item;
         }
+
+        public ConvocatoriaCriterioPuntajeBE ObtenerPuntajeConsumoEficiencia(int idConvocatoria, int idInscripcion, OracleConnection db)
+        {
+            ConvocatoriaCriterioPuntajeBE item = new ConvocatoriaCriterioPuntajeBE();
+            try
+            {
+                string sp = $"{Package.Criterio}USP_SEL_PUNTAJE_CONS_EFIC";
+                var p = new OracleDynamicParameters();
+                p.Add("PI_ID_CONVOCATORIA", idConvocatoria);
+                p.Add("PI_ID_INSCRIPCION", idInscripcion);
+                p.Add("PO_REF", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+                item = db.QueryFirstOrDefault<ConvocatoriaCriterioPuntajeBE>(sp, p, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            return item;
+        }
     }
 }
