@@ -1,4 +1,4 @@
-﻿var electricidadHead = 0, combustibleHead = 0, energiaelectrica = 0, energiatermica = 0, cambiomatriz = 0, emisiones = 0, ahorroenergia = 0, ahorrotermica = 0, ahorrocambio = 0;
+﻿var electricidadHead = 0, combustibleHead = 0, energiaelectrica = 0, energiatermica = 0, cambiomatriz = 0, emisiones = 0, ahorroenergia = 0, ahorrotermica = 0, ahorrocambio = 0, total_energiahead = 0, total_energia = 0, porcentaje_total_energia = 0;
 
 $(document).ready(() => {
     consultar();
@@ -15,9 +15,9 @@ var validarCamposVisibles = () => {
         if (idCriterio == 2) {
             $('#txt-electrica').parent().parent().parent().addClass('d-none');
             $('#txt-matriz').parent().parent().parent().addClass('d-none');
-            $('#txt-ahorro-electrica').parent().parent().parent().addClass('d-none');
-            $('#txt-ahorro-termica').parent().parent().parent().addClass('d-none');
-            $('#txt-ahorro-matriz').parent().parent().parent().addClass('d-none');
+            //$('#txt-total-electrica').parent().parent().parent().addClass('d-none');
+            //$('#txt-ahorro-termica').parent().parent().parent().addClass('d-none');
+            //$('#txt-ahorro-matriz').parent().parent().parent().addClass('d-none');
         }        
     }
 }
@@ -73,13 +73,14 @@ var consultar = () => {
         });
         $(`#txt-ahorro`).val(formatoMiles(energia));
 
-        let combustible = 0.0
-        $(document).find('.get-combustible').each((x, y) => {
-            combustible += $(y).html() == '' ? 0.0 : parseFloat($(y).html());
-        });
-        $(`#txt-termica`).val(formatoMiles(combustible));
+        //let combustible = 0.0
+        //$(document).find('.get-combustible').each((x, y) => {
+        //    combustible += $(y).html() == '' ? 0.0 : parseFloat($(y).html());
+        //});
+        //$(`#txt-termica`).val(formatoMiles(combustible));
 
         if (idCriterio == 1) contabilizar();
+        contabilizar2();
         scrollButtons();
     });
 };
@@ -293,7 +294,7 @@ var formatoMiles = (n) => {
 
 var contabilizar = () => {
     if (idCriterio != 1) return;
-    electricidadHead = 0; combustibleHead = 0, energiaelectrica = 0, energiatermica = 0, cambiomatriz = 0, emisiones = 0;
+    electricidadHead = 0; combustibleHead = 0, energiaelectrica = 0, energiatermica = 0, cambiomatriz = 0, emisiones = 0, total_energiahead = 0, total_energia = 0, porcentaje_total_energia = 0;
     $('#1-1-1').find('tbody').find('tr').each((x, y) => {
         let v = $(y).find('[data-param=109]').data('valor');
         if (v != null && v > 0) {
@@ -321,14 +322,26 @@ var contabilizar = () => {
         let id = `#${$(y).attr('id')}`;
         let v = $(id).data('valor');
         let valor = parseFloat($(id).parent().parent().parent().parent().find('[data-param=114]').html().replace(/,/gi, ''));
-        debugger;
-        if (v == 1) ahorroenergia = valor == 0 ? 0 : energiaelectrica / valor;
-        else if (v == 2) ahorrotermica = valor == 0 ? 0 : energiatermica / valor;
-        else if (v == 3) ahorrocambio = valor == 0 ? 0 : cambiomatriz / valor;
+        //if (v == 1) ahorroenergia = valor == 0 ? 0 : energiaelectrica / valor;
+        //else if (v == 2) ahorrotermica = valor == 0 ? 0 : energiatermica / valor;
+        //else if (v == 3) ahorrocambio = valor == 0 ? 0 : cambiomatriz / valor;
+        if (v == 1) ahorroenergia = valor == 0 ? 0 : valor;
+        else if (v == 2) ahorrotermica = valor == 0 ? 0 : valor;
+        else if (v == 3) ahorrocambio = valor == 0 ? 0 : valor;
     });
-    $('#txt-ahorro-electrica').val(formatoMiles(ahorroenergia));
-    $('#txt-ahorro-termica').val(formatoMiles(ahorrotermica));
-    $('#txt-ahorro-matriz').val(formatoMiles(ahorrocambio));
+    //$('#txt-ahorro-electrica').val(formatoMiles(ahorroenergia));
+    //$('#txt-ahorro-termica').val(formatoMiles(ahorrotermica));
+    //$('#txt-ahorro-matriz').val(formatoMiles(ahorrocambio));
+    total_energia = energiaelectrica + energiatermica + cambiomatriz;
+    total_energiahead = ahorroenergia + ahorrotermica + ahorrocambio;
+
+    porcentaje_total_energia = total_energia / total_energiahead;
+    $('#txt-total-electrica').val(formatoMiles(porcentaje_total_energia * 100));
+    criterioevaluacion();
+    energiaelectrica = energiaelectrica / 1000;
+    energiatermica = energiatermica / 1000;
+    cambiomatriz = cambiomatriz / 1000;
+    energiatermica += cambiomatriz; //cambio de matriz es ahorro de combustible
     //console.log(`electrica: ${energiaelectrica}, termica: ${energiatermica}, matriz: ${cambiomatriz}, emisiones: ${emisiones}`);
 }
 
@@ -344,4 +357,81 @@ var validarParametroVisible = (p) => {
     let v = true;
     if (p == 139 || p == 140 || p == 141 || p == 142 || p == 143 || p == 144) v = false;
     return v;
+}
+
+var criterioevaluacion = () => {
+    if (energiaelectrica > 0 && energiatermica > 0 && cambiomatriz > 0) {
+        criteriolectricidad();
+    } else if (energiaelectrica > 0 && energiatermica > 0 && cambiomatriz <= 0) {
+        criteriolectricidad();
+    } else if (energiaelectrica <= 0 && energiatermica > 0 && cambiomatriz > 0) {
+        criterioltermica();
+    } else if (energiaelectrica > 0 && energiatermica <= 0 && cambiomatriz > 0) {
+        criteriolectricidad();
+    } else if (energiaelectrica > 0 && energiatermica <= 0 && cambiomatriz <= 0) {
+        criteriolectricidad();
+    } else if (energiaelectrica <= 0 && energiatermica > 0 && cambiomatriz <= 0) {
+        criterioltermica();
+    } else if (energiaelectrica <= 0 && energiatermica <= 0 && cambiomatriz > 0) {
+        criteriomatriz();
+    }
+    cargarEvaluacion();
+}
+
+var criteriolectricidad = () => {
+    let opciones = '<option value="0">-Seleccione puntaje-</option>';
+    opciones += '<option value="1">Sin puntaje = 0</option>';
+    opciones += '<option value="2">Mayor o igual a 5 % y menor a 10 % = 10</option>';
+    opciones += '<option value="3">Mayor o igual a 10 % y menor a 15 % = 20</option>';
+    opciones += '<option value="4">Mayor o igual a 15 % y menor a 20 % = 30</option>';
+    opciones += '<option value="5">Mayor o igual a 20 % y menor a 25 % = 40</option>';
+    opciones += '<option value="6">Mayor o igual a 25 % y menor a 30 % = 50</option>';
+    opciones += '<option value="7">Mayor o igual al 30 % = 60</option>';
+    $('#cbo-puntaje').html(opciones);
+}
+
+var criterioltermica = () => {
+    let opciones = '<option value="0">-Seleccione puntaje-</option>';
+    opciones += '<option value="1">Sin puntaje = 0</option>';
+    opciones += '<option value="2">Mayor o igual a 1 % y menor a 2 % = 10</option>';
+    opciones += '<option value="3">Mayor o igual a 2 % y menor a 3 % = 20</option>';
+    opciones += '<option value="4">Mayor o igual a 3 % y menor a 5 % = 30</option>';
+    opciones += '<option value="5">Mayor o igual a 5 % y menor a 8 % = 40</option>';
+    opciones += '<option value="6">Mayor o igual a 8 % y menor a 10 % = 50</option>';
+    opciones += '<option value="7">Mayor o igual a 10 % = 60</option>';
+    $('#cbo-puntaje').html(opciones);
+}
+
+var criteriomatriz = () => {
+    let opciones = '<option value="0">-Seleccione puntaje-</option>';
+    opciones += '<option value="1">Sin puntaje = 0</option>';
+    opciones += '<option value="2">Mayor o igual a 1 % y menor a 2 % = 10</option>';
+    opciones += '<option value="3">Mayor o igual a 2 % y menor a 3 % = 20</option>';
+    opciones += '<option value="4">Mayor o igual a 3 % y menor a 5 % = 30</option>';
+    opciones += '<option value="5">Mayor o igual a 5 % y menor a 8 % = 40</option>';
+    opciones += '<option value="6">Mayor o igual a 8 % y menor a 10 % = 50</option>';
+    opciones += '<option value="7">Mayor o igual a 10 % = 60</option>';
+    $('#cbo-puntaje').html(opciones);
+}
+
+var contabilizar2 = () => {
+    if (idCriterio != 2) return;
+    energiatermica = 0;
+    let bau = 0, ini = 0;
+    $('.tabla-principal').each((x, y) => {
+        $(y).find('tbody').find('tr').each((m, n) => {            
+            bau += $(n).find('[data-param=52]').html() == '' ? 0 : parseFloat($(n).find('[data-param=52]').html().replace(/,/gi, ''));
+            ini += $(n).find('[data-param=53]').html() == '' ? 0 : parseFloat($(n).find('[data-param=53]').html().replace(/,/gi, ''));
+        });
+    });
+
+    let combustible = 0.0
+    $(document).find('.get-combustible').each((x, y) => {
+        combustible += $(y).html() == '' ? 0.0 : parseFloat($(y).html());
+    });
+    $(`#txt-termica`).val(formatoMiles(combustible));    
+    let porcentaje_total = bau == 0 ? 0 : 1 - ini / bau;
+    $('#txt-total-electrica').val(formatoMiles(porcentaje_total * 100));
+    energiatermica = combustible;
+    //console.log(`electrica: ${energiaelectrica}, termica: ${energiatermica}, matriz: ${cambiomatriz}, emisiones: ${emisiones}`);
 }

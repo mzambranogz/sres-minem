@@ -95,12 +95,10 @@
         scrollButtons();
 
         $(document).on("click",".flag-left", function () {
-            debugger;
             var $wrap = $(this).parent().find(".tabla-principal");
             $wrap.animate({ scrollLeft: '-=180' }, 500);
         });
         $(document).on("click",".flag-right", function () {
-            debugger;
             var $wrap = $(this).parent().find(".tabla-principal");
             $wrap.animate({ scrollLeft: '+=180' }, 500);
         });

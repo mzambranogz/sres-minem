@@ -364,7 +364,7 @@ var guardar = () => {
     }
 
     combustible += cambio_matriz; //cambio de matriz es ahorro de combustible
-    
+
     let data = { LIST_COMPONENTE: componente_ind, LIST_DOCUMENTO: listaDoc, ID_CONVOCATORIA: idConvocatoria, ID_CRITERIO: idCriterio_, ID_CASO: idCaso, ID_INSCRIPCION: idInscripcion_, NOMBRE_CRI: $('.nom-cri').val(), EMISIONES: emisiones, ENERGIA: energia, COMBUSTIBLE: combustible, CAMBIO_MATRIZ: cambio_matriz, ID_ETAPA: idEtapa, USUARIO_GUARDAR: idUsuarioLogin };
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
