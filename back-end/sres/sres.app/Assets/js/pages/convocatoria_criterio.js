@@ -495,6 +495,8 @@ var filtrar = (e) => {
                             return opciones;
                         }).join('');
                         $(`#${arr}-${j[0].ID_PARAMETRO}`).html(`<option value="0">Seleccione</option>${contenido}`);
+                        let idparam = $(`#${$(e).attr('id')}`)[0].className.indexOf("verificar")
+                        if (idparam != -1) verificarValor(e);
                     }
                 });
             }
