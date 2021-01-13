@@ -42,7 +42,6 @@ var consultar = () => {
 var cargarDataBusqueda = (data) => {
     let tabla = $('#tblConvocatoria');
     let cantidadCeldasCabecera = tabla.find('thead tr th').length;
-    //debugger;
     $('#viewPagination').attr('style', 'display: none !important');
     console.log(data.TOTAL_REGISTROS, data.CANTIDAD_REGISTROS);
     if (data.TOTAL_REGISTROS > data.CANTIDAD_REGISTROS) $('#viewPagination').show();
@@ -76,7 +75,6 @@ var renderizar = (data, cantidadCeldas) => {
             let fechaFin = new Date(x.FECHA_FIN);
             let diasPlazo = Math.floor((fechaFin - fechaInicio) / (1000 * 60 * 60 * 24));
             let diasTranscurridos = Math.floor((fechaActual - fechaInicio) / (1000 * 60 * 60 * 24));
-            //let porcentajeAvance = Math.floor(fechaInicio > fechaActual ? 0.00 : fechaActual > fechaFin ? 100 : (diasTranscurridos / diasPlazo * 100))
             let porcentajeAvance = x.ID_ETAPA > 14 ? 100 : Math.round((x.ID_ETAPA - 1) / 13 * 100);
             let formatoCodigo = '00000000';
 
@@ -137,8 +135,11 @@ var renderizar = (data, cantidadCeldas) => {
 var verificarDatosInternos = (idConvocatoria) => {
     if (idSubsectortipoemp > 0)
         location.href = `${baseUrl}Convocatoria/${idConvocatoria}/Inscribirme`;
-    else
+    else {
         $("#modal-edit-descripcion").modal("show");
+        if (idSector == 1) $('#cbo-trabajador-cama').prop('disabled', false);
+        else if (idSector == 2) $('#cbo-trabajador-cama').prop('disabled', true);
+    }        
 }
 
 var btnFirstPaginationClick = (e) => {
@@ -457,7 +458,6 @@ var cambiarPrimerInicio = () => {
     fetch(url)
     .then(r => r.json())
     .then(x => {
-        debugger;
         if (x) {
             console.log('cambiado');
             let url = `${baseUrl}Login/RefrescarDatosSession`;
@@ -558,7 +558,6 @@ var descargar = (idconvocatoria, idinstitucion) => {
 }
 
 var descargaFicha = (data) => {
-    debugger;
     if (data == null) return;
     if (data.success) {        
         var urlMostrar = `${baseUrl}Fichas/${data.message}`;
