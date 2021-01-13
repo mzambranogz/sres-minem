@@ -25,7 +25,6 @@ var cambiarPagina = () => {
 }
 
 $(".columna-filtro").click(function (e) {
-    debugger;
     var id = e.target.id;
 
     $(".columna-filtro").removeClass("fa-sort-up");
@@ -139,7 +138,7 @@ var consultarObjeto = (element) => {
     $('.alert-add').html('');
     $('#btnGuardar').show();
     $('#btnGuardar').next().html('Cancelar');
-    $('#exampleModalLabel').html('ACTUALIZAR PROCESO');
+    $('#exampleModalLabel').html('ACTUALIZAR ETAPA');
     let id = $(element).attr('data-id');
 
     let url = `${baseUrl}api/proceso/obtenerobjeto?id=${id}`;

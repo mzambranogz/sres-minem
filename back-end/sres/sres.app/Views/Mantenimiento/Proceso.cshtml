@@ -17,7 +17,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("Index","Inicio")">Inicio</a></li>
                         <li class="breadcrumb-item"><a class="text-sres-gris" href="@Url.Action("TablaMantenimiento","Mantenimiento")">Mantenimiento de Tablas</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Mantenimiento de Procesos</li>
+                        <li class="breadcrumb-item active" aria-current="page">Mantenimiento de Etapas</li>
                     </ol>
                 </nav>
             </div>
@@ -28,7 +28,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9">
-                <h2 class="estilo-03 text-sres-azul">Mantenimiento de Procesos</h2>
+                <h2 class="estilo-03 text-sres-azul">Mantenimiento de Etapas</h2>
             </div>
             <div class="col-lg-3">
                 @*<span data-toggle="modal" data-target="#modal-mantenimiento">
@@ -84,7 +84,7 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="pl-1 text-center w-100">CÓDIGO&nbsp;</div><i class="fas fa-sort columna-filtro" id="ID_PROCESO"></i>
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="código del proceso"></i></div>
+                                        <div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="código de la etapa"></i></div>
                                     </div>
                                 </th>
                                 <th scope="col" width="79%">
@@ -92,7 +92,7 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="pl-1 text-center w-100">NOMBRE&nbsp;</div><i class="fas fa-sort columna-filtro" id="NOMBRE"></i>
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre del proceso"></i></div>
+                                        <div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Nombre de la etapa"></i></div>
                                     </div>
                                 </th>
                                 <th scope="col" width="10%">
@@ -145,7 +145,7 @@
         <div class="modal-content">
             <form action="" id="frm">
                 <div class="modal-header bg-sres-azul text-white">
-                    <h5 class="modal-title estilo-01" id="exampleModalLabel">REGISTRAR</h5>
+                    <h5 class="modal-title estilo-01" id="exampleModalLabel">REGISTRAR ETAPA</h5>
                     <button class="text-white close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
@@ -156,7 +156,7 @@
                                 <label class="estilo-01" for="txt-nombre">Nombre:</label><span class="text-danger font-weight-bold">&nbsp;(*)&nbsp;</span>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-comment-alt"></i></span></div>
-                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-nombre" placeholder="Nombre del Proceso">
+                                    <input class="form-control estilo-01 text-sres-gris" type="text" id="txt-nombre" placeholder="Nombre de la etapa">
                                 </div>
                             </div>
                         </div>
