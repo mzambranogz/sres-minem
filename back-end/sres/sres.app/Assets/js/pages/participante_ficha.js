@@ -77,7 +77,7 @@ var reconocimientomedida = (obj) => {
 var reconocimientoemisiones = (obj) => {
     if (obj.FLAG_EMISIONESMAX == null) return '';
     let contenido = "";
-    if (obj.FLAG_EMISIONESMAX == '1') {
+    /*if (obj.FLAG_EMISIONESMAX == '1') {
         let body = `<tbody class="estilo-01"><tr></td><td data-encabezado="Reducción"><div class="text-center">${formatoMiles(obj.EMISIONES)}</div></td></tr></tbody>`;
         let columnaReduccion = `<div class="d-flex flex-column justify-content-between align-items-center"><div class="d-flex justify-content-between align-items-center"><div class="pl-1 text-center w-100">REDUCCIÓN&nbsp;tCO<sub>2</sub></div></div><div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Reducción lograda"></i></div></div>`;
         let head = `<thead class="estilo-06 free-with"><tr><th scope="col" width="50%">${columnaReduccion}</th></tr></thead>`;
@@ -89,7 +89,7 @@ var reconocimientoemisiones = (obj) => {
         let div1 = `<div class="offset-lg-1 col-lg-10 col-md-12 col-12">${titulo1}<div class="rayado wow fadeIn mb-3"></div>${contenttabla}</div>`;
         let content = `<div class="row my-5">${div1}</div>`;
         contenido = content;
-    }
+    }*/
     return contenido;
 }
 
