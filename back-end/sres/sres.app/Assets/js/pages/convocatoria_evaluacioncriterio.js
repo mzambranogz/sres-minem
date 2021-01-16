@@ -144,9 +144,9 @@ var armarHead = (lista, incremental, id, componente) => {
         //cont += `<th scope="col"><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}<i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? '' : lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i></div></th>`;
         cont += `<th scope="col" ${val ? lista[i]["OBJ_PARAMETRO"].VISIBLE == '0' ? `class="d-none"` : '' : ''}><div class="flex-column d-flex justify-content-center align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}</div></th>`;
     }
-    let columnabau = `<th colspan="${contbau}"><div class="d-flex flex-column justify-content-center align-items-center"><span>LÍNEA BASE</span><small></small><i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Línea base"></i></div></th>`;
-    let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>MEJORA</span><small></small><i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Después de la implementación de mejora"></i></div></th>`;
-    let columnares = `<th colspan="${contresul}"><div class="d-flex flex-column justify-content-center align-items-center"><span>RESULTADOS</span><small></small><i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Resultados"></i></div></th>`;
+    let columnabau = `<th colspan="${contbau}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Situación de línea base - BaU</span><small></small></div></th>`;
+    let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Data aplicando la acción de mejora para ahorro de energía</span><small></small></div></th>`;
+    let columnares = `<th colspan="${contresul}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Resultado de las acciones de mejora implementadas para obtención de ahorro de energía</span><small></small></div></th>`;
     return `<thead class="estilo-06">${idCriterio == 1 && componente == 2 ? `<tr>${columnabau}${columnaini}${columnares}</tr>` : ''}<tr>${cont}</tr></thead>`;
 };
 
@@ -335,7 +335,7 @@ var contabilizar = () => {
     total_energia = energiaelectrica + energiatermica + cambiomatriz;
     total_energiahead = ahorroenergia + ahorrotermica + ahorrocambio;
 
-    porcentaje_total_energia = total_energia / total_energiahead;
+    porcentaje_total_energia = total_energia == 0 && total_energiahead == 0 ? 0 : total_energia / total_energiahead;
     $('#txt-total-electrica').val(formatoMiles(porcentaje_total_energia * 100));
     criterioevaluacion();
     energiaelectrica = energiaelectrica / 1000;

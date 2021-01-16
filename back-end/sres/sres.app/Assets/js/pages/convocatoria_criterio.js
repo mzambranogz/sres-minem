@@ -168,9 +168,9 @@ var armarHead = (lista, incremental, id, componente) => {
         //cont += `<th scope="col"><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? `<i class="mt-2"></i>` : `<i class="fas fa-question-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i>`}</div></th>`;
         cont += `<th scope="col" ${lista[i]["OBJ_PARAMETRO"].VISIBLE == '0' ? `class="d-none"` : ''}><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}<i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="right" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? '' : lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i></div></th>`;
     }
-    let columnabau = `<th colspan="${contbau}"><div class="d-flex flex-column justify-content-center align-items-center"><span>LÍNEA BASE</span><small></small><i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Línea base"></i></div></th>`;
-    let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>MEJORA</span><small></small><i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Después de la implementación de mejora"></i></div></th>`;
-    let columnares = `<th colspan="${contresul}"><div class="d-flex flex-column justify-content-center align-items-center"><span>RESULTADOS</span><small></small><i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Resultados"></i></div></th>`;
+    let columnabau = `<th colspan="${contbau}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Situación de línea base - BaU</span><small></small></div></th>`;
+    let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Data aplicando la acción de mejora para ahorro de energía</span><small></small></div></th>`;
+    let columnares = `<th colspan="${contresul}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Resultado de las acciones de mejora implementadas para obtención de ahorro de energía</span><small></small></div></th>`;
     //cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center"><div class="btn btn-warning btn-sm estilo-01 addBtnGeneral" type="button" onclick="agregarFila(${id},${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div></th>` : ``;
     cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center addBtnGeneral"></div></th>` : ``;
     return `<thead class="estilo-06">${idCriterio == 1 && componente == 2 ? `<tr>${columnabau}${columnaini}${columnares}</tr>` : ''}<tr>${cont}</tr></thead>`;
@@ -186,7 +186,7 @@ var armarBody = (lista, incremental) => {
 
 var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_nuevo, incremental, row) => {
     let filas = ``;
-    filas += `<tr id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? incremental == '1' ? row : id_indicador : row}" data-ind="${flag_nuevo == 0 ? 0 : id_indicador}">`;
+    filas += `${armarfilamensaje(id_criterio, id_caso, id_componente, id_indicador)}<tr id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? incremental == '1' ? row : id_indicador : row}" data-ind="${flag_nuevo == 0 ? 0 : id_indicador}">`;
     for (var i = 0; i < lista.length; i++) {
         if (lista[i]["ID_TIPO_CONTROL"] == 2) {
             if (lista[i]["ESTATICO"] == '1')
@@ -426,14 +426,16 @@ var enviarValores = (lista, fila) => {
     fetch(url, init)
     .then(r => r.json())
     .then(j => {
-         
+        let idcri = 0, idcaso = 0, idcomp = 0;
         j.map((x, i) => {
-             
+            idcri = x.ID_CRITERIO; idcaso = x.ID_CASO; idcomp = x.ID_COMPONENTE;
             y = $(`#${x.ID_CRITERIO}-${x.ID_CASO}-${x.ID_COMPONENTE}-${fila}-${x.ID_PARAMETRO}`);
-            $(y)[0].className.indexOf("multi-opciones") != -1 ? $(y).val(x.VALOR) : $(y)[0].className.indexOf("solo-numero") != -1 && $(y)[0].className.indexOf("formato-decimal") != -1 ? $(y).val(formatoMiles(x.VALOR)) : $(y).val(x.VALOR);            
+            $(y)[0].className.indexOf("multi-opciones") != -1 ? $(y).val(x.VALOR) : $(y)[0].className.indexOf("solo-numero") != -1 && $(y)[0].className.indexOf("formato-decimal") != -1 ? $(y).val(formatoMiles(x.VALOR)) : $(y).val(x.VALOR);
+            
         });
         contabilizar();
         contabilizar2();
+        if (idcri == 1 && idcaso == 1 && idcomp == 1) armarUnidad(idcri, idcaso, idcomp, fila);
     });
 }
 
@@ -621,4 +623,24 @@ $(document).on("keyup", ".formato-numero", function (event) {
 function formatoMilesSoloNumero(n) {
     var m = n * 1;
     return m.toFixed(0).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+}
+
+var armarUnidad = (idcri, idcaso, idcomp, fila) => {
+    let unidad1 = $(`#${idcri}-${idcaso}-${idcomp}-${fila}-111 option:selected`).text().split('/')[0];
+    let unidad2 = $(`#${idcri}-${idcaso}-${idcomp}-${fila}-163 option:selected`).text();
+    let unidadindicador = `${unidad1}/${unidad2}`;
+    $(`#${idcri}-${idcaso}-${idcomp}-${fila}-165`).val(unidadindicador);
+}
+
+var armarfilamensaje = (id_criterio, id_caso, id_componente, id_indicador) => {
+    let mensaje = '';
+    if (id_criterio == 1 && id_caso == 1 && id_componente == 1) {
+        if (id_indicador == 1)
+            mensaje += `<tr><th colspan="10" class="text-left estilo-01" style="color:red"><small>Colocar información solo para energía eléctrica</small></th></tr>`;
+        else if (id_indicador == 2)
+            mensaje += `<tr><th colspan="10" class="text-left estilo-01" style="color:red"><small>Colocar información solo para consumo de combustible</small></th></tr>`;
+        else if (id_indicador == 3)
+            mensaje += `<tr><th colspan="10" class="text-left estilo-01" style="color:red"><small>Colocar información solo de cambia de matriz desde combustible a electricidad o al revés</small></th></tr>`;
+    }
+    return mensaje;
 }
