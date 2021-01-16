@@ -34,9 +34,18 @@ namespace sres.app.Repositorio
                 string filenameExtension;
                 string rutatarget = WebConfigurationManager.AppSettings["Ruta.Reporte"].ToString();
                 ConfigurarReporte();
-                rvReporte.LocalReport.ReportPath = string.Format("{0}\\Certificado.rdlc", rutatarget);
+                //rvReporte.LocalReport.ReportPath = string.Format("{0}\\Certificado.rdlc", rutatarget);
                 List<ReporteBE.ReporteReconocimiento> lista = rec.DescargarReconocimiento(idconvocatoria, idinstitucion);
+
                 ReportDataSource dataSource = new ReportDataSource("dsreconocimiento", lista);
+                if (lista[0].PREMIO_LOGRADO == 1)
+                {
+                    rvReporte.LocalReport.ReportPath = string.Format("{0}\\CertificadoEspecial.rdlc", rutatarget);
+                }
+                else
+                {
+                    rvReporte.LocalReport.ReportPath = string.Format("{0}\\Certificado.rdlc", rutatarget);
+                }  
 
                 rvReporte.LocalReport.DataSources.Clear();
                 rvReporte.LocalReport.DataSources.Add(dataSource);

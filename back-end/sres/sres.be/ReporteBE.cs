@@ -157,6 +157,28 @@ namespace sres.be
                     return imagen;
                 }
             }
+
+            public byte[] IMAGEN_PREMIO_ESPECIAL
+            {
+                get
+                {
+                    string rutaFisicaServidor = AppSettings.Get<string>("ServerFisico");
+                    string rutaImagen = rutaFisicaServidor + "\\Assets\\images\\gei.png";
+                    byte[] imagen = File.ReadAllBytes(rutaImagen);
+                    return imagen;
+                }
+            }
+
+            public int PREMIO_LOGRADO
+            {
+                get
+                {
+                    if (FLAG_MEDIDA == 1 || FLAG_MEJORACONTINUA == 1)
+                        return 1;
+                    else
+                        return 0;
+                }
+            }
         }
 
     }
