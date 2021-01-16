@@ -337,36 +337,22 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=First(Fields!RUTA_IMAGEN.Value, "dsreconocimiento")</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>6.62271cm</Top>
-        <Left>1.22068cm</Left>
-        <Height>0.6cm</Height>
-        <Width>21.27393cm</Width>
+      <Image Name="Image4">
+        <Source>Database</Source>
+        <Value>=First(Fields!IMAGEN.Value, "dsreconocimiento")</Value>
+        <MIMEType>image/png</MIMEType>
+        <Sizing>FitProportional</Sizing>
+        <Top>4.412cm</Top>
+        <Left>9.70703cm</Left>
+        <Height>3.83348cm</Height>
+        <Width>5.52167cm</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
         </Style>
-      </Textbox>
+      </Image>
     </ReportItems>
     <Height>4.79941in</Height>
     <Style>
@@ -551,6 +537,10 @@
         <Field Name="RUTA_IMAGEN">
           <DataField>RUTA_IMAGEN</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IMAGEN">
+          <DataField>IMAGEN</DataField>
+          <rd:TypeName>System.Byte[]</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

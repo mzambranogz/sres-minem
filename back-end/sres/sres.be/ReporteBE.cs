@@ -1,6 +1,7 @@
 ﻿using sres.ut;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -142,6 +143,18 @@ namespace sres.be
                     string rutaFisicaServidor = AppSettings.Get<string>("ServerFisico");
                     string rutaImagen = rutaFisicaServidor + rutaReconocimiento + "\\" + ARCHIVO_BASE_PRE;
                     return rutaImagen;
+                }
+            }
+
+            public byte[] IMAGEN
+            {
+                get
+                {
+                    string rutaReconocimiento = AppSettings.Get<string>("Path.Reconocimiento").Replace("/", "\\").Replace("{0}", ID_PREMIACION.ToString());
+                    string rutaFisicaServidor = AppSettings.Get<string>("ServerFisico");
+                    string rutaImagen = rutaFisicaServidor + rutaReconocimiento + "\\" + ARCHIVO_BASE_PRE;
+                    byte[] imagen = File.ReadAllBytes(rutaImagen);
+                    return imagen;
                 }
             }
         }
