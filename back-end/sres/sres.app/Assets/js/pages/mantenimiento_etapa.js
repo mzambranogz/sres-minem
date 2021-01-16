@@ -142,7 +142,7 @@ var consultarObjeto = (element) => {
     $('.alert-add').html('');
     $('#btnGuardar').show();
     $('#btnGuardar').next().html('Cancelar');
-    $('#exampleModalLabel').html('ACTUALIZAR ETAPA');
+    $('#exampleModalLabel').html('ACTUALIZAR ACTIVIDAD');
 
     let id = $(element).attr('data-id');
     let url = `${baseUrl}api/etapa/obtenerobjeto?id=${id}`;

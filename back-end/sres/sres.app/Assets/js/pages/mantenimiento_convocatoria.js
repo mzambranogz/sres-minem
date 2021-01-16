@@ -311,7 +311,7 @@ var cargarCheckRequerimiento = (selector, data) => {
 
 var cargarCheckCriterio = (selector, data) => {
     let tabs = data.map((x,i) => {
-        return `<li class="nav-item" data-toggle="tooltip" data-placement="top" title="${x.NOMBRE}"><a class="nav-link estilo-01" id="tab-head-cri-0${x.ID_CRITERIO}" data-toggle="tab" href="#tab-body-cri-0${x.ID_CRITERIO}" role="tab" aria-controls="tab-body-cri-0${x.ID_CRITERIO}" aria-selected="${i == 0 ? 'true':'false'}"><i class="fas fa-check-circle text-primary mr-1"></i>Criterio 0${x.ID_CRITERIO}</a></li>`;
+        return `<li class="nav-item" data-toggle="tooltip" data-placement="top" title="${x.NOMBRE}"><a class="nav-link estilo-01" id="tab-head-cri-0${x.ID_CRITERIO}" data-toggle="tab" href="#tab-body-cri-0${x.ID_CRITERIO}" role="tab" aria-controls="tab-body-cri-0${x.ID_CRITERIO}" aria-selected="${i == 0 ? 'true':'false'}"><i class="fas fa-check-circle text-primary mr-1"></i>Criterio 0${x.ID_CRITERIO < 3 ? x.ID_CRITERIO : x.ID_CRITERIO - 1}</a></li>`;
     }).join('');
     $('.tab-criterio').html(tabs);
 
