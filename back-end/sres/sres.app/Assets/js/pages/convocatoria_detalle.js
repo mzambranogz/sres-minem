@@ -1,4 +1,5 @@
 ﻿$(document).ready(() => {
+    cargarTabla();
     consultarListas();
 });
 
@@ -65,4 +66,16 @@ var armarInsignias = (data, selector) => {
     let body = data.length == 0 ? '' : data.map((x,y) => `<td data-encabezado="${x.ID_INSIGNIA == 1 ? 'sin categoría' : x.NOMBRE_INSIGNIA.toLowerCase()}"><div class="text-center w-100"><img class="img-fluid" src="${baseUrl}${$('#ruta_insig').val().replace('{0}', x.ID_INSIGNIA)}/${x.ARCHIVO_BASE == null ? '' : x.ARCHIVO_BASE}" alt="" width="50%"></div><div class="text-center my-3" data-encabezado="Oro">${x.PUNTAJE_MIN} a ${y == 0 ? 'mas' : (data[y-1].PUNTAJE_MIN - 1)} puntos</div></td>`).join('');
     $(selector).find('thead').html(`<tr>${head}</tr>`);
     $(selector).find('tbody').html(`<tr>${body}</tr>`);
+}
+
+var cargarTabla = () => {
+    let body = `<tbody class="estilo-01"></tbody>`;
+    let columna4 = `<th scope="col" width="20%"><div class="d-flex flex-column justify-content-between align-items-center"><div class="d-flex justify-content-between align-items-center"><div class="pl-1 text-center w-100">FECHA&nbsp;</div></div><div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Fecha de inicio de la etapa"></i></div></div></th>`;
+    let columna3 = `<th scope="col" width="38%"><div class="d-flex flex-column justify-content-between align-items-center"><div class="d-flex justify-content-between align-items-center"><div class="pl-1 text-center w-100">ETAPA&nbsp;</div></div><div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Proceso al que pertenece la etapa"></i></div></div></th>`;
+    let columna2 = `<th scope="col" width="39%"><div class="d-flex flex-column justify-content-between align-items-center"><div class="d-flex justify-content-between align-items-center"><div class="pl-1 text-center w-100">ACTIVIDAD&nbsp;</div></div><div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Etapa de la convocatoria"></i></div></div></th>`;
+    let columna1 = `<th scope="col" width="3%"><div class="d-flex flex-column justify-content-between align-items-center"><div class="d-flex justify-content-between align-items-center"><div class="pl-1 text-center w-100">ORDEN&nbsp;</div></div><div class="d-flex justify-content-center align-items-center"><i class="fas fa-info-circle mr-1" data-toggle="tooltip" data-placement="bottom" title="Número de orden"></i></div></div></th>`;
+    let head = `<thead class="estilo-06 free-with"><tr>${columna1}${columna2}${columna3}${columna4}</tr></thead>`;
+    let tabla = `<table class="table table-sm table-hover mb-0">${head}${body}</table>`
+    let content = `<div class="table-responsive tabla-principal validar-tabla">${tabla}</div>`;
+    $('#tbl-etapa').html(content);
 }

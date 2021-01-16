@@ -11,6 +11,7 @@ using sres.app.Controllers._Base;
 namespace sres.app.Controllers
 {
     [SesionOut]
+    [RoutePrefix("Mantenimiento")]
     public class MantenimientoController : Controller
     {
         // GET: Mantenimiento
@@ -33,11 +34,13 @@ namespace sres.app.Controllers
             return View();
         }
 
+        [Route("Etapa")]
         public ActionResult Proceso()
         {
             return View();
         }
 
+        [Route("Actividad")]
         public ActionResult Etapa()
         {
             return View();
