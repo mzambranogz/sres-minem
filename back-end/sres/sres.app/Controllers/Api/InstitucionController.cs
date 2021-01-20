@@ -75,14 +75,14 @@ namespace sres.app.Controllers.Api
         }
 
         [Route("modificarlogoinstitucion")]
-        [HttpPut]
+        [HttpPost]
         public bool ModificarLogoInstitucion(InstitucionBE institucion)
         {
             return institucionLN.ModificarLogoInstitucion(institucion);
         }
 
         [Route("modificardatosinstitucion")]
-        [HttpPut]
+        [HttpPost]
         public bool ModificarDatosInstitucion(InstitucionBE institucion)
         {
             return institucionLN.ModificarDatosInstitucion(institucion);
@@ -124,7 +124,7 @@ namespace sres.app.Controllers.Api
         }
 
         [Route("actualizarinstitucion")]
-        [HttpPut]
+        [HttpPost]
         public InstitucionBE ActualizarInstitucion(InstitucionBE institucion)
         {
             return institucionLN.ActualizarInstitucion(institucion);

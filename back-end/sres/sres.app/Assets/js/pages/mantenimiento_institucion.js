@@ -195,7 +195,8 @@ var guardar = () => {
     let sector = $('#cbo-sector').val();
     let url = `${baseUrl}api/institucion/actualizarinstitucion`;
     let data = { ID_INSTITUCION: id, RAZON_SOCIAL: razonsocial, RUC: ruc, DOMICILIO_LEGAL: domicilio, ID_SECTOR: sector, USUARIO_GUARDAR: idUsuarioLogin };
-    let init = { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    //let init = { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
     .then(r => r.json())

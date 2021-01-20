@@ -397,6 +397,9 @@
     <Content Include="Assets\js\plugins\alert.js" />
     <Content Include="Assets\js\plugins\counter.js" />
     <Content Include="Assets\js\script.js" />
+    <Content Include="Fichas\LEER.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Files\Criterios\1\Imagen\criterio-11.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -793,7 +796,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Fichas\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\_Base\" />
   </ItemGroup>

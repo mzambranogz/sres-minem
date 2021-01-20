@@ -176,7 +176,8 @@ var btnGuardarLogoClick = (e) => {
     let data = { ID_INSTITUCION: idInstitucionLogin, LOGO_CONTENIDO: $('#fle-logo').data('file'), LOGO: $('#fle-logo').data('fileName'), LOGO_TIPO: $('#fle-logo').data('type'), UPD_USUARIO: idUsuarioLogin };
 
     let url = `${baseUrl}api/institucion/modificarlogoinstitucion`;
-    let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }
+    //let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }
 
     fetch(url, init)
     .then(r => r.json())
@@ -349,7 +350,8 @@ var btnActualizarDatosInstitucionClick = (e) => {
     let data = { ID_INSTITUCION: idInstitucionLogin, NOMBRE_COMERCIAL: nombreComercial, DESCRIPCION: descripcion, ID_DEPARTAMENTO: departamento, ID_PROVINCIA: provincia, ID_DISTRITO: distrito, CONTRIBUYENTE: contribuyente, ID_ACTIVIDAD: ciiu, ID_SUBSECTOR_TIPOEMPRESA: subsectortipoempresa, ID_TRABAJADORES_CAMA: trabajadorcama, CANTIDAD: cantidad, CANTIDAD_MUJERES: cantidadmujeres, LISTA_CONTACTO: contacto, LISTA_ACTIVIDAD: idActividad, FLAG_APORTENDC: aportendc,  UPD_USUARIO: idUsuarioLogin };
 
     let url = `${baseUrl}api/institucion/modificardatosinstitucion`;
-    let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
+    //let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 
     fetch(url, init)
     .then(r => r.json())
@@ -550,7 +552,8 @@ var descargar = (idconvocatoria, idinstitucion) => {
     let data = { ID_INSTITUCION: idInstitucionLogin, ID_CONVOCATORIA: idconvocatoria };
 
     let url = `${baseUrl}Convocatoria/0/Reconocimiento`;
-    let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }
+    let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }
+    //let init = { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }
 
     fetch(url, init)
     .then(r => r.json())
