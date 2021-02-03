@@ -959,19 +959,19 @@ INSERT INTO T_MAE_ROL (ID_ROL, NOMBRE, REG_USUARIO) VALUES (3, 'POSTULANTE', 1);
 
 --T_GENM_USUARIO
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (1, 'Carlos', 'Galdos', 'carlos@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 1, 1, 1);
+VALUES (1, 'Carlos', 'Galdos', 'carlos@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 1, 1, 1);
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (2, 'Mario', 'Perez', 'mario@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 1, 2, 1);
+VALUES (2, 'Mario', 'Perez', 'mario@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 1, 2, 1);
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (3, 'Raul', 'Cáceres', 'raul@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 1, 2, 1);
+VALUES (3, 'Raul', 'Cáceres', 'raul@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 1, 2, 1);
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (4, 'Angélica', 'Benitez', 'angelica@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 1, 2, 1);
+VALUES (4, 'Angélica', 'Benitez', 'angelica@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 1, 2, 1);
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (5, 'Jose', 'Castillo', 'jose@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 2, 3, 1);
+VALUES (5, 'Jose', 'Castillo', 'jose@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 2, 3, 1);
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (6, 'Javier', 'Paredes', 'javier@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 3, 3, 1);
+VALUES (6, 'Javier', 'Paredes', 'javier@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 3, 3, 1);
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (7, 'María', 'Lima', 'maria@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 4, 3, 1);
+VALUES (7, 'María', 'Lima', 'maria@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 4, 3, 1);
 
 --T_MAE_CATEGORIA
 INSERT INTO T_MAE_CATEGORIA (ID_CATEGORIA, NOMBRE, ARCHIVO_BASE, GRUPO) VALUES (1, 'PRIMARIO', 'criterio-01.png', '1');
@@ -1144,207 +1144,9 @@ INSERT INTO T_MAE_TIPO_DATO (ID_TIPO_DATO, NOMBRE) VALUES (3, 'FECHA');
 --T_MAEM_PARAMETRO
 prompt Loading T_MAEM_PARAMETRO...
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (152, 'Emisiones electricidad', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'tCO2eq', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (153, 'Emisiones híbrido', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'tCO2eq', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (154, 'Acción mejora electricidad', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (155, 'Acción mejora híbrido', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (156, 'Energía ahorrada electricidad', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'MJ', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (157, 'Energía ahorrada híbrido', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'MJ', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (158, 'Combustible línea base híbrido', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) línea base híbrido', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (159, 'Combustible para híbrido (acción)', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) línea base híbrido', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (160, 'KRV combustible 1 acción mejora', null, 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto de mejora', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (161, 'KRV combustible 2', null, 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por el vehículo del proyecto de mejora (híbrido)', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (162, 'Dato numérico por actividad', 'Dato numérico por actividad', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Valor numérico que representa el consumo del energético en su entidad o empresa en el año de linea base y por actividad', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:15:38', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (163, 'Unidad vinculada con la producción de la entidad o empresa', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Unidad vinculada con mayor consumo de energía en su entidad o empresa en el año de lÍnea base', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:21:02', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (164, 'Indicador energético calculado', 'Indicador energético calculado', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Valor que sirve para analizar la intensidad energética de la actividad económica y/o humana de la entidad o empresa con respecto a la energía que utiliza', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:25:20', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (165, 'Unidades', 'P46CR1CS1CM1', 2, 2, null, '0', '0', '0', '0', null, null, 150, 'Unidades del indicador energético calculado', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (128, 'Consumo energético total con la acción de mejora implementada', 'Consumo energético total con la acción de mejora implementada', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Consumo energético durante un año para el funcionamiento del/los equipo(s) y/o desarrollo del proceso con la implementación de la acción de mejora.', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:38:42', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (119, 'Consumo energético total por oportunidad de mejora BAU', 'Consumo energético total por oportunidad de mejora BAU', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Total del consumo del recurso energético para el funcionamiento del/los equipo(s) o de un proceso específico relacionado con la oportunidad de mejora', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:28:30', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (1, 'Empresa', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, 'Colocar la razón social de la empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (2, 'Sede o local de la entidad o empresa', 'P2CR1CS1CM1', 2, 2, '0', '0', '1', '0', '0', null, '0', 60, 'Ingresar la sede de la empresa donde se realizó la implementación de mejora', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:01:39', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (3, 'Tipo de Institución', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '4', '0', null, 'Seleccionar el tipo de institución a la que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (4, 'Sector', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '6', '0', null, 'Seleccionar el sector al que pertenece', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (5, 'Otro sector', 'P2CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 100, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (6, 'Sub Sector', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '7|9', '0', null, 'Seleccionar el subsector al que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (7, 'Indicador energético', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '9', '0', null, 'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (8, 'Otros * (Indicador energético)', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 150, 'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (9, 'Unidad', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', null, '0', null, 'unidades del indicador energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (10, 'Otros * (Unidad)', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, 'unidades del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (11, 'Valor del indicador energético', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'valor numérico del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (12, 'Consumo energía eléctrica anual', 'P1CR1CS1CM1', 2, 2, '1', '1', '1', '0', '0', null, '0', 15, 'Considerar el consumo de un año antes de la implementación de la acción de mejora', 'kWh/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (13, 'Emisiones', 'P1CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que proviene del consumo de energía por año antes de la acción de mejora', 'tCO2', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (14, 'Año de implementación', 'P1CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 4, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (15, 'Consumo energía eléctrica (2)', 'P3CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, 'kWh/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (16, 'Ahorro energético total', 'P4CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Sumatoria de todas las acciones realizadas por la empresa', 'kWh/año', '0', '1', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (17, 'Reducción de emisiones', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que proviene del ahorro de energía eléctrica total', 'tCO2', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (18, 'Porcentaje de ahorro de energía eléctrica', 'P6CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (99, 'Otros * (Valor del indicador energético)', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'valor numérico del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (109, 'Tipo de energía consumida', 'Tipo de energía consumida', 1, null, '0', '1', '1', '0', '0', '111', '0', 0, 'Fuente de energía utilizada para el desarrollo de la actividad de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:13:37', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (110, 'Consumo total en un año del energético', 'Consumo total en un año del energético', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Total del consumo del recurso energético para el desarrollo de actividades de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:03:59', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (111, 'Unidades', null, 1, null, null, '0', '0', '0', '0', null, '0', null, 'Unidad de medición del energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (112, 'Indicador energético de la entidad o empresa según actividad (valor numérico)', null, 2, 1, '1', '0', '1', '0', '0', null, '0', 15, 'Valor de la unidad de actividad o producción que abarca', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (113, 'Indicador energético de la entidad o empresa según actividad (unidad)', null, 1, null, null, '0', '1', '0', '0', null, '0', null, 'Unidad que depende  de la actividad que desarrolla la empresa o entidad (producción de cemento, empleados, toneladas, metros cuadrados, etc)', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (114, 'Consumo energético MJ', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (19, 'Tipo de Institución', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '20', '0', null, 'Seleccionar el tipo de institución a la que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (20, 'Sector', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '22', '0', null, 'Seleccionar el sector al que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (21, 'Otro sector', 'P2CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 100, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (22, 'Sub Sector', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '7|9|23|25', '0', null, 'Seleccionar el subsector al que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (23, 'Indicador energético después de la acción de mejora', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '25', '0', null, 'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (24, 'Otros * (Indicador energético)', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 100, 'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (25, 'Unidad', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', null, '0', null, 'unidades del indicador energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (26, 'Otros * (Unidad)', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, 'unidades del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (27, 'Valor del indicador energético', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'valor numérico del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (28, 'Combustible usado antes de la acción de mejora', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) usado un año antes de la implementación de la acción de mejora', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (29, 'Consumo anual de combustible antes de la acción de mejora', 'P2CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (30, 'Unidad de consumo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Refiere a las unidades del energético consumido', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (31, 'Año de implementación del cambio de combustible', 'P2CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 4, 'Año donde se implemento la medida de eficiencia energética ', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (32, 'Combustible usado actualmente', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) usada despues del re cambio', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (33, 'Consumo anual de combustible', 'P2CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (34, 'Unidad de consumo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Refiere a las unidades del energético consumido', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (35, 'Ahorro energía térmica', 'P4CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que muestra el ahorro en energía con el uso de distintos combustibles', 'TJ/año', '0', '0', null, '1', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (36, 'Reducción de emisiones', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que proviene del ahorro de energía térmica', 'tCO2', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (37, 'Porcentaje de ahorro de energía térmica', 'P6CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (100, 'Otros * (Valor del indicador energético)', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'valor numérico del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (101, 'Combustible usado actualmente', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) usada actualmente', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (102, 'Consumo anual de combustible', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'Considerar el consumo de un año antes de la implementación de la acción de mejora', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (103, 'Unidad de consumo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, null, null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (104, 'Consumo energético', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'TJ/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (105, 'Ahorro energético térmica total', 'P4CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Sumatoria de todas las acciones realizadas por la empresa', 'TJ/año', '0', '0', null, '1', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (106, 'Reducción de emisiones', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que proviene del ahorro de energía térmica total', 'tCO2', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (107, 'Porcentaje de ahorro de energía térmica', 'P6CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (108, 'Ahorro de energía térmica obtenida', 'P4CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 15, 'Ahorro obtenido por la organización', 'TJ/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (38, 'Año', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Año de registro de la línea base', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:09:53', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (39, 'Tipo de Vehículo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Categoría del vehículo: automóvil o bus', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (40, 'KRV', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (41, 'Combustible del vehículo reemplazado (línea base)', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Combustible del vehículo que ha sido remplazado (línea base)', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (42, 'Placa del vehículo', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 8, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (43, 'Total km recorrido (vehículo eléctrico)', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (44, 'KRV combustible', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (45, 'Rendimiento', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '1', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto', 'kWh/km', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (46, 'Combustible proyecto', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Combustible fósil del vehículo híbrido', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (47, 'Consumo electricidad', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, 'MWh.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (48, 'Consumo combustible', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, 'gal.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (49, 'Línea Base emisiones GEI', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'tCO2', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (50, 'Proyecto emisiones GEI', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'tCO2', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (51, 'Reducción de emisiones', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'tCO2', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (52, 'Energía línea base', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'TJ', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (53, 'Energía Proyecto', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'TJ', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (54, 'Energía ahorrada', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Energía que se ahorró', 'TJ/año', '0', '1', null, '1', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (55, 'Ahorro', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Ahorro porcentual de energía', '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (96, 'Detallar si realizó una mejora de eficiencia energética', 'P24CR1CS1CM1', 3, 2, null, '0', '1', '0', '0', null, null, 500, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (115, 'Oportunidad de mejora identificada', 'Oportunidad de mejora identificada', 1, null, '0', '0', '1', '0', '0', '0', '0', 0, 'Acción realizada por la empresa o entidad con el fin de ahorrar energía eléctrica o térmica', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:22:00', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (116, 'Descripción Bau', 'Descripción Bau', 2, 2, '0', '0', '1', '0', '0', null, '0', 500, 'Descripción técnica del/los equipo(s) o actividades identificadas como oportunidad de mejora dentro de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:29:00', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (117, 'Cantidad', 'Cantidad', 2, 1, '0', '1', '1', '0', '0', null, '0', 15, 'Cantidad de equipos identificados en la entidado empresa con oportunidad de mejora. De ser el caso que se haya mejorado un  proceso o buena practica, no considerando equipos, colocar 1. ', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:33:52', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (118, 'Recurso energético bau', 'Recurso energético bau', 1, null, '0', '1', '1', '0', '0', '120', '0', 0, 'Fuente de energía utilizada para el funcionamiento del/los equipo(s) y/o desarrollo del proceso de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:26:39', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (120, 'Unidades', null, 1, null, null, '0', '0', '0', '0', null, '0', null, 'Unidad de medición del energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (123, 'Equivalente energético', 'Equivalente energético', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Energía total consumida del/los equipo(s) o de un proceso específico antes de implementar  la oportunidad de mejora, en Megajoules.', 'MJ', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:35:24', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (121, 'Consumo energético', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (122, 'Consumo combustible', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (124, 'Emisiones de GEI', 'Emisiones de GEI', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Total de emisiones de Gases de Efecto Invernadero generadas del/los equipo(s) o de un proceso específico antes de implementar la mejora, en toneladas de dióxido de carbono equivalente .', 'tCO2eq', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:36:32', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (125, 'Cantidad', 'cantidad', 2, 1, '0', '1', '1', '0', '0', null, '0', 15, 'Cantidad de equipos identificados en la entidado empresa con oportunidad de mejora. De ser el caso que se haya mejorado un  proceso o buena practica, no considerando equipos, colocar 1. ', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:34:07', 'dd-mm-yyyy hh24:mi:ss'));
-insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
 values (126, 'Descripción técnica de la oportunidad de mejora', 'Descripción técnica de la oportunidad de mejora', 2, 2, '0', '0', '1', '0', '0', null, '0', 500, 'Descripción técnica de los equipos o procesos con acción de mejora implementada, con el fin de ahorrar energía.', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:37:10', 'dd-mm-yyyy hh24:mi:ss'));
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
 values (127, 'Recurso energético', null, 1, null, null, '1', '1', '0', '0', '129', '0', null, 'Fuente de energía utilizada en el funcionamiento del/los equipo(s) y/o desarrollo del proceso con la implementación de la acción de mejora', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-commit;
-prompt 100 records committed...
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
 values (129, 'Unidades', null, 1, null, null, '0', '0', '0', '0', null, '0', null, 'Unidad de medición del energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
@@ -1466,506 +1268,1111 @@ values (145, 'Buenas prácticas', null, 1, null, null, '0', '1', '0', '0', null,
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
 values (146, 'Electricidad, combustible o cambio de matriz', 'P2CR1CS1CM1', 1, null, null, '0', '0', '0', '0', null, '0', null, null, null, null, null, null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (147, 'KRV eléctrico', null, 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto de mejora.', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+values (147, 'Kilómetro recorrido del vehículo eléctrico ', 'Kilómetro recorrido del vehículo eléctrico ', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto de mejora. Solo si se trata de un vehículo eléctrico o híbrido', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:44:13', 'dd-mm-yyyy hh24:mi:ss'));
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (148, 'Combustible (proyecto de mejora) o fuente energética del vehículo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Combustible o fuente de energía del vehículo del proyecto de mejora', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+values (148, 'Fuente energética del vehículo más eficiente', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Fuente de energía del vehículo del proyecto de mejora', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:40:52', 'dd-mm-yyyy hh24:mi:ss'));
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
 values (149, 'Sede implementación', 'P2CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, 'Ingresar la sede de la empresa donde se realizó la implementación del SGE', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
 values (150, 'Detalles de otras buenas prácticas', 'P24CR1CS1CM1', 3, 2, null, '0', '1', '0', '0', null, null, 700, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
 values (151, 'Género', 'P2CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (152, 'Emisiones electricidad', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'tCO2eq', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (153, 'Emisiones híbrido', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'tCO2eq', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (154, 'Acción mejora electricidad', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (155, 'Acción mejora híbrido', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (156, 'Energía ahorrada electricidad', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'MJ', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (157, 'Energía ahorrada híbrido', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'MJ', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (158, 'Combustible secundario en el caso que es vehículo híbrido convencional (Completar si aplica)', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Combustible secundario en el caso que es vehículo híbrido convencional, se considera 10% de uso en el vehículo', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 16:04:36', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (159, 'Combustible para híbrido (acción)', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) línea base híbrido', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (160, 'KRV combustible 1 acción mejora', null, 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto de mejora', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (161, 'KRV combustible 2', null, 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por el vehículo del proyecto de mejora (híbrido)', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (162, 'Dato numérico por actividad', 'Dato numérico por actividad', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Valor numérico que representa el consumo del energético en su entidad o empresa en el año de linea base y por actividad', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:15:38', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (163, 'Unidad vinculada con la producción de la entidad o empresa', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Unidad vinculada con mayor consumo de energía en su entidad o empresa en el año de lÍnea base', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:21:02', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (164, 'Indicador energético calculado', 'Indicador energético calculado', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Valor que sirve para analizar la intensidad energética de la actividad económica y/o humana de la entidad o empresa con respecto a la energía que utiliza', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:25:20', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (165, 'Unidades', 'P46CR1CS1CM1', 2, 2, null, '0', '0', '0', '0', null, null, 150, 'Unidades del indicador energético calculado', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (128, 'Consumo energético total con la acción de mejora implementada', 'Consumo energético total con la acción de mejora implementada', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Consumo energético durante un año para el funcionamiento del/los equipo(s) y/o desarrollo del proceso con la implementación de la acción de mejora.', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:38:42', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (119, 'Consumo energético total por oportunidad de mejora BAU', 'Consumo energético total por oportunidad de mejora BAU', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Total del consumo del recurso energético para el funcionamiento del/los equipo(s) o de un proceso específico relacionado con la oportunidad de mejora', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:28:30', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Empresa', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, 'Colocar la razón social de la empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Sede o local de la entidad o empresa', 'P2CR1CS1CM1', 2, 2, '0', '0', '1', '0', '0', null, '0', 60, 'Ingresar la sede de la empresa donde se realizó la implementación de mejora', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:01:39', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Tipo de Institución', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '4', '0', null, 'Seleccionar el tipo de institución a la que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 'Sector', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '6', '0', null, 'Seleccionar el sector al que pertenece', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 'Otro sector', 'P2CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 100, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 'Sub Sector', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '7|9', '0', null, 'Seleccionar el subsector al que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 'Indicador energético', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '9', '0', null, 'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 'Otros * (Indicador energético)', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 150, 'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 'Unidad', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', null, '0', null, 'unidades del indicador energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 'Otros * (Unidad)', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, 'unidades del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 'Valor del indicador energético', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'valor numérico del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 'Consumo energía eléctrica anual', 'P1CR1CS1CM1', 2, 2, '1', '1', '1', '0', '0', null, '0', 15, 'Considerar el consumo de un año antes de la implementación de la acción de mejora', 'kWh/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 'Emisiones', 'P1CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que proviene del consumo de energía por año antes de la acción de mejora', 'tCO2', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 'Año de implementación', 'P1CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 4, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 'Consumo energía eléctrica (2)', 'P3CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, 'kWh/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 'Ahorro energético total', 'P4CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Sumatoria de todas las acciones realizadas por la empresa', 'kWh/año', '0', '1', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 'Reducción de emisiones', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que proviene del ahorro de energía eléctrica total', 'tCO2', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 100 records committed...
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 'Porcentaje de ahorro de energía eléctrica', 'P6CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (99, 'Otros * (Valor del indicador energético)', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'valor numérico del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (109, 'Tipo de energía consumida', 'Tipo de energía consumida', 1, null, '0', '1', '1', '0', '0', '111', '0', 0, 'Fuente de energía utilizada para el desarrollo de la actividad de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:13:37', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (110, 'Consumo total en un año del energético', 'Consumo total en un año del energético', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Total del consumo del recurso energético para el desarrollo de actividades de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:03:59', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (111, 'Unidades', null, 1, null, null, '0', '0', '0', '0', null, '0', null, 'Unidad de medición del energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (112, 'Indicador energético de la entidad o empresa según actividad (valor numérico)', null, 2, 1, '1', '0', '1', '0', '0', null, '0', 15, 'Valor de la unidad de actividad o producción que abarca', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (113, 'Indicador energético de la entidad o empresa según actividad (unidad)', null, 1, null, null, '0', '1', '0', '0', null, '0', null, 'Unidad que depende  de la actividad que desarrolla la empresa o entidad (producción de cemento, empleados, toneladas, metros cuadrados, etc)', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (114, 'Consumo energético MJ', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 'Tipo de Institución', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '20', '0', null, 'Seleccionar el tipo de institución a la que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 'Sector', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '22', '0', null, 'Seleccionar el sector al que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 'Otro sector', 'P2CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 100, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 'Sub Sector', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '7|9|23|25', '0', null, 'Seleccionar el subsector al que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 'Indicador energético después de la acción de mejora', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '25', '0', null, 'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (24, 'Otros * (Indicador energético)', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 100, 'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (25, 'Unidad', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', null, '0', null, 'unidades del indicador energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (26, 'Otros * (Unidad)', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, 'unidades del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (27, 'Valor del indicador energético', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'valor numérico del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (28, 'Combustible usado antes de la acción de mejora', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) usado un año antes de la implementación de la acción de mejora', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (29, 'Consumo anual de combustible antes de la acción de mejora', 'P2CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (30, 'Unidad de consumo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Refiere a las unidades del energético consumido', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (31, 'Año de implementación del cambio de combustible', 'P2CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 4, 'Año donde se implemento la medida de eficiencia energética ', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (32, 'Combustible usado actualmente', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) usada despues del re cambio', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (33, 'Consumo anual de combustible', 'P2CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (34, 'Unidad de consumo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Refiere a las unidades del energético consumido', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (35, 'Ahorro energía térmica', 'P4CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que muestra el ahorro en energía con el uso de distintos combustibles', 'TJ/año', '0', '0', null, '1', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (36, 'Reducción de emisiones', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que proviene del ahorro de energía térmica', 'tCO2', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (37, 'Porcentaje de ahorro de energía térmica', 'P6CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (100, 'Otros * (Valor del indicador energético)', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'valor numérico del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (101, 'Combustible usado actualmente', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) usada actualmente', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (102, 'Consumo anual de combustible', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'Considerar el consumo de un año antes de la implementación de la acción de mejora', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (103, 'Unidad de consumo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, null, null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (104, 'Consumo energético', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'TJ/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (105, 'Ahorro energético térmica total', 'P4CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Sumatoria de todas las acciones realizadas por la empresa', 'TJ/año', '0', '0', null, '1', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (106, 'Reducción de emisiones', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que proviene del ahorro de energía térmica total', 'tCO2', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:57:50', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (107, 'Porcentaje de ahorro de energía térmica', 'P6CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (108, 'Ahorro de energía térmica obtenida', 'P4CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 15, 'Ahorro obtenido por la organización', 'TJ/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (38, 'Año', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Año de registro de la línea base', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:09:53', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (39, 'Tipo de Vehículo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Categoría del vehículo: automóvil o bus', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (40, 'Kilometro recorrido por vehículo (KRV) vehículo convencional', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo línea base', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:39:00', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (41, 'Combustible principal del vehículo convencional', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Combustible del vehículo que ha sido remplazado (línea base)', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:11:54', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (42, 'Placa del vehículo convencional', 'P1CR1CS1CM1', 2, 2, '0', '0', '1', '0', '0', null, '0', 8, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:14:21', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (43, 'Total km recorrido (vehículo eléctrico)', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (44, 'Kilómetro recorrido vehicular con combustible del vehículo híbrido', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por el vehículo del proyecto de mejora. Solo si se trata de un vehículo híbrido', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:45:39', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (45, 'Rendimiento del vehículo eléctrico', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '1', '0', null, '0', 15, 'Distancia recorrida anualmente por el vehículo del proyecto', 'kWh/km', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:48:11', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (46, 'Tipo de combustible del vehículo híbrido (Completar si aplica)', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Combustible fósil del vehículo híbrido. Solo si se trata de un vehículo híbrido', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:49:25', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (47, 'Consumo electricidad', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, 'MWh.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (48, 'Consumo combustible', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, 'gal.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (49, 'Línea Base emisiones GEI', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'tCO2', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (50, 'Proyecto emisiones GEI', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'tCO2', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (51, 'Reducción de emisiones', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Emisiones que se evitaron', 'tCO2e', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 16:00:18', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (52, 'Energía línea base', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'TJ', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (53, 'Energía Proyecto', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'TJ', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (54, 'Energía ahorrada', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Energía que se ahorró con la acción de mejora', 'TJ/año', '0', '1', null, '1', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 16:01:24', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (55, 'Ahorro', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Ahorro porcentual de energía', '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (96, 'Detallar si realizó una mejora de eficiencia energética', 'P24CR1CS1CM1', 3, 2, null, '0', '1', '0', '0', null, null, 500, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (115, 'Oportunidad de mejora identificada', 'Oportunidad de mejora identificada', 1, null, '0', '0', '1', '0', '0', '0', '0', 0, 'Acción realizada por la empresa o entidad con el fin de ahorrar energía eléctrica o térmica', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:22:00', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (116, 'Descripción Bau', 'Descripción Bau', 2, 2, '0', '0', '1', '0', '0', null, '0', 500, 'Descripción técnica del/los equipo(s) o actividades identificadas como oportunidad de mejora dentro de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:29:00', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (117, 'Cantidad', 'Cantidad', 2, 1, '0', '1', '1', '0', '0', null, '0', 15, 'Cantidad de equipos identificados en la entidado empresa con oportunidad de mejora. De ser el caso que se haya mejorado un  proceso o buena practica, no considerando equipos, colocar 1. ', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:33:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (118, 'Recurso energético bau', 'Recurso energético bau', 1, null, '0', '1', '1', '0', '0', '120', '0', 0, 'Fuente de energía utilizada para el funcionamiento del/los equipo(s) y/o desarrollo del proceso de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:26:39', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (120, 'Unidades', null, 1, null, null, '0', '0', '0', '0', null, '0', null, 'Unidad de medición del energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (123, 'Equivalente energético', 'Equivalente energético', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Energía total consumida del/los equipo(s) o de un proceso específico antes de implementar  la oportunidad de mejora, en Megajoules.', 'MJ', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:35:24', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (121, 'Consumo energético', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (122, 'Consumo combustible', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (124, 'Emisiones de GEI', 'Emisiones de GEI', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Total de emisiones de Gases de Efecto Invernadero generadas del/los equipo(s) o de un proceso específico antes de implementar la mejora, en toneladas de dióxido de carbono equivalente .', 'tCO2eq', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:36:32', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (125, 'Cantidad', 'cantidad', 2, 1, '0', '1', '1', '0', '0', null, '0', 15, 'Cantidad de equipos identificados en la entidado empresa con oportunidad de mejora. De ser el caso que se haya mejorado un  proceso o buena practica, no considerando equipos, colocar 1. ', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:34:07', 'dd-mm-yyyy hh24:mi:ss'));
 commit;
 prompt 165 records loaded
 
 
 
 --T_MAED_PARAMETRO
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (3, 1, 'Privado');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (3, 2, 'Público');
+prompt Loading T_MAED_PARAMETRO...
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 94, 'Gerencia', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 94, 'Jefatura', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 94, 'Supervisora', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 94, 'Coordinadora', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 94, 'Especialista', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 94, 'Planificadora', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 94, 'Analista', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 94, 'Asistente', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 101, 'Residual', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 101, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 101, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 101, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 101, 'Gasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 101, 'Biocombustible', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 103, 'gal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 103, 'm3', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 109, 'Electricidad', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 109, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 109, 'Residual', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 109, 'Gasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 109, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 109, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 109, 'Carbón', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 109, 'Biocombustible', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 109, 'leña', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 109, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 109, 'Bagazo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 109, 'Carbón vegetal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 109, 'Gas de refinería', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 109, 'Diesel DB5', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 111, 'kWh/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 111, 'gal/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 111, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 111, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 111, 'ton/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 113, 'kwh/m2', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 115, 'Cambio de refrigeradoras', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 115, 'Cambio de congeladoras', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 115, 'Cambio de lavadoras', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 115, 'Cambio de secadoras', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 115, 'Cambio de motores eléctricos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 115, 'Cambio de equipos de aire acondicionado', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 115, 'Cambio de calentadores de agua', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 115, 'Cambio de lámparas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 115, 'Mantenimiento de sistemas térmicos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 115, 'Cambio o mantenimiento de las calderas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 115, 'Mantenimiento de aire acondicionado', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 115, 'Mantenimiento de sistemas de refrigeración', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 115, 'Cambio o mantenimiento del torre de enfriamiento', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 115, 'Cambio o mantenimiento de otros equipos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 115, 'Optimización de equipos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 115, 'Buenas prácticas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 115, 'Sistemas de gestión de energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 115, 'Cambio de matriz energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 115, 'Implementación de vehículos eléctricos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 115, 'Otros', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 118, 'Electricidad', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 118, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 118, 'Residual', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 118, 'Gasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 118, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 118, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 118, 'Carbón', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 118, 'Biocombustible', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 118, 'leña', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 118, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 118, 'Bagazo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 118, 'Carbón vegetal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 118, 'Gas de refinería', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 118, 'Diesel DB5', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 120, 'kWh/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 120, 'gal/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 120, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 120, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 120, 'ton/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 127, 'Electricidad', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 127, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 127, 'Residual', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 127, 'Gasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 127, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 127, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 127, 'Carbón', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 127, 'Biocombustible', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 127, 'leña', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 127, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 127, 'Bagazo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 127, 'Carbón vegetal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 127, 'Gas de refinería', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 127, 'Diesel DB5', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 129, 'kWh/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 129, 'gal/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 129, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 129, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 129, 'ton/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 137, 'Si', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 137, 'No', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 145, 'Ha comprado equipos con etiquetado "A,B y C" en el último año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 145, 'Ha realizado capacitaciones en su sede sobre eficiencia energética en el último año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 145, 'Apaga o desenchufa los artefactos en la noche o cuando no se usa (Luminarias, impresoras, computadoras, microondas, cafetera, friobar, entre otros)', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 145, 'Han tomado acciones para usar eficientemente los equipos de aire acondicionado y calefacción, ejemplo: Mantener cerrado las ventanas cuando se está utilizando el aire acondicionado o el de calefacción, entre otros.', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 100 records committed...
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 145, 'Aprovechan la luz natural mediante el día', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 145, 'Han realizado notas de comunicación o campaña para difundir la importancia del uso eficiente y sostenible de la energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 145, 'Otros', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 146, 'Electricidad', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 146, 'Combustible', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 146, 'Cambio de matriz', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 148, 'Electricidad', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:40:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 148, 'Híbrido', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:40:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 158, 'GNV', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 16:04:36', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 158, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 16:04:36', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 158, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 16:04:36', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 158, 'Diesel', '0', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:32:43', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 158, 'No aplica', '0', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:32:43', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 159, 'GNV', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 159, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 159, 'Gasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 159, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 159, 'No aplica', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 163, 'Habitante', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 163, 'Familia', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 163, 'Kilómetros', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 163, 'Kilómetros - pasajeros', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 163, 'Ton de producción de cemento', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 163, 'Ton de producción de harina de pescado', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 163, 'Unidad de construcción', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 163, 'PBI Sectorial (S/)', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 163, 'Trabajadores', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 163, 'Metro cuadrado', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 163, 'Trabajador', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 163, 'Cama', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 163, 'Cliente', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 163, 'Mesa', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 163, 'Paciente', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 163, 'Alumno', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 163, 'Pasajero', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 158, 'Diesel', '1', 1, to_date('03-02-2021 16:04:36', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 158, 'No aplica', '1', 1, to_date('03-02-2021 16:04:36', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 3, 'Privado', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 3, 'Público', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 4, 'Residencial', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 4, 'Productivo', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 4, 'Servicios', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 4, 'Transporte', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 4, 'Salud', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 4, 'Educación', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 4, 'Seguridad', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 4, 'Administrativo', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 6, 'Urbano - Alto', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 6, 'Urbano - Medio', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 6, 'Urbano - Bajo', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 6, 'Rural - Medio', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 6, 'Rural - Bajo', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 6, 'Agropecuario - Agrícola', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 6, 'Agropecuario - Pecuario', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 6, 'Pesqueria', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 6, 'Mineria Metálica y No Metálica', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 6, 'Hidrocarburos', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 6, 'Manufactura - Procesadores de recursos primarios', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 6, 'Manufactura no primaria', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 6, 'Construcción', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 6, 'Hoteles y Hostales', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 6, 'Restaurantes', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 6, 'Edificios centros comerciales, centros de esparcimiento', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 6, 'Centros de Salud', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 6, 'Educación Privada', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 6, 'Transporte de pasajeros - Carros', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 6, 'Transporte de pasajeros - Ómnibus', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 6, 'Transporte de pasajeros - Station Wagon', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 6, 'Transporte de pasajeros - Taxis y Mototaxis', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 6, 'Transporte de pasajeros - Aéreo', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (24, 6, 'Transporte de pasajeros - Acuático', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (25, 6, 'Transporte de carga - Camionetas', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (26, 6, 'Transporte de carga - Camiones', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (27, 6, 'Transporte de carga - Ferrocarril', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (28, 6, 'Transporte de carga - Acuático', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (29, 6, 'Transporte de carga - Aéreo', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (30, 6, 'Salud', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (31, 6, 'Educación', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (32, 6, 'Seguridad', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (33, 6, 'Administrativo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 7, 'Consumo de energía anual per cápita', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 7, 'Consumo de energía eléctrica promedio anual por usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 7, 'Consumo de gas anual por suministro', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 7, 'Penetración de calentadores solares anual', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 7, 'Consumo anual de biomasa por familia', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 7, 'Consumo de energía anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 7, 'Consumo de hidrocarburos anual/ variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 7, 'Consumo de gas anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 7, 'Consumo de electricidad anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 7, 'Consumo de biomasa anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 7, 'Rendimiento promedio anual', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 7, 'Penetración anual del gas natural', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 7, 'Otros', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 9, 'J/habitante', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 9, '(kW.h/mes)/usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 9, 'J/usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 9, 'm2 de colector / usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 9, 'kg/familia', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 9, 'J/PBI Sectorial', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 9, 'J/t de producción', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 200 records committed...
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 9, 'kW.h/PBI Sectorial', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 9, 'kW.h/t de producción', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 9, 'J/cama', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 9, 'J/cliente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 9, 'J/m2', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 9, 'kW.h/cama', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 9, 'kW.h/cliente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 9, 'kW.h/m2', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 9, 'm2 de colector/entidad', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 9, 'J/mesa', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 9, 'kW.h./mesa', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 9, 'J/paciente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 9, 'kW.h/paciente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 9, 'J/alumno', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 9, 'kW.h/alumno', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 9, 'J/pasajero', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (24, 9, 'km/J', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (25, 9, 'Nro. Unidades a gas/parque total', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (26, 9, 'J/t', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (27, 9, 'J/Tm', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (28, 9, 'J/efectivo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (29, 9, 'kW.h/efectivo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (30, 9, 'J/trabajador', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (31, 9, 'kW.h/trabajador', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 19, 'Privado', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 19, 'Público', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 20, 'Residencial', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 20, 'Productivo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 20, 'Servicios', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 20, 'Transporte', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 20, 'Salud', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 20, 'Educación', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 20, 'Seguridad', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 20, 'Administrativo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 22, 'Urbano - Alto', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 22, 'Urbano - Medio', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 22, 'Urbano - Bajo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 22, 'Rural - Medio', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 22, 'Rural - Bajo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 22, 'Agropecuario - Agrícola', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 22, 'Agropecuario - Pecuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 22, 'Pesqueria', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 22, 'Mineria Metálica y No Metálica', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 22, 'Hidrocarburos', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 22, 'Manufactura - Procesadores de recursos primarios', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 22, 'Manufactura no primaria', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 22, 'Construcción', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 22, 'Hoteles y Hostales', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 22, 'Restaurantes', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 22, 'Edificios centros comerciales, centros de esparcimiento', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 22, 'Centros de Salud', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 22, 'Educación Privada', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 22, 'Transporte de pasajeros - Carros', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 22, 'Transporte de pasajeros - Ómnibus', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 22, 'Transporte de pasajeros - Station Wagon', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 22, 'Transporte de pasajeros - Taxis y Mototaxis', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 22, 'Transporte de pasajeros - Aéreo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (24, 22, 'Transporte de pasajeros - Acuático', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (25, 22, 'Transporte de carga - Camionetas', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (26, 22, 'Transporte de carga - Camiones', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (27, 22, 'Transporte de carga - Ferrocarril', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (28, 22, 'Transporte de carga - Acuático', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (29, 22, 'Transporte de carga - Aéreo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (30, 22, 'Salud', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (31, 22, 'Educación', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (32, 22, 'Seguridad', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (33, 22, 'Administrativo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 23, 'Consumo de energía anual per cápita', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 23, 'Consumo de energía eléctrica promedio anual por usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 23, 'Consumo de gas anual por suministro', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 23, 'Penetración de calentadores solares anual', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 23, 'Consumo anual de biomasa por familia', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 23, 'Consumo de energía anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 23, 'Consumo de hidrocarburos anual/ variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 23, 'Consumo de gas anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 23, 'Consumo de electricidad anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 23, 'Consumo de biomasa anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 23, 'Rendimiento promedio anual', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 23, 'Penetración anual del gas natural', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 23, 'Otros', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 25, 'J/habitante', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 25, '(kW.h/mes)/usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 25, 'J/usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 25, 'm2 de colector / usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 25, 'kg/familia', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 25, 'J/PBI Sectorial', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 25, 'J/t de producción', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 25, 'kW.h/PBI Sectorial', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 25, 'kW.h/t de producción', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 25, 'J/cama', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 25, 'J/cliente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 25, 'J/m2', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 25, 'kW.h/cama', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 25, 'kW.h/cliente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 25, 'kW.h/m2', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 25, 'm2 de colector/entidad', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 25, 'J/mesa', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 25, 'kW.h./mesa', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 25, 'J/paciente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 25, 'kW.h/paciente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 300 records committed...
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 25, 'J/alumno', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 25, 'kW.h/alumno', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 25, 'J/pasajero', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (24, 25, 'km/J', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (25, 25, 'Nro. Unidades a gas/parque total', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (26, 25, 'J/t', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (27, 25, 'J/Tm', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (28, 25, 'J/efectivo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (29, 25, 'kW.h/efectivo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (30, 25, 'J/trabajador', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (31, 25, 'kW.h/trabajador', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 28, 'Petróleo crudo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 28, 'Gas Natural Licuado', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 28, 'Gasolina para motores', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 28, 'Gasolina para la aviación', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 28, 'Gasolina para motor a reacción', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 28, 'Gas/Disesel Oil', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 28, 'Fuelóleo residual', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 28, 'Gases licuados de petróleo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 28, 'Lubricantes', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 28, 'Gas de refinería', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 28, 'Ceras de parafina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 28, 'Espíritu blanco y SBP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 28, 'Otros productos del petróleo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 28, 'Carbón sub-bituminoso', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 28, 'Carbón de coque', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 28, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 28, 'Biogasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 28, 'Biodiesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 28, 'Otros biocombustibles líquidos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 28, 'Otra biomasa sólida primaria', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 28, 'Madera/Desechos de madera', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 28, 'Carbón vegetal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 28, 'Gas de vertedero', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 32, 'Petróleo crudo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 32, 'Gas Natural Licuado', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 32, 'Gasolina para motores', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 32, 'Gasolina para la aviación', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 32, 'Gasolina para motor a reacción', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 32, 'Gas/Disesel Oil', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 32, 'Fuelóleo residual', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 32, 'Gases licuados de petróleo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 32, 'Lubricantes', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 32, 'Gas de refinería', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 32, 'Ceras de parafina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 32, 'Espíritu blanco y SBP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 32, 'Otros productos del petróleo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 32, 'Carbón sub-bituminoso', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 32, 'Carbón de coque', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 32, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 32, 'Biogasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 32, 'Biodiesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 32, 'Otros biocombustibles líquidos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 32, 'Otra biomasa sólida primaria', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 32, 'Madera/Desechos de madera', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 32, 'Carbón vegetal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 32, 'Gas de vertedero', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 30, 'gal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 30, 'm3', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 30, 'l', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 34, 'gal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 34, 'm3', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 34, 'l', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 38, '2010', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 38, '2011', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 38, '2012', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 38, '2013', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 38, '2014', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 38, '2015', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 38, '2016', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 38, '2017', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 38, '2018', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 38, '2019', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 38, '2020', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 38, '2021', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 38, '2022', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 38, '2023', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 38, '2024', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 38, '2025', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 38, '2026', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 38, '2027', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 38, '2028', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 38, '2029', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 38, '2030', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 39, 'Automóvil', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 39, 'Bus', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 39, 'Automóvil híbrido', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 39, 'Bus híbrido', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 39, 'Moto taxi', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 39, 'Moto', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 41, 'GNV', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:11:54', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 41, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:11:54', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 41, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:11:54', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 41, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:11:54', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 41, 'No aplica', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:11:54', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 46, 'GNV', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:49:25', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 46, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:49:25', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 46, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:49:25', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 46, 'Diesel', '0', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 46, 'No aplica', '0', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 400 records committed...
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 61, 'Monitoreo de indicadores de desempeño energético', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 61, 'Monitoreo de operatividad de equipos y proceso productivo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 61, 'Elaboración del Plan anual de gestión de la energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 61, 'Revisión del plan de mantenimiento y confiablidad, con enfoque a la eficiencia energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 61, 'Ejecutar auditorías internas y revisar periódicamente la eficacia de las acciones correctivas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 61, 'Coordinaciòn del Sistema de gestión en las auditorías externas del sistema de gestión', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 61, 'Impartir inducción referente a la gestión de la energía a los demás trabajadores', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 61, 'Propuesta de nuevos proyectos de eficiencia energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 61, 'Control de los parámetros eléctricos y térmicos de un proceso con la finalidad de reducir los costos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 62, 'Monitoreo de indicadores de desempeño energético', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 62, 'Monitoreo de operatividad de equipos y proceso productivo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 62, 'Elaboración del Plan anual de gestión de la energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 62, 'Revisión del plan de mantenimiento y confiablidad, con enfoque a la eficiencia energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 62, 'Ejecutar auditorías internas y revisar periódicamente la eficacia de las acciones correctivas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 62, 'Coordinaciòn del Sistema de gestión en las auditorías externas del sistema de gestión', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 62, 'Impartir inducción referente a la gestión de la energía a los demás trabajadores', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 62, 'Propuesta de nuevos proyectos de eficiencia energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 62, 'Control de los parámetros eléctricos y térmicos de un proceso con la finalidad de reducir los costos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 63, 'Monitoreo de indicadores de desempeño energético', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 63, 'Monitoreo de operatividad de equipos y proceso productivo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 63, 'Elaboración del Plan anual de gestión de la energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 63, 'Revisión del plan de mantenimiento y confiablidad, con enfoque a la eficiencia energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 63, 'Ejecutar auditorías internas y revisar periódicamente la eficacia de las acciones correctivas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 63, 'Coordinaciòn del Sistema de gestión en las auditorías externas del sistema de gestión', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 63, 'Impartir inducción referente a la gestión de la energía a los demás trabajadores', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 63, 'Propuesta de nuevos proyectos de eficiencia energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 63, 'Control de los parámetros eléctricos y térmicos de un proceso con la finalidad de reducir los costos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 76, 'Huella de Carbono Perú - Primera estrella', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 76, 'Huella de Carbono Perú - Segunda estrella', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 76, 'Huella de Carbono Perú - Tercera estrella', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 76, 'Huella de Carbono Perú - Cuarta estrella', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 79, 'Si', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 79, 'No', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 82, 'Programas de capacitación interna tal como seminarios, charlas técnicas, conferencias relacionadas al sector energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 82, 'Formación de grupos de interés, tal como la formación de un comité de gestión o control interno de la energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 82, 'Difusión de beneficios de la eficiencia energética, a través de medios de comunicación interna de la empresa tal como: boletines, trípticos, periódico mural, revistas, etc., de tal forma que se verifique una comunicación masiva interna', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 82, 'Informe de los comités de ECOEFICIENCIA de la empresa con resultados tangibles según lo establecido por el D.S N° 009-2009-MINAM o aplicación de la Guía de la Ecoeficiencia para el sector público', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 82, 'Otras actividades relacionadas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 94, 'Directivo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 439 records loaded
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 1, 'Residencial');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 2, 'Productivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 3, 'Servicios');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 4, 'Transporte');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 5, 'Salud');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 6, 'Educación');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 7, 'Seguridad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 8, 'Administrativo');
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 1, 'Urbano - Alto');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 2, 'Urbano - Medio');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 3, 'Urbano - Bajo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 4, 'Rural - Medio');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 5, 'Rural - Bajo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 6, 'Agropecuario - Agrícola');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 7, 'Agropecuario - Pecuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 8, 'Pesqueria');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 9, 'Mineria Metálica y No Metálica');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 10, 'Hidrocarburos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 11, 'Manufactura - Procesadores de recursos primarios');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 12, 'Manufactura no primaria');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 13, 'Construcción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 14, 'Hoteles y Hostales');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 15, 'Restaurantes');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 16, 'Edificios centros comerciales, centros de esparcimiento');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 17, 'Centros de Salud');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 18, 'Educación Privada');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 19, 'Transporte de pasajeros - Carros');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 20, 'Transporte de pasajeros - Ómnibus');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 21, 'Transporte de pasajeros - Station Wagon');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 22, 'Transporte de pasajeros - Taxis y Mototaxis');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 23, 'Transporte de pasajeros - Aéreo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 24, 'Transporte de pasajeros - Acuático');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 25, 'Transporte de carga - Camionetas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 26, 'Transporte de carga - Camiones');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 27, 'Transporte de carga - Ferrocarril');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 28, 'Transporte de carga - Acuático');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 29, 'Transporte de carga - Aéreo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 30, 'Salud');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 31, 'Educación');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 32, 'Seguridad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 33, 'Administrativo');
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 1, 'Consumo de energía anual per cápita');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 2, 'Consumo de energía eléctrica promedio anual por usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 3, 'Consumo de gas anual por suministro');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 4, 'Penetración de calentadores solares anual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 5, 'Consumo anual de biomasa por familia');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 6, 'Consumo de energía anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 7, 'Consumo de hidrocarburos anual/ variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 8, 'Consumo de gas anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 9, 'Consumo de electricidad anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 10, 'Consumo de biomasa anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 11, 'Rendimiento promedio anual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 12, 'Penetración anual del gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 13, 'Otros');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 1, 'J/habitante');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 2, '(kW.h/mes)/usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 3, 'J/usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 4, 'm2 de colector / usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 5, 'kg/familia');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 6, 'J/PBI Sectorial');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 7, 'J/t de producción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 8, 'kW.h/PBI Sectorial');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 9, 'kW.h/t de producción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 10, 'J/cama');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 11, 'J/cliente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 12, 'J/m2');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 13, 'kW.h/cama');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 14, 'kW.h/cliente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 15, 'kW.h/m2');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 16, 'm2 de colector/entidad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 17, 'J/mesa');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 18, 'kW.h./mesa');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 19, 'J/paciente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 20, 'kW.h/paciente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 21, 'J/alumno');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 22, 'kW.h/alumno');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 23, 'J/pasajero');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 24, 'km/J');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 25, 'Nro. Unidades a gas/parque total');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 26, 'J/t');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 27, 'J/Tm');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 28, 'J/efectivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 29, 'kW.h/efectivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 30, 'J/trabajador');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 31, 'kW.h/trabajador');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (19, 1, 'Privado');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (19, 2, 'Público');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 1, 'Residencial');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 2, 'Productivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 3, 'Servicios');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 4, 'Transporte');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 5, 'Salud');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 6, 'Educación');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 7, 'Seguridad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 8, 'Administrativo');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 1, 'Urbano - Alto');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 2, 'Urbano - Medio');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 3, 'Urbano - Bajo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 4, 'Rural - Medio');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 5, 'Rural - Bajo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 6, 'Agropecuario - Agrícola');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 7, 'Agropecuario - Pecuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 8, 'Pesqueria');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 9, 'Mineria Metálica y No Metálica');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 10, 'Hidrocarburos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 11, 'Manufactura - Procesadores de recursos primarios');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 12, 'Manufactura no primaria');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 13, 'Construcción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 14, 'Hoteles y Hostales');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 15, 'Restaurantes');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 16, 'Edificios centros comerciales, centros de esparcimiento');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 17, 'Centros de Salud');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 18, 'Educación Privada');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 19, 'Transporte de pasajeros - Carros');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 20, 'Transporte de pasajeros - Ómnibus');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 21, 'Transporte de pasajeros - Station Wagon');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 22, 'Transporte de pasajeros - Taxis y Mototaxis');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 23, 'Transporte de pasajeros - Aéreo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 24, 'Transporte de pasajeros - Acuático');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 25, 'Transporte de carga - Camionetas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 26, 'Transporte de carga - Camiones');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 27, 'Transporte de carga - Ferrocarril');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 28, 'Transporte de carga - Acuático');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 29, 'Transporte de carga - Aéreo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 30, 'Salud');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 31, 'Educación');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 32, 'Seguridad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 33, 'Administrativo');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 1, 'Consumo de energía anual per cápita');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 2, 'Consumo de energía eléctrica promedio anual por usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 3, 'Consumo de gas anual por suministro');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 4, 'Penetración de calentadores solares anual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 5, 'Consumo anual de biomasa por familia');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 6, 'Consumo de energía anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 7, 'Consumo de hidrocarburos anual/ variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 8, 'Consumo de gas anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 9, 'Consumo de electricidad anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 10, 'Consumo de biomasa anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 11, 'Rendimiento promedio anual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 12, 'Penetración anual del gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 13, 'Otros');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 1, 'J/habitante');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 2, '(kW.h/mes)/usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 3, 'J/usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 4, 'm2 de colector / usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 5, 'kg/familia');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 6, 'J/PBI Sectorial');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 7, 'J/t de producción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 8, 'kW.h/PBI Sectorial');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 9, 'kW.h/t de producción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 10, 'J/cama');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 11, 'J/cliente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 12, 'J/m2');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 13, 'kW.h/cama');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 14, 'kW.h/cliente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 15, 'kW.h/m2');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 16, 'm2 de colector/entidad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 17, 'J/mesa');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 18, 'kW.h./mesa');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 19, 'J/paciente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 20, 'kW.h/paciente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 21, 'J/alumno');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 22, 'kW.h/alumno');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 23, 'J/pasajero');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 24, 'km/J');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 25, 'Nro. Unidades a gas/parque total');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 26, 'J/t');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 27, 'J/Tm');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 28, 'J/efectivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 29, 'kW.h/efectivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 30, 'J/trabajador');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 31, 'kW.h/trabajador');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 1, 'Petróleo crudo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 2, 'Gas Natural Licuado');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 3, 'Gasolina para motores');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 4, 'Gasolina para la aviación');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 5, 'Gasolina para motor a reacción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 6, 'Gas/Disesel Oil');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 7, 'Fuelóleo residual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 8, 'Gases licuados de petróleo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 9, 'Lubricantes');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 10, 'Gas de refinería');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 11, 'Ceras de parafina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 12, 'Espíritu blanco y SBP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 13, 'Otros productos del petróleo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 14, 'Carbón sub-bituminoso');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 15, 'Carbón de coque');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 16, 'Gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 17, 'Biogasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 18, 'Biodiesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 19, 'Otros biocombustibles líquidos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 20, 'Otra biomasa sólida primaria');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 21, 'Madera/Desechos de madera');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 22, 'Carbón vegetal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 23, 'Gas de vertedero');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 1, 'Petróleo crudo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 2, 'Gas Natural Licuado');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 3, 'Gasolina para motores');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 4, 'Gasolina para la aviación');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 5, 'Gasolina para motor a reacción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 6, 'Gas/Disesel Oil');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 7, 'Fuelóleo residual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 8, 'Gases licuados de petróleo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 9, 'Lubricantes');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 10, 'Gas de refinería');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 11, 'Ceras de parafina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 12, 'Espíritu blanco y SBP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 13, 'Otros productos del petróleo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 14, 'Carbón sub-bituminoso');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 15, 'Carbón de coque');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 16, 'Gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 17, 'Biogasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 18, 'Biodiesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 19, 'Otros biocombustibles líquidos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 20, 'Otra biomasa sólida primaria');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 21, 'Madera/Desechos de madera');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 22, 'Carbón vegetal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 23, 'Gas de vertedero');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (30, 1, 'gal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (30, 2, 'm3');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (30, 3, 'l');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (34, 1, 'gal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (34, 2, 'm3');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (34, 3, 'l');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 1, '2010');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 2, '2011');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 3, '2012');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 4, '2013');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 5, '2014');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 6, '2015');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 7, '2016');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 8, '2017');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 9, '2018');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 10, '2019');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 11, '2020');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 12, '2021');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 13, '2022');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 14, '2023');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 15, '2024');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 16, '2025');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 17, '2026');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 18, '2027');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 19, '2028');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 20, '2029');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 21, '2030');
-
-/*INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 1, 'Auto eléctrico');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 2, 'Bus eléctrico (9m)');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 3, 'Bus eléctrico (12m)');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 4, 'Bus eléctrico (18m)');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 5, 'Moto taxi');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 6, 'Moto');*/
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 1, 'Automóvil');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 2, 'Bus');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 3, 'Automóvil híbrido');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 4, 'Bus híbrido');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 5, 'Moto taxi');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 6, 'Moto');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (41, 1, 'GNV');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (41, 2, 'GLP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (41, 3, 'Gasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (41, 4, 'Diesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (41, 5, 'No aplica');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (46, 1, 'GNV');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (46, 2, 'GLP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (46, 3, 'Gasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (46, 4, 'Diesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (46, 5, 'No aplica');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 1, 'Monitoreo de indicadores de desempeño energético');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 2, 'Monitoreo de operatividad de equipos y proceso productivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 3, 'Elaboración del Plan anual de gestión de la energía');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 4, 'Revisión del plan de mantenimiento y confiablidad, con enfoque a la eficiencia energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 5, 'Ejecutar auditorías internas y revisar periódicamente la eficacia de las acciones correctivas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 6, 'Coordinaciòn del Sistema de gestión en las auditorías externas del sistema de gestión');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 7, 'Impartir inducción referente a la gestión de la energía a los demás trabajadores');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 8, 'Propuesta de nuevos proyectos de eficiencia energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 9, 'Control de los parámetros eléctricos y térmicos de un proceso con la finalidad de reducir los costos');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 1, 'Monitoreo de indicadores de desempeño energético');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 2, 'Monitoreo de operatividad de equipos y proceso productivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 3, 'Elaboración del Plan anual de gestión de la energía');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 4, 'Revisión del plan de mantenimiento y confiablidad, con enfoque a la eficiencia energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 5, 'Ejecutar auditorías internas y revisar periódicamente la eficacia de las acciones correctivas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 6, 'Coordinaciòn del Sistema de gestión en las auditorías externas del sistema de gestión');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 7, 'Impartir inducción referente a la gestión de la energía a los demás trabajadores');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 8, 'Propuesta de nuevos proyectos de eficiencia energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 9, 'Control de los parámetros eléctricos y térmicos de un proceso con la finalidad de reducir los costos');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 1, 'Monitoreo de indicadores de desempeño energético');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 2, 'Monitoreo de operatividad de equipos y proceso productivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 3, 'Elaboración del Plan anual de gestión de la energía');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 4, 'Revisión del plan de mantenimiento y confiablidad, con enfoque a la eficiencia energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 5, 'Ejecutar auditorías internas y revisar periódicamente la eficacia de las acciones correctivas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 6, 'Coordinaciòn del Sistema de gestión en las auditorías externas del sistema de gestión');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 7, 'Impartir inducción referente a la gestión de la energía a los demás trabajadores');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 8, 'Propuesta de nuevos proyectos de eficiencia energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 9, 'Control de los parámetros eléctricos y térmicos de un proceso con la finalidad de reducir los costos');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (76, 1, 'Huella de Carbono Perú - Primera estrella');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (76, 2, 'Huella de Carbono Perú - Segunda estrella');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (76, 3, 'Huella de Carbono Perú - Tercera estrella');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (76, 4, 'Huella de Carbono Perú - Cuarta estrella');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (79, 1, 'Si');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (79, 2, 'No');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (82, 1, 'Programas de capacitación interna tal como seminarios, charlas técnicas, conferencias relacionadas al sector energía');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (82, 2, 'Formación de grupos de interés, tal como la formación de un comité de gestión o control interno de la energía');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (82, 3, 'Difusión de beneficios de la eficiencia energética, a través de medios de comunicación interna de la empresa tal como: boletines, trípticos, periódico mural, revistas, etc., de tal forma que se verifique una comunicación masiva interna');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (82, 4, 'Informe de los comités de ECOEFICIENCIA de la empresa con resultados tangibles según lo establecido por el D.S N° 009-2009-MINAM o aplicación de la Guía de la Ecoeficiencia para el sector público');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (82, 5, 'Otras actividades relacionadas');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 1, 'Directivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 2, 'Gerencia');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 3, 'Jefatura');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 4, 'Supervisora');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 5, 'Coordinadora');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 6, 'Especialista');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 7, 'Planificadora');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 8, 'Analista');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 9, 'Asistente');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (101, 1, 'Residual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (101, 2, 'Diesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (101, 3, 'Gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (101, 4, 'GLP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (101, 5, 'Gasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (101, 6, 'Biocombustible');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (103, 1, 'gal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (103, 2, 'm3');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 1, 'Electricidad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 2, 'Diesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 3, 'Residual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 4, 'Gasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 5, 'GLP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 6, 'Gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 7, 'Carbón');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 8, 'Biocombustible');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 9, 'leña');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 10, 'Gasohol');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 11, 'Bagazo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 12, 'Carbón vegetal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 13, 'Gas de refinería');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (109, 14, 'Diesel DB5');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (111, 1, 'kWh/año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (111, 2, 'gal/año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (111, 3, 'kg/año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (111, 4, 'kg/año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (111, 5, 'ton/año');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (113, 1, 'kwh/m2');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 1, 'Cambio de refrigeradoras');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 2, 'Cambio de congeladoras');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 3, 'Cambio de lavadoras');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 4, 'Cambio de secadoras');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 5, 'Cambio de motores eléctricos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 6, 'Cambio de equipos de aire acondicionado');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 7, 'Cambio de calentadores de agua');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 8, 'Cambio de lámparas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 9, 'Mantenimiento de sistemas térmicos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 10, 'Cambio o mantenimiento de las calderas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 11, 'Mantenimiento de aire acondicionado');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 12, 'Mantenimiento de sistemas de refrigeración');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 13, 'Cambio o mantenimiento del torre de enfriamiento');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 14, 'Cambio o mantenimiento de otros equipos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 15, 'Optimización de equipos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 16, 'Buenas prácticas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 17, 'Sistemas de gestión de energía');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 18, 'Cambio de matriz energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 19, 'Implementación de vehículos eléctricos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (115, 20, 'Otros');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 1, 'Electricidad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 2, 'Diesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 3, 'Residual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 4, 'Gasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 5, 'GLP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 6, 'Gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 7, 'Carbón');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 8, 'Biocombustible');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 9, 'leña');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 10, 'Gasohol');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 11, 'Bagazo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 12, 'Carbón vegetal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 13, 'Gas de refinería');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (118, 14, 'Diesel DB5');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (120, 1, 'kWh/año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (120, 2, 'gal/año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (120, 3, 'kg/año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (120, 4, 'kg/año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (120, 5, 'ton/año');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 1, 'Electricidad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 2, 'Diesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 3, 'Residual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 4, 'Gasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 5, 'GLP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 6, 'Gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 7, 'Carbón');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 8, 'Biocombustible');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 9, 'leña');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 10, 'Gasohol');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 11, 'Bagazo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 12, 'Carbón vegetal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 13, 'Gas de refinería');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (127, 14, 'Diesel DB5');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (129, 1, 'kWh/año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (129, 2, 'gal/año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (129, 3, 'kg/año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (129, 4, 'kg/año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (129, 5, 'ton/año');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (137, 1, 'Si');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (137, 2, 'No');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (145, 1, 'Ha comprado equipos con etiquetado "A,B y C" en el último año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (145, 2, 'Ha realizado capacitaciones en su sede sobre eficiencia energética en el último año');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (145, 3, 'Apaga o desenchufa los artefactos en la noche o cuando no se usa (Luminarias, impresoras, computadoras, microondas, cafetera, friobar, entre otros)');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (145, 4, 'Han tomado acciones para usar eficientemente los equipos de aire acondicionado y calefacción, ejemplo: Mantener cerrado las ventanas cuando se está utilizando el aire acondicionado o el de calefacción, entre otros.');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (145, 5, 'Aprovechan la luz natural mediante el día');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (145, 6, 'Han realizado notas de comunicación o campaña para difundir la importancia del uso eficiente y sostenible de la energía');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (145, 7, 'Otros');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (146, 1, 'Electricidad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (146, 2, 'Combustible');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (146, 3, 'Cambio de matriz');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (148, 1, 'Electricidad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (148, 2, 'Híbrido');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (158, 1, 'GNV');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (158, 2, 'GLP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (158, 3, 'Gasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (158, 4, 'Diesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (158, 5, 'No aplica');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (159, 1, 'GNV');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (159, 2, 'GLP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (159, 3, 'Gasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (159, 4, 'Diesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (159, 5, 'No aplica');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 1, 'Habitante');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 2, 'Familia');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 3, 'Kilómetros');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 4, 'Kilómetros - pasajeros');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 5, 'Ton de producción de cemento');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 6, 'Ton de producción de harina de pescado');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 7, 'Unidad de construcción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 8, 'PBI Sectorial (S/)');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 9, 'Trabajadores');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 10, 'Metro cuadrado');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 11, 'Trabajador');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 12, 'Cama');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 13, 'Cliente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 14, 'Mesa');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 15, 'Paciente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 16, 'Alumno');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (163, 17, 'Pasajero');
 
 --T_MAED_PARAMETRO_RELACION
 INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (4, 1, '3', '1');
