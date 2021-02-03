@@ -1059,33 +1059,35 @@ INSERT INTO T_MAE_TIPO_EVALUACION (ID_TIPO_EVALUACION, NOMBRE) VALUES (1, 'APROB
 INSERT INTO T_MAE_TIPO_EVALUACION (ID_TIPO_EVALUACION, NOMBRE) VALUES (2, 'DESAPROBADO');
 
 --T_GENM_CASO
---CRI 1
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (1, 1, 'Reducción de consumo energético');
---CRI 2
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (2, 1, 'Vehículos eléctricos o híbridos eléctricos');
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (2, 2, 'Vehículos convencionales con cambio de combustible');
---CRI 4
----CASO 1
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (4, 1, 'Implementación de la norma ISO 50001 - SGE (10 ptos.)');
----CASO 2
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (4, 2, 'Sistema formal para los reportes de los resultados del monitoreo de indicadores de desempeño energético (7.5 ptos.)');
----CASO 3
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (4, 3, 'Monitoreo de los indicadores de desempeño energético (5 ptos.)');
---CRI 5
---CASO 1
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (6, 1, 'Auditoría energética nivel I (10 ptos.)');
---CASO 2
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (6, 2, 'Auditoría energética nivel II (7.5 ptos.)');
---CASO 3
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (6, 3, 'Auditoría energética nivel III (5 ptos.)');
---CRI 6
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (5, 1, 'Buenas prácticas');
---CRI 7
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (7, 1, 'Generó más de 2 nuevo puesto de trabajo y 1 puesto destinado a personal femenino (10 ptos.)');
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (7, 2, 'Generó más de 2 nuevo puesto de trabajo (7.5 ptos.)');
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (7, 3, 'Generó 1 nuevo puesto de trabajo (5 ptos.)');
---CRI 8
---INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (8, 1, 'Igualdad de género');
+prompt Loading T_GENM_CASO...
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Reducción de consumo energético', 1, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Vehículos eléctricos o híbridos eléctricos', 2, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Vehículos convencionales con cambio de combustible', 2, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Implementación de la norma ISO 50001 - SGE (10 ptos.)', 4, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Sistema formal para los reportes de los resultados del monitoreo de indicadores de desempeño energético (7.5 ptos.)', 4, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Monitoreo de los indicadores de desempeño energético (5 ptos.)', 4, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Auditoría energética nivel I (10 ptos.)', 6, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Auditoría energética nivel II (7.5 ptos.)', 6, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Auditoría energética nivel III (5 ptos.)', 6, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Buenas prácticas', 5, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Generó más de 2 nuevos puestos de trabajo y 1 puesto destinado a personal femenino (10 ptos.)', 7, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 17:27:05', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Generó más de 2 nuevos puestos de trabajo (7.5 ptos.)', 7, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 17:27:18', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Generó 1 nuevo puesto de trabajo (5 ptos.)', 7, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 13 records loaded
 
 --T_GENM_COMPONENTE
 /*INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (1, 1, 1, 'Componente 1', '1');

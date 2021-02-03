@@ -190,7 +190,21 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="A " + First(Fields!RAZON_SOCIAL.Value, "dsreconocimiento")</Value>
+                <Value>a</Value>
+                <Style>
+                  <FontSize>13pt</FontSize>
+                  <Color>#4f4a74</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <Color>#076db2</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=" " + First(Fields!RAZON_SOCIAL.Value, "dsreconocimiento")</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
                   <Color>#076db2</Color>
@@ -309,7 +323,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="Lima, " + First(Fields!PERIODO_ACTUAL.Value, "dsreconocimiento")</Value>
+                <Value>="Lima, Perú " + First(Fields!PERIODO_ACTUAL.Value, "dsreconocimiento")</Value>
                 <Style>
                   <FontSize>13pt</FontSize>
                   <Color>#4f4a74</Color>
@@ -377,7 +391,7 @@
       </Border>
     </Style>
   </Body>
-  <Width>9.42906in</Width>
+  <Width>9.34573in</Width>
   <Page>
     <PageHeader>
       <Height>2.05245cm</Height>
@@ -431,7 +445,7 @@
           <Sizing>FitProportional</Sizing>
           <Top>0.17639cm</Top>
           <Height>0.71507cm</Height>
-          <Width>23.94982cm</Width>
+          <Width>23.73815cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
