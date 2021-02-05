@@ -1718,7 +1718,7 @@ values (1, 159, 'GNV', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh2
 insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
 values (2, 159, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (3, 159, 'Gasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+values (3, 159, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
 values (4, 159, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
