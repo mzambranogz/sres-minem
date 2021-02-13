@@ -156,24 +156,39 @@ var btnEliminarFileClick = (e) => {
 var armarHead = (lista, incremental, id, componente) => {
     let cont = ``, contbau = 0, contini = 0, contresul = 0, indicador = 0;
     for (var i = 0; i < lista.length; i++) {
-        if (indicador == 0) {
-            if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contbau++;
-            if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 124) indicador = 124;
-        } else if (indicador == 124) {
-            if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contini++;
-            if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 133) indicador = 133;
-        } else if (indicador == 133) {
-            contresul++;
+        if (idCriterio == 1) {
+            if (indicador == 0) {
+                if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contbau++;
+                if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 124) indicador = 124;
+            } else if (indicador == 124) {
+                if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contini++;
+                if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 133) indicador = 133;
+            } else if (indicador == 133) {
+                contresul++;
+            }
+        } else if (idCriterio == 2) {
+            let id_caso = $(`#cbo-caso`).val();
+            if (indicador == 0) {
+                if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contbau++;
+                if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 40) indicador = 40;
+            } else if (indicador == 40) {
+                if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contini++;
+                if (id_caso == 1) { if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 46) indicador = 46; }
+                else if (id_caso == 2) { if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 159) indicador = 159; }
+            } else if (indicador == 46 || indicador == 159) {
+                contresul++;
+            }
         }
+        
         //cont += `<th scope="col"><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? `<i class="mt-2"></i>` : `<i class="fas fa-question-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i>`}</div></th>`;
         cont += `<th scope="col" ${lista[i]["OBJ_PARAMETRO"].VISIBLE == '0' ? `class="d-none"` : ''}><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}<i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="right" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? '' : lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i></div></th>`;
     }
     let columnabau = `<th colspan="${contbau}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Situación de línea base - BaU</span><small></small></div></th>`;
-    let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Data aplicando la acción de mejora para ahorro de energía</span><small></small></div></th>`;
-    let columnares = `<th colspan="${contresul}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Resultado de las acciones de mejora implementadas para obtención de ahorro de energía</span><small></small></div></th>`;
+    let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>${idCriterio == 1 ? `Data aplicando la acción de mejora para ahorro de energía` : idCriterio == 2 ? `Aplicando la acción de mejora` : ''}</span><small></small></div></th>`;
+    let columnares = `<th colspan="${contresul}"><div class="d-flex flex-column justify-content-center align-items-center"><span>${idCriterio == 1 ? `Resultado de las acciones de mejora implementadas para obtención de ahorro de energía` : idCriterio == 2 ? `Resultado de las acciones de mejora implementadas` : ''}</span><small></small></div></th>`;
     //cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center"><div class="btn btn-warning btn-sm estilo-01 addBtnGeneral" type="button" onclick="agregarFila(${id},${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div></th>` : ``;
     cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center addBtnGeneral"></div></th>` : ``;
-    return `<thead class="estilo-06">${idCriterio == 1 && componente == 2 ? `<tr>${columnabau}${columnaini}${columnares}</tr>` : ''}<tr>${cont}</tr></thead>`;
+    return `<thead class="estilo-06">${(idCriterio == 1 && componente == 2) || (idCriterio == 2 && componente == 1) ? `<tr>${columnabau}${columnaini}${columnares}</tr>` : ''}<tr>${cont}</tr></thead>`;
 };
 
 var armarBody = (lista, incremental) => {
@@ -194,7 +209,7 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
             else
                 filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${lista[i]["VISIBLE"] == '0' ? `class="d-none"` : ''}><div class="form-group m-0"><input class="form-control form-control-sm ${lista[i]["ID_TIPO_DATO"] == '3' ? 'estilo-06' : 'estilo-01'} ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero text-right' : lista[i]["ID_TIPO_DATO"] == '3' ? 'text-right' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal text-right' : lista[i]["ID_TIPO_DATO"] == '1' && lista[i]["DECIMAL_V"] == '0' && lista[i]["ID_PARAMETRO"] != 71 ? 'formato-numero' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["RESULTADO"] == null ? `alert-warning` : lista[i]["RESULTADO"] == '0' ? `alert-warning` : ``} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``} ${lista[i]["COMBUSTIBLE"] == null ? `` : lista[i]["COMBUSTIBLE"] == '1' ? `get-combustible` : ``} ${lista[i]["CAMBIO_MATRIZ"] == null ? `` : lista[i]["CAMBIO_MATRIZ"] == '1' ? `get-cambio-matriz` : ``} get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${lista[i]["DECIMAL_V"] == null ? validarNull(lista[i]["VALOR"]) : lista[i]["DECIMAL_V"] == '1' ? formatoMiles(validarNull(lista[i]["VALOR"])) : validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} /></div></td>`;
         } else if (lista[i]["ID_TIPO_CONTROL"] == 1) {
-            filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${lista[i]["VISIBLE"] == '0' ? `class="d-none"` : ''}><div class="form-group m-0"><select class="form-control form-control-sm multi-opciones alert-warning ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["FILTRO"] == null ? `` : lista[i]["FILTRO"] == '' ? `` : `data-filtro="${lista[i]["FILTRO"]}" onchange="filtrar(this)"`}  ${lista[i]["VERIFICABLE"] == '1' ? `onchange="verificarValor(this)"` : ``}><option value="0">Seleccione</option>`;
+            filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${lista[i]["VISIBLE"] == '0' ? `class="d-none"` : ''}><div class="form-group m-0"><select class="form-control form-control-sm multi-opciones alert-warning ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["FILTRO"] == null ? `` : lista[i]["FILTRO"] == '' ? `` : lista[i]["FILTRO"] == '0' ? '' : `data-filtro="${lista[i]["FILTRO"]}" onchange="filtrar(this)"`}  ${lista[i]["VERIFICABLE"] == '1' ? `onchange="verificarValor(this)"` : ``}><option value="0">Seleccione</option>`;
             for (var j = 0; j < lista[i]["LIST_PARAMDET"].length; j++)
                 filas += `<option value="${lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"]}" ${validarNull(lista[i]["VALOR"]) == lista[i]["LIST_PARAMDET"][j]["ID_DETALLE"] ? `selected` : ``}>${lista[i]["LIST_PARAMDET"][j]["NOMBRE"]}</option>`;
             filas += `</select></div></td>`;
@@ -467,7 +482,6 @@ var filtrar = (e) => {
     // 
     let arr = $(e).parent().parent().parent().attr('id'); //[0] ID_CRITERIO / [1] ID_cASO / [2] ID_COMPONENTE / [3] ID_INDICADOR
     let parametro = $(e).attr('data-param');
-
     if (!valorInicial($(e), arr)) return false;
     let filtro = $(e).attr('data-filtro').split('|');
 

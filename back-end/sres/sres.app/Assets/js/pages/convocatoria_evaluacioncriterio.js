@@ -131,23 +131,50 @@ var mostrarDocumentos = (data) => {
 var armarHead = (lista, incremental, id, componente) => {
     let cont = ``, contbau = 0, contini = 0, contresul = 0, indicador = 0;
     for (var i = 0; i < lista.length; i++) {
-        if (indicador == 0) {
-            if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contbau++;
-            if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 124) indicador = 124;
-        } else if (indicador == 124) {
-            if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contini++;
-            if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 133) indicador = 133;
-        } else if (indicador == 133) {
-            contresul++;
-        }        
+        //if (indicador == 0) {
+        //    if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contbau++;
+        //    if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 124) indicador = 124;
+        //} else if (indicador == 124) {
+        //    if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contini++;
+        //    if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 133) indicador = 133;
+        //} else if (indicador == 133) {
+        //    contresul++;
+        //}
+
+        if (idCriterio == 1) {
+            if (indicador == 0) {
+                if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contbau++;
+                if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 124) indicador = 124;
+            } else if (indicador == 124) {
+                if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contini++;
+                if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 133) indicador = 133;
+            } else if (indicador == 133) {
+                contresul++;
+            }
+        } else if (idCriterio == 2) {
+            let id_caso = $(`#cbo-caso`).val();
+            if (indicador == 0) {
+                if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contbau++;
+                if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 40) indicador = 40;
+            } else if (indicador == 40) {
+                if (lista[i]["OBJ_PARAMETRO"].VISIBLE == 1) contini++;
+                if (id_caso == 1) { if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 46) indicador = 46; }
+                else if (id_caso == 2) { if (lista[i]["OBJ_PARAMETRO"].ID_PARAMETRO == 159) indicador = 159; }
+            } else if (indicador == 46 || indicador == 159) {
+                contresul++;
+            }
+        }
+
         let val = validarParametroVisible(lista[i]["ID_PARAMETRO"]);
         //cont += `<th scope="col"><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}<i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? '' : lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i></div></th>`;
         cont += `<th scope="col" ${val ? lista[i]["OBJ_PARAMETRO"].VISIBLE == '0' ? `class="d-none"` : '' : ''}><div class="flex-column d-flex justify-content-center align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}</div></th>`;
     }
     let columnabau = `<th colspan="${contbau}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Situación de línea base - BaU</span><small></small></div></th>`;
-    let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Data aplicando la acción de mejora para ahorro de energía</span><small></small></div></th>`;
-    let columnares = `<th colspan="${contresul}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Resultado de las acciones de mejora implementadas para obtención de ahorro de energía</span><small></small></div></th>`;
-    return `<thead class="estilo-06">${idCriterio == 1 && componente == 2 ? `<tr>${columnabau}${columnaini}${columnares}</tr>` : ''}<tr>${cont}</tr></thead>`;
+    //let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Data aplicando la acción de mejora para ahorro de energía</span><small></small></div></th>`;
+    //let columnares = `<th colspan="${contresul}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Resultado de las acciones de mejora implementadas para obtención de ahorro de energía</span><small></small></div></th>`;
+    let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>${idCriterio == 1 ? `Data aplicando la acción de mejora para ahorro de energía` : idCriterio == 2 ? `Aplicando la acción de mejora` : ''}</span><small></small></div></th>`;
+    let columnares = `<th colspan="${contresul}"><div class="d-flex flex-column justify-content-center align-items-center"><span>${idCriterio == 1 ? `Resultado de las acciones de mejora implementadas para obtención de ahorro de energía` : idCriterio == 2 ? `Resultado de las acciones de mejora implementadas` : ''}</span><small></small></div></th>`;
+    return `<thead class="estilo-06">${(idCriterio == 1 && componente == 2) || (idCriterio == 2 && componente == 1) ? `<tr>${columnabau}${columnaini}${columnares}</tr>` : ''}<tr>${cont}</tr></thead>`;
 };
 
 var armarBody = (lista, incremental) => {

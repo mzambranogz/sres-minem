@@ -240,7 +240,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="por el periodo " + First(Fields!PERIODO.Value, "dsreconocimiento")</Value>
+                <Value>="por el periodo " + First(Fields!PERIODO_2.Value, "dsreconocimiento") + " - " + First(Fields!PERIODO_1.Value, "dsreconocimiento")</Value>
                 <Style>
                   <FontSize>13pt</FontSize>
                   <Color>#4f4a74</Color>
@@ -324,7 +324,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="Lima, Perú " + First(Fields!PERIODO_ACTUAL.Value, "dsreconocimiento")</Value>
+                <Value>="Lima, " + First(Fields!DIA.Value, "dsreconocimiento") + " de " + First(Fields!NOMBRE_MES.Value, "dsreconocimiento") + " del " + First(Fields!PERIODO_ACTUAL.Value, "dsreconocimiento")</Value>
                 <Style>
                   <FontSize>13pt</FontSize>
                   <Color>#4f4a74</Color>
@@ -549,6 +549,18 @@
           <DataField>PREMIO_ESPECIAL</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="MES">
+          <DataField>MES</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DIA">
+          <DataField>DIA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NOMBRE_MES">
+          <DataField>NOMBRE_MES</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="RUTA_IMAGEN">
           <DataField>RUTA_IMAGEN</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -556,6 +568,22 @@
         <Field Name="IMAGEN">
           <DataField>IMAGEN</DataField>
           <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
+        <Field Name="IMAGEN_PREMIO_ESPECIAL">
+          <DataField>IMAGEN_PREMIO_ESPECIAL</DataField>
+          <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
+        <Field Name="PREMIO_LOGRADO">
+          <DataField>PREMIO_LOGRADO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PERIODO_1">
+          <DataField>PERIODO_1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PERIODO_2">
+          <DataField>PERIODO_2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

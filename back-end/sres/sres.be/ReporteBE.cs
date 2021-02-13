@@ -135,6 +135,28 @@ namespace sres.be
             public int FLAG_MEDIDA { get; set; }
             public int FLAG_MEJORACONTINUA { get; set; }
             public string PREMIO_ESPECIAL { get; set; }
+            public int MES { get; set; }
+            public string DIA { get; set; }
+            public string NOMBRE_MES
+            {
+                get
+                {
+                    string mes = "";
+                    if (MES == 1) mes = "enero";
+                    else if (MES == 2) mes = "febrero";
+                    else if (MES == 3) mes = "marzo";
+                    else if (MES == 4) mes = "abril";
+                    else if (MES == 5) mes = "mayo";
+                    else if (MES == 6) mes = "junio";
+                    else if (MES == 7) mes = "julio";
+                    else if (MES == 8) mes = "agosto";
+                    else if (MES == 9) mes = "setiembre";
+                    else if (MES == 10) mes = "octubre";
+                    else if (MES == 11) mes = "noviembre";
+                    else if (MES == 12) mes = "diciembre";
+                    return mes;
+                }
+            }
             public string RUTA_IMAGEN
             {
                 get
@@ -177,6 +199,26 @@ namespace sres.be
                         return 1;
                     else
                         return 0;
+                }
+            }
+
+            public string PERIODO_1
+            {
+                get
+                {
+                    int periodo = Convert.ToInt16(PERIODO);
+                    string periodo_1 = Convert.ToString(periodo + 1);
+                    return periodo_1;
+                }
+            }
+
+            public string PERIODO_2
+            {
+                get
+                {
+                    int periodo = Convert.ToInt16(PERIODO);
+                    string periodo_2 = Convert.ToString(periodo + 2);
+                    return periodo_2;
                 }
             }
         }
