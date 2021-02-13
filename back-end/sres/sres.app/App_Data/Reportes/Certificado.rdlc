@@ -240,7 +240,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="por el periodo " + First(Fields!PERIODO_2.Value, "dsreconocimiento") + " - " + First(Fields!PERIODO_1.Value, "dsreconocimiento")</Value>
+                <Value>="por el periodo " + First(Fields!PERIODO_1.Value, "dsreconocimiento") + " - " + First(Fields!PERIODO_2.Value, "dsreconocimiento")</Value>
                 <Style>
                   <FontSize>13pt</FontSize>
                   <Color>#4f4a74</Color>
