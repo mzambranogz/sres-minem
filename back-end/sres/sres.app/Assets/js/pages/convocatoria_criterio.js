@@ -187,7 +187,7 @@ var armarHead = (lista, incremental, id, componente) => {
     let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>${idCriterio == 1 ? `Data aplicando la acción de mejora para ahorro de energía` : idCriterio == 2 ? `Aplicando la acción de mejora` : ''}</span><small></small></div></th>`;
     let columnares = `<th colspan="${contresul}"><div class="d-flex flex-column justify-content-center align-items-center"><span>${idCriterio == 1 ? `Resultado de las acciones de mejora implementadas para obtención de ahorro de energía` : idCriterio == 2 ? `Resultado de las acciones de mejora implementadas` : ''}</span><small></small></div></th>`;
     //cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center"><div class="btn btn-warning btn-sm estilo-01 addBtnGeneral" type="button" onclick="agregarFila(${id},${componente});"><i class="fas fa-plus-circle mr-1"></i>Agregar</div></div></th>` : ``;
-    cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-center addBtnGeneral"></div></th>` : ``;
+    cont += incremental == '1' ? `<th scope="col"><div class="d-flex flex-column justify-content-center align-items-end addBtnGeneral"></div></th>` : ``;
     return `<thead class="estilo-06">${(idCriterio == 1 && componente == 2) || (idCriterio == 2 && componente == 1) ? `<tr>${columnabau}${columnaini}${columnares}</tr>` : ''}<tr>${cont}</tr></thead>`;
 };
 
@@ -218,7 +218,7 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
             filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><textarea class="form-control form-control-sm estilo-01 alert-warning get-valor" cols="30" rows="5" placeholder="Ingrese la descripción" maxlength="${lista[i]["TAMANO"]}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}">${validarNull(lista[i]["VALOR"])}</textarea></div></td>`;
         }
     }
-    filas += incremental == '1' ? `<td><div class="btn btn-info btn-sm estilo-01" type="button" onclick="eliminarFila(this);"><i class="fas fa-minus-circle mr-1"></i>&nbsp;Quitar&nbsp;&nbsp;</div></td>` : ``;
+    filas += incremental == '1' ? `<td class="text-right"><div class="btn btn-info btn-sm estilo-01" type="button" onclick="eliminarFila(this);"><i class="fas fa-minus-circle mr-1"></i>&nbsp;Quitar&nbsp;&nbsp;</div></td>` : ``;
     return `${filas}</tr>`;
 }
 
