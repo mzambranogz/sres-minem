@@ -11,7 +11,7 @@ CREATE SEQUENCE SISSELLO.SQ_GEND_CONVOCATORIA_TRAZA MINVALUE 1 MAXVALUE 99999999
 CREATE SEQUENCE SISSELLO.SQ_GEND_INSCRIPCION_TRAZA MINVALUE 1 MAXVALUE 9999999999999999999999999999 START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE SISSELLO.SQ_GENM_RECONOCIMIENTO MINVALUE 1 MAXVALUE 9999999999999999999999999999 START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE SISSELLO.SQ_MAE_INSIGNIA MINVALUE 1 MAXVALUE 9999999999999999999999999999 START WITH 5 INCREMENT BY 1;
-CREATE SEQUENCE SISSELLO.SQ_MAEM_PARAMETRO MINVALUE 1 MAXVALUE 9999999999999999999999999999 START WITH 97 INCREMENT BY 1;
+CREATE SEQUENCE SISSELLO.SQ_MAEM_PARAMETRO MINVALUE 1 MAXVALUE 9999999999999999999999999999 START WITH 169 INCREMENT BY 1;
 CREATE SEQUENCE SISSELLO.SQ_MAEM_FACTOR MINVALUE 1 MAXVALUE 9999999999999999999999999999 START WITH 15 INCREMENT BY 1;
 CREATE SEQUENCE SISSELLO.SQ_MAE_ESTRELLA MINVALUE 1 MAXVALUE 9999999999999999999999999999 START WITH 5 INCREMENT BY 1;
 CREATE SEQUENCE SISSELLO.SQ_MAE_PREMIACION MINVALUE 1 MAXVALUE 9999999999999999999999999999 START WITH 14 INCREMENT BY 1;
@@ -88,17 +88,36 @@ CONSTRAINT INSTITUCION_FK FOREIGN KEY (ID_INSTITUCION) REFERENCES T_GENM_INSTITU
 CONSTRAINT ROL_FK FOREIGN KEY (ID_ROL) REFERENCES T_MAE_ROL (ID_ROL)
 );
 
+CREATE TABLE T_MAE_CATEGORIA(
+ID_CATEGORIA NUMBER,
+NOMBRE VARCHAR2(60),
+ARCHIVO_BASE VARCHAR2(4000),
+ARCHIVO_TIPO VARCHAR2(4000),
+GRUPO VARCHAR2(1),
+FLAG_ESTADO VARCHAR2(1) DEFAULT '1',
+REG_USUARIO NUMBER,
+REG_FECHA DATE DEFAULT SYSDATE,
+UPD_USUARIO NUMBER,
+UPD_FECHA DATE,
+PRIMARY KEY(ID_CATEGORIA)
+);
+
 CREATE TABLE T_GENM_CRITERIO(
 ID_CRITERIO NUMBER,
 NOMBRE VARCHAR2(300),
 DESCRIPCION VARCHAR2(4000),
 ARCHIVO_BASE VARCHAR2(4000),
 ARCHIVO_TIPO VARCHAR2(4000),
+DESCRIPCION_CORTA VARCHAR2(500),
+DESCRIPCION_VALOR VARCHAR2(500),
+TITULO_OPCIONES VARCHAR2(500),
+ID_CATEGORIA NUMBER,
 FLAG_ESTADO VARCHAR2(1) DEFAULT '1',
 REG_USUARIO NUMBER,
 REG_FECHA DATE DEFAULT SYSDATE,
 UPD_USUARIO NUMBER,
 UPD_FECHA DATE,
+FOREIGN KEY (ID_CATEGORIA) REFERENCES T_MAE_CATEGORIA (ID_CATEGORIA),
 CONSTRAINT CRITERIO_PK PRIMARY KEY (ID_CRITERIO)
 );
 
@@ -293,6 +312,8 @@ EMISIONES VARCHAR2(1),
 AHORRO VARCHAR2(1),
 FILTRAR_IN VARCHAR2(100),
 COMBUSTIBLE VARCHAR2(1),
+VISIBLE VARCHAR2(1) DEFAULT '1',
+CAMBIO_MATRIZ VARCHAR2(1) DEFAULT '0',
 FLAG_ESTADO VARCHAR2(1) DEFAULT '1',
 REG_USUARIO NUMBER,
 REG_FECHA DATE DEFAULT SYSDATE,
@@ -350,7 +371,7 @@ ID_CASO NUMBER,
 ID_COMPONENTE NUMBER,
 ID_PARAMETRO NUMBER,
 ID_INDICADOR NUMBER,
-VALOR VARCHAR2(1000),
+VALOR VARCHAR2(4000),
 FLAG_ESTADO VARCHAR2(1) DEFAULT '1',
 REG_USUARIO NUMBER,
 REG_FECHA DATE DEFAULT SYSDATE,
@@ -367,7 +388,7 @@ ID_COMPONENTE NUMBER,
 ID_PARAMETRO NUMBER,
 ID_INDICADOR NUMBER,
 ID_INSCRIPCION NUMBER,
-VALOR VARCHAR2(1000),
+VALOR VARCHAR2(4000),
 FLAG_ESTADO VARCHAR2(1) DEFAULT '1',
 REG_USUARIO NUMBER,
 REG_FECHA DATE DEFAULT SYSDATE,
@@ -521,6 +542,7 @@ PUNTAJE NUMBER,
 EMISIONES NUMBER, --ADD
 ENERGIA NUMBER,
 COMBUSTIBLE NUMBER,
+CAMBIO_MATRIZ NUMBER,
 FLAG_ESTADO VARCHAR2(1) DEFAULT '1',
 REG_USUARIO NUMBER,
 REG_FECHA DATE DEFAULT SYSDATE,
@@ -633,6 +655,7 @@ ID_TIPO_EVALUACION NUMBER,
 EMISIONES_REDUCIDAS NUMBER,
 ENERGIA NUMBER,
 COMBUSTIBLE NUMBER,
+CAMBIO_MATRIZ NUMBER,
 OBSERVACION VARCHAR2(500),
 FLAG_ESTADO VARCHAR2(1) DEFAULT '1',
 REG_USUARIO NUMBER,
@@ -715,6 +738,7 @@ COMBUSTIBLE NUMBER(36,16),
 FLAG_MEJORACONTINUA VARCHAR2(1),
 FLAG_EMISIONESMAX VARCHAR2(1),
 FLAG_ESTADO VARCHAR2(1) DEFAULT '1',
+NOMBRE_FICHA VARCHAR2(500),
 REG_USUARIO NUMBER,
 REG_FECHA DATE DEFAULT SYSDATE,
 UPD_USUARIO NUMBER,
@@ -935,29 +959,41 @@ INSERT INTO T_MAE_ROL (ID_ROL, NOMBRE, REG_USUARIO) VALUES (3, 'POSTULANTE', 1);
 
 --T_GENM_USUARIO
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (1, 'Carlos', 'Galdos', 'carlos@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 1, 1, 1);
+VALUES (1, 'Carlos', 'Galdos', 'carlos@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 1, 1, 1);
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (2, 'Mario', 'Perez', 'mario@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 1, 2, 1);
+VALUES (2, 'Mario', 'Perez', 'mario@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 1, 2, 1);
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (3, 'Raul', 'Cáceres', 'raul@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 1, 2, 1);
+VALUES (3, 'Raul', 'Cáceres', 'raul@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 1, 2, 1);
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (4, 'Angélica', 'Benitez', 'angelica@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 1, 2, 1);
+VALUES (4, 'Angélica', 'Benitez', 'angelica@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 1, 2, 1);
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (5, 'Jose', 'Castillo', 'jose@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 2, 3, 1);
+VALUES (5, 'Jose', 'Castillo', 'jose@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 2, 3, 1);
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (6, 'Javier', 'Paredes', 'javier@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 3, 3, 1);
+VALUES (6, 'Javier', 'Paredes', 'javier@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 3, 3, 1);
 INSERT INTO T_GENM_USUARIO (ID_USUARIO, NOMBRES, APELLIDOS, CORREO, CONTRASENA, TELEFONO, ANEXO, CELULAR, ID_INSTITUCION, ID_ROL, REG_USUARIO)
-VALUES (7, 'María', 'Lima', 'maria@grupo-zuniga.com', 'AK6/N7RQH5kHaUb1RDlVFzBkupiWnfger8B3053UodvdNnMdZqCWYcQs17U2i9Cujw==', '3785212', '1010', '925478365', 4, 3, 1);
+VALUES (7, 'María', 'Lima', 'maria@gmail.com', 'AGTwADnMkEYKBh+HSM4XmrC0Ut+3SBQpEM2C3Ft8TO5tWht8OvVgyhqJFoZlsNFXdw==', '3785212', '1010', '925478365', 4, 3, 1);
+
+--T_MAE_CATEGORIA
+INSERT INTO T_MAE_CATEGORIA (ID_CATEGORIA, NOMBRE, ARCHIVO_BASE, GRUPO) VALUES (1, 'PRIMARIO', 'criterio-01.png', '1');
+INSERT INTO T_MAE_CATEGORIA (ID_CATEGORIA, NOMBRE, ARCHIVO_BASE, GRUPO) VALUES (2, 'SECUNDARIO', '', '0');
 
 --T_GENM_CRITERIO
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (1, 'Ahorro de energía eléctrica total', 'Es el reconocimiento que se le da a la organización pública o privada que ha medido su ahorro energético (mínimo 1 año) después de la implementación de mejora de eficiencia energética. Este porcentaje de ahorro es el consumo reducido por la medida implementada respecto al consumo total de energía eléctrica de la organización. Este reconocimiento brinda puntaje para alcanzar la categoría deseada y a su vez brinda puntaje para la obtención de estrellas que permite reconocer como han logrado reducir sus emisiones de Gases de Efecto Invernadero (GEI) en beneficio del ambiente.', 'criterio-01.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (2, 'Ahorro de consumo de combustible', 'Es el reconocimiento que se le da a la organización pública o privada que ha medido su ahorro de combustible (mínimo 1 año) obtenida a partir de una implementación de mejora de eficiencia energética. Este porcentaje de ahorro es el consumo reducido por la medida implementada respecti al consumo total de combustible de la organzación. Este reconocimiento brinda puntaje para alcanzar la categoría deseada y a su vez brinda puntaje para la obtención de estrellas que permite reconocer como han logrado reducir sus emisiones de Gases de Efecto Invernadero (GEI) en beneficio del ambiente.', 'criterio-02.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (3, 'Incorporación de vehículos eléctricos', '', 'criterio-09.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (4, 'Implementación de un sistema de gestión de la energía', 'Es el reconocimiento que se le da a la organización pública o privada que se encuentre en el camino de la optimización del uso de la energía con el fin de buscar el uso racional y eficiente de la energía. A través de la gestión energética se detectan oportunidades de mejora en acpectos relacionados con la calidad y seguridad de los sistemas energéticos, logrando que los usuarios conozcan el sistema, identifiquen los puntos de consumo e implmentar mejoras, alcanzando altos niveles de eficiencia energética, en ese sentido el presente reconocimiento se les dará a las organizaciones que se establezcan una política y unos objetivos energéticos, para alcanzar dichos objetivos. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-04.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (5, 'Diagnóstico energético', 'Es el reconocimiento que se le da a la organización pública o privada por la realizaciónde de auditorías energéticas en cualquiera de sus tres niveles de esfuerzo, la cual debe haber sido realizada hasta dos (02) años de antiguedad con respecto a la fehca de su postulación. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-05.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (6, 'Fortalecimiento de capacidades para el buen uso de la energía', 'Es el reconocimiento que se le da a la organización pública o privada por la realización de actividades de promoción y difusión del uso de la energía y cambio climático en sus intalaciones. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-07.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (7, 'Generación de puestos de trabajo relacionado a la gestión de la energía', 'Es el reconocimiento que se le da a la organización pública o privada que cuente con personal a tiempo completo con funciones relacionadas a la gestión de la energía, como resultado de la iniciativa o proyecto para la implementación de una medida de eficiencia energética. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-03.png');
-INSERT INTO T_GENM_CRITERIO (ID_CRITERIO, NOMBRE, DESCRIPCION, ARCHIVO_BASE) VALUES (8, 'Enfoque transversal de género', 'Es el reconocimiento que se le da a la organización pública o privada que cuente con personal femenino en puestos de toma de decisión dentro de las actividades asociadas a la gestión de la energía. Este reconocimiento solo brinda puntaje para alcanzar la categoría deseada.', 'criterio-08.png');
+prompt Loading T_GENM_CRITERIO...
+insert into T_GENM_CRITERIO (id_criterio, nombre, descripcion, archivo_base, archivo_tipo, descripcion_corta, descripcion_valor, titulo_opciones, id_categoria, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Reducción de consumo energético', 'Esta categoría del reconocimiento se les dará a las entidades y empresas que hayan medido su ahorro energético (mínimo 1 año) después de la implementación de mejora de eficiencia energética. ' || chr(10) || 'La entidad o empresa podrá registrar sus mejoras realizadas logrando obtener puntaje gracias al ahorro de energía eléctrica, energía térmica y ahorro debido al cambio de matriz energética, en ese sentido se puede alcanzar un máximo de 60 puntos para obtención de un reconocimiento.', 'criterio-11.png', null, 'Se valorará acciones que generen reducción de energía eléctrica, las cuales sean corroboradas mediante la facturación de energía eléctrica entre otros indicadores. Cabe mencionar que estas acciones deberán ser cuantificadas por la entidad o empresa del sector público o empresa privada.', null, null, 1, '1', null, to_date('16-01-2021 10:52:17', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('18-01-2021 11:27:27', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_GENM_CRITERIO (id_criterio, nombre, descripcion, archivo_base, archivo_tipo, descripcion_corta, descripcion_valor, titulo_opciones, id_categoria, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Eficiencia en transporte', 'Esta categoría brindará reconocimiento a la entidad o empresa que haya hecho el cambio de vehículos que usen combustible a vehículos eléctricos, asimismo también se estará brindando puntaje a la eficiencia en transporte, es decir a la entidad o empresa que  logren un ahorro energético con cambio de combustible, cabe mencionar que se tomará en cuenta la reducción de emisiones para este criterio, en ese sentido se puede alcanzar como máximo 60 puntos para obtención de un reconocimiento.', 'criterio-12.png', null, 'Se valorará las acciones que reflejen un ahorro de combustible en el sector transporte, asimismo el uso de vehículos eléctricos como medida de eficiencia energética.', null, null, 1, '1', null, to_date('16-01-2021 10:52:17', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('18-01-2021 11:28:21', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_GENM_CRITERIO (id_criterio, nombre, descripcion, archivo_base, archivo_tipo, descripcion_corta, descripcion_valor, titulo_opciones, id_categoria, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 'Implementación de un sistema de gestión de la energía (SGEn)', 'A través de esta categoría se reconoce a la entidad o empresa que se encuentre en camino a la optimización del uso del recurso energético, implementando un Sistema de Gestión de la Energía. Esta acción de mejora permitirá al equipo humano de la entidad o empresa conocer el sistema energético de su sede o local, identificar los puntos de consumo y los beneficios al implementar mejoras de eficiencia energéticas aplicando políticas y objetivos alineados al uso eficiente y racional de la energía. ' || chr(10) || 'El puntaje de esta categoría corresponde a tres niveles; así, la entidad o empresa que haya implementado la norma ISO 50001- Sistema de Gestión de la Energía recibirá 10 puntos como máximo; si cuenta con un sistema formal para monitorear y reportar los indicadores de desempeño energético, obtendrá 7.5 puntos; y si ha desarrollado un monitoreo de indicadores de desempeño energético (línea base), 5 puntos.' || chr(10) || '', 'criterio-04.png', null, 'Se valorará las iniciativas que se tomen para desarrollar un Sistema de Gestión de la energía', 'Equivalente a 10 puntos (10% del total)', 'Nivel de implementación', 2, '1', null, to_date('16-01-2021 10:52:17', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('16-01-2021 11:04:03', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_GENM_CRITERIO (id_criterio, nombre, descripcion, archivo_base, archivo_tipo, descripcion_corta, descripcion_valor, titulo_opciones, id_categoria, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 'Buenas prácticas para el uso eficiente de la energía', 'Las entidades o empresas que asumen un compromiso, lo desarrollan y consiguen que su equipo humano lo cumpla obteniendo resultados cuantificables reciben un reconocimiento en esta categoría que abarca hasta siete rubros por el que se puede recibir un puntaje de 2 puntos cada uno. Cada rubro representa al cumplimiento de una o un grupo de buenas prácticas para el uso eficiente y sostenible de la energía, como haber comprado equipos con etiquetado de eficiencia energética nivel A, B o C; haber realizado capacitaciones sobre eficiencia energética, desconectar las lámparas y artefactos que no se usen, tomar acción para refrigerar los ambientes de manera eficiente, aprovechar la luz del día o comunicar la importancia del buen uso de la energía, todas, durante el último año. ', 'criterio-10.png', null, 'Se valorará que entidad pública o privada tenga integrada en su cultura organizacional las buenas prácticas para el uso eficiente y responsable de la energía.', 'Equivalente a 10 puntos (10% del total)', null, 2, '1', null, to_date('16-01-2021 10:52:17', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('16-01-2021 11:03:30', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_GENM_CRITERIO (id_criterio, nombre, descripcion, archivo_base, archivo_tipo, descripcion_corta, descripcion_valor, titulo_opciones, id_categoria, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 'Desarrollo de Auditorías Energéticas', 'Las entidades o empresas que realizan auditorías energéticas pueden recibir el Reconocimiento de Energía Eficiente y Sostenible en esta categoría. La puntuación corresponde al tipo de auditoría implementada, correspondiendo 10 puntos a las entidades o empresas que implementaron una auditoría energética nivel III; 7.5 puntos para aquellas que implementaron una auditoría energética nivel II; y 5 puntos para las que implementaron una auditoría energética nivel I. ', 'criterio-05.png', null, 'Se valorará el haber desarrollado Auditoría Energética en sus tres niveles a la entidad en los últimos cuatro (04) años.', 'Equivalente a 10 puntos (10% del total)', 'Nivel de auditoría energética implementada', 2, '1', null, to_date('16-01-2021 10:52:17', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('16-01-2021 11:04:28', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_GENM_CRITERIO (id_criterio, nombre, descripcion, archivo_base, archivo_tipo, descripcion_corta, descripcion_valor, titulo_opciones, id_categoria, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 'Personal dedicado a la gestión de la energía', 'Esta cuarta categoría otorgará un reconocimiento a las entidades o empresas que designen personal específico para la gestión de los recursos energéticos. Recibirán 10 puntos las empresas o entidades que hayan generado dos nuevos puestos de trabajo relacionado a la gestión de la energía, siendo uno destinado a personal femenino; 7.5 puntos aquellas que hayan generado más de dos nuevos puestos relacionado a la gestión de la energía; y 5 puntos para las que generaron un nuevo puesto de trabajo de este tipo.', 'criterio-03.png', null, 'Se valorará la equidad de género en el equipo humano dedicado a la gestión de la energía en la entidad.', 'Equivalente a 10 puntos (10% del total)', 'Generación de puestos de trabajo dedicado a la gestión de la energía', 2, '1', null, to_date('16-01-2021 10:52:17', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('16-01-2021 11:04:46', 'dd-mm-yyyy hh24:mi:ss'));
+commit;
+prompt 6 records loaded
+
 
 --T_GENM_REQUERIMIENTO
 INSERT INTO T_GENM_REQUERIMIENTO (ID_REQUERIMIENTO, NOMBRE) VALUES (1, 'Documento de saneamiento legal físico.');
@@ -1023,43 +1059,38 @@ INSERT INTO T_MAE_TIPO_EVALUACION (ID_TIPO_EVALUACION, NOMBRE) VALUES (1, 'APROB
 INSERT INTO T_MAE_TIPO_EVALUACION (ID_TIPO_EVALUACION, NOMBRE) VALUES (2, 'DESAPROBADO');
 
 --T_GENM_CASO
---CRI 1
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (1, 1, 'Ahorro de energía eléctrica');
---CRI 2
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (2, 1, 'Ahorro energético por cambio de combustible');
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (2, 2, 'Ahorro energético por medida de eficiencia energética');
---CRI 3
----CASO 1
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (3, 1, 'Vehículo eléctrico (basado en datos de recorrido anual)');
----CASO 2
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (3, 2, 'Vehículo híbrido (basado en datos de recorrido anual)');
----CASO 3
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (3, 3, 'Vehículo eléctrico (basado en datos de consumo energético)');
----CASO 4
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (3, 4, 'Vehículo híbrido (basado en datos de consumo energético)');
---CRI 4
----CASO 1
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (4, 1, 'Implementación de la norma ISO 50001 - SGE');
----CASO 2
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (4, 2, 'Sistema formal para los reportes de los resultados del monitoreo de indicadores de desempeño energético');
----CASO 3
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (4, 3, 'Monitoreo de los indicadores de desempeño energético');
---CRI 5
---CASO 1
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (5, 1, 'Auditoría energética nivel I');
---CASO 2
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (5, 2, 'Auditoría energética nivel II');
---CASO 3
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (5, 3, 'Auditoría energética nivel III');
---CRI 6
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (6, 1, 'Fortalecimiento de capacidades');
---CRI 7
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (7, 1, 'Personal dedicados a Gestión de la Energía');
---CRI 8
-INSERT INTO T_GENM_CASO (ID_CRITERIO, ID_CASO, NOMBRE) VALUES (8, 1, 'Igualdad de género');
+prompt Loading T_GENM_CASO...
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Reducción de consumo energético', 1, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Vehículos eléctricos o híbridos eléctricos', 2, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Vehículos convencionales con cambio de combustible', 2, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Implementación de la norma ISO 50001 - SGE (10 ptos.)', 4, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Sistema formal para los reportes de los resultados del monitoreo de indicadores de desempeño energético (7.5 ptos.)', 4, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Monitoreo de los indicadores de desempeño energético (5 ptos.)', 4, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Auditoría energética nivel I (10 ptos.)', 6, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Auditoría energética nivel II (7.5 ptos.)', 6, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Auditoría energética nivel III (5 ptos.)', 6, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Buenas prácticas', 5, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Generó más de 2 nuevos puestos de trabajo y 1 puesto destinado a personal femenino (10 ptos.)', 7, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 17:27:05', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Generó más de 2 nuevos puestos de trabajo (7.5 ptos.)', 7, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 17:27:18', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_GENM_CASO (id_caso, nombre, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Generó 1 nuevo puesto de trabajo (5 ptos.)', 7, '1', null, to_date('03-02-2021 16:33:19', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 13 records loaded
 
 --T_GENM_COMPONENTE
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (1, 1, 1, 'Componente 1', '1');
+/*INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (1, 1, 1, 'Componente 1', '1');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (1, 1, 2, 'Componente 2', '0');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (1, 1, 3, 'Componente 3', '1');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (2, 1, 1, 'Componente 1', '1');
@@ -1070,38 +1101,37 @@ INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCR
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, ETIQUETA, INCREMENTABLE, ID_FACTORES) VALUES (3, 1, 1, 'Componente 1', 'VEHÍCULOS ELÉCTRICOS BASADO EN DATOS DE RECORRIDO ANUAL', '1', '5|6|7|13');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, ETIQUETA, INCREMENTABLE, ID_FACTORES) VALUES (3, 2, 1, 'Componente 1', 'VEHÍCULOS HÍBRIDOS BASADO EN DATOS DE RECORRIDO ANUAL', '1', '5|6|7|8|13|14');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, ETIQUETA, INCREMENTABLE, ID_FACTORES) VALUES (3, 3, 1, 'Componente 1', 'VEHÍCULOS ELÉCTRICOS BASADO EN DATOS DE CONSUMO ENERGÉTICO', '1', '6|7|9|10|13');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, ETIQUETA, INCREMENTABLE, ID_FACTORES) VALUES (3, 4, 1, 'Componente 1', 'VEHÍCULOS HÍBRIDOS BASADO EN DATOS DE CONSUMO ENERGÉTICO', '1', '5|6|7|8|9|12|13|14');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, ETIQUETA, INCREMENTABLE, ID_FACTORES) VALUES (3, 4, 1, 'Componente 1', 'VEHÍCULOS HÍBRIDOS BASADO EN DATOS DE CONSUMO ENERGÉTICO', '1', '5|6|7|8|9|12|13|14');*/
+
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE, ETIQUETA) VALUES (1, 1, 1, 'Componente 1', '0', 'Establecimiento de escenario linea base (BAU) del consumo energético para la entidad');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE, ETIQUETA) VALUES (1, 1, 2, 'Componente 2', '1', 'Reporte de actividades implementadas para la reducción de consumo energético');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (2, 1, 1, 'Componente 1', '1');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (2, 2, 1, 'Componente 1', '1');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 1, 1, 'Componente 1', '0');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 1, 2, 'Componente 2', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 1, 3, 'Componente 3', '0');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 2, 1, 'Componente 1', '0');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 2, 2, 'Componente 2', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 2, 3, 'Componente 3', '0');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 3, 1, 'Componente 1', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 3, 2, 'Componente 2', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 3, 3, 'Componente 3', '1');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 3, 4, 'Componente 4', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 1, 1, 'Componente 1', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 1, 2, 'Componente 2', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 1, 3, 'Componente 3', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 1, 4, 'Componente 4', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 2, 1, 'Componente 1', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 2, 2, 'Componente 2', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 2, 3, 'Componente 3', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 2, 4, 'Componente 4', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 3, 1, 'Componente 1', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 3, 2, 'Componente 2', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 3, 3, 'Componente 3', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 3, 4, 'Componente 4', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (6, 1, 1, 'Componente 1', '0');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 3, 2, 'Componente 2', '1');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 3, 3, 'Componente 3', '0');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE, ETIQUETA) VALUES (6, 1, 1, 'Componente 1', '0', 'Datos generales de la auditoría');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (6, 1, 2, 'Componente 2', '1');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (7, 1, 1, 'Componente 1', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (7, 1, 2, 'Componente 2', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (7, 1, 3, 'Componente 3', '1');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 1, 'Componente 1', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 2, 'Componente 2', '0');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 3, 'Componente 3', '1');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 4, 'Componente 4', '0');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (6, 1, 3, 'Componente 3', '0');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE, ETIQUETA) VALUES (6, 2, 1, 'Componente 1', '0', 'Datos generales de la auditoría');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (6, 2, 2, 'Componente 2', '1');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (6, 2, 3, 'Componente 3', '0');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE, ETIQUETA) VALUES (6, 3, 1, 'Componente 1', '0', 'Datos generales de la auditoría');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (6, 3, 2, 'Componente 2', '1');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (6, 3, 3, 'Componente 3', '0');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 1, 1, 'Componente 1', '1');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (5, 1, 2, 'Componente 2', '0');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (7, 1, 1, 'Componente 1', '1');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (7, 2, 1, 'Componente 1', '1');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (7, 3, 1, 'Componente 1', '1');
+--INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 1, 'Componente 1', '0');
+--INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 2, 'Componente 2', '0');
+--INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 3, 'Componente 3', '1');
+--INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (8, 1, 4, 'Componente 4', '0');
 
 --T_MAE_TIPO_CONTROL
 INSERT INTO T_MAE_TIPO_CONTROL (ID_TIPO_CONTROL, NOMBRE) VALUES (1, 'LISTA');
@@ -1113,470 +1143,1295 @@ INSERT INTO T_MAE_TIPO_DATO (ID_TIPO_DATO, NOMBRE) VALUES (1, 'NUMERO');
 INSERT INTO T_MAE_TIPO_DATO (ID_TIPO_DATO, NOMBRE) VALUES (2, 'ALFANUMERICO');
 INSERT INTO T_MAE_TIPO_DATO (ID_TIPO_DATO, NOMBRE) VALUES (3, 'FECHA');
 
+
 --T_MAEM_PARAMETRO
---CRITERIO N1
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (1, 'Empresa', 'P1CR1CS1CM1', 2, 2, NULL, '0', '1', '0', '0', NULL, '0', 60,'Colocar la razón social de la empresa', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (2, 'Sede', 'P2CR1CS1CM1',2, 2, NULL, '0', '1', '0', '0',  NULL, '0', 60,'Ingresar la Sede de la empresa donde se realizó la implementación de mejora', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (3, 'Tipo de Institución', 'P2CR1CS1CM1',1, NULL, NULL, '0', '1', '0', '0',  '4', '0', NULL,'Seleccionar el tipo de institución a la que pertenece', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (4, 'Sector', 'P2CR1CS1CM1',1, NULL, NULL, '0', '1', '0', '0',  '6', '0', NULL,'Seleccionar el sector al que pertenece', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (5, 'Otro sector', 'P2CR1CS1CM1',2,2, NULL, '0', '1', '0', '0',  NULL, '0', 100, '', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (6, 'Sub Sector', 'P2CR1CS1CM1',1, NULL, NULL, '0', '1', '0', '0',  '7|9', '0', NULL,'Seleccionar el subsector al que pertenece', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (7, 'Indicador energético', 'P2CR1CS1CM1',1, NULL, NULL, '0', '1', '0', '0',  '9', '0', NULL,'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (8, 'Otros * (Indicador energético)', 'P1CR1CS1CM1', 2, 2, NULL, '0', '1', '0', '0', NULL, '0', 150,'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (9, 'Unidad', 'P2CR1CS1CM1',1, NULL, NULL, '0', '1', '0', '0', NULL, '0', NULL,'unidades del indicador energético', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (10, 'Otros * (Unidad)', 'P1CR1CS1CM1', 2, 2, NULL, '0', '1', '0', '0', NULL, '0', 60, 'unidades del indicador energético', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (11, 'Valor del indicador energético', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', NULL, '0', 20, 'valor numérico del indicador energético', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (12, 'Consumo energía eléctrica anual', 'P1CR1CS1CM1', 2, 2, '1', '1', '1', '0', '0', NULL, '0', 15,'Considerar el consumo de un año antes de la implementación de la acción de mejora', 'kWh/año', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (13, 'Emisiones', 'P1CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', NULL, '1', 15,'Cálculo que proviene del consumo de energía por año antes de la acción de mejora', 'tCO2', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (14, 'Año de implementación', 'P1CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', NULL, '0', 4,'', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (15, 'Consumo energía eléctrica (2)', 'P3CR1CS1CM1',2,1, '1', '1', '1', '0', '0',  NULL, '0', 15,'','kWh/año', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (16, 'Ahorro energético total', 'P4CR1CS1CM1',2,1, '1', '1', '1', '0', '0', NULL, '0', 15,'Sumatoria de todas las acciones realizadas por la empresa','kWh/año', '0', '1', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (17, 'Reducción de emisiones', 'P5CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, 'Cálculo que proviene del ahorro de energía eléctrica total','tCO2', '1', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (18, 'Porcentaje de ahorro de energía eléctrica', 'P6CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, '','%', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (99, 'Otros * (Valor del indicador energético)', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', NULL, '0', 20, 'valor numérico del indicador energético', '', '0', '0', '', '0');
+prompt Loading T_MAEM_PARAMETRO...
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (113, 'Indicador energético de la entidad o empresa según actividad (unidad)', null, 1, null, null, '0', '1', '0', '0', null, '0', null, 'Unidad que depende  de la actividad que desarrolla la empresa o entidad (producción de cemento, empleados, toneladas, metros cuadrados, etc)', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (114, 'Consumo energético MJ', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 'Tipo de Institución', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '20', '0', null, 'Seleccionar el tipo de institución a la que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 'Sector', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '22', '0', null, 'Seleccionar el sector al que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 'Otro sector', 'P2CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 100, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 'Sub Sector', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '7|9|23|25', '0', null, 'Seleccionar el subsector al que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 'Indicador energético después de la acción de mejora', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '25', '0', null, 'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (24, 'Otros * (Indicador energético)', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 100, 'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (25, 'Unidad', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', null, '0', null, 'unidades del indicador energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (26, 'Otros * (Unidad)', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, 'unidades del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (27, 'Valor del indicador energético', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'valor numérico del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (28, 'Combustible usado antes de la acción de mejora', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) usado un año antes de la implementación de la acción de mejora', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (29, 'Consumo anual de combustible antes de la acción de mejora', 'P2CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (30, 'Unidad de consumo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Refiere a las unidades del energético consumido', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (31, 'Año de implementación del cambio de combustible', 'P2CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 4, 'Año donde se implemento la medida de eficiencia energética ', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (32, 'Combustible usado actualmente', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) usada despues del re cambio', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (33, 'Consumo anual de combustible', 'P2CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (34, 'Unidad de consumo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Refiere a las unidades del energético consumido', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (35, 'Ahorro energía térmica', 'P4CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que muestra el ahorro en energía con el uso de distintos combustibles', 'TJ/año', '0', '0', null, '1', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (36, 'Reducción de emisiones', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que proviene del ahorro de energía térmica', 'tCO2', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (37, 'Porcentaje de ahorro de energía térmica', 'P6CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (100, 'Otros * (Valor del indicador energético)', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'valor numérico del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (101, 'Combustible usado actualmente', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) usada actualmente', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (102, 'Consumo anual de combustible', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'Considerar el consumo de un año antes de la implementación de la acción de mejora', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (103, 'Unidad de consumo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, null, null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (104, 'Consumo energético', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'TJ/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (105, 'Ahorro energético térmica total', 'P4CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Sumatoria de todas las acciones realizadas por la empresa', 'TJ/año', '0', '0', null, '1', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (106, 'Reducción de emisiones', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que proviene del ahorro de energía térmica total', 'tCO2', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:57:50', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (107, 'Porcentaje de ahorro de energía térmica', 'P6CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (108, 'Ahorro de energía térmica obtenida', 'P4CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 15, 'Ahorro obtenido por la organización', 'TJ/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (38, 'Año', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Año de registro de la línea base', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:09:53', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (39, 'Tipo de Vehículo', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Categoría del vehículo: automóvil o bus', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (40, 'Kilometro recorrido por vehículo (KRV) vehículo convencional', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo línea base', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:39:00', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (41, 'Combustible principal del vehículo convencional', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Combustible del vehículo que ha sido remplazado (línea base)', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:11:54', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (42, 'Placa del vehículo convencional', 'P1CR1CS1CM1', 2, 2, '0', '0', '1', '0', '0', null, '0', 8, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:14:21', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (43, 'Total km recorrido (vehículo eléctrico)', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (44, 'Kilómetro recorrido vehicular con combustible del vehículo híbrido', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por el vehículo del proyecto de mejora. Solo si se trata de un vehículo híbrido', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:45:39', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (45, 'Rendimiento del vehículo eléctrico', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '1', '0', null, '0', 15, 'Distancia recorrida anualmente por el vehículo del proyecto', 'kWh/km', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:48:11', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (46, 'Tipo de combustible del vehículo híbrido (Completar si aplica)', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Combustible fósil del vehículo híbrido. Solo si se trata de un vehículo híbrido', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:49:25', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (47, 'Consumo electricidad', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, 'MWh.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (48, 'Consumo combustible', 'P6CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, 'gal.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (49, 'Línea Base emisiones GEI', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'tCO2', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (50, 'Proyecto emisiones GEI', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'tCO2', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (51, 'Reducción de emisiones', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Emisiones que se evitaron', 'tCO2e', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 16:00:18', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (52, 'Energía línea base', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'TJ', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (53, 'Energía Proyecto', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, 'TJ', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (54, 'Energía ahorrada', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Energía que se ahorró con la acción de mejora', 'TJ/año', '0', '1', null, '1', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 16:01:24', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (55, 'Porcentaje ahorro ', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Ahorro porcentual de energía', '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('04-02-2021 17:04:51', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (96, 'Detallar si realizó una mejora de eficiencia energética', 'P24CR1CS1CM1', 3, 2, null, '0', '1', '0', '0', null, null, 500, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (115, 'Oportunidad de mejora identificada', 'Oportunidad de mejora identificada', 1, null, '0', '0', '1', '0', '0', '0', '0', 0, 'Acción realizada por la empresa o entidad con el fin de ahorrar energía eléctrica o térmica', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:22:00', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (116, 'Descripción Bau', 'Descripción Bau', 2, 2, '0', '0', '1', '0', '0', null, '0', 500, 'Descripción técnica del/los equipo(s) o actividades identificadas como oportunidad de mejora dentro de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:29:00', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (117, 'Cantidad', 'Cantidad', 2, 1, '0', '1', '1', '0', '0', null, '0', 15, 'Cantidad de equipos identificados en la entidado empresa con oportunidad de mejora. De ser el caso que se haya mejorado un  proceso o buena practica, no considerando equipos, colocar 1. ', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:33:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (118, 'Recurso energético bau', 'Recurso energético bau', 1, null, '0', '1', '1', '0', '0', '120', '0', 0, 'Fuente de energía utilizada para el funcionamiento del/los equipo(s) y/o desarrollo del proceso de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:26:39', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (120, 'Unidades', null, 1, null, null, '0', '0', '0', '0', null, '0', null, 'Unidad de medición del energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (123, 'Equivalente energético', 'Equivalente energético', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Energía total consumida del/los equipo(s) o de un proceso específico antes de implementar  la oportunidad de mejora, en Megajoules.', 'MJ', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:35:24', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (121, 'Consumo energético', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (122, 'Consumo combustible', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (124, 'Emisiones de GEI', 'Emisiones de GEI', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Total de emisiones de Gases de Efecto Invernadero generadas del/los equipo(s) o de un proceso específico antes de implementar la mejora, en toneladas de dióxido de carbono equivalente .', 'tCO2eq', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:36:32', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (125, 'Cantidad', 'cantidad', 2, 1, '0', '1', '1', '0', '0', null, '0', 15, 'Cantidad de equipos identificados en la entidado empresa con oportunidad de mejora. De ser el caso que se haya mejorado un  proceso o buena practica, no considerando equipos, colocar 1. ', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:34:07', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (126, 'Descripción técnica de la oportunidad de mejora', 'Descripción técnica de la oportunidad de mejora', 2, 2, '0', '0', '1', '0', '0', null, '0', 500, 'Descripción técnica de los equipos o procesos con acción de mejora implementada, con el fin de ahorrar energía.', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:37:10', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (127, 'Recurso energético', null, 1, null, null, '1', '1', '0', '0', '129', '0', null, 'Fuente de energía utilizada en el funcionamiento del/los equipo(s) y/o desarrollo del proceso con la implementación de la acción de mejora', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (129, 'Unidades', null, 1, null, null, '0', '0', '0', '0', null, '0', null, 'Unidad de medición del energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (132, 'Equivalente energético', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Energía total consumida por el/los equipo(s) o proceso en  megajoules, con la implementación de la mejora', 'MJ', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (130, 'Equivalente energía', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (131, 'Equivalente combustible', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (133, 'Emisiones de GEI', 'Emisiones de GEI', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Total de emisiones de Gases de Efecto Invernadero generadas del/los equipo(s) o de un proceso específico antes de implementar la mejora, en toneladas de dióxido de carbono equivalente .', 'tCO2eq', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:36:57', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (134, 'Energía total reducida', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Reduccion de energía total en megajoules, atribuida a la implementación de la(s) mejora(s)', 'MJ', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (135, 'GEI reducido', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Reduccion de  emisiones de gases de efecto invernadero (GEI) en toneladas de dióxido de carbono equivalentes, atribuida a la implementación de la(s) mejora(s)', 'tCO2eq', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (136, 'Fecha de implementación', 'Fecha de implementación', 2, 3, '0', '0', '1', '0', '0', null, '0', 50, 'Fecha de implementación de la acción de mejora para ahorrar energía', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:42:05', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (137, 'Verificado mediante auditorías energéticas', null, 1, null, null, '0', '1', '1', '0', null, '0', null, 'Marcar SÍ si la acción ha sido verificada por un auditor para medir su impacto, mediante una auditoría energética', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (138, 'Fecha de verificación', null, 2, 3, null, '0', '1', '0', '0', null, null, null, 'Fecha de medición de ahorro de energía atribuida a la  implementación de la(s) mejora(s)', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (139, 'Ahorro de energía eléctrica', 'Ahorro de energía eléctrica', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Representa el ahorro en energía eléctrica después de la implementación de mejora(s)', null, '0', '1', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:47:00', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (140, 'Reducción de emisiones relacionado a energía eléctrica', 'Reducción de emisiones relacionado a energía eléctrica', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Representa la reducción en GEI debido a  la implementación de mejora(s) que ahorra(n) energía eléctrica', null, '1', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:47:54', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (141, 'Ahorro de energía térmica', 'Ahorro de energía térmica', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Representa el ahorro en energía térmica después de la implementación de mejora(s) ', null, '0', '0', null, '1', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:49:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (142, 'Reducción de emisiones relacionado a energía térmica', 'Reducción de emisiones relacionado a energía térmica', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Representa la reducción en GEI debido a  la implementación de mejora(s) que ahorra (n) energía térmica', null, '1', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:50:45', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (143, 'Cambio de Matriz', 'Cambio de Matriz', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Representa el ahorro en energía térmica después de la implementación de mejora(s) si la implementación se genera por un cambio de combustible a electricidad o viceversa', null, '0', '0', null, '0', '0', '1', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:52:34', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (144, 'Reducción de emisiones relacionado a cambio de matriz', 'Reducción de emisiones relacionado a cambio de matriz', 2, 1, '1', '0', '0', '0', '0', null, '1', 22, 'Representa la reduccion en GEI debido a  la implementación de mejora(s) si la implementación se genera por un cambio de combustible a electricidad o viceversa', null, '1', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:55:23', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (56, 'Cantidad total de personal (1)', 'P14CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 8, 'Hace referencia a todo el personal que trabaja en la institución', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (57, 'Cantidad total de personal dedicado a Gestión de la energía (1)', 'P15CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 7, 'Hace referencia al personal que trabaja en gestión de la energía', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (58, 'Cantidad total de personal (2)', 'P16CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 8, 'Hace referencia a todo el personal que trabaja en la institución', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (59, 'Cantidad total de personal dedicado a Gestión de la energía (2)', 'P17CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 7, 'Hace referencia al personal que trabaja en gestión de la energía', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (60, 'Nombres', 'P18CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, null, 60, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (61, 'Actividades y responsabilidades relacionados a la gestión de energía', 'P19CR1CS1CM1', 1, null, null, '0', '1', '0', '0', null, null, null, 'Dedica el 80% de sus funciones a esta actividad', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (62, 'Actividad (2)', 'P19CR1CS1CM1', 1, null, null, '0', '1', '0', '0', null, null, null, 'Segunda actividad, dedica el 80% de sus funciones a esta actividad', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (63, 'Actividad (3)', 'P19CR1CS1CM1', 1, null, null, '0', '1', '0', '0', null, null, null, 'Tercera actividad, dedica el 80% de sus funciones a esta actividad', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (64, 'Implementación de un sistema de gestión de la energía', 'P23CR1CS1CM1', 2, 2, null, '0', '1', '0', '1', null, null, 120, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (65, 'Responsable de la información', 'P22CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, null, 50, 'Nombre de la empresa de servicios energéticos o persona natural que realizó la implementación', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (66, 'Fecha implementación inicio', 'P24CR1CS1CM1', 2, 3, null, '0', '1', '0', '0', null, null, null, 'Fecha inicio de la implementación de la medida', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (67, 'Fecha implementación fin', 'P25CR1CS1CM1', 2, 3, null, '0', '1', '0', '0', null, null, null, 'Fecha fin de la implementación de la medida', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (68, 'Detalles de la implementación del SGE', 'P24CR1CS1CM1', 3, 2, '0', '0', '1', '0', '0', null, '0', 3800, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('04-02-2021 15:42:31', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (69, 'Tipo de auditoría energética', 'P26CM1CS1CR1', 2, 2, null, '0', '1', '0', '1', null, null, 100, 'Tipo de Auditoría energética practicada en la empresa/entidad o sede', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (70, 'Descripción', 'P26CM1CS1CR1', 2, 2, null, '0', '1', '0', '1', null, null, 800, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (71, 'Año de implementación de la auditoría', 'P31CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 4, 'Año realizó la Auditoría Energética', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (72, 'Ahorro energético', 'P32CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 15, 'Ahorro energético esperado en el informe de Auditoría', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (73, 'Emisiones reducidas asociadas con la implementación de todas las mejoras', 'P33CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 15, 'Reducción de emisiones esperadas en el informe de Auditoría', 'tCO2', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (74, 'Consultor encargado en la auditoría', 'P34CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, null, 60, 'Empresa o persona natural encargada del desarrollo de la Auditoría', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (75, 'Detalles de todas las mejoras propuestas por el consultor en el informe de auditorías', 'P24CR1CS1CM1', 3, 2, '0', '0', '1', '0', '0', null, '0', 3800, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('04-02-2021 15:39:38', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (76, 'Reconocimiento adquirido', 'P35CR1CS1CM1', 1, null, null, '0', '1', '0', '0', null, null, null, 'Es el reconocimiento que se le ha brindado a la entidad o empresa de la Herramienta de Huella de Carbono Perú - MINAM', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (77, 'Año de implementación', 'P39CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 4, 'Año donde se calculó la Huella de Carbono', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (78, 'Emisiones generadas', 'P40CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 15, 'Cálculo de Huella de Carbono', 'tCO2', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 100 records committed...
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (79, 'Certificado de verificación', 'P41CR1CS1CM1', 1, null, null, '0', '1', '0', '0', null, null, null, 'Solo si ha sido verificado por una entidad acreditada', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (80, 'Emisiones reducidas', 'P42CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 15, 'Reducción de huellas o reducción de emisiones', 'tCO2', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (81, 'Consultora externa', 'P43CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, null, 60, 'Empresa encargada del cálculo', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (82, 'Actividad realizada', 'P45CR1CS1CM1', 1, null, null, '0', '1', '0', '0', null, null, null, 'Actividades relacionadas al uso eficiente de la energía y/o cambio climático', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (83, 'Otra actividad', 'P46CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, null, 300, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (84, 'Responsable', 'P46CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, null, 50, 'Personal responsable de la ejecución de la medida', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (85, 'Cantidad personal', 'P47CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 8, 'Cantidad de personal involucrado', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (86, 'Fecha', 'P48CR1CS1CM1', 2, 3, null, '0', '1', '0', '0', null, null, null, 'Fecha de la actividad realizada', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (87, 'Número de actividades', 'P49CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 5, 'Actividades realizadas durante el año', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (88, 'Cantidad total de personal (1)', 'P50CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 8, 'Hace referencia antes de la implementación de la medida', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (89, 'Cantidad de mujeres con puestos relacionados a toma de decisiones relacionadas a Gestión de la energía (1)', 'P51CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 7, 'Hace referencia antes de la implementación de la medida', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (90, 'Cantidad total de personal (2)', 'P52CR1CS1CM1', 2, 1, '0', '1', '1', '0', '0', null, '0', 8, 'Hace referencia despues de la implementación de la medida', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (91, 'Cantidad de mujeres con puestos relacionados a toma de decisiones relacionadas a Gestión de la energía (2)', 'P53CR1CS1CM1', 2, 1, '0', '1', '1', '0', '0', null, '0', 7, 'Hace referencia despues de la implementación de la medida', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (92, 'Porcentaje de mujeres en puestos relacionados a toma de decisiones relacionadas a Gestión de la energía', 'P54CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (93, 'Personal', 'P26CM1CS1CR1', 2, 2, null, '0', '1', '0', '0', null, null, 60, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (94, 'Cargo', 'P27CM1CS1CR1', 1, null, null, '0', '1', '0', '0', null, null, null, null, null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (95, 'Descripción de la actividad laboral relacionada con la toma de decisiones relacionadas a gestión de la energía', 'P24CR1CS1CM1', 3, 2, null, '0', '1', '0', '0', null, null, 300, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (97, 'Descripción de la acción de mejora', 'Describir brevemente la acción de mejora realizada', 2, 2, null, '0', '1', '0', '0', null, null, 500, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (98, 'Ahorro energético obtenido', 'P4CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 15, 'Ahorro obtenido por la organización', 'kWh/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (145, 'Buenas prácticas implementadas', 'Buenas prácticas implementadas', 1, null, '0', '0', '1', '0', '0', '0', '0', 0, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 18:40:38', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (146, 'Electricidad, combustible o cambio de matriz', 'P2CR1CS1CM1', 1, null, null, '0', '0', '0', '0', null, '0', null, null, null, null, null, null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (147, 'Kilómetro recorrido del vehículo eléctrico ', 'Kilómetro recorrido del vehículo eléctrico ', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto de mejora. Solo si se trata de un vehículo eléctrico o híbrido', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:44:13', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (148, 'Fuente energética del vehículo más eficiente', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Fuente de energía del vehículo del proyecto de mejora', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:40:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (149, 'Sede implementación', 'P2CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, 'Ingresar la sede de la empresa donde se realizó la implementación del SGE', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (150, 'Detalle de otras buenas prácticas implementadas', 'P24CR1CS1CM1', 3, 2, '0', '0', '1', '0', '0', null, '0', 3800, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 18:46:00', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (151, 'Género', 'P2CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (152, 'Emisiones electricidad', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'tCO2eq', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (153, 'Emisiones híbrido', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'tCO2eq', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (154, 'Acción mejora electricidad', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (155, 'Acción mejora híbrido', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, null, '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (156, 'Energía ahorrada electricidad', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'MJ', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (157, 'Energía ahorrada híbrido', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'MJ', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (158, 'Combustible secundario en el caso que es vehículo híbrido convencional (Completar si aplica)', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Combustible secundario en el caso que es vehículo híbrido convencional, se considera 10% de uso en el vehículo', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 16:04:36', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (159, 'Combustible para híbrido (acción)', 'P2CR1CS1CM1', 1, null, null, '1', '1', '0', '0', null, '0', null, 'Fuente de energía (combustible) línea base híbrido', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (160, 'KRV combustible 1 acción mejora', null, 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto de mejora', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (161, 'KRV combustible 2', null, 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Distancia recorrida anualmente por el vehículo del proyecto de mejora (híbrido)', 'km.año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (162, 'Dato numérico por actividad', 'Dato numérico por actividad', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Valor numérico que representa el consumo del energético en su entidad o empresa en el año de linea base y por actividad', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:15:38', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (163, 'Unidad vinculada con la producción de la entidad o empresa', 'P2CR1CS1CM1', 1, null, '0', '1', '1', '0', '0', '0', '0', 0, 'Unidad vinculada con mayor consumo de energía en su entidad o empresa en el año de lÍnea base', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:21:02', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (164, 'Indicador energético calculado', 'Indicador energético calculado', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Valor que sirve para analizar la intensidad energética de la actividad económica y/o humana de la entidad o empresa con respecto a la energía que utiliza', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:25:20', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (165, 'Unidades', 'P46CR1CS1CM1', 2, 2, null, '0', '0', '0', '0', null, null, 150, 'Unidades del indicador energético calculado', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (128, 'Consumo energético total con la acción de mejora implementada', 'Consumo energético total con la acción de mejora implementada', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Consumo energético durante un año para el funcionamiento del/los equipo(s) y/o desarrollo del proceso con la implementación de la acción de mejora.', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:38:42', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (119, 'Consumo energético total por oportunidad de mejora BAU', 'Consumo energético total por oportunidad de mejora BAU', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Total del consumo del recurso energético para el funcionamiento del/los equipo(s) o de un proceso específico relacionado con la oportunidad de mejora', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:28:30', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Empresa', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, 'Colocar la razón social de la empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Sede o local de la entidad o empresa', 'P2CR1CS1CM1', 2, 2, '0', '0', '1', '0', '0', null, '0', 60, 'Ingresar la sede de la empresa donde se realizó la implementación de mejora', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:01:39', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Tipo de Institución', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '4', '0', null, 'Seleccionar el tipo de institución a la que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 'Sector', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '6', '0', null, 'Seleccionar el sector al que pertenece', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 'Otro sector', 'P2CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 100, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 'Sub Sector', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '7|9', '0', null, 'Seleccionar el subsector al que pertenece', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 'Indicador energético', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', '9', '0', null, 'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 'Otros * (Indicador energético)', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 150, 'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 'Unidad', 'P2CR1CS1CM1', 1, null, null, '0', '1', '0', '0', null, '0', null, 'unidades del indicador energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 'Otros * (Unidad)', 'P1CR1CS1CM1', 2, 2, null, '0', '1', '0', '0', null, '0', 60, 'unidades del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 'Valor del indicador energético', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'valor numérico del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 'Consumo energía eléctrica anual', 'P1CR1CS1CM1', 2, 2, '1', '1', '1', '0', '0', null, '0', 15, 'Considerar el consumo de un año antes de la implementación de la acción de mejora', 'kWh/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 'Emisiones', 'P1CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que proviene del consumo de energía por año antes de la acción de mejora', 'tCO2', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 'Año de implementación', 'P1CR1CS1CM1', 2, 1, '0', '0', '1', '0', '0', null, '0', 4, null, null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 'Consumo energía eléctrica (2)', 'P3CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, null, 'kWh/año', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 'Ahorro energético total', 'P4CR1CS1CM1', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Sumatoria de todas las acciones realizadas por la empresa', 'kWh/año', '0', '1', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 'Reducción de emisiones', 'P5CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, 'Cálculo que proviene del ahorro de energía eléctrica total', 'tCO2', '1', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 'Porcentaje de ahorro de energía eléctrica', 'P6CR1CS1CM1', 2, 1, '1', '0', '0', '0', '0', null, '1', 15, null, '%', '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (99, 'Otros * (Valor del indicador energético)', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', null, '0', 20, 'valor numérico del indicador energético', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (109, 'Tipo de energía consumida', 'Tipo de energía consumida', 1, null, '0', '1', '1', '0', '0', '111', '0', 0, 'Fuente de energía utilizada para el desarrollo de la actividad de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:13:37', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (110, 'Consumo total en un año del energético', 'Consumo total en un año del energético', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Total del consumo del recurso energético para el desarrollo de actividades de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:03:59', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (111, 'Unidades', null, 1, null, null, '0', '0', '0', '0', null, '0', null, 'Unidad de medición del energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (112, 'Indicador energético de la entidad o empresa según actividad (valor numérico)', null, 2, 1, '1', '0', '1', '0', '0', null, '0', 15, 'Valor de la unidad de actividad o producción que abarca', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (19, 'Tipo de Institución', 'P2CR1CS1CM1',1, NULL, NULL, '0', '1', '0', '0',  '20', '0', NULL,'Seleccionar el tipo de institución a la que pertenece', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (20, 'Sector', 'P2CR1CS1CM1',1, NULL, NULL, '0', '1', '0', '0',  '22', '0', NULL,'Seleccionar el sector al que pertenece', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (21, 'Otro sector', 'P2CR1CS1CM1',2,2, NULL, '0', '1', '0', '0',  NULL, '0', 100, '', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (22, 'Sub Sector', 'P2CR1CS1CM1',1, NULL, NULL, '0', '1', '0', '0',  '7|9|23|25', '0', NULL,'Seleccionar el subsector al que pertenece', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (23, 'Indicador energético después de la acción de mejora', 'P2CR1CS1CM1',1, NULL, NULL, '0', '1', '0', '0',  '25', '0', NULL,'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (24, 'Otros * (Indicador energético)', 'P1CR1CS1CM1', 2, 2, NULL, '0', '1', '0', '0', NULL, '0', 100,'Colocar el tipo de indicador energético que maneja su organización de acuerdo a la  R.M. Nº 038-2009-MEM/DM', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (25, 'Unidad', 'P2CR1CS1CM1',1, NULL, NULL, '0', '1', '0', '0', NULL, '0', NULL,'unidades del indicador energético', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (26, 'Otros * (Unidad)', 'P1CR1CS1CM1', 2, 2, NULL, '0', '1', '0', '0', NULL, '0', 60, 'unidades del indicador energético', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (27, 'Valor del indicador energético', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', NULL, '0', 20, 'valor numérico del indicador energético', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (28, 'Combustible usado antes de la acción de mejora', 'P2CR1CS1CM1',1, NULL, NULL, '1', '1', '0', '0',  NULL, '0', NULL,'Fuente de energía (combustible) usado un año antes de la implementación de la acción de mejora', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (29, 'Consumo anual de combustible antes de la acción de mejora', 'P2CR1CS1CM1',2, 1, '1', '1', '1', '0', '0',  NULL, '0', 15,'', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (30, 'Unidad de consumo', 'P2CR1CS1CM1',1, NULL, NULL, '1', '1', '0', '0',  NULL, '0', NULL,'Refiere a las unidades del energético consumido', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (31, 'Año de implementación del cambio de combustible', 'P2CR1CS1CM1',2, 1, '0', '0', '1', '0', '0',  NULL, '0', 4,'Año donde se implemento la medida de eficiencia energética ', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (32, 'Combustible usado actualmente', 'P2CR1CS1CM1',1, NULL, NULL, '1', '1', '0', '0',  NULL, '0', NULL,'Fuente de energía (combustible) usada despues del re cambio', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (33, 'Consumo anual de combustible', 'P2CR1CS1CM1',2, 1, '1', '1', '1', '0', '0',  NULL, '0', 15,'', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (34, 'Unidad de consumo', 'P2CR1CS1CM1',1, NULL, NULL, '1', '1', '0', '0',  NULL, '0', NULL,'Refiere a las unidades del energético consumido', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (35, 'Ahorro energía térmica', 'P4CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15,'Cálculo que muestra el ahorro en energía con el uso de distintos combustibles','TJ/año', '0', '0', '', '1');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (36, 'Reducción de emisiones', 'P5CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, 'Cálculo que proviene del ahorro de energía térmica','tCO2', '1', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (37, 'Porcentaje de ahorro de energía térmica', 'P6CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, '','%', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (100, 'Otros * (Valor del indicador energético)', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', NULL, '0', 20, 'valor numérico del indicador energético', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (101, 'Combustible usado actualmente', 'P2CR1CS1CM1',1, NULL, NULL, '1', '1', '0', '0',  NULL, '0', NULL,'Fuente de energía (combustible) usada actualmente', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (102, 'Consumo anual de combustible', 'P1CR1CS1CM1', 2, 1, '1', '0', '1', '0', '0', NULL, '0', 20, 'Considerar el consumo de un año antes de la implementación de la acción de mejora', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (103, 'Unidad de consumo', 'P2CR1CS1CM1',1, NULL, NULL, '1', '1', '0', '0',  NULL, '0', NULL,'', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (104, 'Consumo energético', 'P5CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, '','TJ/año', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (105, 'Ahorro energético térmica total', 'P4CR1CS1CM1',2,1, '1', '1', '1', '0', '0', NULL, '0', 15,'Sumatoria de todas las acciones realizadas por la empresa','TJ/año', '0', '0', '', '1');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (106, 'Reducción de emisiones', 'P5CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, 'Cálculo que proviene del ahorro de energía térmica total','tCO2', '1', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (107, 'Porcentaje de ahorro de energía térmica', 'P6CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, '','%', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (108, 'Ahorro de energía térmica obtenida', 'P4CR1CS1CM1',2,1, '1', '0', '1', '0', '0', NULL, '0', 15,'Ahorro obtenido por la organización','TJ/año', '0', '0', '', '0');
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (166, 'Tipo de energía consumida', 'Tipo de energía consumida', 1, null, '0', '1', '1', '0', '0', '168', '0', 0, 'Fuente de energía utilizada para el desarrollo de la actividad de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 15:13:37', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (167, 'Ahorro energético esperado', 'Ahorro energético esperado', 2, 1, '1', '1', '1', '0', '0', null, '0', 15, 'Total del consumo del recurso energético para el desarrollo de actividades de la entidad o empresa', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('15-01-2021 16:03:59', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (168, 'Unidades', null, 1, null, null, '0', '0', '0', '0', null, '0', null, 'Unidad de medición del energético', null, null, null, null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:48', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (38, 'Año', 'P2CR1CS1CM1',1, NULL, NULL, '1', '1', '0', '0',  NULL, '0', NULL,'Año al que corresponde el registro', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (39, 'Tipo de Vehículo', 'P2CR1CS1CM1',1, NULL, NULL, '1', '1', '0', '0',  NULL, '0', NULL,'Es la fuente que usa para el funcionamiento de su institución', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (40, 'KRV', 'P6CR1CS1CM1',2,1, '1', '1', '1', '0', '0', NULL, '0', 15, '','km.año', '0', '0','', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (41, 'Combustible del vehículo reemplazado (línea base)', 'P2CR1CS1CM1',1, NULL, NULL, '1', '1', '0', '0',  NULL, '0', NULL,'Es la fuente que usa para el funcionamiento de su institución', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (42, 'Placa del vehículo', 'P1CR1CS1CM1', 2, 2, NULL, '0', '1', '0', '0', NULL, '0', 8, '', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (43, 'Total km recorrido (vehículo eléctrico)', 'P6CR1CS1CM1',2,1, '1', '1', '1', '0', '0', NULL, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto','km.año', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (44, 'KRV combustible', 'P6CR1CS1CM1',2,1, '1', '1', '1', '0', '0', NULL, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto','km.año', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (45, 'Rendimiento', 'P6CR1CS1CM1',2,1, '1', '1', '1', '1', '0', NULL, '0', 15, 'Distancia recorrida anualmente por vehículo del proyecto','kWh/km', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (46, 'Combustible proyecto', 'P2CR1CS1CM1',1, NULL, NULL, '1', '1', '0', '0',  NULL, '0', NULL,'Combustible fósil del vehículo híbrido', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (47, 'Consumo electricidad', 'P6CR1CS1CM1',2,1, '1', '1', '1', '0', '0', NULL, '0', 15, '','MWh.año', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (48, 'Consumo combustible', 'P6CR1CS1CM1',2,1, '1', '1', '1', '0', '0', NULL, '0', 15, '','gal.año', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (49, 'Línea Base emisiones GEI', 'P5CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, '','tCO2', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (50, 'Proyecto emisiones GEI', 'P5CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, '','tCO2', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (51, 'Reducción de emisiones', 'P5CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, '','tCO2', '1', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (52, 'Energía línea base', 'P5CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, '','TJ', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (53, 'Energía Proyecto', 'P5CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, '','TJ', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (54, 'Energía ahorrada', 'P5CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, 'Energía que se ahorró','TJ/año', '0', '0', '', '1');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (55, 'Ahorro', 'P5CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15, 'Ahorro porcentual de energía','%', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (96, 'Detallar si realizó una mejora de eficiencia energética', 'P24CR1CS1CM1',3,2, NULL, '0', '1', '0', '0', NULL, NULL, 500,'', '', '0', '0', '', '0');
+commit;
+prompt 165 records loaded
 
---CRITERIO N3
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (56, 'Cantidad total de personal (1)', 'P14CR1CS1CM1',2 ,1, '0', '0', '1', '0', '0', NULL, '0', 8,'Hace referencia a todo el personal que trabaja en la institución', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (57, 'Cantidad total de personal dedicado a Gestión de la energía (1)', 'P15CR1CS1CM1',2,1, '0', '0', '1', '0', '0', NULL, '0', 7,'Hace referencia al personal que trabaja en gestión de la energía', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (58, 'Cantidad total de personal (2)', 'P16CR1CS1CM1',2,1, '0', '0', '1', '0', '0', NULL, '0', 8,'Hace referencia a todo el personal que trabaja en la institución', '', '0', '0','', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (59, 'Cantidad total de personal dedicado a Gestión de la energía (2)', 'P17CR1CS1CM1',2,1, '0', '0', '1', '0', '0', NULL, '0', 7,'Hace referencia al personal que trabaja en gestión de la energía', '', '0', '0', '', '0');
---caso 
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (60, 'Nombres', 'P18CR1CS1CM1',2,2, NULL, '0', '1', '0', '0', NULL, NULL, 60,'', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (61, 'Actividad (1)', 'P19CR1CS1CM1',1,NULL, NULL, '0', '1', '0', '0', NULL, NULL, NULL,'Primera actividad, dedica el 80% de sus funciones a esta actividad', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (62, 'Actividad (2)', 'P19CR1CS1CM1',1,NULL, NULL, '0', '1', '0', '0', NULL, NULL, NULL,'Segunda actividad, dedica el 80% de sus funciones a esta actividad', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (63, 'Actividad (3)', 'P19CR1CS1CM1',1,NULL, NULL, '0', '1', '0', '0', NULL, NULL, NULL,'Tercera actividad, dedica el 80% de sus funciones a esta actividad', '', NULL, NULL, '', '0');
---CRITERIO N4
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (64, 'Implementación de un sistema de gestión de la energía', 'P23CR1CS1CM1',2,2, NULL, '0', '1', '0', '1', NULL, NULL, 120,'', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (65, 'Responsable de la información', 'P22CR1CS1CM1',2,2, NULL, '0', '1', '0', '0', NULL, NULL, 50,'Nombre de la empresa de servicios energéticos o persona natural que realizó la implementación', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (66, 'Fecha implementación inicio', 'P24CR1CS1CM1',2,3, NULL, '0', '1', '0', '0', NULL, NULL, NULL,'Fecha inicio de la implementación de la medida', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (67, 'Fecha implementación fin', 'P25CR1CS1CM1',2,3, NULL, '0', '1', '0', '0', NULL, NULL, NULL,'Fecha fin de la implementación de la medida', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (68, 'Detalles de la implementación de la medida', 'P24CR1CS1CM1',3,2, NULL, '0', '1', '0', '0', NULL, NULL, 300,'', '', '0', '0', '', '0');
 
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (69, 'Tipo de auditoría energética', 'P26CM1CS1CR1',2,2, NULL, '0', '1', '0', '1', NULL, NULL, 100,'Tipo de Auditoría energética practicada en la empresa/entidad o sede', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (70, 'Descripción', 'P26CM1CS1CR1',2,2, NULL, '0', '1', '0', '1', NULL, NULL, 800,'', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (71, 'Año', 'P31CR1CS1CM1',2,1, '0', '0', '1', '0', '0', NULL, '0', 4,'Año realizó la Auditoría Energética', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (72, 'Ahorro energético', 'P32CR1CS1CM1',2,1, '1', '0', '1', '0', '0', NULL, '0', 15,'Ahorro energético esperado en el informe de Auditoría', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (73, 'Emisiones reducidas', 'P33CR1CS1CM1',2,1, '1', '0', '1', '0', '0', NULL, '0', 15,'Reducción de emisiones esperadas en el informe de Auditoría', 'tCO2', '1', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (74, 'Consultora externa', 'P34CR1CS1CM1',2,2, NULL, '0', '1', '0', '0', NULL, NULL, 60,'Empresa encargada del desarrollo de la Auditoría', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (75, 'Detalles Mejoras propuestas en el informe de Auditorías', 'P24CR1CS1CM1',3,2, NULL, '0', '1', '0', '0', NULL, NULL, 300,'', '', '0', '0', '', '0');
-
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (76, 'Reconocimiento adquirido', 'P35CR1CS1CM1',1,NULL, NULL, '0', '1', '0', '0', NULL, NULL, NULL,'Es el reconocimiento que se le ha brindado a la entidad o empresa de la Herramienta de Huella de Carbono Perú - MINAM', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (77, 'Año', 'P39CR1CS1CM1',2,1, '0', '0', '1', '0', '0', NULL, '0', 4,'Año donde se calculó la Huella de Carbono', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (78, 'Emisiones generadas', 'P40CR1CS1CM1',2,1, '1', '0', '1', '0', '0', NULL, '0', 15,'Cálculo de Huella de Carbono', 'tCO2', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (79, 'Certificado de verificación', 'P41CR1CS1CM1',1,NULL, NULL, '0', '1', '0', '0', NULL, NULL, NULL,'Solo si ha sido verificado por una entidad acreditada', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (80, 'Emisiones reducidas', 'P42CR1CS1CM1',2,1, '1', '0', '1', '0', '0', NULL, '0', 15,'Reducción de huellas o reducción de emisiones', 'tCO2', '1', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (81, 'Consultora externa', 'P43CR1CS1CM1',2,2, NULL, '0', '1', '0', '0', NULL, NULL, 60,'Empresa encargada del cálculo', '', '0', '0', '', '0');
-
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (82, 'Actividad realizada', 'P45CR1CS1CM1',1,NULL, NULL, '0', '1', '0', '0', NULL, NULL, NULL,'Actividades relacionadas al uso eficiente de la energía y/o cambio climático', '', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (83, 'Otra actividad', 'P46CR1CS1CM1',2,2, NULL, '0', '1', '0', '0', NULL, NULL, 300,'', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (84, 'Responsable', 'P46CR1CS1CM1',2,2, NULL, '0', '1', '0', '0', NULL, NULL, 50,'Personal responsable de la ejecución de la medida', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (85, 'Cantidad personal', 'P47CR1CS1CM1',2,1, '0', '0', '1', '0', '0', NULL, '0', 8,'Cantidad de personal involucrado', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (86, 'Fecha', 'P48CR1CS1CM1',2,3, NULL, '0', '1', '0', '0', NULL, NULL, NULL,'Fecha de la actividad realizada', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (87, 'Número de actividades', 'P49CR1CS1CM1',2,1, '0', '0', '1', '0', '0', NULL, '0', 5,'Actividades realizadas durante el año', '', '0', '0', '', '0');
-
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (88, 'Cantidad total de personal (1)', 'P50CR1CS1CM1',2,1, '0', '0', '1', '0', '0', NULL, '0', 8,'Hace referencia antes de la implementación de la medida', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (89, 'Cantidad de mujeres con puestos relacionados a toma de decisiones relacionadas a Gestión de la energía (1)', 'P51CR1CS1CM1',2,1, '0', '0', '1', '0', '0', NULL, '0', 7,'Hace referencia antes de la implementación de la medida', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (90, 'Cantidad total de personal (2)', 'P52CR1CS1CM1',2,1, '0', '1', '1', '0', '0', NULL, '0', 8,'Hace referencia despues de la implementación de la medida', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (91, 'Cantidad de mujeres con puestos relacionados a toma de decisiones relacionadas a Gestión de la energía (2)', 'P53CR1CS1CM1',2,1, '0', '1', '1', '0', '0', NULL, '0', 7,'Hace referencia despues de la implementación de la medida', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (92, 'Porcentaje de mujeres en puestos relacionados a toma de decisiones relacionadas a Gestión de la energía', 'P54CR1CS1CM1',2,1, '1', '0', '0', '0', '0', NULL, '1', 15,'', '%', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (93, 'Personal', 'P26CM1CS1CR1',2,2, NULL, '0', '1', '0', '0', NULL, NULL, 60,'', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (94, 'Cargo', 'P27CM1CS1CR1',1, NULL, NULL, '0', '1', '1', '0', NULL, NULL, NULL,'','', NULL, NULL, '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (95, 'Descripción de la actividad laboral relacionada con la toma de decisiones relacionadas a gestión de la energía', 'P24CR1CS1CM1',3,2, NULL, '0', '1', '0', '0', NULL, NULL, 300,'', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (97, 'Descripción de la acción de mejora', 'Describir brevemente la acción de mejora realizada',2,2, NULL, '0', '1', '0', '0', NULL, NULL, 500,'', '', '0', '0', '', '0');
-INSERT INTO T_MAEM_PARAMETRO (ID_PARAMETRO, NOMBRE, ETIQUETA, ID_TIPO_CONTROL, ID_TIPO_DATO, DECIMAL_V, VERIFICABLE, EDITABLE, OBTENIBLE, ESTATICO, FILTRO, RESULTADO, TAMANO, DESCRIPCION, UNIDAD, EMISIONES, AHORRO, FILTRAR_IN, COMBUSTIBLE) VALUES (98, 'Ahorro energético obtenido', 'P4CR1CS1CM1',2,1, '1', '0', '1', '0', '0', NULL, '0', 15,'Ahorro obtenido por la organización','kWh/año', '0', '0', '', '0');
 
 --T_MAED_PARAMETRO
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (3, 1, 'Privado');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (3, 2, 'Público');
+prompt Loading T_MAED_PARAMETRO...
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 94, 'Gerencia', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 94, 'Jefatura', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 94, 'Supervisora', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 94, 'Coordinadora', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 94, 'Especialista', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 94, 'Planificadora', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 94, 'Analista', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 94, 'Asistente', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 101, 'Residual', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 101, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 101, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 101, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 101, 'Gasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 101, 'Biocombustible', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 103, 'gal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 103, 'm3', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 109, 'Electricidad', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 109, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 109, 'Residual', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 109, 'Gasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 109, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 109, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 109, 'Carbón', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 109, 'Biocombustible', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 109, 'leña', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 109, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 109, 'Bagazo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 109, 'Carbón vegetal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 109, 'Gas de refinería', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 109, 'Diesel DB5', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 111, 'kWh/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 111, 'gal/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 111, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 111, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 111, 'ton/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 113, 'kwh/m2', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 115, 'Cambio de refrigeradoras', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 115, 'Cambio de congeladoras', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 115, 'Cambio de lavadoras', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 115, 'Cambio de secadoras', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 115, 'Cambio de motores eléctricos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 115, 'Cambio de equipos de aire acondicionado', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 115, 'Cambio de calentadores de agua', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 115, 'Cambio de lámparas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 115, 'Mantenimiento de sistemas térmicos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 115, 'Cambio o mantenimiento de las calderas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 115, 'Mantenimiento de aire acondicionado', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 115, 'Mantenimiento de sistemas de refrigeración', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 115, 'Cambio o mantenimiento del torre de enfriamiento', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 115, 'Cambio o mantenimiento de otros equipos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 115, 'Optimización de equipos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 115, 'Buenas prácticas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 115, 'Sistemas de gestión de energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 115, 'Cambio de matriz energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 115, 'Implementación de vehículos eléctricos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 115, 'Otros', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 118, 'Electricidad', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 118, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 118, 'Residual', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 118, 'Gasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 118, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 118, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 118, 'Carbón', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 118, 'Biocombustible', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 118, 'leña', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 118, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 118, 'Bagazo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 118, 'Carbón vegetal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 118, 'Gas de refinería', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 118, 'Diesel DB5', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 120, 'kWh/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 120, 'gal/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 120, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 120, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 120, 'ton/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 127, 'Electricidad', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 127, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 127, 'Residual', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 127, 'Gasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 127, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 127, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 127, 'Carbón', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 127, 'Biocombustible', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 127, 'leña', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 127, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 127, 'Bagazo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 127, 'Carbón vegetal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 127, 'Gas de refinería', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 127, 'Diesel DB5', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 129, 'kWh/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 129, 'gal/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 129, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 129, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 129, 'ton/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 137, 'Si', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 137, 'No', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 145, 'Ha comprado equipos con etiquetado "A,B y C" en el último año (2 ptos.)', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 145, 'Ha realizado capacitaciones en su sede sobre eficiencia energética en el último año (2 ptos.)', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 145, 'Apaga o desenchufa los artefactos en la noche o cuando no se usa (Luminarias, impresoras, computadoras, microondas, cafetera, friobar, entre otros) (2 ptos.)', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 145, 'Han tomado acciones para usar eficientemente los equipos de aire acondicionado y calefacción, ejemplo: Mantener cerrado las ventanas cuando se está utilizando el aire acondicionado o el de calefacción, entre otros. (2 ptos.)', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 100 records committed...
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 145, 'Aprovechan la luz natural mediante el día (2 ptos.)', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 145, 'Han realizado notas de comunicación o campaña para difundir la importancia del uso eficiente y sostenible de la energía (2 ptos.)', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 145, 'Otros (2 ptos.)', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 146, 'Electricidad', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 146, 'Combustible', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 146, 'Cambio de matriz', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 148, 'Electricidad', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:40:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 148, 'Híbrido', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:40:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 158, 'GNV', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 16:04:36', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 158, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 16:04:36', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 158, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 16:04:36', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 158, 'Diesel', '0', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:32:43', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 158, 'No aplica', '0', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:32:43', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 159, 'GNV', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 159, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 159, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 159, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 159, 'No aplica', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 163, 'Habitante', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 163, 'Familia', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 163, 'Kilómetros', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 163, 'Kilómetros - pasajeros', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 163, 'Ton de producción de cemento', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 163, 'Ton de producción de harina de pescado', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 163, 'Unidad de construcción', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 163, 'PBI Sectorial (S/)', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 163, 'Trabajadores', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 163, 'Metro cuadrado', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 163, 'Trabajador', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 163, 'Cama', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 163, 'Cliente', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 163, 'Mesa', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 163, 'Paciente', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 163, 'Alumno', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 163, 'Pasajero', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 1, 'Residencial');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 2, 'Productivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 3, 'Servicios');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 4, 'Transporte');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 5, 'Salud');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 6, 'Educación');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 7, 'Seguridad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (4, 8, 'Administrativo');
+values (1, 166, 'Electricidad', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 166, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 166, 'Residual', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 166, 'Gasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 166, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 166, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 166, 'Carbón', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 166, 'Biocombustible', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 166, 'leña', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 166, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 166, 'Bagazo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 166, 'Carbón vegetal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 166, 'Gas de refinería', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 166, 'Diesel DB5', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 1, 'Urbano - Alto');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 2, 'Urbano - Medio');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 3, 'Urbano - Bajo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 4, 'Rural - Medio');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 5, 'Rural - Bajo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 6, 'Agropecuario - Agrícola');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 7, 'Agropecuario - Pecuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 8, 'Pesqueria');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 9, 'Mineria Metálica y No Metálica');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 10, 'Hidrocarburos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 11, 'Manufactura - Procesadores de recursos primarios');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 12, 'Manufactura no primaria');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 13, 'Construcción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 14, 'Hoteles y Hostales');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 15, 'Restaurantes');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 16, 'Edificios centros comerciales, centros de esparcimiento');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 17, 'Centros de Salud');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 18, 'Educación Privada');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 19, 'Transporte de pasajeros - Carros');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 20, 'Transporte de pasajeros - Ómnibus');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 21, 'Transporte de pasajeros - Station Wagon');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 22, 'Transporte de pasajeros - Taxis y Mototaxis');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 23, 'Transporte de pasajeros - Aéreo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 24, 'Transporte de pasajeros - Acuático');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 25, 'Transporte de carga - Camionetas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 26, 'Transporte de carga - Camiones');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 27, 'Transporte de carga - Ferrocarril');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 28, 'Transporte de carga - Acuático');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 29, 'Transporte de carga - Aéreo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 30, 'Salud');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 31, 'Educación');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 32, 'Seguridad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (6, 33, 'Administrativo');
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 168, 'kWh/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 168, 'gal/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 168, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 168, 'kg/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 168, 'ton/año', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 1, 'Consumo de energía anual per cápita');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 2, 'Consumo de energía eléctrica promedio anual por usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 3, 'Consumo de gas anual por suministro');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 4, 'Penetración de calentadores solares anual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 5, 'Consumo anual de biomasa por familia');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 6, 'Consumo de energía anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 7, 'Consumo de hidrocarburos anual/ variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 8, 'Consumo de gas anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 9, 'Consumo de electricidad anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 10, 'Consumo de biomasa anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 11, 'Rendimiento promedio anual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 12, 'Penetración anual del gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (7, 13, 'Otros');
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 158, 'Diesel', '1', 1, to_date('03-02-2021 16:04:36', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 158, 'No aplica', '1', 1, to_date('03-02-2021 16:04:36', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 3, 'Privado', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 3, 'Público', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 4, 'Residencial', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 4, 'Productivo', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 4, 'Servicios', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 4, 'Transporte', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 4, 'Salud', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 4, 'Educación', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 4, 'Seguridad', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 4, 'Administrativo', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 6, 'Urbano - Alto', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 6, 'Urbano - Medio', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 6, 'Urbano - Bajo', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 6, 'Rural - Medio', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 6, 'Rural - Bajo', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 6, 'Agropecuario - Agrícola', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 6, 'Agropecuario - Pecuario', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 6, 'Pesqueria', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 6, 'Mineria Metálica y No Metálica', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 6, 'Hidrocarburos', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 6, 'Manufactura - Procesadores de recursos primarios', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 6, 'Manufactura no primaria', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 6, 'Construcción', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 6, 'Hoteles y Hostales', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 6, 'Restaurantes', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 6, 'Edificios centros comerciales, centros de esparcimiento', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 6, 'Centros de Salud', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 6, 'Educación Privada', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 6, 'Transporte de pasajeros - Carros', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 6, 'Transporte de pasajeros - Ómnibus', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 6, 'Transporte de pasajeros - Station Wagon', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 6, 'Transporte de pasajeros - Taxis y Mototaxis', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 6, 'Transporte de pasajeros - Aéreo', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (24, 6, 'Transporte de pasajeros - Acuático', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (25, 6, 'Transporte de carga - Camionetas', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (26, 6, 'Transporte de carga - Camiones', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (27, 6, 'Transporte de carga - Ferrocarril', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (28, 6, 'Transporte de carga - Acuático', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (29, 6, 'Transporte de carga - Aéreo', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (30, 6, 'Salud', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (31, 6, 'Educación', '1', null, to_date('29-01-2021 13:28:08', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (32, 6, 'Seguridad', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (33, 6, 'Administrativo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 7, 'Consumo de energía anual per cápita', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 7, 'Consumo de energía eléctrica promedio anual por usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 7, 'Consumo de gas anual por suministro', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 7, 'Penetración de calentadores solares anual', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 7, 'Consumo anual de biomasa por familia', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 7, 'Consumo de energía anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 7, 'Consumo de hidrocarburos anual/ variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 7, 'Consumo de gas anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 7, 'Consumo de electricidad anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 7, 'Consumo de biomasa anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 7, 'Rendimiento promedio anual', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 7, 'Penetración anual del gas natural', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 7, 'Otros', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 9, 'J/habitante', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 9, '(kW.h/mes)/usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 9, 'J/usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 9, 'm2 de colector / usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 9, 'kg/familia', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 9, 'J/PBI Sectorial', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 9, 'J/t de producción', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 200 records committed...
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 9, 'kW.h/PBI Sectorial', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 9, 'kW.h/t de producción', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 9, 'J/cama', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 9, 'J/cliente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 9, 'J/m2', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 9, 'kW.h/cama', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 9, 'kW.h/cliente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 9, 'kW.h/m2', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 9, 'm2 de colector/entidad', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 9, 'J/mesa', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 9, 'kW.h./mesa', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 9, 'J/paciente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 9, 'kW.h/paciente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 9, 'J/alumno', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 9, 'kW.h/alumno', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 9, 'J/pasajero', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (24, 9, 'km/J', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (25, 9, 'Nro. Unidades a gas/parque total', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (26, 9, 'J/t', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (27, 9, 'J/Tm', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (28, 9, 'J/efectivo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (29, 9, 'kW.h/efectivo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (30, 9, 'J/trabajador', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (31, 9, 'kW.h/trabajador', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 19, 'Privado', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 19, 'Público', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 20, 'Residencial', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 20, 'Productivo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 20, 'Servicios', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 20, 'Transporte', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 20, 'Salud', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 20, 'Educación', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 20, 'Seguridad', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 20, 'Administrativo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 22, 'Urbano - Alto', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 22, 'Urbano - Medio', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 22, 'Urbano - Bajo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 22, 'Rural - Medio', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 22, 'Rural - Bajo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 22, 'Agropecuario - Agrícola', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 22, 'Agropecuario - Pecuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 22, 'Pesqueria', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 22, 'Mineria Metálica y No Metálica', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 22, 'Hidrocarburos', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 22, 'Manufactura - Procesadores de recursos primarios', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 22, 'Manufactura no primaria', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 22, 'Construcción', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 22, 'Hoteles y Hostales', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 22, 'Restaurantes', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 22, 'Edificios centros comerciales, centros de esparcimiento', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 22, 'Centros de Salud', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 22, 'Educación Privada', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 22, 'Transporte de pasajeros - Carros', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 22, 'Transporte de pasajeros - Ómnibus', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 22, 'Transporte de pasajeros - Station Wagon', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 22, 'Transporte de pasajeros - Taxis y Mototaxis', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 22, 'Transporte de pasajeros - Aéreo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (24, 22, 'Transporte de pasajeros - Acuático', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (25, 22, 'Transporte de carga - Camionetas', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (26, 22, 'Transporte de carga - Camiones', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (27, 22, 'Transporte de carga - Ferrocarril', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (28, 22, 'Transporte de carga - Acuático', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (29, 22, 'Transporte de carga - Aéreo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (30, 22, 'Salud', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (31, 22, 'Educación', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (32, 22, 'Seguridad', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (33, 22, 'Administrativo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 23, 'Consumo de energía anual per cápita', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 23, 'Consumo de energía eléctrica promedio anual por usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 23, 'Consumo de gas anual por suministro', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 23, 'Penetración de calentadores solares anual', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 23, 'Consumo anual de biomasa por familia', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 23, 'Consumo de energía anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 23, 'Consumo de hidrocarburos anual/ variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 23, 'Consumo de gas anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 23, 'Consumo de electricidad anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 23, 'Consumo de biomasa anual / variable sub- sector', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 23, 'Rendimiento promedio anual', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 23, 'Penetración anual del gas natural', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 23, 'Otros', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 25, 'J/habitante', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 25, '(kW.h/mes)/usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 25, 'J/usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 25, 'm2 de colector / usuario', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 25, 'kg/familia', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 25, 'J/PBI Sectorial', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 25, 'J/t de producción', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 25, 'kW.h/PBI Sectorial', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 25, 'kW.h/t de producción', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 25, 'J/cama', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 25, 'J/cliente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 25, 'J/m2', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 25, 'kW.h/cama', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 25, 'kW.h/cliente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 25, 'kW.h/m2', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 25, 'm2 de colector/entidad', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 25, 'J/mesa', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 25, 'kW.h./mesa', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 25, 'J/paciente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 25, 'kW.h/paciente', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 300 records committed...
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 25, 'J/alumno', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 25, 'kW.h/alumno', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 25, 'J/pasajero', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (24, 25, 'km/J', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (25, 25, 'Nro. Unidades a gas/parque total', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (26, 25, 'J/t', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (27, 25, 'J/Tm', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (28, 25, 'J/efectivo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (29, 25, 'kW.h/efectivo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (30, 25, 'J/trabajador', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (31, 25, 'kW.h/trabajador', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 28, 'Petróleo crudo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 28, 'Gas Natural Licuado', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 28, 'Gasolina para motores', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 28, 'Gasolina para la aviación', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 28, 'Gasolina para motor a reacción', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 28, 'Gas/Disesel Oil', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 28, 'Fuelóleo residual', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 28, 'Gases licuados de petróleo', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 28, 'Lubricantes', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 28, 'Gas de refinería', '1', null, to_date('29-01-2021 13:28:09', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 28, 'Ceras de parafina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 28, 'Espíritu blanco y SBP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 28, 'Otros productos del petróleo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 28, 'Carbón sub-bituminoso', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 28, 'Carbón de coque', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 28, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 28, 'Biogasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 28, 'Biodiesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 28, 'Otros biocombustibles líquidos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 28, 'Otra biomasa sólida primaria', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 28, 'Madera/Desechos de madera', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 28, 'Carbón vegetal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 28, 'Gas de vertedero', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 32, 'Petróleo crudo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 32, 'Gas Natural Licuado', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 32, 'Gasolina para motores', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 32, 'Gasolina para la aviación', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 32, 'Gasolina para motor a reacción', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 32, 'Gas/Disesel Oil', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 32, 'Fuelóleo residual', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 32, 'Gases licuados de petróleo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 32, 'Lubricantes', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 32, 'Gas de refinería', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 32, 'Ceras de parafina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 32, 'Espíritu blanco y SBP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 32, 'Otros productos del petróleo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 32, 'Carbón sub-bituminoso', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 32, 'Carbón de coque', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 32, 'Gas natural', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 32, 'Biogasolina', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 32, 'Biodiesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 32, 'Otros biocombustibles líquidos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 32, 'Otra biomasa sólida primaria', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 32, 'Madera/Desechos de madera', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (22, 32, 'Carbón vegetal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (23, 32, 'Gas de vertedero', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 30, 'gal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 30, 'm3', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 30, 'l', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 34, 'gal', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 34, 'm3', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 34, 'l', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 38, '2010', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 38, '2011', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 38, '2012', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 38, '2013', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 38, '2014', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 38, '2015', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 38, '2016', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 38, '2017', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 38, '2018', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (10, 38, '2019', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (11, 38, '2020', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (12, 38, '2021', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (13, 38, '2022', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (14, 38, '2023', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (15, 38, '2024', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (16, 38, '2025', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (17, 38, '2026', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (18, 38, '2027', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (19, 38, '2028', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (20, 38, '2029', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (21, 38, '2030', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 39, 'Automóvil', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 39, 'Bus', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 39, 'Automóvil híbrido', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 39, 'Bus híbrido', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 39, 'Moto taxi', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 39, 'Moto', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 41, 'GNV', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:11:54', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 41, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:11:54', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 41, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:11:54', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 41, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:11:54', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 41, 'No aplica', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:11:54', 'dd-mm-yyyy hh24:mi:ss'));
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 1, 'J/habitante');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 2, '(kW.h/mes)/usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 3, 'J/usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 4, 'm2 de colector / usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 5, 'kg/familia');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 6, 'J/PBI Sectorial');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 7, 'J/t de producción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 8, 'kW.h/PBI Sectorial');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 9, 'kW.h/t de producción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 10, 'J/cama');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 11, 'J/cliente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 12, 'J/m2');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 13, 'kW.h/cama');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 14, 'kW.h/cliente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 15, 'kW.h/m2');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 16, 'm2 de colector/entidad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 17, 'J/mesa');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 18, 'kW.h./mesa');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 19, 'J/paciente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 20, 'kW.h/paciente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 21, 'J/alumno');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 22, 'kW.h/alumno');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 23, 'J/pasajero');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 24, 'km/J');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 25, 'Nro. Unidades a gas/parque total');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 26, 'J/t');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 27, 'J/Tm');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 28, 'J/efectivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 29, 'kW.h/efectivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 30, 'J/trabajador');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (9, 31, 'kW.h/trabajador');
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 46, 'Gasohol', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:49:25', 'dd-mm-yyyy hh24:mi:ss'));
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (19, 1, 'Privado');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (19, 2, 'Público');
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 46, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 1, 'Residencial');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 2, 'Productivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 3, 'Servicios');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 4, 'Transporte');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 5, 'Salud');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 6, 'Educación');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 7, 'Seguridad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (20, 8, 'Administrativo');
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 1, 'Urbano - Alto');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 2, 'Urbano - Medio');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 3, 'Urbano - Bajo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 4, 'Rural - Medio');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 5, 'Rural - Bajo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 6, 'Agropecuario - Agrícola');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 7, 'Agropecuario - Pecuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 8, 'Pesqueria');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 9, 'Mineria Metálica y No Metálica');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 10, 'Hidrocarburos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 11, 'Manufactura - Procesadores de recursos primarios');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 12, 'Manufactura no primaria');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 13, 'Construcción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 14, 'Hoteles y Hostales');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 15, 'Restaurantes');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 16, 'Edificios centros comerciales, centros de esparcimiento');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 17, 'Centros de Salud');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 18, 'Educación Privada');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 19, 'Transporte de pasajeros - Carros');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 20, 'Transporte de pasajeros - Ómnibus');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 21, 'Transporte de pasajeros - Station Wagon');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 22, 'Transporte de pasajeros - Taxis y Mototaxis');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 23, 'Transporte de pasajeros - Aéreo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 24, 'Transporte de pasajeros - Acuático');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 25, 'Transporte de carga - Camionetas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 26, 'Transporte de carga - Camiones');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 27, 'Transporte de carga - Ferrocarril');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 28, 'Transporte de carga - Acuático');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 29, 'Transporte de carga - Aéreo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 30, 'Salud');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 31, 'Educación');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 32, 'Seguridad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (22, 33, 'Administrativo');
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 46, 'GLP', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:49:25', 'dd-mm-yyyy hh24:mi:ss'));
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 1, 'Consumo de energía anual per cápita');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 2, 'Consumo de energía eléctrica promedio anual por usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 3, 'Consumo de gas anual por suministro');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 4, 'Penetración de calentadores solares anual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 5, 'Consumo anual de biomasa por familia');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 6, 'Consumo de energía anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 7, 'Consumo de hidrocarburos anual/ variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 8, 'Consumo de gas anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 9, 'Consumo de electricidad anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 10, 'Consumo de biomasa anual / variable sub- sector');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 11, 'Rendimiento promedio anual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 12, 'Penetración anual del gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (23, 13, 'Otros');
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 1, 'J/habitante');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 2, '(kW.h/mes)/usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 3, 'J/usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 4, 'm2 de colector / usuario');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 5, 'kg/familia');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 6, 'J/PBI Sectorial');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 7, 'J/t de producción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 8, 'kW.h/PBI Sectorial');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 9, 'kW.h/t de producción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 10, 'J/cama');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 11, 'J/cliente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 12, 'J/m2');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 13, 'kW.h/cama');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 14, 'kW.h/cliente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 15, 'kW.h/m2');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 16, 'm2 de colector/entidad');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 17, 'J/mesa');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 18, 'kW.h./mesa');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 19, 'J/paciente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 20, 'kW.h/paciente');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 21, 'J/alumno');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 22, 'kW.h/alumno');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 23, 'J/pasajero');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 24, 'km/J');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 25, 'Nro. Unidades a gas/parque total');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 26, 'J/t');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 27, 'J/Tm');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 28, 'J/efectivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 29, 'kW.h/efectivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 30, 'J/trabajador');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (25, 31, 'kW.h/trabajador');
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 46, 'Gas natural vehicular', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:49:25', 'dd-mm-yyyy hh24:mi:ss'));
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 1, 'Petróleo crudo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 2, 'Gas Natural Licuado');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 3, 'Gasolina para motores');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 4, 'Gasolina para la aviación');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 5, 'Gasolina para motor a reacción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 6, 'Gas/Disesel Oil');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 7, 'Fuelóleo residual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 8, 'Gases licuados de petróleo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 9, 'Lubricantes');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 10, 'Gas de refinería');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 11, 'Ceras de parafina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 12, 'Espíritu blanco y SBP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 13, 'Otros productos del petróleo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 14, 'Carbón sub-bituminoso');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 15, 'Carbón de coque');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 16, 'Gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 17, 'Biogasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 18, 'Biodiesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 19, 'Otros biocombustibles líquidos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 20, 'Otra biomasa sólida primaria');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 21, 'Madera/Desechos de madera');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 22, 'Carbón vegetal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (28, 23, 'Gas de vertedero');
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 1, 'Petróleo crudo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 2, 'Gas Natural Licuado');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 3, 'Gasolina para motores');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 4, 'Gasolina para la aviación');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 5, 'Gasolina para motor a reacción');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 6, 'Gas/Disesel Oil');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 7, 'Fuelóleo residual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 8, 'Gases licuados de petróleo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 9, 'Lubricantes');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 10, 'Gas de refinería');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 11, 'Ceras de parafina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 12, 'Espíritu blanco y SBP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 13, 'Otros productos del petróleo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 14, 'Carbón sub-bituminoso');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 15, 'Carbón de coque');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 16, 'Gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 17, 'Biogasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 18, 'Biodiesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 19, 'Otros biocombustibles líquidos');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 20, 'Otra biomasa sólida primaria');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 21, 'Madera/Desechos de madera');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 22, 'Carbón vegetal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (32, 23, 'Gas de vertedero');
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 46, 'No aplica', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 400 records committed...
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 61, 'Monitoreo de indicadores de desempeño energético', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 61, 'Monitoreo de operatividad de equipos y proceso productivo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 61, 'Elaboración del Plan anual de gestión de la energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 61, 'Revisión del plan de mantenimiento y confiablidad, con enfoque a la eficiencia energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 61, 'Ejecutar auditorías internas y revisar periódicamente la eficacia de las acciones correctivas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 61, 'Coordinaciòn del Sistema de gestión en las auditorías externas del sistema de gestión', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 61, 'Impartir inducción referente a la gestión de la energía a los demás trabajadores', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 61, 'Propuesta de nuevos proyectos de eficiencia energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 61, 'Control de los parámetros eléctricos y térmicos de un proceso con la finalidad de reducir los costos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 62, 'Monitoreo de indicadores de desempeño energético', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 62, 'Monitoreo de operatividad de equipos y proceso productivo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 62, 'Elaboración del Plan anual de gestión de la energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 62, 'Revisión del plan de mantenimiento y confiablidad, con enfoque a la eficiencia energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 62, 'Ejecutar auditorías internas y revisar periódicamente la eficacia de las acciones correctivas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 62, 'Coordinaciòn del Sistema de gestión en las auditorías externas del sistema de gestión', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 62, 'Impartir inducción referente a la gestión de la energía a los demás trabajadores', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 62, 'Propuesta de nuevos proyectos de eficiencia energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 62, 'Control de los parámetros eléctricos y térmicos de un proceso con la finalidad de reducir los costos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 63, 'Monitoreo de indicadores de desempeño energético', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 63, 'Monitoreo de operatividad de equipos y proceso productivo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 63, 'Elaboración del Plan anual de gestión de la energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 63, 'Revisión del plan de mantenimiento y confiablidad, con enfoque a la eficiencia energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 63, 'Ejecutar auditorías internas y revisar periódicamente la eficacia de las acciones correctivas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (6, 63, 'Coordinaciòn del Sistema de gestión en las auditorías externas del sistema de gestión', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (7, 63, 'Impartir inducción referente a la gestión de la energía a los demás trabajadores', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (8, 63, 'Propuesta de nuevos proyectos de eficiencia energética', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (9, 63, 'Control de los parámetros eléctricos y térmicos de un proceso con la finalidad de reducir los costos', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 76, 'Huella de Carbono Perú - Primera estrella', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 76, 'Huella de Carbono Perú - Segunda estrella', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 76, 'Huella de Carbono Perú - Tercera estrella', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 76, 'Huella de Carbono Perú - Cuarta estrella', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 79, 'Si', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 79, 'No', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 82, 'Programas de capacitación interna tal como seminarios, charlas técnicas, conferencias relacionadas al sector energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 82, 'Formación de grupos de interés, tal como la formación de un comité de gestión o control interno de la energía', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 82, 'Difusión de beneficios de la eficiencia energética, a través de medios de comunicación interna de la empresa tal como: boletines, trípticos, periódico mural, revistas, etc., de tal forma que se verifique una comunicación masiva interna', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 82, 'Informe de los comités de ECOEFICIENCIA de la empresa con resultados tangibles según lo establecido por el D.S N° 009-2009-MINAM o aplicación de la Guía de la Ecoeficiencia para el sector público', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 82, 'Otras actividades relacionadas', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 94, 'Directivo', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 439 records loaded
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (30, 1, 'gal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (30, 2, 'm3');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (30, 3, 'l');
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (34, 1, 'gal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (34, 2, 'm3');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (34, 3, 'l');
 
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 1, '2010');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 2, '2011');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 3, '2012');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 4, '2013');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 5, '2014');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 6, '2015');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 7, '2016');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 8, '2017');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 9, '2018');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 10, '2019');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 11, '2020');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 12, '2021');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 13, '2022');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 14, '2023');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 15, '2024');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 16, '2025');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 17, '2026');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 18, '2027');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 19, '2028');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 20, '2029');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (38, 21, '2030');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 1, 'Auto eléctrico');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 2, 'Bus eléctrico (9m)');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 3, 'Bus eléctrico (12m)');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 4, 'Bus eléctrico (18m)');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 5, 'Moto taxi');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (39, 6, 'Moto');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (41, 1, 'GNV');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (41, 2, 'GLP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (41, 3, 'Gasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (41, 4, 'Diesel');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (46, 1, 'GNV');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (46, 2, 'GLP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (46, 3, 'Gasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (46, 4, 'Diesel');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 1, 'Monitoreo de indicadores de desempeño energético');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 2, 'Monitoreo de operatividad de equipos y proceso productivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 3, 'Elaboración del Plan anual de gestión de la energía');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 4, 'Revisión del plan de mantenimiento y confiablidad, con enfoque a la eficiencia energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 5, 'Ejecutar auditorías internas y revisar periódicamente la eficacia de las acciones correctivas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 6, 'Coordinaciòn del Sistema de gestión en las auditorías externas del sistema de gestión');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 7, 'Impartir inducción referente a la gestión de la energía a los demás trabajadores');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 8, 'Propuesta de nuevos proyectos de eficiencia energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (61, 9, 'Control de los parámetros eléctricos y térmicos de un proceso con la finalidad de reducir los costos');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 1, 'Monitoreo de indicadores de desempeño energético');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 2, 'Monitoreo de operatividad de equipos y proceso productivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 3, 'Elaboración del Plan anual de gestión de la energía');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 4, 'Revisión del plan de mantenimiento y confiablidad, con enfoque a la eficiencia energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 5, 'Ejecutar auditorías internas y revisar periódicamente la eficacia de las acciones correctivas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 6, 'Coordinaciòn del Sistema de gestión en las auditorías externas del sistema de gestión');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 7, 'Impartir inducción referente a la gestión de la energía a los demás trabajadores');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 8, 'Propuesta de nuevos proyectos de eficiencia energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (62, 9, 'Control de los parámetros eléctricos y térmicos de un proceso con la finalidad de reducir los costos');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 1, 'Monitoreo de indicadores de desempeño energético');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 2, 'Monitoreo de operatividad de equipos y proceso productivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 3, 'Elaboración del Plan anual de gestión de la energía');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 4, 'Revisión del plan de mantenimiento y confiablidad, con enfoque a la eficiencia energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 5, 'Ejecutar auditorías internas y revisar periódicamente la eficacia de las acciones correctivas');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 6, 'Coordinaciòn del Sistema de gestión en las auditorías externas del sistema de gestión');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 7, 'Impartir inducción referente a la gestión de la energía a los demás trabajadores');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 8, 'Propuesta de nuevos proyectos de eficiencia energética');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (63, 9, 'Control de los parámetros eléctricos y térmicos de un proceso con la finalidad de reducir los costos');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (76, 1, 'Huella de Carbono Perú - Primera estrella');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (76, 2, 'Huella de Carbono Perú - Segunda estrella');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (76, 3, 'Huella de Carbono Perú - Tercera estrella');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (76, 4, 'Huella de Carbono Perú - Cuarta estrella');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (79, 1, 'Si');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (79, 2, 'No');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (82, 1, 'Programas de capacitación interna tal como seminarios, charlas técnicas, conferencias relacionadas al sector energía');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (82, 2, 'Formación de grupos de interés, tal como la formación de un comité de gestión o control interno de la energía');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (82, 3, 'Difusión de beneficios de la eficiencia energética, a través de medios de comunicación interna de la empresa tal como: boletines, trípticos, periódico mural, revistas, etc., de tal forma que se verifique una comunicación masiva interna');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (82, 4, 'Informe de los comités de ECOEFICIENCIA de la empresa con resultados tangibles según lo establecido por el D.S N° 009-2009-MINAM o aplicación de la Guía de la Ecoeficiencia para el sector público');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (82, 5, 'Otras actividades relacionadas');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 1, 'Directivo');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 2, 'Gerencia');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 3, 'Jefatura');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 4, 'Supervisora');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 5, 'Coordinadora');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 6, 'Especialista');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 7, 'Planificadora');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 8, 'Analista');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (94, 9, 'Asistente');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (101, 1, 'Residual');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (101, 2, 'Diesel');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (101, 3, 'Gas natural');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (101, 4, 'GLP');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (101, 5, 'Gasolina');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (101, 6, 'Biocombustible');
-
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (103, 1, 'gal');
-INSERT INTO T_MAED_PARAMETRO (ID_PARAMETRO, ID_DETALLE, NOMBRE) VALUES (103, 2, 'm3');
 
 --T_MAED_PARAMETRO_RELACION
 INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (4, 1, '3', '1');
@@ -2713,288 +3568,232 @@ INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETA
 INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (9, 15, '22|7', '33|9');
 INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (9, 16, '22|7', '33|4');
 
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 1, '109', '1');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 2, '109', '2');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 2, '109', '3');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 2, '109', '4');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 3, '109', '5');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 4, '109', '6');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 5, '109', '7');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 2, '109', '8');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 3, '109', '9');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 2, '109', '10');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 5, '109', '11');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 5, '109', '12');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 4, '109', '13');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (111, 2, '109', '14');
+
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 1, '118', '1');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 2, '118', '2');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 2, '118', '3');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 2, '118', '4');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 3, '118', '5');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 4, '118', '6');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 5, '118', '7');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 2, '118', '8');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 3, '118', '9');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 2, '118', '10');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 5, '118', '11');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 5, '118', '12');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 4, '118', '13');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (120, 2, '118', '14');
+
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 1, '127', '1');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 2, '127', '2');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 2, '127', '3');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 2, '127', '4');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 3, '127', '5');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 4, '127', '6');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 5, '127', '7');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 2, '127', '8');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 3, '127', '9');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 2, '127', '10');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 5, '127', '11');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 5, '127', '12');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 4, '127', '13');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (129, 2, '127', '14');
+
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 1, '166', '1');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 2, '166', '2');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 2, '166', '3');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 2, '166', '4');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 3, '166', '5');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 4, '166', '6');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 5, '166', '7');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 2, '166', '8');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 3, '166', '9');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 2, '166', '10');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 5, '166', '11');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 5, '166', '12');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 4, '166', '13');
+INSERT INTO T_MAED_PARAMETRO_RELACION(ID_PARAMETRO, ID_DETALLE, PARAMETROS, DETALLES) VALUES (168, 2, '166', '14');
+
 --T_MAEM_INDICADOR
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 2, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 3, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 4, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 5, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 6, 6);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 97, 7);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 7, 8);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 11, 9);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 9, 10);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 8, 11);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 99, 12);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 10, 13);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 2, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 109, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 110, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 111, 4);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 162, 6);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 163, 7);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 164, 8);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 165, 9);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 114, 10);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 1, 146, 11);
 
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 97, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 12, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 13, 3);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 14, 4);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 15, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 16, 6);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 17, 7);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 18, 8);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 38, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 115, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 116, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 117, 4);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 118, 5);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 119, 6);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 120, 7);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 121, 9);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 122, 10);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 123, 8);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 124, 11);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 126, 12);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 125, 13);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 127, 14);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 128, 15);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 129, 16);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 136, 17);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 137, 18);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 138, 19);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 130, 20);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 131, 21);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 132, 22);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 133, 23);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 134, 24);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 135, 25);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 139, 26);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 140, 27);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 141, 28);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 142, 29);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 143, 30);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 2, 144, 31);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 3, 97, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 3, 14, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 3, 98, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 38, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 39, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 41, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 158, 4);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 42, 5);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 40, 6);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 148, 7);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 147, 8);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 44, 9);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 45, 10);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 46, 11);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 152, 12);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 153, 13);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 52, 14);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 53, 15);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 54, 16);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 51, 17);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 55, 18);
 
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 2, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 19, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 20, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 21, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 22, 6);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 97, 7);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 7, 8);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 11, 9);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 9, 10);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 8, 11);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 99, 12);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 10, 13);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 23, 14);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 27, 15);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 25, 16);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 24, 17);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 100, 18);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 1, 26, 19);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 38, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 39, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 41, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 158, 4);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 42, 5);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 40, 6);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 46, 7);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 160, 8);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 161, 9);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 159, 10);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 152, 11);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 153, 12);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 52, 13);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 53, 14);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 54, 15);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 51, 16);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 55, 17);
 
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 2, 97, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 2, 28, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 2, 29, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 2, 30, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 2, 31, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 2, 32, 6);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 2, 33, 7);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 2, 34, 8);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 2, 35, 9);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 2, 36, 10);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 1, 2, 37, 11);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 1, 149, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 1, 65, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 1, 66, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 1, 67, 4);
 
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 2, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 19, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 20, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 21, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 22, 6);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 97, 7);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 7, 8);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 11, 9);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 9, 10);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 8, 11);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 99, 12);
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 10, 13);
-/*INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 23, 13);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 24, 14);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 27, 15);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 25, 16);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 1, 26, 17);*/
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 2, 68, 1);
 
-/*INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 97, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 28, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 29, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 30, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 31, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 32, 6);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 33, 7);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 34, 8);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 35, 9);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 36, 10);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 37, 11);*/
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 101, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 102, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 103, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 104, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 105, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 106, 6);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 2, 107, 7);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 1, 149, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 1, 65, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 1, 66, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 1, 67, 4);
 
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 3, 96, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 3, 97, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 3, 14, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (2, 2, 3, 108, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 2, 68, 1);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 1, 1, 38, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 1, 1, 39, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 1, 1, 41, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 1, 1, 42, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 1, 1, 43, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 1, 1, 45, 6);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 1, 1, 51, 7);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 1, 1, 54, 8);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 1, 1, 55, 9);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 1, 149, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 1, 65, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 1, 66, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 1, 67, 4);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 2, 1, 38, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 2, 1, 39, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 2, 1, 40, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 2, 1, 41, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 2, 1, 42, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 2, 1, 43, 6);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 2, 1, 44, 7);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 2, 1, 45, 8);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 2, 1, 46, 9);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 2, 1, 51, 10);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 2, 1, 54, 11);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 2, 1, 55, 12);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 3, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 4, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 5, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 6, 4);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 7, 5);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 8, 6);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 9, 7);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 10, 8);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 11, 9);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 3, 1, 38, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 3, 1, 39, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 3, 1, 41, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 3, 1, 42, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 3, 1, 47, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 3, 1, 51, 6);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 3, 1, 54, 7);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 3, 1, 55, 8);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 3, 68, 1);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 4, 1, 38, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 4, 1, 39, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 4, 1, 41, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 4, 1, 42, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 4, 1, 47, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 4, 1, 46, 6);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 4, 1, 48, 7);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 4, 1, 51, 8);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 4, 1, 54, 9);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (3, 4, 1, 55, 10);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 1, 71, 1);
+--INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 1, 72, 2);
+--INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 1, 73, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 1, 74, 4);
 
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 1, 2, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 1, 3, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 1, 4, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 1, 5, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 1, 6, 6);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 2, 166, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 2, 167, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 2, 168, 3);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 2, 64, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 2, 65, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 2, 66, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 2, 67, 4);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 3, 75, 1);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 1, 3, 68, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 2, 1, 71, 1);
+--INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 2, 1, 72, 2);
+--INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 2, 1, 73, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 2, 1, 74, 4);
 
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 1, 2, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 1, 3, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 1, 4, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 1, 5, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 1, 6, 6);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 2, 2, 166, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 2, 2, 167, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 2, 2, 168, 3);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 2, 64, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 2, 65, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 2, 66, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 2, 67, 4);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 2, 3, 75, 1);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 2, 3, 68, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 3, 1, 71, 1);
+--INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 3, 1, 72, 2);
+--INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 3, 1, 73, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 3, 1, 74, 4);
 
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 1, 2, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 1, 3, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 1, 4, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 1, 5, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 1, 6, 6);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 3, 2, 166, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 3, 2, 167, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 3, 2, 168, 3);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 64, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 65, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 66, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 2, 67, 4);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 3, 3, 75, 1);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 3, 3, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 3, 4, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 3, 5, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 3, 6, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 3, 7, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 3, 8, 6);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 3, 9, 7);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 3, 10, 8);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 3, 11, 9);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 1, 145, 1);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (4, 3, 4, 68, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 2, 150, 1);
 
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 1, 2, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 1, 3, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 1, 4, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 1, 5, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 1, 6, 6);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 1, 60, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 1, 94, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 1, 61, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 1, 151, 4);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 2, 69, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 2, 70, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 2, 1, 60, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 2, 1, 94, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 2, 1, 61, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 2, 1, 151, 4);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 3, 71, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 3, 72, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 3, 73, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 3, 74, 4);
-
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 1, 4, 75, 1);
-
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 1, 2, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 1, 3, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 1, 4, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 1, 5, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 1, 6, 6);
-
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 2, 69, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 2, 70, 2);
-
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 3, 71, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 3, 72, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 3, 73, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 3, 74, 4);
-
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 2, 4, 75, 1);
-
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 1, 2, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 1, 3, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 1, 4, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 1, 5, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 1, 6, 6);
-
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 2, 69, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 2, 70, 2);
-
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 3, 71, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 3, 72, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 3, 73, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 3, 74, 4);
-
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (5, 3, 4, 75, 1);
-
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 1, 2, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 1, 3, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 1, 4, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 1, 5, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 1, 6, 6);
-
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 2, 82, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 2, 83, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 2, 84, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 2, 85, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 2, 86, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (6, 1, 2, 87, 5);
-
---INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 1, 2, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 1, 3, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 1, 4, 4);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 1, 5, 5);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 1, 6, 6);
-
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 2, 56, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 2, 57, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 2, 58, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 2, 59, 4);
-
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 3, 60, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 3, 61, 2);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 3, 62, 3);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 1, 3, 63, 4);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 3, 1, 60, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 3, 1, 94, 2);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 3, 1, 61, 3);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (7, 3, 1, 151, 4);
 
 --INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 1, 1, 1);
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 1, 2, 2);
+/*INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 1, 2, 2);
 INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 1, 3, 3);
 INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 1, 4, 4);
 INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 1, 5, 5);
@@ -3009,290 +3808,196 @@ INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO,
 INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 3, 93, 1);
 INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 3, 94, 2);
 
-INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 4, 95, 1);
+INSERT INTO T_MAEM_INDICADOR (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ORDEN) VALUES (8, 1, 4, 95, 1);*/
 
 --T_MAEM_INDICADOR_FORM
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 1, 1, '');
 INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 2, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 3, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 4, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 5, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 6, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 97, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 7, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 11, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 9, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 8, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 99, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 10, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 109, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 110, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 111, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 162, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 163, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 164, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 165, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 114, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 146, 1, '1');
 
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 97, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 12, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 13, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 14, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 15, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 16, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 17, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 18, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 2, 2, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 109, 2, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 110, 2, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 111, 2, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 162, 2, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 163, 2, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 164, 2, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 165, 2, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 114, 2, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 146, 2, '2');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 3, 97, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 3, 14, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 3, 98, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 2, 3, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 109, 3, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 110, 3, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 111, 3, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 162, 3, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 163, 3, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 164, 3, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 165, 3, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 114, 3, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 1, 146, 3, '3');
 
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 1, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 2, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 19, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 20, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 21, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 22, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 97, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 7, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 11, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 9, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 8, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 99, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 10, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 23, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 27, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 25, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 24, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 100, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 26, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 38, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 115, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 116, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 117, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 118, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 119, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 120, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 121, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 122, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 123, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 124, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 126, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 125, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 127, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 128, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 129, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 136, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 137, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 138, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 130, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 131, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 132, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 133, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 134, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 135, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 139, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 140, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 141, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 142, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 143, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (1, 1, 2, 144, 1, '');
 
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 2, 97, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 2, 28, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 2, 29, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 2, 30, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 2, 31, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 2, 32, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 2, 33, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 2, 34, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 2, 35, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 2, 36, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 2, 37, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 38, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 39, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 41, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 158, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 42, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 40, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 148, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 147, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 44, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 45, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 46, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 152, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 153, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 52, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 53, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 54, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 51, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 1, 1, 55, 1, '');
 
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 1, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 2, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 19, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 20, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 21, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 22, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 97, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 7, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 11, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 9, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 8, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 99, 1, '');
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 10, 1, '');
-/*INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 23, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 24, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 27, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 25, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 26, 1, '');*/
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 38, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 39, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 41, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 158, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 42, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 40, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 46, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 160, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 161, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 159, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 152, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 153, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 52, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 53, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 54, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 51, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 1, 55, 1, '');
 
-/*INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 97, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 28, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 29, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 30, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 31, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 32, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 33, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 34, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 35, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 36, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 37, 1, '');*/
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 101, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 102, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 103, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 104, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 105, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 106, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 2, 107, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 1, 149, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 1, 65, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 1, 66, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 1, 67, 1, '');
 
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 3, 96, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 3, 97, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 3, 14, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (2, 2, 3, 108, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 2, 68, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 1, 1, 38, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 1, 1, 39, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 1, 1, 41, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 1, 1, 42, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 1, 1, 43, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 1, 1, 45, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 1, 1, 51, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 1, 1, 54, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 1, 1, 55, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 1, 149, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 1, 65, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 1, 66, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 1, 67, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 2, 1, 38, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 2, 1, 39, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 2, 1, 40, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 2, 1, 41, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 2, 1, 42, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 2, 1, 43, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 2, 1, 44, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 2, 1, 45, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 2, 1, 46, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 2, 1, 51, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 2, 1, 54, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 2, 1, 55, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 2, 68, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 3, 1, 38, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 3, 1, 39, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 3, 1, 41, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 3, 1, 42, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 3, 1, 47, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 3, 1, 51, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 3, 1, 54, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 3, 1, 55, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 1, 149, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 1, 65, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 1, 66, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 1, 67, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 4, 1, 38, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 4, 1, 39, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 4, 1, 41, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 4, 1, 42, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 4, 1, 47, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 4, 1, 46, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 4, 1, 48, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 4, 1, 51, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 4, 1, 54, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (3, 4, 1, 55, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 3, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 4, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 5, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 6, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 7, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 8, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 9, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 10, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 11, 1, '');
 
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 1, 1, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 1, 2, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 1, 3, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 1, 4, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 1, 5, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 1, 6, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 3, 68, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 2, 64, 1, 'Implementación de la norma ISO 50001 - sistema de gestión de la energía');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 2, 65, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 2, 66, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 2, 67, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 1, 71, 1, '');
+--INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 1, 72, 1, '');
+--INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 1, 73, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 1, 74, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 1, 3, 68, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 2, 166, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 2, 167, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 2, 168, 1, '');
 
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 1, 1, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 1, 2, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 1, 3, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 1, 4, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 1, 5, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 1, 6, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 3, 75, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 2, 64, 1, 'Sistema formal para reportes de los resultados del monitoreo de indicadores de desempeño energético');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 2, 65, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 2, 66, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 2, 67, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 2, 1, 71, 1, '');
+--INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 2, 1, 72, 1, '');
+--INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 2, 1, 73, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 2, 1, 74, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 2, 3, 68, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 2, 2, 166, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 2, 2, 167, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 2, 2, 168, 1, '');
 
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 1, 1, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 1, 2, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 1, 3, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 1, 4, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 1, 5, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 1, 6, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 2, 3, 75, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 64, 1, 'Monitoreo de los indicadores de desempeño energético');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 65, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 66, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 2, 67, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 3, 1, 71, 1, '');
+--INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 3, 1, 72, 1, '');
+--INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 3, 1, 73, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 3, 1, 74, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 3, 3, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 3, 4, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 3, 5, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 3, 6, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 3, 7, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 3, 8, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 3, 9, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 3, 10, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 3, 11, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 3, 2, 166, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 3, 2, 167, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 3, 2, 168, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (4, 3, 4, 68, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 3, 3, 75, 1, '');
 
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 1, 1, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 1, 2, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 1, 3, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 1, 4, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 1, 5, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 1, 6, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 1, 145, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 2, 69, 1, 'Auditoría energética nivel I');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 2, 70, 1, 'Evalúa el costo y la eficiencia energética de una entidad analizando las facturas de energía y realizando una breve encuesta in situ del edificio. Un análisis de energía de Nivel I identificará y proporcionará un análisis de ahorro y costo de medidas de bajo costo/sin costo. También proporcionará una lista de posibles mejoras de capital que merecen una mayor consideración, y un juicio inicial de los posibles costos y ahorros.');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 2, 150, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 3, 71, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 3, 72, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 3, 73, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 3, 74, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 1, 60, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 1, 94, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 1, 61, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 1, 151, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 1, 4, 75, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 2, 1, 60, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 2, 1, 94, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 2, 1, 61, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 2, 1, 151, 1, '');
 
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 1, 1, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 1, 2, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 1, 3, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 1, 4, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 1, 5, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 1, 6, 1, '');
-
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 2, 69, 1, 'Auditoría energética nivel II');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 2, 70, 1, 'Esto incluye una encuesta más detallada de la entidad y análisis de energía. Se proporciona un desglose del uso de energía dentro del edificio. Un análisis de energía de Nivel II identificará y proporcionará el análisis de ahorro y costo de todas las medidas prácticas que cumplan con las restricciones y criterios económicos del propietario, junto con una discusión sobre cualquier cambio en los procedimientos de operación y mantenimiento. También puede proporcionar una lista de posibles mejoras intensivas en capital que requieren una recopilación de datos y un análisis de ingeniería más exhaustivos, y un juicio sobre los posibles costos y ahorros.');
-
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 3, 71, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 3, 72, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 3, 73, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 3, 74, 1, '');
-
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 2, 4, 75, 1, '');
-
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 1, 1, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 1, 2, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 1, 3, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 1, 4, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 1, 5, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 1, 6, 1, '');
-
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 2, 69, 1, 'Auditoría energética nivel III');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 2, 70, 1, 'Este nivel de análisis de ingeniería se enfoca en proyectos potenciales intensivos en capital identificados durante el análisis de Nivel II e involucra una recolección de datos de campo más detallada, así como un análisis de ingeniería más riguroso. Proporciona cálculos detallados de costos y ahorros del proyecto con un alto nivel de confianza suficiente para las principales decisiones de inversión de capital.');
-
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 3, 71, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 3, 72, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 3, 73, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 3, 74, 1, '');
-
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (5, 3, 4, 75, 1, '');
-
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 1, 1, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 1, 2, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 1, 3, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 1, 4, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 1, 5, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 1, 6, 1, '');
-
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 2, 82, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 2, 83, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 2, 84, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 2, 85, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 2, 86, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (6, 1, 2, 87, 1, '');
-
---INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 1, 1, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 1, 2, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 1, 3, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 1, 4, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 1, 5, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 1, 6, 1, '');
-
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 2, 56, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 2, 57, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 2, 58, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 2, 59, 1, '');
-
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 3, 60, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 3, 61, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 3, 62, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 1, 3, 63, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 3, 1, 60, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 3, 1, 94, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 3, 1, 61, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (7, 3, 1, 151, 1, '');
 
 --INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 1, 1, 1, '');
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 1, 2, 1, '');
+/*INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 1, 2, 1, '');
 INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 1, 3, 1, '');
 INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 1, 4, 1, '');
 INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 1, 5, 1, '');
@@ -3307,63 +4012,70 @@ INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAM
 INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 3, 93, 1, '');
 INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 3, 94, 1, '');
 
-INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 4, 95, 1, '');
+INSERT INTO T_MAEM_INDICADOR_FORM (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, ID_INDICADOR, VALOR) VALUES (8, 1, 4, 95, 1, '');*/
 
 -----------------------------------------------------------------------------------
 
 --T_GENM_DOCUMENTO
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (1, 1, 'Copia de facturas de energía eléctrica de los últimos 12 meses, en el periodo de la mejora.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (1, 2, 'Ficha técnica de los equipos adquiridos por la empresa o entidad.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (1, 3, 'Memoria descriptiva de la implementación de mejora.', 'ESTRUCTURA: OBJETIVO, ALCANCE, DESARROLLO DE INGENIERÍA, NORMAS APLICABLES, UBICACIÓN DEL PROYECTO, ESPECIFICACIONES TÉCNICAS, MEMORIA DE CÁLCULO Y CONCLUSIONES.', '0');
---INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (1, 4, 'Otros documentos.', '', '0');
+prompt Loading T_GENM_DOCUMENTO...
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Copia de facturas de energía eléctrica de los últimos 12 meses, en el periodo de la mejora.', null, '1', 1, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Ficha técnica de los equipos adquiridos por la empresa o entidad.', null, '1', 1, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Memoria descriptiva de la implementación de mejora.', 'ESTRUCTURA: OBJETIVO, ALCANCE, DESARROLLO DE INGENIERÍA, NORMAS APLICABLES, UBICACIÓN DEL PROYECTO, ESPECIFICACIONES TÉCNICAS, MEMORIA DE CÁLCULO Y CONCLUSIONES.', '1', 1, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 'Otros documentos.', null, '0', 1, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Tarjeta de propiedad de los autos', null, '1', 2, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Ficha técnica del cambio', null, '1', 2, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Otros documentos.', null, '0', 2, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Copia del manual de la entidad sobre el cumplimiento del Sistema de Gestión ISO 50001 refrendada por un Ingeniero responsable de la actividad o ingeniero externo calificado, colegiado y habilitado tal como: Ingeniero en Energía, Ingeniero Mecánico Eléctrico, Ingeniero Mecánico, Ingeniero Electricista o Ingeniero Químico o afines.', 'ESTRUCTURA MANUAL: Objeto y campo de aplicación, términos y definiciones, responsabilidad de la dirección, política energética, planificación energética, implementación y operación, verificación y revisión por la dirección.', '1', 4, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Informe validado por un Ingeniero responsable de la actividad.', 'ESTRUCTURA: Resumen ejecutivo, indicadores de desempeño energéticos monitoreados Y verificados, descripción del sistema formal (formato de fichas, plataforma u otra metodología) para reporte de resultados del monitoreo de indicadores de desempeño, mejoramiento de indicadores de desempeño energético y data estadística de una antigüedad de 12 meses de indicadores de desempeño energético.', '1', 4, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Informe elaborado por el profesional responsable de la actividad y refrendado por el representante legal.', 'ESTRUCTURA: Resumen ejecutivo, indicadores de desempeño energéticos monitoreados, reporte estadístico de una antigüedad de 12 meses de indicadores de desempeño energético y documento de reporte de línea base energética.', '1', 4, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 'Otros documentos.', null, '0', 4, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Documentación refrendada por el representante legal de la entidad.', 'ESTRUCTURA: Resumen ejecutivo, objetivo, reportes de facturas, inventario energético, indicadores de desempeño obtenidos.', '1', 6, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Informe de auditoria realizado por un Ingeniero responsable de la entidad o profesional externo calificado, colegiado y habilitado tal como: Ingeniero en Energía, Ingeniero Mecánico Eléctrico, Ingeniero Mecánico, Ingeniero Electricista o Ingeniero Químico o afines.', 'ESTRUCTURA: Resumen ejecutivo, objetivo, descripción de procesos, cálculos justificados, instrumentos usados en la medición, propuesta de medidas de energía sostenible y registro fotográfico.', '1', 6, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Documentación refrendada por un Ingeniero responsable de la entidad o profesional externo calificado, colegiado y habilitado tal como: Ingeniero en Energía, Ingeniero Mecánico Eléctrico, Ingeniero Mecánico, Ingeniero Electricista o Ingeniero Químico o afines.', 'ESTRUCTURA: Resumen ejecutivo, objetivo, descripción de procesos, cálculos justificados, instrumentos usados en la medición, propuesta de medidas de energía sostenible, propuesta de cálculos económicos, apertura de partida de eficiencia energética en el presupuesto de la empresa o fuentes de financiamiento y registro fotográfico.', '1', 6, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 'Otros documentos.', null, '0', 6, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Declaración jurada simple de cumplimiento del criterio firmada por el titular de la empresa.', null, '1', 5, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Documentos con las actividades relacionadas a la gestión de la energía para los trabajadores de la entidad.', null, '1', 5, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Documentos con los registros de asistencia de las actividades relacionadas a la gestión de la energía.', null, '1', 5, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (4, 'Registro fotográfico de la actividad relacionada a la gestión de la energía.', null, '0', 5, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (5, 'Otros documentos.', null, '0', 5, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 'Descripción de las funciones que realiza el trabajador incorporado relacionado a la gestión de la energía, refrendado por el representante legal.', null, '1', 7, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 'Registro de planilla del personal femenino y/o contrato (mínimo 6 meses de antigüedad en el mismo cargo laboral )', 'Mínimo 6 meses de antigüedad en el mismo cargo laboral', '1', 7, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('04-02-2021 16:35:55', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_GENM_DOCUMENTO (id_documento, nombre, descripcion, obligatorio, id_criterio, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (3, 'Otros documentos.', null, '0', 7, '1', null, to_date('04-02-2021 16:07:54', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+commit;
+prompt 23 records loaded
 
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (2, 1, 'Copia de facturas de energía eléctrica de los últimos 12 meses, en el periodo de la mejora.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (2, 2, 'Ficha técnica de los equipos adquiridos por la empresa o entidad.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (2, 3, 'Memoria descriptiva de la implementación de mejora.', 'ESTRUCTURA: OBJETIVO, ALCANCE, DESARROLLO DE INGENIERÍA, NORMAS APLICABLES, UBICACIÓN DEL PROYECTO, ESPECIFICACIONES TÉCNICAS, MEMORIA DE CÁLCULO Y CONCLUSIONES.', '0');
---INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (2, 4, 'Otros documentos.', '', '0');
 
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (3, 1, 'Copia de facturas de energía eléctrica de los últimos 12 meses, en el periodo de la mejora.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (3, 2, 'Ficha técnica de los equipos adquiridos por la empresa o entidad.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (3, 3, 'Memoria descriptiva de la implementación de mejora.', 'ESTRUCTURA: OBJETIVO, ALCANCE, DESARROLLO DE INGENIERÍA, NORMAS APLICABLES, UBICACIÓN DEL PROYECTO, ESPECIFICACIONES TÉCNICAS, MEMORIA DE CÁLCULO Y CONCLUSIONES.', '0');
---INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (3, 4, 'Otros documentos.', '', '0');
-
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (4, 1, 'Copia del manual de la entidad sobre el cumplimiento del Sistema de Gestión ISO 50001 refrendada por un Ingeniero responsable de la actividad o ingeniero externo calificado, colegiado y habilitado tal como: Ingeniero en Energía, Ingeniero Mecánico Eléctrico, Ingeniero Mecánico, Ingeniero Electricista o Ingeniero Químico o afines.', 'ESTRUCTURA MANUAL: Objeto y campo de aplicación, términos y definiciones, responsabilidad de la dirección, política energética, planificación energética, implementación y operación, verificación y revisión por la dirección.', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (4, 2, 'Informe validado por un Ingeniero responsable de la actividad.', 'ESTRUCTURA: Resumen ejecutivo, indicadores de desempeño energéticos monitoreados Y verificados, descripción del sistema formal (formato de fichas, plataforma u otra metodología) para reporte de resultados del monitoreo de indicadores de desempeño, mejoramiento de indicadores de desempeño energético y data estadística de una antigüedad de 12 meses de indicadores de desempeño energético.', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (4, 3, 'Informe elaborado por el profesional responsable de la actividad y refrendado por el representante legal.', 'ESTRUCTURA: Resumen ejecutivo, indicadores de desempeño energéticos monitoreados, reporte estadístico de una antigüedad de 12 meses de indicadores de desempeño energético y documento de reporte de línea base energética.', '0');
---INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (4, 4, 'Otros documentos.', '', '0');
-
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (5, 1, 'Documentación refrendada por el representante legal de la entidad.', 'ESTRUCTURA: Resumen ejecutivo, objetivo, reportes de facturas, inventario energético, indicadores de desempeño obtenidos.', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (5, 2, 'Documentación refrendada por un Ingeniero responsable de la entidad o profesional externo calificado, colegiado y habilitado tal como: Ingeniero en Energía, Ingeniero Mecánico Eléctrico, Ingeniero Mecánico, Ingeniero Electricista o Ingeniero Químico o afines.', 'ESTRUCTURA: Resumen ejecutivo, objetivo, descripción de procesos, cálculos justificados, instrumentos usados en la medición, propuesta de medidas de energía sostenible y registro fotográfico.', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (5, 3, 'Documentación refrendada por un Ingeniero responsable de la entidad o profesional externo calificado, colegiado y habilitado tal como: Ingeniero en Energía, Ingeniero Mecánico Eléctrico, Ingeniero Mecánico, Ingeniero Electricista o Ingeniero Químico o afines.', 'ESTRUCTURA: Resumen ejecutivo, objetivo, descripción de procesos, cálculos justificados, instrumentos usados en la medición, propuesta de medidas de energía sostenible, propuesta de cálculos económicos, apertura de partida de eficiencia energética en el presupuesto de la empresa o fuentes de financiamiento y registro fotográfico.', '0');
---INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (5, 4, 'Otros documentos.', '', '0');
-
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (6, 1, 'Declaración jurada simple de cumplimiento del criterio firmada por el titular de la empresa.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (6, 2, 'Documentos con las actividades relacionadas a la gestión de la energía para los trabajadores de la entidad.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (6, 3, 'Documentos con los registros de asistencia de las actividades relacionadas a la gestión de la energía.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (6, 4, 'Registro fotográfico de la actividad relacionada a la gestión de la energía.', '', '0');
---INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (6, 5, 'Otros documentos.', '', '0');
-
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (7, 1, 'Descripción de las funciones que realiza el trabajador incorporado relacionado a la gestión de la energía, refrendado por el representante legal.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (7, 2, 'Copia del registro de planilla del trabajador y/o contrato.', 'Mínimo 6 meses de antigüedad en el mismo cargo laboral', '0');
---INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (7, 3, 'Otros documentos.', '', '0');
-
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 1, 'Documento con la descripción de las funciones que realiza el trabajador incorporado relacionado a la gestión de la energía, refrendado por el representante legal.', '', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 2, 'Registro de planilla del personal femenino y/o contrato.', 'Mínimo 6 meses de antigüedad en el mismo cargo laboral', '0');
-INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 3, 'Reporte del número de trabajadores de la empresa, refrendado por el titular de la empresa o entidad y validado por reporte de Ministerio de Trabajo.', 'Indicar el porcentaje de mujeres y hombres', '0');
---INSERT INTO T_GENM_DOCUMENTO (ID_CRITERIO, ID_DOCUMENTO, NOMBRE, DESCRIPCION, OBLIGATORIO) VALUES (8, 4, 'Otros documentos.', '', '0');
-----------------------
 
 --T_MAEM_FORMULA_PARAMETRO
-INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,13,'=','[P12]*[C0.4119]','[P12]|*|[C0.4119]');
---INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,16,'=','[P12]-[P15]','[P12]|-|[P15]');
+/*INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,13,'=','[P12]*[C0.4119]','[P12]|*|[C0.4119]');
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,17,'=','[P16]*[C0.4119]/[C1000]','[P16]|*|[C0.4119]|/|[C1000]');
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,18,'=','[P16]/[P12]*[C100]','[P16]|/|[P12]|*|[C100]');
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,1,2,35,'=','([F3]*[P29])-([F4]*[P33])','(|[F3]|*|[P29]|)|-|(|[F4]|*|[P33]|)');
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,1,2,36,'=','(([F3]*[P29]*[F1])-([F4]*[P33]*[F2]))/[C1000]','(|(|[F3]|*|[P29]|*|[F1]|)|-|(|[F4]|*|[P33]|*|[F2]|)|)|/|[C1000]');
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,1,2,37,'=','([F4]*[P33])/([F3]*[P29])*[C100]','(|[F4]|*|[P33]|)|/|(|[F3]|*|[P29]|)|*|[C100]');
---INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,2,35,'=','([F3]*[P29])-([F4]*[P33])','(|[F3]|*|[P29]|)|-|(|[F4]|*|[P33]|)');
---INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,2,36,'=','(([F3]*[P29]*[F1])-([F4]*[P33]*[F2]))/[C1000]','(|(|[F3]|*|[P29]|*|[F1]|)|-|(|[F4]|*|[P33]|*|[F2]|)|)|/|[C1000]');
---INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,2,37,'=','([F4]*[P33])/([F3]*[P29])*[C100]','(|[F4]|*|[P33]|)|/|(|[F3]|*|[P29]|)|*|[C100]');
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,2,104,'=','[F15]*[P102]','[F15]|*|[P102]');
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,2,106,'=','[F16]*[P105]/[C1000]','[F16]|*|[P105]|/|[C1000]');
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,2,107,'=','[P105]/[P104]*[C100]','[P105]|/|[P104]|*|[C100]');
@@ -3378,9 +4090,44 @@ INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PA
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (3,3,1,55,'=','([C1]-([P47]*[C1000]*[C0.0036]/[C1000])/([P47]*[C1000]/[F9]/[F13]/[C1000]))*[C100]','(|[C1]|-|(|[P47]|*|[C1000]|*|[C0.0036]|/|[C1000]|)|/|(|[P47]|*|[C1000]|/|[F9]|/|[F13]|/|[C1000]|)|)|*|[C100]');
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (3,4,1,51,'=','([P47]*[C1000]/[F9]*[F7]/[C1000000]+([P48]*[F12]*[F7]/[C1000000]))-(([P47]/([C1]-[F6])*[F5])+[P48]*[F12]*[F8]/[C1000000])','(|[P47]|*|[C1000]|/|[F9]|*|[F7]|/|[C1000000]|+|(|[P48]|*|[F12]|*|[F7]|/|[C1000000]|)|)|-|(|(|[P47]|/|(|[C1]|-|[F6]|)|*|[F5]|)|+|[P48]|*|[F12]|*|[F8]|/|[C1000000]|)');
 INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (3,4,1,54,'=','([P47]*[C1000]/[F9]/[F13]/[C1000]+[P48]*[F12]/[F13]/[C1000])-([P47]*[C1000]*[C0.0036]/[C1000]+[P48]*[F12]/[F14]/[C1000])','(|[P47]|*|[C1000]|/|[F9]|/|[F13]|/|[C1000]|+|[P48]|*|[F12]|/|[F13]|/|[C1000]|)|-|(|[P47]|*|[C1000]|*|[C0.0036]|/|[C1000]|+|[P48]|*|[F12]|/|[F14]|/|[C1000]|)');
-INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (3,4,1,55,'=','([C1]-([P47]*[C1000]*[C0.0036]/[C1000]+[P48]*[F12]/[F14]/[C1000])/([P47]*[C1000]/[F9]/[F13]/[C1000]+[P48]*[F12]/[F13]/[C1000]))*[C100]','(|[C1]|-|(|[P47]|*|[C1000]|*|[C0.0036]|/|[C1000]|+|[P48]|*|[F12]|/|[F14]|/|[C1000]|)|/|(|[P47]|*|[C1000]|/|[F9]|/|[F13]|/|[C1000]|+|[P48]|*|[F12]|/|[F13]|/|[C1000]|)|)|*|[C100]');
-INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (8,1,2,92,'=','[P91]/[P90]*[C100]','[P91]|/|[P90]|*|[C100]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (3,4,1,55,'=','([C1]-([P47]*[C1000]*[C0.0036]/[C1000]+[P48]*[F12]/[F14]/[C1000])/([P47]*[C1000]/[F9]/[F13]/[C1000]+[P48]*[F12]/[F13]/[C1000]))*[C100]','(|[C1]|-|(|[P47]|*|[C1000]|*|[C0.0036]|/|[C1000]|+|[P48]|*|[F12]|/|[F14]|/|[C1000]|)|/|(|[P47]|*|[C1000]|/|[F9]|/|[F13]|/|[C1000]|+|[P48]|*|[F12]|/|[F13]|/|[C1000]|)|)|*|[C100]');*/
+--INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (8,1,2,92,'=','[P91]/[P90]*[C100]','[P91]|/|[P90]|*|[C100]');
 
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,123,'=','[P119]*[F20]*[P117]','[P119]|*|[F20]|*|[P117]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,132,'=','[P128]*[F21]*[P125]','[P128]|*|[F21]|*|[P125]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,121,'=','[P119]/(([C1]-[F6])*[C1000])*[F28]*[P117]*[F29]','[P119]|/|(|(|[C1]|-|[F6]|)|*|[C1000]|)|*|[F28]|*|[P117]|*|[F29]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,122,'=','[P123]*([F22]+[F23]*[C28]+[F24]*[C265])/[C1000]','[P123]|*|(|[F22]|+|[F23]|*|[C28]|+|[F24]|*|[C265]|)|/|[C1000]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,124,'=','[P121]+[P122]','[P121]|+|[P122]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,130,'=','[P128]/(([C1]-[F6])*[C1000])*[F28]*[P125]*[F30]','[P128]|/|(|(|[C1]|-|[F6]|)|*|[C1000]|)|*|[F28]|*|[P125]|*|[F30]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,131,'=','[P132]*([F25]+[F26]*[C28]+[F27]*[C265])/[C1000]','[P132]|*|(|[F25]|+|[F26]|*|[C28]|+|[F27]|*|[C265]|)|/|[C1000]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,133,'=','[P130]+[P131]','[P130]|+|[P131]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,134,'=','[P123]-[P132]','[P123]|-|[P132]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,135,'=','[P124]-[P133]','[P124]|-|[P133]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,139,'=','[P134]*[F17]','[P134]|*|[F17]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,140,'=','[P135]*[F17]','[P135]|*|[F17]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,141,'=','[P134]*[F18]','[P134]|*|[F18]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,142,'=','[P135]*[F18]','[P135]|*|[F18]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,143,'=','[P134]*[F19]','[P134]|*|[F19]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,2,144,'=','[P135]*[F19]','[P135]|*|[F19]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,1,114,'=','[F31]*[P110]','[F31]|*|[P110');
+
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,1,1,152,'=','([P40]*[F34]/[C1000000])*[F32]+([P40]*[C0.9]*[F34]/[C1000000]+[P40]*[C0.1]*[F36]/[C1000000])*[F33]','(|[P40]|*|[F34]|/|[C1000000]|)|*|[F32]|+|(|[P40]|*|[C0.9]|*|[F34]|/|[C1000000]|+|[P40]|*|[C0.1]|*|[F36]|/|[C1000000]|)|*|[F33]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,1,1,153,'=','[P147]*[P45]*[F5]*[C1000]/([C1]-[F6])/[C1000000]+([P44]*[F35]/[C1000000])*[F33]','[P147]|*|[F9]|*|[F5]|*|[C1000]|/|(|[C1]|-|[F6]|)|/|[C1000000]|+|(|[P44]|*|[F35]|/|[C1000000]|)|*|[F33]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,1,1,51,'=','[P152]-[P153]','[P152]|-|[P153]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,1,1,52,'=','([P40]/[F38])*[F32]+([P40]*[C0.9]/[F38]+[P40]*[C0.1]/[F39])*[F33]','(|[P40]|/|[F38]|)|*|[F32]|+|(|[P40]|*|[C0.9]|/|[F38]|+|[P40]|*|[C0.1]|/|[F39]|)|*|[F33]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,1,1,53,'=','[P147]*[P45]*[C0.0036]+([P44]/[F40])*[F33]','[P147]|*|[F9]|*|[C0.0036]|+|(|[P44]|/|[F40]|)|*|[F33]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,1,1,54,'=','[P52]-[P53]','[P52]|-|[P53]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,1,1,55,'=','([C1]-[P53]/[P52])*[C100]','(|[C1]|-|[P53]|/|[P52]|)*|[C100]');
+
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,1,152,'=','([P40]*[F34]/[C1000000])*[F32]+([P40]*[C0.9]*[F34]/[C1000000]+[P40]*[C0.1]*[F36]/[C1000000])*[F33]','(|[P40]|*|[F34]|/|[C1000000]|)|*|[F32]|+|(|[P40]|*|[C0.9]|*|[F34]|/|[C1000000]|+|[P40]|*|[C0.1]|*|[F36]|/|[C1000000]|)|*|[F33]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,1,153,'=','[P160]*[F35]/[C1000000]+([P161]*[F41]/[C1000000])*[F33]','[P160]|*|[F35]|/|[C1000000]|+|(|[P161]|*|[F41]|/|[C1000000]|)|*|[F33]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,1,51,'=','[P152]-[P153]','[P152]|-|[P153]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,1,52,'=','([P40]/[F38])*[F32]+([P40]*[C0.9]/[F38]+[P40]*[C0.1]/[F39])*[F33]','(|[P40]|/|[F38]|)|*|[F32]|+|(|[P40]|*|[C0.9]|/|[F38]|+|[P40]|*|[C0.1]|/|[F39]|)|*|[F33]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,1,53,'=','[P160]/[F40]+([P161]/[F42])*[F33]','[P160]|/|[F40]|+|(|[P161]|/|[F42]|)|*|[F33]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,1,54,'=','[P52]-[P53]','[P52]|-|[P53]');
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (2,2,1,55,'=','([C1]-[P53]/[P52])*[C100]','(|[C1]|-|[P53]|/|[P52]|)*|[C100]');
+
+INSERT INTO T_MAEM_FORMULA_PARAMETRO (ID_CRITERIO, ID_CASO, ID_COMPONENTE, ID_PARAMETRO, COMPORTAMIENTO, FORMULA, FORMULA_ARMADO) VALUES (1,1,1,164,'=','[P110]/[P162]','[P110]|/|[P162]');
 
 --T_MAEM_FACTOR
 INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (1, 'FACTOR EMISIÓN', 'FACTOR EMISIÓN BAU');
@@ -3399,6 +4146,32 @@ INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (13, 'FACTOR 
 INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (14, 'FACTOR ENERGÍA', 'FACTOR ENERGÍA PROYECTO');
 INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (15, 'FACTOR DE VALOR CALÓRICO', 'FACTOR DE VALOR CALÓRICO');
 INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (16, 'FACTOR DE EMISIÓN IPPC', 'FACTOR DE EMISIÓN IPPC');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (17, 'FACTOR VAL ENERGÍA ELÉCTRICA', 'FACTOR VAL ENERGÍA ELÉCTRICA');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (18, 'FACTOR VAL ENERGÍA TÉRMICA', 'FACTOR VAL ENERGÍA TÉRMICA');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (19, 'FACTOR VAL CAMBIO MATRIZ', 'FACTOR VAL CAMBIO MATRIZ');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (20, 'FACTOR VCN/EQUIVALENTE BAU', 'FACTOR VCN/EQUIVALENTE BAU');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (21, 'FACTOR VCN/EQUIVALENTE MEJORA', 'FACTOR VCN/EQUIVALENTE MEJORA');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (22, 'FACTOR FE POR DEFECTO CO2 BAU', 'FACTOR FE POR DEFECTO CO2 BAU');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (23, 'FACTOR FE POR DEFECTO CH4 BAU', 'FACTOR FE POR DEFECTO CH4 BAU');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (24, 'FACTOR FE POR DEFECTO N2O BAU', 'FACTOR FE POR DEFECTO N2O BAU');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (25, 'FACTOR FE POR DEFECTO CO2 INI', 'FACTOR FE POR DEFECTO CO2 INI');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (26, 'FACTOR FE POR DEFECTO CH4 INI', 'FACTOR FE POR DEFECTO CH4 INI');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (27, 'FACTOR FE POR DEFECTO N2O INI', 'FACTOR FE POR DEFECTO N2O INI');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (28, 'FACTOR EMISIÓN', 'FACTOR EMISIÓN');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (29, 'FACTOR VALIDAR ENERGÍA BAU', 'FACTOR VALIDAR ENERGÍA BAU');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (30, 'FACTOR VALIDAR ENERGÍA MEJORA', 'FACTOR VALIDAR ENERGÍA MEJORA');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (31, 'FACTOR VCN SUPERIOR', 'FACTOR VCN SUPERIOR');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (32, 'FACTOR VEHÍCULO ELECTRICIDAD VALIDAR', 'FACTOR VEHÍCULO ELECTRICIDAD VALIDAR');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (33, 'FACTOR VEHÍCULO HÍBRIDO VALIDAR', 'FACTOR VEHÍCULO HÍBRIDO VALIDAR');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (34, 'FACTOR EMISIÓN VEHÍCULOS BAU', 'FACTOR EMISIÓN VEHÍCULOS BAU');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (35, 'FACTOR EMISIÓN VEHÍCULOS MEJORA', 'FACTOR EMISIÓN VEHÍCULOS MEJORA');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (36, 'FACTOR EMISIÓN VEHÍCULOS HÍBRIDO', 'FACTOR EMISIÓN VEHÍCULOS HÍBRIDO');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (37, 'FACTOR EMISIÓN VEHÍCULOS AÑO', 'FACTOR EMISIÓN VEHÍCULOS AÑO');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (38, 'FACTOR RENDIMIENTO BAU', 'FACTOR RENDIMIENTO BAU');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (39, 'FACTOR RENDIMIENTO HÍBRIDO BAU', 'FACTOR RENDIMIENTO HÍBRIDO BAU');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (40, 'FACTOR RENDIMIENTO MEJORA', 'FACTOR RENDIMIENTO MEJORA');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (41, 'FACTOR EMISIÓN VEHÍCULOS HÍBRIDO MEJORA', 'FACTOR EMISIÓN VEHÍCULOS HÍBRIDO MEJORA');
+INSERT INTO T_MAEM_FACTOR (ID_FACTOR, NOMBRE, SOBRE_NOMBRE) VALUES (42, 'FACTOR RENDIMIENTO HÍBRIDO MEJORA', 'FACTOR RENDIMIENTO HÍBRIDO MEJORA');
 
 --T_MAEM_FACTOR_PARAMETRO
 INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (1, 1, 'Fuente energía (1)', 28, 1);
@@ -3424,6 +4197,53 @@ INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_P
 INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (14, 2, 'Combustible proyecto', 46, 2);
 INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (15, 1, 'Combustible actual (Valor calórico)', 101, 1);
 INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (16, 1, 'Combustible actual (IPCC)', 101, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (17, 1, 'Recurso energético bau', 118, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (17, 2, 'Recurso energético mejora', 127, 2);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (18, 1, 'Recurso energético bau', 118, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (18, 2, 'Recurso energético mejora', 127, 2);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (19, 1, 'Recurso energético bau', 118, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (19, 2, 'Recurso energético mejora', 127, 2);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (20, 1, 'Recurso energético bau', 118, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (21, 1, 'Recurso energético mejora', 127, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (22, 1, 'Recurso energético bau', 118, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (23, 1, 'Recurso energético bau', 118, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (24, 1, 'Recurso energético bau', 118, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (25, 1, 'Recurso energético mejora', 127, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (26, 1, 'Recurso energético mejora', 127, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (27, 1, 'Recurso energético mejora', 127, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (28, 1, 'Año', 38, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (29, 1, 'Recurso energético bau', 118, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (30, 1, 'Recurso energético mejora', 127, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (31, 1, 'Recurso energético', 109, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (32, 1, 'Tipo de vehículo', 39, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (33, 1, 'Tipo de vehículo', 39, 1);
+
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (34, 1, 'Tipo vehículo', 39, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (34, 2, 'Combustible del vehículo reemplazado', 41, 2);
+
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (35, 1, 'Tipo vehículo', 39, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (35, 2, 'Combustible proyecto', 46, 2);
+
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (36, 1, 'Tipo vehículo', 39, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (36, 2, 'Combustible línea base híbrido', 158, 2);
+
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (37, 1, 'Tipo vehículo', 39, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (37, 2, 'Año', 158, 2);
+
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (38, 1, 'Tipo vehículo', 39, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (38, 2, 'Combustible línea base', 41, 2);
+
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (39, 1, 'Tipo vehículo', 39, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (39, 2, 'Combustible línea base híbrido', 158, 2);
+
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (40, 1, 'Tipo vehículo', 39, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (40, 2, 'Combustible proyecto', 46, 2);
+
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (41, 1, 'Tipo vehículo', 39, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (41, 2, 'Combustible proyecto híbrido', 159, 2);
+
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (42, 1, 'Tipo vehículo', 39, 1);
+INSERT INTO T_MAEM_FACTOR_PARAMETRO (ID_FACTOR, ID_DETALLE, NOMBRE_DETALLE, ID_PARAMETRO, ORDEN) VALUES (42, 2, 'Combustible proyecto híbrido', 159, 2);
 
 --T_MAEM_FACTOR_DATA
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (1, 1, '28', '1', 73300, '');
@@ -3529,31 +4349,45 @@ INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, F
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 1, '39|41', '1|1', 187.3581117, '');
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 2, '39|41', '1|2', 174.6960973, '');
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 3, '39|41', '1|3', 178.9341533, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 4, '39|41', '2|1', 773.781021, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 5, '39|41', '2|4', 595.4578461, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 6, '39|41', '3|1', 1315.42773571325, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 7, '39|41', '3|4', 961.610181, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 8, '39|41', '4|1', 1897.998378, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 9, '39|41', '4|4', 1555.172264, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 10, '39|41', '5|3', 96.61464719, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 11, '39|41', '6|3', 64.40976479, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 4, '39|41', '1|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 5, '39|41', '2|1', 1315.42773571325, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 6, '39|41', '2|4', 961.610181, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 7, '39|41', '2|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 8, '39|41', '3|1', 187.3581117, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 9, '39|41', '3|2', 174.6960973, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 10, '39|41', '3|3', 178.9341533, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 11, '39|41', '3|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 12, '39|41', '4|1', 1315.42773571325, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 13, '39|41', '4|4', 961.610181, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 14, '39|41', '4|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 15, '39|41', '5|3', 96.61464719, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 16, '39|41', '5|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 17, '39|41', '6|3', 64.40976479, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (7, 18, '39|41', '6|5', 1, '');
 
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 1, '39|46', '1|1', 187.3581117, '');
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 2, '39|46', '1|2', 174.6960973, '');
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 3, '39|46', '1|3', 178.9341533, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 4, '39|46', '2|1', 773.781021, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 5, '39|46', '2|4', 595.4578461, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 6, '39|46', '3|1', 1315.42773571325, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 7, '39|46', '3|4', 961.610181, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 8, '39|46', '4|1', 1897.998378, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 9, '39|46', '4|4', 1555.172264, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 10, '39|46', '5|3', 96.61464719, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 11, '39|46', '6|3', 64.40976479, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 4, '39|46', '1|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 5, '39|46', '2|1', 1315.42773571325, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 6, '39|46', '2|4', 961.610181, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 7, '39|46', '2|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 8, '39|46', '3|1', 187.3581117, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 9, '39|46', '3|2', 174.6960973, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 10, '39|46', '3|3', 178.9341533, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 11, '39|46', '3|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 12, '39|46', '4|1', 1315.42773571325, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 13, '39|46', '4|4', 961.610181, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 14, '39|46', '4|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 15, '39|46', '5|3', 96.61464719, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 16, '39|46', '5|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 17, '39|46', '6|3', 64.40976479, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (8, 18, '39|46', '6|5', 1, '');
 
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (9, 1, '39', '1', 0.1628615477, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (9, 2, '39', '2', 1.1, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (9, 3, '39', '3', 1.176470588, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (9, 4, '39', '4', 1.27, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (9, 2, '39', '2', 1.176470588, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (9, 3, '39', '3', 0.1628615477, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (9, 4, '39', '4', 1.176470588, '');
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (9, 5, '39', '5', 0.0542871826, '');
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (9, 6, '39', '6', 0.0271435913, '');
 
@@ -3684,29 +4518,43 @@ INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, F
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (10, 125, '39|38', '6|20', 0.0045986, '');
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (10, 126, '39|38', '6|21', 0.0045986, '');
 
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 1, '39|41', '1|1', 11.3459629, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 2, '39|41', '1|2', 9.73907752, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 3, '39|41', '1|3', 43.19562047, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 4, '39|41', '2|1', 2.74723485, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 5, '39|41', '2|4', 16.19269626, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 6, '39|41', '3|1', 1.6160205, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 7, '39|41', '3|4', 10.02700286, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 8, '39|41', '4|1', 1.12, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 9, '39|41', '4|4', 6.2, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 10, '39|41', '5|3', 80, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 11, '39|41', '6|3', 120, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 1, '39|41', '1|1', 314.842324247418, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 2, '39|41', '1|2', 369.006526169381, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 3, '39|41', '1|3', 366.501301131186, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 4, '39|41', '1|5', 1, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 5, '39|41', '2|1', 44.843408531398, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 6, '39|41', '2|4', 74.547775612395, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 7, '39|41', '2|5', 1, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 8, '39|41', '3|1', 314.842324247418, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 9, '39|41', '3|2', 369.006526169381, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 10, '39|41', '3|3', 366.501301131186, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 11, '39|41', '3|5', 1, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 12, '39|41', '4|1', 44.843408531398, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 13, '39|41', '4|4', 74.547775612395, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 14, '39|41', '4|5', 0, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 15, '39|41', '5|3', 678.774926057702, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 16, '39|41', '5|5', 1, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 17, '39|41', '6|3', 1018.16238908655, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (11, 18, '39|41', '6|5', 1, 'km/GJ');
 
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 1, '39|46', '1|1', 11.3459629, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 2, '39|46', '1|2', 9.73907752, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 3, '39|46', '1|3', 43.19562047, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 4, '39|46', '2|1', 2.74723485, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 5, '39|46', '2|4', 16.19269626, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 6, '39|46', '3|1', 1.6160205, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 7, '39|46', '3|4', 10.02700286, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 8, '39|46', '4|1', 1.12, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 9, '39|46', '4|4', 6.2, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 10, '39|46', '5|3', 80, '');
-INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 11, '39|46', '6|3', 120, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 1, '39|46', '1|1', 314.842324247418, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 2, '39|46', '1|2', 369.006526169381, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 3, '39|46', '1|3', 366.501301131186, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 4, '39|46', '1|5', 1, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 5, '39|46', '2|1', 44.843408531398, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 6, '39|46', '2|4', 74.547775612395, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 7, '39|46', '2|5', 1, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 8, '39|46', '3|1', 314.842324247418, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 9, '39|46', '3|2', 369.006526169381, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 10, '39|46', '3|3', 366.501301131186, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 11, '39|46', '3|5', 1, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 12, '39|46', '4|1', 44.843408531398, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 13, '39|46', '4|4', 74.547775612395, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 14, '39|46', '4|5', 1, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 15, '39|46', '5|3', 678.774926057702, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 16, '39|46', '5|5', 1, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 17, '39|46', '6|3', 1018.16238908655, 'km/GJ');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (12, 18, '39|46', '6|5', 1, 'km/GJ');
 
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (13, 1, '39|41', '1|1', 314.8423242474, '');
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (13, 2, '39|41', '1|2', 369.0065261693, '');
@@ -3746,45 +4594,1129 @@ INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, F
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (16, 5, '101', '5', 69300, '');
 INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (16, 6, '101', '6', 70800, '');
 
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 1, '118|127', '1|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 2, '118|127', '1|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 3, '118|127', '1|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 4, '118|127', '1|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 5, '118|127', '1|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 6, '118|127', '1|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 7, '118|127', '1|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 8, '118|127', '1|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 9, '118|127', '1|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 10, '118|127', '1|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 11, '118|127', '1|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 12, '118|127', '1|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 13, '118|127', '1|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 14, '118|127', '2|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 15, '118|127', '2|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 16, '118|127', '2|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 17, '118|127', '2|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 18, '118|127', '2|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 19, '118|127', '2|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 20, '118|127', '2|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 21, '118|127', '2|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 22, '118|127', '2|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 23, '118|127', '2|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 24, '118|127', '2|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 25, '118|127', '2|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 26, '118|127', '2|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 27, '118|127', '3|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 28, '118|127', '3|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 29, '118|127', '3|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 30, '118|127', '3|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 31, '118|127', '3|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 32, '118|127', '3|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 33, '118|127', '3|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 34, '118|127', '3|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 35, '118|127', '3|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 36, '118|127', '3|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 37, '118|127', '3|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 38, '118|127', '3|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 39, '118|127', '3|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 40, '118|127', '4|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 41, '118|127', '4|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 42, '118|127', '4|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 43, '118|127', '4|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 44, '118|127', '4|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 45, '118|127', '4|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 46, '118|127', '4|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 47, '118|127', '4|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 48, '118|127', '4|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 49, '118|127', '4|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 50, '118|127', '4|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 51, '118|127', '4|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 52, '118|127', '4|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 53, '118|127', '5|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 54, '118|127', '5|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 55, '118|127', '5|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 56, '118|127', '5|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 57, '118|127', '5|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 58, '118|127', '5|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 59, '118|127', '5|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 60, '118|127', '5|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 61, '118|127', '5|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 62, '118|127', '5|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 63, '118|127', '5|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 64, '118|127', '5|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 65, '118|127', '5|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 66, '118|127', '6|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 67, '118|127', '6|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 68, '118|127', '6|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 69, '118|127', '6|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 70, '118|127', '6|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 71, '118|127', '6|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 72, '118|127', '6|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 73, '118|127', '6|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 74, '118|127', '6|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 75, '118|127', '6|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 76, '118|127', '6|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 77, '118|127', '6|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 78, '118|127', '6|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 79, '118|127', '7|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 80, '118|127', '7|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 81, '118|127', '7|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 82, '118|127', '7|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 83, '118|127', '7|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 84, '118|127', '7|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 85, '118|127', '7|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 86, '118|127', '7|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 87, '118|127', '7|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 88, '118|127', '7|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 89, '118|127', '7|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 90, '118|127', '7|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 91, '118|127', '7|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 92, '118|127', '8|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 93, '118|127', '8|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 94, '118|127', '8|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 95, '118|127', '8|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 96, '118|127', '8|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 97, '118|127', '8|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 98, '118|127', '8|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 99, '118|127', '8|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 100, '118|127', '8|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 101, '118|127', '8|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 102, '118|127', '8|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 103, '118|127', '8|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 104, '118|127', '8|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 105, '118|127', '9|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 106, '118|127', '9|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 107, '118|127', '9|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 108, '118|127', '9|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 109, '118|127', '9|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 110, '118|127', '9|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 111, '118|127', '9|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 112, '118|127', '9|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 113, '118|127', '9|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 114, '118|127', '9|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 115, '118|127', '9|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 116, '118|127', '9|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 117, '118|127', '9|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 118, '118|127', '10|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 119, '118|127', '10|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 120, '118|127', '10|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 121, '118|127', '10|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 122, '118|127', '10|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 123, '118|127', '10|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 124, '118|127', '10|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 125, '118|127', '10|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 126, '118|127', '10|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 127, '118|127', '10|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 128, '118|127', '10|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 129, '118|127', '10|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 130, '118|127', '10|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 131, '118|127', '11|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 132, '118|127', '11|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 133, '118|127', '11|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 134, '118|127', '11|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 135, '118|127', '11|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 136, '118|127', '11|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 137, '118|127', '11|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 138, '118|127', '11|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 139, '118|127', '11|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 140, '118|127', '11|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 141, '118|127', '11|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 142, '118|127', '11|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 143, '118|127', '11|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 144, '118|127', '12|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 145, '118|127', '12|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 146, '118|127', '12|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 147, '118|127', '12|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 148, '118|127', '12|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 149, '118|127', '12|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 150, '118|127', '12|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 151, '118|127', '12|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 152, '118|127', '12|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 153, '118|127', '12|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 154, '118|127', '12|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 155, '118|127', '12|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 156, '118|127', '12|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 157, '118|127', '13|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 158, '118|127', '13|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 159, '118|127', '13|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 160, '118|127', '13|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 161, '118|127', '13|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 162, '118|127', '13|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 163, '118|127', '13|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 164, '118|127', '13|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 165, '118|127', '13|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 166, '118|127', '13|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 167, '118|127', '13|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 168, '118|127', '13|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 169, '118|127', '13|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 170, '118|127', '1|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 171, '118|127', '2|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 172, '118|127', '3|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 173, '118|127', '4|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 174, '118|127', '5|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 175, '118|127', '6|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 176, '118|127', '7|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 177, '118|127', '8|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 178, '118|127', '9|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 179, '118|127', '10|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 180, '118|127', '11|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 181, '118|127', '12|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 182, '118|127', '13|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 183, '118|127', '14|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 184, '118|127', '14|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 185, '118|127', '14|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 186, '118|127', '14|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 187, '118|127', '14|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 188, '118|127', '14|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 189, '118|127', '14|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 190, '118|127', '14|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 191, '118|127', '14|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 192, '118|127', '14|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 193, '118|127', '14|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 194, '118|127', '14|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 195, '118|127', '14|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (17, 196, '118|127', '14|14', 0, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 1, '118|127', '1|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 2, '118|127', '1|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 3, '118|127', '1|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 4, '118|127', '1|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 5, '118|127', '1|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 6, '118|127', '1|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 7, '118|127', '1|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 8, '118|127', '1|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 9, '118|127', '1|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 10, '118|127', '1|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 11, '118|127', '1|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 12, '118|127', '1|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 13, '118|127', '1|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 14, '118|127', '2|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 15, '118|127', '2|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 16, '118|127', '2|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 17, '118|127', '2|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 18, '118|127', '2|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 19, '118|127', '2|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 20, '118|127', '2|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 21, '118|127', '2|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 22, '118|127', '2|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 23, '118|127', '2|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 24, '118|127', '2|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 25, '118|127', '2|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 26, '118|127', '2|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 27, '118|127', '3|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 28, '118|127', '3|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 29, '118|127', '3|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 30, '118|127', '3|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 31, '118|127', '3|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 32, '118|127', '3|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 33, '118|127', '3|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 34, '118|127', '3|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 35, '118|127', '3|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 36, '118|127', '3|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 37, '118|127', '3|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 38, '118|127', '3|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 39, '118|127', '3|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 40, '118|127', '4|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 41, '118|127', '4|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 42, '118|127', '4|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 43, '118|127', '4|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 44, '118|127', '4|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 45, '118|127', '4|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 46, '118|127', '4|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 47, '118|127', '4|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 48, '118|127', '4|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 49, '118|127', '4|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 50, '118|127', '4|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 51, '118|127', '4|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 52, '118|127', '4|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 53, '118|127', '5|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 54, '118|127', '5|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 55, '118|127', '5|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 56, '118|127', '5|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 57, '118|127', '5|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 58, '118|127', '5|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 59, '118|127', '5|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 60, '118|127', '5|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 61, '118|127', '5|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 62, '118|127', '5|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 63, '118|127', '5|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 64, '118|127', '5|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 65, '118|127', '5|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 66, '118|127', '6|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 67, '118|127', '6|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 68, '118|127', '6|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 69, '118|127', '6|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 70, '118|127', '6|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 71, '118|127', '6|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 72, '118|127', '6|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 73, '118|127', '6|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 74, '118|127', '6|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 75, '118|127', '6|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 76, '118|127', '6|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 77, '118|127', '6|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 78, '118|127', '6|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 79, '118|127', '7|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 80, '118|127', '7|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 81, '118|127', '7|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 82, '118|127', '7|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 83, '118|127', '7|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 84, '118|127', '7|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 85, '118|127', '7|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 86, '118|127', '7|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 87, '118|127', '7|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 88, '118|127', '7|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 89, '118|127', '7|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 90, '118|127', '7|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 91, '118|127', '7|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 92, '118|127', '8|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 93, '118|127', '8|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 94, '118|127', '8|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 95, '118|127', '8|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 96, '118|127', '8|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 97, '118|127', '8|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 98, '118|127', '8|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 99, '118|127', '8|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 100, '118|127', '8|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 101, '118|127', '8|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 102, '118|127', '8|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 103, '118|127', '8|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 104, '118|127', '8|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 105, '118|127', '9|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 106, '118|127', '9|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 107, '118|127', '9|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 108, '118|127', '9|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 109, '118|127', '9|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 110, '118|127', '9|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 111, '118|127', '9|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 112, '118|127', '9|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 113, '118|127', '9|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 114, '118|127', '9|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 115, '118|127', '9|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 116, '118|127', '9|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 117, '118|127', '9|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 118, '118|127', '10|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 119, '118|127', '10|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 120, '118|127', '10|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 121, '118|127', '10|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 122, '118|127', '10|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 123, '118|127', '10|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 124, '118|127', '10|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 125, '118|127', '10|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 126, '118|127', '10|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 127, '118|127', '10|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 128, '118|127', '10|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 129, '118|127', '10|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 130, '118|127', '10|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 131, '118|127', '11|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 132, '118|127', '11|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 133, '118|127', '11|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 134, '118|127', '11|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 135, '118|127', '11|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 136, '118|127', '11|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 137, '118|127', '11|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 138, '118|127', '11|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 139, '118|127', '11|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 140, '118|127', '11|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 141, '118|127', '11|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 142, '118|127', '11|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 143, '118|127', '11|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 144, '118|127', '12|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 145, '118|127', '12|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 146, '118|127', '12|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 147, '118|127', '12|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 148, '118|127', '12|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 149, '118|127', '12|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 150, '118|127', '12|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 151, '118|127', '12|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 152, '118|127', '12|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 153, '118|127', '12|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 154, '118|127', '12|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 155, '118|127', '12|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 156, '118|127', '12|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 157, '118|127', '13|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 158, '118|127', '13|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 159, '118|127', '13|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 160, '118|127', '13|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 161, '118|127', '13|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 162, '118|127', '13|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 163, '118|127', '13|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 164, '118|127', '13|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 165, '118|127', '13|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 166, '118|127', '13|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 167, '118|127', '13|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 168, '118|127', '13|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 169, '118|127', '13|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 170, '118|127', '1|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 171, '118|127', '2|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 172, '118|127', '3|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 173, '118|127', '4|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 174, '118|127', '5|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 175, '118|127', '6|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 176, '118|127', '7|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 177, '118|127', '8|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 178, '118|127', '9|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 179, '118|127', '10|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 180, '118|127', '11|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 181, '118|127', '12|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 182, '118|127', '13|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 183, '118|127', '14|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 184, '118|127', '14|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 185, '118|127', '14|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 186, '118|127', '14|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 187, '118|127', '14|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 188, '118|127', '14|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 189, '118|127', '14|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 190, '118|127', '14|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 191, '118|127', '14|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 192, '118|127', '14|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 193, '118|127', '14|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 194, '118|127', '14|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 195, '118|127', '14|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (18, 196, '118|127', '14|14', 1, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 1, '118|127', '1|1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 2, '118|127', '1|2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 3, '118|127', '1|3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 4, '118|127', '1|4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 5, '118|127', '1|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 6, '118|127', '1|6', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 7, '118|127', '1|7', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 8, '118|127', '1|8', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 9, '118|127', '1|9', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 10, '118|127', '1|10', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 11, '118|127', '1|11', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 12, '118|127', '1|12', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 13, '118|127', '1|13', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 14, '118|127', '2|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 15, '118|127', '2|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 16, '118|127', '2|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 17, '118|127', '2|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 18, '118|127', '2|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 19, '118|127', '2|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 20, '118|127', '2|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 21, '118|127', '2|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 22, '118|127', '2|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 23, '118|127', '2|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 24, '118|127', '2|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 25, '118|127', '2|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 26, '118|127', '2|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 27, '118|127', '3|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 28, '118|127', '3|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 29, '118|127', '3|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 30, '118|127', '3|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 31, '118|127', '3|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 32, '118|127', '3|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 33, '118|127', '3|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 34, '118|127', '3|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 35, '118|127', '3|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 36, '118|127', '3|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 37, '118|127', '3|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 38, '118|127', '3|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 39, '118|127', '3|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 40, '118|127', '4|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 41, '118|127', '4|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 42, '118|127', '4|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 43, '118|127', '4|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 44, '118|127', '4|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 45, '118|127', '4|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 46, '118|127', '4|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 47, '118|127', '4|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 48, '118|127', '4|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 49, '118|127', '4|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 50, '118|127', '4|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 51, '118|127', '4|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 52, '118|127', '4|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 53, '118|127', '5|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 54, '118|127', '5|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 55, '118|127', '5|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 56, '118|127', '5|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 57, '118|127', '5|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 58, '118|127', '5|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 59, '118|127', '5|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 60, '118|127', '5|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 61, '118|127', '5|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 62, '118|127', '5|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 63, '118|127', '5|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 64, '118|127', '5|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 65, '118|127', '5|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 66, '118|127', '6|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 67, '118|127', '6|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 68, '118|127', '6|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 69, '118|127', '6|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 70, '118|127', '6|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 71, '118|127', '6|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 72, '118|127', '6|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 73, '118|127', '6|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 74, '118|127', '6|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 75, '118|127', '6|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 76, '118|127', '6|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 77, '118|127', '6|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 78, '118|127', '6|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 79, '118|127', '7|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 80, '118|127', '7|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 81, '118|127', '7|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 82, '118|127', '7|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 83, '118|127', '7|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 84, '118|127', '7|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 85, '118|127', '7|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 86, '118|127', '7|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 87, '118|127', '7|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 88, '118|127', '7|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 89, '118|127', '7|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 90, '118|127', '7|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 91, '118|127', '7|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 92, '118|127', '8|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 93, '118|127', '8|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 94, '118|127', '8|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 95, '118|127', '8|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 96, '118|127', '8|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 97, '118|127', '8|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 98, '118|127', '8|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 99, '118|127', '8|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 100, '118|127', '8|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 101, '118|127', '8|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 102, '118|127', '8|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 103, '118|127', '8|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 104, '118|127', '8|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 105, '118|127', '9|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 106, '118|127', '9|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 107, '118|127', '9|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 108, '118|127', '9|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 109, '118|127', '9|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 110, '118|127', '9|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 111, '118|127', '9|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 112, '118|127', '9|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 113, '118|127', '9|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 114, '118|127', '9|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 115, '118|127', '9|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 116, '118|127', '9|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 117, '118|127', '9|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 118, '118|127', '10|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 119, '118|127', '10|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 120, '118|127', '10|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 121, '118|127', '10|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 122, '118|127', '10|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 123, '118|127', '10|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 124, '118|127', '10|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 125, '118|127', '10|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 126, '118|127', '10|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 127, '118|127', '10|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 128, '118|127', '10|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 129, '118|127', '10|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 130, '118|127', '10|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 131, '118|127', '11|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 132, '118|127', '11|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 133, '118|127', '11|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 134, '118|127', '11|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 135, '118|127', '11|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 136, '118|127', '11|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 137, '118|127', '11|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 138, '118|127', '11|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 139, '118|127', '11|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 140, '118|127', '11|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 141, '118|127', '11|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 142, '118|127', '11|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 143, '118|127', '11|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 144, '118|127', '12|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 145, '118|127', '12|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 146, '118|127', '12|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 147, '118|127', '12|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 148, '118|127', '12|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 149, '118|127', '12|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 150, '118|127', '12|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 151, '118|127', '12|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 152, '118|127', '12|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 153, '118|127', '12|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 154, '118|127', '12|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 155, '118|127', '12|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 156, '118|127', '12|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 157, '118|127', '13|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 158, '118|127', '13|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 159, '118|127', '13|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 160, '118|127', '13|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 161, '118|127', '13|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 162, '118|127', '13|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 163, '118|127', '13|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 164, '118|127', '13|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 165, '118|127', '13|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 166, '118|127', '13|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 167, '118|127', '13|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 168, '118|127', '13|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 169, '118|127', '13|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 170, '118|127', '1|14', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 171, '118|127', '2|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 172, '118|127', '3|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 173, '118|127', '4|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 174, '118|127', '5|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 175, '118|127', '6|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 176, '118|127', '7|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 177, '118|127', '8|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 178, '118|127', '9|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 179, '118|127', '10|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 180, '118|127', '11|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 181, '118|127', '12|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 182, '118|127', '13|14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 183, '118|127', '14|1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 184, '118|127', '14|2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 185, '118|127', '14|3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 186, '118|127', '14|4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 187, '118|127', '14|5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 188, '118|127', '14|6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 189, '118|127', '14|7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 190, '118|127', '14|8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 191, '118|127', '14|9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 192, '118|127', '14|10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 193, '118|127', '14|11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 194, '118|127', '14|12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 195, '118|127', '14|13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (19, 196, '118|127', '14|14', 0, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 1, '118', '1', 3.6, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 2, '118', '2', 134.504386990494, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 3, '118', '3', 151.324864234924, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 4, '118', '4', 117.8593918674, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 5, '118', '5', 47.3, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 6, '118', '6', 36.036968416892, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 7, '118', '7', 26700, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 8, '118', '8', 90.45, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 9, '118', '9', 15600, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 10, '118', '10', 115.721647631425, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 11, '118', '11', 11600, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 12, '118', '12', 29500, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 13, '118', '13', 64.90935, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (20, 14, '118', '14', 132.302, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 1, '127', '1', 3.6, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 2, '127', '2', 134.504386990494, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 3, '127', '3', 151.324864234924, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 4, '127', '4', 117.8593918674, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 5, '127', '5', 47.3, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 6, '127', '6', 36.036968416892, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 7, '127', '7', 26700, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 8, '127', '8', 90.45, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 9, '127', '9', 15600, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 10, '127', '10', 115.721647631425, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 11, '127', '11', 11600, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 12, '127', '12', 29500, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 13, '127', '13', 64.90935, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (21, 14, '127', '14', 132.302, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 1, '118', '1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 2, '118', '2', 0.0741, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 3, '118', '3', 0.0774, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 4, '118', '4', 0.0693, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 5, '118', '5', 0.0631, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 6, '118', '6', 0.0561262633, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 7, '118', '7', 0.0946, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 8, '118', '8', 0.0708, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 9, '118', '9', 0.0336, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 10, '118', '10', 0.0000000643104, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 11, '118', '11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 12, '118', '12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 13, '118', '13', 0.0576, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (22, 14, '118', '14', 0.070395, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 1, '118', '1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 2, '118', '2', 0.000003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 3, '118', '3', 0.000003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 4, '118', '4', 0.000003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 5, '118', '5', 0.000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 6, '118', '6', 0.000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 7, '118', '7', 0.000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 8, '118', '8', 0.000003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 9, '118', '9', 0.00003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 10, '118', '10', 0.000003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 11, '118', '11', 0.00003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 12, '118', '12', 0.0002, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 13, '118', '13', 0.000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (23, 14, '118', '14', 0.000003, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 1, '118', '1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 2, '118', '2', 0.0000006, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 3, '118', '3', 0.0000006, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 4, '118', '4', 0.0000006, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 5, '118', '5', 0.0000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 6, '118', '6', 0.0000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 7, '118', '7', 0.0000015, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 8, '118', '8', 0.0000006, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 9, '118', '9', 0.000004, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 10, '118', '10', 0.0000006, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 11, '118', '11', 0.000004, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 12, '118', '12', 0.000004, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 13, '118', '13', 0.0000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (24, 14, '118', '14', 0.0000006, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 1, '127', '1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 2, '127', '2', 0.0741, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 3, '127', '3', 0.0774, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 4, '127', '4', 0.0693, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 5, '127', '5', 0.0631, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 6, '127', '6', 0.0561262633, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 7, '127', '7', 0.0946, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 8, '127', '8', 0.0708, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 9, '127', '9', 0.0336, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 10, '127', '10', 0.0000000643104, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 11, '127', '11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 12, '127', '12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 13, '127', '13', 0.0576, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (25, 14, '127', '14', 0.070395, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 1, '127', '1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 2, '127', '2', 0.000003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 3, '127', '3', 0.000003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 4, '127', '4', 0.000003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 5, '127', '5', 0.000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 6, '127', '6', 0.000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 7, '127', '7', 0.000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 8, '127', '8', 0.000003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 9, '127', '9', 0.00003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 10, '127', '10', 0.000003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 11, '127', '11', 0.00003, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 12, '127', '12', 0.0002, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 13, '127', '13', 0.000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (26, 14, '127', '14', 0.000003, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 1, '127', '1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 2, '127', '2', 0.0000006, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 3, '127', '3', 0.0000006, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 4, '127', '4', 0.0000006, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 5, '127', '5', 0.0000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 6, '127', '6', 0.0000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 7, '127', '7', 0.0000015, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 8, '127', '8', 0.0000006, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 9, '127', '9', 0.000004, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 10, '127', '10', 0.0000006, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 11, '127', '11', 0.000004, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 12, '127', '12', 0.000004, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 13, '127', '13', 0.0000001, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (27, 14, '127', '14', 0.0000006, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 1, '38', '1', 0.598, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 2, '38', '2', 0.6193, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 3, '38', '3', 0.6271, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 4, '38', '4', 0.6271, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 5, '38', '5', 0.6271, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 6, '38', '6', 0.6271, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 7, '38', '7', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 8, '38', '8', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 9, '38', '9', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 10, '38', '10', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 11, '38', '11', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 12, '38', '12', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 13, '38', '13', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 14, '38', '14', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 15, '38', '15', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 16, '38', '16', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 17, '38', '17', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 18, '38', '18', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 19, '38', '19', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 20, '38', '20', 0.4119, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (28, 21, '38', '21', 0.4119, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 1, '118', '1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 2, '118', '2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 3, '118', '3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 4, '118', '4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 5, '118', '5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 6, '118', '6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 7, '118', '7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 8, '118', '8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 9, '118', '9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 10, '118', '10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 11, '118', '11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 12, '118', '12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 13, '118', '13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (29, 14, '118', '14', 0, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 1, '127', '1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 2, '127', '2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 3, '127', '3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 4, '127', '4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 5, '127', '5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 6, '127', '6', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 7, '127', '7', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 8, '127', '8', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 9, '127', '9', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 10, '127', '10', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 11, '127', '11', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 12, '127', '12', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 13, '127', '13', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (30, 14, '127', '14', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 1, '109', '1', 3.6, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 2, '109', '2', 134.504386990494, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 3, '109', '3', 151.324864234924, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 4, '109', '4', 117.8593918674, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 5, '109', '5', 47.3, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 6, '109', '6', 36.036968416892, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 7, '109', '7', 26700, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 8, '109', '8', 90.45, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 9, '109', '9', 15600, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 10, '109', '10', 115.721647631425, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 11, '109', '11', 11600, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 12, '109', '12', 29500, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 13, '109', '13', 64.90935, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (31, 14, '109', '14', 132.302, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (32, 1, '39', '1', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (32, 2, '39', '2', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (32, 3, '39', '3', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (32, 4, '39', '4', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (32, 5, '39', '5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (32, 6, '39', '6', 1, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (33, 1, '39', '1', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (33, 2, '39', '2', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (33, 3, '39', '3', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (33, 4, '39', '4', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (33, 5, '39', '5', 0, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (33, 6, '39', '6', 0, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 1, '39|41', '1|1', 187.358111674226, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 2, '39|41', '1|2', 174.696097299943, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 3, '39|41', '1|3', 193.68280489294, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 4, '39|41', '1|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 5, '39|41', '2|1', 1315.42773571325, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 6, '39|41', '2|4', 1011.30985305301, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 7, '39|41', '2|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 8, '39|41', '3|1', 187.358111674226, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 9, '39|41', '3|2', 174.696097299943, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 10, '39|41', '3|3', 193.68280489294, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 11, '39|41', '3|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 12, '39|41', '4|1', 1315.42773571325, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 13, '39|41', '4|4', 1011.30985305301, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 14, '39|41', '4|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 15, '39|41', '5|3', 104.578111646342, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 16, '39|41', '5|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 17, '39|41', '6|3', 69.718741097561, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (34, 18, '39|41', '6|5', 1, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 1, '39|46', '1|1', 187.358111674226, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 2, '39|46', '1|2', 174.696097299943, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 3, '39|46', '1|3', 193.68280489294, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 4, '39|46', '1|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 5, '39|46', '2|1', 1315.42773571325, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 6, '39|46', '2|4', 1011.30985305301, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 7, '39|46', '2|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 8, '39|46', '3|1', 187.358111674226, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 9, '39|46', '3|2', 174.696097299943, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 10, '39|46', '3|3', 193.68280489294, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 11, '39|46', '3|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 12, '39|46', '4|1', 1315.42773571325, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 13, '39|46', '4|4', 1011.30985305301, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 14, '39|46', '4|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 15, '39|46', '5|3', 104.578111646342, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 16, '39|46', '5|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 17, '39|46', '6|3', 69.718741097561, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (35, 18, '39|46', '6|5', 1, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 1, '39|158', '1|1', 187.358111674226, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 2, '39|158', '1|2', 174.696097299943, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 3, '39|158', '1|3', 193.68280489294, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 4, '39|158', '1|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 5, '39|158', '2|1', 1315.42773571325, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 6, '39|158', '2|4', 1011.30985305301, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 7, '39|158', '2|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 8, '39|158', '3|1', 187.358111674226, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 9, '39|158', '3|2', 174.696097299943, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 10, '39|158', '3|3', 193.68280489294, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 11, '39|158', '3|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 12, '39|158', '4|1', 1315.42773571325, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 13, '39|158', '4|4', 1011.30985305301, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 14, '39|158', '4|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 15, '39|158', '5|3', 104.578111646342, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 16, '39|158', '5|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 17, '39|158', '6|3', 69.718741097561, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (36, 18, '39|158', '6|5', 1, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 1, '39|38', '1|1', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 2, '39|38', '1|2', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 3, '39|38', '1|3', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 4, '39|38', '1|4', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 5, '39|38', '1|5', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 6, '39|38', '1|6', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 7, '39|38', '1|7', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 8, '39|38', '1|8', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 9, '39|38', '1|9', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 10, '39|38', '1|10', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 11, '39|38', '1|11', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 12, '39|38', '1|12', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 13, '39|38', '1|13', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 14, '39|38', '1|14', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 15, '39|38', '1|15', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 16, '39|38', '1|16', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 17, '39|38', '1|17', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 18, '39|38', '1|18', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 19, '39|38', '1|19', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 20, '39|38', '1|20', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 21, '39|38', '1|21', 0.0275917510903, 'kgCO2e/km');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 22, '39|38', '2|1', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 23, '39|38', '2|2', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 24, '39|38', '2|3', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 25, '39|38', '2|4', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 26, '39|38', '2|5', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 27, '39|38', '2|6', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 28, '39|38', '2|7', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 29, '39|38', '2|8', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 30, '39|38', '2|9', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 31, '39|38', '2|10', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 32, '39|38', '2|11', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 33, '39|38', '2|12', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 34, '39|38', '2|13', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 35, '39|38', '2|14', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 36, '39|38', '2|15', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 37, '39|38', '2|16', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 38, '39|38', '2|17', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 39, '39|38', '2|18', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 40, '39|38', '2|19', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 41, '39|38', '2|20', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 42, '39|38', '2|21', 0.1993158243996, 'kgCO2e/km');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 43, '39|38', '3|1', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 44, '39|38', '3|2', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 45, '39|38', '3|3', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 46, '39|38', '3|4', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 47, '39|38', '3|5', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 48, '39|38', '3|6', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 49, '39|38', '3|7', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 50, '39|38', '3|8', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 51, '39|38', '3|9', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 52, '39|38', '3|10', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 53, '39|38', '3|11', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 54, '39|38', '3|12', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 55, '39|38', '3|13', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 56, '39|38', '3|14', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 57, '39|38', '3|15', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 58, '39|38', '3|16', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 59, '39|38', '3|17', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 60, '39|38', '3|18', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 61, '39|38', '3|19', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 62, '39|38', '3|20', 0.0275917510903, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 63, '39|38', '3|21', 0.0275917510903, 'kgCO2e/km');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 64, '39|38', '4|1', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 65, '39|38', '4|2', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 66, '39|38', '4|3', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 67, '39|38', '4|4', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 68, '39|38', '4|5', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 69, '39|38', '4|6', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 70, '39|38', '4|7', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 71, '39|38', '4|8', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 72, '39|38', '4|9', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 73, '39|38', '4|10', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 74, '39|38', '4|11', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 75, '39|38', '4|12', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 76, '39|38', '4|13', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 77, '39|38', '4|14', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 78, '39|38', '4|15', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 79, '39|38', '4|16', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 80, '39|38', '4|17', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 81, '39|38', '4|18', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 82, '39|38', '4|19', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 83, '39|38', '4|20', 0.1993158243996, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 84, '39|38', '4|21', 0.1993158243996, 'kgCO2e/km');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 85, '39|38', '5|1', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 86, '39|38', '5|2', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 87, '39|38', '5|3', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 88, '39|38', '5|4', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 89, '39|38', '5|5', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 90, '39|38', '5|6', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 91, '39|38', '5|7', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 92, '39|38', '5|8', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 93, '39|38', '5|9', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 94, '39|38', '5|10', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 95, '39|38', '5|11', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 96, '39|38', '5|12', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 97, '39|38', '5|13', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 98, '39|38', '5|14', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 99, '39|38', '5|15', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 100, '39|38', '5|16', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 101, '39|38', '5|17', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 102, '39|38', '5|18', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 103, '39|38', '5|19', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 104, '39|38', '5|20', 0.0091972503634, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 105, '39|38', '5|21', 0.0091972503634, 'kgCO2e/km');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 106, '39|38', '6|1', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 107, '39|38', '6|2', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 108, '39|38', '6|3', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 109, '39|38', '6|4', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 110, '39|38', '6|5', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 111, '39|38', '6|6', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 112, '39|38', '6|7', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 113, '39|38', '6|8', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 114, '39|38', '6|9', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 115, '39|38', '6|10', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 116, '39|38', '6|11', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 117, '39|38', '6|12', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 118, '39|38', '6|13', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 119, '39|38', '6|14', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 120, '39|38', '6|15', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 121, '39|38', '6|16', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 122, '39|38', '6|17', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 123, '39|38', '6|18', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 124, '39|38', '6|19', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 125, '39|38', '6|20', 0.0045986251817, 'kgCO2e/km');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (37, 126, '39|38', '6|21', 0.0045986251817, 'kgCO2e/km');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 1, '39|41', '1|1', 314.842324247418, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 2, '39|41', '1|2', 369.006526169381, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 3, '39|41', '1|3', 366.501301131186, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 4, '39|41', '1|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 5, '39|41', '2|1', 44.8434085313976, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 6, '39|41', '2|4', 74.5477756123949, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 7, '39|41', '2|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 8, '39|41', '3|1', 314.842324247418, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 9, '39|41', '3|2', 369.006526169381, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 10, '39|41', '3|3', 366.501301131186, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 11, '39|41', '3|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 12, '39|41', '4|1', 44.8434085313976, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 13, '39|41', '4|4', 74.5477756123949, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 14, '39|41', '4|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 15, '39|41', '5|3', 678.774926057702, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 16, '39|41', '5|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 17, '39|41', '6|3', 1018.16238908655, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (38, 18, '39|41', '6|5', 1, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 1, '39|158', '1|1', 314.842324247418, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 2, '39|158', '1|2', 369.006526169381, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 3, '39|158', '1|3', 366.501301131186, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 4, '39|158', '1|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 5, '39|158', '2|1', 44.8434085313976, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 6, '39|158', '2|4', 74.5477756123949, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 7, '39|158', '2|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 8, '39|158', '3|1', 314.842324247418, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 9, '39|158', '3|2', 369.006526169381, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 10, '39|158', '3|3', 366.501301131186, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 11, '39|158', '3|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 12, '39|158', '4|1', 44.8434085313976, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 13, '39|158', '4|4', 74.5477756123949, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 14, '39|158', '4|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 15, '39|158', '5|3', 678.774926057702, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 16, '39|158', '5|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 17, '39|158', '6|3', 1018.16238908655, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (39, 18, '39|158', '6|5', 1, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 1, '39|46', '1|1', 314.842324247418, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 2, '39|46', '1|2', 369.006526169381, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 3, '39|46', '1|3', 366.501301131186, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 4, '39|46', '1|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 5, '39|46', '2|1', 44.8434085313976, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 6, '39|46', '2|4', 74.5477756123949, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 7, '39|46', '2|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 8, '39|46', '3|1', 314.842324247418, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 9, '39|46', '3|2', 369.006526169381, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 10, '39|46', '3|3', 366.501301131186, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 11, '39|46', '3|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 12, '39|46', '4|1', 44.8434085313976, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 13, '39|46', '4|4', 74.5477756123949, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 14, '39|46', '4|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 15, '39|46', '5|3', 678.774926057702, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 16, '39|46', '5|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 17, '39|46', '6|3', 1018.16238908655, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (40, 18, '39|46', '6|5', 1, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 1, '39|159', '1|1', 187.358111674226, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 2, '39|159', '1|2', 174.696097299943, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 3, '39|159', '1|3', 193.68280489294, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 4, '39|159', '1|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 5, '39|159', '2|1', 1315.42773571325, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 6, '39|159', '2|4', 1011.30985305301, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 7, '39|159', '2|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 8, '39|159', '3|1', 187.358111674226, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 9, '39|159', '3|2', 174.696097299943, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 10, '39|159', '3|3', 193.68280489294, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 11, '39|159', '3|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 12, '39|159', '4|1', 1315.42773571325, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 13, '39|159', '4|4', 1011.30985305301, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 14, '39|159', '4|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 15, '39|159', '5|3', 104.578111646342, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 16, '39|159', '5|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 17, '39|159', '6|3', 69.718741097561, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (41, 18, '39|159', '6|5', 1, '');
+
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 1, '39|159', '1|1', 314.842324247418, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 2, '39|159', '1|2', 369.006526169381, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 3, '39|159', '1|3', 366.501301131186, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 4, '39|159', '1|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 5, '39|159', '2|1', 44.8434085313976, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 6, '39|159', '2|4', 74.5477756123949, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 7, '39|159', '2|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 8, '39|159', '3|1', 314.842324247418, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 9, '39|159', '3|2', 369.006526169381, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 10, '39|159', '3|3', 366.501301131186, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 11, '39|159', '3|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 12, '39|159', '4|1', 44.8434085313976, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 13, '39|159', '4|4', 74.5477756123949, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 14, '39|159', '4|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 15, '39|159', '5|3', 678.774926057702, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 16, '39|159', '5|5', 1, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 17, '39|159', '6|3', 1018.16238908655, '');
+INSERT INTO T_MAEM_FACTOR_DATA (ID_FACTOR, ID_DETALLE, ID_PARAMETROS, VALORES, FACTOR, UNIDAD) VALUES (42, 18, '39|159', '6|5', 1, '');
+
 --T_GEND_CRITERIO_PUNTAJE
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 1, 'Sin puntaje', 0);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 2, 'Mayor o igual a 5% y menor a 10%', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 3, 'Mayor o igual a 10% y menor a 15%', 10);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 4, 'Mayor o igual al 15%', 15);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 2, 'Mayor o igual a 5% y menor a 10%', 10);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 3, 'Mayor o igual a 10% y menor a 15%', 20);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 4, 'Mayor o igual a 15% y menor a 20%', 30);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 5, 'Mayor o igual a 20% y menor a 25%', 40);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 6, 'Mayor o igual a 25% y menor a 30%', 50);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (1, 7, 'Mayor o igual a 30%', 60);
 
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 1, 'Sin puntaje', 0);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 2, 'Mayor o igual a 1% y menor a 2%', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 3, 'Mayor o igual a 2% y menor a 3%', 10);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 4, 'Mayor o igual al 3%', 15);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 2, 'Mayor o igual a 60 % y menor a 70%', 30);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 3, 'Mayor o igual a 70 % y menor a 80 %', 50);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (2, 4, 'Mayor o igual a 80%', 60);
 
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 1, 'Sin puntaje', 0);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 2, 'Mayor o igual a 1% y menor a 2%', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 3, 'Mayor o igual a 2% y menor a 3%', 10);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 4, 'Mayor o igual al 3%', 15);
+/*INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 1, 'Sin puntaje', 0);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 2, 'Mayor o igual a 1% y menor a 2%', 10);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 3, 'Mayor o igual a 2% y menor a 3%', 20);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 4, 'Mayor o igual a 3% y menor a 5%', 30);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 5, 'Mayor o igual a 5% y menor a 8%', 40);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 6, 'Mayor o igual a 8% y menor a 10%', 50);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (3, 7, 'Mayor o igual al 10%', 60);*/
 
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (4, 1, 'Sin puntaje', 0);
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (4, 2, 'Monitoreo de indicadores', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (4, 3, 'Sistema formal para monitorear y reportar', 10);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (4, 4, 'ISO 50001 - SGE', 15);
-
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 1, 'Sin puntaje', 0);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 2, 'Auditoría energética nivel I', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 3, 'Auditoría energética nivel II', 10);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 4, 'Auditoría energética nivel III', 15);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (4, 3, 'Sistema formal para monitorear y reportar', 7.5);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (4, 4, 'ISO 50001 - SGE', 10);
 
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 1, 'Sin puntaje', 0);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 2, 'Al menos 1 actividad', 2);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 3, 'Al menos 2 actividades', 3);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 4, 'Más de 2 actividades', 5);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 2, 'Auditoría energética nivel I', 5);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 3, 'Auditoría energética nivel II', 7.5);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (6, 4, 'Auditoría energética nivel III', 10);
+
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 1, 'Sin puntaje', 0);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 2, '1 buena práctica', 2);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 3, '2 buenas prácticas', 4);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 4, '3 buenas prácticas', 6);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 5, '4 buenas prácticas', 8);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (5, 6, 'Más de 4 buenas prácticas', 10);
 
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (7, 1, 'Sin puntaje', 0);
 INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (7, 2, '1 nuevo puesto de trabajo', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (7, 3, 'Más de 2 nuevos puestos de trabajo', 10);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (7, 3, 'Más de 2 nuevos puestos de trabajo', 7.5);
+INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (7, 4, 'Más de 2 nuevos puestos de trabajo y un puesto destinado a personal femenino', 10);
 
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 1, 'Sin puntaje', 0);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 2, 'Mayor o igual a 5% y menor a 15%', 5);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 3, 'Mayor o igual a 15% y menor a 30%', 7);
-INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 4, 'Mayor o igual al 30%', 10);
+--INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 1, 'Sin puntaje', 0);
+--INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 2, 'Mayor o igual a 5% y menor a 15%', 5);
+--INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 3, 'Mayor o igual a 15% y menor a 30%', 7);
+--INSERT INTO T_GEND_CRITERIO_PUNTAJE (ID_CRITERIO, ID_DETALLE, DESCRIPCION, PUNTAJE) VALUES (8, 4, 'Mayor o igual al 30%', 10);
 
 --T_GEND_SUBSECTOR_TIPOEMPRESA
 INSERT INTO T_GEND_SUBSECTOR_TIPOEMPRESA (ID_SUBSECTOR_TIPOEMPRESA, ID_SECTOR, NOMBRE) VALUES (1, 1, 'SALUD');
