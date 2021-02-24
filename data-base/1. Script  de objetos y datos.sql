@@ -1103,10 +1103,10 @@ INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, ETIQ
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, ETIQUETA, INCREMENTABLE, ID_FACTORES) VALUES (3, 3, 1, 'Componente 1', 'VEHÍCULOS ELÉCTRICOS BASADO EN DATOS DE CONSUMO ENERGÉTICO', '1', '6|7|9|10|13');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, ETIQUETA, INCREMENTABLE, ID_FACTORES) VALUES (3, 4, 1, 'Componente 1', 'VEHÍCULOS HÍBRIDOS BASADO EN DATOS DE CONSUMO ENERGÉTICO', '1', '5|6|7|8|9|12|13|14');*/
 
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE, ETIQUETA) VALUES (1, 1, 1, 'Componente 1', '0', 'Establecimiento de escenario linea base (BAU) del consumo energético para la entidad');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE, ETIQUETA) VALUES (1, 1, 2, 'Componente 2', '1', 'Reporte de actividades implementadas para la reducción de consumo energético');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (2, 1, 1, 'Componente 1', '1');
-INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (2, 2, 1, 'Componente 1', '1');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE, ETIQUETA, ID_FACTORES) VALUES (1, 1, 1, 'Componente 1', '0', 'Establecimiento de escenario linea base (BAU) del consumo energético para la entidad', '31');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE, ETIQUETA, ID_FACTORES) VALUES (1, 1, 2, 'Componente 2', '1', 'Reporte de actividades implementadas para la reducción de consumo energético', '17|18|19|20|21|22|23|24|25|26|27|28|29|30');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE, ID_FACTORES) VALUES (2, 1, 1, 'Componente 1', '1', '5|6|32|33|34|35|36|38|39|40');
+INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE, ID_FACTORES) VALUES (2, 2, 1, 'Componente 1', '1', '32|33|34|36|38|39|41|42|43|44');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 1, 1, 'Componente 1', '0');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 1, 2, 'Componente 2', '0');
 INSERT INTO T_GENM_COMPONENTE (ID_CRITERIO, ID_CASO, ID_COMPONENTE, NOMBRE, INCREMENTABLE) VALUES (4, 2, 1, 'Componente 1', '0');
@@ -1471,8 +1471,10 @@ insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, i
 values (149, 'Sede de la implementación', 'P2CR1CS1CM1', 2, 2, '0', '0', '1', '0', '0', null, '0', 60, 'Ingresar la sede de la empresa donde se realizó la implementación del SGE.', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('23-02-2021 15:32:32', 'dd-mm-yyyy hh24:mi:ss'));
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
 values (150, 'Detalle de otras buenas prácticas implementadas', 'P24CR1CS1CM1', 3, 2, '0', '0', '1', '0', '0', null, '0', 3800, 'Explicar la implementación de buenas prácticas del uso eficiente de la energía, en máximo 2,000 caracteres (con espacios). ', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('23-02-2021 15:57:41', 'dd-mm-yyyy hh24:mi:ss'));
+/*insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (151, 'Género', 'P2CR1CS1CM1', 2, 2, '0', '0', '1', '0', '0', null, '0', 60, 'Género del personal dedicado a la gestión de la energía.', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('23-02-2021 16:05:02', 'dd-mm-yyyy hh24:mi:ss'));*/
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
-values (151, 'Género', 'P2CR1CS1CM1', 2, 2, '0', '0', '1', '0', '0', null, '0', 60, 'Género del personal dedicado a la gestión de la energía.', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('23-02-2021 16:05:02', 'dd-mm-yyyy hh24:mi:ss'));
+values (151, 'Género', 'P2CR1CS1CM1', 1, null, '0', '0', '1', '0', '0', '0', '0', 0, 'Género del personal dedicado a la gestión de la energía.', null, '0', '0', null, '0', '1', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('23-02-2021 16:05:02', 'dd-mm-yyyy hh24:mi:ss'));
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
 values (152, 'Emisiones electricidad', null, 2, 1, '1', '0', '0', '0', '0', null, '1', 22, null, 'tCO2eq', '0', '0', null, '0', '0', '0', '1', null, to_date('15-01-2021 12:51:49', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 insert into T_MAEM_PARAMETRO (id_parametro, nombre, etiqueta, id_tipo_control, id_tipo_dato, decimal_v, verificable, editable, obtenible, estatico, filtro, resultado, tamano, descripcion, unidad, emisiones, ahorro, filtrar_in, combustible, visible, cambio_matriz, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
@@ -2422,6 +2424,10 @@ insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg
 values (4, 169, 'Diesel', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:32:43', 'dd-mm-yyyy hh24:mi:ss'));
 insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
 values (5, 169, 'No aplica', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), 1, to_date('03-02-2021 15:32:43', 'dd-mm-yyyy hh24:mi:ss'));
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (1, 151, 'Masculino', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
+insert into T_MAED_PARAMETRO (id_detalle, id_parametro, nombre, flag_estado, reg_usuario, reg_fecha, upd_usuario, upd_fecha)
+values (2, 151, 'Femenino', '1', null, to_date('29-01-2021 13:28:10', 'dd-mm-yyyy hh24:mi:ss'), null, null);
 
 commit;
 prompt 455 records loaded
