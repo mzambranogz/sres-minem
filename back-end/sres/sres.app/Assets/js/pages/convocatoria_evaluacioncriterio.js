@@ -10,7 +10,7 @@ $(document).ready(() => {
 });
 
 var validarTituloCaso = () => {
-    if (idCriterio == 4 || idCriterio == 6 || idCriterio == 7) {
+    if (idCriterio == 2 || idCriterio == 4 || idCriterio == 6 || idCriterio == 7) {
         let texto = $('#cbo-caso option:selected').text();
         $('#titulo-caso').html(texto.split('(')[0]);
         $('#titulo-caso').parent().parent().parent().parent().removeClass('d-none');
