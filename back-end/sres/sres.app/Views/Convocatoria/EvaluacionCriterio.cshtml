@@ -198,7 +198,7 @@
             <div class="col-12 text-center my-3">
                 @if (listaCaso != null)
                 {
-                    <div class="row @(listaCaso.Count < 2 ? "d-none":"")">
+                    <div class="row d-none">
                         <div class="col-12">
                             <div class="form-group">
                                 <div class="input-group">
@@ -216,6 +216,17 @@
                         </div>
                     </div>
                 }
+
+                <div class="row d-none">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <h3 class="estilo-02 text-sres-azul mt-2 text-left" id="titulo-caso"></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 
                 <div id="table-add"></div>
                 <div class="row">
@@ -233,7 +244,7 @@
                     <div class="row">                        
                         <div class="col-sm-12 col-md-3">
                             <div class="form-group text-left">
-                                <label class="" for="txt-electrica">Ahorro energía eléctrica</label>
+                                <label class="" for="txt-electrica">Ahorro energía eléctrica (MJ)</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
                                     <input class="form-control estilo-01" type="text" id="txt-electrica" maxlength="30" readonly>
@@ -242,7 +253,7 @@
                         </div>
                         <div class="col-sm-12 col-md-3">
                             <div class="form-group text-left">
-                                <label class="" for="txt-termica">Ahorro energía térmica</label>
+                                <label class="" for="txt-termica">Ahorro energía térmica (MJ)</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
                                     <input class="form-control estilo-01" type="text" id="txt-termica" maxlength="30" readonly>
@@ -251,7 +262,7 @@
                         </div>
                         <div class="col-sm-12 col-md-3">
                             <div class="form-group text-left">
-                                <label class="" for="txt-matriz">Ahorro de cambio de matriz</label>
+                                <label class="" for="txt-matriz">Ahorro de cambio de matriz (MJ)</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
                                     <input class="form-control estilo-01" type="text" id="txt-matriz" maxlength="30" readonly>
@@ -260,7 +271,7 @@
                         </div>
                         <div class="col-sm-12 col-md-3">
                             <div class="form-group text-left">
-                                <label class="" for="txt-emisiones">Total de emisiones GEI tCO<sub>2</sub></label>
+                                <label class="" for="txt-emisiones">Total de emisiones GEI (tCO<sub>2</sub>eq)</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
                                     <input class="form-control estilo-01" type="text" id="txt-emisiones" maxlength="30" readonly>
@@ -272,7 +283,7 @@
 
                         <div class="col-sm-12 col-md-3">
                             <div class="form-group text-left">
-                                <label class="" for="txt-ahorro-electrica">Porcentaje total de energía</label>
+                                <label class="" for="txt-ahorro-electrica">Porcentaje total de energía (%)</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-landmark"></i></span></div>
                                     <input class="form-control estilo-01" type="text" id="txt-total-electrica" maxlength="30" readonly>

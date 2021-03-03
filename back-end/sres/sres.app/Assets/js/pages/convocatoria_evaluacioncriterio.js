@@ -1,12 +1,21 @@
 ﻿var electricidadHead = 0, combustibleHead = 0, energiaelectrica = 0, energiatermica = 0, cambiomatriz = 0, emisiones = 0, ahorroenergia = 0, ahorrotermica = 0, ahorrocambio = 0, total_energiahead = 0, total_energia = 0, porcentaje_total_energia = 0;
 
 $(document).ready(() => {
+    validarTituloCaso();
     consultar();
     consultarDoc();
     cargarEvaluacion();
     $('#btnGuardar').on('click', (e) => guardar());
     validarCamposVisibles();
 });
+
+var validarTituloCaso = () => {
+    if (idCriterio == 4 || idCriterio == 6 || idCriterio == 7) {
+        let texto = $('#cbo-caso option:selected').text();
+        $('#titulo-caso').html(texto.split('(')[0]);
+        $('#titulo-caso').parent().parent().parent().parent().removeClass('d-none');
+    }
+}
 
 var validarCamposVisibles = () => {
     if (idCriterio == 1 || idCriterio == 2) {
@@ -167,7 +176,7 @@ var armarHead = (lista, incremental, id, componente) => {
 
         let val = validarParametroVisible(lista[i]["ID_PARAMETRO"]);
         //cont += `<th scope="col"><div class="d-flex flex-column justify-content-start align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}<i class="fas fa-info-circle mt-2" data-toggle="tooltip" data-placement="bottom" title="${lista[i]["OBJ_PARAMETRO"].DESCRIPCION == null ? '' : lista[i]["OBJ_PARAMETRO"].DESCRIPCION}"></i></div></th>`;
-        cont += `<th scope="col" ${val ? lista[i]["OBJ_PARAMETRO"].VISIBLE == '0' ? `class="d-none"` : '' : ''}><div class="flex-column d-flex justify-content-center align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD})</small>`}</div></th>`;
+        cont += `<th scope="col" ${val ? lista[i]["OBJ_PARAMETRO"].VISIBLE == '0' ? `class="d-none"` : '' : ''}><div class="flex-column d-flex justify-content-center align-items-center"><span>${lista[i]["OBJ_PARAMETRO"].NOMBRE}</span>${lista[i]["OBJ_PARAMETRO"].UNIDAD == null ? `` : lista[i]["OBJ_PARAMETRO"].UNIDAD == '' ? `` : `<small>(${lista[i]["OBJ_PARAMETRO"].UNIDAD.replace('tCO2','tCO<sub>2</sub>')})</small>`}</div></th>`;
     }
     let columnabau = `<th colspan="${contbau}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Situación de línea base - BAU</span><small></small></div></th>`;
     //let columnaini = `<th colspan="${contini}"><div class="d-flex flex-column justify-content-center align-items-center"><span>Data aplicando la acción de mejora para ahorro de energía</span><small></small></div></th>`;
@@ -195,7 +204,7 @@ var armarFila = (lista, id_criterio, id_caso, id_componente, id_indicador, flag_
                 filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${val ? lista[i]["VISIBLE"] == '0' ? `class="d-none"` : '' : ''}><div class="text-center estilo-01">${validarNull(lista[i]["VALOR"])}</div><input class="get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" type="hidden" /></td>`;
             else
                 //filas += `<td data-encabezado="${lista[i]["NOMBRE"]}"><div class="form-group m-0"><div class="input-group"><input class="form-control-plaintext form-control-sm estilo-01 text-sres-gris ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal' : ''} ${lista[i]["VERIFICABLE"] == '1' ? `verificar` : ``} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``}  get-valor" type="${lista[i]["ID_TIPO_DATO"] == '1' ? 'text' : lista[i]["ID_TIPO_DATO"] == '3' ? 'date' : 'text'}" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" value="${validarNull(lista[i]["VALOR"])}" data-param="${lista[i]["ID_PARAMETRO"]}" ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["RESULTADO"] == '1' ? `data-resultado="1"` : `` : ``} ${lista[i]["ID_TIPO_DATO"] == '1' ? lista[i]["OBTENIBLE"] == '1' ? `data-obtenible="1"` : `` : ``} maxlength="${lista[i]["TAMANO"]}" ${lista[i]["VERIFICABLE"] == '1' ? `onBlur="verificarValor(this)"` : ``}  ${lista[i]["EDITABLE"] == '0' ? `readonly` : ``} readonly /></div></div></td>`;
-                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${val ? lista[i]["VISIBLE"] == '0' ? `class="d-none"` : '' : ''}><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris ${lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero text-right' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal text-right' : ''} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``} ${lista[i]["COMBUSTIBLE"] == null ? `` : lista[i]["COMBUSTIBLE"] == '1' ? `get-combustible` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}">${lista[i]["DECIMAL_V"] == null ? validarNull(lista[i]["VALOR"]) : lista[i]["DECIMAL_V"] == '1' ? formatoMiles(validarNull(lista[i]["VALOR"])) : validarNull(lista[i]["VALOR"])}</span></div></div></td>`;
+                filas += `<td data-encabezado="${lista[i]["NOMBRE"]}" ${val ? lista[i]["VISIBLE"] == '0' ? `class="d-none"` : '' : ''}><div class="form-group m-0"><div class="input-group"><span class="form-control-plaintext form-control-sm estilo-01 text-sres-gris ${lista[i]["ID_PARAMETRO"] == 71 && lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero text-center' : lista[i]["ID_TIPO_DATO"] == '1' ? 'solo-numero text-right' : ''} ${lista[i]["DECIMAL_V"] == null ? '' : lista[i]["DECIMAL_V"] == '1' ? 'formato-decimal text-right' : ''} ${lista[i]["EMISIONES"] == null ? `` : lista[i]["EMISIONES"] == '1' ? `get-emisiones` : ``} ${lista[i]["AHORRO"] == null ? `` : lista[i]["AHORRO"] == '1' ? `get-ahorro` : ``} ${lista[i]["COMBUSTIBLE"] == null ? `` : lista[i]["COMBUSTIBLE"] == '1' ? `get-combustible` : ``} get-valor" id="${id_criterio}-${id_caso}-${id_componente}-${flag_nuevo == 0 ? id_indicador : row}-${lista[i]["ID_PARAMETRO"]}" data-param="${lista[i]["ID_PARAMETRO"]}">${lista[i]["DECIMAL_V"] == null ? validarNull(lista[i]["VALOR"]) : lista[i]["DECIMAL_V"] == '1' ? formatoMiles(validarNull(lista[i]["VALOR"])) : validarNull(lista[i]["VALOR"])}</span></div></div></td>`;
         } else if (lista[i]["ID_TIPO_CONTROL"] == 1) {
             let v = 0;
             for (var j = 0; j < lista[i]["LIST_PARAMDET"].length; j++) {
