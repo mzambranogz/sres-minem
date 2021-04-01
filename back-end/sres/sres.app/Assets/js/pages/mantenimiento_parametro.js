@@ -181,7 +181,7 @@ var cargarDatos = (data) => {
         if (data.LISTA_DET.length > 0) {
             let detalle = data.LISTA_DET.map((x, y) => {
                 let icono = `<i class="fas fa-list"></i>`;
-                let nombre = `<small class="badge badge-info mostrar-valor">${x.NOMBRE}</small>`;
+                let nombre = `<small class="badge badge-info mostrar-valor" style="width: calc(100% - 42px); overflow: hidden;margin-left: 10px;">${x.NOMBRE}</small>`;
                 let ctrlNombre = `<input class="hidden-control field-ctrol nombre" type="hidden" value="${x.NOMBRE}">`;
                 let ctrlValor = `<input class="hidden-control field-ctrol valor" data-delete="1" type="hidden" value="${x.ID_DETALLE}">`;
                 let delet = `<i class="fas fa-minus-circle cursor-pointer m-2 delete-columna-detalle esconder" data-parent="2" data-toggle="tooltip"  onclick="eliminarParametro(${x.ID_DETALLE});"  data-placement="top" title="" data-original-title="Eliminar"></i>`;
