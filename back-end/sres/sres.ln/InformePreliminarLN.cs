@@ -147,7 +147,7 @@ namespace sres.ln
                             {
                                 resultado += $"<span><strong>Reconocimiento por cada medida que aportan a las NDC: </strong>NO</span><br>";
                             }
-                            resultado += $"<span><strong>Reconocimiento destacado por reducción de emisiones GEI (tCO<sub>2</sub>): </strong>{emisiones}</span><br>";
+                            //resultado += $"<span><strong>Reconocimiento destacado por reducción de emisiones GEI (tCO<sub>2</sub>): </strong>{emisiones}</span><br>";
                             resultado += $"<span><strong>Reconocimiento destacado a la mejora continua de energía sostenible: </strong>{mejora}</span><br>";                            
                         }
                         else
@@ -155,7 +155,7 @@ namespace sres.ln
                             resultado += $"<span><strong>Categorización del sello de reconocimiento: </strong>NO</span><br>";
                             resultado += $"<span><strong>Reconocimiento por reducción de emisiones GEI (tCO<sub>2</sub>): </strong>NO</span><br>";
                             resultado += $"<span><strong>Reconocimiento por cada medida que aportan a las NDC: </strong>NO</span><br>";
-                            resultado += $"<span><strong>Reconocimiento destacado por reducción de emisiones GEI (tCO<sub>2</sub>): </strong>NO</span><br>";
+                            //resultado += $"<span><strong>Reconocimiento destacado por reducción de emisiones GEI (tCO<sub>2</sub>): </strong>NO</span><br>";
                             resultado += $"<span><strong>Reconocimiento destacado a la mejora continua de energía sostenible: </strong>NO</span><br>";
                         }
                         contenidoInforme += $"<tr><td style='padding:5px;'><span><strong>Empresa:</strong> {recon.RAZON_SOCIAL}</span><br>{resultado}</td></tr>";

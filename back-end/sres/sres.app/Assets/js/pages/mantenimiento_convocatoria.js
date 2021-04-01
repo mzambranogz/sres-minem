@@ -831,7 +831,6 @@ var cambiarPagina = () => {
 }
 
 $(".columna-filtro").click(function (e) {
-    debugger;
     var id = e.target.id;
 
     $(".columna-filtro").removeClass("fa-sort-up");
@@ -882,4 +881,15 @@ var validarEtapa = (idetapa) => {
     else if (idetapa < 15) $('#cbo-proceso').val(3);
     else $('#cbo-proceso').val(4);
 }
+
+$("#modal-mantenimiento").on("hidden.bs.modal", function () {    
+    $('#tab-head-01').removeClass('active show');
+    $('#tab-01').removeClass('active show');
+    $('#tab-head-02').removeClass('active show');
+    $('#tab-02').removeClass('active show');
+    $('#tab-head-00').addClass('active show');
+    $('#tab-00').addClass('active show');
+});
+
+//tab-head-00
 
