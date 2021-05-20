@@ -118,6 +118,7 @@ var consultarConvocatoria = (element) => {
         ])
         .then(r => Promise.all(r.map(v => v.json())))
         .then(([jReq, jCri, jEva, jEta, jPos, jInsig, jEsttrab]) => {
+            $('[id*=tab-head-cri-] i').removeClass('text-sres-verde').addClass('text-primary')
             cargarDatos(j);
             //jCri.length == 0 ? '' : jReq.map(x => $('#chk-r-'+x.ID_REQUERIMIENTO).prop('checked', true));
 
@@ -152,6 +153,7 @@ var consultarConvocatoria = (element) => {
             if (jCri.length > 0){
                 jCri.map((x,y) => {
                     $('#chk-c-'+x.ID_CRITERIO).prop('checked', true);
+                    $(`#tab-head-cri-0${x.ID_CRITERIO} i`).removeClass('text-primary').addClass('text-sres-verde')
                     x.LISTA_CASO.map((w,z) => {
                         $('#chk-c-'+w.ID_CRITERIO+'-s-'+w.ID_CASO).prop('checked', true);
                         w.LIST_DOC.map((a,b) => {
@@ -448,6 +450,9 @@ var nuevo = () => {
     $('#cbo-proceso').val(1);
     //$('.postulante-evaluador-btn').addClass('d-none');
     //$('.postulante-evaluador').addClass('d-none');
+    $('[id*=chk-r-]').prop('checked', true)
+    $('[id*=chk-c-]').prop('checked', true)
+    $('[id*=tab-head-cri-] i').removeClass('text-primary').addClass('text-sres-verde')
 }
 
 var cerrarFormulario = () => {
@@ -490,7 +495,6 @@ var guardar = () => {
     let id = $('#frm').data('id');
     let ve = 0, vc = 0, vi = 0;
     let arr = []; 
-    debugger;
     if ($('#txt-titulo').val().trim() === "") arr.push("Ingrese el título de la convocatoria");
     if ($('#txa-descripcion').val().trim() === "") arr.push("Ingrese la descripción de la convocatoria");
     if ($('#dat-inicio').val() == "") arr.push("Seleccione la fecha de inicio");

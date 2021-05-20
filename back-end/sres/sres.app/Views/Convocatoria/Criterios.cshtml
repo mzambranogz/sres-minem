@@ -11,8 +11,13 @@
     PuntajeBE puntaje_conv = (PuntajeBE)ViewData["puntaje"];
     decimal total_criterio = listaCriterio.Count();
     decimal ingresados = 0, emisiones = 0, energia = 0, combustible = 0;
-    int puntaje = 0, flag_categoria = 0;
-    foreach (var cri in listaCriterio) { if (cri.INGRESO_DATOS > 0) { ingresados++; } puntaje += cri.PUNTAJE; emisiones += cri.EMISIONES; energia += cri.ENERGIA; combustible += cri.COMBUSTIBLE; }
+    int puntaje_1_2 = 0, puntaje = 0, flag_categoria = 0;
+    foreach (var cri in listaCriterio) {
+        if (cri.INGRESO_DATOS > 0) { ingresados++; }
+        if (cri.ID_CRITERIO == 1 || cri.ID_CRITERIO == 2) { puntaje_1_2 += cri.PUNTAJE; } else { puntaje += cri.PUNTAJE; }
+        emisiones += cri.EMISIONES; energia += cri.ENERGIA; combustible += cri.COMBUSTIBLE; }
+    puntaje_1_2 = puntaje_1_2 > 60 ? 60 : puntaje_1_2;
+    puntaje += puntaje_1_2;
     foreach (var cri in listaCriterio) { if (cri.ID_CATEGORIA == 1) { if (cri.INGRESO_DATOS > 0) { flag_categoria = 1; } } }
     decimal porcentaje_avance = Decimal.Round(ingresados * 100 / total_criterio);
     string pathFormat = AppSettings.Get<string>("Path.Criterio");

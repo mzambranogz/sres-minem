@@ -23,9 +23,9 @@
                         <ul>
                             <li><span><i class="far fa-file"></i><a href="@Url.Action("Index", "Inicio")">&nbsp; Inicio</a></span></li>
                             <li><span><i class="far fa-file"></i><a href="@Url.Action("Index", "Participantes")">&nbsp; Participantes</a></span></li>
-                            <li><span><i class="far fa-file"></i><a href="@Url.Action("Index", "Convocatoria")">&nbsp; Convocatoria</a></span></li>
+                            <li><span><i class="far fa-file"></i><a href="@Url.Action("/0/Informacion", "Convocatoria")">&nbsp; Convocatoria</a></span></li>
                             <li><span><i class="far fa-file"></i><a href="@Url.Action("Categoria", "Participantes")">&nbsp; Categorías</a></span></li>
-                            <li><span><i class="far fa-file"></i><a href="@Url.Action("PreguntasFrecuentes", "Participantes")">&nbsp; Preguntas frecuentes</a></span></li>
+                            <li><span><i class="far fa-file"></i><a href="@Url.Action("Preguntas-frecuentes", "Participantes")">&nbsp; Preguntas frecuentes</a></span></li>
                             @if (usuario == null)
                             {
                                 <li><span><i class="far fa-file"></i><a href="@Url.Action("Registrarme", "Login")">&nbsp; Registrarse</a></span></li>

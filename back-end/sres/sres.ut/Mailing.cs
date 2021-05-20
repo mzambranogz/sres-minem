@@ -66,6 +66,8 @@ namespace sres.ut
             InformePreConvocatoria,
             [Description("InformeFinalConvocatoria.html")]
             InformeFinalConvocatoria,
+            [Description("CambiarContrasena.html")]
+            CambiarContrasena,
         }
 
         static string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);

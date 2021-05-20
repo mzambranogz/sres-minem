@@ -67,6 +67,7 @@ var enviarInscripcion = () => {
 
     if (mensaje.length > 0) {
         $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'danger', title: 'ERROR', message: `Debe marcar ${mensaje.join(' y ')}` });
+        setTimeout(() => { $('#viewInscripcionRequerimiento .alert').remove() }, 4000)
         return;
     }
 
@@ -75,7 +76,8 @@ var enviarInscripcion = () => {
     let listaInscripcionRequerimiento = Array.from(listaInputFile).filter(x => $(x).data('file') != null)
 
     if (listaInscripcionRequerimiento.length < listaInputFile.length) {
-        $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'danger', title: 'ERROR', message: 'Necesita completas todos los requerimientos' });
+        $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'danger', title: 'ERROR', message: 'Necesita completar todos los requerimientos' });
+        setTimeout(() => { $('#viewInscripcionRequerimiento .alert').remove() }, 4000)
         return;
     }
 
@@ -114,6 +116,10 @@ var enviarInscripcion = () => {
     .then(r => r.json())
     .then(mostrarMensaje)
 };
+
+var limpiarMensaje = () => {
+    $('#viewInscripcionRequerimiento .alert').remove()
+}
 
 var mostrarMensaje = (data) => {
     if (data.success == true) {

@@ -463,6 +463,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Mailing\AprobacionRequesitos.html" />
+    <Content Include="Mailing\CambiarContrasena.html" />
     <Content Include="Mailing\CoordinacionConvocatoria.html" />
     <Content Include="Mailing\CreacionConvocatoria.html" />
     <Content Include="Mailing\DocSolicitadosConvocatoria.html" />

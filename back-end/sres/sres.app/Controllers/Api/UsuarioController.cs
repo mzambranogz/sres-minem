@@ -155,12 +155,25 @@ namespace sres.app.Controllers.Api
 
         [Route("cambiarclaveusuario")]
         [HttpPost]
-        public int CambiarClave(UsuarioBE usuario)
+        public int CambiarClave(UsuarioBE u)
         {
             int estado = 0;
             try
             {
-                estado = usuarioLN.CambiarClave(usuario);
+                estado = usuarioLN.CambiarClave(u);
+                if (estado == 3)
+                {
+                    UsuarioBE usuario = usuarioLN.ObtenerUsuario(u.ID_USUARIO);
+                    string fieldNombres = "[NOMBRES]";
+                    string[] fields = new string[] { fieldNombres };
+                    string[] fieldsRequire = new string[] { fieldNombres };
+                    Dictionary<string, string> dataBody = new Dictionary<string, string> { [fieldNombres] = usuario.NOMBRES };
+                    string subject = $"REES, cambio de contraseña";
+                    MailAddressCollection mailTo = new MailAddressCollection();
+                    mailTo.Add(new MailAddress(usuario.CORREO, $"{usuario.NOMBRES} {usuario.APELLIDOS}"));
+
+                    Task.Factory.StartNew(() => mailing.SendMail(Mailing.Templates.CambiarContrasena, dataBody, fields, fieldsRequire, subject, mailTo));
+                }
             }
             catch (Exception ex)
             {

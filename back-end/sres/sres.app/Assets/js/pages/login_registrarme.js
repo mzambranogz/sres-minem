@@ -70,7 +70,7 @@ var cargarDatosInstitucion = (data) => {
     $('#txt-direccion').val(data.DOMICILIO_LEGAL);
     $('#cbo-sector').val(data.ID_SECTOR);
 
-    $('form > .row:nth(0)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continue y complete sus datos en los campos restantes del siguiente formulario.' });
+    $('form > .row:nth(0)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continúe y complete sus datos en los campos restantes del siguiente formulario.' });
 }
 
 var cargarDatosInstitucionMRV = (data) => {
@@ -83,7 +83,7 @@ var cargarDatosInstitucionMRV = (data) => {
     cambiarPropiedadLecturaUsuario(!existeInformacion);
 
     if (!existeInformacion) {
-        //$('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continue y complete sus datos en todos los campos del siguiente formulario.' });
+        //$('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continúe y complete sus datos en todos los campos del siguiente formulario.' });
         let ruc = $('#txt-ruc').val();
         let urlObtenerInstitucionMRVPorRuc = `${baseUrl}api/institucion/obtenerinstitucionporrucservicio?ruc=${ruc}`;
 
@@ -98,7 +98,7 @@ var cargarDatosInstitucionMRV = (data) => {
     $('#txt-direccion').val(data.DIRECCION_INSTITUCION);
     $('#cbo-sector').val(data.ID_SECTOR_INSTITUCION);
 
-    $('form > .row:nth(0)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continue y complete sus datos en los campos restantes del siguiente formulario.' });
+    $('form > .row:nth(0)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continúe y complete sus datos en los campos restantes del siguiente formulario.' });
 }
 
 var cargarDatosInstitucionServicio = (data) => {
@@ -111,8 +111,8 @@ var cargarDatosInstitucionServicio = (data) => {
     cambiarPropiedadLecturaUsuario(true);
 
     if (!existeInformacion) {
-        //$('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continue y complete sus datos en todos los campos del siguiente formulario.' });
-        $('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continue y complete sus datos en todos los campos del siguiente formulario.' });
+        //$('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continúe y complete sus datos en todos los campos del siguiente formulario.' });
+        $('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continúe y complete sus datos en todos los campos del siguiente formulario.' });
         return;
     }
     validarPIDE = 1;
@@ -126,7 +126,7 @@ var cargarDatosInstitucionServicio = (data) => {
     idContribuyentePIDE = data.CONTRIBUYENTE;
     $('#cbo-sector').prop('disabled', false);
 
-    $('form > .row:nth(0)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continue y complete sus datos en los campos restantes del siguiente formulario.' });
+    $('form > .row:nth(0)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continúe y complete sus datos en los campos restantes del siguiente formulario.' });
 }
 
 var cargarComboSector = (selector, data) => {

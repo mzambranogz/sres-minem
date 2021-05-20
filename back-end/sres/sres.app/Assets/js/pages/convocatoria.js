@@ -369,8 +369,8 @@ var responseActualizarDatosInstitucion = (data) => {
         cantidad = $(`#txt-numero`).val();
         cantidadmujeres = $(`#txt-total-mujeres`).val();
         $('#lblDescripcionInstitucion').text($('#txa-descripcion').val());
-        $('#txt-nombre-corto').val('');
-        $('#txa-descripcion').val('');
+        //$('#txt-nombre-corto').val('');
+        //$('#txa-descripcion').val('');
         $('#modal-edit-descripcion').modal('hide');
         $('#fle-logo').parent().parent().parent().parent().parent().parent().alert({ type: 'success', title: '¡BIEN HECHO!', message: `Se actualizó los datos de la institución correctamente`, close: { time: 3000 } });
         let url = `${baseUrl}Login/RefrescarDatosSession`;
