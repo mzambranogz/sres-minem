@@ -36,7 +36,7 @@
         }
 
         var settings = $.extend($.fn.alert.defaults, options);
-        let element = $(`<div class="alert alert-${settings.type} d-flex align-items-stretch" role="alert"></div>`);
+        let element = $(`<div class="alert msj-danger alert-${settings.type} d-flex align-items-stretch" role="alert"></div>`);
         let icon = getIcon(settings.type);
         let optionsContent = `<div class="alert-wrap mr-3"><div class="sa"><div class="sa-${settings.type.replace('danger', 'error')}">${icon}</div></div></div>`;
         let titleContent = `<h6 class="estilo-02">${settings.title}</h6>`;

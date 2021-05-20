@@ -329,6 +329,7 @@ var guardar = () => {
 
     if (listaDoc.length < listaInputFile.length) {
         $('.alert-add').html('').alertError({ type: 'danger', title: 'ERROR', message: 'Necesita completar todos los documentos obligatorios (*)' });
+        setTimeout(() => { $('.alert-add').html('') }, 4000)
         return;
     }
 

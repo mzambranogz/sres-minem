@@ -67,7 +67,7 @@ var enviarInscripcion = () => {
 
     if (mensaje.length > 0) {
         $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'danger', title: 'ERROR', message: `Debe marcar ${mensaje.join(' y ')}` });
-        setTimeout(() => { $('#viewInscripcionRequerimiento .alert').remove() }, 4000)
+        setTimeout(() => { $('#viewInscripcionRequerimiento .msj-danger').remove() }, 4000)
         return;
     }
 
@@ -77,7 +77,7 @@ var enviarInscripcion = () => {
 
     if (listaInscripcionRequerimiento.length < listaInputFile.length) {
         $('#viewInscripcionRequerimiento > .row:last').alert({ type: 'danger', title: 'ERROR', message: 'Necesita completar todos los requerimientos' });
-        setTimeout(() => { $('#viewInscripcionRequerimiento .alert').remove() }, 4000)
+        setTimeout(() => { $('#viewInscripcionRequerimiento .msj-danger').remove() }, 4000)
         return;
     }
 
