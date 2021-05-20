@@ -110,7 +110,7 @@ var consultarDoc = () => {
 };
 
 var mostrarDocumentos = (data) => {
-    if (data.length > 0) {        
+    if (data.length > 0) {
         let tituloDoc = '<div class="col-lg-6 col-md-12 col-sm-12"><h3 class="estilo-02 text-sres-azul mb-5 text-left">DOCUMENTOS DE SUSTENTO</h3></div>';
         let tituloArchivosAdjuntos = '<div class="col-lg-6 col-md-12 col-sm-12 d-none d-lg-block"><h3 class="estilo-02 text-sres-azul mb-5 text-left"></h3></div>';
         let cabecera = `<div class="row">${tituloDoc}${tituloArchivosAdjuntos}</div>`;
@@ -131,9 +131,12 @@ var mostrarDocumentos = (data) => {
                 let colRight = `<div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-end"><div class="w-100 text-left" id="viewContentFile-${x.ID_DOCUMENTO}"><label class="estilo-01">${radioAprobado}${radioDesaprobado}</label><div id="evaluacion-${x.ID_DOCUMENTO}">${contenidoFileDoc}</div></div></div>`;
                 let contenidoFinal = `<div class="row">${colLeft}${colRight}</div>`;
                 return contenidoFinal;
-            } 
+            }
         }).join('')
+        if (contenido == "") $('#btnGuardar').parent().parent().remove()
         $('#doc-add').html(`${cabecera}${contenido}`);
+    } else {
+        $('#btnGuardar').parent().parent().remove()
     }
 }
 

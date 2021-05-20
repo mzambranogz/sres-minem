@@ -91,6 +91,7 @@ namespace sres.app.Controllers
             MigrarEmisionesBE migrar = new MigrarEmisionesBE { INICIATIVAS = "0"};
             PuntajeBE puntaje = puntajeLN.getPuntajePosible(idConvocatoria);
 
+            ViewData["usuario"] = usuario;
             ViewData["convocatoria"] = convocatoria;
             ViewData["inscripcion"] = inscripcion;
             ViewData["listaCriterio"] = listaCriterio;

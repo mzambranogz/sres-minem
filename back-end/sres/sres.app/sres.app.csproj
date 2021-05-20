@@ -518,6 +518,9 @@
     <Content Include="Service References\ServicioPIDE\sres.app.ServicioPIDE.BEDatosSUNEDU.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Assets\documentos\Manual_Usuario_REES.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Service References\ServicioPIDE\srvConsultas.wsdl" />
     <None Include="Service References\ServicioPIDE\WCF_ServiciosExternos.disco" />
     <None Include="Service References\ServicioPIDE\configuration91.svcinfo" />

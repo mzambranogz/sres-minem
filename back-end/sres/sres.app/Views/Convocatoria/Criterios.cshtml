@@ -3,6 +3,7 @@
 @{
     ViewBag.Titulo = "Criterios";
     ViewBag.SRESDescription = false;
+    UsuarioBE usuario = (UsuarioBE)ViewData["usuario"];
     ConvocatoriaBE convocatoria = (ConvocatoriaBE)ViewData["convocatoria"];
     InscripcionBE inscripcion = (InscripcionBE)ViewData["inscripcion"];
     List<CriterioBE> listaCriterio = (List<CriterioBE>)ViewData["listaCriterio"];
@@ -674,4 +675,5 @@ else
     const ingresadosCri = @ingresados;
     const totalCri = @total_criterio;
     const idIniciativas = '@migrar.INICIATIVAS';
+    const correo = '@usuario.CORREO.ToString()';
 </script>
