@@ -383,11 +383,18 @@ var responseActualizarDatosInstitucion = (data) => {
 
 var listaSubsector = () => {
     if (idRol != 3) return false;
+    mostrarSeccionEmpresa()
     $('#txt-tipo-contribuyente').val(idContribuyente == null ? 0 : idContribuyente);
-    let url = `${baseUrl}api/subsectortipoempresa/listasubsetortipoempresa?idSector=${idSector}`;
+    let sector = idSector == 3 ? 2 : idSector
+    let url = `${baseUrl}api/subsectortipoempresa/listasubsetortipoempresa?idSector=${sector}`;
     fetch(url)
     .then(r => r.json())
     .then(armarCombosubsectortipoempresa);
+}
+
+var mostrarSeccionEmpresa = () => {
+    if (idSector == 3) $('.seccion-empresa').addClass('d-none')
+    else $('.seccion-empresa').removeClass('d-none')
 }
 
 var armarCombosubsectortipoempresa = (data) => {
@@ -396,6 +403,7 @@ var armarCombosubsectortipoempresa = (data) => {
     }).join('');
     $(`#cbo-subsector-tipoemp`).html(`<option value="0">${idSector == 1 ? "-seleccione subsector-" : "-seleccione tipo empresa-"}</option>${combo}`);
     if (idSubsectortipoemp > 0) { $(`#cbo-subsector-tipoemp`).val(idSubsectortipoemp); subsectortipoempresaChange(); }
+    if (idSector == 3) { $(`#cbo-subsector-tipoemp`).val(3); subsectortipoempresaChange(); }
 }
 
 var subsectortipoempresaChange = () => {
@@ -421,7 +429,7 @@ var armarCombotrabajadorcama = (data) => {
         vcantidad == 0 ? $(`#txt-numero`).val('') : $(`#txt-numero`).val(vcantidad); vcantidad = 0;
         vcantidadmujeres == 0 ? $(`#txt-total-mujeres`).val('') : $(`#txt-total-mujeres`).val(vcantidadmujeres); vcantidadmujeres = 0;
     }
-    else { trabajadorcamaChange(); }
+    else { trabajadorcamaChange(); }    
 }
 
 var trabajadorcamaChange = () => {
@@ -433,6 +441,7 @@ var trabajadorcamaChange = () => {
     menor != undefined ? $(`#txt-numero`).removeAttr('min').attr('min', menor) : $(`#txt-numero`).removeAttr('min');
     mayor != undefined ? idSector == 1 ? $(`#cbo-trabajador-cama`).val() == 1 ? $(`#txt-total-mujeres`).removeAttr('max') : $(`#txt-total-mujeres`).removeAttr('max').attr('max', mayor) : $(`#txt-total-mujeres`).removeAttr('max').attr('max', mayor) : $(`#txt-total-mujeres`).removeAttr('max');
     menor != undefined ? $(`#txt-total-mujeres`).removeAttr('min').attr('min', 0) : $(`#txt-total-mujeres`).removeAttr('min');
+    if (idSector == 3) { $('#txt-numero').val(1); $('#txt-total-mujeres').val(0) }
 }
 
 var cantidadChange = () => {
