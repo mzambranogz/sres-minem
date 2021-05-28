@@ -116,17 +116,26 @@ var cargarDatosInstitucionServicio = (data) => {
         return;
     }
     validarPIDE = 1;
-    $('#frmRegister').data('idInstitucion', data.ID_INSTITUCION);
-    $('#txt-institucion').val(data.RAZON_SOCIAL);
-    $('#txt-direccion').val(data.DOMICILIO_LEGAL);
-    //$('#cbo-sector').val(data.ID_SECTOR_INSTITUCION);
-    idDepartamentoPIDE = data.ID_DEPARTAMENTO;
-    idProvinciaPIDE = data.ID_PROVINCIA;
-    idDistritoPIDE = data.ID_DISTRITO;
-    idContribuyentePIDE = data.CONTRIBUYENTE;
-    $('#cbo-sector').prop('disabled', false);
 
-    $('form > .row:nth(0)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continúe y complete sus datos en los campos restantes del siguiente formulario.' });
+    if (data.RAZON_SOCIAL.trim() == "" || data.DOMICILIO_LEGAL.trim() == "") {
+        cambiarPropiedadLecturaInstitucion(true)
+
+        $('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continúe y complete sus datos en todos los campos del siguiente formulario.' });
+    } else {
+        $('#frmRegister').data('idInstitucion', data.ID_INSTITUCION);
+        $('#txt-institucion').val(data.RAZON_SOCIAL);
+        $('#txt-direccion').val(data.DOMICILIO_LEGAL);
+        //$('#cbo-sector').val(data.ID_SECTOR_INSTITUCION);
+        idDepartamentoPIDE = data.ID_DEPARTAMENTO;
+        idProvinciaPIDE = data.ID_PROVINCIA;
+        idDistritoPIDE = data.ID_DISTRITO;
+        idContribuyentePIDE = data.CONTRIBUYENTE;
+        $('#cbo-sector').prop('disabled', false);
+
+        $('form > .row:nth(0)').alert({ type: 'success', title: 'BIEN HECHO', message: 'Hemos encontrado información relacionada a su número de RUC, por favor continúe y complete sus datos en los campos restantes del siguiente formulario.' });
+    }
+
+    
 }
 
 var cargarComboSector = (selector, data) => {
@@ -330,7 +339,7 @@ var registrarUsuario = () => {
     }
     let url = `${baseUrl}api/usuario/guardarusuario`;
 
-    let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, NOMBRES: nombres, APELLIDOS: apellidos, CORREO: correo, CONTRASENA: contraseña, TELEFONO: telefono, ANEXO: anexo, CELULAR: celular, ID_INSTITUCION: idInstitucion, INSTITUCION: idInstitucion != null ? null : { idInstitucion: idInstitucion == null ? -1 : idInstitucion, RUC: rucInstitucion, RAZON_SOCIAL: razonSocialInstitucion,  DOMICILIO_LEGAL: domicilioLegalInstitucion, ID_SECTOR: idSectorInstitucion, FLAG_APORTENDC: aportendc, CONTRIBUYENTE: idContribuyentePIDE, ID_DEPARTAMENTO: idDepartamentoPIDE, ID_PROVINCIA: idProvinciaPIDE, ID_DISTRITO: idDistritoPIDE, VALIDARPIDE: validarPIDE, UPD_USUARIO: idUsuarioLogin }, ID_ROL: 3, FLAG_ESTADO: flagEstado, UPD_USUARIO: idUsuarioLogin };
+    let data = { ID_USUARIO: idUsuario == null ? -1 : idUsuario, NOMBRES: nombres, APELLIDOS: apellidos, CORREO: correo, CONTRASENA: contraseña, TELEFONO: telefono, ANEXO: anexo, CELULAR: celular, ID_INSTITUCION: idInstitucion, INSTITUCION: idInstitucion != null ? null : { idInstitucion: idInstitucion == null || idInstitucion == 0 ? -1 : idInstitucion, RUC: rucInstitucion, RAZON_SOCIAL: razonSocialInstitucion,  DOMICILIO_LEGAL: domicilioLegalInstitucion, ID_SECTOR: idSectorInstitucion, FLAG_APORTENDC: aportendc, CONTRIBUYENTE: idContribuyentePIDE, ID_DEPARTAMENTO: idDepartamentoPIDE, ID_PROVINCIA: idProvinciaPIDE, ID_DISTRITO: idDistritoPIDE, VALIDARPIDE: validarPIDE, UPD_USUARIO: idUsuarioLogin }, ID_ROL: 3, FLAG_ESTADO: flagEstado, UPD_USUARIO: idUsuarioLogin };
 
     let init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
 

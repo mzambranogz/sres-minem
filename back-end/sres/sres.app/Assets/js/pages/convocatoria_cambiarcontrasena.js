@@ -28,7 +28,8 @@ var sendLogin = (e) => {
     let contrasena = $('#txt-pswd').val().trim();
     let actualcontrasena = ($('#txt-act').val() || '').trim();
 
-    let idUsuario = idUsuarioLogin != null ? idUsuarioLogin : location.href.split('/')[5];
+    let ruta = location.href.split('/');
+    let idUsuario = idUsuarioLogin != null ? idUsuarioLogin : ruta[ruta.length - 1];
 
     let url = `${baseUrl}api/usuario/cambiarclaveusuario`;
     let data = { ID_USUARIO: idUsuario, CONTRASENA: actualcontrasena, CONTRASENA_NUEVO: contrasena, UPD_USUARIO: idUsuario };
@@ -38,7 +39,7 @@ var sendLogin = (e) => {
     .then(r => r.json())
     .then(j => {
         let mensaje = '';
-        mensaje = j == 0 ? 'Inténtelo nuevamente por favor.' : j == 1 ? 'Inténtelo nuevamente por favor.' : j == 2 ? 'La contraseña actual no es la correcta.' : j == 3 ? 'La contraseña se cambio correctamente.' : '';
+        mensaje = j == 0 ? 'Inténtelo nuevamente por favor.' : j == 1 ? 'Inténtelo nuevamente por favor.' : j == 2 ? 'La contraseña actual no es la correcta.' : j == 3 ? 'La contraseña se cambió correctamente.' : '';
         $('.alert-add').html('');
         if (j == 3) { $('#sresBtn').hide(); }
         if (j == 3) $('.alert-add').alertSuccess({ type: 'success', title: 'BIEN HECHO', message: mensaje, close: { time: 4000 }, url: `${baseUrl}Convocatoria` });
