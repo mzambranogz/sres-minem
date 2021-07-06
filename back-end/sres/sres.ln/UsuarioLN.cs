@@ -215,13 +215,16 @@ namespace sres.ln
 
                 if (!existeUsuario)
                 {
-                    be.MRV.UsuarioBE usuarioMRV = usuarioDAMRV.ObtenerUsuarioPorCorreo(correo, cn);
-
+                    ln.MRV.UsuarioLN lnMRVUsuario = new MRV.UsuarioLN();
+                    ln.MRV.InstitucionLN lnMRVInstitucion = new MRV.InstitucionLN();
+                    //be.MRV.UsuarioBE usuarioMRV = usuarioDAMRV.ObtenerUsuarioPorCorreo(correo, cn);
+                    be.MRV.UsuarioBE usuarioMRV = lnMRVUsuario.ObtenerUsuarioPorCorreo(correo);
                     existeUsuarioMRV = usuarioMRV != null;
 
                     if (existeUsuarioMRV)
                     {
-                        be.MRV.InstitucionBE institucionMRV = institucionDAMRV.ObtenerInstitucion(usuarioMRV.ID_INSTITUCION, cn);
+                        //be.MRV.InstitucionBE institucionMRV = institucionDAMRV.ObtenerInstitucion(usuarioMRV.ID_INSTITUCION, cn);
+                        be.MRV.InstitucionBE institucionMRV = lnMRVInstitucion.ObtenerInstitucion(usuarioMRV.ID_INSTITUCION);
 
                         be.InstitucionBE institucion = institucionDA.ObtenerInstitucionPorRuc(institucionMRV.RUC_INSTITUCION, cn);
 

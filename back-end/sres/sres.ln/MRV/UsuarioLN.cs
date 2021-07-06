@@ -52,6 +52,22 @@ namespace sres.ln.MRV
             return esValido;
         }
 
+        public UsuarioBE ObtenerUsuarioPorCorreo(string correo)
+        {
+            UsuarioBE entidad = new UsuarioBE();
+
+            try
+            {
+                cn.Open();
+
+                entidad = usuarioDA.ObtenerUsuarioPorCorreo(correo, cn);
+            }
+            catch (Exception ex) { Log.Error(ex); }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return entidad;
+        }
+
         public Dictionary<string, object> ValidarLoginUsuario(string correo, string contraseña)
         {
             Dictionary<string, object> valor = null;

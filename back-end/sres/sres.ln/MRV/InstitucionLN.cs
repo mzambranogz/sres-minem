@@ -26,5 +26,19 @@ namespace sres.ln.MRV
 
             return item;
         }
+
+        public InstitucionBE ObtenerInstitucion(int id)
+        {
+            InstitucionBE item = null;
+
+            try
+            {
+                cn.Open();
+                item = institucionDA.ObtenerInstitucion(id, cn);
+            }
+            finally { if (cn.State == ConnectionState.Open) cn.Close(); }
+
+            return item;
+        }
     }
 }

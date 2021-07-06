@@ -769,7 +769,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/23/2021 20:06:22</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria_cambiarcontrasena.js">
-      <publishTime>05/27/2021 12:36:51</publishTime>
+      <publishTime>05/28/2021 10:47:26</publishTime>
     </File>
     <File Include="Assets/js/pages/convocatoria_criterio.js">
       <publishTime>05/23/2021 20:06:22</publishTime>
@@ -811,7 +811,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/23/2021 20:06:22</publishTime>
     </File>
     <File Include="Assets/js/pages/login_registrarme.js">
-      <publishTime>05/23/2021 20:06:22</publishTime>
+      <publishTime>05/28/2021 10:58:23</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento.js">
       <publishTime>05/23/2021 20:06:22</publishTime>
@@ -1123,19 +1123,19 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/23/2021 20:06:22</publishTime>
     </File>
     <File Include="bin/sres.app.dll">
-      <publishTime>05/27/2021 12:42:00</publishTime>
+      <publishTime>06/28/2021 19:41:20</publishTime>
     </File>
     <File Include="bin/sres.be.dll">
-      <publishTime>05/27/2021 12:41:57</publishTime>
+      <publishTime>06/28/2021 19:41:18</publishTime>
     </File>
     <File Include="bin/sres.da.dll">
-      <publishTime>05/27/2021 12:41:57</publishTime>
+      <publishTime>06/28/2021 19:41:18</publishTime>
     </File>
     <File Include="bin/sres.ln.dll">
-      <publishTime>05/27/2021 12:41:58</publishTime>
+      <publishTime>06/28/2021 19:41:18</publishTime>
     </File>
     <File Include="bin/sres.ut.dll">
-      <publishTime>05/27/2021 12:03:07</publishTime>
+      <publishTime>06/28/2021 19:41:17</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>05/23/2021 20:06:20</publishTime>
