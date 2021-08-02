@@ -800,6 +800,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\Reportes\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\_Base\" />
   </ItemGroup>
@@ -818,23 +819,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="App_Data\Reportes\Certificado.rdlc" />
-    <EmbeddedResource Include="App_Data\Reportes\CertificadoEspecial.rdlc" />
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc">
+    <EmbeddedResource Include="ReportesRdlc\Certificado.rdlc" />
+    <EmbeddedResource Include="ReportesRdlc\CertificadoEspecial.rdlc" />
+    <EmbeddedResource Include="ReportesRdlc\rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc">
+    <EmbeddedResource Include="ReportesRdlc\rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoReconocimientoXConvocatoria.rdlc">
+    <EmbeddedResource Include="ReportesRdlc\rptReporteEstadisticoReconocimientoXConvocatoria.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc">
+    <EmbeddedResource Include="ReportesRdlc\rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="App_Data\Reportes\rptReportePostulacionesXSectorSubsector.rdlc" />
-    <EmbeddedResource Include="App_Data\Reportes\rptReporteConvocatoriaXEmpresa.rdlc" />
-    <EmbeddedResource Include="App_Data\Reportes\rptReconocimientoEmpresa.rdlc" />
+    <EmbeddedResource Include="ReportesRdlc\rptReportePostulacionesXSectorSubsector.rdlc" />
+    <EmbeddedResource Include="ReportesRdlc\rptReporteConvocatoriaXEmpresa.rdlc" />
+    <EmbeddedResource Include="ReportesRdlc\rptReconocimientoEmpresa.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

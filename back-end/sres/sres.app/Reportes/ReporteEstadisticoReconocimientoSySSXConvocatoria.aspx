@@ -27,7 +27,7 @@
         </div>
         <div class="row" style="overflow-y: scroll;">
             <rsweb:ReportViewer ID="rpwReporte" runat="server" Style="width: 100%" Visible="false">
-                <LocalReport ReportPath="App_Data/Reportes/rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc"></LocalReport>
+                <LocalReport ReportPath="ReportesRdlc/rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc"></LocalReport>
             </rsweb:ReportViewer>
         </div>
     </form>

@@ -36,7 +36,7 @@
         </div>
         <div class="row" style="overflow-y: scroll;">
             <rsweb:ReportViewer ID="rpwReporte" runat="server" Style="width: 100%" Visible="False" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt">
-                <LocalReport ReportPath="App_Data\Reportes\rptReporteConvocatoriaXEmpresa.rdlc">
+                <LocalReport ReportPath="ReportesRdlc\rptReporteConvocatoriaXEmpresa.rdlc">
                 </LocalReport>
             </rsweb:ReportViewer>
         </div>
