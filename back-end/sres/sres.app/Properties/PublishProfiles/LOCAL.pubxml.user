@@ -811,7 +811,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>07/21/2021 15:21:33</publishTime>
     </File>
     <File Include="Assets/js/pages/login_registrarme.js">
-      <publishTime>07/21/2021 15:21:33</publishTime>
+      <publishTime>08/02/2021 16:40:38</publishTime>
     </File>
     <File Include="Assets/js/pages/mantenimiento.js">
       <publishTime>07/21/2021 15:21:33</publishTime>
@@ -886,7 +886,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>07/21/2021 15:21:33</publishTime>
     </File>
     <File Include="Assets/js/pages/participante_ficha.js">
-      <publishTime>07/21/2021 15:21:33</publishTime>
+      <publishTime>08/02/2021 16:00:59</publishTime>
     </File>
     <File Include="Assets/js/pages/preguntas_frecuentes.js">
       <publishTime>07/21/2021 15:21:33</publishTime>
@@ -1071,6 +1071,18 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="bin/pt/Microsoft.SqlServer.Types.resources.dll">
       <publishTime>02/21/2014 05:25:24</publishTime>
     </File>
+    <File Include="bin/ReportesRdlc/Certificado.rdlc">
+      <publishTime>08/01/2021 23:58:06</publishTime>
+    </File>
+    <File Include="bin/ReportesRdlc/CertificadoEspecial.rdlc">
+      <publishTime>07/21/2021 15:21:32</publishTime>
+    </File>
+    <File Include="bin/ReportesRdlc/rptReconocimientoEmpresa.rdlc">
+      <publishTime>08/01/2021 23:52:07</publishTime>
+    </File>
+    <File Include="bin/ReportesRdlc/rptReporteConvocatoriaXEmpresa.rdlc">
+      <publishTime>07/21/2021 15:21:32</publishTime>
+    </File>
     <File Include="bin/ReportesRdlc/rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc">
       <publishTime>07/21/2021 15:21:32</publishTime>
     </File>
@@ -1081,6 +1093,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>07/21/2021 15:21:32</publishTime>
     </File>
     <File Include="bin/ReportesRdlc/rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc">
+      <publishTime>07/21/2021 15:21:32</publishTime>
+    </File>
+    <File Include="bin/ReportesRdlc/rptReportePostulacionesXSectorSubsector.rdlc">
       <publishTime>07/21/2021 15:21:32</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
@@ -1135,25 +1150,25 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>07/21/2021 15:21:33</publishTime>
     </File>
     <File Include="bin/sres.app.dll">
-      <publishTime>08/01/2021 23:59:15</publishTime>
+      <publishTime>08/02/2021 17:27:24</publishTime>
     </File>
     <File Include="bin/sres.app.pdb">
       <publishTime>07/29/2021 00:16:40</publishTime>
     </File>
     <File Include="bin/sres.be.dll">
-      <publishTime>08/01/2021 22:52:57</publishTime>
+      <publishTime>08/02/2021 16:50:15</publishTime>
     </File>
     <File Include="bin/sres.be.pdb">
       <publishTime>07/29/2021 00:16:36</publishTime>
     </File>
     <File Include="bin/sres.da.dll">
-      <publishTime>08/01/2021 22:52:57</publishTime>
+      <publishTime>08/02/2021 16:50:15</publishTime>
     </File>
     <File Include="bin/sres.da.pdb">
       <publishTime>07/29/2021 00:16:37</publishTime>
     </File>
     <File Include="bin/sres.ln.dll">
-      <publishTime>08/01/2021 22:52:58</publishTime>
+      <publishTime>08/02/2021 16:50:16</publishTime>
     </File>
     <File Include="bin/sres.ln.pdb">
       <publishTime>07/29/2021 00:16:38</publishTime>
@@ -1458,6 +1473,33 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Reportes/ReporteReconocimientoXConvocatoriaEmpresa.aspx">
       <publishTime>08/01/2021 23:17:36</publishTime>
     </File>
+    <File Include="ReportesRdlc/Certificado.rdlc">
+      <publishTime>08/01/2021 23:58:06</publishTime>
+    </File>
+    <File Include="ReportesRdlc/CertificadoEspecial.rdlc">
+      <publishTime>07/21/2021 15:21:32</publishTime>
+    </File>
+    <File Include="ReportesRdlc/rptReconocimientoEmpresa.rdlc">
+      <publishTime>08/01/2021 23:52:07</publishTime>
+    </File>
+    <File Include="ReportesRdlc/rptReporteConvocatoriaXEmpresa.rdlc">
+      <publishTime>07/21/2021 15:21:32</publishTime>
+    </File>
+    <File Include="ReportesRdlc/rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc">
+      <publishTime>07/21/2021 15:21:32</publishTime>
+    </File>
+    <File Include="ReportesRdlc/rptReporteEstadisticoReconocimientoXConvocatoria.rdlc">
+      <publishTime>07/21/2021 15:21:32</publishTime>
+    </File>
+    <File Include="ReportesRdlc/rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc">
+      <publishTime>07/21/2021 15:21:32</publishTime>
+    </File>
+    <File Include="ReportesRdlc/rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc">
+      <publishTime>07/21/2021 15:21:32</publishTime>
+    </File>
+    <File Include="ReportesRdlc/rptReportePostulacionesXSectorSubsector.rdlc">
+      <publishTime>07/21/2021 15:21:32</publishTime>
+    </File>
     <File Include="Service References/ServicioPIDE/sres.app.ServicioPIDE.BEDatosAntPenales.datasource">
       <publishTime>07/21/2021 15:21:33</publishTime>
     </File>
@@ -1558,7 +1600,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>07/21/2021 15:21:33</publishTime>
     </File>
     <File Include="Views/Login/Registrarme.cshtml">
-      <publishTime>07/21/2021 15:21:33</publishTime>
+      <publishTime>08/02/2021 16:22:57</publishTime>
     </File>
     <File Include="Views/Mantenimiento/Anno.cshtml">
       <publishTime>07/21/2021 15:21:33</publishTime>

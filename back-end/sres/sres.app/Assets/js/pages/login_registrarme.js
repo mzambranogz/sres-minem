@@ -79,17 +79,24 @@ var cargarDatosInstitucionMRV = (data) => {
     //$('#txt-ruc').val('');
     limpiarDatosInstitucion();
     limpiarDatosUsuario();
-    cambiarPropiedadLecturaInstitucion(!existeInformacion);
-    cambiarPropiedadLecturaUsuario(!existeInformacion);
+    //cambiarPropiedadLecturaInstitucion(!existeInformacion);
+    //cambiarPropiedadLecturaUsuario(!existeInformacion);
 
     if (!existeInformacion) {
+        $("#preload").html("<i Class='fas fa-spinner fa-spin px-1'></i> Espere por favor, se esta verificando el RUC...")
         //$('form > .row:nth(0)').alert({ type: 'warning', title: 'NÚMERO DE RUC NUEVO', message: 'Por favor continúe y complete sus datos en todos los campos del siguiente formulario.' });
         let ruc = $('#txt-ruc').val();
         let urlObtenerInstitucionMRVPorRuc = `${baseUrl}api/institucion/obtenerinstitucionporrucservicio?ruc=${ruc}`;
 
         fetch(urlObtenerInstitucionMRVPorRuc)
         .then(r => r.json())
-        .then(j => cargarDatosInstitucionServicio(j));
+        .then(j => cargarDatosInstitucionServicio(j))
+        .catch(error => {
+            console.log('Hubo un problema con la petición Fetch:' + error.message);
+        })
+        .finally(() => {
+            $("#preload").html('')
+        })
         return;
     }
 

@@ -819,23 +819,33 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ReportesRdlc\Certificado.rdlc" />
-    <EmbeddedResource Include="ReportesRdlc\CertificadoEspecial.rdlc" />
-    <EmbeddedResource Include="ReportesRdlc\rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc">
+    <Content Include="ReportesRdlc\Certificado.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportesRdlc\rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc">
+    </Content>
+    <Content Include="ReportesRdlc\CertificadoEspecial.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportesRdlc\rptReporteEstadisticoReconocimientoXConvocatoria.rdlc">
+    </Content>
+    <Content Include="ReportesRdlc\rptReporteEstadisticoReconocimientoSySSXConvocatoria.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportesRdlc\rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc">
+    </Content>
+    <Content Include="ReportesRdlc\rptReporteEstadisticoTipoPostulanteXConvocatoria.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportesRdlc\rptReportePostulacionesXSectorSubsector.rdlc" />
-    <EmbeddedResource Include="ReportesRdlc\rptReporteConvocatoriaXEmpresa.rdlc" />
-    <EmbeddedResource Include="ReportesRdlc\rptReconocimientoEmpresa.rdlc" />
+    </Content>
+    <Content Include="ReportesRdlc\rptReporteEstadisticoReconocimientoXConvocatoria.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ReportesRdlc\rptReporteEstadisticoTipoEmpresaXConvocatoria.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ReportesRdlc\rptReportePostulacionesXSectorSubsector.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ReportesRdlc\rptReporteConvocatoriaXEmpresa.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ReportesRdlc\rptReconocimientoEmpresa.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

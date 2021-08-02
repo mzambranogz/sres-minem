@@ -45,7 +45,7 @@ var reconocimientocategoriaestrella = (obj) => {
     let imagen = `<div class="offset-lg-2 col-lg-2 col-md-12 col-sm-12 d-flex justify-content-center align-items-center"><img class="img-fluid" src="${baseUrl}${$('#ruta').val().replace('{0}', obj.INSIGNIA.ID_INSIGNIA)}/${obj.INSIGNIA.ARCHIVO_BASE == null ? '' : obj.INSIGNIA.ARCHIVO_BASE}" alt="" data-toggle="tooltip" data-placement="top" title="${obj.INSIGNIA.ID_INSIGNIA == 1 ? 'Sin categoría' : `Reconocimiento categoría ${obj.INSIGNIA.NOMBRE.toLowerCase()}`}"></div>`;
     let contenttabla = `<div class="row">${imagen}${contentseccion}</div>`;
     let titulo2 = `<h3 class="estilo-04 text-sres-azul">NIVELES DE RECONOCIMIENTO POR REDUCCIÓN DE EMISIONES GEI: &nbsp;<b class="text-sres-verde">${obj.ESTRELLA_E.NOMBRE}</b></h3>`;
-    let titulo1 = `<h3 class="estilo-04 text-sres-azul">CATEGORÍA DE RECONOCIMIENTO DE ENERGÍA EFECIENTE Y SOSTENIBLE: &nbsp;<b class="text-sres-verde">${obj.INSIGNIA.NOMBRE}</b></h3>`;
+    let titulo1 = `<h3 class="estilo-04 text-sres-azul">CATEGORÍA DE RECONOCIMIENTO DE ENERGÍA EFICIENTE Y SOSTENIBLE: &nbsp;<b class="text-sres-verde">${obj.INSIGNIA.NOMBRE}</b></h3>`;
     let div1 = `<div class="offset-lg-1 col-lg-10 col-md-12 col-12">${titulo1}${obj.ESTRELLA_E.ID_ESTRELLA == 1 ? `<div class="rayado wow fadeIn mb-3">` : `${titulo2}<div class="rayado wow fadeIn mb-3">`}</div>${contenttabla}</div>`;
     let content = `<div class="row my-5">${div1}</div>`;
     return content;
